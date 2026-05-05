@@ -17,47 +17,27 @@ if hasattr(sys.stderr, "buffer"):
 
 
 def _print_banner() -> None:
-    import os
     from pyfiglet import Figlet
     from rich.console import Console
     from rich.panel import Panel
     from rich.text import Text
 
-    # Read width from the real stdout fd — survives stdout wrapper and terminal resize
-    try:
-        term_w = os.get_terminal_size(sys.__stdout__.fileno()).columns
-    except Exception:
-        import shutil
-        term_w = shutil.get_terminal_size((80, 24)).columns
-    term_w = max(40, min(term_w, 220))
+    console = Console(highlight=False)
 
-    console = Console(highlight=False, width=term_w)
+    raw_art = Figlet(font="small").renderText("mock-jutsu").rstrip("\n")
+    art_lines = [line.rstrip() for line in raw_art.splitlines()]
+    min_i = min((len(l) - len(l.lstrip()) for l in art_lines if l.strip()), default=0)
+    art_lines = [l[min_i:] for l in art_lines]
 
-    # Breakpoints: full / compact / text-only
-    if term_w >= 88:
-        font, padding = "standard", (1, 4)
-    elif term_w >= 65:
-        font, padding = "small", (1, 2)
-    else:
-        font, padding = None, (0, 1)
-
+    mid = len(art_lines) // 2
     body = Text(justify="center")
-
-    if font:
-        raw_art = Figlet(font=font).renderText("mock-jutsu").rstrip("\n")
-        art_lines = [line.rstrip() for line in raw_art.splitlines()]
-        min_i = min((len(l) - len(l.lstrip()) for l in art_lines if l.strip()), default=0)
-        art_lines = [l[min_i:] for l in art_lines]
-        mid = len(art_lines) // 2
-        for i, line in enumerate(art_lines):
-            if i == mid:
-                body.append("⚔  ", style="bold yellow")
-                body.append(line, style="bold bright_green")
-                body.append("  ✦\n", style="bold yellow")
-            else:
-                body.append(line + "\n", style="bold bright_green")
-    else:
-        body.append("⚔  mock-jutsu  ✦\n", style="bold bright_green")
+    for i, line in enumerate(art_lines):
+        if i == mid:
+            body.append("⚔  ", style="bold yellow")
+            body.append(line, style="bold bright_green")
+            body.append("  ✦\n", style="bold yellow")
+        else:
+            body.append(line + "\n", style="bold bright_green")
 
     body.append("\n")
     body.append("Algorithmic Mock Data Engine\n", style="bold white")
@@ -79,7 +59,7 @@ def _print_banner() -> None:
     body.append("Licensed under the MIT License\n", style="dim white")
     body.append("Copyright (c) 2025 Altan Sezer Ayan - A.S.A", style="dim white")
 
-    console.print(Panel(body, border_style="bright_green", padding=padding))
+    console.print(Panel(body, border_style="bright_green", padding=(1, 2)))
 
 # ---------------------------------------------------------------------------
 # Reference table
