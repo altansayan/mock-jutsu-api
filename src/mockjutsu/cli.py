@@ -248,7 +248,7 @@ def list_types(cat):
     # Column widths
     W_TYPE = 20
     W_EX   = 24
-    W_CLI  = 38
+    W_CLI  = 48
     W      = 2 + W_TYPE + W_EX + W_CLI + 2   # ~86
 
     sep = click.style("-" * W, fg='bright_black')
@@ -266,7 +266,7 @@ def list_types(cat):
     # Column headers
     h_type = click.style(f"  {'TYPE':<{W_TYPE}}", fg='bright_black', bold=True)
     h_ex   = click.style(f"{'EXAMPLE OUTPUT':<{W_EX}}", fg='bright_black', bold=True)
-    h_cli  = click.style(f"{'CLI COMMAND  (mockjutsu ...)':<{W_CLI}}", fg='bright_black', bold=True)
+    h_cli  = click.style(f"{'CLI COMMAND':<{W_CLI}}", fg='bright_black', bold=True)
     h_loc  = click.style("L", fg='bright_black', bold=True)
     click.echo(h_type + h_ex + h_cli + h_loc)
     click.echo(click.style("  " + "-" * (W - 2), fg='bright_black'))
@@ -296,7 +296,8 @@ def list_types(cat):
             loc_flag = click.style("v", fg="green") if locale_aware else click.style("-", fg='bright_black')
             typ_s    = click.style(f"  {typ:<{W_TYPE}}", fg='white', bold=True)
             ex_s     = click.style(f"{example:<{W_EX}}", fg='bright_yellow')
-            cli_s    = click.style(f"{cli_cmd:<{W_CLI}}", fg='cyan')
+            full_cmd = f"mockjutsu {cli_cmd}"
+            cli_s    = click.style(f"{full_cmd:<{W_CLI}}", fg='cyan')
             click.echo(f"{typ_s}{ex_s}{cli_s} {loc_flag}")
             printed += 1
 
