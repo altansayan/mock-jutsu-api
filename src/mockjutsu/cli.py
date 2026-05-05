@@ -25,14 +25,14 @@ def _print_banner() -> None:
     console = Console(force_terminal=True, highlight=False)
 
     # Strip leading whitespace so Rich can center cleanly
-    raw_art = Figlet(font="slant").renderText("mock-jutsu").rstrip("\n")
+    raw_art = Figlet(font="standard").renderText("mock-jutsu").rstrip("\n")
     art_lines = [line.rstrip() for line in raw_art.splitlines()]
     min_indent = min((len(l) - len(l.lstrip()) for l in art_lines if l.strip()), default=0)
     art_lines = [l[min_indent:] for l in art_lines]
 
     body = Text(justify="center")
     for line in art_lines:
-        body.append(line + "\n", style="bold cyan")
+        body.append(line + "\n", style="bold bright_green")
     body.append("\n")
     body.append("Algorithmic Mock Data Engine\n", style="bold white")
     body.append("95+ Types", style="cyan")
@@ -54,7 +54,7 @@ def _print_banner() -> None:
     body.append("Licensed under the MIT License\n", style="dim white")
     body.append("Copyright (c) 2025 Altan Sezer Ayan - A.S.A", style="dim white")
 
-    console.print(Panel(body, border_style="cyan", padding=(1, 4)))
+    console.print(Panel(body, border_style="bright_green", padding=(1, 4)))
 
 # ---------------------------------------------------------------------------
 # Reference table
