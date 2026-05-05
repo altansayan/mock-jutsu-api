@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mock-jutsu"
+version = "1.0.0"
+description = "Algorithmic mock data engine — 95+ types, 6 locales, real checksums. TCKN, Luhn, VIN, NHS, EPC, NEC IR, Pronto Hex and more."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Altan Sezer Ayan", email = "altansezerayan@gmail.com"}
+]
+keywords = [
+    "mock", "fake", "data", "testing", "fintech", "faker",
+    "tckn", "iban", "luhn", "vin", "nhs", "rfid", "nfc", "epc", "ndef", "apdu",
+    "ir", "nec", "pronto", "rc5", "locale"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "click>=8.0",
+    "fastapi>=0.100",
+    "uvicorn>=0.20",
+]
+
+[project.urls]
+Homepage = "https://github.com/altansayan/mock-jutsu-api"
+Repository = "https://github.com/altansayan/mock-jutsu-api"
+"Bug Tracker" = "https://github.com/altansayan/mock-jutsu-api/issues"
+
+[project.scripts]
+mockjutsu = "mockjutsu.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
