@@ -17,50 +17,62 @@ if hasattr(sys.stderr, "buffer"):
 
 
 def _print_banner() -> None:
+    import shutil
     from pyfiglet import Figlet
     from rich.console import Console
     from rich.panel import Panel
     from rich.text import Text
 
-    console = Console(force_terminal=True, highlight=False)
+    term_w = shutil.get_terminal_size((80, 24)).columns
+    console  = Console(force_terminal=True, width=term_w, highlight=False)
 
-    # Strip leading whitespace so Rich can center cleanly
-    raw_art = Figlet(font="standard").renderText("mock-jutsu").rstrip("\n")
-    art_lines = [line.rstrip() for line in raw_art.splitlines()]
-    min_indent = min((len(l) - len(l.lstrip()) for l in art_lines if l.strip()), default=0)
-    art_lines = [l[min_indent:] for l in art_lines]
+    # Breakpoints: full / compact / text-only
+    if term_w >= 88:
+        font, padding = "standard", (1, 4)
+    elif term_w >= 65:
+        font, padding = "small", (1, 2)
+    else:
+        font, padding = None, (0, 1)
 
-    mid = len(art_lines) // 2
     body = Text(justify="center")
-    for i, line in enumerate(art_lines):
-        if i == mid:
-            body.append("⚔  ", style="bold yellow")
-            body.append(line, style="bold bright_green")
-            body.append("  ✦\n", style="bold yellow")
-        else:
-            body.append(line + "\n", style="bold bright_green")
+
+    if font:
+        raw_art = Figlet(font=font).renderText("mock-jutsu").rstrip("\n")
+        art_lines = [line.rstrip() for line in raw_art.splitlines()]
+        min_i = min((len(l) - len(l.lstrip()) for l in art_lines if l.strip()), default=0)
+        art_lines = [l[min_i:] for l in art_lines]
+        mid = len(art_lines) // 2
+        for i, line in enumerate(art_lines):
+            if i == mid:
+                body.append("⚔  ", style="bold yellow")
+                body.append(line, style="bold bright_green")
+                body.append("  ✦\n", style="bold yellow")
+            else:
+                body.append(line + "\n", style="bold bright_green")
+    else:
+        body.append("⚔  mock-jutsu  ✦\n", style="bold bright_green")
+
     body.append("\n")
     body.append("Algorithmic Mock Data Engine\n", style="bold white")
     body.append("95+ Types", style="cyan")
-    body.append("   |   ", style="dim white")
+    body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
-    body.append("   |   ", style="dim white")
+    body.append("  |  ", style="dim white")
     body.append("689 Tests\n", style="cyan")
     body.append("\n")
-    body.append("Developed by: Altan Sezer Ayan - A.S.A", style="dim white")
-    body.append("   ", style="dim")
+    body.append("Developed by: Altan Sezer Ayan - A.S.A\n", style="dim white")
     body.append("https://github.com/altansayan\n", style="dim blue")
     body.append("MockJutsu - Api: ", style="dim white")
     body.append("https://github.com/altansayan/mock-jutsu-api\n", style="dim blue")
     body.append("MockJutsu JMeter: ", style="dim white")
     body.append("https://github.com/altansayan/mock-jutsu-jmeter\n", style="dim blue")
-    body.append("MockJutsu Postman Collection: ", style="dim white")
+    body.append("MockJutsu Postman Collection:\n", style="dim white")
     body.append("https://github.com/altansayan/mock-jutsu-postman-collection\n", style="dim blue")
     body.append("\n")
     body.append("Licensed under the MIT License\n", style="dim white")
     body.append("Copyright (c) 2025 Altan Sezer Ayan - A.S.A", style="dim white")
 
-    console.print(Panel(body, border_style="bright_green", padding=(1, 4)))
+    console.print(Panel(body, border_style="bright_green", padding=padding))
 
 # ---------------------------------------------------------------------------
 # Reference table
