@@ -15,6 +15,38 @@ if hasattr(sys.stdout, "buffer"):
 if hasattr(sys.stderr, "buffer"):
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
+
+def _print_banner() -> None:
+    from pyfiglet import Figlet
+    from rich.console import Console
+    from rich.panel import Panel
+    from rich.text import Text
+
+    console = Console(force_terminal=True, highlight=False)
+
+    # Strip leading whitespace so Rich can center cleanly
+    raw_art = Figlet(font="slant").renderText("mock-jutsu").rstrip("\n")
+    art_lines = [line.rstrip() for line in raw_art.splitlines()]
+    min_indent = min((len(l) - len(l.lstrip()) for l in art_lines if l.strip()), default=0)
+    art_lines = [l[min_indent:] for l in art_lines]
+
+    body = Text(justify="center")
+    for line in art_lines:
+        body.append(line + "\n", style="bold cyan")
+    body.append("\n")
+    body.append("Algorithmic Mock Data Engine\n", style="bold white")
+    body.append("95+ Types", style="cyan")
+    body.append("   |   ", style="dim white")
+    body.append("6 Locales", style="cyan")
+    body.append("   |   ", style="dim white")
+    body.append("689 Tests\n", style="cyan")
+    body.append("\n")
+    body.append("Developed by: Altan Sezer Ayan - A.S.A", style="dim white")
+    body.append("   ", style="dim")
+    body.append("https://github.com/altansayan", style="dim blue")
+
+    console.print(Panel(body, border_style="cyan", padding=(1, 4)))
+
 # ---------------------------------------------------------------------------
 # Reference table
 # (type, category, locale_aware, example_output, cli_cmd)
@@ -180,11 +212,9 @@ _CAT_COLORS = {
 @click.group(invoke_without_command=True)
 @click.pass_context
 def main(ctx):
-    """
-    mock-jutsu -- Algorithmic Mock Data Engine (6 Locales, 95+ Types)
-    Developed by: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
-    """
+    """mock-jutsu -- Algorithmic Mock Data Engine (6 Locales, 95+ Types)"""
     if ctx.invoked_subcommand is None:
+        _print_banner()
         click.echo(ctx.get_help())
 
 
@@ -214,13 +244,8 @@ def list_types(cat):
 
     sep = click.style("-" * W, fg='bright_black')
 
-    # Header
-    click.echo(sep)
-    click.echo(click.style(
-        "  mock-jutsu  --  95+ Data Types  |  6 Locales  |  689 Tests",
-        bold=True
-    ))
-    click.echo(sep)
+    # Banner
+    _print_banner()
     click.echo()
     click.echo(click.style(
         "  Locales:  TR (Turkey)  |  US (United States)  |  UK (United Kingdom)\n"
