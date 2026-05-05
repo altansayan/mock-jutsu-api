@@ -17,14 +17,21 @@ if hasattr(sys.stderr, "buffer"):
 
 
 def _print_banner() -> None:
-    import shutil
+    import os
     from pyfiglet import Figlet
     from rich.console import Console
     from rich.panel import Panel
     from rich.text import Text
 
-    term_w = shutil.get_terminal_size((80, 24)).columns
-    console  = Console(force_terminal=True, width=term_w, highlight=False)
+    # Read width from the real stdout fd — survives stdout wrapper and terminal resize
+    try:
+        term_w = os.get_terminal_size(sys.__stdout__.fileno()).columns
+    except Exception:
+        import shutil
+        term_w = shutil.get_terminal_size((80, 24)).columns
+    term_w = max(40, min(term_w, 220))
+
+    console = Console(highlight=False, width=term_w)
 
     # Breakpoints: full / compact / text-only
     if term_w >= 88:
