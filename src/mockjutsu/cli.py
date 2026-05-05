@@ -43,7 +43,16 @@ def _print_banner() -> None:
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan - A.S.A", style="dim white")
     body.append("   ", style="dim")
-    body.append("https://github.com/altansayan", style="dim blue")
+    body.append("https://github.com/altansayan\n", style="dim blue")
+    body.append("MockJutsu - Api: ", style="dim white")
+    body.append("https://github.com/altansayan/mock-jutsu-api\n", style="dim blue")
+    body.append("MockJutsu JMeter: ", style="dim white")
+    body.append("https://github.com/altansayan/mock-jutsu-jmeter\n", style="dim blue")
+    body.append("MockJutsu Postman Collection: ", style="dim white")
+    body.append("https://github.com/altansayan/mock-jutsu-postman-collection\n", style="dim blue")
+    body.append("\n")
+    body.append("Licensed under the MIT License\n", style="dim white")
+    body.append("Copyright (c) 2025 Altan Sezer Ayan - A.S.A", style="dim white")
 
     console.print(Panel(body, border_style="cyan", padding=(1, 4)))
 
