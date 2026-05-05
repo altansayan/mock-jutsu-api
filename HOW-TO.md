@@ -1,7 +1,7 @@
-# mock-jutsu — Kullanım Kılavuzu (How-To)
+﻿# mock-jutsu — Kullanım Kılavuzu (How-To)
 
 > **mock-jutsu** — 6 locale (TR/US/UK/DE/FR/RU), 57 parametre tipi, yasal algoritmalarla mock veri üretimi.
-> Developer: Altan Sayan · [github.com/altansayan](https://github.com/altansayan)
+> Developer: Altan Sezer Ayan - A.S.A · [github.com/altansayan](https://github.com/altansayan)
 
 ---
 
@@ -677,4 +677,4 @@ Bu fonksiyonlar `locale` parametresine göre **farklı ülkenin formatını ve a
 
 ---
 
-*mock-jutsu-api · Altan Sayan · [github.com/altansayan/mock-jutsu-api](https://github.com/altansayan/mock-jutsu-api)*
+*mock-jutsu-api · Altan Sezer Ayan - A.S.A · [github.com/altansayan/mock-jutsu-api](https://github.com/altansayan/mock-jutsu-api)*

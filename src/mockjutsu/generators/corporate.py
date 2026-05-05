@@ -1,6 +1,6 @@
-"""
+﻿"""
 mock-jutsu — Corporate Generator (Company Names, Job Titles)
-Developer: Altan Sayan (https://github.com/altansayan)
+Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
 import random

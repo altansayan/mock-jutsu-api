@@ -1,6 +1,6 @@
-"""
+﻿"""
 mock-jutsu — IoT Generator (RFID, NFC, IR)
-Developer: Altan Sayan (https://github.com/altansayan)
+Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 
 Entropy strategy:
   - secrets.token_bytes / secrets.randbelow → OS CSPRNG (urandom)

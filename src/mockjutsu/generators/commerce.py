@@ -1,6 +1,6 @@
-"""
+﻿"""
 mock-jutsu — Commerce Generator (Currency, Tax Rate, Invoice, VIN, Vehicle)
-Developer: Altan Sayan (https://github.com/altansayan)
+Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
 import random

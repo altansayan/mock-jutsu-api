@@ -1,6 +1,6 @@
-"""
+﻿"""
 mock-jutsu — Advanced Financial Generator (Global Formats)
-Developer: Altan Sayan (https://github.com/altansayan)
+Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
 import random

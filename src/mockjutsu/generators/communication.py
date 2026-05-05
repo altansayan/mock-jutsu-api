@@ -1,6 +1,6 @@
-"""
+﻿"""
 mock-jutsu — Official Communication Generator (Regulatory & Combinatorial)
-Developer: Altan Sayan (https://github.com/altansayan)
+Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
 import random

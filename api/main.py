@@ -1,6 +1,6 @@
-"""
+﻿"""
 mock-jutsu — FastAPI Application
-Developer: Altan Sayan (https://github.com/altansayan)
+Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 Purpose: Provides a RESTful gateway for the mock-jutsu engine.
 """
 
@@ -9,10 +9,10 @@ from mockjutsu.core import jutsu
 
 app = FastAPI(
     title="mock-jutsu API",
-    description="Atomic Mock Data Generation by Altan Sayan",
+    description="Atomic Mock Data Generation by Altan Sezer Ayan - A.S.A",
     version="0.1.0",
     contact={
-        "name": "Altan Sayan",
+        "name": "Altan Sezer Ayan - A.S.A",
         "url": "https://github.com/altansayan",
     }
 )
@@ -22,7 +22,7 @@ async def root():
     """Welcome endpoint providing developer info."""
     return {
         "message": "Welcome to mock-jutsu API",
-        "developer": "Altan Sayan",
+        "developer": "Altan Sezer Ayan - A.S.A",
         "github": "https://github.com/altansayan",
         "usage": "/generate/{type}"
     }

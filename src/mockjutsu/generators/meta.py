@@ -1,6 +1,6 @@
-"""
+﻿"""
 mock-jutsu — Meta Generator (Combinatorial User Agent + Security Data + Tech)
-Developer: Altan Sayan (https://github.com/altansayan)
+Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
 import random

@@ -1,6 +1,6 @@
-"""
+﻿"""
 mock-jutsu — Banking Generator (BIC/SWIFT, Routing, Sort Code, BIK, Transactions)
-Developer: Altan Sayan (https://github.com/altansayan)
+Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
 import random

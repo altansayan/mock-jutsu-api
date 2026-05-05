@@ -1,6 +1,6 @@
 """
 mock-jutsu -- CLI
-Developer: Altan Sayan (https://github.com/altansayan)
+Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
 import io
@@ -182,7 +182,7 @@ _CAT_COLORS = {
 def main(ctx):
     """
     mock-jutsu -- Algorithmic Mock Data Engine (6 Locales, 95+ Types)
-    Developed by: Altan Sayan (https://github.com/altansayan)
+    Developed by: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
     """
     if ctx.invoked_subcommand is None:
         click.echo(ctx.get_help())

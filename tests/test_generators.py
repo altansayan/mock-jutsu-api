@@ -1,6 +1,6 @@
-"""
+﻿"""
 mock-jutsu — Full-Coverage Unit Tests
-Developer: Altan Sayan (https://github.com/altansayan)
+Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 Purpose: Cross-testing 55 parameters across 6 locales (TR, UK, US, DE, FR, RU).
          330 matrix scenarios + 35 algorithmic validation tests.
 """

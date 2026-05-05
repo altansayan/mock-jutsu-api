@@ -1,6 +1,6 @@
-"""
+﻿"""
 mock-jutsu — Health Generator (Blood Type, NHS, ICD-10, Height/Weight)
-Developer: Altan Sayan (https://github.com/altansayan)
+Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
 import random
