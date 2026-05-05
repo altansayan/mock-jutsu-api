@@ -30,9 +30,15 @@ def _print_banner() -> None:
     min_indent = min((len(l) - len(l.lstrip()) for l in art_lines if l.strip()), default=0)
     art_lines = [l[min_indent:] for l in art_lines]
 
+    mid = len(art_lines) // 2
     body = Text(justify="center")
-    for line in art_lines:
-        body.append(line + "\n", style="bold bright_green")
+    for i, line in enumerate(art_lines):
+        if i == mid:
+            body.append("⚔  ", style="bold yellow")
+            body.append(line, style="bold bright_green")
+            body.append("  ✦\n", style="bold yellow")
+        else:
+            body.append(line + "\n", style="bold bright_green")
     body.append("\n")
     body.append("Algorithmic Mock Data Engine\n", style="bold white")
     body.append("95+ Types", style="cyan")
