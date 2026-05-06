@@ -409,4 +409,15 @@ Algorithms verified:
 
 ---
 
+## Legal Disclaimer
+
+This library generates **synthetic data** for software development and testing purposes only.
+
+- Generated data must **not** be submitted to real financial, government, or telecom systems.
+- Generated identifiers (IBAN, card numbers, national IDs, IMEI, etc.) are algorithmically valid in format but are **not real** and do not belong to any person or entity.
+- Must **not** be used for fraud, identity theft, or any unlawful activity.
+- CUSIP® and SEDOL® reference formats governed by ABA / London Stock Exchange. Synthetic generation for testing is permitted; use in real securities systems requires proper licensing.
+
+Licensed under the [MIT License](./LICENSE) · Copyright (c) 2025 Altan Sezer Ayan - A.S.A
+
 *Ninja Way: Precision in every digit.* 🥷
