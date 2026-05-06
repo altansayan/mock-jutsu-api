@@ -3,7 +3,7 @@
 **The Algorithmic Mock Data Engine for Fintech & Cross-Border Testing.**  
 *Developed by [Altan Sezer Ayan](https://github.com/altansayan)*
 
-`mock-jutsu-api` generates legally-structured fake data for 6 countries with real regulatory algorithms — TCKN checksums, Luhn-valid cards, VIN check digits, NHS numbers, ABA routing validation, and more. **689 tests. Zero false positives.**
+`mock-jutsu-api` generates legally-structured fake data for 6 countries with real regulatory algorithms — TCKN checksums, Luhn-valid cards, VIN check digits, NHS numbers, ABA routing validation, barcode check digits, and IMEI Luhn. **772 tests. Zero false positives.**
 
 ---
 
@@ -20,6 +20,8 @@
 | `profile()` — one call, all fields consistent | ✅ | ❌ |
 | RFID/NFC: EPC SGTIN-96, NDEF, APDU | ✅ | ❌ |
 | IR: NEC/RC-5 checksums, Pronto Hex | ✅ | ❌ |
+| Barcode: EAN-13/8, UPC-A, ISBN, GS1-128 (GS1 MOD-10) | ✅ | ❌ |
+| Telecom: IMEI, ICCID, IMSI, MSISDN (3GPP/ITU-T) | ✅ | ❌ |
 
 ---
 
@@ -104,7 +106,7 @@ mockjutsu generate swift --locale UK
 
 ---
 
-## 📋 All 80+ Data Types
+## 📋 All 127+ Data Types
 
 ### 👤 Identity
 
@@ -240,6 +242,48 @@ mockjutsu generate swift --locale UK
 | `ir_rc5` | `{system, command, toggle, frame_bits}` | Philips RC-5 — 14-bit Manchester; Start+Field+Toggle+System(5b)+Cmd(6b) |
 | `ir_pronto` | `"0000 006D 0022 0000 0156 00AB ..."` | Pronto Hex (CCF) — 38 kHz NEC frame; compatible with Home Assistant, Broadlink, Harmony |
 | `ir_raw` | `{carrier_hz, address, command, pulses}` | Raw µs pulse/space — NEC LSB-first; direct ESPHome/MQTT IR blaster input |
+
+### 🏷️ Barcode
+
+Standard: **GS1 General Specifications v24.0**, **ISO 2108:2017**
+
+| Type | Output | Algorithm |
+|:---|:---|:---|
+| `ean13` | `8680001234567` | GS1 MOD-10 — 3-digit locale prefix + 9 random digits + check; locale-aware (TR→868/869) |
+| `ean8` | `86812340` | GS1 MOD-10 — 3-digit prefix + 4 random digits + check; locale-aware |
+| `upca` | `036000291452` | GS1 MOD-10 — US/Canada, 1-digit system code + 10 digits + check |
+| `isbn13` | `9780306406157` | EAN-13 with 978/979 Bookland prefix — ISO 2108:2017 + GS1 MOD-10 |
+| `isbn10` | `0306406152` | ISO 2108:2017 MOD-11 — 9 digits + check (0–9 or 'X' for remainder 10) |
+| `gs1_128` | `(01)01234567890128(17)250506(10)AB1C2D` | AI(01) GTIN-14 + AI(17) expiry YYMMDD + AI(10) lot; GS1 v24.0 §5.4 |
+
+```python
+jutsu.generate('ean13', locale='TR')   # "8680001234567"
+jutsu.generate('ean8',  locale='DE')   # "40012340"
+jutsu.generate('upca')                  # "036000291452"
+jutsu.generate('isbn13')                # "9780306406157"
+jutsu.generate('isbn10')                # "0306406152"
+jutsu.generate('gs1_128')               # "(01)01234567890128(17)250506(10)AB1C2D"
+```
+
+### 📡 Telecom
+
+Standard: **3GPP TS 23.003 v17.5.0**, **ITU-T E.118 / E.164 / E.212**
+
+| Type | Output | Algorithm |
+|:---|:---|:---|
+| `imei` | `490154203237518` | 3GPP TS 23.003 §6.2 — TAC(8: public RBI codes) + SNR(6) + Luhn check(1) |
+| `imei2` | `49-015420-323751-8` | Same as `imei` — hyphenated display format AA-BBBBBB-CCCCCC-D |
+| `iccid` | `8990053412345678901` | ITU-T E.118 §3.2 — 89+CC(1-2)+issuer(4)+serial+Luhn; 19 digits; locale-aware |
+| `imsi` | `286011234567890` | 3GPP TS 23.003 §2.2 — MCC(3)+MNC(2-3)+MSIN; ≤15 digits; no check digit; locale-aware |
+| `msisdn` | `+905321234567` | ITU-T E.164 §6 — +CC+subscriber; locale-aware (TR→+905, US→+1, UK→+447) |
+
+```python
+jutsu.generate('imei')                  # "490154203237518"   (Luhn valid)
+jutsu.generate('imei2')                 # "49-015420-323751-8"
+jutsu.generate('iccid', locale='TR')    # "8990053412345678901"  (19 digits, Luhn valid)
+jutsu.generate('imsi',  locale='DE')    # "26201123456789"
+jutsu.generate('msisdn', locale='TR')   # "+905321234567"
+```
 
 ---
 
@@ -378,8 +422,10 @@ mock-jutsu-api/
 │       ├── corporate.py         # Company names, job titles
 │       ├── health.py            # NHS, blood type, ICD-10, height/weight
 │       ├── commerce.py          # Currency, VIN, vehicle, invoice, tax rate
-│       └── iot.py               # RFID (EPC SGTIN-96), NFC (NDEF/APDU), IR (NEC/RC-5/Pronto)
-├── tests/test_generators.py     # 689 tests
+│       ├── iot.py               # RFID (EPC SGTIN-96), NFC (NDEF/APDU), IR (NEC/RC-5/Pronto)
+│       ├── barcode.py           # EAN-13/8, UPC-A, ISBN-13/10, GS1-128 (GS1 v24.0)
+│       └── telecom.py           # IMEI, ICCID, IMSI, MSISDN (3GPP TS 23.003 / ITU-T)
+├── tests/test_generators.py     # 772 tests
 └── reports/
     ├── test_report.html
     └── test_results.json
@@ -390,10 +436,10 @@ mock-jutsu-api/
 ## ✅ Test Coverage
 
 ```
-689 passed in 1.7s
+772 passed in 1.5s
 
-95 types × 6 locales = 570 matrix scenarios
-+ 119 algorithmic validation tests
+66 types × 6 locales = 396 matrix scenarios
++ algorithmic validation tests
 
 Algorithms verified:
   TCKN (dual MOD-10) · YKN (Luhn) · TR VKN (proprietary)
@@ -405,6 +451,10 @@ Algorithms verified:
   EPC SGTIN-96 (GS1 96-bit) · NFC NDEF URI/Text (RTD v1.0)
   NEC IR (32-bit checksum) · RC-5 (14-bit Manchester frame)
   Pronto Hex CCF (38 kHz NEC) · RFID UID entropy (CSPRNG)
+  EAN-13/8 GS1 MOD-10 · UPC-A GS1 MOD-10 · ISBN-10 MOD-11
+  ISBN-13 Bookland · GS1-128 GTIN-14 · IMEI Luhn (3GPP)
+  ICCID Luhn (ITU-T E.118) · IMSI MCC/MNC (ITU-T E.212)
+  MSISDN E.164 (ITU-T) · IMEI2 hyphenated display
 ```
 
 ---

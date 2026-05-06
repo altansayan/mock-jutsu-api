@@ -1,6 +1,6 @@
 ﻿# mock-jutsu — Kullanım Kılavuzu (How-To)
 
-> **mock-jutsu** — 6 locale (TR/US/UK/DE/FR/RU), 57 parametre tipi, yasal algoritmalarla mock veri üretimi.
+> **mock-jutsu** — 6 locale (TR/US/UK/DE/FR/RU), 127+ parametre tipi, yasal algoritmalarla mock veri üretimi.
 > Developer: Altan Sezer Ayan - A.S.A · [github.com/altansayan](https://github.com/altansayan)
 
 ---
@@ -16,6 +16,8 @@
 7. [Dil Bazlı Fonksiyon Listesi](#7-dil-bazlı-fonksiyon-listesi)
 8. [Locale-Aware Fonksiyonlar](#8-locale-aware-fonksiyonlar)
 9. [Tam Parametre Tablosu](#9-tam-parametre-tablosu)
+10. [Barkod Fonksiyonları](#10-barkod-fonksiyonları)
+11. [Telekomünikasyon Fonksiyonları](#11-telekomünikasyon-fonksiyonları)
 
 ---
 
@@ -674,6 +676,123 @@ Bu fonksiyonlar `locale` parametresine göre **farklı ülkenin formatını ve a
 | `clientversion` | Meta | Yok | — | `2.4.1` | `mockjutsu generate clientversion` |
 | `signature` | Meta | Yok | `secret` `payload`¹ | `a1b2c3d4…` (hex 64) | `mockjutsu generate signature` |
 | `apppassword` | Meta | Yok | — | `481302` | `mockjutsu generate apppassword` |
+| `ean13` | Barkod | ✅ Var | — | `8680001234567` | `mockjutsu generate ean13 --locale TR` |
+| `ean8` | Barkod | ✅ Var | — | `86812340` | `mockjutsu generate ean8 --locale TR` |
+| `upca` | Barkod | Yok | — | `036000291452` | `mockjutsu generate upca` |
+| `isbn13` | Barkod | Yok | — | `9780306406157` | `mockjutsu generate isbn13` |
+| `isbn10` | Barkod | Yok | — | `0306406152` | `mockjutsu generate isbn10` |
+| `gs1_128` | Barkod | Yok | — | `(01)01234...(17)250506...(10)AB1C2D` | `mockjutsu generate gs1_128` |
+| `imei` | Telecom | Yok | — | `490154203237518` | `mockjutsu generate imei` |
+| `imei2` | Telecom | Yok | — | `49-015420-323751-8` | `mockjutsu generate imei2` |
+| `iccid` | Telecom | ✅ Var | — | `8990053412345678901` | `mockjutsu generate iccid --locale TR` |
+| `imsi` | Telecom | ✅ Var | — | `286011234567890` | `mockjutsu generate imsi --locale TR` |
+| `msisdn` | Telecom | ✅ Var | — | `+905321234567` | `mockjutsu generate msisdn --locale TR` |
+
+---
+
+## 10. Barkod Fonksiyonları
+
+Standart: **GS1 General Specifications v24.0** · **ISO 2108:2017**
+
+### `ean13` — EAN-13 Barkod
+GS1 MOD-10 check digit. 3 haneli ülke prefix + 9 rastgele + 1 check = 13 hane. Locale-aware.
+```python
+jutsu.generate('ean13')             # → '8680001234567'  (TR varsayılan)
+jutsu.generate('ean13', locale='DE')# → '4001234567893'
+jutsu.generate('ean13', locale='US')# → '0031234567892'
+# Test vektörü: 590123412345 → check=7 ✓
+```
+
+### `ean8` — EAN-8 Barkod
+GS1 MOD-10 check digit. 3 haneli prefix + 4 rastgele + 1 check = 8 hane. Locale-aware.
+```python
+jutsu.generate('ean8')             # → '86812340'
+jutsu.generate('ean8', locale='UK')# → '50112340'
+```
+
+### `upca` — UPC-A Barkod
+GS1 MOD-10 check digit. ABD/Kanada standardı. 1 haneli sistem kodu + 10 rastgele + 1 check = 12 hane.
+```python
+jutsu.generate('upca')  # → '036000291452'
+# Test vektörü: 03600029145 → check=2 ✓
+```
+
+### `isbn13` — ISBN-13
+EAN-13 format + 978/979 Bookland prefix. GS1 MOD-10 check. ISO 2108:2017.
+```python
+jutsu.generate('isbn13')  # → '9780306406157'
+```
+
+### `isbn10` — ISBN-10
+ISO 2108:2017 MOD-11 check. 9 hane + check ('0'-'9' veya 'X').
+```python
+jutsu.generate('isbn10')  # → '0306406152'
+# Test vektörü: 030640615 → check=2 ✓
+```
+
+### `gs1_128` — GS1-128 Barkod İçeriği
+GS1 General Specifications v24.0 §5.4. AI(01) GTIN-14 + AI(17) son kullanma + AI(10) lot numarası.
+```python
+jutsu.generate('gs1_128')
+# → '(01)01234567890128(17)250506(10)AB1C2D'
+# GTIN-14 içindeki check digit GS1 MOD-10 ile hesaplanır.
+```
+
+---
+
+## 11. Telekomünikasyon Fonksiyonları
+
+Standart: **3GPP TS 23.003 v17.5.0** · **ITU-T E.118 / E.164 / E.212**
+
+### `imei` — IMEI
+3GPP TS 23.003 §6.2. TAC(8) + SNR(6) + Luhn check(1) = 15 hane.
+TAC = GSMA kamuya açık RBI kodu(2) + sentetik model kodu(6).
+```python
+jutsu.generate('imei')  # → '490154203237518'
+# Test vektörü: payload 49015420323751 → check=8 ✓
+```
+
+### `imei2` — IMEI (Tire Formatı)
+IMEI'nin `AA-BBBBBB-CCCCCC-D` görüntü formatı. 3GPP TS 23.003 §6.2.
+```python
+jutsu.generate('imei2')  # → '49-015420-323751-8'
+```
+
+### `iccid` — ICCID
+ITU-T E.118 §3.2. 89 + CC(1-2 hane) + issuer(4) + seri + Luhn check = 19 hane. Locale-aware.
+```python
+jutsu.generate('iccid')             # → '8990053412345678901'  (TR varsayılan)
+jutsu.generate('iccid', locale='UK')# → '8944790012345678901'
+jutsu.generate('iccid', locale='US')# → '8911234512345678901'
+```
+
+### `imsi` — IMSI
+3GPP TS 23.003 §2.2. MCC(3) + MNC(2-3) + MSIN = maks. 15 hane. Check digit yok. Locale-aware.
+
+| Locale | MCC | MNC örnekleri |
+|--------|-----|---------------|
+| TR | 286 | 01 (Turkcell), 02 (Vodafone TR), 03 (Türk Telekom) |
+| US | 310 | 010 (AT&T), 260 (T-Mobile), 030 |
+| UK | 234 | 10 (O2), 20 (Vodafone), 30 (EE) |
+| DE | 262 | 01 (T-Mobile DE), 02 (Vodafone DE), 03 (Telefónica) |
+| FR | 208 | 01 (Orange), 10 (SFR), 20 (Bouygues) |
+| RU | 250 | 01 (MTS), 02 (MegaFon), 20 (Tele2) |
+
+```python
+jutsu.generate('imsi')              # → '286011234567890'  (TR varsayılan)
+jutsu.generate('imsi', locale='US') # → '310010123456789'
+```
+
+### `msisdn` — MSISDN (E.164)
+ITU-T E.164 §6 / 3GPP TS 23.003 §3.3. Locale-aware telefon numarası, tam E.164 formatında.
+```python
+jutsu.generate('msisdn')              # → '+905321234567'  (TR)
+jutsu.generate('msisdn', locale='US') # → '+11234567890'
+jutsu.generate('msisdn', locale='UK') # → '+447912345678'
+jutsu.generate('msisdn', locale='DE') # → '+491512345678'
+jutsu.generate('msisdn', locale='FR') # → '+33612345678'
+jutsu.generate('msisdn', locale='RU') # → '+79161234567'
+```
 
 ---
 
