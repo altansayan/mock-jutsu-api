@@ -41,11 +41,11 @@ def _print_banner() -> None:
 
     body.append("\n")
     body.append("Algorithmic Mock Data Engine\n", style="bold white")
-    body.append("95+ Types", style="cyan")
+    body.append("127+ Types", style="cyan")
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("689 Tests\n", style="cyan")
+    body.append("772 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan - A.S.A\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -199,6 +199,19 @@ _REFERENCE = [
     ("ir_rc5",        "IR",          False, "{system,cmd,frame_bits}","generate ir_rc5"),
     ("ir_pronto",     "IR",          False, "0000 006D 0022 0000 ..", "generate ir_pronto"),
     ("ir_raw",        "IR",          False, "{carrier_hz,pulses:[]}","generate ir_raw"),
+    # Barcode
+    ("ean13",         "Barcode",     True,  "8680001234567",          "generate ean13 --locale TR"),
+    ("ean8",          "Barcode",     True,  "86812345",               "generate ean8 --locale TR"),
+    ("upca",          "Barcode",     False, "036000291452",           "generate upca"),
+    ("isbn13",        "Barcode",     False, "9780306406157",          "generate isbn13"),
+    ("isbn10",        "Barcode",     False, "0306406152",             "generate isbn10"),
+    ("gs1_128",       "Barcode",     False, "(01)01234...(17)250506...(10)LOT001", "generate gs1_128"),
+    # Telecom
+    ("imei",          "Telecom",     False, "490154203237518",        "generate imei"),
+    ("imei2",         "Telecom",     False, "49-015420-323751-8",     "generate imei2"),
+    ("iccid",         "Telecom",     True,  "8990053412345678901",    "generate iccid --locale TR"),
+    ("imsi",          "Telecom",     True,  "286011234567890",        "generate imsi --locale TR"),
+    ("msisdn",        "Telecom",     True,  "+905321234567",          "generate msisdn --locale TR"),
 ]
 
 # Category display order
@@ -206,6 +219,7 @@ _CAT_ORDER = [
     "Identity", "Name", "Document", "Demographic",
     "Financial", "Contact", "Banking", "Corporate",
     "Health", "Commerce", "Meta", "RFID", "NFC", "IR",
+    "Barcode", "Telecom",
 ]
 
 _CAT_COLORS = {
@@ -223,13 +237,15 @@ _CAT_COLORS = {
     "RFID":        "cyan",
     "NFC":         "bright_blue",
     "IR":          "red",
+    "Barcode":     "bright_yellow",
+    "Telecom":     "bright_magenta",
 }
 
 
 @click.group(invoke_without_command=True)
 @click.pass_context
 def main(ctx):
-    """mock-jutsu -- Algorithmic Mock Data Engine (6 Locales, 95+ Types)"""
+    """mock-jutsu -- Algorithmic Mock Data Engine (6 Locales, 127+ Types)"""
     if ctx.invoked_subcommand is None:
         _print_banner()
         click.echo(ctx.get_help())
@@ -252,7 +268,7 @@ def generate(data_type, locale, network):
 @main.command(name='list')
 @click.option('--cat', default='', help='Filter by category  e.g. Financial, NFC, RFID, IR')
 def list_types(cat):
-    """List all 95+ data types with CLI usage examples."""
+    """List all 127+ data types with CLI usage examples."""
     # Column widths
     W_TYPE = 20
     W_EX   = 24

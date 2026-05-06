@@ -1,8 +1,8 @@
 ﻿"""
 mock-jutsu — Full-Coverage Unit Tests
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
-Purpose: Cross-testing 55 parameters across 6 locales (TR, UK, US, DE, FR, RU).
-         330 matrix scenarios + 35 algorithmic validation tests.
+Purpose: Cross-testing 66 parameters across 6 locales (TR, UK, US, DE, FR, RU).
+         396 matrix scenarios + algorithmic validation tests.
 """
 
 import re
@@ -47,6 +47,10 @@ TYPES = [
     'nfc_uid', 'nfc_atqa', 'nfc_sak', 'ndef_uri', 'ndef_text', 'apdu', 'nfc_tag',
     # IoT — IR (4)
     'ir_nec', 'ir_rc5', 'ir_pronto', 'ir_raw',
+    # Barcode (6)
+    'ean13', 'ean8', 'upca', 'isbn13', 'isbn10', 'gs1_128',
+    # Telecom (5)
+    'imei', 'imei2', 'iccid', 'imsi', 'msisdn',
 ]
 
 # ---------------------------------------------------------------------------
@@ -1194,3 +1198,166 @@ def test_ir_raw_pulse_count():
         rec = jutsu.generate('ir_raw')
         assert rec['pulse_count'] == 67, \
             f"ir_raw pulse count wrong: {rec['pulse_count']} (expected 67)"
+
+
+# ---------------------------------------------------------------------------
+# Barcode — GS1 / ISO 2108 Algorithmic Validation
+# ---------------------------------------------------------------------------
+
+def _gs1_check_valid(barcode: str) -> bool:
+    """Verify GS1 MOD-10 check digit — GS1 General Specifications v24.0 §7.9."""
+    digits = [int(c) for c in barcode]
+    data, check = digits[:-1], digits[-1]
+    total = sum(d * (3 if i % 2 == 0 else 1) for i, d in enumerate(reversed(data)))
+    return (10 - total % 10) % 10 == check
+
+
+def test_ean13_length_and_check():
+    """EAN-13 must be exactly 13 digits with a valid GS1 MOD-10 check digit."""
+    for _ in range(100):
+        val = str(jutsu.generate('ean13'))
+        assert re.match(r'^\d{13}$', val), f"EAN-13 must be 13 digits: {val}"
+        assert _gs1_check_valid(val), f"EAN-13 GS1 check failed: {val}"
+
+
+def test_ean13_locale_prefix():
+    """EAN-13 TR must start with 868 or 869 (GS1 Turkey prefixes)."""
+    for _ in range(50):
+        val = jutsu.generate('ean13', locale='TR')
+        assert str(val)[:3] in ('868', '869'), f"EAN-13 TR prefix wrong: {val}"
+
+
+def test_ean8_length_and_check():
+    """EAN-8 must be exactly 8 digits with a valid GS1 MOD-10 check digit."""
+    for _ in range(100):
+        val = str(jutsu.generate('ean8'))
+        assert re.match(r'^\d{8}$', val), f"EAN-8 must be 8 digits: {val}"
+        assert _gs1_check_valid(val), f"EAN-8 GS1 check failed: {val}"
+
+
+def test_upca_length_and_check():
+    """UPC-A must be exactly 12 digits with a valid GS1 MOD-10 check digit."""
+    for _ in range(100):
+        val = str(jutsu.generate('upca'))
+        assert re.match(r'^\d{12}$', val), f"UPC-A must be 12 digits: {val}"
+        assert _gs1_check_valid(val), f"UPC-A GS1 check failed: {val}"
+
+
+def test_isbn13_length_and_check():
+    """ISBN-13 must be 13 digits starting with 978 or 979 with valid check."""
+    for _ in range(100):
+        val = str(jutsu.generate('isbn13'))
+        assert re.match(r'^\d{13}$', val), f"ISBN-13 must be 13 digits: {val}"
+        assert str(val)[:3] in ('978', '979'), f"ISBN-13 must start with 978/979: {val}"
+        assert _gs1_check_valid(val), f"ISBN-13 GS1 check failed: {val}"
+
+
+def test_isbn10_length_and_check():
+    """ISBN-10 must be 9 digits + MOD-11 check ('0'-'9' or 'X')."""
+    def _isbn10_valid(s: str) -> bool:
+        if len(s) != 10:
+            return False
+        if not re.match(r'^[0-9]{9}[0-9X]$', s):
+            return False
+        total = sum(int(c) * (10 - i) for i, c in enumerate(s[:9]))
+        check_val = (11 - total % 11) % 11
+        expected = 'X' if check_val == 10 else str(check_val)
+        return s[9] == expected
+
+    for _ in range(100):
+        val = str(jutsu.generate('isbn10'))
+        assert _isbn10_valid(val), f"ISBN-10 MOD-11 check failed: {val}"
+
+
+def test_gs1_128_structure():
+    """GS1-128 must contain AI (01) GTIN-14, AI (17) expiry, AI (10) lot."""
+    for _ in range(50):
+        val = str(jutsu.generate('gs1_128'))
+        assert val.startswith('(01)'), f"GS1-128 must start with AI(01): {val}"
+        assert '(17)' in val, f"GS1-128 must contain AI(17) expiry: {val}"
+        assert '(10)' in val, f"GS1-128 must contain AI(10) lot: {val}"
+
+
+def test_gs1_128_gtin14_check():
+    """GS1-128 GTIN-14 embedded in AI(01) must pass GS1 MOD-10 check."""
+    for _ in range(50):
+        val = str(jutsu.generate('gs1_128'))
+        gtin14 = val[4:18]  # (01) is 4 chars, GTIN-14 is 14 digits
+        assert re.match(r'^\d{14}$', gtin14), f"GTIN-14 must be 14 digits: {gtin14}"
+        assert _gs1_check_valid(gtin14), f"GTIN-14 GS1 check failed in GS1-128: {gtin14}"
+
+
+# ---------------------------------------------------------------------------
+# Telecom — 3GPP / ITU-T Algorithmic Validation
+# ---------------------------------------------------------------------------
+
+def test_imei_length_and_luhn():
+    """IMEI must be exactly 15 digits and pass the Luhn checksum."""
+    for _ in range(100):
+        val = str(jutsu.generate('imei'))
+        assert re.match(r'^\d{15}$', val), f"IMEI must be 15 digits: {val}"
+        assert _luhn_valid(val), f"IMEI Luhn check failed: {val}"
+
+
+def test_imei2_format():
+    """IMEI2 must match AA-BBBBBB-CCCCCC-D (hyphenated display format)."""
+    for _ in range(50):
+        val = str(jutsu.generate('imei2'))
+        assert re.match(r'^\d{2}-\d{6}-\d{6}-\d$', val), f"IMEI2 format wrong: {val}"
+
+
+def test_imei2_luhn_valid():
+    """IMEI2 (stripped of hyphens) must pass the Luhn checksum."""
+    for _ in range(50):
+        val = str(jutsu.generate('imei2'))
+        stripped = val.replace('-', '')
+        assert _luhn_valid(stripped), f"IMEI2 Luhn check failed: {val}"
+
+
+def test_iccid_length_and_luhn():
+    """ICCID must be exactly 19 digits and pass Luhn checksum."""
+    for _ in range(100):
+        val = str(jutsu.generate('iccid'))
+        assert re.match(r'^\d{19}$', val), f"ICCID must be 19 digits: {val}"
+        assert _luhn_valid(val), f"ICCID Luhn check failed: {val}"
+
+
+def test_iccid_starts_with_89():
+    """ICCID must start with '89' (MII for telecom — ITU-T E.118)."""
+    for _ in range(50):
+        val = str(jutsu.generate('iccid'))
+        assert val.startswith('89'), f"ICCID must start with 89: {val}"
+
+
+def test_imsi_length_and_digits():
+    """IMSI must be all digits and ≤ 15 characters (3GPP TS 23.003 §2.2)."""
+    for locale in ['TR', 'US', 'UK', 'DE', 'FR', 'RU']:
+        for _ in range(20):
+            val = str(jutsu.generate('imsi', locale=locale))
+            assert val.isdigit(), f"IMSI must be all digits for {locale}: {val}"
+            assert len(val) <= 15, f"IMSI must be ≤15 digits for {locale}: {val}"
+            assert len(val) >= 10, f"IMSI must be ≥10 digits for {locale}: {val}"
+
+
+def test_imsi_tr_mcc():
+    """IMSI for TR locale must start with MCC 286 (Turkey)."""
+    for _ in range(50):
+        val = str(jutsu.generate('imsi', locale='TR'))
+        assert val.startswith('286'), f"TR IMSI must start with MCC 286: {val}"
+
+
+def test_msisdn_e164_format():
+    """MSISDN must start with '+' and contain only digits after the '+'."""
+    for locale in ['TR', 'US', 'UK', 'DE', 'FR', 'RU']:
+        for _ in range(20):
+            val = str(jutsu.generate('msisdn', locale=locale))
+            assert val.startswith('+'), f"MSISDN must start with '+' for {locale}: {val}"
+            assert val[1:].isdigit(), f"MSISDN digits part not numeric for {locale}: {val}"
+            assert 10 <= len(val) <= 16, f"MSISDN length out of range for {locale}: {val}"
+
+
+def test_msisdn_tr_prefix():
+    """MSISDN for TR must start with '+905' (Turkey mobile E.164)."""
+    for _ in range(50):
+        val = str(jutsu.generate('msisdn', locale='TR'))
+        assert val.startswith('+905'), f"TR MSISDN must start with +905: {val}"

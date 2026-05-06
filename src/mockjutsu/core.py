@@ -15,6 +15,8 @@ from .generators.corporate     import CorporateGenerator
 from .generators.health        import HealthGenerator
 from .generators.commerce      import CommerceGenerator
 from .generators.iot           import IoTGenerator
+from .generators.barcode       import BarcodeGenerator
+from .generators.telecom       import TelecomGenerator
 
 _IDENTITY_TYPES = {
     'tckn', 'ykn', 'taxid', 'vkn', 'nationalid', 'ssn', 'nin',
@@ -75,6 +77,14 @@ _IOT_TYPES = {
     'ir_nec', 'ir_rc5', 'ir_pronto', 'ir_raw',
 }
 
+_BARCODE_TYPES = {
+    'ean13', 'ean8', 'upca', 'isbn13', 'isbn10', 'gs1_128',
+}
+
+_TELECOM_TYPES = {
+    'imei', 'imei2', 'iccid', 'imsi', 'msisdn',
+}
+
 EMAIL_DOMAINS_FOR_PROFILE = {
     "TR": ["gmail.com", "hotmail.com", "yahoo.com", "outlook.com"],
     "US": ["gmail.com", "yahoo.com", "outlook.com", "icloud.com"],
@@ -86,7 +96,7 @@ EMAIL_DOMAINS_FOR_PROFILE = {
 
 
 class MockJutsuCore:
-    """Master orchestrator — 6 locales, 80+ data types."""
+    """Master orchestrator — 6 locales, 127+ data types."""
 
     def __init__(self, locale='TR'):
         self.locale    = str(locale).upper()
@@ -99,6 +109,8 @@ class MockJutsuCore:
         self.health    = HealthGenerator()
         self.commerce  = CommerceGenerator()
         self.iot       = IoTGenerator()
+        self.barcode   = BarcodeGenerator()
+        self.telecom   = TelecomGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -131,6 +143,10 @@ class MockJutsuCore:
             return self.commerce.generate(dt, locale=locale, **kwargs)
         if dt in _IOT_TYPES:
             return self.iot.generate(dt, locale=locale, **kwargs)
+        if dt in _BARCODE_TYPES:
+            return self.barcode.generate(dt, locale=locale, **kwargs)
+        if dt in _TELECOM_TYPES:
+            return self.telecom.generate(dt, locale=locale, **kwargs)
 
         return f"ERROR: Unknown DataType '{dt}'"
 
