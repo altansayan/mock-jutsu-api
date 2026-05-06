@@ -251,7 +251,7 @@ _CAT_COLORS = {
 @click.group(invoke_without_command=True)
 @click.pass_context
 def main(ctx):
-    """mock-jutsu -- Algorithmic Mock Data Engine (6 Locales, 127+ Types)"""
+    """mock-jutsu -- Algorithmic Mock Data Engine (6 Locales, 131+ Types)"""
     if ctx.invoked_subcommand is None:
         _print_banner()
         click.echo(ctx.get_help())
@@ -274,7 +274,7 @@ def generate(data_type, locale, network):
 @main.command(name='list')
 @click.option('--cat', default='', help='Filter by category  e.g. Financial, NFC, RFID, IR')
 def list_types(cat):
-    """List all 127+ data types with CLI usage examples."""
+    """List all 131+ data types with CLI usage examples."""
     # Column widths
     W_TYPE = 20
     W_EX   = 24

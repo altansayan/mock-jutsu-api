@@ -101,7 +101,7 @@ EMAIL_DOMAINS_FOR_PROFILE = {
 
 
 class MockJutsuCore:
-    """Master orchestrator — 6 locales, 127+ data types."""
+    """Master orchestrator — 6 locales, 131+ data types."""
 
     def __init__(self, locale='TR'):
         self.locale     = str(locale).upper()
