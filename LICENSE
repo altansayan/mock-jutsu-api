@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2025 Altan Sezer Ayan
+Copyright (c) 2025 Altan Sezer Ayan - A.S.A
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,10 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+INTENDED USE
+This software is intended for software development and testing purposes only.
+All generated data is synthetic and algorithmically valid in format only.
+Generated identifiers do not belong to any real person, company, or entity.
+This software must not be used for fraud, identity theft, submission to real
+financial or government systems, or any other unlawful activity.
