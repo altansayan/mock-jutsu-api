@@ -87,6 +87,7 @@ _REFERENCE = [
     ("crn",           "Identity",    False, "12345678",               "generate crn"),
     ("paye",          "Identity",    False, "123/AB4567",             "generate paye"),
     ("ust_id",        "Identity",    False, "DE123456789",            "generate ust_id"),
+    ("ustid",         "Identity",    False, "DE123456789",            "generate ustid"),
     ("hrb",           "Identity",    False, "HRB 123456",             "generate hrb"),
     ("rvn",           "Identity",    False, "65 070892 W 1235",       "generate rvn"),
     ("siren",         "Identity",    False, "732829320",              "generate siren"),
@@ -137,6 +138,7 @@ _REFERENCE = [
     ("email",         "Contact",     True,  "user42@gmail.com",       "generate email --locale TR"),
     # Banking
     ("swift",         "Banking",     True,  "DEUTDEDB",               "generate swift --locale TR"),
+    ("bic",           "Banking",     True,  "DEUTDEDB",               "generate bic --locale TR"),
     ("sort_code",     "Banking",     False, "20-00-00",               "generate sort_code"),
     ("routing_number","Banking",     False, "021000021",              "generate routing_number"),
     ("bik_code",      "Banking",     False, "044525225",              "generate bik_code"),
@@ -145,16 +147,22 @@ _REFERENCE = [
     # Corporate
     ("company_name",  "Corporate",   True,  "Fischer Tech. GmbH",    "generate company_name --locale TR"),
     ("job_title",     "Corporate",   True,  "Software Engineer",      "generate job_title --locale TR"),
+    ("jobtitle",      "Corporate",   True,  "Software Engineer",      "generate jobtitle --locale TR"),
+    ("occupation",    "Corporate",   True,  "Software Engineer",      "generate occupation --locale TR"),
     # Health
     ("blood_type",    "Health",      False, "A+",                     "generate blood_type"),
+    ("bloodtype",     "Health",      False, "A+",                     "generate bloodtype"),
     ("nhs_number",    "Health",      False, "943 476 5919",           "generate nhs_number"),
+    ("nhsnumber",     "Health",      False, "943 476 5919",           "generate nhsnumber"),
     ("icd10",         "Health",      False, "J18.9",                  "generate icd10"),
     ("height",        "Health",      True,  "178 cm / 5'10\"",        "generate height --locale TR"),
     ("weight",        "Health",      True,  "74 kg / 163 lbs",        "generate weight --locale TR"),
     # Commerce
     ("currency",      "Commerce",    True,  "{code:TRY, symbol:TL}",  "generate currency --locale TR"),
     ("tax_rate",      "Commerce",    True,  "{name:KDV, rate:20}",    "generate tax_rate --locale TR"),
+    ("taxrate",       "Commerce",    True,  "{name:KDV, rate:20}",    "generate taxrate --locale TR"),
     ("invoice_number","Commerce",    True,  "INV-2024-001234",        "generate invoice_number --locale TR"),
+    ("invoicenumber", "Commerce",    True,  "INV-2024-001234",        "generate invoicenumber --locale TR"),
     ("vin",           "Commerce",    True,  "WBA3A5C5XMD123456",      "generate vin --locale TR"),
     ("vehicle",       "Commerce",    True,  "{make,model,year,vin}",  "generate vehicle --locale TR"),
     # Meta
