@@ -1,6 +1,6 @@
 ﻿# mock-jutsu — Kullanım Kılavuzu (How-To)
 
-> **mock-jutsu** — 6 locale (TR/US/UK/DE/FR/RU), 127+ parametre tipi, yasal algoritmalarla mock veri üretimi.
+> **mock-jutsu** — 6 locale (TR/US/UK/DE/FR/RU), 131+ parametre tipi, yasal algoritmalarla mock veri üretimi.
 > Developer: Altan Sezer Ayan - A.S.A · [github.com/altansayan](https://github.com/altansayan)
 
 ---
@@ -18,6 +18,7 @@
 9. [Tam Parametre Tablosu](#9-tam-parametre-tablosu)
 10. [Barkod Fonksiyonları](#10-barkod-fonksiyonları)
 11. [Telekomünikasyon Fonksiyonları](#11-telekomünikasyon-fonksiyonları)
+12. [Finansal Piyasalar (Menkul Kıymet)](#12-finansal-piyasalar-menkul-kıymet)
 
 ---
 
@@ -687,6 +688,10 @@ Bu fonksiyonlar `locale` parametresine göre **farklı ülkenin formatını ve a
 | `iccid` | Telecom | ✅ Var | — | `8990053412345678901` | `mockjutsu generate iccid --locale TR` |
 | `imsi` | Telecom | ✅ Var | — | `286011234567890` | `mockjutsu generate imsi --locale TR` |
 | `msisdn` | Telecom | ✅ Var | — | `+905321234567` | `mockjutsu generate msisdn --locale TR` |
+| `isin` | Securities | ✅ Var | — | `US0378331005` | `mockjutsu generate isin --locale US` |
+| `cusip` | Securities | Yok | — | `037833100` | `mockjutsu generate cusip` |
+| `sedol` | Securities | Yok | — | `0263494` | `mockjutsu generate sedol` |
+| `lei` | Securities | Yok | — | `529900T8BM49AURSDO55` | `mockjutsu generate lei` |
 
 ---
 
@@ -792,6 +797,65 @@ jutsu.generate('msisdn', locale='UK') # → '+447912345678'
 jutsu.generate('msisdn', locale='DE') # → '+491512345678'
 jutsu.generate('msisdn', locale='FR') # → '+33612345678'
 jutsu.generate('msisdn', locale='RU') # → '+79161234567'
+```
+
+---
+
+## 12. Finansal Piyasalar (Menkul Kıymet)
+
+Standart: **ISO 6166:2021 (ISIN)** · **ABA CUSIP** · **London Stock Exchange SEDOL** · **ISO 17442 / ISO 7064 (LEI)**
+
+### `isin` — International Securities Identification Number
+ISO 6166:2021. CC(2) + NSIN(9 alfasayısal) + Luhn check(1) = 12 karakter. Locale-aware ülke kodu.
+```python
+jutsu.generate('isin')              # → 'TRB680001234X'  (TR varsayılan)
+jutsu.generate('isin', locale='US') # → 'US0378331005'
+jutsu.generate('isin', locale='UK') # → 'GB0002634946'  (GB prefix — ISO 3166-1 kodu)
+jutsu.generate('isin', locale='DE') # → 'DE000XXXX0001'
+# Test vektörleri (ISO 6166:2021):
+#   Apple   US0378331005 → "30280378331005" → sum=50 ✓
+#   Amazon  US0231351067 → "30280231351067" → sum=50 ✓
+#   Vodafone GB0002634946 → "16110002634946" → sum=50 ✓
+```
+
+**Locale → ISIN Ülke Kodu:**
+
+| Locale | ISIN Prefix | ISO 3166-1 |
+|--------|------------|------------|
+| TR | `TR` | Türkiye |
+| US | `US` | Amerika Birleşik Devletleri |
+| UK | `GB` | Birleşik Krallık |
+| DE | `DE` | Almanya |
+| FR | `FR` | Fransa |
+| RU | `RU` | Rusya |
+
+### `cusip` — Committee on Uniform Securities Identification Procedures
+ABA CUSIP. 6 char issuer + 2 char issue + 1 check = 9 karakter (A-Z/0-9). Locale-independent.
+```python
+jutsu.generate('cusip')  # → '037833100'
+# Algoritma: tek (1-indexed) pozisyonlar ×2, dijit toplamı
+# Test vektörleri:
+#   Apple  037833100 → sum=30 → check=0 ✓
+#   Amazon 023135106 → sum=14 → check=6 ✓
+```
+
+### `sedol` — Stock Exchange Daily Official List
+LSE SEDOL. 6 karakter (rakam + ünsüzler, ÜNLÜsüz: A,E,I,O,U yasak) + 1 check = 7 karakter. Ağırlıklar: [1,3,1,7,3,9].
+```python
+jutsu.generate('sedol')  # → '0263494'
+# Test vektörleri:
+#   Vodafone 0263494: 0×1+2×3+6×1+3×7+4×3+9×9 = 126 → check=4 ✓
+#   Barclays 0798059: 0+21+9+56+0+45 = 131 → check=9 ✓
+#   BT Group 3134865: 3+3+3+28+24+54 = 115 → check=5 ✓
+```
+
+### `lei` — Legal Entity Identifier
+ISO 17442 / ISO 7064 MOD 97-10. 4 char LOU + 14 char entity + 2 check = 20 karakter.
+```python
+jutsu.generate('lei')  # → '529900T8BM49AURSDO55'  (örnek)
+# Algoritma: tüm karakterler sayısala çevrilir (A=10...Z=35),
+# birleştirilir, int(string) % 97 = 1 olmalı.
+# Test vektörü: GLEIF kendi LEI'si 529900T8BM49AURSDO55 → 1 ✓
 ```
 
 ---

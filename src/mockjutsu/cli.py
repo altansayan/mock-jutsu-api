@@ -41,11 +41,11 @@ def _print_banner() -> None:
 
     body.append("\n")
     body.append("Algorithmic Mock Data Engine\n", style="bold white")
-    body.append("127+ Types", style="cyan")
+    body.append("131+ Types", style="cyan")
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("772 Tests\n", style="cyan")
+    body.append("810 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan - A.S.A\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -212,6 +212,11 @@ _REFERENCE = [
     ("iccid",         "Telecom",     True,  "8990053412345678901",    "generate iccid --locale TR"),
     ("imsi",          "Telecom",     True,  "286011234567890",        "generate imsi --locale TR"),
     ("msisdn",        "Telecom",     True,  "+905321234567",          "generate msisdn --locale TR"),
+    # Securities
+    ("isin",          "Securities",  True,  "US0378331005",           "generate isin --locale US"),
+    ("cusip",         "Securities",  False, "037833100",              "generate cusip"),
+    ("sedol",         "Securities",  False, "0263494",                "generate sedol"),
+    ("lei",           "Securities",  False, "529900T8BM49AURSDO55",  "generate lei"),
 ]
 
 # Category display order
@@ -219,7 +224,7 @@ _CAT_ORDER = [
     "Identity", "Name", "Document", "Demographic",
     "Financial", "Contact", "Banking", "Corporate",
     "Health", "Commerce", "Meta", "RFID", "NFC", "IR",
-    "Barcode", "Telecom",
+    "Barcode", "Telecom", "Securities",
 ]
 
 _CAT_COLORS = {
@@ -239,6 +244,7 @@ _CAT_COLORS = {
     "IR":          "red",
     "Barcode":     "bright_yellow",
     "Telecom":     "bright_magenta",
+    "Securities":  "bright_cyan",
 }
 
 

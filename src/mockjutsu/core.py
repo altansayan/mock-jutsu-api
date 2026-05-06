@@ -17,6 +17,7 @@ from .generators.commerce      import CommerceGenerator
 from .generators.iot           import IoTGenerator
 from .generators.barcode       import BarcodeGenerator
 from .generators.telecom       import TelecomGenerator
+from .generators.financial_markets import FinancialMarketsGenerator
 
 _IDENTITY_TYPES = {
     'tckn', 'ykn', 'taxid', 'vkn', 'nationalid', 'ssn', 'nin',
@@ -85,6 +86,10 @@ _TELECOM_TYPES = {
     'imei', 'imei2', 'iccid', 'imsi', 'msisdn',
 }
 
+_SECURITIES_TYPES = {
+    'isin', 'cusip', 'sedol', 'lei',
+}
+
 EMAIL_DOMAINS_FOR_PROFILE = {
     "TR": ["gmail.com", "hotmail.com", "yahoo.com", "outlook.com"],
     "US": ["gmail.com", "yahoo.com", "outlook.com", "icloud.com"],
@@ -99,18 +104,19 @@ class MockJutsuCore:
     """Master orchestrator — 6 locales, 127+ data types."""
 
     def __init__(self, locale='TR'):
-        self.locale    = str(locale).upper()
-        self.identity  = IdentityGenerator()
-        self.financial = FinancialGenerator()
-        self.comm      = CommunicationGenerator()
-        self.meta      = MetaGenerator()
-        self.banking   = BankingGenerator()
-        self.corporate = CorporateGenerator()
-        self.health    = HealthGenerator()
-        self.commerce  = CommerceGenerator()
-        self.iot       = IoTGenerator()
-        self.barcode   = BarcodeGenerator()
-        self.telecom   = TelecomGenerator()
+        self.locale     = str(locale).upper()
+        self.identity   = IdentityGenerator()
+        self.financial  = FinancialGenerator()
+        self.comm       = CommunicationGenerator()
+        self.meta       = MetaGenerator()
+        self.banking    = BankingGenerator()
+        self.corporate  = CorporateGenerator()
+        self.health     = HealthGenerator()
+        self.commerce   = CommerceGenerator()
+        self.iot        = IoTGenerator()
+        self.barcode    = BarcodeGenerator()
+        self.telecom    = TelecomGenerator()
+        self.securities = FinancialMarketsGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -147,6 +153,8 @@ class MockJutsuCore:
             return self.barcode.generate(dt, locale=locale, **kwargs)
         if dt in _TELECOM_TYPES:
             return self.telecom.generate(dt, locale=locale, **kwargs)
+        if dt in _SECURITIES_TYPES:
+            return self.securities.generate(dt, locale=locale, **kwargs)
 
         return f"ERROR: Unknown DataType '{dt}'"
 

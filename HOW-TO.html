@@ -76,6 +76,7 @@ td{padding:9px 14px;vertical-align:middle}
 .cat-ir         {background:#fff1f2;color:#be123c}
 .cat-barkod     {background:#fefce8;color:#854d0e}
 .cat-telecom    {background:#f3e8ff;color:#6b21a8}
+.cat-securities {background:#ecfdf5;color:#065f46}
 
 /* Country flags / locale pills */
 .lc{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;background:#e2e8f0;color:#475569;margin:1px}
@@ -112,7 +113,7 @@ td{padding:9px 14px;vertical-align:middle}
 
 <div class="header">
   <h1>mock-jutsu &mdash; How-To Reference</h1>
-  <div class="sub">6 locale &nbsp;&bull;&nbsp; 127+ parametre tipi &nbsp;&bull;&nbsp; Yasal algoritmalar &nbsp;&bull;&nbsp; 772 test &nbsp;&bull;&nbsp; Developer: Altan Sezer Ayan - A.S.A</div>
+  <div class="sub">6 locale &nbsp;&bull;&nbsp; 131+ parametre tipi &nbsp;&bull;&nbsp; Yasal algoritmalar &nbsp;&bull;&nbsp; 810 test &nbsp;&bull;&nbsp; Developer: Altan Sezer Ayan - A.S.A</div>
 </div>
 
 <div class="tabs">
@@ -124,7 +125,7 @@ td{padding:9px 14px;vertical-align:middle}
 
 <!-- ══════════════════════════════════════════════════════ TAB: REFERANS -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Tüm Parametreler (127+)</div>
+  <div class="stitle">Tüm Parametreler (131+)</div>
 
   <div class="toolbar">
     <input type="text" id="searchInput" placeholder="Fonksiyon, CLI komutu veya örnek çıktı ara..." oninput="filterTable()">
@@ -149,6 +150,7 @@ td{padding:9px 14px;vertical-align:middle}
       <option value="IR (Kızılötesi)">IR (Kızılötesi)</option>
       <option value="Barkod">Barkod</option>
       <option value="Telecom">Telecom</option>
+      <option value="Securities">Securities</option>
     </select>
     <select id="localeFilter" onchange="filterTable()">
       <option value="">Locale Filtresi</option>
@@ -156,7 +158,7 @@ td{padding:9px 14px;vertical-align:middle}
       <option value="no">Locale Etkisiz</option>
     </select>
     <button class="reset-btn" onclick="resetFilters()">Sıfırla</button>
-    <span class="row-count" id="rowCount">68 parametre</span>
+    <span class="row-count" id="rowCount">72 parametre</span>
   </div>
 
   <div class="table-wrap">
@@ -654,6 +656,11 @@ const ROWS = [
   ["iccid","Telecom","telecom",true,"—","8990053412345678901","mockjutsu generate iccid --locale TR","TR US UK DE FR RU"],
   ["imsi","Telecom","telecom",true,"—","286011234567890","mockjutsu generate imsi --locale TR","TR US UK DE FR RU"],
   ["msisdn","Telecom","telecom",true,"—","+905321234567","mockjutsu generate msisdn --locale TR","TR US UK DE FR RU"],
+  // ── Securities ─────────────────────────────────────────────────────────────
+  ["isin","Securities","securities",true,"—","US0378331005","mockjutsu generate isin --locale US","TR US UK DE FR RU"],
+  ["cusip","Securities","securities",false,"—","037833100","mockjutsu generate cusip",""],
+  ["sedol","Securities","securities",false,"—","0263494","mockjutsu generate sedol",""],
+  ["lei","Securities","securities",false,"—","529900T8BM49AURSDO55","mockjutsu generate lei",""],
   // ── Tech extras ────────────────────────────────────────────────────────────
   ["jwt","Meta","meta",false,"—","eyJhbGci….eyJzdWI….sig","mockjutsu generate jwt",""],
   ["hash","Meta","meta",false,"algorithm¹","e3b0c44298fc1c149a…","mockjutsu generate hash",""],
@@ -671,7 +678,8 @@ const CAT_CLS = {
   bankacilik:"cat-bankacilik", kurumsal:"cat-kurumsal",
   saglik:"cat-saglik", ticaret:"cat-ticaret",
   rfid:"cat-rfid", nfc:"cat-nfc", ir:"cat-ir",
-  barkod:"cat-barkod", telecom:"cat-telecom"
+  barkod:"cat-barkod", telecom:"cat-telecom",
+  securities:"cat-securities"
 };
 
 function lcPills(str) {

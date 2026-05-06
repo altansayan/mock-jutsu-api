@@ -1,8 +1,8 @@
 ﻿"""
 mock-jutsu — Full-Coverage Unit Tests
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
-Purpose: Cross-testing 66 parameters across 6 locales (TR, UK, US, DE, FR, RU).
-         396 matrix scenarios + algorithmic validation tests.
+Purpose: Cross-testing 110 parameters across 6 locales (TR, UK, US, DE, FR, RU).
+         660 matrix scenarios + algorithmic validation tests.
 """
 
 import re
@@ -51,6 +51,8 @@ TYPES = [
     'ean13', 'ean8', 'upca', 'isbn13', 'isbn10', 'gs1_128',
     # Telecom (5)
     'imei', 'imei2', 'iccid', 'imsi', 'msisdn',
+    # Financial Markets (4)
+    'isin', 'cusip', 'sedol', 'lei',
 ]
 
 # ---------------------------------------------------------------------------
@@ -70,7 +72,7 @@ def _luhn_valid(number_str):
 
 
 # ---------------------------------------------------------------------------
-# Comprehensive Matrix — 55 types × 6 locales = 330 scenarios
+# Comprehensive Matrix — 110 types × 6 locales = 660 scenarios
 # ---------------------------------------------------------------------------
 
 @pytest.mark.parametrize("locale", LOCALES)
@@ -1361,3 +1363,208 @@ def test_msisdn_tr_prefix():
     for _ in range(50):
         val = str(jutsu.generate('msisdn', locale='TR'))
         assert val.startswith('+905'), f"TR MSISDN must start with +905: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Financial Markets — ISIN / CUSIP / SEDOL / LEI Algorithmic Validation
+# ---------------------------------------------------------------------------
+
+def _isin_check_valid(isin: str) -> bool:
+    """Verify ISIN check digit — ISO 6166:2021, Luhn MOD-10 on numeric expansion.
+
+    Algorithm: convert each char (A=10…Z=35), concatenate to numeric string,
+    apply standard Luhn (rightmost digit NOT doubled; position 1 IS doubled).
+    Valid ISIN yields sum % 10 == 0.
+
+    Manual verification:
+      Apple  US0378331005 → "30280378331005" → sum=50 ✓
+      Amazon US0231351067 → "30280231351067" → sum=50 ✓
+      Vodafone GB0002634946 → "16110002634946" → sum=50 ✓
+    """
+    if len(isin) != 12 or not re.match(r'^[A-Z]{2}[A-Z0-9]{9}[0-9]$', isin):
+        return False
+    numeric = ''.join(str(ord(c) - 55) if c.isalpha() else c for c in isin)
+    digits = [int(d) for d in numeric]
+    total = 0
+    for i, d in enumerate(reversed(digits)):
+        n = d * 2 if i % 2 == 1 else d
+        if n > 9:
+            n -= 9
+        total += n
+    return total % 10 == 0
+
+
+def _cusip_check_valid(cusip: str) -> bool:
+    """Verify CUSIP check digit — ABA algorithm (odd 0-indexed positions ×2, digit-sum).
+
+    Algorithm: for each of the 8 payload chars (digits + A-Z mapped to 10-35),
+    if position (0-indexed) is odd multiply value by 2; add floor(v/10)+v%10 to total.
+    check = (10 - total % 10) % 10.
+
+    Manual verification:
+      Apple  037833100 → positions(1-indexed): 0,3*2,7,8*2,3,3*2,1,0*2 → sum=30 → check=0 ✓
+      Amazon 023135106 → positions: 0,2*2,3,1*2,3,5*2,1,0*2 → sum=14 → check=6 ✓
+    """
+    if len(cusip) != 9 or not re.match(r'^[A-Z0-9]{8}[0-9]$', cusip):
+        return False
+    total = 0
+    for i, c in enumerate(cusip[:8]):
+        v = int(c) if c.isdigit() else ord(c) - 55
+        if i % 2 == 1:
+            v *= 2
+        total += v // 10 + v % 10
+    return (10 - total % 10) % 10 == int(cusip[8])
+
+
+def _sedol_check_valid(sedol: str) -> bool:
+    """Verify SEDOL check digit — LSE weights [1,3,1,7,3,9] on 6 data chars.
+
+    Algorithm: weighted sum with [1,3,1,7,3,9]; check = (10 - sum%10) % 10.
+    Characters: digits 0-9 and consonants (no vowels A,E,I,O,U).
+
+    Manual verification:
+      Vodafone 0263494 → 0×1+2×3+6×1+3×7+4×3+9×9 = 0+6+6+21+12+81=126 → check=4 ✓
+      Barclays 0798059 → 0×1+7×3+9×1+8×7+0×3+5×9 = 0+21+9+56+0+45=131 → check=9 ✓
+      BT Group 3134865 → 3×1+1×3+3×1+4×7+8×3+6×9 = 3+3+3+28+24+54=115 → check=5 ✓
+    """
+    if len(sedol) != 7 or not re.match(r'^[B-DF-HJ-NP-TV-Z0-9]{6}[0-9]$', sedol):
+        return False
+    weights = [1, 3, 1, 7, 3, 9]
+    total = sum(
+        (int(c) if c.isdigit() else ord(c) - 55) * w
+        for c, w in zip(sedol[:6], weights)
+    )
+    return (10 - total % 10) % 10 == int(sedol[6])
+
+
+def _lei_check_valid(lei: str) -> bool:
+    """Verify LEI check digits — ISO 17442 / ISO 7064 MOD 97-10.
+
+    Algorithm: convert all chars to numeric (A=10…Z=35), concatenate,
+    compute int(numeric_str) % 97; must equal 1.
+
+    Manual verification:
+      GLEIF 529900T8BM49AURSDO55 → "52990029811224910302728132455" % 97 = 1 ✓
+    """
+    if len(lei) != 20 or not re.match(r'^[A-Z0-9]{18}\d{2}$', lei):
+        return False
+    numeric = ''.join(str(ord(c) - 55) if c.isalpha() else c for c in lei)
+    return int(numeric) % 97 == 1
+
+
+# ── ISIN ──────────────────────────────────────────────────────────────────
+
+def test_isin_format():
+    """ISIN must be 12 chars: 2-letter country code + 9 alphanumeric + 1 digit check."""
+    for _ in range(100):
+        val = str(jutsu.generate('isin'))
+        assert re.match(r'^[A-Z]{2}[A-Z0-9]{9}[0-9]$', val), f"ISIN format wrong: {val}"
+
+
+def test_isin_checksum():
+    """ISIN must pass ISO 6166:2021 Luhn MOD-10 checksum on numeric expansion."""
+    for _ in range(100):
+        val = str(jutsu.generate('isin'))
+        assert _isin_check_valid(val), f"ISIN checksum failed: {val}"
+
+
+def test_isin_locale_prefix():
+    """ISIN country prefix must match the locale's ISO 3166-1 alpha-2 code."""
+    expected = {'TR': 'TR', 'US': 'US', 'UK': 'GB', 'DE': 'DE', 'FR': 'FR', 'RU': 'RU'}
+    for locale, prefix in expected.items():
+        for _ in range(20):
+            val = str(jutsu.generate('isin', locale=locale))
+            assert val.startswith(prefix), f"ISIN prefix wrong for {locale}: {val}"
+
+
+def test_isin_known_vectors():
+    """Known public ISINs must pass the checksum validator (ISO 6166:2021)."""
+    known = [
+        'US0378331005',  # Apple Inc
+        'US0231351067',  # Amazon.com Inc
+        'GB0002634946',  # Vodafone Group plc
+    ]
+    for isin in known:
+        assert _isin_check_valid(isin), f"Known valid ISIN failed: {isin}"
+
+
+# ── CUSIP ─────────────────────────────────────────────────────────────────
+
+def test_cusip_format():
+    """CUSIP must be exactly 9 chars: 8 alphanumeric data + 1 digit check."""
+    for _ in range(100):
+        val = str(jutsu.generate('cusip'))
+        assert re.match(r'^[A-Z0-9]{8}[0-9]$', val), f"CUSIP format wrong: {val}"
+
+
+def test_cusip_checksum():
+    """CUSIP must pass ABA check digit algorithm (odd-position ×2, digit-sum)."""
+    for _ in range(100):
+        val = str(jutsu.generate('cusip'))
+        assert _cusip_check_valid(val), f"CUSIP checksum failed: {val}"
+
+
+def test_cusip_known_vectors():
+    """Known public CUSIPs must pass the checksum validator."""
+    known = [
+        '037833100',  # Apple Inc
+        '023135106',  # Amazon.com Inc
+    ]
+    for cusip in known:
+        assert _cusip_check_valid(cusip), f"Known valid CUSIP failed: {cusip}"
+
+
+# ── SEDOL ─────────────────────────────────────────────────────────────────
+
+def test_sedol_format():
+    """SEDOL must be 7 chars: 6 consonant/digit data chars + 1 digit check."""
+    for _ in range(100):
+        val = str(jutsu.generate('sedol'))
+        assert re.match(r'^[B-DF-HJ-NP-TV-Z0-9]{6}[0-9]$', val), f"SEDOL format wrong: {val}"
+
+
+def test_sedol_no_vowels():
+    """SEDOL data characters must never include vowels (A, E, I, O, U)."""
+    for _ in range(200):
+        val = str(jutsu.generate('sedol'))
+        for c in val[:6]:
+            assert c not in 'AEIOU', f"SEDOL contains vowel '{c}': {val}"
+
+
+def test_sedol_checksum():
+    """SEDOL must pass LSE weighted checksum with weights [1, 3, 1, 7, 3, 9]."""
+    for _ in range(100):
+        val = str(jutsu.generate('sedol'))
+        assert _sedol_check_valid(val), f"SEDOL checksum failed: {val}"
+
+
+def test_sedol_known_vectors():
+    """Known public SEDOLs must pass the checksum validator."""
+    known = [
+        '0263494',  # Vodafone Group plc
+        '0798059',  # Barclays PLC
+        '3134865',  # BT Group plc
+    ]
+    for sedol in known:
+        assert _sedol_check_valid(sedol), f"Known valid SEDOL failed: {sedol}"
+
+
+# ── LEI ───────────────────────────────────────────────────────────────────
+
+def test_lei_format():
+    """LEI must be 20 chars: 18 alphanumeric + 2 digit check."""
+    for _ in range(100):
+        val = str(jutsu.generate('lei'))
+        assert re.match(r'^[A-Z0-9]{18}\d{2}$', val), f"LEI format wrong: {val}"
+
+
+def test_lei_checksum():
+    """LEI must pass ISO 17442 MOD 97-10 checksum (numeric expansion % 97 == 1)."""
+    for _ in range(100):
+        val = str(jutsu.generate('lei'))
+        assert _lei_check_valid(val), f"LEI checksum failed: {val}"
+
+
+def test_lei_known_vector():
+    """GLEIF's own LEI must pass the ISO 17442 checksum validator."""
+    assert _lei_check_valid('529900T8BM49AURSDO55'), "GLEIF LEI 529900T8BM49AURSDO55 failed"

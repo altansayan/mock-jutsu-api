@@ -3,7 +3,7 @@
 **The Algorithmic Mock Data Engine for Fintech & Cross-Border Testing.**  
 *Developed by [Altan Sezer Ayan](https://github.com/altansayan)*
 
-`mock-jutsu-api` generates legally-structured fake data for 6 countries with real regulatory algorithms — TCKN checksums, Luhn-valid cards, VIN check digits, NHS numbers, ABA routing validation, barcode check digits, and IMEI Luhn. **772 tests. Zero false positives.**
+`mock-jutsu-api` generates legally-structured fake data for 6 countries with real regulatory algorithms — TCKN checksums, Luhn-valid cards, VIN check digits, NHS numbers, ABA routing validation, barcode check digits, IMEI Luhn, and financial market identifiers (ISIN, CUSIP, SEDOL, LEI). **810 tests. Zero false positives.**
 
 ---
 
@@ -22,6 +22,7 @@
 | IR: NEC/RC-5 checksums, Pronto Hex | ✅ | ❌ |
 | Barcode: EAN-13/8, UPC-A, ISBN, GS1-128 (GS1 MOD-10) | ✅ | ❌ |
 | Telecom: IMEI, ICCID, IMSI, MSISDN (3GPP/ITU-T) | ✅ | ❌ |
+| Securities: ISIN (ISO 6166), CUSIP, SEDOL, LEI (ISO 17442) | ✅ | ❌ |
 
 ---
 
@@ -106,7 +107,7 @@ mockjutsu generate swift --locale UK
 
 ---
 
-## 📋 All 127+ Data Types
+## 📋 All 131+ Data Types
 
 ### 👤 Identity
 
@@ -285,6 +286,25 @@ jutsu.generate('imsi',  locale='DE')    # "26201123456789"
 jutsu.generate('msisdn', locale='TR')   # "+905321234567"
 ```
 
+### 💹 Financial Markets (Securities)
+
+Standards: **ISO 6166:2021 (ISIN)**, **ABA CUSIP**, **LSE SEDOL**, **ISO 17442 / ISO 7064 (LEI)**
+
+| Type | Output | Algorithm |
+|:---|:---|:---|
+| `isin` | `US0378331005` | ISO 6166:2021 — CC(2) + NSIN(9) + Luhn check(1) on numeric expansion; locale-aware country prefix |
+| `cusip` | `037833100` | ABA — 8 chars (issuer+issue, A-Z/0-9) + check; odd positions ×2 with digit-sum |
+| `sedol` | `0263494` | LSE — 6 consonant/digit chars (no vowels A,E,I,O,U) + check; weights [1,3,1,7,3,9] |
+| `lei` | `529900T8BM49AURSDO55` | ISO 17442 — 4-char LOU + 14-char entity + 2 MOD 97-10 check digits |
+
+```python
+jutsu.generate('isin', locale='TR')    # "TR8680001234567X"  — TR prefix, Luhn valid
+jutsu.generate('isin', locale='US')    # "US0378331005"      — US prefix, Luhn valid
+jutsu.generate('cusip')                # "037833100"         — ABA check valid
+jutsu.generate('sedol')                # "0263494"           — LSE check valid
+jutsu.generate('lei')                  # "5299000T8BM49AURS11" — MOD 97-10 valid
+```
+
 ---
 
 ### ⚙️ Tech / System
@@ -424,8 +444,9 @@ mock-jutsu-api/
 │       ├── commerce.py          # Currency, VIN, vehicle, invoice, tax rate
 │       ├── iot.py               # RFID (EPC SGTIN-96), NFC (NDEF/APDU), IR (NEC/RC-5/Pronto)
 │       ├── barcode.py           # EAN-13/8, UPC-A, ISBN-13/10, GS1-128 (GS1 v24.0)
-│       └── telecom.py           # IMEI, ICCID, IMSI, MSISDN (3GPP TS 23.003 / ITU-T)
-├── tests/test_generators.py     # 772 tests
+│       ├── telecom.py           # IMEI, ICCID, IMSI, MSISDN (3GPP TS 23.003 / ITU-T)
+│       └── financial_markets.py # ISIN, CUSIP, SEDOL, LEI (ISO 6166 / ISO 17442)
+├── tests/test_generators.py     # 810 tests
 └── reports/
     ├── test_report.html
     └── test_results.json
@@ -436,9 +457,9 @@ mock-jutsu-api/
 ## ✅ Test Coverage
 
 ```
-772 passed in 1.5s
+810 passed in 1.5s
 
-66 types × 6 locales = 396 matrix scenarios
+110 types × 6 locales = 660 matrix scenarios
 + algorithmic validation tests
 
 Algorithms verified:
@@ -455,6 +476,8 @@ Algorithms verified:
   ISBN-13 Bookland · GS1-128 GTIN-14 · IMEI Luhn (3GPP)
   ICCID Luhn (ITU-T E.118) · IMSI MCC/MNC (ITU-T E.212)
   MSISDN E.164 (ITU-T) · IMEI2 hyphenated display
+  ISIN Luhn MOD-10 (ISO 6166:2021) · CUSIP check (ABA)
+  SEDOL weighted check (LSE) · LEI MOD 97-10 (ISO 17442)
 ```
 
 ---
