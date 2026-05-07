@@ -113,14 +113,70 @@ class TestGenerateEndpoint:
         assert len(result) == 32
 
     @pytest.mark.parametrize("data_type", [
-        "tckn", "ssn", "nin", "snils", "iban", "cardnum", "phone",
-        "email", "uuid", "ipv4", "jwt", "ean13", "imei", "btc_address",
-        "product_name", "latitude", "username", "blood_type",
+        # Identity
+        "tckn", "ykn", "nationalid", "vkn", "taxid", "employer_id", "insurance_id",
+        "sgk", "mersis", "ssn", "ein", "nin", "utr", "crn", "paye",
+        "ust_id", "ustid", "hrb", "rvn", "siren", "siret", "tva",
+        "inn", "snils", "ogrn", "kpp",
+        "tckn_masked", "ssn_masked", "nationality", "inn_individual",
+        # Name
+        "firstname", "lastname", "fullname", "patronymic",
+        # Document / Demographic
+        "passport", "license", "age", "gender", "birthdate",
+        # Financial
+        "cardnum", "cardnetwork", "cardtype", "cardstatus", "cardcategory", "cardowner",
+        "cvv3", "cvv4", "pin", "expiry", "expirymonth", "expiryyear",
+        "issuer", "balance", "iban", "credit_score",
+        # Contact
+        "phone", "phone_country", "phone_area", "phone_local",
+        "address_city", "address_street", "address_full",
+        "postalcode", "plate", "email",
+        # Banking
+        "swift", "bic", "sort_code", "routing_number", "bik_code",
+        "bank_name", "transaction", "sepa_ref",
+        # Corporate
+        "company_name", "job_title", "jobtitle", "occupation",
+        # Health
+        "blood_type", "bloodtype", "nhs_number", "nhsnumber",
+        "icd10", "height", "weight", "npi", "bmi",
+        # Commerce
+        "currency", "tax_rate", "taxrate", "invoice_number", "invoicenumber",
+        "vin", "vehicle",
+        # Meta
+        "uuid", "requestid", "correlationid", "sessionid", "idempotencykey",
+        "deviceid", "timestamp", "timestamp_iso", "ipv4", "ipv6",
+        "browser_name", "browser_version", "browser_engine", "useragent",
+        "jwt", "bearertoken", "hash", "mac_address", "url", "domain", "color",
+        "clientversion", "signature", "apppassword",
+        # Security
+        "api_key", "totp_code", "webhook_signature", "transaction_id",
+        "public_ip", "private_ip",
+        # RFID
+        "rfid_uid", "epc", "rfid_tag",
+        # NFC
+        "nfc_uid", "nfc_atqa", "nfc_sak", "ndef_uri", "ndef_text", "apdu", "nfc_tag",
+        # IR
+        "ir_nec", "ir_rc5", "ir_pronto", "ir_raw",
+        # Barcode
+        "ean13", "ean8", "upca", "isbn13", "isbn10", "gs1_128",
+        # Telecom
+        "imei", "imei2", "iccid", "imsi", "msisdn",
+        # Securities
+        "isin", "cusip", "sedol", "lei",
+        # Crypto
+        "btc_address", "eth_address", "crypto_address", "tx_hash", "block_hash",
+        # E-Commerce
+        "product_name", "sku", "order_id", "tracking_number", "category",
+        "rating", "dhl_tracking",
+        # Location
+        "latitude", "longitude", "timezone", "country_code", "coordinates",
+        # Social
+        "username", "handle", "hashtag", "bio", "follower_count",
     ])
-    def test_generate_common_types(self, data_type):
+    def test_generate_all_174_types(self, data_type):
         r = client.get(f"/generate/{data_type}")
         assert r.status_code == 200
-        assert r.json()["status"] == "success", f"{data_type}: {r.json()}"
+        assert r.json()["status"] == "success", f"{data_type}: {r.json()['result']}"
 
     @pytest.mark.parametrize("locale", ["TR", "UK", "US", "DE", "FR", "RU"])
     def test_generate_all_locales(self, locale):
