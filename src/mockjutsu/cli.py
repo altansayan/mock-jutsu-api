@@ -316,7 +316,7 @@ _CAT_COLORS = {
 @click.group(invoke_without_command=True)
 @click.pass_context
 def main(ctx):
-    """mock-jutsu -- Algorithmic Mock Data Engine (6 Locales, 152+ Types)"""
+    """mock-jutsu -- Algorithmic Mock Data Engine (6 Locales, 174 Types)"""
     if ctx.invoked_subcommand is None:
         _print_banner()
         click.echo(ctx.get_help())
