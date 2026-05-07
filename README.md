@@ -3,7 +3,7 @@
 **The Algorithmic Mock Data Engine for Fintech & Cross-Border Testing.**  
 *Developed by [Altan Sezer Ayan](https://github.com/altansayan)*
 
-`mock-jutsu-api` generates legally-structured fake data for 6 countries with real regulatory algorithms — TCKN checksums, Luhn-valid cards, VIN check digits, NHS numbers, ABA routing validation, barcode check digits, IMEI Luhn, financial market identifiers (ISIN, CUSIP, SEDOL, LEI), crypto addresses (BTC P2PKH, ETH EIP-55), e-commerce tracking numbers (USPS/UPS/FedEx/DHL), locale-aware coordinates, security tokens (API keys, TOTP, webhook signatures), and social media types. **1091 tests. Zero false positives.**
+`mock-jutsu-api` generates legally-structured fake data for 6 countries with real regulatory algorithms — TCKN checksums, Luhn-valid cards, VIN check digits, NHS numbers, ABA routing validation, barcode check digits, IMEI Luhn, financial market identifiers (ISIN, CUSIP, SEDOL, LEI), crypto addresses (BTC P2PKH, ETH EIP-55), e-commerce tracking numbers (USPS/UPS/FedEx/DHL), locale-aware coordinates, security tokens (API keys, TOTP, webhook signatures), and social media types. **1637 tests. Zero false positives.**
 
 ---
 
@@ -111,7 +111,7 @@ mockjutsu generate swift --locale UK
 
 ---
 
-## 📋 All 167+ Data Types
+## 📋 All 174 Data Types
 
 ### 👤 Identity
 
@@ -560,7 +560,7 @@ mock-jutsu-api/
 │       ├── ecommerce.py         # USPS/UPS/FedEx tracking, SKU, Order ID, rating
 │       ├── location.py          # WGS-84 lat/lon, IANA timezone, ISO 3166-1
 │       └── social.py            # Username, handle, hashtag, bio, follower_count
-├── tests/test_generators.py     # 1091 tests
+├── tests/test_generators.py     # 1637 tests
 └── reports/
     ├── test_report.html
     └── test_results.json
@@ -571,9 +571,9 @@ mock-jutsu-api/
 ## ✅ Test Coverage
 
 ```
-1103 passed
+1637 passed
 
-146 types × 6 locales = 876 matrix scenarios
+174 types × 6 locales = 1044 matrix scenarios
 + algorithmic validation tests
 
 Algorithms verified:

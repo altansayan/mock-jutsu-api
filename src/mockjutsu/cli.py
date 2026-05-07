@@ -41,11 +41,11 @@ def _print_banner() -> None:
 
     body.append("\n")
     body.append("Algorithmic Mock Data Engine\n", style="bold white")
-    body.append("167+ Types", style="cyan")
+    body.append("174 Types", style="cyan")
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("1103 Tests\n", style="cyan")
+    body.append("1637 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan - A.S.A\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -343,7 +343,7 @@ def generate(data_type, locale, network, currency, carrier, algorithm):
 @main.command(name='list')
 @click.option('--cat', default='', help='Filter by category  e.g. Financial, NFC, RFID, IR')
 def list_types(cat):
-    """List all 167+ data types with CLI usage examples."""
+    """List all 174 data types with CLI usage examples."""
     # Column widths
     W_TYPE = 20
     W_EX   = 24
