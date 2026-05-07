@@ -1,9 +1,9 @@
-﻿"""
+"""
 mock-jutsu — Official Communication Generator (Regulatory & Combinatorial)
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
-import random
+import secrets
 
 CITIES = {
     "TR": ["İstanbul", "Ankara", "İzmir", "Bursa", "Antalya", "Adana", "Konya", "Gaziantep"],
@@ -53,6 +53,14 @@ EMAIL_DOMAINS = {
     "RU": ["testmail.ru", "testovaya-pochta.ru", "primer-mail.ru", "fakepost.org"],
 }
 
+_UK_PLATE_LETTERS = "ABCEGHJKLMNOPRSTWXYZ"
+_UK_PLATE_RAND    = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+_RU_PLATE_CHARS   = "ABEKMHOPCTYX"
+_US_PLATE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+_FR_PLATE_LETTERS = "ABCDEFGHJKLMNPQRSTUVWXYZ"
+_DE_PLATE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+_TR_PLATE_LETTERS = "ABCDEFGHJKLMNPRSTUVYZ"
+
 
 class CommunicationGenerator:
     """Regulatory-compliant Communication data for 6 locales."""
@@ -60,37 +68,36 @@ class CommunicationGenerator:
     def generate_plate(self, locale="TR"):
         l = locale.upper()
         if l == "TR":
-            city = random.choice(PLATE_REGIONS["TR"])
-            letters = "".join(random.choices("ABCDEFGHJKLMNPRSTUVYZ", k=random.randint(1, 3)))
-            return f"{city} {letters} {random.randint(10, 9999)}"
+            city    = secrets.choice(PLATE_REGIONS["TR"])
+            letters = "".join(secrets.choice(_TR_PLATE_LETTERS) for _ in range(secrets.randbelow(3) + 1))
+            return f"{city} {letters} {secrets.randbelow(9990) + 10}"
         if l == "UK":
-            region = random.choice("ABCEGHJKLMNOPRSTWXYZ") + random.choice("ABCDEFGHJKLMNOPRSTWXYZ")
-            age = random.choice(["23", "73", "24", "74"])
-            rand = "".join(random.choices("ABCDEFGHIJKLMNOPQRSTUVWXYZ", k=3))
+            region = secrets.choice(_UK_PLATE_LETTERS) + secrets.choice(_UK_PLATE_LETTERS)
+            age    = secrets.choice(["23", "73", "24", "74"])
+            rand   = "".join(secrets.choice(_UK_PLATE_RAND) for _ in range(3))
             return f"{region}{age} {rand}"
         if l == "DE":
-            city = random.choice(PLATE_REGIONS["DE"])
-            letters = "".join(random.choices("ABCDEFGHIJKLMNOPQRSTUVWXYZ", k=random.randint(1, 2)))
-            return f"{city}-{letters} {random.randint(1, 9999)}"
+            city    = secrets.choice(PLATE_REGIONS["DE"])
+            letters = "".join(secrets.choice(_DE_PLATE_LETTERS) for _ in range(secrets.randbelow(2) + 1))
+            return f"{city}-{letters} {secrets.randbelow(9999) + 1}"
         if l == "FR":
-            l1 = "".join(random.choices("ABCDEFGHJKLMNPQRSTUVWXYZ", k=2))
-            l2 = "".join(random.choices("ABCDEFGHJKLMNPQRSTUVWXYZ", k=2))
-            return f"{l1}-{random.randint(100, 999)}-{l2}"
+            l1 = "".join(secrets.choice(_FR_PLATE_LETTERS) for _ in range(2))
+            l2 = "".join(secrets.choice(_FR_PLATE_LETTERS) for _ in range(2))
+            return f"{l1}-{secrets.randbelow(900) + 100}-{l2}"
         if l == "RU":
-            chars = "ABEKMHOPCTYX"
-            region = random.choice(PLATE_REGIONS["RU"])
-            return f"{random.choice(chars)}{random.randint(100,999)}{''.join(random.choices(chars,k=2))} {region}"
+            region = secrets.choice(PLATE_REGIONS["RU"])
+            return f"{secrets.choice(_RU_PLATE_CHARS)}{secrets.randbelow(900) + 100}{''.join(secrets.choice(_RU_PLATE_CHARS) for _ in range(2))} {region}"
         if l == "US":
-            return f"{random.randint(1,9)}{''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ',k=3))}{random.randint(100,999)}"
+            return f"{secrets.randbelow(9) + 1}{''.join(secrets.choice(_US_PLATE_LETTERS) for _ in range(3))}{secrets.randbelow(900) + 100}"
         return "PLATE-123"
 
     def generate_phone(self, locale="TR", atomic=None):
         l = locale.upper()
         data = PHONE_DATA.get(l, PHONE_DATA["TR"])
-        prefix = data["prefix"]
-        carrier = random.choice(data["carriers"])
+        prefix  = data["prefix"]
+        carrier = secrets.choice(data["carriers"])
         local_len = 8 if l == "FR" else 7
-        local = "".join([str(random.randint(0, 9)) for _ in range(local_len)])
+        local   = "".join(str(secrets.randbelow(10)) for _ in range(local_len))
 
         if atomic in ('country', 'country_code'):
             return prefix
@@ -103,27 +110,28 @@ class CommunicationGenerator:
     def generate_postalcode(self, locale="TR"):
         l = locale.upper()
         if l == "TR":
-            prefix = random.choice(["06", "16", "34", "35", "41", "42"])
-            return f"{prefix}{random.randint(100, 999)}"
+            prefix = secrets.choice(["06", "16", "34", "35", "41", "42"])
+            return f"{prefix}{secrets.randbelow(900) + 100}"
         if l == "US":
-            return f"{random.randint(10000, 99999)}"
+            return f"{secrets.randbelow(90000) + 10000}"
         if l == "UK":
-            area = random.choice(["SW", "EC", "WC", "SE", "E", "N", "NW", "W", "EC"])
-            letters = "".join(random.choices("ABCDEFGHJKLMNPRSTUVWXY", k=2))
-            return f"{area}{random.randint(1,9)} {random.randint(1,9)}{letters}"
+            area    = secrets.choice(["SW", "EC", "WC", "SE", "E", "N", "NW", "W", "EC"])
+            letters = "".join(secrets.choice("ABCDEFGHJKLMNPRSTUVWXY") for _ in range(2))
+            return f"{area}{secrets.randbelow(9) + 1} {secrets.randbelow(9) + 1}{letters}"
         if l == "DE":
-            return f"{random.randint(10000, 99999)}"
+            return f"{secrets.randbelow(90000) + 10000}"
         if l == "FR":
-            return f"{random.randint(75000, 97680):05d}"
+            # Valid FR range: 01000–97999
+            return f"{secrets.randbelow(97000) + 1000:05d}"
         if l == "RU":
-            return f"{random.randint(100000, 999999)}"
-        return f"{random.randint(10000, 99999)}"
+            return f"{secrets.randbelow(900000) + 100000}"
+        return f"{secrets.randbelow(90000) + 10000}"
 
     def generate_address(self, locale="TR", atomic=None):
         l = locale.upper()
-        city = random.choice(CITIES.get(l, CITIES["TR"]))
-        street = random.choice(STREETS.get(l, STREETS["TR"]))
-        no = random.randint(1, 200)
+        city   = secrets.choice(CITIES.get(l, CITIES["TR"]))
+        street = secrets.choice(STREETS.get(l, STREETS["TR"]))
+        no     = secrets.randbelow(200) + 1
 
         if atomic == 'city':
             return city
@@ -132,7 +140,7 @@ class CommunicationGenerator:
         if atomic == 'district':
             return city
         if atomic == 'neighborhood':
-            return f"{city} {random.randint(1, 20)}. Mahalle"
+            return f"{city} {secrets.randbelow(20) + 1}. Mahalle"
         return f"{city}, {street} No:{no}"
 
     def generate(self, data_type, locale="TR", **kwargs):
@@ -151,9 +159,9 @@ class CommunicationGenerator:
         if dt.startswith('address_'):
             return self.generate_address(locale, dt.replace('address_', ''))
         if dt == 'email':
-            l = locale.upper()
-            domain = random.choice(EMAIL_DOMAINS.get(l, EMAIL_DOMAINS["TR"]))
+            l      = locale.upper()
+            domain = secrets.choice(EMAIL_DOMAINS.get(l, EMAIL_DOMAINS["TR"]))
             prefixes = ["user", "test", "mock", "dev", "demo", "sandbox", "ninja"]
-            return f"{random.choice(prefixes)}{random.randint(100, 9999)}@{domain}"
+            return f"{secrets.choice(prefixes)}{secrets.randbelow(9900) + 100}@{domain}"
 
         return None

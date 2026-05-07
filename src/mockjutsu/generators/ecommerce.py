@@ -93,6 +93,8 @@ class EcommerceGenerator:
             return secrets.choice(_CATEGORIES)
         if dt == 'rating':
             return self._rating()
+        if dt == 'dhl_tracking':
+            return self._tracking_dhl()
 
         return f"ERROR: Unknown DataType '{dt}'"
 
@@ -152,6 +154,16 @@ class EcommerceGenerator:
         body = ''.join(str(secrets.randbelow(10)) for _ in range(11))
         check = _fedex_check_digit(body)
         return body + str(check)
+
+    # ── DHL Tracking ─────────────────────────────────────────────────────────
+
+    def _tracking_dhl(self) -> str:
+        """DHL JD-series tracking: 'JD' + 8 random digits + 1 Luhn check digit.
+        Reference: DHL Express developer guide — JD waybill format.
+        """
+        body = [secrets.randbelow(10) for _ in range(8)]
+        check = _luhn_check_digit(body)
+        return "JD" + ''.join(map(str, body)) + str(check)
 
     # ── Rating ────────────────────────────────────────────────────────────────
 

@@ -1,9 +1,8 @@
-﻿"""
+"""
 mock-jutsu — Meta Generator (Combinatorial User Agent + Security Data + Tech)
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
-import random
 import uuid
 import time
 import hmac
@@ -11,6 +10,7 @@ import hashlib
 import base64
 import colorsys
 import secrets
+import string
 from datetime import datetime
 
 BROWSERS = [
@@ -21,7 +21,7 @@ BROWSERS = [
     {"name": "Opera",   "engine": "Blink",   "major_range": (105, 110)},
 ]
 
-# Real OUI prefixes (public IEEE registry — ieee.org/regauth)
+# Expanded OUI prefixes (public IEEE registry — ieee.org/regauth)
 OUI_PREFIXES = [
     "A4:C3:F0",  # Apple
     "3C:22:FB",  # Cisco Systems
@@ -33,6 +33,26 @@ OUI_PREFIXES = [
     "28:6F:7F",  # Liteon Technology
     "F0:18:98",  # Apple
     "00:1C:42",  # Parallels
+    "00:23:AE",  # Cisco Meraki
+    "AC:BC:32",  # Apple
+    "F4:5C:89",  # Samsung Electronics
+    "70:F0:96",  # Samsung Electronics
+    "CC:46:D6",  # Cisco
+    "00:0C:29",  # VMware
+    "44:38:39",  # Cumulus Networks
+    "2C:F0:5D",  # Cisco
+    "B0:BE:83",  # Dell
+    "00:25:90",  # Super Micro Computer
+    "3C:D9:2B",  # Hewlett Packard
+    "78:E3:B5",  # Cisco
+    "00:1A:11",  # Google
+    "54:EE:75",  # Apple
+    "00:17:88",  # Philips Hue
+    "18:B4:30",  # Nest Labs
+    "70:85:C2",  # Ubiquiti Networks
+    "00:27:22",  # Mimosa Networks
+    "44:D9:E7",  # Murata Manufacturing
+    "A8:40:41",  # Espressif Inc.
 ]
 
 DOMAIN_TLDS = {
@@ -66,6 +86,56 @@ COLOR_NAMES = [
     ("Slate Gray",   "#708090", (112, 128, 144)),
 ]
 
+_API_KEY_CHARS = string.ascii_letters + string.digits
+
+# Reserved IPv4 ranges to exclude from public IPs
+_RESERVED_FIRST_OCTETS = {
+    0,    # 0.0.0.0/8
+    10,   # RFC 1918
+    127,  # loopback
+    169,  # link-local
+    172,  # RFC 1918 (172.16-31.x)
+    192,  # RFC 1918 (192.168.x)
+    198,  # IETF protocol assignments
+    203,  # IETF protocol assignments
+    224,  # multicast
+    225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239,
+    240,  # reserved
+    241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255,
+}
+
+
+def _is_public_ipv4(a, b, c, d) -> bool:
+    """Return True if the given IPv4 octets form a globally routable address."""
+    if a in _RESERVED_FIRST_OCTETS:
+        return False
+    if a == 172 and 16 <= b <= 31:
+        return False
+    if a == 192 and b == 168:
+        return False
+    return True
+
+
+def _gen_public_ipv4() -> str:
+    """Generate a globally routable (public) IPv4 address."""
+    while True:
+        a = secrets.randbelow(256)
+        b = secrets.randbelow(256)
+        c = secrets.randbelow(256)
+        d = secrets.randbelow(256)
+        if _is_public_ipv4(a, b, c, d):
+            return f"{a}.{b}.{c}.{d}"
+
+
+def _gen_private_ipv4() -> str:
+    """Generate an RFC 1918 private IPv4 address."""
+    tier = secrets.randbelow(3)
+    if tier == 0:
+        return f"10.{secrets.randbelow(256)}.{secrets.randbelow(256)}.{secrets.randbelow(256)}"
+    if tier == 1:
+        return f"172.{secrets.randbelow(16) + 16}.{secrets.randbelow(256)}.{secrets.randbelow(256)}"
+    return f"192.168.{secrets.randbelow(256)}.{secrets.randbelow(256)}"
+
 
 class MetaGenerator:
     """Security and system data with combinatorial logic."""
@@ -79,13 +149,13 @@ class MetaGenerator:
             "iPhone; CPU iPhone OS 17_5 like Mac OS X",
         ]
         archs = ["Win64; x64", "WOW64", "ARM64", "x86_64"]
-        chrome_v = f"{random.randint(120, 126)}.0.{random.randint(1000, 9999)}.{random.randint(10, 99)}"
-        safari_v = f"{random.randint(530, 600)}.{random.randint(1, 40)}"
+        chrome_v = f"{secrets.randbelow(7) + 120}.0.{secrets.randbelow(9000) + 1000}.{secrets.randbelow(90) + 10}"
+        safari_v = f"{secrets.randbelow(71) + 530}.{secrets.randbelow(40) + 1}"
 
-        plat = random.choice(platforms)
-        arch = random.choice(archs) if ("Windows" in plat or "Linux" in plat) else ""
+        plat = secrets.choice(platforms)
+        arch = secrets.choice(archs) if ("Windows" in plat or "Linux" in plat) else ""
 
-        ua = f"Mozilla/5.0 ({plat}{'; ' + arch if arch else ''}) "
+        ua  = f"Mozilla/5.0 ({plat}{'; ' + arch if arch else ''}) "
         ua += f"AppleWebKit/{safari_v} (KHTML, like Gecko) "
         ua += f"Chrome/{chrome_v} Safari/{safari_v}"
         return ua
@@ -93,7 +163,7 @@ class MetaGenerator:
     def generate_app_password(self):
         """6-digit PIN with no consecutive repeats and no sequential runs of 3+."""
         while True:
-            digits = [random.randint(0, 9) for _ in range(6)]
+            digits = [secrets.randbelow(10) for _ in range(6)]
             has_repeat = any(digits[i] == digits[i + 1] for i in range(5))
             has_seq = any(
                 (digits[i + 1] - digits[i] == 1 and digits[i + 2] - digits[i + 1] == 1) or
@@ -107,15 +177,15 @@ class MetaGenerator:
         for b in BROWSERS:
             if b["name"] == name:
                 lo, hi = b["major_range"]
-                major = random.randint(lo, hi)
-                return f"{major}.0.{random.randint(1000, 9999)}.{random.randint(10, 99)}"
-        return f"{random.randint(100, 120)}.0"
+                major = secrets.randbelow(hi - lo + 1) + lo
+                return f"{major}.0.{secrets.randbelow(9000) + 1000}.{secrets.randbelow(90) + 10}"
+        return f"{secrets.randbelow(21) + 100}.0"
 
     def _bearer_token(self):
-        header = base64.urlsafe_b64encode(b'{"alg":"HS256","typ":"JWT"}').decode().rstrip('=')
+        header  = base64.urlsafe_b64encode(b'{"alg":"HS256","typ":"JWT"}').decode().rstrip('=')
         payload_str = f'{{"sub":"{uuid.uuid4()}","iat":{int(time.time())}}}'
         payload = base64.urlsafe_b64encode(payload_str.encode()).decode().rstrip('=')
-        sig_bytes = bytes([random.randint(0, 255) for _ in range(32)])
+        sig_bytes = secrets.token_bytes(32)
         signature = base64.urlsafe_b64encode(sig_bytes).decode().rstrip('=')
         return f"Bearer {header}.{payload}.{signature}"
 
@@ -132,13 +202,13 @@ class MetaGenerator:
             return self._bearer_token()
 
         if dt == 'browser_name':
-            return random.choice(BROWSERS)["name"]
+            return secrets.choice(BROWSERS)["name"]
 
         if dt == 'browser_engine':
-            return random.choice(BROWSERS)["engine"]
+            return secrets.choice(BROWSERS)["engine"]
 
         if dt == 'browser_version':
-            b = random.choice(BROWSERS)
+            b = secrets.choice(BROWSERS)
             return self._browser_version(b["name"])
 
         if dt in ('uuid', 'requestid', 'correlationid', 'sessionid', 'idempotencykey'):
@@ -153,10 +223,16 @@ class MetaGenerator:
             return str(uuid.uuid4()).upper()
 
         if dt == 'ipv4':
-            return ".".join([str(random.randint(0, 255)) for _ in range(4)])
+            return _gen_public_ipv4()
+
+        if dt == 'public_ip':
+            return _gen_public_ipv4()
+
+        if dt == 'private_ip':
+            return _gen_private_ipv4()
 
         if dt == 'ipv6':
-            return ":".join([hex(random.randint(0, 65535))[2:].zfill(4) for _ in range(8)])
+            return ":".join(f"{secrets.randbelow(65536):04x}" for _ in range(8))
 
         if dt == 'timestamp_iso':
             return datetime.now().isoformat()
@@ -165,7 +241,7 @@ class MetaGenerator:
             return str(int(time.time()))
 
         if dt == 'clientversion':
-            return f"{random.randint(1, 4)}.{random.randint(0, 9)}.{random.randint(0, 9)}"
+            return f"{secrets.randbelow(4) + 1}.{secrets.randbelow(10)}.{secrets.randbelow(10)}"
 
         if dt == 'jwt':
             return self._bearer_token().replace("Bearer ", "", 1)
@@ -182,26 +258,26 @@ class MetaGenerator:
             return algos.get(algorithm, hashlib.sha256)(data).hexdigest()
 
         if dt == 'mac_address':
-            oui = random.choice(OUI_PREFIXES)
-            suffix = ":".join(f"{random.randint(0, 255):02X}" for _ in range(3))
+            oui    = secrets.choice(OUI_PREFIXES)
+            suffix = ":".join(f"{secrets.randbelow(256):02X}" for _ in range(3))
             return f"{oui}:{suffix}"
 
         if dt == 'domain':
             locale = str(kwargs.get('locale', 'TR')).upper()
-            tld = random.choice(DOMAIN_TLDS.get(locale, DOMAIN_TLDS["TR"]))
-            words = ["api", "data", "test", "mock", "demo", "dev", "sample", "sandbox", "lab", "platform"]
-            return f"{random.choice(words)}-{random.randint(10, 99)}{tld}"
+            tld    = secrets.choice(DOMAIN_TLDS.get(locale, DOMAIN_TLDS["TR"]))
+            words  = ["api", "data", "test", "mock", "demo", "dev", "sample", "sandbox", "lab", "platform"]
+            return f"{secrets.choice(words)}-{secrets.randbelow(90) + 10}{tld}"
 
         if dt == 'url':
             locale = str(kwargs.get('locale', 'TR')).upper()
-            tld = random.choice(DOMAIN_TLDS.get(locale, DOMAIN_TLDS["TR"]))
-            host = f"mockapi-{random.randint(100, 999)}{tld}"
-            path = random.choice(URL_PATHS)
+            tld    = secrets.choice(DOMAIN_TLDS.get(locale, DOMAIN_TLDS["TR"]))
+            host   = f"mockapi-{secrets.randbelow(900) + 100}{tld}"
+            path   = secrets.choice(URL_PATHS)
             return f"https://{host}{path}"
 
         if dt == 'color':
             fmt = str(kwargs.get('format', 'hex')).lower()
-            name, hex_val, (r, g, b) = random.choice(COLOR_NAMES)
+            name, hex_val, (r, g, b) = secrets.choice(COLOR_NAMES)
             if fmt == 'hex':
                 return hex_val
             if fmt == 'rgb':
@@ -212,5 +288,22 @@ class MetaGenerator:
             if fmt == 'name':
                 return name
             return hex_val
+
+        # ── Security / API types ─────────────────────────────────────────────
+
+        if dt == 'api_key':
+            suffix = "".join(secrets.choice(_API_KEY_CHARS) for _ in range(48))
+            return f"sk-{suffix}"
+
+        if dt == 'totp_code':
+            return f"{secrets.randbelow(1000000):06d}"
+
+        if dt == 'webhook_signature':
+            payload_bytes = secrets.token_bytes(32)
+            sig = hashlib.sha256(payload_bytes).hexdigest()
+            return f"sha256={sig}"
+
+        if dt == 'transaction_id':
+            return f"TXN{secrets.token_hex(8).upper()}"
 
         return None

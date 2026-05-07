@@ -1,6 +1,6 @@
 ﻿# mock-jutsu — Kullanım Kılavuzu (How-To)
 
-> **mock-jutsu** — 6 locale (TR/US/UK/DE/FR/RU), 152+ parametre tipi, yasal algoritmalarla mock veri üretimi.
+> **mock-jutsu** — 6 locale (TR/US/UK/DE/FR/RU), 167+ parametre tipi, yasal algoritmalarla mock veri üretimi.
 > Developer: Altan Sezer Ayan - A.S.A · [github.com/altansayan](https://github.com/altansayan)
 
 ---
@@ -24,6 +24,8 @@
 15. [Konum & Coğrafya](#15-konum--coğrafya)
 16. [Sosyal Medya](#16-sosyal-medya)
 17. [CLI Komutları — Profile, Company, Bulk, Export](#17-cli-komutları--profile-company-bulk-export)
+18. [Güvenlik & Kimlik Doğrulama](#18-güvenlik--kimlik-doğrulama)
+19. [Gizlilik & Maskeleme](#19-gizlilik--maskeleme)
 
 ---
 
@@ -1083,6 +1085,148 @@ mockjutsu generate crypto_address --currency btc
 # Kargo — --carrier
 mockjutsu generate tracking_number --carrier ups
 mockjutsu generate tracking_number --carrier fedex
+```
+
+---
+
+## 18. Güvenlik & Kimlik Doğrulama
+
+### `api_key` — API Anahtarı
+`sk-` öneki + 48 karakter CSPRNG alfanümerik. Stripe/OpenAI formatına benzer.
+```python
+jutsu.generate('api_key')
+# → 'sk-aBcDeFgH1234567890XyZaBcDeFgH1234567890XyZaBcDe'
+```
+
+### `totp_code` — TOTP Doğrulama Kodu
+6 haneli one-time password (RFC 6238 formatı, gerçek bir TOTP algoritması çalıştırmadan test verisi üretir).
+```python
+jutsu.generate('totp_code')
+# → '482931'
+```
+
+### `webhook_signature` — Webhook İmzası
+`sha256=` + SHA-256 HMAC hex (Stripe / GitHub webhook formatı). 71 karakter toplam.
+```python
+jutsu.generate('webhook_signature')
+# → 'sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+```
+
+### `transaction_id` — İşlem Kimliği
+`TXN` öneki + 16 büyük harf hex karakter. UUID'e alternatif, fintech logları için.
+```python
+jutsu.generate('transaction_id')
+# → 'TXN1A2B3C4D5E6F7G8'
+```
+
+### `public_ip` — Genel IPv4 Adresi
+Küresel olarak yönlendirilebilir IPv4. RFC 1918 (10.x, 172.16–31.x, 192.168.x), loopback, link-local, multicast ve reserved aralıklar hariç tutulur.
+```python
+jutsu.generate('public_ip')
+# → '185.46.212.33'
+```
+
+### `private_ip` — Özel IPv4 Adresi
+Yalnızca RFC 1918 aralıkları: `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`.
+```python
+jutsu.generate('private_ip')
+# → '192.168.1.42'
+```
+
+**CLI:**
+```bash
+mockjutsu generate api_key
+mockjutsu generate totp_code
+mockjutsu generate webhook_signature
+mockjutsu generate transaction_id
+mockjutsu generate public_ip
+mockjutsu generate private_ip
+```
+
+---
+
+## 19. Gizlilik & Maskeleme
+
+### `tckn_masked` — Maskelenmiş T.C. Kimlik Numarası
+İlk 3 ve son 2 hane yıldızla maskelenir. KVKK uyumlu log ve UI gösterimi için.
+```python
+jutsu.generate('tckn_masked')
+# → '***123456**'
+```
+
+### `ssn_masked` — Maskelenmiş SSN
+`***-**-XXXX` formatı. PCI-DSS uyumlu maskeleme. Son 4 hane görünür.
+```python
+jutsu.generate('ssn_masked')
+# → '***-**-6789'
+```
+
+### `nationality` — Uyruk (ISO 3166-1 alpha-3)
+40 ülkeyi kapsayan havuzdan rastgele üç harfli ülke kodu.
+```python
+jutsu.generate('nationality')
+# → 'TUR'  veya  'DEU'  veya  'USA'  ...
+```
+
+### `inn_individual` — Rusya Bireysel INN (12 hane)
+Rusya Bireysel Vergi Kimliği: 10 temel hane + 2 kontrol hanesi. Ağırlık dizileri:
+- Kontrol 1: `[7,2,4,10,3,5,9,4,6,8]`
+- Kontrol 2: `[3,7,2,4,10,3,5,9,4,6,8]`
+```python
+jutsu.generate('inn_individual')        # 12 hane
+# → '123456789012'
+jutsu.generate('inn', locale='RU')     # Kurumsal INN (10 hane — mevcut)
+# → '1234567890'
+```
+
+> **Not:** `inn` tipi kurumsal (10 hane), `inn_individual` tipi bireysel (12 hane) üretir.
+
+### `sepa_ref` — SEPA Referans Numarası
+ISO 20022 end-to-end referans: 20–35 karakter büyük harf alfanümerik.
+```python
+jutsu.generate('sepa_ref')
+# → 'SEPAENDTOEND20240501XY7Z3A'
+```
+
+### `npi` — NPI (National Provider Identifier)
+ABD sağlık sağlayıcı kimlik numarası. 9 temel hane + Luhn check digit (80840 prefix ile).
+```python
+jutsu.generate('npi')
+# → '1234567893'
+```
+
+### `bmi` — Vücut Kitle İndeksi
+18.5–35.0 aralığında, bir ondalık basamak.
+```python
+jutsu.generate('bmi')
+# → '24.7'
+```
+
+### `credit_score` — Kredi Notu
+FICO ölçeği: 300–850 arası tam sayı.
+```python
+jutsu.generate('credit_score')
+# → '720'
+```
+
+### `dhl_tracking` — DHL Takip Numarası
+DHL JD serisi: `JD` + 8 rastgele hane + 1 Luhn check digit = 11 karakter.
+```python
+jutsu.generate('dhl_tracking')
+# → 'JD123456789'
+```
+
+**CLI:**
+```bash
+mockjutsu generate tckn_masked
+mockjutsu generate ssn_masked
+mockjutsu generate nationality
+mockjutsu generate inn_individual
+mockjutsu generate sepa_ref
+mockjutsu generate npi
+mockjutsu generate bmi
+mockjutsu generate credit_score
+mockjutsu generate dhl_tracking
 ```
 
 ---

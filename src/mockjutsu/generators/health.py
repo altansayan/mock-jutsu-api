@@ -1,9 +1,9 @@
-﻿"""
-mock-jutsu — Health Generator (Blood Type, NHS, ICD-10, Height/Weight)
+"""
+mock-jutsu — Health Generator (Blood Type, NHS, ICD-10, Height/Weight, NPI, BMI)
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
-import random
+import secrets
 
 # Common ICD-10 codes (public WHO standard)
 ICD10_POOL = [
@@ -35,15 +35,15 @@ class HealthGenerator:
 
     @staticmethod
     def generate_blood_type():
-        return random.choice(["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"])
+        return secrets.choice(["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"])
 
     @staticmethod
     def generate_nhs_number():
         """UK NHS number — 10 digits with weighted checksum (weights 10→2, check = 1)."""
         while True:
-            base = [random.randint(0, 9) for _ in range(9)]
+            base    = [secrets.randbelow(10) for _ in range(9)]
             weights = [10, 9, 8, 7, 6, 5, 4, 3, 2]
-            total = sum(d * w for d, w in zip(base, weights))
+            total   = sum(d * w for d, w in zip(base, weights))
             remainder = total % 11
             if remainder == 1:
                 continue
@@ -55,15 +55,15 @@ class HealthGenerator:
 
     @staticmethod
     def generate_icd10(with_description=False):
-        code, desc = random.choice(ICD10_POOL)
+        code, desc = secrets.choice(ICD10_POOL)
         if with_description:
             return {"code": code, "description": desc}
         return code
 
     @staticmethod
     def generate_height(locale="TR"):
-        l = locale.upper()
-        cm = random.randint(155, 195)
+        l  = locale.upper()
+        cm = secrets.randbelow(41) + 155  # 155–195
         if l == "US":
             total_inches = round(cm / 2.54)
             feet, inches = divmod(total_inches, 12)
@@ -76,8 +76,8 @@ class HealthGenerator:
 
     @staticmethod
     def generate_weight(locale="TR"):
-        l = locale.upper()
-        kg = random.randint(50, 110)
+        l  = locale.upper()
+        kg = secrets.randbelow(61) + 50  # 50–110
         if l == "US":
             lbs = round(kg * 2.20462)
             return f"{lbs} lbs"
@@ -86,6 +86,32 @@ class HealthGenerator:
             stones, lbs = divmod(total_lbs, 14)
             return f"{stones}st {lbs}lb ({kg} kg)"
         return f"{kg} kg"
+
+    @staticmethod
+    def generate_npi():
+        """US National Provider Identifier — 10 digits, Luhn check with '80840' prefix.
+
+        CMS algorithm: prepend '80840' to the 9-digit base, apply Luhn to all 14 digits.
+        check = (10 - (sum_of_first_13 % 10)) % 10
+        """
+        while True:
+            base = [secrets.randbelow(10) for _ in range(9)]
+            padded = [8, 0, 8, 4, 0] + base
+            total = 0
+            for i, d in enumerate(reversed(padded)):
+                n = d * 2 if i % 2 == 0 else d
+                if n > 9:
+                    n -= 9
+                total += n
+            check = (10 - total % 10) % 10
+            digits = base + [check]
+            return "".join(map(str, digits))
+
+    @staticmethod
+    def generate_bmi():
+        """Body Mass Index — float 18.5–35.0, one decimal place."""
+        raw = 18.5 + secrets.randbelow(166) / 10  # 18.5–35.0 (0.1 steps)
+        return round(raw, 1)
 
     def generate(self, data_type, locale="TR", **kwargs):
         dt = data_type.lower().replace("_", "")
@@ -100,4 +126,8 @@ class HealthGenerator:
             return self.generate_height(locale)
         if dt == "weight":
             return self.generate_weight(locale)
+        if dt == "npi":
+            return self.generate_npi()
+        if dt == "bmi":
+            return self.generate_bmi()
         return None

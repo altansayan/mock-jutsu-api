@@ -41,11 +41,11 @@ def _print_banner() -> None:
 
     body.append("\n")
     body.append("Algorithmic Mock Data Engine\n", style="bold white")
-    body.append("152+ Types", style="cyan")
+    body.append("167+ Types", style="cyan")
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("974 Tests\n", style="cyan")
+    body.append("1091 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan - A.S.A\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -250,13 +250,34 @@ _REFERENCE = [
     ("hashtag",        "Social",   False, "#TechNews2024",                         "generate hashtag"),
     ("bio",            "Social",   False, "Building the future one line at a time","generate bio"),
     ("follower_count", "Social",   False, "14273",                                 "generate follower_count"),
+    # Security / API — Sprint 5
+    ("api_key",          "Security", False, "sk-aBcDeFgH...(51 chars)",            "generate api_key"),
+    ("totp_code",        "Security", False, "482931",                              "generate totp_code"),
+    ("webhook_signature","Security", False, "sha256=e3b0c44...(71 chars)",         "generate webhook_signature"),
+    ("transaction_id",   "Security", False, "TXN1A2B3C4D5E6F7G8",                 "generate transaction_id"),
+    ("public_ip",        "Security", False, "185.46.212.33",                       "generate public_ip"),
+    ("private_ip",       "Security", False, "192.168.1.42",                        "generate private_ip"),
+    # Banking extra — Sprint 5
+    ("sepa_ref",         "Banking",  False, "SEPAENDTOEND20240501...",             "generate sepa_ref"),
+    # Health extras — Sprint 5
+    ("npi",              "Health",   False, "1234567893",                          "generate npi"),
+    ("bmi",              "Health",   False, "24.7",                                "generate bmi"),
+    # Financial extra — Sprint 5
+    ("credit_score",     "Financial",False, "720",                                 "generate credit_score"),
+    # Identity extras / Masked — Sprint 5
+    ("tckn_masked",      "Identity", False, "***123456**",                         "generate tckn_masked"),
+    ("ssn_masked",       "Identity", False, "***-**-6789",                         "generate ssn_masked"),
+    ("nationality",      "Identity", False, "TUR",                                 "generate nationality"),
+    ("inn_individual",   "Identity", False, "123456789012",                        "generate inn_individual"),
+    # E-Commerce extra — Sprint 5
+    ("dhl_tracking",     "E-Commerce",False,"JD123456789",                         "generate dhl_tracking"),
 ]
 
 # Category display order
 _CAT_ORDER = [
     "Identity", "Name", "Document", "Demographic",
     "Financial", "Contact", "Banking", "Corporate",
-    "Health", "Commerce", "Meta", "RFID", "NFC", "IR",
+    "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "Securities", "Crypto",
     "E-Commerce", "Location", "Social",
 ]
@@ -273,6 +294,7 @@ _CAT_COLORS = {
     "Health":      "green",
     "Commerce":    "magenta",
     "Meta":        "yellow",
+    "Security":    "bright_red",
     "RFID":        "cyan",
     "NFC":         "bright_blue",
     "IR":          "red",

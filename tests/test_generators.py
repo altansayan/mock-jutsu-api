@@ -1,8 +1,8 @@
 ﻿"""
 mock-jutsu — Full-Coverage Unit Tests
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
-Purpose: Cross-testing 131 parameters across 6 locales (TR, UK, US, DE, FR, RU).
-         786 matrix scenarios + algorithmic validation tests.
+Purpose: Cross-testing 146 parameters across 6 locales (TR, UK, US, DE, FR, RU).
+         876 matrix scenarios + algorithmic validation tests.
 """
 
 import re
@@ -61,6 +61,18 @@ TYPES = [
     'latitude', 'longitude', 'timezone', 'country_code', 'coordinates',
     # Social Media (5)
     'username', 'hashtag', 'bio', 'handle', 'follower_count',
+    # Security / API — Sprint 5 (6)
+    'api_key', 'totp_code', 'webhook_signature', 'public_ip', 'private_ip', 'transaction_id',
+    # Banking extra — Sprint 5 (1)
+    'sepa_ref',
+    # Health extras — Sprint 5 (2)
+    'npi', 'bmi',
+    # Financial extra — Sprint 5 (1)
+    'credit_score',
+    # Identity extras / Masked — Sprint 5 (4)
+    'tckn_masked', 'ssn_masked', 'nationality', 'inn_individual',
+    # E-Commerce extra — Sprint 5 (1)
+    'dhl_tracking',
 ]
 
 # ---------------------------------------------------------------------------
@@ -817,7 +829,7 @@ def test_vehicle_structure():
         v = jutsu.generate('vehicle', locale=locale)
         assert isinstance(v, dict), f"vehicle must return dict for {locale}"
         assert required.issubset(v.keys()), f"Missing keys in vehicle for {locale}"
-        assert 2015 <= v['year'] <= 2024, f"year out of range for {locale}: {v['year']}"
+        assert 2000 <= v['year'] <= 2026, f"year out of range for {locale}: {v['year']}"
 
 
 # ---------------------------------------------------------------------------
@@ -2101,3 +2113,308 @@ def test_follower_count_range():
         count = int(val)
         assert count >= 0, f"follower_count negative: {val}"
         assert count <= 50_000_000, f"follower_count unrealistically large: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 5A — IBAN MOD-97 Correctness
+# ---------------------------------------------------------------------------
+
+def _iban_mod97_valid(iban: str) -> bool:
+    """ISO 13616: move first 4 chars to end, A=10..Z=35, result % 97 == 1."""
+    rearranged = iban[4:] + iban[:4]
+    numeric = ''.join(str(ord(c) - 55) if c.isalpha() else c for c in rearranged)
+    return int(numeric) % 97 == 1
+
+
+def test_iban_mod97_tr():
+    """TR IBAN must pass ISO 13616 MOD-97 check."""
+    for _ in range(100):
+        val = str(jutsu.generate('iban', locale='TR'))
+        assert _iban_mod97_valid(val), f"TR IBAN MOD-97 failed: {val}"
+
+
+def test_iban_mod97_uk():
+    """GB IBAN must pass ISO 13616 MOD-97 check."""
+    for _ in range(100):
+        val = str(jutsu.generate('iban', locale='UK'))
+        assert _iban_mod97_valid(val), f"GB IBAN MOD-97 failed: {val}"
+
+
+def test_iban_mod97_de():
+    """DE IBAN must pass ISO 13616 MOD-97 check."""
+    for _ in range(100):
+        val = str(jutsu.generate('iban', locale='DE'))
+        assert _iban_mod97_valid(val), f"DE IBAN MOD-97 failed: {val}"
+
+
+def test_iban_mod97_fr():
+    """FR IBAN must pass ISO 13616 MOD-97 check."""
+    for _ in range(100):
+        val = str(jutsu.generate('iban', locale='FR'))
+        assert _iban_mod97_valid(val), f"FR IBAN MOD-97 failed: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 5B — RU INN Individual (12-digit, 2 check digits)
+# ---------------------------------------------------------------------------
+
+def test_inn_individual_length():
+    """RU INN individual must be exactly 12 digits."""
+    for _ in range(100):
+        val = str(jutsu.generate('inn_individual'))
+        assert re.match(r'^\d{12}$', val), f"INN individual must be 12 digits: {val}"
+
+
+def test_inn_individual_checksum():
+    """RU INN individual (12-digit) must pass dual-checksum algorithm.
+
+    Weights:
+      check1 (pos 10): [7,2,4,10,3,5,9,4,6,8] applied to d[0..9]
+      check2 (pos 11): [3,7,2,4,10,3,5,9,4,6,8] applied to d[0..10]
+    check = (sum % 11) % 10
+    """
+    def _valid(s):
+        d = [int(c) for c in s]
+        w1 = [7, 2, 4, 10, 3, 5, 9, 4, 6, 8]
+        w2 = [3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8]
+        c1 = sum(d[i] * w1[i] for i in range(10)) % 11 % 10
+        c2 = sum(d[i] * w2[i] for i in range(11)) % 11 % 10
+        return d[10] == c1 and d[11] == c2
+
+    for _ in range(100):
+        val = str(jutsu.generate('inn_individual'))
+        assert _valid(val), f"INN individual checksum failed: {val}"
+
+
+def test_inn_corporate_stays_10_digits():
+    """RU INN corporate (inn type) must remain 10 digits."""
+    for _ in range(50):
+        val = str(jutsu.generate('inn'))
+        assert re.match(r'^\d{10}$', val), f"INN corporate must be 10 digits: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 5C — Security / API New Types
+# ---------------------------------------------------------------------------
+
+def test_api_key_format():
+    """api_key must be 'sk-' prefix + exactly 48 alphanumeric chars."""
+    for _ in range(100):
+        val = str(jutsu.generate('api_key'))
+        assert val.startswith('sk-'), f"api_key must start with sk-: {val}"
+        suffix = val[3:]
+        assert len(suffix) == 48, f"api_key suffix must be 48 chars: {val}"
+        assert re.match(r'^[A-Za-z0-9]+$', suffix), f"api_key suffix not alphanumeric: {val}"
+
+
+def test_api_key_high_entropy():
+    """api_key must be unique across 200 calls."""
+    keys = {str(jutsu.generate('api_key')) for _ in range(200)}
+    assert len(keys) >= 195, f"api_key entropy too low: {len(keys)} unique in 200"
+
+
+def test_totp_code_format():
+    """totp_code must be exactly 6 decimal digits (RFC 6238 style)."""
+    for _ in range(200):
+        val = str(jutsu.generate('totp_code'))
+        assert re.match(r'^\d{6}$', val), f"totp_code must be 6 digits: {val}"
+
+
+def test_webhook_signature_format():
+    """webhook_signature must be 'sha256=' + 64 lowercase hex chars (Stripe/GitHub style)."""
+    for _ in range(100):
+        val = str(jutsu.generate('webhook_signature'))
+        assert val.startswith('sha256='), f"webhook_signature must start with sha256=: {val}"
+        hex_part = val[7:]
+        assert re.match(r'^[0-9a-f]{64}$', hex_part), \
+            f"webhook_signature hex part must be 64 lowercase hex: {val}"
+
+
+def test_transaction_id_format():
+    """transaction_id must be a UUID (32 hex) or TXN prefix + 16–32 uppercase hex."""
+    for _ in range(100):
+        val = str(jutsu.generate('transaction_id'))
+        assert re.match(r'^(TXN[0-9A-F]{16,32}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$', val), \
+            f"transaction_id format wrong: {val}"
+
+
+def test_sepa_ref_format():
+    """sepa_ref must be alphanumeric, max 35 chars (ISO 20022 end-to-end ref)."""
+    for _ in range(100):
+        val = str(jutsu.generate('sepa_ref'))
+        assert len(val) <= 35, f"sepa_ref too long: {len(val)}"
+        assert len(val) >= 5, f"sepa_ref too short: {len(val)}"
+        assert re.match(r'^[A-Z0-9]+$', val), f"sepa_ref must be uppercase alphanumeric: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 5D — IPv4 Public / Private Filtering
+# ---------------------------------------------------------------------------
+
+_PRIVATE_PATTERNS = [
+    re.compile(r'^10\.'),
+    re.compile(r'^172\.(1[6-9]|2[0-9]|3[01])\.'),
+    re.compile(r'^192\.168\.'),
+    re.compile(r'^127\.'),
+    re.compile(r'^0\.'),
+    re.compile(r'^255\.'),
+    re.compile(r'^2(2[4-9]|3[0-9])\.'),
+]
+
+_RFC1918_PATTERNS = [
+    re.compile(r'^10\.'),
+    re.compile(r'^172\.(1[6-9]|2[0-9]|3[01])\.'),
+    re.compile(r'^192\.168\.'),
+]
+
+
+def test_ipv4_is_public():
+    """ipv4 must never return loopback, private RFC1918, multicast, or reserved."""
+    for _ in range(500):
+        val = str(jutsu.generate('ipv4'))
+        assert not any(p.match(val) for p in _PRIVATE_PATTERNS), \
+            f"ipv4 returned reserved/private address: {val}"
+
+
+def test_public_ip_no_private():
+    """public_ip must return globally routable addresses only (RFC 1918 excluded)."""
+    for _ in range(500):
+        val = str(jutsu.generate('public_ip'))
+        assert not any(p.match(val) for p in _PRIVATE_PATTERNS), \
+            f"public_ip returned private/reserved address: {val}"
+
+
+def test_private_ip_is_rfc1918():
+    """private_ip must only return RFC 1918 addresses (10.x, 172.16-31.x, 192.168.x)."""
+    for _ in range(200):
+        val = str(jutsu.generate('private_ip'))
+        assert any(p.match(val) for p in _RFC1918_PATTERNS), \
+            f"private_ip is not an RFC 1918 address: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 5E — Health Extras: NPI + BMI
+# ---------------------------------------------------------------------------
+
+def test_npi_luhn():
+    """NPI (US National Provider Identifier) must be 10 digits and Luhn-valid.
+
+    Algorithm: prepend '80840', apply Luhn to the 14-digit number.
+    Reference: CMS NPI standard (public), NPI check digit = Luhn check on
+    '80840' + 9-digit base, total 14 digits; Luhn sum ≡ 0 (mod 10).
+    """
+    def _npi_valid(s):
+        if len(s) != 10 or not s.isdigit():
+            return False
+        padded = '80840' + s
+        digits = [int(c) for c in padded]
+        total = 0
+        for i, d in enumerate(reversed(digits[:-1])):
+            n = d * 2 if i % 2 == 0 else d
+            if n > 9:
+                n -= 9
+            total += n
+        return (total + digits[-1]) % 10 == 0
+
+    for _ in range(100):
+        val = str(jutsu.generate('npi'))
+        assert re.match(r'^\d{10}$', val), f"NPI must be 10 digits: {val}"
+        assert _npi_valid(val), f"NPI Luhn (with 80840 prefix) failed: {val}"
+
+
+def test_bmi_range():
+    """bmi must be a float in normal-to-obese human range [18.5, 35.0]."""
+    for _ in range(200):
+        val = float(jutsu.generate('bmi'))
+        assert 18.5 <= val <= 35.0, f"bmi out of range: {val}"
+
+
+def test_bmi_one_decimal():
+    """bmi must have exactly one decimal place."""
+    for _ in range(100):
+        val = str(jutsu.generate('bmi'))
+        assert re.match(r'^\d{2}\.\d$', val), f"bmi format wrong: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 5F — Financial Extra: Credit Score
+# ---------------------------------------------------------------------------
+
+def test_credit_score_range():
+    """credit_score must be an integer between 300 and 850 (FICO scale)."""
+    for _ in range(200):
+        val = int(jutsu.generate('credit_score'))
+        assert 300 <= val <= 850, f"credit_score out of FICO range: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 5G — Identity Masked Types
+# ---------------------------------------------------------------------------
+
+def test_tckn_masked_format():
+    """tckn_masked must be '***' + 6 digits + '**' = 11 chars total."""
+    for _ in range(100):
+        val = str(jutsu.generate('tckn_masked'))
+        assert re.match(r'^\*{3}\d{6}\*{2}$', val), \
+            f"tckn_masked format wrong: {val} (expected ***######**)"
+
+
+def test_ssn_masked_format():
+    """ssn_masked must be '***-**-' + 4 digits (US SSN masked)."""
+    for _ in range(100):
+        val = str(jutsu.generate('ssn_masked'))
+        assert re.match(r'^\*{3}-\*{2}-\d{4}$', val), \
+            f"ssn_masked format wrong: {val} (expected ***-**-####)"
+
+
+def test_nationality_alpha3():
+    """nationality must be exactly 3 uppercase ASCII letters (ISO 3166-1 alpha-3)."""
+    for _ in range(100):
+        val = str(jutsu.generate('nationality'))
+        assert re.match(r'^[A-Z]{3}$', val), \
+            f"nationality must be 3 uppercase letters: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 5H — E-Commerce Extra: DHL Tracking
+# ---------------------------------------------------------------------------
+
+def test_dhl_tracking_format():
+    """DHL tracking must start with 'JD' followed by exactly 9 digits."""
+    for _ in range(100):
+        val = str(jutsu.generate('dhl_tracking'))
+        assert val.startswith('JD'), f"DHL tracking must start with JD: {val}"
+        digits = val[2:]
+        assert re.match(r'^\d{9}$', digits), f"DHL tracking must have 9 digits after JD: {val}"
+
+
+def test_dhl_tracking_luhn():
+    """DHL tracking digits (after JD) must pass Luhn MOD-10 checksum."""
+    for _ in range(100):
+        val = str(jutsu.generate('dhl_tracking'))
+        digits = val[2:]
+        assert _luhn_valid(digits), f"DHL tracking Luhn failed: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 5I — FR Postal Code Range
+# ---------------------------------------------------------------------------
+
+def test_fr_postal_code_range():
+    """FR postal code must be in valid range 01000–97999."""
+    for _ in range(200):
+        val = str(jutsu.generate('postalcode', locale='FR'))
+        assert re.match(r'^\d{5}$', val), f"FR postal must be 5 digits: {val}"
+        n = int(val)
+        assert 1000 <= n <= 97999, f"FR postal out of valid range: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 5J — Vehicle Year Range
+# ---------------------------------------------------------------------------
+
+def test_vehicle_year_wider_range():
+    """vehicle year must allow values in range 2000–2026."""
+    years = {jutsu.generate('vehicle')['year'] for _ in range(500)}
+    assert min(years) <= 2010, f"vehicle year never goes below 2010 (min was {min(years)})"
+    assert max(years) >= 2020, f"vehicle year never reaches 2020 (max was {max(years)})"

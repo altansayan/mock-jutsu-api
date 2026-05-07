@@ -81,6 +81,7 @@ td{padding:9px 14px;vertical-align:middle}
 .cat-ecommerce  {background:#fefce8;color:#713f12}
 .cat-location   {background:#eff6ff;color:#1e3a8a}
 .cat-social     {background:#fdf4ff;color:#581c87}
+.cat-guvenlik   {background:#fee2e2;color:#991b1b}
 
 /* Country flags / locale pills */
 .lc{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;background:#e2e8f0;color:#475569;margin:1px}
@@ -117,7 +118,7 @@ td{padding:9px 14px;vertical-align:middle}
 
 <div class="header">
   <h1>mock-jutsu &mdash; How-To Reference</h1>
-  <div class="sub">6 locale &nbsp;&bull;&nbsp; 152+ parametre tipi &nbsp;&bull;&nbsp; Yasal algoritmalar &nbsp;&bull;&nbsp; 974 test &nbsp;&bull;&nbsp; Developer: Altan Sezer Ayan - A.S.A</div>
+  <div class="sub">6 locale &nbsp;&bull;&nbsp; 167+ parametre tipi &nbsp;&bull;&nbsp; Yasal algoritmalar &nbsp;&bull;&nbsp; 1091 test &nbsp;&bull;&nbsp; Developer: Altan Sezer Ayan - A.S.A</div>
 </div>
 
 <div class="tabs">
@@ -129,7 +130,7 @@ td{padding:9px 14px;vertical-align:middle}
 
 <!-- ══════════════════════════════════════════════════════ TAB: REFERANS -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Tüm Parametreler (152+)</div>
+  <div class="stitle">Tüm Parametreler (167+)</div>
 
   <div class="toolbar">
     <input type="text" id="searchInput" placeholder="Fonksiyon, CLI komutu veya örnek çıktı ara..." oninput="filterTable()">
@@ -159,6 +160,7 @@ td{padding:9px 14px;vertical-align:middle}
       <option value="E-Commerce">E-Commerce</option>
       <option value="Location">Location / Geo</option>
       <option value="Social">Social Media</option>
+      <option value="Güvenlik">Güvenlik</option>
     </select>
     <select id="localeFilter" onchange="filterTable()">
       <option value="">Locale Filtresi</option>
@@ -486,6 +488,16 @@ data = jutsu.export(schema, count=<span class="fn">50</span>,
     <span style="font-size:11px;font-weight:700;color:#94a3b8;width:100%;margin-top:10px;margin-bottom:4px">Sağlık &amp; Tıp</span>
     <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#f0fdf4;color:#15803d"><code>blood_type</code></span>
     <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#f0fdf4;color:#15803d"><code>icd10</code></span>
+    <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#f0fdf4;color:#15803d"><code>npi</code></span>
+    <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#f0fdf4;color:#15803d"><code>bmi</code></span>
+    <span style="font-size:11px;font-weight:700;color:#94a3b8;width:100%;margin-top:10px;margin-bottom:4px">Güvenlik &amp; Auth</span>
+    <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#fee2e2;color:#991b1b"><code>api_key</code></span>
+    <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#fee2e2;color:#991b1b"><code>totp_code</code></span>
+    <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#fee2e2;color:#991b1b"><code>webhook_signature</code></span>
+    <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#fee2e2;color:#991b1b"><code>transaction_id</code></span>
+    <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#fee2e2;color:#991b1b"><code>public_ip</code></span>
+    <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#fee2e2;color:#991b1b"><code>private_ip</code></span>
+    <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#fee2e2;color:#991b1b"><code>credit_score</code></span>
     <span style="font-size:11px;font-weight:700;color:#94a3b8;width:100%;margin-top:10px;margin-bottom:4px">IoT — RFID &amp; NFC</span>
     <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#ecfeff;color:#0e7490"><code>rfid_uid</code></span>
     <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#ecfeff;color:#0e7490"><code>epc</code></span>
@@ -524,6 +536,10 @@ data = jutsu.export(schema, count=<span class="fn">50</span>,
     <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#fff7ed;color:#c2410c"><code>clientversion</code></span>
     <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#fff7ed;color:#c2410c"><code>signature</code></span>
     <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#fff7ed;color:#c2410c"><code>apppassword</code></span>
+    <span style="font-size:11px;font-weight:700;color:#94a3b8;width:100%;margin-top:10px;margin-bottom:4px">Kimlik Maskeleme</span>
+    <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#fee2e2;color:#991b1b"><code>tckn_masked</code></span>
+    <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#fee2e2;color:#991b1b"><code>ssn_masked</code></span>
+    <span style="display:inline-block;padding:3px 10px;border-radius:8px;font-size:11px;font-weight:600;background:#fee2e2;color:#991b1b"><code>nationality</code></span>
   </div>
 </div>
 
@@ -556,7 +572,8 @@ const ROWS = [
   ["siren","Kimlik/FR","kimlik",false,"—","732829320","mockjutsu generate siren","FR"],
   ["siret","Kimlik/FR","kimlik",false,"—","73282932000074","mockjutsu generate siret","FR"],
   ["tva","Kimlik/FR","kimlik",false,"—","FR73732829320","mockjutsu generate tva","FR"],
-  ["inn","Kimlik/RU","kimlik",false,"—","7707083893","mockjutsu generate inn","RU"],
+  ["inn","Kimlik/RU","kimlik",false,"—","7707083893 (10h)","mockjutsu generate inn","RU"],
+  ["inn_individual","Kimlik/RU","kimlik",false,"—","123456789012 (12h)","mockjutsu generate inn_individual","RU"],
   ["snils","Kimlik/RU","kimlik",false,"—","112-233-445 95","mockjutsu generate snils","RU"],
   ["ogrn","Kimlik/RU","kimlik",false,"—","1027700132195","mockjutsu generate ogrn","RU"],
   ["kpp","Kimlik/RU","kimlik",false,"—","770701001","mockjutsu generate kpp","RU"],
@@ -569,6 +586,9 @@ const ROWS = [
   ["age","Demografik","demografik",false,"—","34","mockjutsu generate age",""],
   ["gender","Demografik","demografik",false,"—","Male","mockjutsu generate gender",""],
   ["birthdate","Demografik","demografik",false,"—","1990-05-14","mockjutsu generate birthdate",""],
+  ["tckn_masked","Kimlik","kimlik",false,"—","***123456**","mockjutsu generate tckn_masked",""],
+  ["ssn_masked","Kimlik/US","kimlik",false,"—","***-**-6789","mockjutsu generate ssn_masked",""],
+  ["nationality","Kimlik","kimlik",false,"—","TUR","mockjutsu generate nationality",""],
   ["cardnum","Finansal","finansal",false,"--network","4532015112830366","mockjutsu generate cardnum --network amex",""],
   ["cardnetwork","Finansal","finansal",false,"—","VISA","mockjutsu generate cardnetwork",""],
   ["cardtype","Finansal","finansal",false,"—","Credit","mockjutsu generate cardtype",""],
@@ -583,6 +603,7 @@ const ROWS = [
   ["expiryyear","Finansal","finansal",false,"—","27","mockjutsu generate expiryyear",""],
   ["issuer","Finansal","finansal",true,"—","BosphorusBank","mockjutsu generate issuer --locale TR","TR US UK DE FR RU"],
   ["balance","Finansal","finansal",false,"min max¹","12450.75","mockjutsu generate balance",""],
+  ["credit_score","Finansal","finansal",false,"—","720","mockjutsu generate credit_score",""],
   ["iban","Finansal","finansal",true,"—","TR33000610051978…","mockjutsu generate iban --locale TR","TR US UK DE FR RU"],
   ["phone","İletişim","iletisim",true,"—","+905325551234","mockjutsu generate phone --locale TR","TR US UK DE FR RU"],
   ["phone_country","İletişim","iletisim",true,"—","+90","mockjutsu generate phone_country --locale TR","TR US UK DE FR RU"],
@@ -602,8 +623,14 @@ const ROWS = [
   ["deviceid","Meta","meta",false,"—","550E8400-E29B-41D4-…","mockjutsu generate deviceid",""],
   ["timestamp","Meta","meta",false,"—","1714900000","mockjutsu generate timestamp",""],
   ["timestamp_iso","Meta","meta",false,"—","2024-05-05T14:30:00…","mockjutsu generate timestamp_iso",""],
-  ["ipv4","Meta","meta",false,"—","192.168.1.42","mockjutsu generate ipv4",""],
+  ["ipv4","Meta","meta",false,"—","185.46.212.33","mockjutsu generate ipv4",""],
   ["ipv6","Meta","meta",false,"—","fe80:0000:0000:…","mockjutsu generate ipv6",""],
+  ["public_ip","Güvenlik","guvenlik",false,"—","185.46.212.33","mockjutsu generate public_ip",""],
+  ["private_ip","Güvenlik","guvenlik",false,"—","192.168.1.42","mockjutsu generate private_ip",""],
+  ["api_key","Güvenlik","guvenlik",false,"—","sk-aBcDeFgH…(51 char)","mockjutsu generate api_key",""],
+  ["totp_code","Güvenlik","guvenlik",false,"—","482931","mockjutsu generate totp_code",""],
+  ["webhook_signature","Güvenlik","guvenlik",false,"—","sha256=e3b0c44…(71 char)","mockjutsu generate webhook_signature",""],
+  ["transaction_id","Güvenlik","guvenlik",false,"—","TXN1A2B3C4D5E6F7G8","mockjutsu generate transaction_id",""],
   ["browser_name","Meta","meta",false,"—","Chrome","mockjutsu generate browser_name",""],
   ["browser_version","Meta","meta",false,"—","124.0.6367.78","mockjutsu generate browser_version",""],
   ["browser_engine","Meta","meta",false,"—","Blink","mockjutsu generate browser_engine",""],
@@ -619,6 +646,7 @@ const ROWS = [
   ["bik_code","Bankacılık","bankacilik",false,"—","044525225","mockjutsu generate bik_code","RU"],
   ["bank_name","Bankacılık","bankacilik",true,"—","Berliner Finanzbank AG","mockjutsu generate bank_name --locale DE","TR US UK DE FR RU"],
   ["transaction","Bankacılık","bankacilik",true,"—","{ref, iban×2, amount, channel…}","mockjutsu generate transaction --locale TR","TR US UK DE FR RU"],
+  ["sepa_ref","Bankacılık","bankacilik",false,"—","SEPAENDTOEND20240501XY7Z3A","mockjutsu generate sepa_ref",""],
   // ── Corporate ──────────────────────────────────────────────────────────────
   ["company_name","Kurumsal","kurumsal",true,"—","Fischer Technologien GmbH","mockjutsu generate company_name --locale DE","TR US UK DE FR RU"],
   ["job_title","Kurumsal","kurumsal",true,"—","Yazılım Mühendisi","mockjutsu generate job_title --locale TR","TR US UK DE FR RU"],
@@ -628,6 +656,8 @@ const ROWS = [
   ["icd10","Sağlık","saglik",false,"—","J18.9","mockjutsu generate icd10",""],
   ["height","Sağlık","saglik",true,"—","178 cm / 5'10\"","mockjutsu generate height --locale US","TR US UK DE FR RU"],
   ["weight","Sağlık","saglik",true,"—","74 kg / 163 lbs","mockjutsu generate weight --locale US","TR US UK DE FR RU"],
+  ["npi","Sağlık","saglik",false,"—","1234567893","mockjutsu generate npi","US"],
+  ["bmi","Sağlık","saglik",false,"—","24.7","mockjutsu generate bmi",""],
   // ── Commerce ───────────────────────────────────────────────────────────────
   ["currency","Ticaret","ticaret",true,"—","{code:TRY, symbol:₺, name:…}","mockjutsu generate currency --locale TR","TR US UK DE FR RU"],
   ["tax_rate","Ticaret","ticaret",true,"—","{name:KDV, standard:20, …}","mockjutsu generate tax_rate --locale DE","TR US UK DE FR RU"],
@@ -680,6 +710,7 @@ const ROWS = [
   ["sku","E-Commerce","ecommerce",false,"—","AB-123456","mockjutsu generate sku",""],
   ["order_id","E-Commerce","ecommerce",false,"—","ORD-A1B2C3D4E5","mockjutsu generate order_id",""],
   ["tracking_number","E-Commerce","ecommerce",false,"carrier¹","9400111899223397522384","mockjutsu generate tracking_number --carrier usps",""],
+  ["dhl_tracking","E-Commerce","ecommerce",false,"—","JD123456789","mockjutsu generate dhl_tracking",""],
   ["category","E-Commerce","ecommerce",false,"—","Electronics","mockjutsu generate category",""],
   ["rating","E-Commerce","ecommerce",false,"—","4.5","mockjutsu generate rating",""],
   // ── Location / Geo ─────────────────────────────────────────────────────────
@@ -716,7 +747,8 @@ const CAT_CLS = {
   crypto:"cat-crypto",
   ecommerce:"cat-ecommerce",
   location:"cat-location",
-  social:"cat-social"
+  social:"cat-social",
+  guvenlik:"cat-guvenlik"
 };
 
 function lcPills(str) {

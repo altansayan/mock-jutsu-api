@@ -1,9 +1,9 @@
-﻿"""
+"""
 mock-jutsu — Banking Generator (BIC/SWIFT, Routing, Sort Code, BIK, Transactions)
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
-import random
+import secrets
 from datetime import datetime, timezone, timedelta
 
 # Public BIC/SWIFT codes — published by SWIFT (swift.com) and individual banks
@@ -28,12 +28,12 @@ BANK_NAMES = {
 
 # Public sort code pools (Pay.UK Vocalink published directory)
 SORT_CODE_POOLS = [
-    "20-00-00", "20-00-55", "20-47-00",   # Barclays
-    "40-00-00", "40-14-26", "40-02-50",   # HSBC
-    "30-00-00", "30-12-34", "30-80-00",   # Lloyds
-    "60-00-01", "60-70-80", "60-14-73",   # NatWest
-    "09-01-26", "09-01-27", "09-01-28",   # Santander UK
-    "16-00-00", "16-22-33", "16-44-55",   # Yorkshire Bank
+    "20-00-00", "20-00-55", "20-47-00",
+    "40-00-00", "40-14-26", "40-02-50",
+    "30-00-00", "30-12-34", "30-80-00",
+    "60-00-01", "60-70-80", "60-14-73",
+    "09-01-26", "09-01-27", "09-01-28",
+    "16-00-00", "16-22-33", "16-44-55",
 ]
 
 # Russian public BIK codes (Central Bank of Russia published directory)
@@ -83,6 +83,29 @@ CURRENCIES = {
     "TR": "TRY", "US": "USD", "UK": "GBP", "DE": "EUR", "FR": "EUR", "RU": "RUB",
 }
 
+# SEPA reference alphanumeric charset (ISO 20022)
+_SEPA_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+
+def _iban_check_digits(prefix: str, body: str) -> str:
+    """Compute ISO 13616 MOD-97 check digits."""
+    rearranged = body + prefix + "00"
+    numeric = ''.join(str(ord(c) - 55) if c.isalpha() else c for c in rearranged)
+    check = 98 - int(numeric) % 97
+    return f"{check:02d}"
+
+
+def _wc(seq, weights):
+    """Weighted secrets-based choice."""
+    total = sum(weights)
+    r = secrets.randbelow(total)
+    cumulative = 0
+    for choice, weight in zip(seq, weights):
+        cumulative += weight
+        if r < cumulative:
+            return choice
+    return seq[-1]
+
 
 class BankingGenerator:
     """Banking metadata and transaction data for 6 locales."""
@@ -91,16 +114,17 @@ class BankingGenerator:
     def _generate_iban(locale):
         fmt = IBAN_FORMATS.get(locale, IBAN_FORMATS["TR"])
         body_len = fmt["len"] - len(fmt["prefix"]) - 2
-        body = "".join([str(random.randint(0, 9)) for _ in range(body_len)])
-        return f"{fmt['prefix']}{random.randint(10, 99):02d}{body}"
+        body = "".join(str(secrets.randbelow(10)) for _ in range(body_len))
+        check = _iban_check_digits(fmt["prefix"], body)
+        return f"{fmt['prefix']}{check}{body}"
 
     @staticmethod
     def generate_swift(locale="TR"):
-        return random.choice(BIC_CODES.get(locale.upper(), BIC_CODES["TR"]))
+        return secrets.choice(BIC_CODES.get(locale.upper(), BIC_CODES["TR"]))
 
     @staticmethod
     def generate_sort_code():
-        return random.choice(SORT_CODE_POOLS)
+        return secrets.choice(SORT_CODE_POOLS)
 
     @staticmethod
     def generate_routing_number():
@@ -110,8 +134,8 @@ class BankingGenerator:
             "21","22","23","24","25","26","27","28","29","30","31","32",
             "61","62","63","64","65","66","67","68","69","70","71","72","80",
         ]
-        d_str = random.choice(districts)
-        d = [int(d_str[0]), int(d_str[1])] + [random.randint(0, 9) for _ in range(6)]
+        d_str = secrets.choice(districts)
+        d = [int(d_str[0]), int(d_str[1])] + [secrets.randbelow(10) for _ in range(6)]
         total = 3 * (d[0] + d[3] + d[6]) + 7 * (d[1] + d[4] + d[7]) + (d[2] + d[5])
         check = (10 - total % 10) % 10
         d.append(check)
@@ -119,30 +143,49 @@ class BankingGenerator:
 
     @staticmethod
     def generate_bik():
-        return random.choice(BIK_POOL)
+        return secrets.choice(BIK_POOL)
+
+    @staticmethod
+    def generate_sepa_ref():
+        """SEPA end-to-end reference — ISO 20022, max 35 uppercase alphanumeric chars."""
+        length = secrets.randbelow(16) + 20  # 20–35 chars
+        return "".join(secrets.choice(_SEPA_CHARS) for _ in range(length))
 
     @staticmethod
     def generate_transaction(locale="TR"):
         l = locale.upper()
         currency = CURRENCIES.get(l, "TRY")
-        amount = round(random.uniform(5.0, 9999.99), 2)
-        date_offset = random.randint(0, 7 * 24 * 3600)
+
+        # Three-tier amount distribution: micro / normal / large
+        tier = secrets.randbelow(10)
+        if tier == 0:
+            amount = round(0.01 + secrets.randbelow(100) / 100, 2)       # micro: 0.01–1.00
+        elif tier <= 8:
+            amount = round(5.0 + secrets.randbelow(10 ** 8) / 10 ** 8 * 9994.99, 2)  # normal: 5.00–9999.99
+        else:
+            amount = float(100000 + secrets.randbelow(900000))             # large: 100k–999k
+
+        date_offset = secrets.randbelow(7 * 24 * 3600)
         ts = (datetime.now(timezone.utc) - timedelta(seconds=date_offset)).strftime("%Y-%m-%dT%H:%M:%S+00:00")
         ref_date = datetime.now().strftime("%Y%m%d")
 
-        sender_iban = BankingGenerator._generate_iban(l) if l != "US" else f"RT:{BankingGenerator.generate_routing_number()}"
-        receiver_iban = BankingGenerator._generate_iban(l) if l != "US" else f"RT:{BankingGenerator.generate_routing_number()}"
+        if l != "US":
+            sender_iban   = BankingGenerator._generate_iban(l)
+            receiver_iban = BankingGenerator._generate_iban(l)
+        else:
+            sender_iban   = f"RT:{BankingGenerator.generate_routing_number()}"
+            receiver_iban = f"RT:{BankingGenerator.generate_routing_number()}"
 
         return {
-            "ref": f"TRN{ref_date}-{random.randint(10000, 99999)}",
-            "sender_iban": sender_iban,
+            "ref":           f"TRN{ref_date}-{secrets.randbelow(90000) + 10000}",
+            "sender_iban":   sender_iban,
             "receiver_iban": receiver_iban,
-            "amount": amount,
-            "currency": currency,
-            "description": random.choice(TRANSACTION_DESCRIPTIONS.get(l, TRANSACTION_DESCRIPTIONS["TR"])),
-            "channel": random.choice(PAYMENT_CHANNELS.get(l, PAYMENT_CHANNELS["TR"])),
-            "timestamp": ts,
-            "status": random.choices(["COMPLETED", "PENDING", "FAILED"], weights=[80, 15, 5])[0],
+            "amount":        amount,
+            "currency":      currency,
+            "description":   secrets.choice(TRANSACTION_DESCRIPTIONS.get(l, TRANSACTION_DESCRIPTIONS["TR"])),
+            "channel":       secrets.choice(PAYMENT_CHANNELS.get(l, PAYMENT_CHANNELS["TR"])),
+            "timestamp":     ts,
+            "status":        _wc(["COMPLETED", "PENDING", "FAILED"], [80, 15, 5]),
         }
 
     def generate(self, data_type, locale="TR", **kwargs):
@@ -160,5 +203,7 @@ class BankingGenerator:
         if dt == "transaction":
             return self.generate_transaction(l)
         if dt == "bank_name":
-            return random.choice(BANK_NAMES.get(l, BANK_NAMES["TR"]))
+            return secrets.choice(BANK_NAMES.get(l, BANK_NAMES["TR"]))
+        if dt == "sepa_ref":
+            return self.generate_sepa_ref()
         return None

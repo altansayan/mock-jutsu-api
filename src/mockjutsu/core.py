@@ -26,7 +26,7 @@ from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
     'tckn', 'ykn', 'taxid', 'vkn', 'nationalid', 'ssn', 'nin',
-    'inn', 'snils',
+    'inn', 'inn_individual', 'snils',
     'sgk', 'mersis',
     'ein',
     'utr', 'crn', 'paye',
@@ -36,12 +36,13 @@ _IDENTITY_TYPES = {
     'employer_id', 'insurance_id',
     'firstname', 'lastname', 'fullname', 'patronymic',
     'passport', 'license', 'age', 'gender', 'birthdate',
+    'tckn_masked', 'ssn_masked', 'nationality',
 }
 
 _FINANCIAL_TYPES = {
     'cardnum', 'cardnetwork', 'cardtype', 'cardstatus', 'cvv3', 'cvv4',
     'issuer', 'expiry', 'expirymonth', 'expiryyear', 'pin', 'balance',
-    'iban', 'cardcategory',
+    'iban', 'cardcategory', 'credit_score',
 }
 
 _COMM_TYPES = {
@@ -56,11 +57,13 @@ _META_TYPES = {
     'browser_engine', 'useragent', 'timestamp', 'timestamp_iso',
     'clientversion', 'bearertoken', 'signature', 'apppassword',
     'jwt', 'hash', 'mac_address', 'domain', 'url', 'color',
+    'api_key', 'totp_code', 'webhook_signature', 'transaction_id',
+    'public_ip', 'private_ip',
 }
 
 _BANKING_TYPES = {
     'swift', 'bic', 'sort_code', 'routing_number', 'bik_code',
-    'transaction', 'bank_name',
+    'transaction', 'bank_name', 'sepa_ref',
 }
 
 _CORPORATE_TYPES = {
@@ -69,7 +72,7 @@ _CORPORATE_TYPES = {
 
 _HEALTH_TYPES = {
     'blood_type', 'bloodtype', 'nhs_number', 'nhsnumber',
-    'icd10', 'height', 'weight',
+    'icd10', 'height', 'weight', 'npi', 'bmi',
 }
 
 _COMMERCE_TYPES = {
@@ -101,6 +104,7 @@ _CRYPTO_TYPES = {
 
 _ECOMMERCE_TYPES = {
     'product_name', 'sku', 'order_id', 'tracking_number', 'category', 'rating',
+    'dhl_tracking',
 }
 
 _LOCATION_TYPES = {
@@ -113,7 +117,7 @@ _SOCIAL_TYPES = {
 
 
 class MockJutsuCore:
-    """Master orchestrator — 6 locales, 152+ data types."""
+    """Master orchestrator — 6 locales, 167+ data types."""
 
     def __init__(self, locale='TR'):
         self.locale     = str(locale).upper()

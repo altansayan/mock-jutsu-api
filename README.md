@@ -3,7 +3,7 @@
 **The Algorithmic Mock Data Engine for Fintech & Cross-Border Testing.**  
 *Developed by [Altan Sezer Ayan](https://github.com/altansayan)*
 
-`mock-jutsu-api` generates legally-structured fake data for 6 countries with real regulatory algorithms — TCKN checksums, Luhn-valid cards, VIN check digits, NHS numbers, ABA routing validation, barcode check digits, IMEI Luhn, financial market identifiers (ISIN, CUSIP, SEDOL, LEI), crypto addresses (BTC P2PKH, ETH EIP-55), e-commerce tracking numbers (USPS/UPS/FedEx), locale-aware coordinates, and social media types. **974 tests. Zero false positives.**
+`mock-jutsu-api` generates legally-structured fake data for 6 countries with real regulatory algorithms — TCKN checksums, Luhn-valid cards, VIN check digits, NHS numbers, ABA routing validation, barcode check digits, IMEI Luhn, financial market identifiers (ISIN, CUSIP, SEDOL, LEI), crypto addresses (BTC P2PKH, ETH EIP-55), e-commerce tracking numbers (USPS/UPS/FedEx/DHL), locale-aware coordinates, security tokens (API keys, TOTP, webhook signatures), and social media types. **1091 tests. Zero false positives.**
 
 ---
 
@@ -111,7 +111,7 @@ mockjutsu generate swift --locale UK
 
 ---
 
-## 📋 All 152+ Data Types
+## 📋 All 167+ Data Types
 
 ### 👤 Identity
 
@@ -126,6 +126,9 @@ mockjutsu generate swift --locale UK
 | `patronymic` | `Иванович` | RU only |
 | `passport` / `license` | `P4827361` | — |
 | `age` / `gender` / `birthdate` | `34` / `Male` / `1990-04-12` | — |
+| `tckn_masked` | `***123456**` | KVKK uyumlu maskeleme |
+| `ssn_masked` | `***-**-6789` | PCI-DSS son 4 hane gösterimi |
+| `nationality` | `TUR` | ISO 3166-1 alpha-3, 40 ülke havuzu |
 
 ### 🏛️ Tax & Business IDs
 
@@ -140,7 +143,8 @@ mockjutsu generate swift --locale UK
 | `siren` | `732829320` | FR — Luhn |
 | `siret` | `73282932000074` | FR — double Luhn |
 | `tva` | `FR58732829320` | FR — MOD-97 key |
-| `inn` | `7707083893` | RU |
+| `inn` | `7707083893` | RU — Kurumsal (10 hane) |
+| `inn_individual` | `123456789012` | RU — Bireysel (12 hane, dual checksum) |
 | `ogrn` | `1024700218114` | RU — 13-digit MOD-11 |
 | `kpp` | `770701001` | RU |
 | `mersis` | `3847261095012345` | TR — 16 digits |
@@ -168,6 +172,7 @@ mockjutsu generate swift --locale UK
 | `expiry` / `expirymonth` / `expiryyear` | `09/27` | — |
 | `issuer` | `AnadoluFinans A.Ş.` | fictional bank names |
 | `balance` | `4827.50` | `min` / `max` kwargs |
+| `credit_score` | `720` | FICO scale 300–850 |
 
 ### 🏦 Banking
 
@@ -178,7 +183,8 @@ mockjutsu generate swift --locale UK
 | `sort_code` | `20-00-00` | UK — Pay.UK published |
 | `bik_code` | `044525225` | RU — Central Bank published |
 | `bank_name` | `Berliner Finanzbank AG` | fictional names |
-| `transaction` | `{ref, iban×2, amount, currency, ...}` | FAST/SEPA/ACH/SWIFT channels |
+| `transaction` | `{ref, iban×2, amount, currency, ...}` | FAST/SEPA/ACH/SWIFT channels; micro/normal/large tiers |
+| `sepa_ref` | `SEPAENDTOEND20240501XY7Z` | ISO 20022 — 20–35 char uppercase alphanumeric |
 
 ### 🏢 Corporate
 
@@ -196,6 +202,8 @@ mockjutsu generate swift --locale UK
 | `icd10` | `J18.9` | WHO ICD-10 codes |
 | `height` | `178 cm` / `5'10"` | locale-aware units |
 | `weight` | `74 kg` / `163 lbs` | locale-aware units |
+| `npi` | `1234567893` | US NPI — Luhn (80840 prefix, 10 digits) |
+| `bmi` | `24.7` | BMI 18.5–35.0, one decimal |
 
 ### 🚗 Commerce & Vehicle
 
@@ -344,6 +352,7 @@ Standards: **USPS Luhn MOD-10 (Pub.97)**, **UPS weighted check digit**, **FedEx 
 | `sku` | `AB-123456` | GS1-inspired: 2-4 letters + dash + 4-8 digits |
 | `order_id` | `ORD-A1B2C3D4E5` | ORD- prefix + CSPRNG alphanumeric |
 | `tracking_number` | `9400111899223397522384` | USPS (default), UPS (`--carrier ups`), FedEx (`--carrier fedex`) |
+| `dhl_tracking` | `JD123456789` | DHL JD-series — JD + 8 digits + Luhn (11 chars total) |
 | `category` | `Electronics` | — |
 | `rating` | `4.5` | 1.0–5.0, one decimal place, realistic distribution |
 
@@ -408,11 +417,13 @@ jutsu.generate('follower_count')  # "14273"
 |:---|:---|:---|
 | `uuid` / `requestid` / `correlationid` / `sessionid` / `idempotencykey` | RFC 4122 v4 | — |
 | `deviceid` | `B3D9F2A1-...` | IDFA/GAID format |
-| `ipv4` / `ipv6` | `192.168.1.1` / `2001:0db8:...` | — |
+| `ipv4` / `ipv6` | `185.46.212.33` / `2001:0db8:...` | `ipv4` → globally routable public only |
+| `public_ip` | `185.46.212.33` | Public IPv4 only — RFC 1918 / loopback / multicast excluded |
+| `private_ip` | `192.168.1.42` | RFC 1918 only: 10.x / 172.16-31.x / 192.168.x |
 | `jwt` | `eyJhbGci...` | real base64url, no "Bearer" prefix |
 | `bearertoken` | `Bearer eyJhbGci...` | with prefix |
 | `hash` | `e3b0c44298fc...` | md5/sha1/sha256/sha512 via `algorithm=` |
-| `mac_address` | `A4:C3:F0:3D:8E:21` | real OUI prefixes |
+| `mac_address` | `A4:C3:F0:3D:8E:21` | 30 real OUI prefixes (expanded) |
 | `url` | `https://mockapi-42.co.uk/api/v1/users` | locale TLD |
 | `domain` | `test-77.com.tr` | locale TLD |
 | `color` | `#3A7BF0` | hex/rgb/hsl/name via `format=` |
@@ -422,6 +433,10 @@ jutsu.generate('follower_count')  # "14273"
 | `clientversion` | `3.2.7` | semver |
 | `apppassword` | `483716` | no repeats, no sequential runs |
 | `signature` | `a3f9b2c1...` | HMAC-SHA256 via `secret=` + `payload=` |
+| `api_key` | `sk-aBcDe...` (51 chars) | `sk-` + 48 CSPRNG alphanumeric |
+| `totp_code` | `482931` | 6-digit RFC 6238 format test data |
+| `webhook_signature` | `sha256=e3b0c...` | SHA-256 hex (Stripe/GitHub style, 71 chars) |
+| `transaction_id` | `TXN1A2B3C4D5E6F7G8` | TXN + 16 uppercase hex |
 
 ---
 
@@ -545,7 +560,7 @@ mock-jutsu-api/
 │       ├── ecommerce.py         # USPS/UPS/FedEx tracking, SKU, Order ID, rating
 │       ├── location.py          # WGS-84 lat/lon, IANA timezone, ISO 3166-1
 │       └── social.py            # Username, handle, hashtag, bio, follower_count
-├── tests/test_generators.py     # 974 tests
+├── tests/test_generators.py     # 1091 tests
 └── reports/
     ├── test_report.html
     └── test_results.json
@@ -556,18 +571,21 @@ mock-jutsu-api/
 ## ✅ Test Coverage
 
 ```
-974 passed in 1.79s
+1091 passed
 
-131 types × 6 locales = 786 matrix scenarios
+146 types × 6 locales = 876 matrix scenarios
 + algorithmic validation tests
 
 Algorithms verified:
   TCKN (dual MOD-10) · YKN (Luhn) · TR VKN (proprietary)
   DE Steuer-ID (ISO 7064 MOD 11,10) · DE USt-IdNr (ISO 7064)
   UK NI (HMRC prefix rules) · FR SIREN/SIRET (Luhn)
-  FR TVA (MOD-97) · RU OGRN (MOD-11) · RU INN (weighted)
+  FR TVA (MOD-97) · RU OGRN (MOD-11) · RU INN corporate (weighted)
+  RU INN individual (12-digit, dual checksum weights [7,2,4...] / [3,7,2,4...])
   RU SNILS (MOD-101) · VIN (ISO 3779) · NHS (weighted MOD-11)
   ABA Routing (MOD-10 weights 3,7,1) · Luhn (card networks)
+  IBAN ISO 13616 MOD-97 (TR/UK/DE/FR) · SEPA ISO 20022 ref
+  NPI Luhn (80840 prefix, 10 digits) · DHL JD Luhn (8+1 digits)
   EPC SGTIN-96 (GS1 96-bit) · NFC NDEF URI/Text (RTD v1.0)
   NEC IR (32-bit checksum) · RC-5 (14-bit Manchester frame)
   Pronto Hex CCF (38 kHz NEC) · RFID UID entropy (CSPRNG)
@@ -583,6 +601,12 @@ Algorithms verified:
   FedEx Mod-11 (weights [3,1,7,3,1,7,3,1,7,3,1])
   WGS-84 locale bounding boxes · IANA timezone · ISO 3166-1
   Twitter/X username spec (4-15 chars, [a-z0-9_])
+  IPv4 public routing (RFC 1918 / loopback / multicast excluded)
+  API key format (sk- prefix + 48 alphanumeric CSPRNG)
+  TOTP code 6-digit format · Webhook signature sha256= prefix
+  FICO credit score range (300–850) · BMI range (18.5–35.0)
+  TCKN masked format · SSN masked format · Nationality alpha-3
+  Vehicle year range 2000–2026 · FR postal code range 01000–97999
 ```
 
 ---
