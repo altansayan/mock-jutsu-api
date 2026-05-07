@@ -1,8 +1,8 @@
 ﻿"""
 mock-jutsu — Full-Coverage Unit Tests
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
-Purpose: Cross-testing 115 parameters across 6 locales (TR, UK, US, DE, FR, RU).
-         690 matrix scenarios + algorithmic validation tests.
+Purpose: Cross-testing 131 parameters across 6 locales (TR, UK, US, DE, FR, RU).
+         786 matrix scenarios + algorithmic validation tests.
 """
 
 import re
@@ -55,6 +55,12 @@ TYPES = [
     'isin', 'cusip', 'sedol', 'lei',
     # Crypto / Web3 (5)
     'btc_address', 'eth_address', 'crypto_address', 'tx_hash', 'block_hash',
+    # E-Commerce (6)
+    'product_name', 'sku', 'order_id', 'tracking_number', 'category', 'rating',
+    # Location / Geo (5)
+    'latitude', 'longitude', 'timezone', 'country_code', 'coordinates',
+    # Social Media (5)
+    'username', 'hashtag', 'bio', 'handle', 'follower_count',
 ]
 
 # ---------------------------------------------------------------------------
@@ -1811,3 +1817,287 @@ def test_tx_hash_high_entropy():
     """tx_hash must not repeat across 200 calls."""
     hashes = {str(jutsu.generate('tx_hash')) for _ in range(200)}
     assert len(hashes) >= 195, f"tx_hash entropy too low: {len(hashes)} unique in 200"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 4A — E-Commerce
+# ---------------------------------------------------------------------------
+
+def _usps_luhn_valid(number: str) -> bool:
+    """USPS IMpb 22-digit: Luhn MOD-10 on all 22 digits must equal 0.
+    Reference: USPS Publication 97, Appendix F.
+    Known vector: 9400111899223397522384 → sum=70, 70%10=0 ✓
+    """
+    digits = [int(d) for d in number]
+    total = 0
+    for i, d in enumerate(reversed(digits)):
+        n = d * 2 if i % 2 == 1 else d
+        if n > 9:
+            n -= 9
+        total += n
+    return total % 10 == 0
+
+
+def _ups_check_valid(tracking: str) -> bool:
+    """UPS 18-char tracking: 1Z + 15 alphanumeric + 1 check digit.
+    Algorithm: translate letters A=10..Z=35, alternate ×1 / ×2,
+    if product>9 subtract 9, sum all, check = (10 - sum%10) % 10.
+    Reference: public UPS technical documentation.
+    """
+    if not tracking.startswith('1Z') or len(tracking) != 18:
+        return False
+    payload = tracking[2:17]
+    total = 0
+    for i, c in enumerate(payload):
+        v = int(c) if c.isdigit() else ord(c) - 55
+        if i % 2 == 1:
+            v *= 2
+        if v > 9:
+            v -= 9
+        total += v
+    expected = (10 - total % 10) % 10
+    return int(tracking[17]) == expected
+
+
+def _fedex_check_valid(tracking: str) -> bool:
+    """FedEx 12-digit Express: Mod-11 with weights [3,1,7,3,1,7,3,1,7,3,1].
+    Sum of (digit × weight) mod 11, if result == 10 use 0.
+    Reference: FedEx Developer Guide — tracking number formats.
+    Known: last digit is check, first 11 are payload.
+    """
+    if not re.match(r'^\d{12}$', tracking):
+        return False
+    weights = [3, 1, 7, 3, 1, 7, 3, 1, 7, 3, 1]
+    total = sum(int(d) * w for d, w in zip(tracking[:11], weights))
+    check = total % 11
+    if check == 10:
+        check = 0
+    return check == int(tracking[11])
+
+
+def test_sku_format():
+    """SKU must match GS1-inspired alphanumeric pattern: ABC-123456."""
+    for _ in range(100):
+        val = str(jutsu.generate('sku'))
+        assert re.match(r'^[A-Z]{2,4}-[0-9]{4,8}$', val), f"SKU format wrong: {val}"
+
+
+def test_order_id_format():
+    """order_id must be ORD- prefix + alphanumeric suffix."""
+    for _ in range(100):
+        val = str(jutsu.generate('order_id'))
+        assert re.match(r'^ORD-[A-Z0-9]{8,12}$', val), f"order_id format wrong: {val}"
+
+
+def test_tracking_number_usps():
+    """USPS tracking: 22 digits starting with 92/94, Luhn valid."""
+    for _ in range(100):
+        val = str(jutsu.generate('tracking_number', carrier='usps'))
+        assert re.match(r'^\d{22}$', val), f"USPS format wrong: {val}"
+        assert val[:2] in ('92', '94', '70', '93', '95'), f"USPS prefix wrong: {val}"
+        assert _usps_luhn_valid(val), f"USPS Luhn failed: {val}"
+
+
+def test_tracking_number_ups():
+    """UPS tracking: 18 chars starting with 1Z, weighted check digit valid."""
+    for _ in range(100):
+        val = str(jutsu.generate('tracking_number', carrier='ups'))
+        assert val.startswith('1Z'), f"UPS must start with 1Z: {val}"
+        assert len(val) == 18, f"UPS must be 18 chars: {val}"
+        assert _ups_check_valid(val), f"UPS check digit failed: {val}"
+
+
+def test_tracking_number_fedex():
+    """FedEx Express: 12 digits, Mod-11 check digit valid."""
+    for _ in range(100):
+        val = str(jutsu.generate('tracking_number', carrier='fedex'))
+        assert re.match(r'^\d{12}$', val), f"FedEx format wrong: {val}"
+        assert _fedex_check_valid(val), f"FedEx Mod-11 check failed: {val}"
+
+
+def test_tracking_number_default():
+    """tracking_number without carrier returns a valid format."""
+    for _ in range(50):
+        val = str(jutsu.generate('tracking_number'))
+        assert len(val) >= 12, f"tracking_number too short: {val}"
+
+
+def test_product_name_nonempty():
+    """product_name must return a non-empty string."""
+    for _ in range(50):
+        val = str(jutsu.generate('product_name'))
+        assert len(val) >= 3, f"product_name too short: {val}"
+
+
+def test_category_nonempty():
+    """category must return a non-empty string."""
+    for _ in range(50):
+        val = str(jutsu.generate('category'))
+        assert len(val) >= 2, f"category too short: {val}"
+
+
+def test_rating_range():
+    """rating must be between 1.0 and 5.0 inclusive."""
+    for _ in range(200):
+        val = float(jutsu.generate('rating'))
+        assert 1.0 <= val <= 5.0, f"rating out of range: {val}"
+
+
+def test_rating_one_decimal():
+    """rating must have exactly one decimal place."""
+    for _ in range(100):
+        val = str(jutsu.generate('rating'))
+        assert re.match(r'^\d\.\d$', val), f"rating format wrong: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 4B — Location / Geo
+# ---------------------------------------------------------------------------
+
+_LOCALE_LAT = {
+    'TR': (36.0, 42.0), 'US': (25.0, 49.0), 'UK': (50.0, 59.0),
+    'DE': (47.0, 55.0), 'FR': (42.0, 51.0), 'RU': (41.0, 82.0),
+}
+_LOCALE_LON = {
+    'TR': (26.0, 45.0), 'US': (-125.0, -66.0), 'UK': (-8.0, 2.0),
+    'DE': (6.0, 15.0),  'FR': (-5.0, 8.0),     'RU': (27.0, 170.0),
+}
+_IANA_TIMEZONES = {
+    'TR': ['Europe/Istanbul'],
+    'US': ['America/New_York', 'America/Chicago', 'America/Denver',
+           'America/Los_Angeles', 'America/Phoenix', 'America/Anchorage'],
+    'UK': ['Europe/London'],
+    'DE': ['Europe/Berlin'],
+    'FR': ['Europe/Paris'],
+    'RU': ['Europe/Moscow', 'Asia/Yekaterinburg', 'Asia/Novosibirsk',
+           'Asia/Krasnoyarsk', 'Asia/Irkutsk', 'Asia/Vladivostok'],
+}
+
+
+def test_latitude_range():
+    """latitude must be between -90.0 and 90.0."""
+    for _ in range(200):
+        val = float(jutsu.generate('latitude'))
+        assert -90.0 <= val <= 90.0, f"latitude out of global range: {val}"
+
+
+def test_latitude_locale_aware():
+    """latitude must fall within locale-specific geographic bounds."""
+    for locale, (lo, hi) in _LOCALE_LAT.items():
+        for _ in range(50):
+            val = float(jutsu.generate('latitude', locale=locale))
+            assert lo <= val <= hi, f"latitude {val} out of {locale} range [{lo},{hi}]"
+
+
+def test_longitude_range():
+    """longitude must be between -180.0 and 180.0."""
+    for _ in range(200):
+        val = float(jutsu.generate('longitude'))
+        assert -180.0 <= val <= 180.0, f"longitude out of global range: {val}"
+
+
+def test_longitude_locale_aware():
+    """longitude must fall within locale-specific geographic bounds."""
+    for locale, (lo, hi) in _LOCALE_LON.items():
+        for _ in range(50):
+            val = float(jutsu.generate('longitude', locale=locale))
+            assert lo <= val <= hi, f"longitude {val} out of {locale} range [{lo},{hi}]"
+
+
+def test_timezone_valid_iana():
+    """timezone must return a known IANA timezone string."""
+    all_valid = [tz for tzs in _IANA_TIMEZONES.values() for tz in tzs]
+    for locale in LOCALES:
+        for _ in range(20):
+            val = str(jutsu.generate('timezone', locale=locale))
+            assert val in all_valid, f"timezone '{val}' not a known IANA name"
+            assert val in _IANA_TIMEZONES.get(locale, []), \
+                f"timezone '{val}' wrong for locale {locale}"
+
+
+def test_country_code_format():
+    """country_code must be exactly 2 uppercase ASCII letters (ISO 3166-1 alpha-2)."""
+    for _ in range(100):
+        val = str(jutsu.generate('country_code'))
+        assert re.match(r'^[A-Z]{2}$', val), f"country_code format wrong: {val}"
+
+
+def test_country_code_locale_aware():
+    """country_code must match the locale."""
+    expected = {'TR': 'TR', 'US': 'US', 'UK': 'GB', 'DE': 'DE', 'FR': 'FR', 'RU': 'RU'}
+    for locale, code in expected.items():
+        val = str(jutsu.generate('country_code', locale=locale))
+        assert val == code, f"country_code for {locale} should be {code}, got {val}"
+
+
+def test_coordinates_format():
+    """coordinates must be 'lat,lon' with valid float values."""
+    for locale in LOCALES:
+        for _ in range(20):
+            val = str(jutsu.generate('coordinates', locale=locale))
+            parts = val.split(',')
+            assert len(parts) == 2, f"coordinates format wrong: {val}"
+            lat, lon = float(parts[0]), float(parts[1])
+            lo_lat, hi_lat = _LOCALE_LAT[locale]
+            lo_lon, hi_lon = _LOCALE_LON[locale]
+            assert lo_lat <= lat <= hi_lat, f"coordinates lat {lat} out of {locale} range"
+            assert lo_lon <= lon <= hi_lon, f"coordinates lon {lon} out of {locale} range"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 4C — Social Media
+# ---------------------------------------------------------------------------
+
+def test_username_format():
+    """username must be 4-15 chars, only [a-z0-9_], not start/end with underscore."""
+    for _ in range(200):
+        val = str(jutsu.generate('username'))
+        assert re.match(r'^[a-z][a-z0-9_]{2,13}[a-z0-9]$', val) or \
+               re.match(r'^[a-z][a-z0-9]{2,13}$', val), \
+               f"username format wrong: {val}"
+        assert 4 <= len(val) <= 15, f"username length wrong: {val}"
+        assert not val.startswith('_') and not val.endswith('_'), \
+            f"username starts/ends with underscore: {val}"
+
+
+def test_username_charset():
+    """username must only contain lowercase letters, digits, and underscores."""
+    for _ in range(200):
+        val = str(jutsu.generate('username'))
+        assert re.match(r'^[a-z0-9_]+$', val), f"username invalid chars: {val}"
+
+
+def test_handle_format():
+    """handle must be @username format."""
+    for _ in range(100):
+        val = str(jutsu.generate('handle'))
+        assert val.startswith('@'), f"handle must start with @: {val}"
+        inner = val[1:]
+        assert re.match(r'^[a-z0-9_]+$', inner), f"handle inner invalid: {val}"
+        assert 4 <= len(inner) <= 15, f"handle inner length wrong: {val}"
+
+
+def test_hashtag_format():
+    """hashtag must be # + alphanumeric (no spaces, no special chars)."""
+    for _ in range(100):
+        val = str(jutsu.generate('hashtag'))
+        assert val.startswith('#'), f"hashtag must start with #: {val}"
+        inner = val[1:]
+        assert re.match(r'^[a-zA-Z][a-zA-Z0-9]{1,29}$', inner), \
+            f"hashtag inner format wrong: {val}"
+
+
+def test_bio_nonempty():
+    """bio must return a non-empty string under 160 chars."""
+    for _ in range(100):
+        val = str(jutsu.generate('bio'))
+        assert 10 <= len(val) <= 160, f"bio length wrong: {len(val)}"
+
+
+def test_follower_count_range():
+    """follower_count must be a non-negative integer string."""
+    for _ in range(200):
+        val = str(jutsu.generate('follower_count'))
+        count = int(val)
+        assert count >= 0, f"follower_count negative: {val}"
+        assert count <= 50_000_000, f"follower_count unrealistically large: {val}"

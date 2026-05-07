@@ -19,6 +19,9 @@ from .generators.barcode       import BarcodeGenerator
 from .generators.telecom       import TelecomGenerator
 from .generators.financial_markets import FinancialMarketsGenerator
 from .generators.crypto            import CryptoGenerator
+from .generators.ecommerce         import EcommerceGenerator
+from .generators.location          import LocationGenerator
+from .generators.social            import SocialGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -96,9 +99,21 @@ _CRYPTO_TYPES = {
     'btc_address', 'eth_address', 'crypto_address', 'tx_hash', 'block_hash',
 }
 
+_ECOMMERCE_TYPES = {
+    'product_name', 'sku', 'order_id', 'tracking_number', 'category', 'rating',
+}
+
+_LOCATION_TYPES = {
+    'latitude', 'longitude', 'timezone', 'country_code', 'coordinates',
+}
+
+_SOCIAL_TYPES = {
+    'username', 'hashtag', 'bio', 'handle', 'follower_count',
+}
+
 
 class MockJutsuCore:
-    """Master orchestrator — 6 locales, 136+ data types."""
+    """Master orchestrator — 6 locales, 152+ data types."""
 
     def __init__(self, locale='TR'):
         self.locale     = str(locale).upper()
@@ -115,6 +130,9 @@ class MockJutsuCore:
         self.telecom    = TelecomGenerator()
         self.securities = FinancialMarketsGenerator()
         self.crypto     = CryptoGenerator()
+        self.ecommerce  = EcommerceGenerator()
+        self.location   = LocationGenerator()
+        self.social     = SocialGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -155,6 +173,12 @@ class MockJutsuCore:
             return self.securities.generate(dt, locale=locale, **kwargs)
         if dt in _CRYPTO_TYPES:
             return self.crypto.generate(dt, **kwargs)
+        if dt in _ECOMMERCE_TYPES:
+            return self.ecommerce.generate(dt, **kwargs)
+        if dt in _LOCATION_TYPES:
+            return self.location.generate(dt, locale=locale, **kwargs)
+        if dt in _SOCIAL_TYPES:
+            return self.social.generate(dt, **kwargs)
 
         return f"ERROR: Unknown DataType '{dt}'"
 

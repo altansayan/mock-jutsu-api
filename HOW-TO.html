@@ -78,6 +78,9 @@ td{padding:9px 14px;vertical-align:middle}
 .cat-telecom    {background:#f3e8ff;color:#6b21a8}
 .cat-securities {background:#ecfdf5;color:#065f46}
 .cat-crypto     {background:#f0fdf4;color:#14532d}
+.cat-ecommerce  {background:#fefce8;color:#713f12}
+.cat-location   {background:#eff6ff;color:#1e3a8a}
+.cat-social     {background:#fdf4ff;color:#581c87}
 
 /* Country flags / locale pills */
 .lc{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;background:#e2e8f0;color:#475569;margin:1px}
@@ -114,7 +117,7 @@ td{padding:9px 14px;vertical-align:middle}
 
 <div class="header">
   <h1>mock-jutsu &mdash; How-To Reference</h1>
-  <div class="sub">6 locale &nbsp;&bull;&nbsp; 136+ parametre tipi &nbsp;&bull;&nbsp; Yasal algoritmalar &nbsp;&bull;&nbsp; 854 test &nbsp;&bull;&nbsp; Developer: Altan Sezer Ayan - A.S.A</div>
+  <div class="sub">6 locale &nbsp;&bull;&nbsp; 152+ parametre tipi &nbsp;&bull;&nbsp; Yasal algoritmalar &nbsp;&bull;&nbsp; 974 test &nbsp;&bull;&nbsp; Developer: Altan Sezer Ayan - A.S.A</div>
 </div>
 
 <div class="tabs">
@@ -126,7 +129,7 @@ td{padding:9px 14px;vertical-align:middle}
 
 <!-- ══════════════════════════════════════════════════════ TAB: REFERANS -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Tüm Parametreler (136+)</div>
+  <div class="stitle">Tüm Parametreler (152+)</div>
 
   <div class="toolbar">
     <input type="text" id="searchInput" placeholder="Fonksiyon, CLI komutu veya örnek çıktı ara..." oninput="filterTable()">
@@ -153,6 +156,9 @@ td{padding:9px 14px;vertical-align:middle}
       <option value="Telecom">Telecom</option>
       <option value="Securities">Securities</option>
       <option value="Crypto">Crypto / Web3</option>
+      <option value="E-Commerce">E-Commerce</option>
+      <option value="Location">Location / Geo</option>
+      <option value="Social">Social Media</option>
     </select>
     <select id="localeFilter" onchange="filterTable()">
       <option value="">Locale Filtresi</option>
@@ -669,6 +675,25 @@ const ROWS = [
   ["crypto_address","Crypto","crypto",false,"currency¹","(btc veya eth)","mockjutsu generate crypto_address --currency eth",""],
   ["tx_hash","Crypto","crypto",false,"currency¹","a1b2c3d4...64hex","mockjutsu generate tx_hash --currency btc",""],
   ["block_hash","Crypto","crypto",false,"currency¹","0x+64hex (eth)","mockjutsu generate block_hash --currency eth",""],
+  // ── E-Commerce ─────────────────────────────────────────────────────────────
+  ["product_name","E-Commerce","ecommerce",false,"—","Wireless Headphones","mockjutsu generate product_name",""],
+  ["sku","E-Commerce","ecommerce",false,"—","AB-123456","mockjutsu generate sku",""],
+  ["order_id","E-Commerce","ecommerce",false,"—","ORD-A1B2C3D4E5","mockjutsu generate order_id",""],
+  ["tracking_number","E-Commerce","ecommerce",false,"carrier¹","9400111899223397522384","mockjutsu generate tracking_number --carrier usps",""],
+  ["category","E-Commerce","ecommerce",false,"—","Electronics","mockjutsu generate category",""],
+  ["rating","E-Commerce","ecommerce",false,"—","4.5","mockjutsu generate rating",""],
+  // ── Location / Geo ─────────────────────────────────────────────────────────
+  ["latitude","Location","location",true,"—","39.925533","mockjutsu generate latitude --locale TR","TR US UK DE FR RU"],
+  ["longitude","Location","location",true,"—","32.866287","mockjutsu generate longitude --locale TR","TR US UK DE FR RU"],
+  ["timezone","Location","location",true,"—","Europe/Istanbul","mockjutsu generate timezone --locale TR","TR US UK DE FR RU"],
+  ["country_code","Location","location",true,"—","TR","mockjutsu generate country_code --locale TR","TR US UK DE FR RU"],
+  ["coordinates","Location","location",true,"—","39.925533,32.866287","mockjutsu generate coordinates --locale TR","TR US UK DE FR RU"],
+  // ── Social Media ───────────────────────────────────────────────────────────
+  ["username","Social","social",false,"—","cooldev42","mockjutsu generate username",""],
+  ["handle","Social","social",false,"—","@cooldev42","mockjutsu generate handle",""],
+  ["hashtag","Social","social",false,"—","#TechNews2024","mockjutsu generate hashtag",""],
+  ["bio","Social","social",false,"—","Building the future...","mockjutsu generate bio",""],
+  ["follower_count","Social","social",false,"—","14273","mockjutsu generate follower_count",""],
   // ── Tech extras ────────────────────────────────────────────────────────────
   ["jwt","Meta","meta",false,"—","eyJhbGci….eyJzdWI….sig","mockjutsu generate jwt",""],
   ["hash","Meta","meta",false,"algorithm¹","e3b0c44298fc1c149a…","mockjutsu generate hash",""],
@@ -688,7 +713,10 @@ const CAT_CLS = {
   rfid:"cat-rfid", nfc:"cat-nfc", ir:"cat-ir",
   barkod:"cat-barkod", telecom:"cat-telecom",
   securities:"cat-securities",
-  crypto:"cat-crypto"
+  crypto:"cat-crypto",
+  ecommerce:"cat-ecommerce",
+  location:"cat-location",
+  social:"cat-social"
 };
 
 function lcPills(str) {

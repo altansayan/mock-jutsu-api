@@ -41,11 +41,11 @@ def _print_banner() -> None:
 
     body.append("\n")
     body.append("Algorithmic Mock Data Engine\n", style="bold white")
-    body.append("136+ Types", style="cyan")
+    body.append("152+ Types", style="cyan")
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("854 Tests\n", style="cyan")
+    body.append("974 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan - A.S.A\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -231,6 +231,25 @@ _REFERENCE = [
     ("crypto_address", "Crypto",     False, "(btc or eth)",                        "generate crypto_address --currency eth"),
     ("tx_hash",        "Crypto",     False, "a1b2c3...64hex",                      "generate tx_hash --currency btc"),
     ("block_hash",     "Crypto",     False, "0x+64hex (eth)",                      "generate block_hash --currency eth"),
+    # E-Commerce
+    ("product_name",    "E-Commerce", False, "Wireless Headphones",               "generate product_name"),
+    ("sku",             "E-Commerce", False, "AB-123456",                          "generate sku"),
+    ("order_id",        "E-Commerce", False, "ORD-A1B2C3D4E5F6",                  "generate order_id"),
+    ("tracking_number", "E-Commerce", False, "9400111899223397522384",             "generate tracking_number --carrier usps"),
+    ("category",        "E-Commerce", False, "Electronics",                        "generate category"),
+    ("rating",          "E-Commerce", False, "4.5",                                "generate rating"),
+    # Location / Geo
+    ("latitude",     "Location",  True,  "39.925533",                              "generate latitude --locale TR"),
+    ("longitude",    "Location",  True,  "32.866287",                              "generate longitude --locale TR"),
+    ("timezone",     "Location",  True,  "Europe/Istanbul",                        "generate timezone --locale TR"),
+    ("country_code", "Location",  True,  "TR",                                     "generate country_code --locale TR"),
+    ("coordinates",  "Location",  True,  "39.925533,32.866287",                    "generate coordinates --locale TR"),
+    # Social Media
+    ("username",       "Social",   False, "cooldev42",                             "generate username"),
+    ("handle",         "Social",   False, "@cooldev42",                            "generate handle"),
+    ("hashtag",        "Social",   False, "#TechNews2024",                         "generate hashtag"),
+    ("bio",            "Social",   False, "Building the future one line at a time","generate bio"),
+    ("follower_count", "Social",   False, "14273",                                 "generate follower_count"),
 ]
 
 # Category display order
@@ -239,6 +258,7 @@ _CAT_ORDER = [
     "Financial", "Contact", "Banking", "Corporate",
     "Health", "Commerce", "Meta", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "Securities", "Crypto",
+    "E-Commerce", "Location", "Social",
 ]
 
 _CAT_COLORS = {
@@ -260,13 +280,16 @@ _CAT_COLORS = {
     "Telecom":     "bright_magenta",
     "Securities":  "bright_cyan",
     "Crypto":      "bright_green",
+    "E-Commerce":  "yellow",
+    "Location":    "bright_blue",
+    "Social":      "magenta",
 }
 
 
 @click.group(invoke_without_command=True)
 @click.pass_context
 def main(ctx):
-    """mock-jutsu -- Algorithmic Mock Data Engine (6 Locales, 136+ Types)"""
+    """mock-jutsu -- Algorithmic Mock Data Engine (6 Locales, 152+ Types)"""
     if ctx.invoked_subcommand is None:
         _print_banner()
         click.echo(ctx.get_help())
@@ -274,14 +297,17 @@ def main(ctx):
 
 @main.command()
 @click.argument('data_type', required=False)
-@click.option('--locale',  default='TR',   help='Locale: TR UK US DE FR RU')
-@click.option('--network', default='visa', help='Card network: visa mc amex troy mir')
-def generate(data_type, locale, network):
+@click.option('--locale',   default='TR',   help='Locale: TR UK US DE FR RU')
+@click.option('--network',  default='visa', help='Card network: visa mc amex troy mir')
+@click.option('--currency', default='btc',  help='Crypto currency: btc eth')
+@click.option('--carrier',  default='usps', help='Tracking carrier: usps ups fedex')
+def generate(data_type, locale, network, currency, carrier):
     """Generate mock data.  Example: mockjutsu generate tckn --locale TR"""
     if not data_type:
         click.echo("Error: specify a type. Run 'mockjutsu list' to see all types.")
         return
-    result = jutsu.generate(data_type, locale=locale, network=network)
+    result = jutsu.generate(data_type, locale=locale, network=network,
+                            currency=currency, carrier=carrier)
     color  = 'red' if "ERROR" in str(result) else 'green'
     click.echo(click.style(str(result), fg=color, bold=True))
 
@@ -289,7 +315,7 @@ def generate(data_type, locale, network):
 @main.command(name='list')
 @click.option('--cat', default='', help='Filter by category  e.g. Financial, NFC, RFID, IR')
 def list_types(cat):
-    """List all 136+ data types with CLI usage examples."""
+    """List all 152+ data types with CLI usage examples."""
     # Column widths
     W_TYPE = 20
     W_EX   = 24
@@ -360,6 +386,51 @@ def list_types(cat):
         fg='bright_black'
     ))
     click.echo(sep)
+
+
+@main.command()
+@click.option('--locale', default='TR',  help='Locale: TR UK US DE FR RU')
+@click.option('--count',  default=1,     help='Number of profiles to generate', type=int)
+def profile(locale, count):
+    """Generate a complete person profile.  Example: mockjutsu profile --locale TR"""
+    import json
+    results = [jutsu.profile(locale=locale) for _ in range(count)]
+    output  = results[0] if count == 1 else results
+    click.echo(json.dumps(output, ensure_ascii=False, indent=2))
+
+
+@main.command()
+@click.option('--locale', default='TR', help='Locale: TR UK US DE FR RU')
+@click.option('--count',  default=1,    help='Number of companies to generate', type=int)
+def company(locale, count):
+    """Generate a complete company profile.  Example: mockjutsu company --locale DE"""
+    import json
+    results = [jutsu.company(locale=locale) for _ in range(count)]
+    output  = results[0] if count == 1 else results
+    click.echo(json.dumps(output, ensure_ascii=False, indent=2))
+
+
+@main.command()
+@click.argument('data_type')
+@click.option('--count',  default=10,  help='Number of values to generate', type=int)
+@click.option('--locale', default='TR', help='Locale: TR UK US DE FR RU')
+def bulk(data_type, count, locale):
+    """Generate multiple values of the same type.  Example: mockjutsu bulk tckn --count 5"""
+    import json
+    results = jutsu.bulk(data_type, count=count, locale=locale)
+    click.echo(json.dumps(results, ensure_ascii=False, indent=2))
+
+
+@main.command(name='export')
+@click.argument('types', nargs=-1, required=True)
+@click.option('--count',  default=10,    help='Number of records',           type=int)
+@click.option('--locale', default='TR',  help='Locale: TR UK US DE FR RU')
+@click.option('--format', 'fmt', default='json', help='Output format: json csv sql')
+@click.option('--table',  default='records', help='Table name (SQL only)')
+def export_cmd(types, count, locale, fmt, table):
+    """Export records as JSON/CSV/SQL.  Example: mockjutsu export fullname tckn phone --count 5"""
+    schema = {t: t for t in types}
+    click.echo(jutsu.export(schema, count=count, format=fmt, locale=locale, table=table))
 
 
 @main.command()

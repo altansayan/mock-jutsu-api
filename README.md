@@ -3,7 +3,7 @@
 **The Algorithmic Mock Data Engine for Fintech & Cross-Border Testing.**  
 *Developed by [Altan Sezer Ayan](https://github.com/altansayan)*
 
-`mock-jutsu-api` generates legally-structured fake data for 6 countries with real regulatory algorithms — TCKN checksums, Luhn-valid cards, VIN check digits, NHS numbers, ABA routing validation, barcode check digits, IMEI Luhn, financial market identifiers (ISIN, CUSIP, SEDOL, LEI), and crypto addresses (BTC P2PKH, ETH EIP-55). **854 tests. Zero false positives.**
+`mock-jutsu-api` generates legally-structured fake data for 6 countries with real regulatory algorithms — TCKN checksums, Luhn-valid cards, VIN check digits, NHS numbers, ABA routing validation, barcode check digits, IMEI Luhn, financial market identifiers (ISIN, CUSIP, SEDOL, LEI), crypto addresses (BTC P2PKH, ETH EIP-55), e-commerce tracking numbers (USPS/UPS/FedEx), locale-aware coordinates, and social media types. **974 tests. Zero false positives.**
 
 ---
 
@@ -24,6 +24,9 @@
 | Telecom: IMEI, ICCID, IMSI, MSISDN (3GPP/ITU-T) | ✅ | ❌ |
 | Securities: ISIN (ISO 6166), CUSIP, SEDOL, LEI (ISO 17442) | ✅ | ❌ |
 | Crypto: BTC P2PKH Base58Check, ETH EIP-55 Keccak-256 | ✅ | ❌ |
+| E-Commerce: USPS/UPS/FedEx tracking checksums, SKU, Order ID | ✅ | ❌ |
+| Location: WGS-84 locale-aware lat/lon, IANA timezone, ISO 3166-1 | ✅ | ❌ |
+| Social Media: Twitter/X spec username, handle, hashtag, bio | ✅ | Partial |
 
 ---
 
@@ -108,7 +111,7 @@ mockjutsu generate swift --locale UK
 
 ---
 
-## 📋 All 136+ Data Types
+## 📋 All 152+ Data Types
 
 ### 👤 Identity
 
@@ -331,6 +334,74 @@ jutsu.generate('block_hash', currency='btc')        # "00000000...64hex"
 
 ---
 
+### 🛒 E-Commerce
+
+Standards: **USPS Luhn MOD-10 (Pub.97)**, **UPS weighted check digit**, **FedEx Mod-11**
+
+| Type | Output | Algorithm |
+|:---|:---|:---|
+| `product_name` | `Wireless Headphones` | — |
+| `sku` | `AB-123456` | GS1-inspired: 2-4 letters + dash + 4-8 digits |
+| `order_id` | `ORD-A1B2C3D4E5` | ORD- prefix + CSPRNG alphanumeric |
+| `tracking_number` | `9400111899223397522384` | USPS (default), UPS (`--carrier ups`), FedEx (`--carrier fedex`) |
+| `category` | `Electronics` | — |
+| `rating` | `4.5` | 1.0–5.0, one decimal place, realistic distribution |
+
+```python
+jutsu.generate('tracking_number')                    # USPS 22-digit, Luhn valid
+jutsu.generate('tracking_number', carrier='ups')     # 1Z... 18-char, check digit valid
+jutsu.generate('tracking_number', carrier='fedex')   # 12-digit, Mod-11 valid
+jutsu.generate('sku')                                # "ABC-048291"
+jutsu.generate('order_id')                           # "ORD-K3M7P2Q9R1X5"
+jutsu.generate('rating')                             # "4.5"
+```
+
+---
+
+### 🌍 Location / Geo
+
+Standards: **WGS 84 (ISO 6709)**, **IANA Time Zone Database**, **ISO 3166-1 alpha-2**
+
+| Type | Output | Notes |
+|:---|:---|:---|
+| `latitude` | `39.925533` | Locale-aware bounding box (TR: 36–42°N) |
+| `longitude` | `32.866287` | Locale-aware bounding box (TR: 26–45°E) |
+| `timezone` | `Europe/Istanbul` | IANA timezone, locale-aware |
+| `country_code` | `TR` | ISO 3166-1 alpha-2 (UK→GB) |
+| `coordinates` | `39.925533,32.866287` | `lat,lon` comma-separated |
+
+```python
+jutsu.generate('latitude',  locale='TR')   # 36.0–42.0
+jutsu.generate('longitude', locale='US')   # -125.0 to -66.0
+jutsu.generate('timezone',  locale='RU')   # e.g. "Asia/Vladivostok"
+jutsu.generate('country_code', locale='UK') # "GB"
+jutsu.generate('coordinates',  locale='DE') # "51.234567,9.876543"
+```
+
+---
+
+### 📱 Social Media
+
+Format rules: **Twitter/X spec** (4-15 chars, `[a-z0-9_]`, no leading/trailing underscore)
+
+| Type | Output | Notes |
+|:---|:---|:---|
+| `username` | `cooldev42` | 4-15 chars, `[a-z0-9_]` |
+| `handle` | `@cooldev42` | `@` + username |
+| `hashtag` | `#TechNews2024` | `#` + `[a-zA-Z][a-zA-Z0-9]*` |
+| `bio` | `Building the future...` | max 160 chars (Twitter bio limit) |
+| `follower_count` | `14273` | Power-law distribution (0–50M) |
+
+```python
+jutsu.generate('username')        # "probuilder99"
+jutsu.generate('handle')          # "@probuilder99"
+jutsu.generate('hashtag')         # "#AI2025"
+jutsu.generate('bio')             # "Full-stack developer by day, gamer by night."
+jutsu.generate('follower_count')  # "14273"
+```
+
+---
+
 ### ⚙️ Tech / System
 
 | Type | Output | Notes |
@@ -470,8 +541,11 @@ mock-jutsu-api/
 │       ├── barcode.py           # EAN-13/8, UPC-A, ISBN-13/10, GS1-128 (GS1 v24.0)
 │       ├── telecom.py           # IMEI, ICCID, IMSI, MSISDN (3GPP TS 23.003 / ITU-T)
 │       ├── financial_markets.py # ISIN, CUSIP, SEDOL, LEI (ISO 6166 / ISO 17442)
-│       └── crypto.py            # BTC P2PKH, ETH EIP-55, tx_hash, block_hash
-├── tests/test_generators.py     # 854 tests
+│       ├── crypto.py            # BTC P2PKH, ETH EIP-55, tx_hash, block_hash
+│       ├── ecommerce.py         # USPS/UPS/FedEx tracking, SKU, Order ID, rating
+│       ├── location.py          # WGS-84 lat/lon, IANA timezone, ISO 3166-1
+│       └── social.py            # Username, handle, hashtag, bio, follower_count
+├── tests/test_generators.py     # 974 tests
 └── reports/
     ├── test_report.html
     └── test_results.json
@@ -482,9 +556,9 @@ mock-jutsu-api/
 ## ✅ Test Coverage
 
 ```
-854 passed in 1.65s
+974 passed in 1.79s
 
-115 types × 6 locales = 690 matrix scenarios
+131 types × 6 locales = 786 matrix scenarios
 + algorithmic validation tests
 
 Algorithms verified:
@@ -505,6 +579,10 @@ Algorithms verified:
   SEDOL weighted check (LSE) · LEI MOD 97-10 (ISO 17442)
   BTC P2PKH Base58Check (SHA256d) · ETH EIP-55 (Keccak-256)
   Keccak-256 pure Python (vector: keccak256('')=c5d2460...)
+  USPS Luhn MOD-10 (Pub.97) · UPS weighted check (mod 10)
+  FedEx Mod-11 (weights [3,1,7,3,1,7,3,1,7,3,1])
+  WGS-84 locale bounding boxes · IANA timezone · ISO 3166-1
+  Twitter/X username spec (4-15 chars, [a-z0-9_])
 ```
 
 ---

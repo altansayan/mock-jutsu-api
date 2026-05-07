@@ -1,6 +1,6 @@
 ﻿# mock-jutsu — Kullanım Kılavuzu (How-To)
 
-> **mock-jutsu** — 6 locale (TR/US/UK/DE/FR/RU), 136+ parametre tipi, yasal algoritmalarla mock veri üretimi.
+> **mock-jutsu** — 6 locale (TR/US/UK/DE/FR/RU), 152+ parametre tipi, yasal algoritmalarla mock veri üretimi.
 > Developer: Altan Sezer Ayan - A.S.A · [github.com/altansayan](https://github.com/altansayan)
 
 ---
@@ -20,6 +20,10 @@
 11. [Telekomünikasyon Fonksiyonları](#11-telekomünikasyon-fonksiyonları)
 12. [Finansal Piyasalar (Menkul Kıymet)](#12-finansal-piyasalar-menkul-kıymet)
 13. [Kripto Para & Web3](#13-kripto-para--web3)
+14. [E-Ticaret](#14-e-ticaret)
+15. [Konum & Coğrafya](#15-konum--coğrafya)
+16. [Sosyal Medya](#16-sosyal-medya)
+17. [CLI Komutları — Profile, Company, Bulk, Export](#17-cli-komutları--profile-company-bulk-export)
 
 ---
 
@@ -698,6 +702,22 @@ Bu fonksiyonlar `locale` parametresine göre **farklı ülkenin formatını ve a
 | `crypto_address` | Crypto | Yok | `--currency btc\|eth` | `(btc veya eth)` | `mockjutsu generate crypto_address --currency eth` |
 | `tx_hash` | Crypto | Yok | `--currency btc\|eth` | `a1b2c3...64hex` | `mockjutsu generate tx_hash --currency btc` |
 | `block_hash` | Crypto | Yok | `--currency btc\|eth` | `0x+64hex` | `mockjutsu generate block_hash --currency eth` |
+| `product_name` | E-Commerce | Yok | — | `Wireless Headphones` | `mockjutsu generate product_name` |
+| `sku` | E-Commerce | Yok | — | `AB-123456` | `mockjutsu generate sku` |
+| `order_id` | E-Commerce | Yok | — | `ORD-A1B2C3D4E5` | `mockjutsu generate order_id` |
+| `tracking_number` | E-Commerce | Yok | `--carrier usps\|ups\|fedex` | `9400111...22digit` | `mockjutsu generate tracking_number --carrier ups` |
+| `category` | E-Commerce | Yok | — | `Electronics` | `mockjutsu generate category` |
+| `rating` | E-Commerce | Yok | — | `4.5` | `mockjutsu generate rating` |
+| `latitude` | Location | ✅ Var | — | `39.925533` | `mockjutsu generate latitude --locale TR` |
+| `longitude` | Location | ✅ Var | — | `32.866287` | `mockjutsu generate longitude --locale TR` |
+| `timezone` | Location | ✅ Var | — | `Europe/Istanbul` | `mockjutsu generate timezone --locale TR` |
+| `country_code` | Location | ✅ Var | — | `TR` | `mockjutsu generate country_code --locale TR` |
+| `coordinates` | Location | ✅ Var | — | `39.925533,32.866287` | `mockjutsu generate coordinates --locale TR` |
+| `username` | Social | Yok | — | `cooldev42` | `mockjutsu generate username` |
+| `handle` | Social | Yok | — | `@cooldev42` | `mockjutsu generate handle` |
+| `hashtag` | Social | Yok | — | `#TechNews2024` | `mockjutsu generate hashtag` |
+| `bio` | Social | Yok | — | `Building the future...` | `mockjutsu generate bio` |
+| `follower_count` | Social | Yok | — | `14273` | `mockjutsu generate follower_count` |
 
 ---
 
@@ -923,6 +943,146 @@ jutsu.generate('tx_hash', currency='eth')   # → '0xa1b2c3d4...64hex' (0x prefi
 jutsu.generate('block_hash')                   # → 64 hex (BTC varsayılan)
 jutsu.generate('block_hash', currency='btc')   # → 64 char lowercase hex
 jutsu.generate('block_hash', currency='eth')   # → '0x' + 64 char lowercase hex
+```
+
+---
+
+## 14. E-Ticaret
+
+Standart: **USPS Luhn MOD-10 (Publication 97)** · **UPS weighted check digit** · **FedEx Mod-11**
+
+### `tracking_number` — Kargo Takip Numarası
+
+```python
+jutsu.generate('tracking_number')                    # USPS 22-digit (varsayılan)
+jutsu.generate('tracking_number', carrier='usps')   # → '9400111899223397522384'
+jutsu.generate('tracking_number', carrier='ups')    # → '1ZXS6O6M01YKTERUO2'
+jutsu.generate('tracking_number', carrier='fedex')  # → '927385968731'
+```
+
+- **USPS**: prefix(92/94/70...) + 19 rastgele rakam + Luhn check = 22 rakam
+- **UPS**: `1Z` + 6 alfasayısal + 2 servis kodu + 7 alfasayısal + 1 check = 18 karakter
+- **FedEx**: 11 rakam + Mod-11 check = 12 rakam
+
+### `sku` — Stok Kodu
+
+```python
+jutsu.generate('sku')       # → 'AB-048291'
+# Format: 2-4 büyük harf + tire + 4-8 rakam (GS1'den ilham)
+```
+
+### `order_id` — Sipariş Numarası
+
+```python
+jutsu.generate('order_id')  # → 'ORD-K3M7P2Q9R1X5'
+# Format: ORD- + 8-12 büyük alfasayısal (CSPRNG)
+```
+
+### `product_name`, `category`, `rating`
+
+```python
+jutsu.generate('product_name')  # → 'Wireless Headphones'
+jutsu.generate('category')      # → 'Electronics'
+jutsu.generate('rating')        # → '4.5'  (1.0–5.0, gerçekçi dağılım)
+```
+
+---
+
+## 15. Konum & Coğrafya
+
+Standart: **WGS 84 (ISO 6709)** · **IANA Time Zone Database** · **ISO 3166-1 alpha-2**
+
+### Koordinatlar — locale-aware sınır kutuları
+
+| Locale | Enlem (lat) | Boylam (lon) |
+|---|---|---|
+| TR | 36.0–42.0°N | 26.0–45.0°E |
+| US | 25.0–49.0°N | -125.0 – -66.0°W |
+| UK | 50.0–59.0°N | -8.0 – 2.0°E |
+| DE | 47.0–55.0°N | 6.0–15.0°E |
+| FR | 42.0–51.0°N | -5.0 – 8.0°E |
+| RU | 41.0–82.0°N | 27.0–170.0°E |
+
+```python
+jutsu.generate('latitude',    locale='TR')   # → 39.925533
+jutsu.generate('longitude',   locale='US')   # → -95.324812
+jutsu.generate('timezone',    locale='RU')   # → 'Asia/Vladivostok'
+jutsu.generate('country_code',locale='UK')   # → 'GB'  (ISO 3166-1)
+jutsu.generate('coordinates', locale='DE')   # → '51.234567,9.876543'
+```
+
+---
+
+## 16. Sosyal Medya
+
+Format kuralı: **Twitter/X spec** — 4-15 karakter, `[a-z0-9_]`, baş/son alt çizgi yok.
+
+```python
+jutsu.generate('username')        # → 'probuilder99'
+jutsu.generate('handle')          # → '@probuilder99'
+jutsu.generate('hashtag')         # → '#AI2025'
+jutsu.generate('bio')             # → 'Full-stack developer by day, gamer by night.'
+jutsu.generate('follower_count')  # → '14273'
+```
+
+**Dağılım (follower_count):**
+- %40 → 0–499 (mikro hesap)
+- %25 → 500–4.999
+- %15 → 5k–49k
+- %12 → 50k–499k
+- %6  → 500k–4.99M
+- %2  → 5M–49M
+
+---
+
+## 17. CLI Komutları — Profile, Company, Bulk, Export
+
+### `mockjutsu profile` — Kişi Profili
+
+```bash
+mockjutsu profile                    # TR locale, 1 profil
+mockjutsu profile --locale DE        # Alman profili
+mockjutsu profile --locale TR --count 3  # 3 profil, JSON array
+```
+
+### `mockjutsu company` — Şirket Profili
+
+```bash
+mockjutsu company                    # TR locale
+mockjutsu company --locale US        # Amerikan şirketi
+mockjutsu company --count 2          # 2 şirket
+```
+
+### `mockjutsu bulk` — Toplu Üretim
+
+```bash
+mockjutsu bulk tckn --count 5        # 5 TCKN
+mockjutsu bulk iban --locale TR --count 10  # 10 TR IBAN
+```
+
+### `mockjutsu export` — Şablon & Dışa Aktarım
+
+```bash
+# JSON (varsayılan)
+mockjutsu export fullname tckn phone --count 5 --locale TR
+
+# CSV
+mockjutsu export fullname iban --count 10 --format csv
+
+# SQL INSERT
+mockjutsu export fullname tckn iban --count 3 --format sql --table users
+```
+
+### `generate` — Ek Parametreler
+
+```bash
+# Kripto — --currency
+mockjutsu generate tx_hash --currency eth
+mockjutsu generate crypto_address --currency btc
+
+# Kargo — --carrier
+mockjutsu generate tracking_number --carrier ups
+mockjutsu generate tracking_number --carrier fedex
 ```
 
 ---
