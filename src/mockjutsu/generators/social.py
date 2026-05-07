@@ -9,6 +9,7 @@ Format rules:
   follower_count    — realistic distribution (power law: most accounts have few followers)
 """
 
+import random
 import secrets
 import string
 
@@ -65,7 +66,7 @@ class SocialGenerator:
         if dt == 'hashtag':
             return self._hashtag()
         if dt == 'bio':
-            return secrets.choice(_BIO_TEMPLATES)
+            return random.choice(_BIO_TEMPLATES)
         if dt == 'follower_count':
             return str(self._follower_count())
 
@@ -75,32 +76,32 @@ class SocialGenerator:
 
     def _username(self) -> str:
         """Twitter/X compliant: 4-15 chars, [a-z0-9_], no leading/trailing underscore."""
-        strategy = secrets.randbelow(3)
+        strategy = random.randrange(3)
 
         if strategy == 0:
             # adj + noun: e.g. "cooldev", "realninja"
-            base = secrets.choice(_ADJECTIVES) + secrets.choice(_NOUNS)
+            base = random.choice(_ADJECTIVES) + random.choice(_NOUNS)
         elif strategy == 1:
             # noun + 2-4 digits: e.g. "dev42", "coder2025"
-            base = secrets.choice(_NOUNS) + str(secrets.randbelow(9000) + 1000)
+            base = random.choice(_NOUNS) + str(random.randrange(9000) + 1000)
         else:
             # adj + noun + 2 digits: e.g. "boldcoder77"
-            base = (secrets.choice(_ADJECTIVES) + secrets.choice(_NOUNS)
-                    + str(secrets.randbelow(90) + 10))
+            base = (random.choice(_ADJECTIVES) + random.choice(_NOUNS)
+                    + str(random.randrange(90) + 10))
 
         # Clamp to 15 chars, ensure at least 4
         base = base[:15]
         if len(base) < 4:
-            base = base + str(secrets.randbelow(90) + 10)
+            base = base + str(random.randrange(90) + 10)
         return base
 
     # ── Hashtag ───────────────────────────────────────────────────────────────
 
     def _hashtag(self) -> str:
         """# + topic word + optional digits. Only [a-zA-Z0-9], starts with letter."""
-        topic = secrets.choice(_TOPICS)
-        if secrets.randbelow(2) == 0:
-            suffix = str(secrets.randbelow(9000) + 1000)
+        topic = random.choice(_TOPICS)
+        if random.randrange(2) == 0:
+            suffix = str(random.randrange(9000) + 1000)
             return '#' + topic + suffix
         return '#' + topic
 
@@ -108,15 +109,15 @@ class SocialGenerator:
 
     def _follower_count(self) -> int:
         """Realistic power-law distribution: most accounts small, few large."""
-        tier = secrets.randbelow(100)
+        tier = random.randrange(100)
         if tier < 40:
-            return secrets.randbelow(500)           # 0–499 (micro)
+            return random.randrange(500)           # 0–499 (micro)
         if tier < 65:
-            return secrets.randbelow(4500) + 500    # 500–4999
+            return random.randrange(4500) + 500    # 500–4999
         if tier < 80:
-            return secrets.randbelow(45000) + 5000  # 5k–49k
+            return random.randrange(45000) + 5000  # 5k–49k
         if tier < 92:
-            return secrets.randbelow(450000) + 50000    # 50k–499k
+            return random.randrange(450000) + 50000    # 50k–499k
         if tier < 98:
-            return secrets.randbelow(4500000) + 500000  # 500k–4.99M
-        return secrets.randbelow(45000000) + 5000000    # 5M–49M
+            return random.randrange(4500000) + 500000  # 500k–4.99M
+        return random.randrange(45000000) + 5000000    # 5M–49M

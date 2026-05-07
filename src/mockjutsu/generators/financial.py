@@ -3,6 +3,7 @@ mock-jutsu — Advanced Financial Generator (Global Formats)
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
+import random
 import secrets
 
 CARD_NETWORKS = {
@@ -50,7 +51,7 @@ class FinancialGenerator:
     @staticmethod
     def _luhn_complete(prefix_digits, total_length):
         """Build a Luhn-valid card number from a prefix."""
-        partial = prefix_digits + [secrets.randbelow(10) for _ in range(total_length - len(prefix_digits) - 1)]
+        partial = prefix_digits + [random.randrange(10) for _ in range(total_length - len(prefix_digits) - 1)]
         total = 0
         for i, d in enumerate(reversed(partial)):
             pos = i + 2
@@ -63,7 +64,7 @@ class FinancialGenerator:
 
     def generate_card_number(self, network="visa"):
         cfg = CARD_NETWORKS.get(network.lower(), CARD_NETWORKS["visa"])
-        prefix = [int(d) for d in secrets.choice(cfg["prefixes"])]
+        prefix = [int(d) for d in random.choice(cfg["prefixes"])]
         return self._luhn_complete(prefix, cfg["length"])
 
     def generate_bank_account(self, locale="TR"):
@@ -71,16 +72,16 @@ class FinancialGenerator:
         fmt = BANK_FORMATS.get(l, BANK_FORMATS["TR"])
         if fmt["type"] == "IBAN":
             body_len = fmt["len"] - len(fmt["prefix"]) - 2
-            body = "".join(str(secrets.randbelow(10)) for _ in range(body_len))
+            body = "".join(str(random.randrange(10)) for _ in range(body_len))
             check = _iban_check_digits(fmt["prefix"], body)
             return f"{fmt['prefix']}{check}{body}"
         if fmt["type"] == "ROUTING":
             r = _generate_aba_routing()
-            a = "".join(str(secrets.randbelow(10)) for _ in range(12))
+            a = "".join(str(random.randrange(10)) for _ in range(12))
             return f"RT:{r} ACC:{a}"
         if fmt["type"] == "BIK":
-            bik = "04" + "".join(str(secrets.randbelow(10)) for _ in range(7))
-            acc = "40817" + "".join(str(secrets.randbelow(10)) for _ in range(15))
+            bik = "04" + "".join(str(random.randrange(10)) for _ in range(7))
+            acc = "40817" + "".join(str(random.randrange(10)) for _ in range(15))
             return f"BIK:{bik} ACC:{acc}"
         return "ACC-123456789"
 
@@ -93,45 +94,45 @@ class FinancialGenerator:
             return self.generate_card_number(network)
 
         if dt == 'cardnetwork':
-            return secrets.choice(list(CARD_NETWORKS.keys())).upper()
+            return random.choice(list(CARD_NETWORKS.keys())).upper()
 
         if dt == 'cardtype':
-            return secrets.choice(['Credit', 'Debit'])
+            return random.choice(['Credit', 'Debit'])
 
         if dt == 'cardstatus':
-            return secrets.choice(['Active', 'Blocked', 'Expired'])
+            return random.choice(['Active', 'Blocked', 'Expired'])
 
         if dt == 'cardcategory':
-            return secrets.choice(['Classic', 'Gold', 'Platinum', 'Business'])
+            return random.choice(['Classic', 'Gold', 'Platinum', 'Business'])
 
         if dt == 'cvv3':
-            return f"{secrets.randbelow(900) + 100}"
+            return f"{random.randrange(900) + 100}"
 
         if dt == 'cvv4':
-            return f"{secrets.randbelow(9000) + 1000}"
+            return f"{random.randrange(9000) + 1000}"
 
         if dt == 'pin':
-            return f"{secrets.randbelow(9000) + 1000}"
+            return f"{random.randrange(9000) + 1000}"
 
         if dt == 'expirymonth':
-            return f"{secrets.randbelow(12) + 1:02d}"
+            return f"{random.randrange(12) + 1:02d}"
 
         if dt == 'expiryyear':
-            return f"{secrets.randbelow(6) + 25}"
+            return f"{random.randrange(6) + 25}"
 
         if dt == 'expiry':
-            return f"{secrets.randbelow(12) + 1:02d}/{secrets.randbelow(6) + 25}"
+            return f"{random.randrange(12) + 1:02d}/{random.randrange(6) + 25}"
 
         if dt == 'issuer':
-            return secrets.choice(ISSUERS.get(l, ISSUERS['TR']))
+            return random.choice(ISSUERS.get(l, ISSUERS['TR']))
 
         if dt == 'balance':
             mn = float(kwargs.get('min', 10))
             mx = float(kwargs.get('max', 50000))
-            return round(mn + (mx - mn) * secrets.randbelow(10 ** 8) / 10 ** 8, 2)
+            return round(mn + (mx - mn) * random.randrange(10 ** 8) / 10 ** 8, 2)
 
         if dt == 'credit_score':
-            return secrets.randbelow(551) + 300  # FICO: 300–850
+            return random.randrange(551) + 300  # FICO: 300–850
 
         if dt in ('iban', 'bankaccount'):
             return self.generate_bank_account(locale)
@@ -146,8 +147,8 @@ def _generate_aba_routing():
         "21","22","23","24","25","26","27","28","29","30","31","32",
         "61","62","63","64","65","66","67","68","69","70","71","72","80",
     ]
-    d_str = secrets.choice(districts)
-    d = [int(d_str[0]), int(d_str[1])] + [secrets.randbelow(10) for _ in range(6)]
+    d_str = random.choice(districts)
+    d = [int(d_str[0]), int(d_str[1])] + [random.randrange(10) for _ in range(6)]
     total = 3 * (d[0] + d[3] + d[6]) + 7 * (d[1] + d[4] + d[7]) + (d[2] + d[5])
     check = (10 - total % 10) % 10
     d.append(check)

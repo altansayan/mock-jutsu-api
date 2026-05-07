@@ -3,6 +3,7 @@ mock-jutsu — Commerce Generator (Currency, Tax Rate, Invoice, VIN, Vehicle)
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
+import random
 import secrets
 
 CURRENCIES = {
@@ -171,18 +172,18 @@ class CommerceGenerator:
         fmt = INVOICE_FORMATS.get(l, "{p}-{y}-{n:06d}")
         return fmt.format(
             p=prefix, y=today.year, m=today.month,
-            d=today.day, n=secrets.randbelow(999999) + 1
+            d=today.day, n=random.randrange(999999) + 1
         )
 
     @staticmethod
     def generate_vin(locale="TR"):
         """ISO 3779 VIN — 17 chars with check digit at position 9."""
         l = locale.upper()
-        wmi = secrets.choice(WMI_CODES.get(l, WMI_CODES["TR"]))
-        vds_4_8 = "".join(secrets.choice(VIN_CHARS) for _ in range(5))
-        model_year = secrets.choice(MODEL_YEAR_CHARS)
-        plant = secrets.choice(VIN_CHARS)
-        seq = f"{secrets.randbelow(900000) + 100000}"
+        wmi = random.choice(WMI_CODES.get(l, WMI_CODES["TR"]))
+        vds_4_8 = "".join(random.choice(VIN_CHARS) for _ in range(5))
+        model_year = random.choice(MODEL_YEAR_CHARS)
+        plant = random.choice(VIN_CHARS)
+        seq = f"{random.randrange(900000) + 100000}"
 
         # Build without check (position 9 = index 8, set to '0')
         partial = list(wmi + vds_4_8 + "0" + model_year + plant + seq)
@@ -200,16 +201,16 @@ class CommerceGenerator:
     def generate_vehicle(locale="TR"):
         l = locale.upper()
         data = VEHICLES.get(l, VEHICLES["TR"])
-        make = secrets.choice(data["makes"])
-        model = secrets.choice(data["models"].get(make, [make]))
-        year = secrets.randbelow(27) + 2000  # 2000–2026
+        make = random.choice(data["makes"])
+        model = random.choice(data["models"].get(make, [make]))
+        year = random.randrange(27) + 2000  # 2000–2026
         return {
             "make":  make,
             "model": model,
             "year":  year,
             "vin":   CommerceGenerator.generate_vin(l),
-            "color": secrets.choice(data["colors"]),
-            "fuel":  secrets.choice(data["fuel"]),
+            "color": random.choice(data["colors"]),
+            "fuel":  random.choice(data["fuel"]),
         }
 
     def generate(self, data_type, locale="TR", **kwargs):

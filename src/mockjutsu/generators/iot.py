@@ -3,7 +3,7 @@ mock-jutsu — IoT Generator (RFID, NFC, IR)
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 
 Entropy strategy:
-  - secrets.token_bytes / secrets.randbelow → OS CSPRNG (urandom)
+  - secrets.token_bytes / random.randrange → OS CSPRNG (urandom)
   - random.choice over fixed small pools (tag profiles) is fine —
     the unique identifier parts always come from secrets
 """
@@ -171,16 +171,16 @@ class IoTGenerator:
           Header(8=0x30) | Filter(3) | Partition(3) |
           CompanyPrefix(cp_bits) | ItemRef(ir_bits) | Serial(38)
         Total: 96 bits → 24 uppercase hex chars.
-        All variable-length fields use secrets.randbelow for full-range entropy.
+        All variable-length fields use random.randrange for full-range entropy.
         """
         header    = 0x30
-        filt      = secrets.randbelow(8)
-        partition = secrets.randbelow(7)
+        filt      = random.randrange(8)
+        partition = random.randrange(7)
         cp_bits, ir_bits = _EPC_PARTITION[partition]
 
-        company_prefix = secrets.randbelow(1 << cp_bits)
-        item_ref       = secrets.randbelow(1 << ir_bits)
-        serial         = secrets.randbelow(1 << 38)
+        company_prefix = random.randrange(1 << cp_bits)
+        item_ref       = random.randrange(1 << ir_bits)
+        serial         = random.randrange(1 << 38)
 
         value  = header
         value  = (value << 3)       | filt
@@ -305,7 +305,7 @@ class IoTGenerator:
                 "description": f"SELECT AID — {aid_name}",
             }
         cla, ins, p1, p2, desc = random.choice(_APDU_GENERAL)
-        le = f"{secrets.randbelow(256):02X}"
+        le = f"{random.randrange(256):02X}"
         return {
             "cla": cla, "ins": ins, "p1": p1, "p2": p2,
             "le": le, "data": None,
@@ -341,8 +341,8 @@ class IoTGenerator:
         Invariant: address XOR inv_address == 0xFF (always satisfied by construction).
         Carrier: 38 kHz.
         """
-        address  = secrets.randbelow(256)
-        command  = secrets.randbelow(256)
+        address  = random.randrange(256)
+        command  = random.randrange(256)
         inv_addr = (~address) & 0xFF
         inv_cmd  = (~command) & 0xFF
         return {
@@ -383,8 +383,8 @@ class IoTGenerator:
         Carrier: 36 kHz.
         """
         system  = random.choice(list(_RC5_SYSTEMS.keys()))
-        command = secrets.randbelow(128)
-        toggle  = secrets.randbelow(2)
+        command = random.randrange(128)
+        toggle  = random.randrange(2)
         return {
             "system":      system,
             "system_name": _RC5_SYSTEMS[system],
@@ -418,8 +418,8 @@ class IoTGenerator:
                     "1" space 1687.5µs, "0" space 562.5µs, stop gap 40ms.
         Compatible with Home Assistant, Broadlink RM, Global Caché, Logitech Harmony.
         """
-        address = secrets.randbelow(256)
-        command = secrets.randbelow(256)
+        address = random.randrange(256)
+        command = random.randrange(256)
         c = lambda us: _us_to_cycles(us, _NEC_CARRIER_HZ)
 
         pairs = [(c(9000), c(4500))]          # leader
@@ -440,8 +440,8 @@ class IoTGenerator:
           ESPHome remote_transmitter, Home Assistant remote.send_command,
           Broadlink RM devices, MQTT IR blaster firmware.
         """
-        address = secrets.randbelow(256)
-        command = secrets.randbelow(256)
+        address = random.randrange(256)
+        command = random.randrange(256)
         pulses  = [9024, 4512]              # leader
         for bit in IoTGenerator._nec_bits_lsb(address, command):
             pulses += [562, 1686 if bit else 562]

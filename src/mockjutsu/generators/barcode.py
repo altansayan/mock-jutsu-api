@@ -14,6 +14,7 @@ Entropy:
   GS1-128 : ~10^18 (GTIN-14 × lot serial space)
 """
 
+import random
 import secrets
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -84,41 +85,41 @@ class BarcodeGenerator:
     def generate_ean13(locale: str = "TR") -> str:
         """EAN-13: 3-digit GS1 prefix + 9 random digits + MOD-10 check."""
         prefixes = _GS1_PREFIXES.get(locale.upper(), _GS1_PREFIXES_DEFAULT)
-        prefix_str = f"{secrets.choice(prefixes):03d}"
-        payload_str = prefix_str + "".join(str(secrets.randbelow(10)) for _ in range(9))
+        prefix_str = f"{random.choice(prefixes):03d}"
+        payload_str = prefix_str + "".join(str(random.randrange(10)) for _ in range(9))
         return payload_str + str(_gs1_check([int(c) for c in payload_str]))
 
     @staticmethod
     def generate_ean8(locale: str = "TR") -> str:
         """EAN-8: 3-digit GS1 prefix + 4 random digits + MOD-10 check."""
         prefixes = _EAN8_PREFIXES.get(locale.upper(), [0, 300, 400, 500, 868, 460])
-        prefix_str = f"{secrets.choice(prefixes):03d}"
-        payload_str = prefix_str + "".join(str(secrets.randbelow(10)) for _ in range(4))
+        prefix_str = f"{random.choice(prefixes):03d}"
+        payload_str = prefix_str + "".join(str(random.randrange(10)) for _ in range(4))
         return payload_str + str(_gs1_check([int(c) for c in payload_str]))
 
     @staticmethod
     def generate_upca() -> str:
         """UPC-A (US/Canada): 1-digit system code + 10 random digits + MOD-10 check."""
         # System digits: 0=general, 1=weight, 3=NDC, 6-8=general (most common)
-        system = secrets.choice([0, 0, 0, 0, 1, 3, 6, 7, 8])
-        payload_str = str(system) + "".join(str(secrets.randbelow(10)) for _ in range(10))
+        system = random.choice([0, 0, 0, 0, 1, 3, 6, 7, 8])
+        payload_str = str(system) + "".join(str(random.randrange(10)) for _ in range(10))
         return payload_str + str(_gs1_check([int(c) for c in payload_str]))
 
     @staticmethod
     def generate_isbn13() -> str:
         """ISBN-13 (Bookland EAN): 978/979 prefix + registration group + publisher + MOD-10 check."""
-        prefix = secrets.choice([978, 979])
-        group = secrets.choice(_ISBN_GROUPS)
+        prefix = random.choice([978, 979])
+        group = random.choice(_ISBN_GROUPS)
         group_str = str(group)
-        pub_title = "".join(str(secrets.randbelow(10)) for _ in range(9 - len(group_str)))
+        pub_title = "".join(str(random.randrange(10)) for _ in range(9 - len(group_str)))
         payload_str = str(prefix) + group_str + pub_title
         return payload_str + str(_gs1_check([int(c) for c in payload_str]))
 
     @staticmethod
     def generate_isbn10() -> str:
         """ISBN-10: 1-digit group + 8 random digits + MOD-11 check (ISO 2108:2017)."""
-        group = secrets.choice([0, 1, 2, 3, 4, 5, 7])
-        payload_str = str(group) + "".join(str(secrets.randbelow(10)) for _ in range(8))
+        group = random.choice([0, 1, 2, 3, 4, 5, 7])
+        payload_str = str(group) + "".join(str(random.randrange(10)) for _ in range(8))
         return payload_str + _isbn10_check([int(c) for c in payload_str])
 
     @staticmethod
@@ -129,19 +130,19 @@ class BarcodeGenerator:
         Combination space: ~10^18.
         """
         # AI(01): GTIN-14 = indicator(1) + GS1-company-prefix(7) + item-ref(5) + check(1)
-        indicator = secrets.randbelow(9)
-        company   = "".join(str(secrets.randbelow(10)) for _ in range(7))
-        item_ref  = "".join(str(secrets.randbelow(10)) for _ in range(5))
+        indicator = random.randrange(9)
+        company   = "".join(str(random.randrange(10)) for _ in range(7))
+        item_ref  = "".join(str(random.randrange(10)) for _ in range(5))
         gtin13_payload = [indicator] + [int(c) for c in company + item_ref]
         gtin14 = f"{indicator}{company}{item_ref}{_gs1_check(gtin13_payload)}"
 
         # AI(17): synthetic expiry within 0-730 days from today
         from datetime import date, timedelta
-        expiry = (date.today() + timedelta(days=secrets.randbelow(730))).strftime("%y%m%d")
+        expiry = (date.today() + timedelta(days=random.randrange(730))).strftime("%y%m%d")
 
         # AI(10): 6-character alphanumeric lot number
         lot_chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        lot = "".join(secrets.choice(lot_chars) for _ in range(6))
+        lot = "".join(random.choice(lot_chars) for _ in range(6))
 
         return f"(01){gtin14}(17){expiry}(10){lot}"
 

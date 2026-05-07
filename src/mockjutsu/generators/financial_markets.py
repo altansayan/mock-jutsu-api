@@ -9,6 +9,7 @@ Standards:
   LEI   — ISO 17442 / ISO 7064 MOD 97-10
 """
 
+import random
 import secrets
 import string
 
@@ -107,10 +108,10 @@ class FinancialMarketsGenerator:
         # Build 9-char NSIN: mostly digits, occasional alpha for realism
         nsin_chars = []
         for i in range(9):
-            if i == 0 and secrets.randbelow(4) == 0:
-                nsin_chars.append(secrets.choice(_ISIN_NSIN_ALPHA))
+            if i == 0 and random.randrange(4) == 0:
+                nsin_chars.append(random.choice(_ISIN_NSIN_ALPHA))
             else:
-                nsin_chars.append(secrets.choice(_ISIN_NSIN_DIGIT))
+                nsin_chars.append(random.choice(_ISIN_NSIN_DIGIT))
         nsin = ''.join(nsin_chars)
 
         payload = cc + nsin
@@ -123,12 +124,12 @@ class FinancialMarketsGenerator:
         """ABA CUSIP — 6-char issuer + 2-char issue + 1 check digit."""
         # Issuer: 6 alphanumeric chars (mostly digits for US equities)
         issuer = ''.join(
-            secrets.choice(string.digits + 'ABCDEFGHJKLMNPQRSTUVWXYZ')
+            random.choice(string.digits + 'ABCDEFGHJKLMNPQRSTUVWXYZ')
             for _ in range(6)
         )
         # Issue number: 2 alphanumeric chars
         issue = ''.join(
-            secrets.choice(string.digits + string.ascii_uppercase)
+            random.choice(string.digits + string.ascii_uppercase)
             for _ in range(2)
         )
         payload = issuer + issue
@@ -140,14 +141,14 @@ class FinancialMarketsGenerator:
     def _sedol(self) -> str:
         """LSE SEDOL — 6 consonant/digit chars + 1 weighted check digit."""
         # Mix of old-style (digits) and new-style (consonant prefix) SEDOLs
-        if secrets.randbelow(2) == 0:
+        if random.randrange(2) == 0:
             # New-style: first char is consonant (B-Z, no vowels), rest mixed
-            first = secrets.choice('BCDFGHJKLMNPQRSTVWXYZ')
-            rest = ''.join(secrets.choice(_SEDOL_CHARS) for _ in range(5))
+            first = random.choice('BCDFGHJKLMNPQRSTVWXYZ')
+            rest = ''.join(random.choice(_SEDOL_CHARS) for _ in range(5))
             payload = first + rest
         else:
             # Old-style: all digits
-            payload = ''.join(secrets.choice(string.digits) for _ in range(6))
+            payload = ''.join(random.choice(string.digits) for _ in range(6))
         check = _sedol_check(payload)
         return payload + str(check)
 
@@ -156,11 +157,11 @@ class FinancialMarketsGenerator:
     def _lei(self) -> str:
         """ISO 17442 — 4-char LOU + 14-char entity + 2 MOD 97-10 check digits."""
         # 4-char LOU prefix (uppercase letters only, real LOU codes)
-        lou = secrets.choice(_LOU_PREFIXES)[:4]
+        lou = random.choice(_LOU_PREFIXES)[:4]
 
         # 14-char entity-specific part: alphanumeric, uppercase
         entity = ''.join(
-            secrets.choice(string.digits + string.ascii_uppercase)
+            random.choice(string.digits + string.ascii_uppercase)
             for _ in range(14)
         )
         prefix18 = lou + entity

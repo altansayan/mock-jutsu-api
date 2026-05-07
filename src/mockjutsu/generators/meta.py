@@ -10,6 +10,7 @@ import zlib
 import hashlib
 import base64
 import colorsys
+import random
 import secrets
 import string
 from datetime import datetime
@@ -131,22 +132,22 @@ def _is_public_ipv4(a, b, c, d) -> bool:
 def _gen_public_ipv4() -> str:
     """Generate a globally routable (public) IPv4 address."""
     while True:
-        a = secrets.randbelow(256)
-        b = secrets.randbelow(256)
-        c = secrets.randbelow(256)
-        d = secrets.randbelow(256)
+        a = random.randrange(256)
+        b = random.randrange(256)
+        c = random.randrange(256)
+        d = random.randrange(256)
         if _is_public_ipv4(a, b, c, d):
             return f"{a}.{b}.{c}.{d}"
 
 
 def _gen_private_ipv4() -> str:
     """Generate an RFC 1918 private IPv4 address."""
-    tier = secrets.randbelow(3)
+    tier = random.randrange(3)
     if tier == 0:
-        return f"10.{secrets.randbelow(256)}.{secrets.randbelow(256)}.{secrets.randbelow(256)}"
+        return f"10.{random.randrange(256)}.{random.randrange(256)}.{random.randrange(256)}"
     if tier == 1:
-        return f"172.{secrets.randbelow(16) + 16}.{secrets.randbelow(256)}.{secrets.randbelow(256)}"
-    return f"192.168.{secrets.randbelow(256)}.{secrets.randbelow(256)}"
+        return f"172.{random.randrange(16) + 16}.{random.randrange(256)}.{random.randrange(256)}"
+    return f"192.168.{random.randrange(256)}.{random.randrange(256)}"
 
 
 class MetaGenerator:
@@ -161,11 +162,11 @@ class MetaGenerator:
             "iPhone; CPU iPhone OS 17_5 like Mac OS X",
         ]
         archs = ["Win64; x64", "WOW64", "ARM64", "x86_64"]
-        chrome_v = f"{secrets.randbelow(7) + 120}.0.{secrets.randbelow(9000) + 1000}.{secrets.randbelow(90) + 10}"
-        safari_v = f"{secrets.randbelow(71) + 530}.{secrets.randbelow(40) + 1}"
+        chrome_v = f"{random.randrange(7) + 120}.0.{random.randrange(9000) + 1000}.{random.randrange(90) + 10}"
+        safari_v = f"{random.randrange(71) + 530}.{random.randrange(40) + 1}"
 
-        plat = secrets.choice(platforms)
-        arch = secrets.choice(archs) if ("Windows" in plat or "Linux" in plat) else ""
+        plat = random.choice(platforms)
+        arch = random.choice(archs) if ("Windows" in plat or "Linux" in plat) else ""
 
         ua  = f"Mozilla/5.0 ({plat}{'; ' + arch if arch else ''}) "
         ua += f"AppleWebKit/{safari_v} (KHTML, like Gecko) "
@@ -175,7 +176,7 @@ class MetaGenerator:
     def generate_app_password(self):
         """6-digit PIN with no consecutive repeats and no sequential runs of 3+."""
         while True:
-            digits = [secrets.randbelow(10) for _ in range(6)]
+            digits = [random.randrange(10) for _ in range(6)]
             has_repeat = any(digits[i] == digits[i + 1] for i in range(5))
             has_seq = any(
                 (digits[i + 1] - digits[i] == 1 and digits[i + 2] - digits[i + 1] == 1) or
@@ -189,9 +190,9 @@ class MetaGenerator:
         for b in BROWSERS:
             if b["name"] == name:
                 lo, hi = b["major_range"]
-                major = secrets.randbelow(hi - lo + 1) + lo
-                return f"{major}.0.{secrets.randbelow(9000) + 1000}.{secrets.randbelow(90) + 10}"
-        return f"{secrets.randbelow(21) + 100}.0"
+                major = random.randrange(hi - lo + 1) + lo
+                return f"{major}.0.{random.randrange(9000) + 1000}.{random.randrange(90) + 10}"
+        return f"{random.randrange(21) + 100}.0"
 
     def _bearer_token(self):
         header  = base64.urlsafe_b64encode(b'{"alg":"HS256","typ":"JWT"}').decode().rstrip('=')
@@ -214,13 +215,13 @@ class MetaGenerator:
             return self._bearer_token()
 
         if dt == 'browser_name':
-            return secrets.choice(BROWSERS)["name"]
+            return random.choice(BROWSERS)["name"]
 
         if dt == 'browser_engine':
-            return secrets.choice(BROWSERS)["engine"]
+            return random.choice(BROWSERS)["engine"]
 
         if dt == 'browser_version':
-            b = secrets.choice(BROWSERS)
+            b = random.choice(BROWSERS)
             return self._browser_version(b["name"])
 
         if dt in ('uuid', 'requestid', 'correlationid', 'sessionid', 'idempotencykey'):
@@ -244,7 +245,7 @@ class MetaGenerator:
             return _gen_private_ipv4()
 
         if dt == 'ipv6':
-            return ":".join(f"{secrets.randbelow(65536):04x}" for _ in range(8))
+            return ":".join(f"{random.randrange(65536):04x}" for _ in range(8))
 
         if dt == 'timestamp_iso':
             return datetime.now().isoformat()
@@ -253,7 +254,7 @@ class MetaGenerator:
             return str(int(time.time()))
 
         if dt == 'clientversion':
-            return f"{secrets.randbelow(4) + 1}.{secrets.randbelow(10)}.{secrets.randbelow(10)}"
+            return f"{random.randrange(4) + 1}.{random.randrange(10)}.{random.randrange(10)}"
 
         if dt == 'jwt':
             return self._bearer_token().replace("Bearer ", "", 1)
@@ -294,26 +295,26 @@ class MetaGenerator:
             return hashlib.sha256(data).hexdigest()
 
         if dt == 'mac_address':
-            oui    = secrets.choice(OUI_PREFIXES)
-            suffix = ":".join(f"{secrets.randbelow(256):02X}" for _ in range(3))
+            oui    = random.choice(OUI_PREFIXES)
+            suffix = ":".join(f"{random.randrange(256):02X}" for _ in range(3))
             return f"{oui}:{suffix}"
 
         if dt == 'domain':
             locale = str(kwargs.get('locale', 'TR')).upper()
-            tld    = secrets.choice(DOMAIN_TLDS.get(locale, DOMAIN_TLDS["TR"]))
+            tld    = random.choice(DOMAIN_TLDS.get(locale, DOMAIN_TLDS["TR"]))
             words  = ["api", "data", "test", "mock", "demo", "dev", "sample", "sandbox", "lab", "platform"]
-            return f"{secrets.choice(words)}-{secrets.randbelow(90) + 10}{tld}"
+            return f"{random.choice(words)}-{random.randrange(90) + 10}{tld}"
 
         if dt == 'url':
             locale = str(kwargs.get('locale', 'TR')).upper()
-            tld    = secrets.choice(DOMAIN_TLDS.get(locale, DOMAIN_TLDS["TR"]))
-            host   = f"mockapi-{secrets.randbelow(900) + 100}{tld}"
-            path   = secrets.choice(URL_PATHS)
+            tld    = random.choice(DOMAIN_TLDS.get(locale, DOMAIN_TLDS["TR"]))
+            host   = f"mockapi-{random.randrange(900) + 100}{tld}"
+            path   = random.choice(URL_PATHS)
             return f"https://{host}{path}"
 
         if dt == 'color':
             fmt = str(kwargs.get('format', 'hex')).lower()
-            name, hex_val, (r, g, b) = secrets.choice(COLOR_NAMES)
+            name, hex_val, (r, g, b) = random.choice(COLOR_NAMES)
             if fmt == 'hex':
                 return hex_val
             if fmt == 'rgb':
@@ -328,11 +329,11 @@ class MetaGenerator:
         # ── Security / API types ─────────────────────────────────────────────
 
         if dt == 'api_key':
-            suffix = "".join(secrets.choice(_API_KEY_CHARS) for _ in range(48))
+            suffix = "".join(random.choice(_API_KEY_CHARS) for _ in range(48))
             return f"sk-{suffix}"
 
         if dt == 'totp_code':
-            return f"{secrets.randbelow(1000000):06d}"
+            return f"{random.randrange(1000000):06d}"
 
         if dt == 'webhook_signature':
             payload_bytes = secrets.token_bytes(32)

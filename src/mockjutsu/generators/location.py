@@ -8,6 +8,7 @@ Standards:
   Country Code         — ISO 3166-1 alpha-2
 """
 
+import random
 import secrets
 
 # ── Geographic bounding boxes (WGS 84) ───────────────────────────────────────
@@ -79,7 +80,7 @@ class LocationGenerator:
     def _rand_float(self, lo: float, hi: float) -> float:
         """CSPRNG float in [lo, hi] with 6 decimal places."""
         span = hi - lo
-        raw = secrets.randbelow(10 ** 8) / 10 ** 8
+        raw = random.randrange(10 ** 8) / 10 ** 8
         return round(lo + raw * span, 6)
 
     def _latitude(self, locale: str) -> float:
@@ -92,7 +93,7 @@ class LocationGenerator:
 
     def _timezone(self, locale: str) -> str:
         zones = _TIMEZONES.get(locale, _TIMEZONES['TR'])
-        return secrets.choice(zones)
+        return random.choice(zones)
 
     def _coordinates(self, locale: str) -> str:
         """Returns 'lat,lon' as a comma-separated string."""

@@ -14,6 +14,7 @@ Entropy:
   MSISDN : ~10^8 per locale (locale-fixed prefix + 8-9 random digits)
 """
 
+import random
 import secrets
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -106,9 +107,9 @@ class TelecomGenerator:
         3GPP TS 23.003 v17.5.0 §6.2.
         TAC = RBI(2 digits, from public GSMA list) + 6 synthetic model digits.
         """
-        rbi        = secrets.choice(_RBI_CODES)
-        model_code = "".join(str(secrets.randbelow(10)) for _ in range(6))
-        snr        = "".join(str(secrets.randbelow(10)) for _ in range(6))
+        rbi        = random.choice(_RBI_CODES)
+        model_code = "".join(str(random.randrange(10)) for _ in range(6))
+        snr        = "".join(str(random.randrange(10)) for _ in range(6))
         payload    = [int(c) for c in rbi + model_code + snr]
         return rbi + model_code + snr + str(_luhn_check(payload))
 
@@ -126,10 +127,10 @@ class TelecomGenerator:
         CC = ITU-T E.164 country calling code (1-2 digits).
         """
         cc, *issuers = _ICCID_ISSUERS.get(locale.upper(), _ICCID_ISSUERS["TR"])
-        issuer     = secrets.choice(issuers)
+        issuer     = random.choice(issuers)
         prefix     = "89" + cc + issuer                  # 7-8 digits
         serial_len = 18 - len(prefix)                    # fill to 18 data digits
-        serial     = "".join(str(secrets.randbelow(10)) for _ in range(serial_len))
+        serial     = "".join(str(random.randrange(10)) for _ in range(serial_len))
         payload    = [int(c) for c in prefix + serial]
         return prefix + serial + str(_luhn_check(payload))
 
@@ -141,9 +142,9 @@ class TelecomGenerator:
         MCC/MNC from ITU-T E.212 public table.
         """
         pairs    = _MCC_MNC.get(locale.upper(), _MCC_MNC["TR"])
-        mcc, mnc = secrets.choice(pairs)
+        mcc, mnc = random.choice(pairs)
         msin_len = 15 - len(mcc) - len(mnc)
-        msin     = "".join(str(secrets.randbelow(10)) for _ in range(msin_len))
+        msin     = "".join(str(random.randrange(10)) for _ in range(msin_len))
         return mcc + mnc + msin
 
     @staticmethod
@@ -153,7 +154,7 @@ class TelecomGenerator:
         ITU-T E.164 §6 / 3GPP TS 23.003 §3.3.
         """
         cc, fixed_prefix, rand_len = _MSISDN_FORMAT.get(locale.upper(), _MSISDN_FORMAT["TR"])
-        subscriber = fixed_prefix + "".join(str(secrets.randbelow(10)) for _ in range(rand_len))
+        subscriber = fixed_prefix + "".join(str(random.randrange(10)) for _ in range(rand_len))
         return cc + subscriber
 
     def generate(self, data_type: str, locale: str = "TR", **_) -> str | None:

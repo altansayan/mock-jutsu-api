@@ -3,6 +3,8 @@ mock-jutsu — Master Identity Generator (Full Regulatory Coverage)
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
+import random
+from collections import Counter
 import secrets
 from datetime import date
 
@@ -20,7 +22,7 @@ _NATIONALITIES = [
 def _wc(seq, weights):
     """Weighted secrets-based choice (replaces random.choices with weights)."""
     total = sum(weights)
-    r = secrets.randbelow(total)
+    r = random.randrange(total)
     cumulative = 0
     for choice, weight in zip(seq, weights):
         cumulative += weight
@@ -34,9 +36,9 @@ class IdentityGenerator:
 
     @staticmethod
     def generate_tr_id(prefix=None):
-        d = [int(x) for x in str(prefix)] if prefix else [secrets.choice([2, 4, 5, 6, 7, 8])]
+        d = [int(x) for x in str(prefix)] if prefix else [random.choice([2, 4, 5, 6, 7, 8])]
         while len(d) < 9:
-            d.append(secrets.randbelow(10))
+            d.append(random.randrange(10))
         d.append(((sum(d[0::2]) * 7) - sum(d[1::2])) % 10)
         d.append(sum(d) % 10)
         return "".join(map(str, d))
@@ -44,7 +46,7 @@ class IdentityGenerator:
     @staticmethod
     def generate_ykn():
         """YKN: 11 digits, starts with 99, MOD-10 (Luhn) checksum."""
-        base = [9, 9] + [secrets.randbelow(10) for _ in range(8)]
+        base = [9, 9] + [random.randrange(10) for _ in range(8)]
         total = 0
         for i, d in enumerate(reversed(base)):
             n = d * 2 if i % 2 == 0 else d
@@ -57,7 +59,7 @@ class IdentityGenerator:
     @staticmethod
     def generate_ru_inn_corporate():
         """Russian Corporate Tax ID (INN) — 10 digits, 1 check digit."""
-        base = [secrets.randbelow(10) for _ in range(9)]
+        base = [random.randrange(10) for _ in range(9)]
         weights = [2, 4, 10, 3, 5, 9, 4, 6, 8]
         control = sum(a * b for a, b in zip(base, weights)) % 11 % 10
         base.append(control)
@@ -71,7 +73,7 @@ class IdentityGenerator:
         check2 weights (positions 0-10): [3,7,2,4,10,3,5,9,4,6,8]
         check = (sum % 11) % 10
         """
-        base = [secrets.randbelow(10) for _ in range(10)]
+        base = [random.randrange(10) for _ in range(10)]
         w1 = [7, 2, 4, 10, 3, 5, 9, 4, 6, 8]
         w2 = [3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8]
         c1 = sum(base[i] * w1[i] for i in range(10)) % 11 % 10
@@ -88,9 +90,8 @@ class IdentityGenerator:
     @staticmethod
     def generate_de_steuer_id():
         """German Steuerliche Identifikationsnummer — 11 digits, ISO 7064 MOD 11,10 checksum."""
-        from collections import Counter
         while True:
-            base = [secrets.randbelow(9) + 1] + [secrets.randbelow(10) for _ in range(9)]
+            base = [random.randrange(9) + 1] + [random.randrange(10) for _ in range(9)]
             if max(Counter(base).values()) > 3:
                 continue
             product = 10
@@ -114,17 +115,17 @@ class IdentityGenerator:
         allowed_first  = [c for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if c not in FORBIDDEN_FIRST]
         allowed_second = [c for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if c not in FORBIDDEN_SECOND]
         while True:
-            c1 = secrets.choice(allowed_first)
-            c2 = secrets.choice(allowed_second)
+            c1 = random.choice(allowed_first)
+            c2 = random.choice(allowed_second)
             if c1 + c2 not in FORBIDDEN_PREFIX:
                 break
-        digits = f"{secrets.randbelow(10)}{secrets.randbelow(10)} {secrets.randbelow(10)}{secrets.randbelow(10)} {secrets.randbelow(10)}{secrets.randbelow(10)}"
-        return f"{c1}{c2} {digits} {secrets.choice('ABCD')}"
+        digits = f"{random.randrange(10)}{random.randrange(10)} {random.randrange(10)}{random.randrange(10)} {random.randrange(10)}{random.randrange(10)}"
+        return f"{c1}{c2} {digits} {random.choice('ABCD')}"
 
     @staticmethod
     def generate_ru_snils():
         """Russian Insurance ID (SNILS) — 11 digits with checksum."""
-        base = [secrets.randbelow(10) for _ in range(9)]
+        base = [random.randrange(10) for _ in range(9)]
         num = int("".join(map(str, base)))
         if num <= 1001:
             control = 0
@@ -150,7 +151,7 @@ class IdentityGenerator:
     @staticmethod
     def generate_tr_vkn():
         """Turkish Tax ID (Vergi Kimlik Numarası) — 10 digits, proprietary checksum."""
-        d = [secrets.randbelow(9) + 1] + [secrets.randbelow(10) for _ in range(8)]
+        d = [random.randrange(9) + 1] + [random.randrange(10) for _ in range(8)]
         total = 0
         for i in range(9):
             v = (d[i] + (9 - i)) % 10
@@ -167,18 +168,18 @@ class IdentityGenerator:
     @staticmethod
     def generate_tr_sgk():
         """Turkish SGK Employer Registration — il-sequence-unit.branch-sub."""
-        il   = secrets.randbelow(81) + 1
-        seq  = secrets.randbelow(9999999) + 1
-        unit = secrets.randbelow(9) + 1
-        sub  = secrets.randbelow(99) + 1
-        sube = secrets.randbelow(99) + 1
+        il   = random.randrange(81) + 1
+        seq  = random.randrange(9999999) + 1
+        unit = random.randrange(9) + 1
+        sub  = random.randrange(99) + 1
+        sube = random.randrange(99) + 1
         return f"{il:02d}-{seq:07d}-{unit}.{sub:02d}-{sube:02d}"
 
     @staticmethod
     def generate_tr_mersis():
         """Turkish MERSİS company registration — 16 digits (VKN-based)."""
         vkn    = IdentityGenerator.generate_tr_vkn()
-        suffix = f"{secrets.randbelow(100000):05d}"
+        suffix = f"{random.randrange(100000):05d}"
         return f"{vkn}0{suffix}"
 
     # ── US ──────────────────────────────────────────────────────────────────────
@@ -186,29 +187,29 @@ class IdentityGenerator:
     @staticmethod
     def generate_us_ein():
         """US Employer Identification Number — XX-XXXXXXX."""
-        return f"{secrets.randbelow(90) + 10}-{secrets.randbelow(9000000) + 1000000}"
+        return f"{random.randrange(90) + 10}-{random.randrange(9000000) + 1000000}"
 
     # ── UK ──────────────────────────────────────────────────────────────────────
 
     @staticmethod
     def generate_uk_utr():
         """UK Unique Taxpayer Reference — 10 digits."""
-        return str(secrets.randbelow(9000000000) + 1000000000)
+        return str(random.randrange(9000000000) + 1000000000)
 
     @staticmethod
     def generate_uk_crn():
         """UK Company Registration Number — 8 digits (E&W) or SC/NI + 6 digits."""
         variant = _wc(['EW', 'SC', 'NI'], [8, 1, 1])
         if variant == 'EW':
-            return f"{secrets.randbelow(90000000) + 10000000}"
+            return f"{random.randrange(90000000) + 10000000}"
         prefix = 'SC' if variant == 'SC' else 'NI'
-        return f"{prefix}{secrets.randbelow(900000) + 100000}"
+        return f"{prefix}{random.randrange(900000) + 100000}"
 
     @staticmethod
     def generate_uk_paye():
         """UK PAYE Employer Reference — XXX/XXXXXX."""
-        office = secrets.randbelow(900) + 100
-        ref    = "".join(secrets.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") for _ in range(6))
+        office = random.randrange(900) + 100
+        ref    = "".join(random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") for _ in range(6))
         return f"{office}/{ref}"
 
     # ── DE ──────────────────────────────────────────────────────────────────────
@@ -217,7 +218,7 @@ class IdentityGenerator:
     def generate_de_ust_id():
         """German VAT ID (Umsatzsteuer-IdNr) — DE + 9 digits, ISO 7064 MOD 11,10."""
         while True:
-            base = [secrets.randbelow(9) + 1] + [secrets.randbelow(10) for _ in range(7)]
+            base = [random.randrange(9) + 1] + [random.randrange(10) for _ in range(7)]
             product = 10
             for d in base:
                 s = (product + d) % 10
@@ -232,7 +233,7 @@ class IdentityGenerator:
     @staticmethod
     def generate_de_hrb():
         """German Commercial Register Number — HRB/HRA XXXXXX."""
-        return f"{secrets.choice(['HRB', 'HRA'])} {secrets.randbelow(999999) + 1}"
+        return f"{random.choice(['HRB', 'HRA'])} {random.randrange(999999) + 1}"
 
     @staticmethod
     def generate_de_rvn():
@@ -244,12 +245,12 @@ class IdentityGenerator:
             58, 60, 61, 62, 65, 70, 71, 72, 78, 80,
             81, 88, 89, 90, 91, 92, 93, 94,
         ]
-        area   = secrets.choice(AREA_CODES)
-        day    = secrets.randbelow(28) + 1
-        month  = secrets.randbelow(12) + 1
-        year   = secrets.randbelow(60) + 40
-        letter = secrets.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-        serial = secrets.randbelow(999) + 1
+        area   = random.choice(AREA_CODES)
+        day    = random.randrange(28) + 1
+        month  = random.randrange(12) + 1
+        year   = random.randrange(60) + 40
+        letter = random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        serial = random.randrange(999) + 1
 
         base = f"{area:02d}{day:02d}{month:02d}{year:02d}{letter}{serial:03d}"
 
@@ -270,14 +271,14 @@ class IdentityGenerator:
     @staticmethod
     def generate_fr_siren():
         """French SIREN — 9 digits, Luhn checksum."""
-        base = [secrets.randbelow(9) + 1] + [secrets.randbelow(10) for _ in range(7)]
+        base = [random.randrange(9) + 1] + [random.randrange(10) for _ in range(7)]
         return "".join(map(str, base + [IdentityGenerator._luhn_check(base)]))
 
     @staticmethod
     def generate_fr_siret():
         """French SIRET — Luhn-valid SIREN (9) + NIC (4) + Luhn check (1) = 14 digits."""
         siren = [int(c) for c in IdentityGenerator.generate_fr_siren()]
-        nic   = [secrets.randbelow(10) for _ in range(4)]
+        nic   = [random.randrange(10) for _ in range(4)]
         base  = siren + nic
         return "".join(map(str, base + [IdentityGenerator._luhn_check(base)]))
 
@@ -293,9 +294,9 @@ class IdentityGenerator:
     @staticmethod
     def generate_ru_ogrn():
         """Russian OGRN (Primary State Registration) — 13 digits, checksum mod 11."""
-        year   = secrets.randbelow(23) + 2
-        region = secrets.randbelow(79) + 1
-        seq    = secrets.randbelow(9999999) + 1
+        year   = random.randrange(23) + 2
+        region = random.randrange(79) + 1
+        seq    = random.randrange(9999999) + 1
         base   = f"1{year:02d}{region:02d}{seq:07d}"
         check  = (int(base) % 11) % 10
         return base + str(check)
@@ -303,10 +304,10 @@ class IdentityGenerator:
     @staticmethod
     def generate_ru_kpp():
         """Russian KPP (Tax Registration Reason Code) — 9 digits."""
-        region = secrets.randbelow(92) + 1
-        ifns   = secrets.randbelow(99) + 1
-        reason = secrets.randbelow(50) + 1
-        seq    = secrets.randbelow(999) + 1
+        region = random.randrange(92) + 1
+        ifns   = random.randrange(99) + 1
+        reason = random.randrange(50) + 1
+        seq    = random.randrange(999) + 1
         return f"{region:02d}{ifns:02d}{reason:02d}{seq:03d}"
 
     # ────────────────────────────────────────────────────────────────────────────
@@ -324,21 +325,21 @@ class IdentityGenerator:
 
         if dt == 'nationalid':
             if l == 'RU':
-                return f"{secrets.randbelow(9000) + 1000} {secrets.randbelow(900000) + 100000}"
+                return f"{random.randrange(9000) + 1000} {random.randrange(900000) + 100000}"
             if l == 'US':
-                return f"{secrets.randbelow(800) + 100:03d}-{secrets.randbelow(90) + 10:02d}-{secrets.randbelow(9000) + 1000:04d}"
+                return f"{random.randrange(800) + 100:03d}-{random.randrange(90) + 10:02d}-{random.randrange(9000) + 1000:04d}"
             if l == 'UK':
                 return self.generate_uk_ni()
             if l == 'FR':
-                base = (f"{secrets.randbelow(2) + 1}{secrets.randbelow(60) + 40:02d}{secrets.randbelow(12) + 1:02d}"
-                        f"{secrets.randbelow(95) + 1:02d}{secrets.randbelow(999) + 1:03d}{secrets.randbelow(999) + 1:03d}")
+                base = (f"{random.randrange(2) + 1}{random.randrange(60) + 40:02d}{random.randrange(12) + 1:02d}"
+                        f"{random.randrange(95) + 1:02d}{random.randrange(999) + 1:03d}{random.randrange(999) + 1:03d}")
                 return f"{base}{97 - (int(base) % 97):02d}"
             if l == 'DE':
                 return self.generate_de_steuer_id()
             return self.generate_tr_id()
 
         if dt == 'ssn':
-            return f"{secrets.randbelow(800) + 100:03d}-{secrets.randbelow(90) + 10:02d}-{secrets.randbelow(9000) + 1000:04d}"
+            return f"{random.randrange(800) + 100:03d}-{random.randrange(90) + 10:02d}-{random.randrange(9000) + 1000:04d}"
 
         if dt == 'nin':
             return self.generate_uk_ni()
@@ -407,46 +408,46 @@ class IdentityGenerator:
 
         if dt == 'insurance_id':
             if l == 'TR': return self.generate_tr_sgk()
-            if l == 'US': return f"{secrets.randbelow(800) + 100:03d}-{secrets.randbelow(90) + 10:02d}-{secrets.randbelow(9000) + 1000:04d}"
+            if l == 'US': return f"{random.randrange(800) + 100:03d}-{random.randrange(90) + 10:02d}-{random.randrange(9000) + 1000:04d}"
             if l == 'UK': return self.generate_uk_paye()
             if l == 'DE': return self.generate_de_rvn()
             if l == 'FR':
-                base = (f"{secrets.randbelow(2) + 1}{secrets.randbelow(60) + 40:02d}{secrets.randbelow(12) + 1:02d}"
-                        f"{secrets.randbelow(95) + 1:02d}{secrets.randbelow(999) + 1:03d}{secrets.randbelow(999) + 1:03d}")
+                base = (f"{random.randrange(2) + 1}{random.randrange(60) + 40:02d}{random.randrange(12) + 1:02d}"
+                        f"{random.randrange(95) + 1:02d}{random.randrange(999) + 1:03d}{random.randrange(999) + 1:03d}")
                 return f"{base}{97 - (int(base) % 97):02d}"
             if l == 'RU': return self.generate_ru_snils()
             return self.generate_tr_sgk()
 
         # --- Documents ---
         if dt == 'passport':
-            return f"P{secrets.randbelow(9000000) + 1000000}"
+            return f"P{random.randrange(9000000) + 1000000}"
 
         if dt == 'license':
-            return f"{secrets.randbelow(900000) + 100000}"
+            return f"{random.randrange(900000) + 100000}"
 
         # --- Demographics ---
         if dt == 'age':
-            return secrets.randbelow(63) + 18
+            return random.randrange(63) + 18
 
         if dt == 'gender':
-            return secrets.choice(['Male', 'Female'])
+            return random.choice(['Male', 'Female'])
 
         if dt == 'birthdate':
-            age = secrets.randbelow(63) + 18
+            age = random.randrange(63) + 18
             year = date.today().year - age
-            return date(year, secrets.randbelow(12) + 1, secrets.randbelow(28) + 1).strftime('%Y-%m-%d')
+            return date(year, random.randrange(12) + 1, random.randrange(28) + 1).strftime('%Y-%m-%d')
 
         # --- Masked Types ---
         if dt == 'tckn_masked':
-            mid = "".join(str(secrets.randbelow(10)) for _ in range(6))
+            mid = "".join(str(random.randrange(10)) for _ in range(6))
             return f"***{mid}**"
 
         if dt == 'ssn_masked':
-            last4 = "".join(str(secrets.randbelow(10)) for _ in range(4))
+            last4 = "".join(str(random.randrange(10)) for _ in range(4))
             return f"***-**-{last4}"
 
         if dt == 'nationality':
-            return secrets.choice(_NATIONALITIES)
+            return random.choice(_NATIONALITIES)
 
         # --- Names ---
         pool = NAME_POOLS.get(l, NAME_POOLS['TR'])
@@ -456,28 +457,28 @@ class IdentityGenerator:
         elif gender_kwarg in ('male', 'erkek', 'm'):
             g = 'male'
         else:
-            g = secrets.choice(['male', 'female'])
+            g = random.choice(['male', 'female'])
 
         if dt == 'firstname':
-            return secrets.choice(pool[g])
+            return random.choice(pool[g])
 
         if dt == 'lastname':
             key = 'last_f' if (l == 'RU' and g == 'female') else 'last'
-            return secrets.choice(pool.get(key, pool['last']))
+            return random.choice(pool.get(key, pool['last']))
 
         if dt == 'patronymic':
             if l == 'RU':
                 key = 'pat_m' if g == 'male' else 'pat_f'
-                return secrets.choice(pool.get(key, ['Иванович']))
+                return random.choice(pool.get(key, ['Иванович']))
             return ''
 
         if dt == 'fullname':
-            fn = secrets.choice(pool[g])
+            fn = random.choice(pool[g])
             ln_key = 'last_f' if (l == 'RU' and g == 'female') else 'last'
-            ln = secrets.choice(pool.get(ln_key, pool['last']))
+            ln = random.choice(pool.get(ln_key, pool['last']))
             if l == 'RU':
                 pat_key = 'pat_m' if g == 'male' else 'pat_f'
-                pat = secrets.choice(pool.get(pat_key, ['Иванович']))
+                pat = random.choice(pool.get(pat_key, ['Иванович']))
                 return f"{fn} {pat} {ln}"
             return f"{fn} {ln}"
 

@@ -10,6 +10,7 @@ Standards:
 """
 
 import hashlib
+import random
 import secrets
 
 # ── Keccak-256 (pure Python — no external deps) ──────────────────────────────

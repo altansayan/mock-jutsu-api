@@ -10,6 +10,7 @@ Standards / Algorithms:
   Order ID      — ORD- prefix + CSPRNG alphanumeric suffix
 """
 
+import random
 import secrets
 import string
 
@@ -82,7 +83,7 @@ class EcommerceGenerator:
         carrier = str(kwargs.get('carrier', 'usps')).lower()
 
         if dt == 'product_name':
-            return secrets.choice(_PRODUCT_NAMES)
+            return random.choice(_PRODUCT_NAMES)
         if dt == 'sku':
             return self._sku()
         if dt == 'order_id':
@@ -90,7 +91,7 @@ class EcommerceGenerator:
         if dt == 'tracking_number':
             return self._tracking(carrier)
         if dt == 'category':
-            return secrets.choice(_CATEGORIES)
+            return random.choice(_CATEGORIES)
         if dt == 'rating':
             return self._rating()
         if dt == 'dhl_tracking':
@@ -102,18 +103,18 @@ class EcommerceGenerator:
 
     def _sku(self) -> str:
         """GS1-inspired format: 2-4 uppercase letters + dash + 4-8 digits."""
-        prefix = ''.join(secrets.choice(string.ascii_uppercase)
-                         for _ in range(secrets.randbelow(3) + 2))
-        number = ''.join(secrets.choice(string.digits)
-                         for _ in range(secrets.randbelow(5) + 4))
+        prefix = ''.join(random.choice(string.ascii_uppercase)
+                         for _ in range(random.randrange(3) + 2))
+        number = ''.join(random.choice(string.digits)
+                         for _ in range(random.randrange(5) + 4))
         return f"{prefix}-{number}"
 
     # ── Order ID ──────────────────────────────────────────────────────────────
 
     def _order_id(self) -> str:
         """ORD- + 8-12 uppercase alphanumeric characters (CSPRNG)."""
-        length = secrets.randbelow(5) + 8
-        suffix = ''.join(secrets.choice(_ALPHA_UPPER) for _ in range(length))
+        length = random.randrange(5) + 8
+        suffix = ''.join(random.choice(_ALPHA_UPPER) for _ in range(length))
         return f"ORD-{suffix}"
 
     # ── Tracking Numbers ─────────────────────────────────────────────────────
@@ -130,8 +131,8 @@ class EcommerceGenerator:
         Prefixes: 92=Priority, 94=First Class, 70=Certified, 93/95=other.
         Reference: USPS Publication 97, Appendix F.
         """
-        prefix = secrets.choice(_USPS_PREFIXES)
-        body = [secrets.randbelow(10) for _ in range(19)]
+        prefix = random.choice(_USPS_PREFIXES)
+        body = [random.randrange(10) for _ in range(19)]
         payload = [int(d) for d in prefix] + body
         check = _luhn_check_digit(payload)
         return prefix + ''.join(map(str, body)) + str(check)
@@ -140,9 +141,9 @@ class EcommerceGenerator:
         """UPS 18-char: 1Z + 6-char shipper + 2-digit service + 8 alphanum + check.
         Reference: public UPS technical documentation (weighted mod-10).
         """
-        shipper = ''.join(secrets.choice(_ALPHA_UPPER) for _ in range(6))
-        service = secrets.choice(_UPS_SERVICE)
-        package = ''.join(secrets.choice(_ALPHA_UPPER) for _ in range(7))
+        shipper = ''.join(random.choice(_ALPHA_UPPER) for _ in range(6))
+        service = random.choice(_UPS_SERVICE)
+        package = ''.join(random.choice(_ALPHA_UPPER) for _ in range(7))
         payload = shipper + service + package
         check = _ups_check_digit(payload)
         return f"1Z{payload}{check}"
@@ -151,7 +152,7 @@ class EcommerceGenerator:
         """FedEx Express 12-digit: 11 random digits + Mod-11 check digit.
         Reference: FedEx Developer Guide — tracking number formats.
         """
-        body = ''.join(str(secrets.randbelow(10)) for _ in range(11))
+        body = ''.join(str(random.randrange(10)) for _ in range(11))
         check = _fedex_check_digit(body)
         return body + str(check)
 
@@ -161,7 +162,7 @@ class EcommerceGenerator:
         """DHL JD-series tracking: 'JD' + 8 random digits + 1 Luhn check digit.
         Reference: DHL Express developer guide — JD waybill format.
         """
-        body = [secrets.randbelow(10) for _ in range(8)]
+        body = [random.randrange(10) for _ in range(8)]
         check = _luhn_check_digit(body)
         return "JD" + ''.join(map(str, body)) + str(check)
 
@@ -171,7 +172,7 @@ class EcommerceGenerator:
         """Product rating: 1.0–5.0 with one decimal place."""
         choices = ['1.0','1.5','2.0','2.5','3.0','3.5','4.0','4.5','5.0']
         weights = [1, 2, 3, 4, 8, 12, 20, 25, 25]
-        r = secrets.randbelow(sum(weights))
+        r = random.randrange(sum(weights))
         cumulative = 0
         for val, w in zip(choices, weights):
             cumulative += w
