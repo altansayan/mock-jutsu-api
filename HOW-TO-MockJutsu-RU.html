@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mock-jutsu — Справочник RU</title>
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8fafc;color:#1e293b;font-size:14px}
+code,pre{font-family:'JetBrains Mono','Cascadia Code','Fira Code',monospace}
+
+/* Header */
+.header{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);color:#fff;padding:28px 40px}
+.header h1{font-size:22px;font-weight:700}
+.header .sub{font-size:12px;color:#94a3b8;margin-top:6px}
+
+/* Nav tabs */
+.tabs{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 40px;display:flex;gap:0;position:sticky;top:0;z-index:100}
+.tab{padding:12px 20px;font-size:13px;font-weight:500;color:#64748b;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+.tab:hover{color:#6366f1}
+.tab.active{color:#6366f1;border-bottom-color:#6366f1}
+
+/* Sections */
+.section{display:none;padding:28px 40px;max-width:1400px;margin:0 auto}
+.section.active{display:block}
+
+/* Section title */
+.stitle{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;color:#0f172a}
+.stitle::before{content:'';display:inline-block;width:4px;height:20px;background:#6366f1;border-radius:2px}
+
+/* ── Reference Table ── */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.toolbar input{flex:1;min-width:220px;padding:8px 14px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;outline:none}
+.toolbar input:focus{border-color:#6366f1;box-shadow:0 0 0 3px #eef2ff}
+.toolbar select{padding:8px 12px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;background:#fff;outline:none;cursor:pointer}
+.toolbar select:focus{border-color:#6366f1}
+.reset-btn{padding:8px 16px;border:1px solid #e2e8f0;border-radius:8px;font-size:12px;font-weight:600;background:#fff;cursor:pointer;color:#475569}
+.reset-btn:hover{background:#6366f1;color:#fff;border-color:#6366f1}
+.row-count{font-size:12px;color:#64748b;white-space:nowrap;margin-left:auto}
+
+.table-wrap{overflow-x:auto;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:12.5px}
+thead th{background:#f1f5f9;color:#475569;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.6px;padding:10px 14px;text-align:left;border-bottom:2px solid #e2e8f0;white-space:nowrap}
+tbody tr{border-bottom:1px solid #f1f5f9;transition:background .1s}
+tbody tr:hover{background:#f8fafc}
+tbody tr:last-child{border-bottom:none}
+td{padding:9px 14px;vertical-align:middle}
+
+/* Column specific */
+.col-fn code{font-size:12px;background:#f1f5f9;padding:2px 7px;border-radius:5px;color:#0f172a;font-weight:600;white-space:nowrap}
+.col-cat .pill{font-size:10px;font-weight:700;padding:3px 9px;border-radius:10px;white-space:nowrap}
+.col-locale .badge-yes{font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;background:#dcfce7;color:#15803d}
+.col-locale .badge-no {font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;background:#f1f5f9;color:#94a3b8}
+.col-extra code{font-size:11px;background:#fff7ed;color:#c2410c;padding:1px 5px;border-radius:4px}
+.col-output code{font-size:11px;color:#0f172a;white-space:nowrap}
+.col-cli code{font-size:11px;background:#0f172a;color:#a5f3fc;padding:4px 9px;border-radius:6px;white-space:nowrap;display:inline-block}
+.col-cli .api-only{font-size:10px;color:#94a3b8;display:block;margin-top:3px}
+
+/* Category pill colors */
+.cat-kimlik  {background:#eef2ff;color:#4f46e5}
+.cat-vergi   {background:#fef3c7;color:#b45309}
+.cat-isveren {background:#fce7f3;color:#be185d}
+.cat-sigorta {background:#ecfdf5;color:#065f46}
+.cat-isim    {background:#f0fdf4;color:#166534}
+.cat-belge   {background:#f0f9ff;color:#0369a1}
+.cat-demografik{background:#fdf4ff;color:#7e22ce}
+.cat-finansal{background:#eff6ff;color:#1d4ed8}
+.cat-iletisim{background:#f0fdf4;color:#15803d}
+.cat-meta       {background:#fff7ed;color:#c2410c}
+.cat-bankacilik {background:#e0f2fe;color:#0369a1}
+.cat-kurumsal   {background:#fef9c3;color:#713f12}
+.cat-saglik     {background:#d1fae5;color:#065f46}
+.cat-ticaret    {background:#fae8ff;color:#7e22ce}
+.cat-rfid       {background:#ecfeff;color:#0e7490}
+.cat-nfc        {background:#e0f2fe;color:#075985}
+.cat-ir         {background:#fff1f2;color:#be123c}
+.cat-barkod     {background:#fefce8;color:#854d0e}
+.cat-telecom    {background:#f3e8ff;color:#6b21a8}
+.cat-securities {background:#ecfdf5;color:#065f46}
+.cat-crypto     {background:#f0fdf4;color:#14532d}
+.cat-ecommerce  {background:#fefce8;color:#713f12}
+.cat-location   {background:#eff6ff;color:#1e3a8a}
+.cat-social     {background:#fdf4ff;color:#581c87}
+.cat-guvenlik   {background:#fee2e2;color:#991b1b}
+
+/* Country flags / locale pills */
+.lc{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;background:#e2e8f0;color:#475569;margin:1px}
+.lc-TR{background:#fef3c7;color:#92400e}
+.lc-US{background:#dbeafe;color:#1e40af}
+.lc-UK{background:#ede9fe;color:#5b21b6}
+.lc-DE{background:#fce7f3;color:#9d174d}
+.lc-FR{background:#dcfce7;color:#065f46}
+.lc-RU{background:#fee2e2;color:#991b1b}
+
+/* Quick-start section */
+.qs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:24px}
+.qs-card{background:#fff;border-radius:12px;padding:20px 24px;box-shadow:0 1px 3px rgba(0,0,0,.07);border-left:4px solid #6366f1}
+.qs-card h3{font-size:13px;font-weight:700;color:#6366f1;margin-bottom:10px}
+.qs-card pre{background:#0f172a;color:#e2e8f0;padding:14px 16px;border-radius:8px;font-size:12px;line-height:1.7;overflow-x:auto}
+.qs-card pre .cm{color:#64748b}
+.qs-card pre .kw{color:#a5f3fc}
+.qs-card pre .st{color:#86efac}
+.qs-card pre .fn{color:#fde68a}
+
+/* Locale table */
+.locale-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+.locale-card{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.07)}
+.locale-card h3{font-size:13px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.locale-card ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.locale-card ul li{font-size:11px;font-weight:600;background:#f1f5f9;color:#334155;padding:3px 8px;border-radius:6px}
+.locale-card ul li code{font-size:11px}
+
+/* Footer */
+.footer{text-align:center;font-size:11px;color:#94a3b8;padding:24px;border-top:1px solid #e2e8f0;margin-top:40px}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>mock-jutsu &mdash; Справочник RU</h1>
+  <div class="sub">6 регионов &nbsp;&bull;&nbsp; 174 типа данных &nbsp;&bull;&nbsp; Правовые алгоритмы &nbsp;&bull;&nbsp; Разработчик: Altan Sezer Ayan - A.S.A</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('ref')">Полный Справочник</div>
+  <div class="tab" onclick="showTab('qs')">Быстрый Старт</div>
+  <div class="tab" onclick="showTab('power')">Расширенные Возможности</div>
+  <div class="tab" onclick="showTab('api')">REST API</div>
+</div>
+
+<!-- REFERENCE -->
+<div class="section active" id="tab-ref">
+  <div class="stitle">Все Параметры (174)</div>
+
+  <div class="toolbar">
+    <input id="searchBox" type="text" placeholder="Поиск функции, CLI команды или примера вывода..." oninput="filterTable()">
+    <select id="catFilter" onchange="filterTable()">
+      <option value="">Все Категории</option>
+    </select>
+    <select id="locFilter" onchange="filterTable()">
+      <option value="">Фильтр Locale</option>
+      <option value="TR">TR</option>
+      <option value="US">US</option>
+      <option value="UK">UK</option>
+      <option value="DE">DE</option>
+      <option value="FR">FR</option>
+      <option value="RU">RU</option>
+    </select>
+    <button class="reset-btn" onclick="resetFilters()">Сбросить</button>
+    <span class="row-count" id="rowCount">— Все Параметры</span>
+  </div>
+
+  <div class="locale-grid" style="margin-bottom:18px">
+    <div class="locale-card">
+      <h3>🇷🇺 Российские типы идентификации</h3>
+      <ul><li><code>inn</code></li><li><code>snils</code></li><li><code>ogrn</code></li><li><code>kpp</code></li><li><code>patronymic</code></li></ul>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table id="refTable">
+      <thead>
+        <tr>
+          <th class="col-fn">ФУНКЦИЯ</th>
+          <th class="col-cat">КАТЕГОРИЯ</th>
+          <th class="col-locale">LOCALE</th>
+          <th class="col-extra">ДОП. ПАРАМЕТР</th>
+          <th class="col-output">ПРИМЕР ВЫВОДА</th>
+          <th class="col-cli">CLI КОМАНДА</th>
+        </tr>
+      </thead>
+      <tbody id="refBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- QUICK START -->
+<div class="section" id="tab-qs">
+  <div class="stitle">Быстрый Старт</div>
+  <div class="qs-grid">
+    <div class="qs-card">
+      <h3>Python API</h3>
+      <pre><span class="cm"># Одно значение</span>
+jutsu.generate(<span class="st">'inn'</span>)             <span class="cm"># → '7707083893'</span>
+jutsu.generate(<span class="st">'snils'</span>)           <span class="cm"># → '112-233-445 95'</span>
+jutsu.generate(<span class="st">'ogrn'</span>)            <span class="cm"># → '1027700132195'</span>
+jutsu.generate(<span class="st">'phone'</span>, locale=<span class="st">'RU'</span>) <span class="cm"># → '+79161234567'</span></pre>
+    </div>
+    <div class="qs-card">
+      <h3>CLI</h3>
+      <pre>mockjutsu generate inn
+mockjutsu generate snils
+mockjutsu generate ogrn
+mockjutsu generate kpp
+mockjutsu generate patronymic --locale RU
+mockjutsu bulk inn --count 500
+mockjutsu template inn snils ogrn phone --locale RU
+mockjutsu start-api --port 8000</pre>
+    </div>
+    <div class="qs-card">
+      <h3>Профиль Персоны RU</h3>
+      <pre>p = jutsu.profile(locale=<span class="st">'RU'</span>)
+<span class="cm"># inn, имя, отчество, фамилия,</span>
+<span class="cm"># телефон (+7...), email,</span>
+<span class="cm"># bik_code + счёт</span>
+
+<span class="cm"># CLI</span>
+mockjutsu profile --locale RU --count 3</pre>
+    </div>
+    <div class="qs-card">
+      <h3>Финтех-пример RU</h3>
+      <pre>jutsu.generate(<span class="st">'inn'</span>)          <span class="cm"># 7707083893</span>
+jutsu.generate(<span class="st">'snils'</span>)        <span class="cm"># 112-233-445 95</span>
+jutsu.generate(<span class="st">'ogrn'</span>)         <span class="cm"># 1027700132195</span>
+jutsu.generate(<span class="st">'kpp'</span>)          <span class="cm"># 770701001</span>
+jutsu.generate(<span class="st">'bik_code'</span>)     <span class="cm"># 044525225</span>
+jutsu.company(locale=<span class="st">'RU'</span>)</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ADVANCED -->
+<div class="section" id="tab-power">
+  <div class="stitle">Расширенные Возможности</div>
+  <div class="qs-grid">
+
+    <div class="qs-card">
+      <h3>profile()</h3>
+      <pre><span class="cm"># Python</span>
+jutsu.profile(locale=<span class="st">'RU'</span>)
+
+<span class="cm"># CLI</span>
+<span class="kw">mockjutsu profile</span> <span class="st">--locale RU</span>
+<span class="kw">mockjutsu profile</span> <span class="st">--locale RU --count 5</span></pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>company()</h3>
+      <pre><span class="cm"># Python</span>
+jutsu.company(locale=<span class="st">'RU'</span>)
+
+<span class="cm"># CLI</span>
+<span class="kw">mockjutsu company</span> <span class="st">--locale RU</span>
+<span class="kw">mockjutsu company</span> <span class="st">--locale RU --count 3</span></pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>bulk()</h3>
+      <pre><span class="cm"># Python</span>
+jutsu.bulk(<span class="st">'phone'</span>, count=<span class="fn">100</span>, locale=<span class="st">'RU'</span>)
+jutsu.bulk(<span class="st">'iban'</span>,  count=<span class="fn">500</span>, locale=<span class="st">'RU'</span>)
+
+<span class="cm"># CLI</span>
+<span class="kw">mockjutsu bulk</span> phone <span class="st">--count 100 --locale RU</span>
+<span class="kw">mockjutsu bulk</span> iban  <span class="st">--count 500 --locale RU</span></pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>template()</h3>
+      <pre><span class="cm"># Python — list</span>
+jutsu.template(
+  [<span class="st">'uuid'</span>, <span class="st">'phone'</span>, <span class="st">'iban'</span>],
+  count=<span class="fn">10</span>, locale=<span class="st">'RU'</span>)
+
+<span class="cm"># CLI</span>
+<span class="kw">mockjutsu template</span> uuid phone iban <span class="st">--locale RU --count 10</span>
+<span class="kw">mockjutsu template</span> uuid phone iban <span class="st">--format csv</span>
+<span class="kw">mockjutsu template</span> uuid phone iban <span class="st">--format sql --table users</span></pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>export()</h3>
+      <pre><span class="cm"># Python</span>
+jutsu.export(
+  {'id':'uuid','phone':'phone','iban':'iban'},
+  count=<span class="fn">1000</span>, format=<span class="st">'sql'</span>,
+  table=<span class="st">'users'</span>, locale=<span class="st">'RU'</span>)
+
+<span class="cm"># CLI</span>
+<span class="kw">mockjutsu export</span> uuid phone iban <span class="st">--count 1000 --format sql --table users --locale RU</span></pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>REST API</h3>
+      <pre><span class="cm"># Start server</span>
+<span class="kw">mockjutsu start-api</span> <span class="st">--port 8000</span>
+
+GET /generate/phone?locale=<span class="st">RU</span>
+GET /bulk/iban?count=<span class="fn">10</span>&amp;locale=<span class="st">RU</span>
+GET /profile?locale=<span class="st">RU</span>&amp;count=<span class="fn">1</span>
+POST /template
+  {"types":["uuid","phone","iban"],"locale":"RU","count":1}
+
+<span class="cm"># Swagger UI</span>
+<span class="cm"># http://localhost:8000/docs</span></pre>
+    </div>
+
+  </div>
+</div>
+
+<!-- REST API -->
+<div class="section" id="tab-api">
+  <div class="stitle">REST API</div>
+  <div class="qs-grid">
+
+    <div class="qs-card">
+      <h3>GET /generate/{type}</h3>
+      <pre>GET /generate/phone?locale=<span class="st">RU</span>
+GET /generate/iban?locale=<span class="st">RU</span>
+GET /generate/cardnum?network=<span class="st">visa</span>
+GET /generate/hash?algorithm=<span class="st">sha256</span>
+
+<span class="cm"># Response</span>
+{"type":"phone","locale":"RU",
+  "result":"...","status":"success"}</pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>GET /bulk/{type}</h3>
+      <pre>GET /bulk/phone?count=<span class="fn">10</span>&amp;locale=<span class="st">RU</span>
+GET /bulk/iban?count=<span class="fn">5</span>&amp;locale=<span class="st">RU</span>
+
+<span class="cm"># Response</span>
+{"type":"phone","count":10,
+  "results":["...","..."]}</pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>POST /template</h3>
+      <pre>{"types":["uuid","phone","iban"],
+ "count":1,"locale":"RU"}
+
+<span class="cm"># count=1 → single {}</span>
+<span class="cm"># count>1 → [{},...] array</span></pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>GET /profile &amp; /company</h3>
+      <pre>GET /profile?locale=<span class="st">RU</span>&amp;count=<span class="fn">1</span>
+GET /company?locale=<span class="st">RU</span>&amp;count=<span class="fn">1</span></pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>POST /export</h3>
+      <pre>{"schema_map":{"id":"uuid","p":"phone"},
+ "count":10,"locale":"RU",
+ "format":"csv","table":"users"}</pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>GET /list</h3>
+      <pre>GET /list
+GET /list?cat=<span class="st">Financial</span>
+GET /health  <span class="cm">→ {"status":"ok"}</span>
+
+<span class="cm"># Swagger UI</span>
+<span class="cm"># http://localhost:8000/docs</span></pre>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  mock-jutsu &mdash; Developed by <strong>Altan Sezer Ayan - A.S.A</strong>
+  &nbsp;&bull;&nbsp; <a href="https://github.com/altansayan/mock-jutsu-api" style="color:#6366f1">GitHub</a>
+</div>
+
+<script>
+const ROWS = [
+  // [fn, cat, catCls, localeAware, extra, output, cli, locales]
+  ["tckn","Kimlik","kimlik",false,"—","45678901234","mockjutsu generate tckn",""],
+  ["ykn","Kimlik","kimlik",false,"—","99012345678","mockjutsu generate ykn",""],
+  ["nationalid","Kimlik","kimlik",true,"—","(locale'e göre)","mockjutsu generate nationalid --locale US","TR US UK DE FR RU"],
+  ["vkn","Kimlik/Vergi","vergi",false,"—","1234567890","mockjutsu generate vkn","TR"],
+  ["taxid","Kimlik/Vergi","vergi",true,"—","(locale'e göre)","mockjutsu generate taxid --locale DE","TR US UK DE FR RU"],
+  ["employer_id","İşveren","isveren",true,"—","(locale'e göre)","mockjutsu generate employer_id --locale FR","TR US UK DE FR RU"],
+  ["insurance_id","Sigorta","sigorta",true,"—","(locale'e göre)","mockjutsu generate insurance_id --locale RU","TR US UK DE FR RU"],
+  ["sgk","Kimlik/TR","kimlik",false,"—","34-0012345-1.01-02","mockjutsu generate sgk","TR"],
+  ["mersis","Kimlik/TR","kimlik",false,"—","1234567890012345","mockjutsu generate mersis","TR"],
+  ["ssn","Kimlik/US","kimlik",false,"—","234-56-7890","mockjutsu generate ssn","US"],
+  ["ein","Kimlik/US","kimlik",false,"—","12-3456789","mockjutsu generate ein","US"],
+  ["nin","Kimlik/UK","kimlik",false,"—","AB 12 34 56 C","mockjutsu generate nin","UK"],
+  ["utr","Kimlik/UK","kimlik",false,"—","1234567890","mockjutsu generate utr","UK"],
+  ["crn","Kimlik/UK","kimlik",false,"—","12345678","mockjutsu generate crn","UK"],
+  ["paye","Kimlik/UK","kimlik",false,"—","123/AB4567","mockjutsu generate paye","UK"],
+  ["ust_id","Kimlik/DE","kimlik",false,"—","DE123456789","mockjutsu generate ust_id","DE"],
+  ["ustid","Kimlik/DE","kimlik",false,"—","DE123456789","mockjutsu generate ustid","DE"],
+  ["hrb","Kimlik/DE","kimlik",false,"—","HRB 123456","mockjutsu generate hrb","DE"],
+  ["rvn","Kimlik/DE","kimlik",false,"—","65 070892 W 1235","mockjutsu generate rvn","DE"],
+  ["siren","Kimlik/FR","kimlik",false,"—","732829320","mockjutsu generate siren","FR"],
+  ["siret","Kimlik/FR","kimlik",false,"—","73282932000074","mockjutsu generate siret","FR"],
+  ["tva","Kimlik/FR","kimlik",false,"—","FR73732829320","mockjutsu generate tva","FR"],
+  ["inn","Kimlik/RU","kimlik",false,"—","7707083893 (10h)","mockjutsu generate inn","RU"],
+  ["inn_individual","Kimlik/RU","kimlik",false,"—","123456789012 (12h)","mockjutsu generate inn_individual","RU"],
+  ["snils","Kimlik/RU","kimlik",false,"—","112-233-445 95","mockjutsu generate snils","RU"],
+  ["ogrn","Kimlik/RU","kimlik",false,"—","1027700132195","mockjutsu generate ogrn","RU"],
+  ["kpp","Kimlik/RU","kimlik",false,"—","770701001","mockjutsu generate kpp","RU"],
+  ["firstname","İsim","isim",true,"gender¹","Emre","mockjutsu generate firstname --locale TR","TR US UK DE FR RU"],
+  ["lastname","İsim","isim",true,"gender¹ (RU)","Yılmaz","mockjutsu generate lastname --locale DE","TR US UK DE FR RU"],
+  ["fullname","İsim","isim",true,"gender¹","Emre Kaya","mockjutsu generate fullname --locale RU","TR US UK DE FR RU"],
+  ["patronymic","İsim","isim",true,"gender¹","Иванович","mockjutsu generate patronymic --locale RU","RU"],
+  ["passport","Belge","belge",false,"—","P1234567","mockjutsu generate passport",""],
+  ["license","Belge","belge",false,"—","654321","mockjutsu generate license",""],
+  ["age","Demografik","demografik",false,"—","34","mockjutsu generate age",""],
+  ["gender","Demografik","demografik",false,"—","Male","mockjutsu generate gender",""],
+  ["birthdate","Demografik","demografik",false,"—","1990-05-14","mockjutsu generate birthdate",""],
+  ["tckn_masked","Kimlik","kimlik",false,"—","***123456**","mockjutsu generate tckn_masked",""],
+  ["ssn_masked","Kimlik/US","kimlik",false,"—","***-**-6789","mockjutsu generate ssn_masked",""],
+  ["nationality","Kimlik","kimlik",false,"—","TUR","mockjutsu generate nationality",""],
+  ["cardnum","Finansal","finansal",false,"--network","4532015112830366","mockjutsu generate cardnum --network amex",""],
+  ["cardnetwork","Finansal","finansal",false,"—","VISA","mockjutsu generate cardnetwork",""],
+  ["cardtype","Finansal","finansal",false,"—","Credit","mockjutsu generate cardtype",""],
+  ["cardstatus","Finansal","finansal",false,"—","Active","mockjutsu generate cardstatus",""],
+  ["cardcategory","Finansal","finansal",false,"—","Gold","mockjutsu generate cardcategory",""],
+  ["cardowner","Finansal","finansal",true,"gender¹","JOHN SMITH","mockjutsu generate cardowner --locale US","TR US UK DE FR RU"],
+  ["cvv3","Finansal","finansal",false,"—","847","mockjutsu generate cvv3",""],
+  ["cvv4","Finansal","finansal",false,"—","1234","mockjutsu generate cvv4",""],
+  ["pin","Finansal","finansal",false,"—","7291","mockjutsu generate pin",""],
+  ["expiry","Finansal","finansal",false,"—","09/27","mockjutsu generate expiry",""],
+  ["expirymonth","Finansal","finansal",false,"—","09","mockjutsu generate expirymonth",""],
+  ["expiryyear","Finansal","finansal",false,"—","27","mockjutsu generate expiryyear",""],
+  ["issuer","Finansal","finansal",true,"—","BosphorusBank","mockjutsu generate issuer --locale TR","TR US UK DE FR RU"],
+  ["balance","Finansal","finansal",false,"min max¹","12450.75","mockjutsu generate balance",""],
+  ["credit_score","Finansal","finansal",false,"—","720","mockjutsu generate credit_score",""],
+  ["iban","Finansal","finansal",true,"—","TR33000610051978…","mockjutsu generate iban --locale TR","TR US UK DE FR RU"],
+  ["phone","İletişim","iletisim",true,"—","+905325551234","mockjutsu generate phone --locale TR","TR US UK DE FR RU"],
+  ["phone_country","İletişim","iletisim",true,"—","+90","mockjutsu generate phone_country --locale TR","TR US UK DE FR RU"],
+  ["phone_area","İletişim","iletisim",true,"—","532","mockjutsu generate phone_area --locale TR","TR US UK DE FR RU"],
+  ["phone_local","İletişim","iletisim",true,"—","5551234","mockjutsu generate phone_local --locale TR","TR US UK DE FR RU"],
+  ["address_city","İletişim","iletisim",true,"—","İstanbul","mockjutsu generate address_city --locale TR","TR US UK DE FR RU"],
+  ["address_street","İletişim","iletisim",true,"—","Bağdat Caddesi","mockjutsu generate address_street --locale FR","TR US UK DE FR RU"],
+  ["address_full","İletişim","iletisim",true,"—","İstanbul, Bağdat Cad. No:42","mockjutsu generate address_full --locale TR","TR US UK DE FR RU"],
+  ["postalcode","İletişim","iletisim",true,"—","34500","mockjutsu generate postalcode --locale UK","TR US UK DE FR RU"],
+  ["plate","İletişim","iletisim",true,"—","34 ABC 123","mockjutsu generate plate --locale TR","TR US UK DE FR RU"],
+  ["email","İletişim","iletisim",true,"—","user492@gmail.com","mockjutsu generate email --locale TR","TR US UK DE FR RU"],
+  ["uuid","Meta","meta",false,"—","550e8400-e29b-41d4-…","mockjutsu generate uuid",""],
+  ["requestid","Meta","meta",false,"—","550e8400-e29b-41d4-…","mockjutsu generate requestid",""],
+  ["correlationid","Meta","meta",false,"—","550e8400-e29b-41d4-…","mockjutsu generate correlationid",""],
+  ["sessionid","Meta","meta",false,"—","550e8400-e29b-41d4-…","mockjutsu generate sessionid",""],
+  ["idempotencykey","Meta","meta",false,"—","550e8400-e29b-41d4-…","mockjutsu generate idempotencykey",""],
+  ["deviceid","Meta","meta",false,"—","550E8400-E29B-41D4-…","mockjutsu generate deviceid",""],
+  ["timestamp","Meta","meta",false,"—","1714900000","mockjutsu generate timestamp",""],
+  ["timestamp_iso","Meta","meta",false,"—","2024-05-05T14:30:00…","mockjutsu generate timestamp_iso",""],
+  ["ipv4","Meta","meta",false,"—","185.46.212.33","mockjutsu generate ipv4",""],
+  ["ipv6","Meta","meta",false,"—","fe80:0000:0000:…","mockjutsu generate ipv6",""],
+  ["public_ip","Güvenlik","guvenlik",false,"—","185.46.212.33","mockjutsu generate public_ip",""],
+  ["private_ip","Güvenlik","guvenlik",false,"—","192.168.1.42","mockjutsu generate private_ip",""],
+  ["api_key","Güvenlik","guvenlik",false,"—","sk-aBcDeFgH…(51 char)","mockjutsu generate api_key",""],
+  ["totp_code","Güvenlik","guvenlik",false,"—","482931","mockjutsu generate totp_code",""],
+  ["webhook_signature","Güvenlik","guvenlik",false,"—","sha256=e3b0c44…(71 char)","mockjutsu generate webhook_signature",""],
+  ["transaction_id","Güvenlik","guvenlik",false,"—","TXN1A2B3C4D5E6F7G8","mockjutsu generate transaction_id",""],
+  ["browser_name","Meta","meta",false,"—","Chrome","mockjutsu generate browser_name",""],
+  ["browser_version","Meta","meta",false,"—","124.0.6367.78","mockjutsu generate browser_version",""],
+  ["browser_engine","Meta","meta",false,"—","Blink","mockjutsu generate browser_engine",""],
+  ["useragent","Meta","meta",false,"—","Mozilla/5.0 …","mockjutsu generate useragent",""],
+  ["bearertoken","Meta","meta",false,"—","Bearer eyJ….eyJ….sig","mockjutsu generate bearertoken",""],
+  ["clientversion","Meta","meta",false,"—","2.4.1","mockjutsu generate clientversion",""],
+  ["signature","Meta","meta",false,"secret payload¹","a1b2c3d4… (hex 64)","mockjutsu generate signature",""],
+  ["apppassword","Meta","meta",false,"—","481302","mockjutsu generate apppassword",""],
+  // ── Banking ────────────────────────────────────────────────────────────────
+  ["swift","Bankacılık","bankacilik",true,"—","DEUTDEDB","mockjutsu generate swift --locale DE","TR US UK DE FR RU"],
+  ["bic","Bankacılık","bankacilik",true,"—","DEUTDEDB","mockjutsu generate bic --locale DE","TR US UK DE FR RU"],
+  ["sort_code","Bankacılık","bankacilik",false,"—","20-00-00","mockjutsu generate sort_code","UK"],
+  ["routing_number","Bankacılık","bankacilik",false,"—","021000021","mockjutsu generate routing_number","US"],
+  ["bik_code","Bankacılık","bankacilik",false,"—","044525225","mockjutsu generate bik_code","RU"],
+  ["bank_name","Bankacılık","bankacilik",true,"—","Berliner Finanzbank AG","mockjutsu generate bank_name --locale DE","TR US UK DE FR RU"],
+  ["transaction","Bankacılık","bankacilik",true,"—","{ref, iban×2, amount, channel…}","mockjutsu generate transaction --locale TR","TR US UK DE FR RU"],
+  ["sepa_ref","Bankacılık","bankacilik",false,"—","SEPAENDTOEND20240501XY7Z3A","mockjutsu generate sepa_ref",""],
+  // ── Corporate ──────────────────────────────────────────────────────────────
+  ["company_name","Kurumsal","kurumsal",true,"—","Fischer Technologien GmbH","mockjutsu generate company_name --locale DE","TR US UK DE FR RU"],
+  ["job_title","Kurumsal","kurumsal",true,"—","Yazılım Mühendisi","mockjutsu generate job_title --locale TR","TR US UK DE FR RU"],
+  ["jobtitle","Kurumsal","kurumsal",true,"—","Yazılım Mühendisi","mockjutsu generate jobtitle --locale TR","TR US UK DE FR RU"],
+  ["occupation","Kurumsal","kurumsal",true,"—","Yazılım Mühendisi","mockjutsu generate occupation --locale TR","TR US UK DE FR RU"],
+  // ── Health ─────────────────────────────────────────────────────────────────
+  ["blood_type","Sağlık","saglik",false,"—","A+","mockjutsu generate blood_type",""],
+  ["bloodtype","Sağlık","saglik",false,"—","A+","mockjutsu generate bloodtype",""],
+  ["nhs_number","Sağlık","saglik",false,"—","943 476 5919","mockjutsu generate nhs_number","UK"],
+  ["nhsnumber","Sağlık","saglik",false,"—","943 476 5919","mockjutsu generate nhsnumber","UK"],
+  ["icd10","Sağlık","saglik",false,"—","J18.9","mockjutsu generate icd10",""],
+  ["height","Sağlık","saglik",true,"—","178 cm / 5'10\"","mockjutsu generate height --locale US","TR US UK DE FR RU"],
+  ["weight","Sağlık","saglik",true,"—","74 kg / 163 lbs","mockjutsu generate weight --locale US","TR US UK DE FR RU"],
+  ["npi","Sağlık","saglik",false,"—","1234567893","mockjutsu generate npi","US"],
+  ["bmi","Sağlık","saglik",false,"—","24.7","mockjutsu generate bmi",""],
+  // ── Commerce ───────────────────────────────────────────────────────────────
+  ["currency","Ticaret","ticaret",true,"—","{code:TRY, symbol:₺, name:…}","mockjutsu generate currency --locale TR","TR US UK DE FR RU"],
+  ["tax_rate","Ticaret","ticaret",true,"—","{name:KDV, standard:20, …}","mockjutsu generate tax_rate --locale DE","TR US UK DE FR RU"],
+  ["taxrate","Ticaret","ticaret",true,"—","{name:KDV, standard:20, …}","mockjutsu generate taxrate --locale DE","TR US UK DE FR RU"],
+  ["invoice_number","Ticaret","ticaret",true,"—","INV-2024-001234","mockjutsu generate invoice_number --locale TR","TR US UK DE FR RU"],
+  ["invoicenumber","Ticaret","ticaret",true,"—","INV-2024-001234","mockjutsu generate invoicenumber --locale TR","TR US UK DE FR RU"],
+  ["vin","Ticaret","ticaret",true,"—","WBA3A5C5XMD123456","mockjutsu generate vin --locale DE","TR US UK DE FR RU"],
+  ["vehicle","Ticaret","ticaret",true,"—","{make, model, year, vin, color, fuel}","mockjutsu generate vehicle --locale TR","TR US UK DE FR RU"],
+  // ── RFID ───────────────────────────────────────────────────────────────────
+  ["rfid_uid","RFID","rfid",false,"—","04:A3:B2:C1:D0:E5:F6","mockjutsu generate rfid_uid",""],
+  ["epc","RFID","rfid",false,"—","3034257BF400B71800004000","mockjutsu generate epc",""],
+  ["rfid_tag","RFID","rfid",false,"—","{uid, standard, frequency_mhz, memory_bytes}","mockjutsu generate rfid_tag",""],
+  // ── NFC ────────────────────────────────────────────────────────────────────
+  ["nfc_uid","NFC","nfc",false,"—","04:A3:B2:C1:D0:E5:F6","mockjutsu generate nfc_uid",""],
+  ["nfc_atqa","NFC","nfc",false,"—","00:44","mockjutsu generate nfc_atqa",""],
+  ["nfc_sak","NFC","nfc",false,"—","20","mockjutsu generate nfc_sak",""],
+  ["ndef_uri","NFC","nfc",false,"—","D1010F55026578616D706C652E636F6D…","mockjutsu generate ndef_uri",""],
+  ["ndef_text","NFC","nfc",true,"—","D101085402656E48656C6C6F…","mockjutsu generate ndef_text --locale TR","TR US UK DE FR RU"],
+  ["apdu","NFC","nfc",false,"—","{cla:00, ins:A4, hex:00 A4 04 00 07…}","mockjutsu generate apdu",""],
+  ["nfc_tag","NFC","nfc",false,"—","{uid, atqa, sak, type, ndef_message}","mockjutsu generate nfc_tag",""],
+  // ── IR ─────────────────────────────────────────────────────────────────────
+  ["ir_nec","IR (Kızılötesi)","ir",false,"—","{address:0x20, command:0x10, hex:20DF10EF}","mockjutsu generate ir_nec",""],
+  ["ir_rc5","IR (Kızılötesi)","ir",false,"—","{system:0, command:18, frame_bits:10000…}","mockjutsu generate ir_rc5",""],
+  ["ir_pronto","IR (Kızılötesi)","ir",false,"—","0000 006D 0022 0000 0156 00AB…","mockjutsu generate ir_pronto",""],
+  ["ir_raw","IR (Kızılötesi)","ir",false,"—","{carrier_hz:38000, pulses:[9024,4512,…]}","mockjutsu generate ir_raw",""],
+  // ── Barcode ────────────────────────────────────────────────────────────────
+  ["ean13","Barkod","barkod",true,"—","8680001234567","mockjutsu generate ean13 --locale TR","TR US UK DE FR RU"],
+  ["ean8","Barkod","barkod",true,"—","86812340","mockjutsu generate ean8 --locale TR","TR US UK DE FR RU"],
+  ["upca","Barkod","barkod",false,"—","036000291452","mockjutsu generate upca","US CA"],
+  ["isbn13","Barkod","barkod",false,"—","9780306406157","mockjutsu generate isbn13",""],
+  ["isbn10","Barkod","barkod",false,"—","0306406152","mockjutsu generate isbn10",""],
+  ["gs1_128","Barkod","barkod",false,"—","(01)01234...(17)250506...(10)AB1C2D","mockjutsu generate gs1_128",""],
+  // ── Telecom ────────────────────────────────────────────────────────────────
+  ["imei","Telecom","telecom",false,"—","490154203237518","mockjutsu generate imei",""],
+  ["imei2","Telecom","telecom",false,"—","49-015420-323751-8","mockjutsu generate imei2",""],
+  ["iccid","Telecom","telecom",true,"—","8990053412345678901","mockjutsu generate iccid --locale TR","TR US UK DE FR RU"],
+  ["imsi","Telecom","telecom",true,"—","286011234567890","mockjutsu generate imsi --locale TR","TR US UK DE FR RU"],
+  ["msisdn","Telecom","telecom",true,"—","+905321234567","mockjutsu generate msisdn --locale TR","TR US UK DE FR RU"],
+  // ── Securities ─────────────────────────────────────────────────────────────
+  ["isin","Securities","securities",true,"—","US0378331005","mockjutsu generate isin --locale US","TR US UK DE FR RU"],
+  ["cusip","Securities","securities",false,"—","037833100","mockjutsu generate cusip",""],
+  ["sedol","Securities","securities",false,"—","0263494","mockjutsu generate sedol",""],
+  ["lei","Securities","securities",false,"—","529900T8BM49AURSDO55","mockjutsu generate lei",""],
+  // ── Crypto / Web3 ──────────────────────────────────────────────────────────
+  ["btc_address","Crypto","crypto",false,"—","1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf","mockjutsu generate btc_address",""],
+  ["eth_address","Crypto","crypto",false,"—","0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed","mockjutsu generate eth_address",""],
+  ["crypto_address","Crypto","crypto",false,"currency¹","(btc veya eth)","mockjutsu generate crypto_address --currency eth",""],
+  ["tx_hash","Crypto","crypto",false,"currency¹","a1b2c3d4...64hex","mockjutsu generate tx_hash --currency btc",""],
+  ["block_hash","Crypto","crypto",false,"currency¹","0x+64hex (eth)","mockjutsu generate block_hash --currency eth",""],
+  // ── E-Commerce ─────────────────────────────────────────────────────────────
+  ["product_name","E-Commerce","ecommerce",false,"—","Wireless Headphones","mockjutsu generate product_name",""],
+  ["sku","E-Commerce","ecommerce",false,"—","AB-123456","mockjutsu generate sku",""],
+  ["order_id","E-Commerce","ecommerce",false,"—","ORD-A1B2C3D4E5","mockjutsu generate order_id",""],
+  ["tracking_number","E-Commerce","ecommerce",false,"carrier¹","9400111899223397522384","mockjutsu generate tracking_number --carrier usps",""],
+  ["dhl_tracking","E-Commerce","ecommerce",false,"—","JD123456789","mockjutsu generate dhl_tracking",""],
+  ["category","E-Commerce","ecommerce",false,"—","Electronics","mockjutsu generate category",""],
+  ["rating","E-Commerce","ecommerce",false,"—","4.5","mockjutsu generate rating",""],
+  // ── Location / Geo ─────────────────────────────────────────────────────────
+  ["latitude","Location","location",true,"—","39.925533","mockjutsu generate latitude --locale TR","TR US UK DE FR RU"],
+  ["longitude","Location","location",true,"—","32.866287","mockjutsu generate longitude --locale TR","TR US UK DE FR RU"],
+  ["timezone","Location","location",true,"—","Europe/Istanbul","mockjutsu generate timezone --locale TR","TR US UK DE FR RU"],
+  ["country_code","Location","location",true,"—","TR","mockjutsu generate country_code --locale TR","TR US UK DE FR RU"],
+  ["coordinates","Location","location",true,"—","39.925533,32.866287","mockjutsu generate coordinates --locale TR","TR US UK DE FR RU"],
+  // ── Social Media ───────────────────────────────────────────────────────────
+  ["username","Social","social",false,"—","cooldev42","mockjutsu generate username",""],
+  ["handle","Social","social",false,"—","@cooldev42","mockjutsu generate handle",""],
+  ["hashtag","Social","social",false,"—","#TechNews2024","mockjutsu generate hashtag",""],
+  ["bio","Social","social",false,"—","Building the future...","mockjutsu generate bio",""],
+  ["follower_count","Social","social",false,"—","14273","mockjutsu generate follower_count",""],
+  // ── Tech extras ────────────────────────────────────────────────────────────
+  ["jwt","Meta","meta",false,"—","eyJhbGci….eyJzdWI….sig","mockjutsu generate jwt",""],
+  ["hash","Meta","meta",false,"algorithm¹","e3b0c44298fc1c149a…","mockjutsu generate hash",""],
+  ["mac_address","Meta","meta",false,"—","A4:C3:F0:3D:8E:21","mockjutsu generate mac_address",""],
+  ["url","Meta","meta",true,"—","https://api-42.co.uk/api/v1/users","mockjutsu generate url --locale UK","TR US UK DE FR RU"],
+  ["domain","Meta","meta",true,"—","test-77.com.tr","mockjutsu generate domain --locale TR","TR US UK DE FR RU"],
+  ["color","Meta","meta",false,"format¹","#3A7BF0","mockjutsu generate color",""],
+];
+
+const CAT_CLS = {
+  kimlik:"cat-kimlik", vergi:"cat-vergi", isveren:"cat-isveren",
+  sigorta:"cat-sigorta", isim:"cat-isim", belge:"cat-belge",
+  demografik:"cat-demografik", finansal:"cat-finansal",
+  iletisim:"cat-iletisim", meta:"cat-meta",
+  bankacilik:"cat-bankacilik", kurumsal:"cat-kurumsal",
+  saglik:"cat-saglik", ticaret:"cat-ticaret",
+  rfid:"cat-rfid", nfc:"cat-nfc", ir:"cat-ir",
+  barkod:"cat-barkod", telecom:"cat-telecom",
+  securities:"cat-securities", crypto:"cat-crypto",
+  ecommerce:"cat-ecommerce", location:"cat-location",
+  social:"cat-social", guvenlik:"cat-guvenlik",
+};
+
+function buildTable() {
+  const cats = new Set(); const sel = document.getElementById('catFilter');
+  const tbody = document.getElementById('refBody');
+  tbody.innerHTML = '';
+  ROWS.forEach(([fn,cat,catCls,loc,extra,out,cli,locales]) => {
+    cats.add(cat);
+    const lc_badges = locales ? locales.split(' ').map(l=>`<span class="lc lc-${l}">${l}</span>`).join('') : '<span class="col-locale"><span class="badge-no">—</span></span>';
+    const tr = document.createElement('tr');
+    tr.dataset.fn = fn; tr.dataset.cat = cat; tr.dataset.locales = locales||'';
+    tr.innerHTML = `
+      <td class="col-fn"><code>${fn}</code></td>
+      <td class="col-cat"><span class="pill ${CAT_CLS[catCls]||''}">${cat}</span></td>
+      <td class="col-locale">${lc_badges}</td>
+      <td class="col-extra">${extra!=='—'?`<code>${extra}</code>`:'—'}</td>
+      <td class="col-output"><code>${out}</code></td>
+      <td class="col-cli"><code>${cli}</code></td>`;
+    tbody.appendChild(tr);
+  });
+  [...cats].sort().forEach(c => {
+    const o = document.createElement('option'); o.value=c; o.textContent=c; sel.appendChild(o);
+  });
+  updateCount(ROWS.length);
+}
+
+function filterTable() {
+  const q   = document.getElementById('searchBox').value.toLowerCase();
+  const cat = document.getElementById('catFilter').value;
+  const loc = document.getElementById('locFilter').value;
+  let vis = 0;
+  document.querySelectorAll('#refBody tr').forEach(tr => {
+    const match =
+      (!q   || tr.dataset.fn.includes(q) || tr.innerHTML.toLowerCase().includes(q)) &&
+      (!cat || tr.dataset.cat === cat) &&
+      (!loc || tr.dataset.locales.includes(loc));
+    tr.style.display = match ? '' : 'none';
+    if (match) vis++;
+  });
+  updateCount(vis);
+}
+
+function resetFilters() {
+  document.getElementById('searchBox').value='';
+  document.getElementById('catFilter').value='';
+  document.getElementById('locFilter').value='';
+  filterTable();
+}
+
+function updateCount(n) {
+  document.getElementById('rowCount').textContent = `${n} / ${ROWS.length} parameters`;
+}
+
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+buildTable();
+</script>
+</body>
+</html>
