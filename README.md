@@ -3,7 +3,7 @@
 **The Algorithmic Mock Data Engine for Fintech & Cross-Border Testing.**  
 *Developed by [Altan Sezer Ayan](https://github.com/altansayan)*
 
-`mock-jutsu-api` generates legally-structured fake data for 6 countries with real regulatory algorithms — TCKN checksums, Luhn-valid cards, VIN check digits, NHS numbers, ABA routing validation, barcode check digits, IMEI Luhn, and financial market identifiers (ISIN, CUSIP, SEDOL, LEI). **810 tests. Zero false positives.**
+`mock-jutsu-api` generates legally-structured fake data for 6 countries with real regulatory algorithms — TCKN checksums, Luhn-valid cards, VIN check digits, NHS numbers, ABA routing validation, barcode check digits, IMEI Luhn, financial market identifiers (ISIN, CUSIP, SEDOL, LEI), and crypto addresses (BTC P2PKH, ETH EIP-55). **854 tests. Zero false positives.**
 
 ---
 
@@ -23,6 +23,7 @@
 | Barcode: EAN-13/8, UPC-A, ISBN, GS1-128 (GS1 MOD-10) | ✅ | ❌ |
 | Telecom: IMEI, ICCID, IMSI, MSISDN (3GPP/ITU-T) | ✅ | ❌ |
 | Securities: ISIN (ISO 6166), CUSIP, SEDOL, LEI (ISO 17442) | ✅ | ❌ |
+| Crypto: BTC P2PKH Base58Check, ETH EIP-55 Keccak-256 | ✅ | ❌ |
 
 ---
 
@@ -107,7 +108,7 @@ mockjutsu generate swift --locale UK
 
 ---
 
-## 📋 All 131+ Data Types
+## 📋 All 136+ Data Types
 
 ### 👤 Identity
 
@@ -307,6 +308,29 @@ jutsu.generate('lei')                  # "5299000T8BM49AURS11" — MOD 97-10 val
 
 ---
 
+### ₿ Crypto / Web3
+
+Standards: **BTC P2PKH Base58Check (SHA256d)**, **EIP-55 Keccak-256 mixed-case checksum**
+
+| Type | Output | Algorithm |
+|:---|:---|:---|
+| `btc_address` | `1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf` | P2PKH: v0x00 + 20-byte hash + SHA256d checksum → Base58 |
+| `eth_address` | `0x5aAeb6053F3E94C9b9A09f...` | EIP-55: 20-byte hex + Keccak-256 mixed-case |
+| `crypto_address` | `(btc or eth)` | `currency='btc'` (default) or `currency='eth'` |
+| `tx_hash` | `a1b2c3...` (64 hex) | BTC: plain 64-char hex; ETH: `0x` + 64-char hex |
+| `block_hash` | `0x+64 hex` | Same format as tx_hash per chain |
+
+```python
+jutsu.generate('btc_address')                       # "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2"
+jutsu.generate('eth_address')                       # "0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed"
+jutsu.generate('crypto_address', currency='eth')    # ETH EIP-55 address
+jutsu.generate('tx_hash', currency='btc')           # "a1b2c3d4...64hex"
+jutsu.generate('tx_hash', currency='eth')           # "0xa1b2c3d4...64hex"
+jutsu.generate('block_hash', currency='btc')        # "00000000...64hex"
+```
+
+---
+
 ### ⚙️ Tech / System
 
 | Type | Output | Notes |
@@ -445,8 +469,9 @@ mock-jutsu-api/
 │       ├── iot.py               # RFID (EPC SGTIN-96), NFC (NDEF/APDU), IR (NEC/RC-5/Pronto)
 │       ├── barcode.py           # EAN-13/8, UPC-A, ISBN-13/10, GS1-128 (GS1 v24.0)
 │       ├── telecom.py           # IMEI, ICCID, IMSI, MSISDN (3GPP TS 23.003 / ITU-T)
-│       └── financial_markets.py # ISIN, CUSIP, SEDOL, LEI (ISO 6166 / ISO 17442)
-├── tests/test_generators.py     # 810 tests
+│       ├── financial_markets.py # ISIN, CUSIP, SEDOL, LEI (ISO 6166 / ISO 17442)
+│       └── crypto.py            # BTC P2PKH, ETH EIP-55, tx_hash, block_hash
+├── tests/test_generators.py     # 854 tests
 └── reports/
     ├── test_report.html
     └── test_results.json
@@ -457,9 +482,9 @@ mock-jutsu-api/
 ## ✅ Test Coverage
 
 ```
-810 passed in 1.5s
+854 passed in 1.65s
 
-110 types × 6 locales = 660 matrix scenarios
+115 types × 6 locales = 690 matrix scenarios
 + algorithmic validation tests
 
 Algorithms verified:
@@ -478,6 +503,8 @@ Algorithms verified:
   MSISDN E.164 (ITU-T) · IMEI2 hyphenated display
   ISIN Luhn MOD-10 (ISO 6166:2021) · CUSIP check (ABA)
   SEDOL weighted check (LSE) · LEI MOD 97-10 (ISO 17442)
+  BTC P2PKH Base58Check (SHA256d) · ETH EIP-55 (Keccak-256)
+  Keccak-256 pure Python (vector: keccak256('')=c5d2460...)
 ```
 
 ---

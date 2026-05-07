@@ -18,6 +18,7 @@ from .generators.iot           import IoTGenerator
 from .generators.barcode       import BarcodeGenerator
 from .generators.telecom       import TelecomGenerator
 from .generators.financial_markets import FinancialMarketsGenerator
+from .generators.crypto            import CryptoGenerator
 
 _IDENTITY_TYPES = {
     'tckn', 'ykn', 'taxid', 'vkn', 'nationalid', 'ssn', 'nin',
@@ -90,6 +91,10 @@ _SECURITIES_TYPES = {
     'isin', 'cusip', 'sedol', 'lei',
 }
 
+_CRYPTO_TYPES = {
+    'btc_address', 'eth_address', 'crypto_address', 'tx_hash', 'block_hash',
+}
+
 EMAIL_DOMAINS_FOR_PROFILE = {
     "TR": ["gmail.com", "hotmail.com", "yahoo.com", "outlook.com"],
     "US": ["gmail.com", "yahoo.com", "outlook.com", "icloud.com"],
@@ -101,7 +106,7 @@ EMAIL_DOMAINS_FOR_PROFILE = {
 
 
 class MockJutsuCore:
-    """Master orchestrator — 6 locales, 131+ data types."""
+    """Master orchestrator — 6 locales, 136+ data types."""
 
     def __init__(self, locale='TR'):
         self.locale     = str(locale).upper()
@@ -117,6 +122,7 @@ class MockJutsuCore:
         self.barcode    = BarcodeGenerator()
         self.telecom    = TelecomGenerator()
         self.securities = FinancialMarketsGenerator()
+        self.crypto     = CryptoGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -155,6 +161,8 @@ class MockJutsuCore:
             return self.telecom.generate(dt, locale=locale, **kwargs)
         if dt in _SECURITIES_TYPES:
             return self.securities.generate(dt, locale=locale, **kwargs)
+        if dt in _CRYPTO_TYPES:
+            return self.crypto.generate(dt, **kwargs)
 
         return f"ERROR: Unknown DataType '{dt}'"
 

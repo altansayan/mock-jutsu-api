@@ -41,11 +41,11 @@ def _print_banner() -> None:
 
     body.append("\n")
     body.append("Algorithmic Mock Data Engine\n", style="bold white")
-    body.append("131+ Types", style="cyan")
+    body.append("136+ Types", style="cyan")
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("810 Tests\n", style="cyan")
+    body.append("854 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan - A.S.A\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -225,6 +225,12 @@ _REFERENCE = [
     ("cusip",         "Securities",  False, "037833100",              "generate cusip"),
     ("sedol",         "Securities",  False, "0263494",                "generate sedol"),
     ("lei",           "Securities",  False, "529900T8BM49AURSDO55",  "generate lei"),
+    # Crypto / Web3
+    ("btc_address",    "Crypto",     False, "1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf",  "generate btc_address"),
+    ("eth_address",    "Crypto",     False, "0x5aAeb6053F3E94C9b9A0...",           "generate eth_address"),
+    ("crypto_address", "Crypto",     False, "(btc or eth)",                        "generate crypto_address --currency eth"),
+    ("tx_hash",        "Crypto",     False, "a1b2c3...64hex",                      "generate tx_hash --currency btc"),
+    ("block_hash",     "Crypto",     False, "0x+64hex (eth)",                      "generate block_hash --currency eth"),
 ]
 
 # Category display order
@@ -232,7 +238,7 @@ _CAT_ORDER = [
     "Identity", "Name", "Document", "Demographic",
     "Financial", "Contact", "Banking", "Corporate",
     "Health", "Commerce", "Meta", "RFID", "NFC", "IR",
-    "Barcode", "Telecom", "Securities",
+    "Barcode", "Telecom", "Securities", "Crypto",
 ]
 
 _CAT_COLORS = {
@@ -253,13 +259,14 @@ _CAT_COLORS = {
     "Barcode":     "bright_yellow",
     "Telecom":     "bright_magenta",
     "Securities":  "bright_cyan",
+    "Crypto":      "bright_green",
 }
 
 
 @click.group(invoke_without_command=True)
 @click.pass_context
 def main(ctx):
-    """mock-jutsu -- Algorithmic Mock Data Engine (6 Locales, 131+ Types)"""
+    """mock-jutsu -- Algorithmic Mock Data Engine (6 Locales, 136+ Types)"""
     if ctx.invoked_subcommand is None:
         _print_banner()
         click.echo(ctx.get_help())
@@ -282,7 +289,7 @@ def generate(data_type, locale, network):
 @main.command(name='list')
 @click.option('--cat', default='', help='Filter by category  e.g. Financial, NFC, RFID, IR')
 def list_types(cat):
-    """List all 131+ data types with CLI usage examples."""
+    """List all 136+ data types with CLI usage examples."""
     # Column widths
     W_TYPE = 20
     W_EX   = 24

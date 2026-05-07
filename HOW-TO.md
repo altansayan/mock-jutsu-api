@@ -1,6 +1,6 @@
 ﻿# mock-jutsu — Kullanım Kılavuzu (How-To)
 
-> **mock-jutsu** — 6 locale (TR/US/UK/DE/FR/RU), 131+ parametre tipi, yasal algoritmalarla mock veri üretimi.
+> **mock-jutsu** — 6 locale (TR/US/UK/DE/FR/RU), 136+ parametre tipi, yasal algoritmalarla mock veri üretimi.
 > Developer: Altan Sezer Ayan - A.S.A · [github.com/altansayan](https://github.com/altansayan)
 
 ---
@@ -19,6 +19,7 @@
 10. [Barkod Fonksiyonları](#10-barkod-fonksiyonları)
 11. [Telekomünikasyon Fonksiyonları](#11-telekomünikasyon-fonksiyonları)
 12. [Finansal Piyasalar (Menkul Kıymet)](#12-finansal-piyasalar-menkul-kıymet)
+13. [Kripto Para & Web3](#13-kripto-para--web3)
 
 ---
 
@@ -692,6 +693,11 @@ Bu fonksiyonlar `locale` parametresine göre **farklı ülkenin formatını ve a
 | `cusip` | Securities | Yok | — | `037833100` | `mockjutsu generate cusip` |
 | `sedol` | Securities | Yok | — | `0263494` | `mockjutsu generate sedol` |
 | `lei` | Securities | Yok | — | `529900T8BM49AURSDO55` | `mockjutsu generate lei` |
+| `btc_address` | Crypto | Yok | — | `1A1zP1eP5QGefi2D...` | `mockjutsu generate btc_address` |
+| `eth_address` | Crypto | Yok | — | `0x5aAeb6053F3E9...` | `mockjutsu generate eth_address` |
+| `crypto_address` | Crypto | Yok | `--currency btc\|eth` | `(btc veya eth)` | `mockjutsu generate crypto_address --currency eth` |
+| `tx_hash` | Crypto | Yok | `--currency btc\|eth` | `a1b2c3...64hex` | `mockjutsu generate tx_hash --currency btc` |
+| `block_hash` | Crypto | Yok | `--currency btc\|eth` | `0x+64hex` | `mockjutsu generate block_hash --currency eth` |
 
 ---
 
@@ -856,6 +862,67 @@ jutsu.generate('lei')  # → '529900T8BM49AURSDO55'  (örnek)
 # Algoritma: tüm karakterler sayısala çevrilir (A=10...Z=35),
 # birleştirilir, int(string) % 97 = 1 olmalı.
 # Test vektörü: GLEIF kendi LEI'si 529900T8BM49AURSDO55 → 1 ✓
+```
+
+---
+
+## 13. Kripto Para & Web3
+
+Standart: **BTC P2PKH Base58Check** · **EIP-55 Ethereum Checksum Address** · **32-byte tx/block hash**
+
+### `btc_address` — Bitcoin P2PKH Adresi
+
+Base58Check kodlaması: `version(0x00)` + 20 byte random pubkey hash + SHA256d 4-byte checksum.
+```python
+jutsu.generate('btc_address')
+# → '1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf'  (genesis block coinbase — format örneği)
+# Kural: 25–34 karakter, her zaman '1' ile başlar, sadece Base58 alfabesi (0,O,I,l hariç)
+```
+
+**Algoritma:**
+- `payload = 0x00 || random_20_bytes`
+- `checksum = SHA256(SHA256(payload))[:4]`
+- `address = Base58Encode(payload + checksum)`
+
+### `eth_address` — Ethereum EIP-55 Adresi
+
+20 byte random hash + Keccak-256 mixed-case checksum (EIP-55).
+```python
+jutsu.generate('eth_address')
+# → '0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed'
+# Kural: '0x' + 40 hex karakter, Keccak-256 nibble >= 8 → büyük harf
+
+# Bilinen test vektörleri (EIP-55 spec):
+# 0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed
+# 0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359
+# 0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB
+# 0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb
+```
+
+**Not:** Keccak-256, SHA3-256'dan sadece padding byte'ta farklıdır (Keccak: `0x01`, SHA3: `0x06`).
+
+### `crypto_address` — BTC veya ETH Seçimli
+
+```python
+jutsu.generate('crypto_address')               # → BTC (varsayılan)
+jutsu.generate('crypto_address', currency='btc')  # → BTC P2PKH
+jutsu.generate('crypto_address', currency='eth')  # → ETH EIP-55
+```
+
+### `tx_hash` — İşlem Hash'i
+
+```python
+jutsu.generate('tx_hash')                   # → 64 hex (BTC varsayılan)
+jutsu.generate('tx_hash', currency='btc')   # → 'a1b2c3d4...64hex'   (lowercase)
+jutsu.generate('tx_hash', currency='eth')   # → '0xa1b2c3d4...64hex' (0x prefix)
+```
+
+### `block_hash` — Blok Hash'i
+
+```python
+jutsu.generate('block_hash')                   # → 64 hex (BTC varsayılan)
+jutsu.generate('block_hash', currency='btc')   # → 64 char lowercase hex
+jutsu.generate('block_hash', currency='eth')   # → '0x' + 64 char lowercase hex
 ```
 
 ---

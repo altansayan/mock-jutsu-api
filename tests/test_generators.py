@@ -1,8 +1,8 @@
 ﻿"""
 mock-jutsu — Full-Coverage Unit Tests
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
-Purpose: Cross-testing 110 parameters across 6 locales (TR, UK, US, DE, FR, RU).
-         660 matrix scenarios + algorithmic validation tests.
+Purpose: Cross-testing 115 parameters across 6 locales (TR, UK, US, DE, FR, RU).
+         690 matrix scenarios + algorithmic validation tests.
 """
 
 import re
@@ -53,6 +53,8 @@ TYPES = [
     'imei', 'imei2', 'iccid', 'imsi', 'msisdn',
     # Financial Markets (4)
     'isin', 'cusip', 'sedol', 'lei',
+    # Crypto / Web3 (5)
+    'btc_address', 'eth_address', 'crypto_address', 'tx_hash', 'block_hash',
 ]
 
 # ---------------------------------------------------------------------------
@@ -72,7 +74,7 @@ def _luhn_valid(number_str):
 
 
 # ---------------------------------------------------------------------------
-# Comprehensive Matrix — 110 types × 6 locales = 660 scenarios
+# Comprehensive Matrix — 115 types × 6 locales = 690 scenarios
 # ---------------------------------------------------------------------------
 
 @pytest.mark.parametrize("locale", LOCALES)
@@ -1568,3 +1570,244 @@ def test_lei_checksum():
 def test_lei_known_vector():
     """GLEIF's own LEI must pass the ISO 17442 checksum validator."""
     assert _lei_check_valid('529900T8BM49AURSDO55'), "GLEIF LEI 529900T8BM49AURSDO55 failed"
+
+
+# ---------------------------------------------------------------------------
+# Crypto / Web3 — BTC / ETH Algorithmic Validation
+# ---------------------------------------------------------------------------
+
+_BTC_BASE58_ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
+_BTC_FORBIDDEN_CHARS = set('0OIl')
+
+
+def _btc_base58check_valid(addr: str) -> bool:
+    """Verify Bitcoin P2PKH mainnet Base58Check address — BIP-16 / SHA256d checksum.
+
+    Algorithm:
+      1. Decode Base58 → 25 bytes (1 version + 20 hash + 4 checksum)
+      2. checksum == SHA256(SHA256(version+hash))[:4]
+      3. version byte == 0x00 (mainnet P2PKH → address starts with '1')
+
+    Base58 alphabet: 123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz
+    Forbidden: 0, O, I, l  (visually ambiguous characters)
+    """
+    import hashlib
+    if not addr or not addr.startswith('1'):
+        return False
+    if not all(c in _BTC_BASE58_ALPHABET for c in addr):
+        return False
+    # Base58 decode
+    n = 0
+    for c in addr:
+        n = n * 58 + _BTC_BASE58_ALPHABET.index(c)
+    try:
+        decoded = n.to_bytes(25, 'big')
+    except OverflowError:
+        return False
+    if decoded[0] != 0x00:
+        return False
+    payload, checksum = decoded[:21], decoded[21:]
+    expected = hashlib.sha256(hashlib.sha256(payload).digest()).digest()[:4]
+    return checksum == expected
+
+
+def _keccak256_test(data: bytes) -> str:
+    """Keccak-256 for test validation — returns lowercase hex string.
+
+    Implements Keccak-f[1600] permutation. Differs from SHA3-256 (NIST FIPS 202)
+    only in padding: Keccak uses 0x01 || 0*80, SHA3 uses 0x06 || 0*80.
+
+    Known vector: keccak256(b'') =
+      c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470
+    """
+    RC = [
+        0x0000000000000001, 0x0000000000008082, 0x800000000000808A,
+        0x8000000080008000, 0x000000000000808B, 0x0000000080000001,
+        0x8000000080008081, 0x8000000000008009, 0x000000000000008A,
+        0x0000000000000088, 0x0000000080008009, 0x000000008000000A,
+        0x000000008000808B, 0x800000000000008B, 0x8000000000008089,
+        0x8000000000008003, 0x8000000000008002, 0x8000000000000080,
+        0x000000000000800A, 0x800000008000000A, 0x8000000080008081,
+        0x8000000000008080, 0x0000000080000001, 0x8000000080008008,
+    ]
+    ROT = [
+        [ 0, 36,  3, 41, 18],
+        [ 1, 44, 10, 45,  2],
+        [62,  6, 43, 15, 61],
+        [28, 55, 25, 21, 56],
+        [27, 20, 39,  8, 14],
+    ]
+    M = 0xFFFFFFFFFFFFFFFF
+
+    def rot(x, n):
+        return ((x << n) | (x >> (64 - n))) & M
+
+    def keccak_f(s):
+        for rc in RC:
+            C = [s[x] ^ s[x+5] ^ s[x+10] ^ s[x+15] ^ s[x+20] for x in range(5)]
+            D = [C[(x-1) % 5] ^ rot(C[(x+1) % 5], 1) for x in range(5)]
+            s = [s[i] ^ D[i % 5] for i in range(25)]
+            B = [0] * 25
+            for x in range(5):
+                for y in range(5):
+                    B[y + 5*((2*x + 3*y) % 5)] = rot(s[x + 5*y], ROT[x][y])
+            s = [B[i] ^ (~B[(i%5+1)%5 + (i//5)*5] & B[(i%5+2)%5 + (i//5)*5]) for i in range(25)]
+            s[0] ^= rc
+        return s
+
+    rate = 136  # bytes (Keccak-256: rate=1088 bits)
+    msg = bytearray(data)
+    # Keccak padding (NOT SHA3: 0x01, not 0x06)
+    msg.append(0x01)
+    while len(msg) % rate:
+        msg.append(0x00)
+    msg[-1] |= 0x80
+
+    state = [0] * 25
+    for block in range(0, len(msg), rate):
+        chunk = msg[block:block + rate]
+        for i in range(rate // 8):
+            state[i] ^= int.from_bytes(chunk[i*8:(i+1)*8], 'little')
+        state = keccak_f(state)
+
+    return b''.join(s.to_bytes(8, 'little') for s in state[:4]).hex()
+
+
+def _eth_eip55_valid(addr: str) -> bool:
+    """Verify Ethereum EIP-55 mixed-case checksum address.
+
+    Algorithm (EIP-55):
+      hex_lower = addr[2:].lower()
+      keccak_hash = Keccak-256(hex_lower.encode('ascii'))
+      For each char: uppercase if hash nibble >= 8, lowercase if < 8.
+
+    Known EIP-55 test vectors (from EIP-55 spec):
+      0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed
+      0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359
+      0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB
+      0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb
+    """
+    if not re.match(r'^0x[0-9A-Fa-f]{40}$', addr):
+        return False
+    hex_lower = addr[2:].lower()
+    keccak = _keccak256_test(hex_lower.encode('ascii'))
+    expected = ''.join(
+        c.upper() if int(keccak[i], 16) >= 8 else c.lower()
+        for i, c in enumerate(hex_lower)
+    )
+    return addr[2:] == expected
+
+
+# ── BTC ───────────────────────────────────────────────────────────────────
+
+def test_btc_address_format():
+    """BTC P2PKH must start with '1', be 25–34 chars, Base58 alphabet only."""
+    for _ in range(100):
+        val = str(jutsu.generate('btc_address'))
+        assert val.startswith('1'), f"BTC address must start with '1': {val}"
+        assert 25 <= len(val) <= 34, f"BTC address length out of range: {val}"
+        assert all(c in _BTC_BASE58_ALPHABET for c in val), \
+            f"BTC address contains invalid Base58 char: {val}"
+
+
+def test_btc_address_no_ambiguous_chars():
+    """BTC address must never contain 0, O, I, l (Base58 excludes them)."""
+    for _ in range(200):
+        val = str(jutsu.generate('btc_address'))
+        assert not _BTC_FORBIDDEN_CHARS.intersection(val), \
+            f"BTC address contains ambiguous char: {val}"
+
+
+def test_btc_address_base58check():
+    """BTC P2PKH address must pass SHA256d Base58Check validation."""
+    for _ in range(100):
+        val = str(jutsu.generate('btc_address'))
+        assert _btc_base58check_valid(val), f"BTC Base58Check failed: {val}"
+
+
+# ── ETH ───────────────────────────────────────────────────────────────────
+
+def test_keccak256_empty_string():
+    """Keccak-256('') must equal the known reference vector."""
+    expected = 'c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470'
+    assert _keccak256_test(b'') == expected, \
+        f"Keccak-256 empty-string vector failed: {_keccak256_test(b'')}"
+
+
+def test_eth_address_format():
+    """ETH address must be '0x' + exactly 40 hex characters."""
+    for _ in range(100):
+        val = str(jutsu.generate('eth_address'))
+        assert re.match(r'^0x[0-9A-Fa-f]{40}$', val), \
+            f"ETH address format wrong: {val}"
+
+
+def test_eth_address_eip55():
+    """ETH address must pass EIP-55 Keccak-256 mixed-case checksum."""
+    for _ in range(100):
+        val = str(jutsu.generate('eth_address'))
+        assert _eth_eip55_valid(val), f"ETH EIP-55 checksum failed: {val}"
+
+
+def test_eth_eip55_known_vectors():
+    """EIP-55 spec test vectors must pass the validator."""
+    known = [
+        '0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed',
+        '0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359',
+        '0xdbF03B407c01E7cD3CBea99509d93f8DDDC8C6FB',
+        '0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb',
+    ]
+    for addr in known:
+        assert _eth_eip55_valid(addr), f"Known EIP-55 address failed: {addr}"
+
+
+# ── crypto_address ────────────────────────────────────────────────────────
+
+def test_crypto_address_btc_default():
+    """crypto_address with currency='btc' must return a valid BTC address."""
+    for _ in range(50):
+        val = str(jutsu.generate('crypto_address', currency='btc'))
+        assert _btc_base58check_valid(val), f"crypto_address btc failed: {val}"
+
+
+def test_crypto_address_eth():
+    """crypto_address with currency='eth' must return a valid ETH EIP-55 address."""
+    for _ in range(50):
+        val = str(jutsu.generate('crypto_address', currency='eth'))
+        assert _eth_eip55_valid(val), f"crypto_address eth failed: {val}"
+
+
+# ── tx_hash / block_hash ──────────────────────────────────────────────────
+
+def test_tx_hash_btc_format():
+    """BTC tx_hash must be exactly 64 lowercase hex characters."""
+    for _ in range(50):
+        val = str(jutsu.generate('tx_hash', currency='btc'))
+        assert re.match(r'^[0-9a-f]{64}$', val), f"BTC tx_hash format wrong: {val}"
+
+
+def test_tx_hash_eth_format():
+    """ETH tx_hash must be '0x' + exactly 64 lowercase hex characters."""
+    for _ in range(50):
+        val = str(jutsu.generate('tx_hash', currency='eth'))
+        assert re.match(r'^0x[0-9a-f]{64}$', val), f"ETH tx_hash format wrong: {val}"
+
+
+def test_block_hash_btc_format():
+    """BTC block_hash must be exactly 64 lowercase hex characters."""
+    for _ in range(50):
+        val = str(jutsu.generate('block_hash', currency='btc'))
+        assert re.match(r'^[0-9a-f]{64}$', val), f"BTC block_hash format wrong: {val}"
+
+
+def test_block_hash_eth_format():
+    """ETH block_hash must be '0x' + exactly 64 lowercase hex characters."""
+    for _ in range(50):
+        val = str(jutsu.generate('block_hash', currency='eth'))
+        assert re.match(r'^0x[0-9a-f]{64}$', val), f"ETH block_hash format wrong: {val}"
+
+
+def test_tx_hash_high_entropy():
+    """tx_hash must not repeat across 200 calls."""
+    hashes = {str(jutsu.generate('tx_hash')) for _ in range(200)}
+    assert len(hashes) >= 195, f"tx_hash entropy too low: {len(hashes)} unique in 200"
