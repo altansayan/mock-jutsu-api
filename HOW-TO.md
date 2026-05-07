@@ -23,7 +23,7 @@
 14. [E-Ticaret](#14-e-ticaret)
 15. [Konum & Coğrafya](#15-konum--coğrafya)
 16. [Sosyal Medya](#16-sosyal-medya)
-17. [CLI Komutları — Profile, Company, Bulk, Export](#17-cli-komutları--profile-company-bulk-export)
+17. [CLI Komutları — Profile, Company, Bulk, Export, Template](#17-cli-komutları--profile-company-bulk-export-template)
 18. [Güvenlik & Kimlik Doğrulama](#18-güvenlik--kimlik-doğrulama)
 19. [Gizlilik & Maskeleme](#19-gizlilik--maskeleme)
 20. [Template — Çoklu Tip Kombinasyonu](#20-template--çoklu-tip-kombinasyonu)
@@ -1089,7 +1089,7 @@ jutsu.generate('follower_count')  # → '14273'
 
 ---
 
-## 17. CLI Komutları — Profile, Company, Bulk, Export
+## 17. CLI Komutları — Profile, Company, Bulk, Export, Template
 
 ### `mockjutsu profile` — Kişi Profili
 
@@ -1126,6 +1126,18 @@ mockjutsu export fullname iban --count 10 --format csv
 # SQL INSERT
 mockjutsu export fullname tckn iban --count 3 --format sql --table users
 ```
+
+### `mockjutsu template` — Çoklu Tip Kombinasyonu
+
+```bash
+mockjutsu template nin snils cardtype address_street          # 1 kayıt (dict)
+mockjutsu template uuid phone iban --count 5                  # 5 kayıt (array)
+mockjutsu template tckn fullname phone --locale TR --count 3  # locale ile
+mockjutsu template uuid nin snils --count 10 --format csv     # CSV çıktı
+mockjutsu template firstname lastname iban --format sql --table users  # SQL INSERT
+```
+
+> Detaylı kullanım: [Bölüm 20 — Template](#20-template--çoklu-tip-kombinasyonu)
 
 ### `generate` — Ek Parametreler
 
