@@ -324,17 +324,18 @@ def main(ctx):
 
 @main.command()
 @click.argument('data_type', required=False)
-@click.option('--locale',   default='TR',   help='Locale: TR UK US DE FR RU')
-@click.option('--network',  default='visa', help='Card network: visa mc amex troy mir')
-@click.option('--currency', default='btc',  help='Crypto currency: btc eth')
-@click.option('--carrier',  default='usps', help='Tracking carrier: usps ups fedex')
-def generate(data_type, locale, network, currency, carrier):
+@click.option('--locale',    default='TR',     help='Locale: TR UK US DE FR RU')
+@click.option('--network',   default='visa',   help='Card network: visa mc amex troy mir')
+@click.option('--currency',  default='btc',    help='Crypto currency: btc eth')
+@click.option('--carrier',   default='usps',   help='Tracking carrier: usps ups fedex')
+@click.option('--algorithm', default='sha256', help='Hash algorithm: md5 sha1 sha224 sha256 sha384 sha512 sha3-224 sha3-256 sha3-384 sha3-512 crc32 adler32 crc16')
+def generate(data_type, locale, network, currency, carrier, algorithm):
     """Generate mock data.  Example: mockjutsu generate tckn --locale TR"""
     if not data_type:
         click.echo("Error: specify a type. Run 'mockjutsu list' to see all types.")
         return
     result = jutsu.generate(data_type, locale=locale, network=network,
-                            currency=currency, carrier=carrier)
+                            currency=currency, carrier=carrier, algorithm=algorithm)
     color  = 'red' if "ERROR" in str(result) else 'green'
     click.echo(click.style(str(result), fg=color, bold=True))
 
