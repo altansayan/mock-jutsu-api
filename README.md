@@ -194,13 +194,21 @@ We cover everything from standard identities to complex financial market identif
 
 ## 🤝 Contributing
 
-`mock-jutsu` thrives on community contributions. Found a checksum we're not validating? A locale we're missing?
+`mock-jutsu` thrives on community contributions. Found a checksum we're not validating? A locale we're missing? We'd love your help!
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingChecksum`)
-3. Commit your Changes (`git commit -m 'feat: Add AmazingChecksum'`)
-4. **Ensure Tests Pass:** `pytest tests/` (Every new algorithm must be covered!)
-5. Push to the Branch and open a Pull Request.
+**🚨 Strict TDD & Performance Mandate**
+To maintain our enterprise-grade quality, this repository mechanically enforces **Test-Driven Development (TDD)**.
+- Every new generator must be fully tested mathematically.
+- Every new generator must pass the `< 1.5ms` performance baseline.
+- **GitHub Actions will automatically block any Pull Request that lacks passing tests.**
+
+Please read our full **[CONTRIBUTING.md](./CONTRIBUTING.md)** guide before starting your work.
+
+### Quick Start for Contributors
+1. Fork the Project & clone it locally.
+2. Install the pre-push safety hook: `python scripts/setup-hooks.py`
+3. Write your test first, then implement your algorithm.
+4. Commit your changes and open a Pull Request!
 
 ---
 
