@@ -2459,3 +2459,411 @@ def test_vehicle_year_wider_range():
     years = {jutsu.generate('vehicle')['year'] for _ in range(500)}
     assert min(years) <= 2010, f"vehicle year never goes below 2010 (min was {min(years)})"
     assert max(years) >= 2020, f"vehicle year never reaches 2020 (max was {max(years)})"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 6A — Identity: SSN / NIN / SNILS
+# ---------------------------------------------------------------------------
+
+def test_ssn_format():
+    """SSN must match DDD-DD-DDDD (US Social Security Number)."""
+    for _ in range(100):
+        val = str(jutsu.generate('ssn'))
+        assert re.match(r'^\d{3}-\d{2}-\d{4}$', val), f"SSN format wrong: {val}"
+
+
+def test_ssn_first_group_range():
+    """SSN first group must be 100–899 (not 000 or 900+)."""
+    for _ in range(100):
+        val = str(jutsu.generate('ssn'))
+        first = int(val[:3])
+        assert 100 <= first <= 899, f"SSN first group out of range: {val}"
+
+
+def test_nin_format():
+    """UK NIN must match 'XX DD DD DD [ABCD]' with valid prefix restrictions."""
+    for _ in range(100):
+        val = str(jutsu.generate('nin'))
+        assert re.match(r'^[A-Z]{2} \d{2} \d{2} \d{2} [ABCD]$', val), \
+            f"NIN format wrong: {val}"
+
+
+def test_nin_prefix_not_forbidden():
+    """UK NIN prefix must not be in forbidden set: BG GB KN NK NT TN ZZ."""
+    forbidden = {'BG', 'GB', 'KN', 'NK', 'NT', 'TN', 'ZZ'}
+    for _ in range(200):
+        val = str(jutsu.generate('nin'))
+        prefix = val[:2]
+        assert prefix not in forbidden, f"NIN has forbidden prefix: {val}"
+
+
+def test_snils_format():
+    """SNILS must match DDD-DDD-DDD DD (Russian insurance number)."""
+    for _ in range(100):
+        val = str(jutsu.generate('snils'))
+        assert re.match(r'^\d{3}-\d{3}-\d{3} \d{2}$', val), f"SNILS format wrong: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 6B — Name: firstname / lastname
+# ---------------------------------------------------------------------------
+
+def test_firstname_nonempty_per_locale():
+    """firstname must return a non-empty string for all locales."""
+    for locale in LOCALES:
+        for _ in range(10):
+            val = str(jutsu.generate('firstname', locale=locale))
+            assert len(val) >= 2, f"firstname too short for {locale}: {val}"
+            assert "ERROR" not in val, f"firstname returned ERROR for {locale}"
+
+
+def test_lastname_nonempty_per_locale():
+    """lastname must return a non-empty string for all locales."""
+    for locale in LOCALES:
+        for _ in range(10):
+            val = str(jutsu.generate('lastname', locale=locale))
+            assert len(val) >= 2, f"lastname too short for {locale}: {val}"
+            assert "ERROR" not in val, f"lastname returned ERROR for {locale}"
+
+
+def test_firstname_is_string():
+    """firstname must not return None or a number."""
+    for _ in range(50):
+        val = jutsu.generate('firstname')
+        assert isinstance(val, str), f"firstname must be str: {type(val)}"
+
+
+def test_lastname_is_string():
+    """lastname must not return None or a number."""
+    for _ in range(50):
+        val = jutsu.generate('lastname')
+        assert isinstance(val, str), f"lastname must be str: {type(val)}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 6C — Document: license
+# ---------------------------------------------------------------------------
+
+def test_license_format():
+    """license must be exactly 6 digits (100000–999999)."""
+    for _ in range(100):
+        val = str(jutsu.generate('license'))
+        assert re.match(r'^\d{6}$', val), f"license format wrong: {val}"
+
+
+def test_license_range():
+    """license must be in range 100000–999999."""
+    for _ in range(100):
+        val = int(jutsu.generate('license'))
+        assert 100000 <= val <= 999999, f"license out of range: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 6D — Financial: card meta types
+# ---------------------------------------------------------------------------
+
+def test_cardnetwork_valid_values():
+    """cardnetwork must be one of the known network names (uppercase)."""
+    valid = {'VISA', 'MC', 'AMEX', 'TROY', 'JCB', 'DISCOVER', 'UNIONPAY', 'MIR', 'MAESTRO'}
+    for _ in range(100):
+        val = str(jutsu.generate('cardnetwork'))
+        assert val in valid, f"cardnetwork unknown value: {val}"
+
+
+def test_cardtype_valid_values():
+    """cardtype must be 'Credit' or 'Debit'."""
+    for _ in range(50):
+        val = str(jutsu.generate('cardtype'))
+        assert val in ('Credit', 'Debit'), f"cardtype invalid: {val}"
+
+
+def test_cardstatus_valid_values():
+    """cardstatus must be 'Active', 'Blocked', or 'Expired'."""
+    for _ in range(50):
+        val = str(jutsu.generate('cardstatus'))
+        assert val in ('Active', 'Blocked', 'Expired'), f"cardstatus invalid: {val}"
+
+
+def test_cardcategory_valid_values():
+    """cardcategory must be 'Classic', 'Gold', 'Platinum', or 'Business'."""
+    for _ in range(50):
+        val = str(jutsu.generate('cardcategory'))
+        assert val in ('Classic', 'Gold', 'Platinum', 'Business'), f"cardcategory invalid: {val}"
+
+
+def test_cardowner_is_uppercase():
+    """cardowner must be an uppercase full name (space-separated, letters only)."""
+    for locale in LOCALES:
+        for _ in range(10):
+            val = str(jutsu.generate('cardowner', locale=locale))
+            assert ' ' in val, f"cardowner must have a space for {locale}: {val}"
+            assert val == val.upper(), f"cardowner must be uppercase for {locale}: {val}"
+
+
+def test_expirymonth_format():
+    """expirymonth must be zero-padded 01–12."""
+    for _ in range(100):
+        val = str(jutsu.generate('expirymonth'))
+        assert re.match(r'^(0[1-9]|1[0-2])$', val), f"expirymonth format wrong: {val}"
+
+
+def test_expiryyear_format():
+    """expiryyear must be a 2-digit string in range 25–30."""
+    for _ in range(100):
+        val = str(jutsu.generate('expiryyear'))
+        assert re.match(r'^\d{2}$', val), f"expiryyear must be 2 digits: {val}"
+        assert 25 <= int(val) <= 30, f"expiryyear out of range: {val}"
+
+
+def test_issuer_nonempty_per_locale():
+    """issuer must return a non-empty string for all locales."""
+    for locale in LOCALES:
+        for _ in range(10):
+            val = str(jutsu.generate('issuer', locale=locale))
+            assert len(val) > 2, f"issuer too short for {locale}: {val}"
+            assert "ERROR" not in val, f"issuer returned ERROR for {locale}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 6E — Contact: phone / address / plate
+# ---------------------------------------------------------------------------
+
+_PHONE_PREFIXES = {
+    'TR': '+90', 'US': '+1', 'UK': '+44', 'DE': '+49', 'FR': '+33', 'RU': '+7',
+}
+
+
+def test_phone_e164_format():
+    """phone must be E.164 format: starts with '+', digits only after '+'."""
+    for locale in LOCALES:
+        for _ in range(20):
+            val = str(jutsu.generate('phone', locale=locale))
+            assert val.startswith('+'), f"phone must start with '+' for {locale}: {val}"
+            assert val[1:].isdigit(), f"phone digits not numeric for {locale}: {val}"
+            assert 10 <= len(val) <= 16, f"phone length out of range for {locale}: {val}"
+
+
+def test_phone_locale_prefix():
+    """phone must start with the correct country code per locale."""
+    for locale, prefix in _PHONE_PREFIXES.items():
+        for _ in range(20):
+            val = str(jutsu.generate('phone', locale=locale))
+            assert val.startswith(prefix), \
+                f"phone prefix wrong for {locale}: expected {prefix}, got {val}"
+
+
+def test_phone_area_nonempty():
+    """phone_area must return a non-empty digit string (carrier/area code)."""
+    for locale in LOCALES:
+        for _ in range(10):
+            val = str(jutsu.generate('phone_area', locale=locale))
+            assert val.isdigit(), f"phone_area must be digits for {locale}: {val}"
+            assert len(val) >= 2, f"phone_area too short for {locale}: {val}"
+
+
+def test_phone_local_nonempty():
+    """phone_local must return a non-empty digit string (local number part)."""
+    for locale in LOCALES:
+        for _ in range(10):
+            val = str(jutsu.generate('phone_local', locale=locale))
+            assert val.isdigit(), f"phone_local must be digits for {locale}: {val}"
+            assert len(val) >= 6, f"phone_local too short for {locale}: {val}"
+
+
+def test_address_city_nonempty():
+    """address_city must return a known city string for all locales."""
+    for locale in LOCALES:
+        for _ in range(10):
+            val = str(jutsu.generate('address_city', locale=locale))
+            assert len(val) >= 2, f"address_city too short for {locale}: {val}"
+            assert "ERROR" not in val, f"address_city returned ERROR for {locale}"
+
+
+def test_address_street_nonempty():
+    """address_street must return a street name string for all locales."""
+    for locale in LOCALES:
+        for _ in range(10):
+            val = str(jutsu.generate('address_street', locale=locale))
+            assert len(val) >= 2, f"address_street too short for {locale}: {val}"
+            assert "ERROR" not in val, f"address_street returned ERROR for {locale}"
+
+
+def test_address_full_structure():
+    """address_full must contain both city and street info for all locales."""
+    for locale in LOCALES:
+        for _ in range(10):
+            val = str(jutsu.generate('address_full', locale=locale))
+            assert len(val) >= 5, f"address_full too short for {locale}: {val}"
+            assert "ERROR" not in val, f"address_full returned ERROR for {locale}"
+
+
+def test_plate_nonempty_per_locale():
+    """plate must return a non-empty string for all locales."""
+    for locale in LOCALES:
+        for _ in range(20):
+            val = str(jutsu.generate('plate', locale=locale))
+            assert len(val) >= 4, f"plate too short for {locale}: {val}"
+            assert "ERROR" not in val, f"plate returned ERROR for {locale}"
+
+
+def test_plate_tr_format():
+    """TR plate must be '{city} {letters} {number}' (e.g. '34 ABC 1234')."""
+    for _ in range(50):
+        val = str(jutsu.generate('plate', locale='TR'))
+        assert re.match(r'^\d{2} [A-Z]{1,3} \d{2,4}$', val), f"TR plate format wrong: {val}"
+
+
+def test_plate_de_format():
+    """DE plate must contain a hyphen between city code and letter/number parts."""
+    for _ in range(50):
+        val = str(jutsu.generate('plate', locale='DE'))
+        assert '-' in val, f"DE plate must contain hyphen: {val}"
+
+
+def test_plate_fr_format():
+    """FR plate must match 'AA-NNN-AA' pattern."""
+    for _ in range(50):
+        val = str(jutsu.generate('plate', locale='FR'))
+        assert re.match(r'^[A-Z]{2}-\d{3}-[A-Z]{2}$', val), f"FR plate format wrong: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 6F — Banking: bic / bank_name
+# ---------------------------------------------------------------------------
+
+def test_bic_format_per_locale():
+    """bic must be 8 or 11 uppercase alphanumeric characters for all locales."""
+    for locale in LOCALES:
+        for _ in range(20):
+            val = str(jutsu.generate('bic', locale=locale))
+            assert re.match(r'^[A-Z0-9]{8}([A-Z0-9]{3})?$', val), \
+                f"BIC format wrong for {locale}: {val}"
+
+
+def test_bank_name_nonempty_per_locale():
+    """bank_name must return a non-empty locale-appropriate string."""
+    for locale in LOCALES:
+        for _ in range(10):
+            val = str(jutsu.generate('bank_name', locale=locale))
+            assert len(val) > 2, f"bank_name too short for {locale}: {val}"
+            assert "ERROR" not in val, f"bank_name returned ERROR for {locale}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 6G — Meta: UUID-like types
+# ---------------------------------------------------------------------------
+
+_UUID4_RE = re.compile(
+    r'^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'
+)
+
+_UUID4_UPPER_RE = re.compile(
+    r'^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$'
+)
+
+
+@pytest.mark.parametrize("dtype", ['uuid', 'requestid', 'correlationid', 'sessionid', 'idempotencykey'])
+def test_uuid_type_format(dtype):
+    """UUID-family types must return a valid UUID v4 string."""
+    for _ in range(50):
+        val = str(jutsu.generate(dtype))
+        assert _UUID4_RE.match(val), f"{dtype} UUID v4 format wrong: {val}"
+
+
+def test_deviceid_uppercase_uuid():
+    """deviceid must be an UPPERCASE UUID v4."""
+    for _ in range(50):
+        val = str(jutsu.generate('deviceid'))
+        assert _UUID4_UPPER_RE.match(val), f"deviceid uppercase UUID v4 format wrong: {val}"
+
+
+def test_timestamp_unix_integer():
+    """timestamp must be a Unix epoch integer > 1_700_000_000 (after Nov 2023)."""
+    for _ in range(50):
+        val = str(jutsu.generate('timestamp'))
+        assert val.isdigit(), f"timestamp must be all digits: {val}"
+        assert int(val) > 1_700_000_000, f"timestamp too old: {val}"
+
+
+def test_timestamp_iso_format():
+    """timestamp_iso must match ISO 8601 datetime format."""
+    for _ in range(50):
+        val = str(jutsu.generate('timestamp_iso'))
+        assert re.match(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}', val), \
+            f"timestamp_iso format wrong: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 6H — Meta: Browser / User Agent / Client
+# ---------------------------------------------------------------------------
+
+def test_browser_name_valid():
+    """browser_name must be one of the 5 known browser names."""
+    valid = {'Chrome', 'Firefox', 'Safari', 'Edge', 'Opera'}
+    for _ in range(100):
+        val = str(jutsu.generate('browser_name'))
+        assert val in valid, f"browser_name unknown: {val}"
+
+
+def test_browser_engine_valid():
+    """browser_engine must be one of Blink, Gecko, or WebKit."""
+    valid = {'Blink', 'Gecko', 'WebKit'}
+    for _ in range(100):
+        val = str(jutsu.generate('browser_engine'))
+        assert val in valid, f"browser_engine unknown: {val}"
+
+
+def test_browser_version_format():
+    """browser_version must match 'MAJOR.0.MINOR.PATCH' (e.g. 125.0.6422.18)."""
+    for _ in range(100):
+        val = str(jutsu.generate('browser_version'))
+        assert re.match(r'^\d{2,3}\.0\.\d{4}\.\d{2}$', val), \
+            f"browser_version format wrong: {val}"
+
+
+def test_useragent_mozilla_prefix():
+    """useragent must start with 'Mozilla/5.0' and contain 'AppleWebKit'."""
+    for _ in range(50):
+        val = str(jutsu.generate('useragent'))
+        assert val.startswith('Mozilla/5.0'), f"useragent must start with Mozilla/5.0: {val}"
+        assert 'AppleWebKit' in val, f"useragent must contain AppleWebKit: {val}"
+
+
+def test_clientversion_semver_format():
+    """clientversion must match semantic version X.Y.Z."""
+    for _ in range(100):
+        val = str(jutsu.generate('clientversion'))
+        assert re.match(r'^\d+\.\d+\.\d+$', val), f"clientversion format wrong: {val}"
+
+
+def test_clientversion_major_range():
+    """clientversion major version must be 1–4."""
+    for _ in range(100):
+        val = str(jutsu.generate('clientversion'))
+        major = int(val.split('.')[0])
+        assert 1 <= major <= 4, f"clientversion major out of range: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 6I — Meta: signature
+# ---------------------------------------------------------------------------
+
+def test_signature_format():
+    """signature must be exactly 64 lowercase hex characters (HMAC-SHA256)."""
+    for _ in range(100):
+        val = str(jutsu.generate('signature'))
+        assert re.match(r'^[0-9a-f]{64}$', val), f"signature format wrong: {val}"
+
+
+def test_signature_deterministic():
+    """signature with same key and payload must produce same output."""
+    v1 = str(jutsu.generate('signature', secret='testkey', payload='hello'))
+    v2 = str(jutsu.generate('signature', secret='testkey', payload='hello'))
+    assert v1 == v2, f"signature not deterministic: {v1} != {v2}"
+
+
+def test_signature_different_keys():
+    """signature with different keys must produce different outputs."""
+    v1 = str(jutsu.generate('signature', secret='key1', payload='hello'))
+    v2 = str(jutsu.generate('signature', secret='key2', payload='hello'))
+    assert v1 != v2, "signature with different keys must differ"
