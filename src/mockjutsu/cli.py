@@ -431,6 +431,7 @@ def list_types(cat):
         ("company",            "Company profile",       "mockjutsu company --locale TR"),
         ("export   <types…>",  "Bulk multi-type",       "mockjutsu export fullname tckn phone --count 5 --format csv"),
         ("list",               "Show all types",        "mockjutsu list  |  mockjutsu list --cat Financial"),
+        ("start-api",          "Start REST API server", "mockjutsu start-api --port 8000"),
     ]
 
     W_CMD  = 22
@@ -515,13 +516,13 @@ def export_cmd(types, count, locale, fmt, table):
     click.echo(jutsu.export(schema, count=count, format=fmt, locale=locale, table=table))
 
 
-@main.command()
-@click.option('--port', default=8000, help='Port for the API server.')
-def serve(port):
-    """Start the FastAPI mock server."""
+@main.command(name='start-api')
+@click.option('--port', default=8000, show_default=True, help='Port to listen on.')
+def start_api(port):
+    """Start the FastAPI mock server.  Example: mockjutsu start-api --port 9000"""
     import uvicorn
     click.echo(click.style(f"\nmock-jutsu API -- port {port}", fg='green', bold=True))
-    from api.main import app
+    from mockjutsu.api.main import app
     uvicorn.run(app, host="0.0.0.0", port=port)
 
 
