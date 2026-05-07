@@ -49,3 +49,7 @@ mockjutsu = "mockjutsu.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-p no:capture"
+testpaths = ["tests"]
