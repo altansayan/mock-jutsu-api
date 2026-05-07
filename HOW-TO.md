@@ -512,6 +512,57 @@ jutsu.generate('signature')
 jutsu.generate('signature', secret='mykey', payload='data')  # özel key/payload
 ```
 
+### 6.6 Hash Fonksiyonları
+
+`algorithm=` parametresiyle 13 farklı hash/checksum algoritması desteklenir:
+
+```python
+# SHA-2 ailesi
+jutsu.generate('hash')                          # SHA-256 (varsayılan) — 64 hex
+jutsu.generate('hash', algorithm='sha224')      # SHA-224 — 56 hex
+jutsu.generate('hash', algorithm='sha384')      # SHA-384 — 96 hex
+jutsu.generate('hash', algorithm='sha512')      # SHA-512 — 128 hex
+
+# SHA-3 ailesi (Keccak)
+jutsu.generate('hash', algorithm='sha3-224')    # SHA3-224 — 56 hex
+jutsu.generate('hash', algorithm='sha3-256')    # SHA3-256 — 64 hex
+jutsu.generate('hash', algorithm='sha3-384')    # SHA3-384 — 96 hex
+jutsu.generate('hash', algorithm='sha3-512')    # SHA3-512 — 128 hex
+
+# Eski algoritmalar
+jutsu.generate('hash', algorithm='md5')         # MD5 — 32 hex
+jutsu.generate('hash', algorithm='sha1')        # SHA-1 — 40 hex
+
+# Checksum
+jutsu.generate('hash', algorithm='crc32')       # CRC-32 — 8 hex (zlib)
+jutsu.generate('hash', algorithm='adler32')     # Adler-32 — 8 hex (zlib)
+jutsu.generate('hash', algorithm='crc16')       # CRC-16/CCITT — 4 hex (pure Python)
+```
+
+| Algoritma | Çıktı uzunluğu | Standart |
+|-----------|---------------|---------|
+| `sha224` | 56 hex | FIPS 180-4 |
+| `sha256` | 64 hex | FIPS 180-4 |
+| `sha384` | 96 hex | FIPS 180-4 |
+| `sha512` | 128 hex | FIPS 180-4 |
+| `sha3-224` | 56 hex | FIPS 202 / Keccak |
+| `sha3-256` | 64 hex | FIPS 202 / Keccak |
+| `sha3-384` | 96 hex | FIPS 202 / Keccak |
+| `sha3-512` | 128 hex | FIPS 202 / Keccak |
+| `md5` | 32 hex | RFC 1321 |
+| `sha1` | 40 hex | FIPS 180-4 |
+| `crc32` | 8 hex | ISO 3309 (zlib) |
+| `adler32` | 8 hex | RFC 1950 (zlib) |
+| `crc16` | 4 hex | CRC-16/CCITT-FALSE |
+
+**CLI:**
+```bash
+mockjutsu generate hash --algorithm sha3-256
+mockjutsu generate hash --algorithm crc32
+mockjutsu generate hash --algorithm adler32
+mockjutsu generate hash --algorithm crc16
+```
+
 ### 6.6 Uygulama Şifresi
 
 ```python

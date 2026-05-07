@@ -422,7 +422,7 @@ jutsu.generate('follower_count')  # "14273"
 | `private_ip` | `192.168.1.42` | RFC 1918 only: 10.x / 172.16-31.x / 192.168.x |
 | `jwt` | `eyJhbGci...` | real base64url, no "Bearer" prefix |
 | `bearertoken` | `Bearer eyJhbGci...` | with prefix |
-| `hash` | `e3b0c44298fc...` | md5/sha1/sha256/sha512 via `algorithm=` |
+| `hash` | `e3b0c44298fc...` | 13 algoritma: md5/sha1/sha2×4/sha3×4/crc32/adler32/crc16 via `algorithm=` |
 | `mac_address` | `A4:C3:F0:3D:8E:21` | 30 real OUI prefixes (expanded) |
 | `url` | `https://mockapi-42.co.uk/api/v1/users` | locale TLD |
 | `domain` | `test-77.com.tr` | locale TLD |
@@ -571,7 +571,7 @@ mock-jutsu-api/
 ## ✅ Test Coverage
 
 ```
-1091 passed
+1103 passed
 
 146 types × 6 locales = 876 matrix scenarios
 + algorithmic validation tests
@@ -601,6 +601,8 @@ Algorithms verified:
   FedEx Mod-11 (weights [3,1,7,3,1,7,3,1,7,3,1])
   WGS-84 locale bounding boxes · IANA timezone · ISO 3166-1
   Twitter/X username spec (4-15 chars, [a-z0-9_])
+  Hash algorithms: SHA-2 family (224/384) · SHA-3 family (224/256/384/512)
+  CRC-32 (zlib ISO 3309) · Adler-32 (RFC 1950) · CRC-16/CCITT (pure Python)
   IPv4 public routing (RFC 1918 / loopback / multicast excluded)
   API key format (sk- prefix + 48 alphanumeric CSPRNG)
   TOTP code 6-digit format · Webhook signature sha256= prefix

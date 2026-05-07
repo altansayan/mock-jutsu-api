@@ -859,6 +859,47 @@ def test_hash_md5_length():
         assert re.match(r'^[0-9a-f]{32}$', val), f"MD5 hash format wrong: {val}"
 
 
+@pytest.mark.parametrize("algo,expected_len", [
+    ("sha224",   56),
+    ("sha384",   96),
+    ("sha3-224", 56),
+    ("sha3-256", 64),
+    ("sha3-384", 96),
+    ("sha3-512", 128),
+    ("crc32",     8),
+    ("adler32",   8),
+    ("crc16",     4),
+])
+def test_hash_algorithm_format(algo, expected_len):
+    """Each hash algorithm must produce the correct hex length output."""
+    for _ in range(30):
+        val = str(jutsu.generate('hash', algorithm=algo))
+        assert re.match(r'^[0-9a-f]+$', val), \
+            f"{algo} output not hex: {val}"
+        assert len(val) == expected_len, \
+            f"{algo} expected {expected_len} chars, got {len(val)}: {val}"
+
+
+def test_hash_crc32_is_deterministic_format():
+    """crc32 output must always be exactly 8 lowercase hex chars."""
+    vals = [str(jutsu.generate('hash', algorithm='crc32')) for _ in range(100)]
+    assert all(re.match(r'^[0-9a-f]{8}$', v) for v in vals), \
+        "crc32 produced non-8-char hex output"
+
+
+def test_hash_crc16_is_4hex():
+    """crc16 output must always be exactly 4 lowercase hex chars."""
+    vals = [str(jutsu.generate('hash', algorithm='crc16')) for _ in range(100)]
+    assert all(re.match(r'^[0-9a-f]{4}$', v) for v in vals), \
+        "crc16 produced non-4-char hex output"
+
+
+def test_hash_sha3_256_entropy():
+    """sha3-256 must not repeat across 100 calls."""
+    hashes = {str(jutsu.generate('hash', algorithm='sha3-256')) for _ in range(100)}
+    assert len(hashes) >= 98, f"sha3-256 entropy too low: {len(hashes)} unique in 100"
+
+
 def test_mac_address_format():
     """mac_address must match XX:XX:XX:XX:XX:XX with uppercase hex."""
     for _ in range(50):

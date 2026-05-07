@@ -6,12 +6,24 @@ Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 import uuid
 import time
 import hmac
+import zlib
 import hashlib
 import base64
 import colorsys
 import secrets
 import string
 from datetime import datetime
+
+
+def _crc16_ccitt(data: bytes) -> int:
+    """CRC-16/CCITT-FALSE — poly 0x1021, init 0xFFFF."""
+    crc = 0xFFFF
+    for byte in data:
+        crc ^= byte << 8
+        for _ in range(8):
+            crc = ((crc << 1) ^ 0x1021) if crc & 0x8000 else crc << 1
+            crc &= 0xFFFF
+    return crc
 
 BROWSERS = [
     {"name": "Chrome",  "engine": "Blink",   "major_range": (120, 126)},
@@ -249,13 +261,37 @@ class MetaGenerator:
         if dt == 'hash':
             algorithm = str(kwargs.get('algorithm', 'sha256')).lower()
             data = secrets.token_bytes(64)
-            algos = {
-                'md5':    hashlib.md5,
-                'sha1':   hashlib.sha1,
-                'sha256': hashlib.sha256,
-                'sha512': hashlib.sha512,
+
+            # Standard hashlib algorithms
+            _HL = {
+                'md5':      hashlib.md5,
+                'sha1':     hashlib.sha1,
+                'sha224':   hashlib.sha224,
+                'sha256':   hashlib.sha256,
+                'sha384':   hashlib.sha384,
+                'sha512':   hashlib.sha512,
+                'sha3-224': hashlib.sha3_224,
+                'sha3-256': hashlib.sha3_256,
+                'sha3-384': hashlib.sha3_384,
+                'sha3-512': hashlib.sha3_512,
             }
-            return algos.get(algorithm, hashlib.sha256)(data).hexdigest()
+            if algorithm in _HL:
+                return _HL[algorithm](data).hexdigest()
+
+            # CRC32 — zlib, unsigned 32-bit → 8 hex chars
+            if algorithm == 'crc32':
+                return f"{zlib.crc32(data) & 0xFFFFFFFF:08x}"
+
+            # Adler-32 — zlib, unsigned 32-bit → 8 hex chars
+            if algorithm == 'adler32':
+                return f"{zlib.adler32(data) & 0xFFFFFFFF:08x}"
+
+            # CRC-16/CCITT-FALSE — pure Python, 16-bit → 4 hex chars
+            if algorithm == 'crc16':
+                return f"{_crc16_ccitt(data):04x}"
+
+            # Fallback: sha256
+            return hashlib.sha256(data).hexdigest()
 
         if dt == 'mac_address':
             oui    = secrets.choice(OUI_PREFIXES)
