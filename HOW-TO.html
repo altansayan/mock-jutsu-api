@@ -118,7 +118,7 @@ td{padding:9px 14px;vertical-align:middle}
 
 <div class="header">
   <h1>mock-jutsu &mdash; How-To Reference</h1>
-  <div class="sub">6 locale &nbsp;&bull;&nbsp; 167+ parametre tipi &nbsp;&bull;&nbsp; Yasal algoritmalar &nbsp;&bull;&nbsp; 1091 test &nbsp;&bull;&nbsp; Developer: Altan Sezer Ayan - A.S.A</div>
+  <div class="sub">6 locale &nbsp;&bull;&nbsp; 174 parametre tipi &nbsp;&bull;&nbsp; Yasal algoritmalar &nbsp;&bull;&nbsp; 1867 test &nbsp;&bull;&nbsp; Developer: Altan Sezer Ayan - A.S.A</div>
 </div>
 
 <div class="tabs">
@@ -130,7 +130,7 @@ td{padding:9px 14px;vertical-align:middle}
 
 <!-- ══════════════════════════════════════════════════════ TAB: REFERANS -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Tüm Parametreler (167+)</div>
+  <div class="stitle">Tüm Parametreler (174)</div>
 
   <div class="toolbar">
     <input type="text" id="searchInput" placeholder="Fonksiyon, CLI komutu veya örnek çıktı ara..." oninput="filterTable()">
@@ -567,6 +567,7 @@ const ROWS = [
   ["crn","Kimlik/UK","kimlik",false,"—","12345678","mockjutsu generate crn","UK"],
   ["paye","Kimlik/UK","kimlik",false,"—","123/AB4567","mockjutsu generate paye","UK"],
   ["ust_id","Kimlik/DE","kimlik",false,"—","DE123456789","mockjutsu generate ust_id","DE"],
+  ["ustid","Kimlik/DE","kimlik",false,"—","DE123456789","mockjutsu generate ustid","DE"],
   ["hrb","Kimlik/DE","kimlik",false,"—","HRB 123456","mockjutsu generate hrb","DE"],
   ["rvn","Kimlik/DE","kimlik",false,"—","65 070892 W 1235","mockjutsu generate rvn","DE"],
   ["siren","Kimlik/FR","kimlik",false,"—","732829320","mockjutsu generate siren","FR"],
@@ -641,6 +642,7 @@ const ROWS = [
   ["apppassword","Meta","meta",false,"—","481302","mockjutsu generate apppassword",""],
   // ── Banking ────────────────────────────────────────────────────────────────
   ["swift","Bankacılık","bankacilik",true,"—","DEUTDEDB","mockjutsu generate swift --locale DE","TR US UK DE FR RU"],
+  ["bic","Bankacılık","bankacilik",true,"—","DEUTDEDB","mockjutsu generate bic --locale DE","TR US UK DE FR RU"],
   ["sort_code","Bankacılık","bankacilik",false,"—","20-00-00","mockjutsu generate sort_code","UK"],
   ["routing_number","Bankacılık","bankacilik",false,"—","021000021","mockjutsu generate routing_number","US"],
   ["bik_code","Bankacılık","bankacilik",false,"—","044525225","mockjutsu generate bik_code","RU"],
@@ -650,9 +652,13 @@ const ROWS = [
   // ── Corporate ──────────────────────────────────────────────────────────────
   ["company_name","Kurumsal","kurumsal",true,"—","Fischer Technologien GmbH","mockjutsu generate company_name --locale DE","TR US UK DE FR RU"],
   ["job_title","Kurumsal","kurumsal",true,"—","Yazılım Mühendisi","mockjutsu generate job_title --locale TR","TR US UK DE FR RU"],
+  ["jobtitle","Kurumsal","kurumsal",true,"—","Yazılım Mühendisi","mockjutsu generate jobtitle --locale TR","TR US UK DE FR RU"],
+  ["occupation","Kurumsal","kurumsal",true,"—","Yazılım Mühendisi","mockjutsu generate occupation --locale TR","TR US UK DE FR RU"],
   // ── Health ─────────────────────────────────────────────────────────────────
   ["blood_type","Sağlık","saglik",false,"—","A+","mockjutsu generate blood_type",""],
+  ["bloodtype","Sağlık","saglik",false,"—","A+","mockjutsu generate bloodtype",""],
   ["nhs_number","Sağlık","saglik",false,"—","943 476 5919","mockjutsu generate nhs_number","UK"],
+  ["nhsnumber","Sağlık","saglik",false,"—","943 476 5919","mockjutsu generate nhsnumber","UK"],
   ["icd10","Sağlık","saglik",false,"—","J18.9","mockjutsu generate icd10",""],
   ["height","Sağlık","saglik",true,"—","178 cm / 5'10\"","mockjutsu generate height --locale US","TR US UK DE FR RU"],
   ["weight","Sağlık","saglik",true,"—","74 kg / 163 lbs","mockjutsu generate weight --locale US","TR US UK DE FR RU"],
@@ -661,7 +667,9 @@ const ROWS = [
   // ── Commerce ───────────────────────────────────────────────────────────────
   ["currency","Ticaret","ticaret",true,"—","{code:TRY, symbol:₺, name:…}","mockjutsu generate currency --locale TR","TR US UK DE FR RU"],
   ["tax_rate","Ticaret","ticaret",true,"—","{name:KDV, standard:20, …}","mockjutsu generate tax_rate --locale DE","TR US UK DE FR RU"],
+  ["taxrate","Ticaret","ticaret",true,"—","{name:KDV, standard:20, …}","mockjutsu generate taxrate --locale DE","TR US UK DE FR RU"],
   ["invoice_number","Ticaret","ticaret",true,"—","INV-2024-001234","mockjutsu generate invoice_number --locale TR","TR US UK DE FR RU"],
+  ["invoicenumber","Ticaret","ticaret",true,"—","INV-2024-001234","mockjutsu generate invoicenumber --locale TR","TR US UK DE FR RU"],
   ["vin","Ticaret","ticaret",true,"—","WBA3A5C5XMD123456","mockjutsu generate vin --locale DE","TR US UK DE FR RU"],
   ["vehicle","Ticaret","ticaret",true,"—","{make, model, year, vin, color, fuel}","mockjutsu generate vehicle --locale TR","TR US UK DE FR RU"],
   // ── RFID ───────────────────────────────────────────────────────────────────
