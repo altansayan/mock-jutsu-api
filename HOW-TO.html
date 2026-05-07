@@ -272,98 +272,97 @@ profile = {
 
     <div class="qs-card">
       <h3>profile() — Tek Çağrıyla Tam Profil</h3>
-      <pre><span class="kw">p</span> = jutsu.profile(locale=<span class="st">'TR'</span>)
-<span class="cm"># {</span>
-<span class="cm">#   "id":         "f47ac10b-58cc-4372-…",</span>
-<span class="cm">#   "firstname":  "Mert",</span>
-<span class="cm">#   "lastname":   "Yılmaz",</span>
-<span class="cm">#   "fullname":   "Mert Yılmaz",</span>
-<span class="cm">#   "gender":     "M",</span>
-<span class="cm">#   "birthdate":  "1990-04-12",</span>
-<span class="cm">#   "nationalid": "34521876543",</span>
-<span class="cm">#   "phone":      "+905321234567",</span>
-<span class="cm">#   "email":      "mert.yilmaz42@gmail.com",</span>
-<span class="cm">#   "iban":       "TR3300061005197864…"</span>
-<span class="cm"># }</span></pre>
+      <pre><span class="cm"># Python</span>
+<span class="kw">p</span> = jutsu.profile(locale=<span class="st">'TR'</span>)
+jutsu.profile(locale=<span class="st">'DE'</span>)           <span class="cm"># Alman profili</span>
+[jutsu.profile() <span class="kw">for</span> _ <span class="kw">in</span> range(<span class="fn">3</span>)]  <span class="cm"># 3 profil</span>
+
+<span class="cm"># CLI</span>
+<span class="kw">mockjutsu profile</span>
+<span class="kw">mockjutsu profile</span> <span class="st">--locale DE</span>
+<span class="kw">mockjutsu profile</span> <span class="st">--locale TR --count 3</span></pre>
     </div>
 
     <div class="qs-card">
       <h3>company() — Tam Şirket Profili</h3>
-      <pre><span class="kw">c</span> = jutsu.company(locale=<span class="st">'DE'</span>)
+      <pre><span class="cm"># Python</span>
+<span class="kw">c</span> = jutsu.company(locale=<span class="st">'DE'</span>)
 <span class="cm"># {</span>
-<span class="cm">#   "name":        "Fischer Technologien GmbH",</span>
-<span class="cm">#   "employer_id": "HRB 48291",</span>
-<span class="cm">#   "tax_id":      "DE273815499",</span>
-<span class="cm">#   "iban":        "DE89370400440532013000",</span>
-<span class="cm">#   "bic":         "DEUTDEDB",</span>
-<span class="cm">#   "phone":       "+4989123456789",</span>
-<span class="cm">#   "address":     "München, Schillerstraße No:12"</span>
-<span class="cm"># }</span></pre>
+<span class="cm">#   "name":    "Fischer Technologien GmbH",</span>
+<span class="cm">#   "tax_id":  "DE273815499",</span>
+<span class="cm">#   "iban":    "DE89370400440532013000",</span>
+<span class="cm">#   "bic":     "DEUTDEDB"</span>
+<span class="cm"># }</span>
+
+<span class="cm"># CLI</span>
+<span class="kw">mockjutsu company</span>
+<span class="kw">mockjutsu company</span> <span class="st">--locale DE</span>
+<span class="kw">mockjutsu company</span> <span class="st">--locale US --count 2</span></pre>
     </div>
 
     <div class="qs-card">
       <h3>bulk() — Binlerce Değer</h3>
-      <pre><span class="cm"># 1000 geçerli TCKN</span>
-ids = jutsu.bulk(<span class="st">'tckn'</span>, count=<span class="fn">1000</span>)
+      <pre><span class="cm"># Python</span>
+ids   = jutsu.bulk(<span class="st">'tckn'</span>, count=<span class="fn">1000</span>)
+cards = jutsu.bulk(<span class="st">'cardnum'</span>, count=<span class="fn">500</span>, network=<span class="st">'visa'</span>)
+names = jutsu.bulk(<span class="st">'company_name'</span>, count=<span class="fn">200</span>, locale=<span class="st">'DE'</span>)
 
-<span class="cm"># 500 Luhn-geçerli Visa kart</span>
-cards = jutsu.bulk(<span class="st">'cardnum'</span>, count=<span class="fn">500</span>,
-                   network=<span class="st">'visa'</span>)
-
-<span class="cm"># 200 Almanya şirket adı</span>
-names = jutsu.bulk(<span class="st">'company_name'</span>,
-                   count=<span class="fn">200</span>, locale=<span class="st">'DE'</span>)</pre>
+<span class="cm"># CLI</span>
+<span class="kw">mockjutsu bulk</span> tckn <span class="st">--count 1000</span>
+<span class="kw">mockjutsu bulk</span> cardnum <span class="st">--count 500</span>
+<span class="kw">mockjutsu bulk</span> company_name <span class="st">--count 200 --locale DE</span></pre>
     </div>
 
     <div class="qs-card">
       <h3>template() — Yapısal Kayıtlar</h3>
-      <pre><span class="cm"># list ile — field adı = tip adı</span>
+      <pre><span class="cm"># Python — list (field adı = tip adı)</span>
 records = jutsu.template(
   [<span class="st">'nin'</span>, <span class="st">'snils'</span>, <span class="st">'cardtype'</span>, <span class="st">'address_street'</span>],
   count=<span class="fn">5</span>, locale=<span class="st">'TR'</span>)
 
-<span class="cm"># dict ile — özel field adları</span>
+<span class="cm"># Python — dict (özel field adları)</span>
 records = jutsu.template({
-  <span class="st">'id'</span>:        <span class="st">'uuid'</span>,
-  <span class="st">'name'</span>:      <span class="st">'fullname'</span>,
-  <span class="st">'card'</span>:      <span class="st">'cardnum'</span>,
-  <span class="st">'amount'</span>:    <span class="st">'balance'</span>,
-  <span class="st">'timestamp'</span>: <span class="st">'timestamp_iso'</span>,
+  <span class="st">'id'</span>: <span class="st">'uuid'</span>, <span class="st">'name'</span>: <span class="st">'fullname'</span>,
+  <span class="st">'card'</span>: <span class="st">'cardnum'</span>, <span class="st">'ts'</span>: <span class="st">'timestamp_iso'</span>,
 }, count=<span class="fn">100</span>, locale=<span class="st">'TR'</span>)
-<span class="cm"># → 100 kayıtlı liste, her biri 5 alanla</span></pre>
+
+<span class="cm"># CLI — istediğin tipleri serbest kombinasyon</span>
+<span class="kw">mockjutsu template</span> nin snils cardtype address_street
+<span class="kw">mockjutsu template</span> uuid phone iban <span class="st">--count 5 --locale DE</span>
+<span class="kw">mockjutsu template</span> tckn iban phone <span class="st">--count 10 --format csv</span>
+<span class="kw">mockjutsu template</span> firstname lastname <span class="st">--format sql --table users</span></pre>
     </div>
 
     <div class="qs-card">
       <h3>export() — Doğrudan DB Seed</h3>
-      <pre>schema = {<span class="st">'id'</span>:<span class="st">'uuid'</span>, <span class="st">'name'</span>:<span class="st">'fullname'</span>,
-           <span class="st">'card'</span>:<span class="st">'cardnum'</span>, <span class="st">'balance'</span>:<span class="st">'balance'</span>}
+      <pre><span class="cm"># Python</span>
+schema = {<span class="st">'id'</span>:<span class="st">'uuid'</span>, <span class="st">'name'</span>:<span class="st">'fullname'</span>, <span class="st">'card'</span>:<span class="st">'cardnum'</span>}
+jutsu.export(schema, count=<span class="fn">500</span>, format=<span class="st">'sql'</span>, table=<span class="st">'users'</span>)
+jutsu.export(schema, count=<span class="fn">1000</span>, format=<span class="st">'csv'</span>)
+jutsu.export(schema, count=<span class="fn">50</span>,   format=<span class="st">'json'</span>)
 
-<span class="cm"># SQL INSERT</span>
-sql = jutsu.export(schema, count=<span class="fn">500</span>,
-  format=<span class="st">'sql'</span>, table=<span class="st">'users'</span>, locale=<span class="st">'TR'</span>)
-
-<span class="cm"># CSV</span>
-csv = jutsu.export(schema, count=<span class="fn">1000</span>,
-  format=<span class="st">'csv'</span>)
-
-<span class="cm"># JSON</span>
-data = jutsu.export(schema, count=<span class="fn">50</span>,
-  format=<span class="st">'json'</span>)</pre>
+<span class="cm"># CLI</span>
+<span class="kw">mockjutsu export</span> uuid fullname cardnum <span class="st">--count 500 --format sql --table users</span>
+<span class="kw">mockjutsu export</span> uuid fullname cardnum <span class="st">--count 1000 --format csv</span>
+<span class="kw">mockjutsu export</span> uuid fullname phone <span class="st">--count 50 --locale TR</span></pre>
     </div>
 
     <div class="qs-card">
       <h3>transaction() — Banka Hareketi</h3>
-      <pre>t = jutsu.generate(<span class="st">'transaction'</span>, locale=<span class="st">'TR'</span>)
+      <pre><span class="cm"># Python</span>
+t = jutsu.generate(<span class="st">'transaction'</span>, locale=<span class="st">'TR'</span>)
 <span class="cm"># {</span>
 <span class="cm">#  "ref":          "TRN20240501-74821",</span>
 <span class="cm">#  "sender_iban":  "TR330006100519…",</span>
-<span class="cm">#  "receiver_iban":"TR920006100519…",</span>
 <span class="cm">#  "amount":       1250.75,</span>
 <span class="cm">#  "currency":     "TRY",</span>
-<span class="cm">#  "description":  "Fatura ödemesi",</span>
-<span class="cm">#  "channel":      "FAST",</span>
 <span class="cm">#  "status":       "COMPLETED"</span>
-<span class="cm"># }</span></pre>
+<span class="cm"># }</span>
+
+<span class="cm"># CLI</span>
+<span class="kw">mockjutsu generate</span> transaction <span class="st">--locale TR</span>
+<span class="kw">mockjutsu generate</span> transaction <span class="st">--locale DE</span>
+<span class="kw">mockjutsu bulk</span> transaction <span class="st">--count 50 --locale TR</span></pre>
     </div>
 
   </div>
