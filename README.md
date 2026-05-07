@@ -35,7 +35,7 @@ QA engineers, Data Scientists, and Fintech developers are tired of test data fai
 
 ---
 
-## 🤔 Why Not Faker?
+## 🤔 Why mock-jutsu?
 
 | Capability | `mock-jutsu` 🥷 | Traditional Mockers 🤡 |
 |:---|:---:|:---:|
@@ -91,7 +91,14 @@ print(person['iban'])       # -> "DE89370400440532013000" (ISO 13616 MOD-97 ✅)
 card = jutsu.generate('cardnum', network='amex') # -> "376956063521007" (Luhn ✅)
 btc = jutsu.generate('btc_address')              # -> "1BvBMSEYstWet..." (Base58Check SHA256d ✅)
 
-# 3. Generate thousands of structured records & export directly to SQL
+# 3. 🎯 Fully Customizable Templates
+# Define your own schema and generate a list of dictionaries instantly
+users = jutsu.template(
+    {'user_id': 'uuid', 'name': 'fullname', 'wallet': 'crypto_address'},
+    count=100, locale='UK'
+)
+
+# 4. Generate thousands of records & export directly to SQL
 sql = jutsu.export(
     {'id': 'uuid', 'name': 'fullname', 'card': 'cardnum', 'bank_account': 'iban'},
     count=5000, format='sql', table='users', locale='TR'
