@@ -194,9 +194,16 @@ class MockJutsuCore:
 
     # ── Template ────────────────────────────────────────────────────────────────
 
-    def template(self, schema: dict, count=10, locale='TR'):
-        """Generate structured records from a {field: data_type} schema."""
+    def template(self, schema, count=10, locale='TR'):
+        """Generate structured records from a schema.
+
+        schema accepts:
+          - dict:        {field_name: data_type}  — custom field names
+          - list/tuple:  [data_type, ...]          — field name equals type name
+        """
         loc = str(locale).upper()
+        if isinstance(schema, (list, tuple)):
+            schema = {t: t for t in schema}
         return [
             {key: self.generate(dt, locale=loc) for key, dt in schema.items()}
             for _ in range(count)

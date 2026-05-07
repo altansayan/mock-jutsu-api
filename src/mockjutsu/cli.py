@@ -449,6 +449,27 @@ def bulk(data_type, count, locale):
     click.echo(json.dumps(results, ensure_ascii=False, indent=2))
 
 
+@main.command()
+@click.argument('types', nargs=-1, required=True)
+@click.option('--count',  default=1,    help='Number of records (default: 1)', type=int)
+@click.option('--locale', default='TR', help='Locale: TR UK US DE FR RU')
+@click.option('--format', 'fmt', default='json', help='Output format: json csv sql')
+@click.option('--table',  default='records', help='Table name (SQL only)')
+def template(types, count, locale, fmt, table):
+    """Combine multiple types into one record.  Example: mockjutsu template nin snils cardtype"""
+    import json
+    if not types:
+        click.echo("Error: specify at least one type. Run 'mockjutsu list' to see all types.", err=True)
+        return
+    schema = {t: t for t in types}
+    if fmt in ('csv', 'sql'):
+        click.echo(jutsu.export(schema, count=count, format=fmt, locale=locale, table=table))
+    else:
+        records = jutsu.template(schema, count=count, locale=locale)
+        output  = records[0] if count == 1 else records
+        click.echo(json.dumps(output, ensure_ascii=False, indent=2))
+
+
 @main.command(name='export')
 @click.argument('types', nargs=-1, required=True)
 @click.option('--count',  default=10,    help='Number of records',           type=int)

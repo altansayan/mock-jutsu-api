@@ -26,6 +26,7 @@
 17. [CLI Komutları — Profile, Company, Bulk, Export](#17-cli-komutları--profile-company-bulk-export)
 18. [Güvenlik & Kimlik Doğrulama](#18-güvenlik--kimlik-doğrulama)
 19. [Gizlilik & Maskeleme](#19-gizlilik--maskeleme)
+20. [Template — Çoklu Tip Kombinasyonu](#20-template--çoklu-tip-kombinasyonu)
 
 ---
 
@@ -1278,6 +1279,151 @@ mockjutsu generate npi
 mockjutsu generate bmi
 mockjutsu generate credit_score
 mockjutsu generate dhl_tracking
+```
+
+---
+
+## 20. Template — Çoklu Tip Kombinasyonu
+
+`template` komutu birden fazla veri tipini aynı anda üretip tek bir kayıt (veya istenen sayıda kayıt dizisi) olarak döndürür. Kullanıcılar istediği tipleri serbest olarak kombine ederek kendi şemasını oluşturabilir.
+
+### 20.1 CLI Kullanımı
+
+```bash
+# Tek kayıt (varsayılan: count=1) — tek JSON nesnesi döner
+mockjutsu template nin snils cardtype address_street
+
+# Çıktı:
+# {
+#   "nin": "AB 12 34 56 C",
+#   "snils": "112-233-445 95",
+#   "cardtype": "Credit",
+#   "address_street": "Atatürk Caddesi"
+# }
+```
+
+```bash
+# Birden fazla kayıt
+mockjutsu template uuid nin snils --count 5
+
+# count > 1 → JSON dizisi döner
+# [
+#   {"uuid": "550e8400-...", "nin": "AB 12 34 56 C", "snils": "112-233-445 95"},
+#   ...
+# ]
+```
+
+```bash
+# Locale ile birlikte
+mockjutsu template firstname lastname phone iban --locale DE
+
+# Çıktı (DE):
+# {
+#   "firstname": "Maximilian",
+#   "lastname": "Müller",
+#   "phone": "+491511234567",
+#   "iban": "DE89370400440532013000"
+# }
+```
+
+```bash
+# CSV formatında çıktı
+mockjutsu template uuid nin snils cardtype --count 10 --format csv
+
+# uuid,nin,snils,cardtype
+# 550e8400-...,AB 12 34 56 C,112-233-445 95,Credit
+# ...
+```
+
+```bash
+# SQL INSERT olarak çıktı
+mockjutsu template firstname lastname phone --count 5 --format sql --table users
+
+# INSERT INTO users (firstname, lastname, phone) VALUES
+#   ('Alp', 'Yılmaz', '+905325551234'),
+#   ...;
+```
+
+### 20.2 Desteklenen Seçenekler
+
+| Seçenek | Varsayılan | Açıklama |
+|---------|-----------|---------|
+| `types` | zorunlu | Bir veya daha fazla tip adı (boşlukla ayrılmış) |
+| `--count` | `1` | Üretilecek kayıt sayısı |
+| `--locale` | `TR` | Locale: TR US UK DE FR RU |
+| `--format` | `json` | Çıktı formatı: `json` `csv` `sql` |
+| `--table` | `records` | SQL tablo adı (yalnızca `--format sql` ile) |
+
+### 20.3 Python API Kullanımı
+
+```python
+from mockjutsu.core import jutsu
+
+# Liste ile — field name = type name
+result = jutsu.template(['nin', 'snils', 'cardtype', 'address_street'], count=1)
+# → [{'nin': 'AB 12 34 56 C', 'snils': '112-233-445 95', ...}]
+
+# Tuple da kabul edilir
+result = jutsu.template(('uuid', 'nin', 'timestamp'), count=3, locale='TR')
+
+# Dict ile — özel field adları (eski davranış korunmuştur)
+result = jutsu.template({'id': 'uuid', 'kimlik': 'nin', 'zaman': 'timestamp'}, count=5)
+
+# Tüm kategorilerden mix
+result = jutsu.template([
+    'firstname', 'lastname',     # Kimlik
+    'tckn', 'nin', 'snils',      # Kimlik numaraları
+    'phone', 'email',            # İletişim
+    'iban', 'bic',               # Bankacılık
+    'cardnum', 'cardtype',       # Finansal
+    'uuid', 'timestamp_iso',     # Meta
+    'address_full',              # Adres
+], count=2, locale='TR')
+```
+
+### 20.4 count=1 vs count>1 Davranışı
+
+```python
+# count=1: Tek dict döner (list içinde)
+records = jutsu.template(['nin', 'snils'], count=1)
+# → [{'nin': '...', 'snils': '...'}]
+single = records[0]  # dict'e erişim
+
+# CLI'da count=1: doğrudan {} döner (array değil)
+# mockjutsu template nin snils → {}
+
+# CLI'da count>1: [...] döner
+# mockjutsu template nin snils --count 3 → [{}, {}, {}]
+```
+
+### 20.5 Desteklenen Tüm Tipler
+
+Template, `mockjutsu list` çıktısındaki tüm 174+ tipi destekler. Kategorilere göre örnek kombinasyonlar:
+
+```bash
+# Kimlik paketi
+mockjutsu template tckn firstname lastname birthdate gender nationality
+
+# Kart paketi
+mockjutsu template cardnum cardnetwork cardtype cardstatus cardcategory cardowner expirymonth expiryyear cvv3 issuer
+
+# API test paketi
+mockjutsu template uuid requestid correlationid timestamp_iso useragent ipv4 api_key
+
+# Fintech kayıt paketi
+mockjutsu template tckn iban bic bank_name phone address_full --locale TR
+
+# Sağlık verisi paketi
+mockjutsu template blood_type icd10 height weight bmi nhs_number npi
+
+# Barkod / Telecom paketi
+mockjutsu template ean13 isbn13 imei iccid imsi msisdn
+
+# Sosyal medya paketi
+mockjutsu template username handle hashtag bio follower_count
+
+# Kripto paketi
+mockjutsu template btc_address eth_address tx_hash block_hash
 ```
 
 ---

@@ -2867,3 +2867,159 @@ def test_signature_different_keys():
     v1 = str(jutsu.generate('signature', secret='key1', payload='hello'))
     v2 = str(jutsu.generate('signature', secret='key2', payload='hello'))
     assert v1 != v2, "signature with different keys must differ"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 7 — Template: list / tuple schema enhancement
+# ---------------------------------------------------------------------------
+
+def test_template_accepts_list():
+    """template() must accept a list of type names (field name = type name)."""
+    result = jutsu.template(['nin', 'snils', 'cardtype', 'address_street'], count=3)
+    assert len(result) == 3
+    for rec in result:
+        assert set(rec.keys()) == {'nin', 'snils', 'cardtype', 'address_street'}
+
+
+def test_template_accepts_tuple():
+    """template() must also accept a tuple of type names."""
+    result = jutsu.template(('uuid', 'nin', 'snils'), count=2)
+    assert len(result) == 2
+    for rec in result:
+        assert set(rec.keys()) == {'uuid', 'nin', 'snils'}
+
+
+def test_template_list_field_names_equal_types():
+    """When a list is passed, each record key must exactly equal the type name."""
+    types = ['uuid', 'timestamp', 'nin', 'snils', 'cardtype']
+    result = jutsu.template(types, count=1)
+    assert set(result[0].keys()) == set(types)
+
+
+def test_template_list_no_errors():
+    """template() with list must not produce ERROR values for any type."""
+    types = ['nin', 'snils', 'cardtype', 'cardnetwork', 'address_street',
+             'uuid', 'timestamp_iso', 'phone', 'iban', 'bic', 'firstname', 'lastname']
+    result = jutsu.template(types, count=5, locale='TR')
+    for rec in result:
+        for key, val in rec.items():
+            assert 'ERROR' not in str(val), f"template list ERROR for {key}: {val}"
+
+
+def test_template_list_count():
+    """template() count parameter must be respected for list schema."""
+    for n in (1, 5, 20):
+        result = jutsu.template(['uuid', 'timestamp'], count=n)
+        assert len(result) == n, f"Expected {n} records, got {len(result)}"
+
+
+def test_template_list_locale_aware():
+    """template() with list: locale-aware types must reflect the locale."""
+    phone_checks = {
+        'TR': '+90', 'US': '+1', 'UK': '+44',
+        'DE': '+49', 'FR': '+33', 'RU': '+7',
+    }
+    for locale, prefix in phone_checks.items():
+        result = jutsu.template(['phone'], count=1, locale=locale)
+        assert result[0]['phone'].startswith(prefix), \
+            f"phone prefix wrong for {locale}: {result[0]['phone']}"
+
+    iban_checks = {'TR': 'TR', 'UK': 'GB', 'DE': 'DE', 'FR': 'FR'}
+    for locale, prefix in iban_checks.items():
+        result = jutsu.template(['iban'], count=1, locale=locale)
+        assert result[0]['iban'].startswith(prefix), \
+            f"IBAN prefix wrong for {locale}: {result[0]['iban']}"
+
+
+def test_template_dict_backward_compat():
+    """template() with dict schema must still work (backward compatibility)."""
+    schema = {'id': 'uuid', 'name': 'fullname', 'phone': 'phone'}
+    result = jutsu.template(schema, count=3, locale='TR')
+    assert len(result) == 3
+    for rec in result:
+        assert set(rec.keys()) == {'id', 'name', 'phone'}
+        assert 'ERROR' not in str(rec['id'])
+
+
+def test_template_list_single_item():
+    """template() with a single-element list must return records with one field."""
+    result = jutsu.template(['uuid'], count=5)
+    assert len(result) == 5
+    for rec in result:
+        assert list(rec.keys()) == ['uuid']
+        assert re.match(r'^[0-9a-f-]{36}$', rec['uuid'])
+
+
+def test_template_list_duplicate_types_deduplicated():
+    """template() list with duplicate type names must keep unique fields only."""
+    result = jutsu.template(['uuid', 'uuid', 'timestamp'], count=1)
+    assert len(result) == 1
+    assert 'uuid' in result[0]
+    assert 'timestamp' in result[0]
+
+
+@pytest.mark.parametrize("types", [
+    # Identity + Name + Document
+    ['tckn', 'ykn', 'ssn', 'nin', 'snils', 'firstname', 'lastname', 'fullname',
+     'passport', 'license', 'age', 'gender', 'birthdate', 'nationality',
+     'tckn_masked', 'ssn_masked', 'inn_individual'],
+    # Financial
+    ['cardnum', 'cardnetwork', 'cardtype', 'cardstatus', 'cardcategory',
+     'cardowner', 'cvv3', 'cvv4', 'pin', 'expiry', 'expirymonth', 'expiryyear',
+     'issuer', 'balance', 'iban', 'credit_score'],
+    # Contact + Banking
+    ['phone', 'phone_country', 'phone_area', 'phone_local',
+     'address_city', 'address_street', 'address_full', 'postalcode', 'plate', 'email',
+     'employer_id', 'insurance_id',
+     'swift', 'bic', 'sort_code', 'routing_number', 'bik_code', 'bank_name', 'sepa_ref'],
+    # Meta + Security
+    ['uuid', 'requestid', 'correlationid', 'sessionid', 'idempotencykey', 'deviceid',
+     'timestamp', 'timestamp_iso', 'clientversion', 'ipv4', 'ipv6',
+     'browser_name', 'browser_version', 'browser_engine', 'useragent', 'signature',
+     'jwt', 'hash', 'mac_address', 'domain', 'url', 'color', 'apppassword',
+     'api_key', 'totp_code', 'webhook_signature', 'public_ip', 'private_ip', 'transaction_id'],
+    # Health + Commerce
+    ['blood_type', 'nhs_number', 'icd10', 'height', 'weight', 'npi', 'bmi',
+     'invoice_number', 'vin'],
+    # Barcode + Telecom + Securities
+    ['ean13', 'ean8', 'upca', 'isbn13', 'isbn10', 'gs1_128',
+     'imei', 'imei2', 'iccid', 'imsi', 'msisdn',
+     'isin', 'cusip', 'sedol', 'lei'],
+    # Crypto + E-Commerce + Location + Social
+    ['btc_address', 'eth_address', 'tx_hash', 'block_hash',
+     'product_name', 'sku', 'order_id', 'category', 'rating', 'dhl_tracking',
+     'latitude', 'longitude', 'timezone', 'country_code', 'coordinates',
+     'username', 'hashtag', 'bio', 'handle', 'follower_count'],
+])
+def test_template_list_all_type_groups(types):
+    """template() list must generate every type without ERROR."""
+    result = jutsu.template(types, count=1, locale='TR')
+    assert len(result) == 1
+    for key in types:
+        assert key in result[0], f"Missing key in template result: {key}"
+        assert 'ERROR' not in str(result[0][key]), f"ERROR for {key}: {result[0][key]}"
+
+
+def test_template_list_complex_types():
+    """template() list: complex dict-returning types (transaction, vehicle, etc.) must not ERROR."""
+    types = ['transaction', 'vehicle', 'currency', 'tax_rate',
+             'rfid_tag', 'nfc_tag', 'ndef_uri', 'ndef_text', 'apdu',
+             'ir_nec', 'ir_rc5', 'ir_raw']
+    result = jutsu.template(types, count=1, locale='TR')
+    assert len(result) == 1
+    for key in types:
+        assert key in result[0], f"Missing key: {key}"
+        assert result[0][key] is not None, f"None for {key}"
+
+
+def test_template_list_all_locales_no_errors():
+    """template() list must work for all 6 locales without ERROR."""
+    types = ['firstname', 'lastname', 'phone', 'iban', 'address_city',
+             'address_street', 'plate', 'company_name', 'job_title']
+    for locale in LOCALES:
+        result = jutsu.template(types, count=2, locale=locale)
+        assert len(result) == 2
+        for rec in result:
+            for key, val in rec.items():
+                assert 'ERROR' not in str(val), \
+                    f"template ERROR for {key} in locale {locale}: {val}"
