@@ -47,6 +47,13 @@ QA engineers, Data Scientists, and Fintech developers are tired of test data fai
 | **Crypto (BTC, ETH addresses)** | ✅ Base58Check / Keccak-256 | ❌ None |
 | **Barcodes (EAN, ISBN, GS1)** | ✅ GS1 v24.0 Valid | ❌ None |
 | **Tracking (USPS/UPS/FedEx)** | ✅ Pub.97 Luhn / Mod-11 | ❌ None |
+| **Banking Routing Codes** | ✅ Valid ABA/Sort/BIC | ⚠️ Format-only |
+| **RFID & NFC Data** | ✅ EPC SGTIN-96, NDEF URI/Text | ❌ None |
+| **Context-Aware Profiles** | ✅ Linked Name ↔ Email ↔ Phone | ⚠️ Disconnected randoms |
+| **SQL/CSV Direct Export** | ✅ Native Support | ❌ Manual generation |
+| **Built-in CLI Tool** | ✅ Out-of-the-box (`mockjutsu generate`) | ❌ Requires custom scripts |
+| **Built-in REST API** | ✅ 1 command (`mockjutsu start-api`) | ❌ Requires custom wrapper |
+| **External Dependencies** | ✅ **Zero** (Pure Python) | ❌ Relies on external files |
 
 ---
 
