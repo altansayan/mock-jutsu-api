@@ -400,7 +400,7 @@ def list_types(cat):
             click.echo(f"{typ_s}{ex_s}{cli_s} {loc_flag}")
             printed += 1
 
-    # Footer
+    # Footer — types summary
     click.echo()
     click.echo(sep)
     click.echo(click.style(
@@ -411,6 +411,39 @@ def list_types(cat):
     click.echo(click.style(
         "  Filter:  mockjutsu list --cat Financial\n"
         "  Filter:  mockjutsu list --cat NFC",
+        fg='bright_black'
+    ))
+    click.echo(sep)
+
+    # Footer — CLI commands reference
+    click.echo()
+    click.echo(click.style("  >> CLI COMMANDS", fg='bright_white', bold=True))
+    click.echo()
+
+    _COMMANDS = [
+        ("generate  <type>",   "Single value",          "mockjutsu generate tckn --locale TR"),
+        ("bulk      <type>",   "Multiple same type",    "mockjutsu bulk iban --count 10 --locale TR"),
+        ("template  <types…>", "Multi-type record",     "mockjutsu template nin snils cardtype address_street"),
+        ("",                   "",                      "mockjutsu template uuid phone iban --count 5"),
+        ("",                   "",                      "mockjutsu template tckn iban --count 10 --format csv"),
+        ("",                   "",                      "mockjutsu template firstname lastname --format sql --table users"),
+        ("profile",            "Person profile",        "mockjutsu profile --locale DE --count 3"),
+        ("company",            "Company profile",       "mockjutsu company --locale TR"),
+        ("export   <types…>",  "Bulk multi-type",       "mockjutsu export fullname tckn phone --count 5 --format csv"),
+        ("list",               "Show all types",        "mockjutsu list  |  mockjutsu list --cat Financial"),
+    ]
+
+    W_CMD  = 22
+    W_DESC = 22
+    for cmd, desc, example in _COMMANDS:
+        cmd_s  = click.style(f"  {cmd:<{W_CMD}}", fg='bright_green', bold=bool(cmd))
+        desc_s = click.style(f"{desc:<{W_DESC}}", fg='bright_black')
+        ex_s   = click.style(example, fg='cyan')
+        click.echo(f"{cmd_s}{desc_s}{ex_s}")
+
+    click.echo()
+    click.echo(click.style(
+        "  template options:  --count N  --locale TR|UK|US|DE|FR|RU  --format json|csv|sql  --table <name>",
         fg='bright_black'
     ))
     click.echo(sep)
