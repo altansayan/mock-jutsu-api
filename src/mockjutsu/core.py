@@ -19,6 +19,7 @@ from .generators.barcode       import BarcodeGenerator
 from .generators.telecom       import TelecomGenerator
 from .generators.financial_markets import FinancialMarketsGenerator
 from .generators.crypto            import CryptoGenerator
+from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
     'tckn', 'ykn', 'taxid', 'vkn', 'nationalid', 'ssn', 'nin',
@@ -93,15 +94,6 @@ _SECURITIES_TYPES = {
 
 _CRYPTO_TYPES = {
     'btc_address', 'eth_address', 'crypto_address', 'tx_hash', 'block_hash',
-}
-
-EMAIL_DOMAINS_FOR_PROFILE = {
-    "TR": ["gmail.com", "hotmail.com", "yahoo.com", "outlook.com"],
-    "US": ["gmail.com", "yahoo.com", "outlook.com", "icloud.com"],
-    "UK": ["gmail.com", "hotmail.co.uk", "yahoo.co.uk", "outlook.com"],
-    "DE": ["gmail.com", "web.de", "gmx.de", "t-online.de"],
-    "FR": ["gmail.com", "laposte.net", "orange.fr", "free.fr"],
-    "RU": ["gmail.com", "mail.ru", "yandex.ru", "rambler.ru"],
 }
 
 
@@ -196,7 +188,7 @@ class MockJutsuCore:
         ln_norm = self._normalize_name(ln)
         sep     = random.choice(['', '.', '_'])
         num     = str(random.randint(1, 999)) if random.random() > 0.5 else ''
-        domain  = random.choice(EMAIL_DOMAINS_FOR_PROFILE.get(l, EMAIL_DOMAINS_FOR_PROFILE["TR"]))
+        domain  = random.choice(EMAIL_DOMAINS.get(l, EMAIL_DOMAINS["TR"]))
         email   = f"{fn_norm}{sep}{ln_norm}{num}@{domain}"
 
         fullname = (

@@ -45,12 +45,12 @@ PLATE_REGIONS = {
 }
 
 EMAIL_DOMAINS = {
-    "TR": ["gmail.com", "hotmail.com", "yahoo.com", "outlook.com", "mynet.com"],
-    "US": ["gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "icloud.com"],
-    "UK": ["gmail.com", "hotmail.co.uk", "yahoo.co.uk", "outlook.com", "btinternet.com"],
-    "DE": ["gmail.com", "web.de", "gmx.de", "t-online.de", "outlook.de"],
-    "FR": ["gmail.com", "laposte.net", "orange.fr", "free.fr", "outlook.fr"],
-    "RU": ["gmail.com", "mail.ru", "yandex.ru", "rambler.ru", "inbox.ru"],
+    "TR": ["testposta.com.tr", "mock-mail.net.tr", "ornek-eposta.tr", "deneme-posta.org"],
+    "US": ["testmail.us", "mockmail.net", "samplemail.org", "devtest-mail.io"],
+    "UK": ["testmail.co.uk", "mockpost.org.uk", "samplemail.uk", "devmail.co.uk"],
+    "DE": ["testmail.de", "mustermail.de", "beispiel-post.de", "probemail.org"],
+    "FR": ["testmail.fr", "courrielfaux.fr", "exemple-mail.fr", "fakepost.org"],
+    "RU": ["testmail.ru", "testovaya-pochta.ru", "primer-mail.ru", "fakepost.org"],
 }
 
 
