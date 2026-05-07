@@ -180,7 +180,8 @@ We cover everything from standard identities to complex financial market identif
 <code>ean13</code> <code>upca</code> <code>isbn13</code> <code>gs1_128</code> <code>tracking_number</code> <code>sku</code> <code>order_id</code> +5 more
 </details>
 
-*(See `HOW-TO.html` in the repository for the full interactive list of 174 types).*
+*(See our interactive guides for the full list of 174 types:
+[🇹🇷 TR](./HOW-TO-MockJutsu-TR.html) | [🇺🇸 EN](./HOW-TO-MockJutsu-EN.html) | [🇬🇧 UK](./HOW-TO-MockJutsu-UK.html) | [🇩🇪 DE](./HOW-TO-MockJutsu-DE.html) | [🇫🇷 FR](./HOW-TO-MockJutsu-FR.html) | [🇷🇺 RU](./HOW-TO-MockJutsu-RU.html))*
 
 ---
 
