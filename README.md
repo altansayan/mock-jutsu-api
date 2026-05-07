@@ -35,7 +35,7 @@ QA engineers, Data Scientists, and Fintech developers are tired of test data fai
 
 ---
 
-## 🤔 Why mock-jutsu?
+## 🤔 Why Mock Jutsu?
 
 | Capability | `mock-jutsu` 🥷 | Traditional Mockers 🤡 |
 |:---|:---:|:---:|
