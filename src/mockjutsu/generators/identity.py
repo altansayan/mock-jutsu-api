@@ -6,62 +6,7 @@ Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 import secrets
 from datetime import date
 
-NAME_POOLS = {
-    "TR": {
-        "male":   ["Alp", "Bora", "Can", "Deniz", "Emre", "Faruk", "Gökhan", "Hakan", "Kemal", "Mert",
-                   "Okan", "Serkan", "Tolga", "Umut", "Yusuf"],
-        "female": ["Ayşe", "Büşra", "Ceren", "Derya", "Esra", "Fatma", "Gül", "Hande", "İrem", "Kübra",
-                   "Merve", "Neslihan", "Özge", "Pınar", "Selin"],
-        "last":   ["Yılmaz", "Kaya", "Demir", "Şahin", "Çelik", "Aydın", "Arslan", "Doğan", "Kılıç",
-                   "Aslan", "Çetin", "Koç", "Kurt", "Öztürk", "Yıldız"],
-    },
-    "US": {
-        "male":   ["James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph",
-                   "Thomas", "Charles", "Christopher", "Daniel", "Matthew", "Andrew", "Joshua"],
-        "female": ["Mary", "Patricia", "Jennifer", "Linda", "Barbara", "Elizabeth", "Susan", "Jessica",
-                   "Sarah", "Karen", "Nancy", "Lisa", "Betty", "Margaret", "Sandra"],
-        "last":   ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis",
-                   "Wilson", "Taylor", "Anderson", "Thomas", "Jackson", "White", "Harris"],
-    },
-    "UK": {
-        "male":   ["Oliver", "Harry", "George", "Jack", "Noah", "Charlie", "Jacob", "Alfie",
-                   "Freddie", "Oscar", "Henry", "Archie", "Leo", "Arthur", "Muhammad"],
-        "female": ["Olivia", "Amelia", "Isla", "Ava", "Emily", "Isabella", "Mia", "Poppy",
-                   "Ella", "Lily", "Grace", "Evie", "Sophie", "Charlotte", "Aria"],
-        "last":   ["Smith", "Jones", "Williams", "Taylor", "Brown", "Davies", "Evans", "Wilson",
-                   "Thomas", "Roberts", "Johnson", "Lewis", "Walker", "Robinson", "Wood"],
-    },
-    "DE": {
-        "male":   ["Alexander", "Benjamin", "Christian", "Daniel", "Felix", "Jonas", "Luca",
-                   "Maximilian", "Noah", "Paul", "Leon", "Elias", "Finn", "Luis", "Jan"],
-        "female": ["Anna", "Emma", "Hannah", "Julia", "Laura", "Lena", "Lisa", "Maria",
-                   "Sarah", "Sophie", "Leonie", "Mia", "Jana", "Katharina", "Sandra"],
-        "last":   ["Müller", "Schmidt", "Schneider", "Fischer", "Weber", "Meyer", "Wagner",
-                   "Becker", "Schulz", "Hoffmann", "Schäfer", "Koch", "Bauer", "Richter", "Klein"],
-    },
-    "FR": {
-        "male":   ["Alexandre", "Baptiste", "Clément", "Damien", "Édouard", "François", "Guillaume",
-                   "Hugo", "Julien", "Louis", "Nicolas", "Pierre", "Raphaël", "Thomas", "Victor"],
-        "female": ["Alice", "Camille", "Charlotte", "Clara", "Emma", "Inès", "Jade", "Léa",
-                   "Manon", "Zoé", "Chloé", "Lucie", "Marie", "Pauline", "Sarah"],
-        "last":   ["Martin", "Bernard", "Thomas", "Petit", "Robert", "Richard", "Durand", "Dubois",
-                   "Moreau", "Laurent", "Simon", "Michel", "Lefebvre", "Leroy", "Roux"],
-    },
-    "RU": {
-        "male":   ["Александр", "Алексей", "Андрей", "Антон", "Артём", "Дмитрий", "Иван",
-                   "Кирилл", "Максим", "Михаил", "Никита", "Николай", "Павел", "Сергей", "Виктор"],
-        "female": ["Анастасия", "Анна", "Валерия", "Виктория", "Дарья", "Екатерина", "Елена",
-                   "Мария", "Наталья", "Ольга", "Полина", "Светлана", "Татьяна", "Юлия", "Ксения"],
-        "last":   ["Иванов", "Смирнов", "Кузнецов", "Попов", "Соколов", "Лебедев", "Козлов",
-                   "Новиков", "Морозов", "Петров", "Волков", "Соловьёв", "Васильев", "Зайцев", "Павлов"],
-        "last_f": ["Иванова", "Смирнова", "Кузнецова", "Попова", "Соколова", "Лебедева", "Козлова",
-                   "Новикова", "Морозова", "Петрова", "Волкова", "Соловьёва", "Васильева", "Зайцева", "Павлова"],
-        "pat_m":  ["Александрович", "Алексеевич", "Андреевич", "Антонович", "Артёмович",
-                   "Дмитриевич", "Иванович", "Кириллович", "Максимович", "Михайлович"],
-        "pat_f":  ["Александровна", "Алексеевна", "Андреевна", "Антоновна", "Артёмовна",
-                   "Дмитриевна", "Ивановна", "Кирилловна", "Максимовна", "Михайловна"],
-    },
-}
+from mockjutsu.generators.name_data import NAME_POOLS
 
 # ISO 3166-1 alpha-3 nationality codes (common pool)
 _NATIONALITIES = [
