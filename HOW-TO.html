@@ -125,6 +125,7 @@ td{padding:9px 14px;vertical-align:middle}
   <div class="tab active" onclick="showTab('ref')">Tam Referans</div>
   <div class="tab" onclick="showTab('qs')">Hızlı Başlangıç</div>
   <div class="tab" onclick="showTab('power')">Güçlü Özellikler</div>
+  <div class="tab" onclick="showTab('api')">REST API</div>
   <div class="tab" onclick="showTab('locale')">Dil Bazlı Liste</div>
 </div>
 
@@ -216,20 +217,24 @@ jutsu.generate(<span class="st">'balance'</span>, min=<span class="fn">100</span
     </div>
     <div class="qs-card">
       <h3>CLI</h3>
-      <pre><span class="cm"># Temel kullanım</span>
+      <pre><span class="cm"># Tek değer</span>
 <span class="kw">mockjutsu generate</span> tckn
-
-<span class="cm"># Locale ile</span>
 <span class="kw">mockjutsu generate</span> nationalid <span class="st">--locale US</span>
-
-<span class="cm"># Kart ağı</span>
 <span class="kw">mockjutsu generate</span> cardnum <span class="st">--network mir</span>
 
-<span class="cm"># Tüm parametreleri listele</span>
+<span class="cm"># Toplu — aynı tipten N tane</span>
+<span class="kw">mockjutsu bulk</span> iban <span class="st">--count 10 --locale TR</span>
+
+<span class="cm"># Template — birden fazla tip, tek kayıt</span>
+<span class="kw">mockjutsu template</span> nin snils cardtype address_street
+<span class="kw">mockjutsu template</span> uuid phone iban <span class="st">--count 5 --locale DE</span>
+<span class="kw">mockjutsu template</span> tckn iban <span class="st">--count 10 --format csv</span>
+
+<span class="cm"># Tüm tipleri listele</span>
 <span class="kw">mockjutsu list</span>
 
-<span class="cm"># API sunucusunu başlat</span>
-<span class="kw">mockjutsu serve</span> <span class="st">--port 8000</span></pre>
+<span class="cm"># REST API sunucusunu başlat</span>
+<span class="kw">mockjutsu start-api</span> <span class="st">--port 8000</span></pre>
     </div>
     <div class="qs-card">
       <h3>Locale-Aware Örnekler</h3>
@@ -312,15 +317,20 @@ names = jutsu.bulk(<span class="st">'company_name'</span>,
 
     <div class="qs-card">
       <h3>template() — Yapısal Kayıtlar</h3>
-      <pre>records = jutsu.template({
+      <pre><span class="cm"># list ile — field adı = tip adı</span>
+records = jutsu.template(
+  [<span class="st">'nin'</span>, <span class="st">'snils'</span>, <span class="st">'cardtype'</span>, <span class="st">'address_street'</span>],
+  count=<span class="fn">5</span>, locale=<span class="st">'TR'</span>)
+
+<span class="cm"># dict ile — özel field adları</span>
+records = jutsu.template({
   <span class="st">'id'</span>:        <span class="st">'uuid'</span>,
   <span class="st">'name'</span>:      <span class="st">'fullname'</span>,
   <span class="st">'card'</span>:      <span class="st">'cardnum'</span>,
   <span class="st">'amount'</span>:    <span class="st">'balance'</span>,
-  <span class="st">'currency'</span>:  <span class="st">'currency'</span>,
   <span class="st">'timestamp'</span>: <span class="st">'timestamp_iso'</span>,
 }, count=<span class="fn">100</span>, locale=<span class="st">'TR'</span>)
-<span class="cm"># → 100 kayıtlı liste, her biri 6 alanla</span></pre>
+<span class="cm"># → 100 kayıtlı liste, her biri 5 alanla</span></pre>
     </div>
 
     <div class="qs-card">
@@ -354,6 +364,120 @@ data = jutsu.export(schema, count=<span class="fn">50</span>,
 <span class="cm">#  "channel":      "FAST",</span>
 <span class="cm">#  "status":       "COMPLETED"</span>
 <span class="cm"># }</span></pre>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ TAB: REST API -->
+<div class="section" id="tab-api">
+  <div class="stitle">REST API</div>
+  <div class="qs-grid">
+
+    <div class="qs-card">
+      <h3>Başlatma</h3>
+      <pre><span class="cm"># Default port 8000</span>
+<span class="kw">mockjutsu start-api</span>
+
+<span class="cm"># Özel port</span>
+<span class="kw">mockjutsu start-api</span> <span class="st">--port 9000</span>
+
+<span class="cm"># Swagger UI (tüm endpoint'ler)</span>
+<span class="cm"># http://localhost:8000/docs</span>
+
+<span class="cm"># Health check</span>
+GET /health  <span class="cm">→ {"status":"ok"}</span></pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>GET /generate/{type}</h3>
+      <pre>GET /generate/tckn
+GET /generate/iban?locale=DE
+GET /generate/cardnum?network=amex
+GET /generate/hash?algorithm=md5
+GET /generate/eth_address?currency=eth
+GET /generate/tracking_number?carrier=ups
+
+<span class="cm"># Response</span>
+{
+  <span class="st">"type"</span>:   <span class="st">"tckn"</span>,
+  <span class="st">"locale"</span>: <span class="st">"TR"</span>,
+  <span class="st">"result"</span>: <span class="st">"45678901234"</span>,
+  <span class="st">"status"</span>: <span class="st">"success"</span>
+}</pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>GET /bulk/{type}</h3>
+      <pre>GET /bulk/tckn?count=10
+GET /bulk/iban?count=5&amp;locale=DE
+GET /bulk/phone?count=20&amp;locale=TR
+
+<span class="cm"># Response</span>
+{
+  <span class="st">"type"</span>:    <span class="st">"tckn"</span>,
+  <span class="st">"count"</span>:   <span class="fn">10</span>,
+  <span class="st">"results"</span>: [<span class="st">"123…"</span>, <span class="st">"456…"</span>, …]
+}</pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>POST /template</h3>
+      <pre><span class="cm"># Body</span>
+{
+  <span class="st">"types"</span>:  [<span class="st">"nin"</span>, <span class="st">"snils"</span>, <span class="st">"cardtype"</span>],
+  <span class="st">"count"</span>:  <span class="fn">1</span>,
+  <span class="st">"locale"</span>: <span class="st">"TR"</span>
+}
+
+<span class="cm"># count=1 → tek {} objesi</span>
+<span class="cm"># count>1 → [{}, {}, …] dizisi</span>
+
+<span class="cm"># Response</span>
+{
+  <span class="st">"result"</span>: {
+    <span class="st">"nin"</span>:      <span class="st">"AB 12 34 56 C"</span>,
+    <span class="st">"snils"</span>:    <span class="st">"112-233-445 95"</span>,
+    <span class="st">"cardtype"</span>: <span class="st">"Credit"</span>
+  }
+}</pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>GET /profile &amp; /company</h3>
+      <pre>GET /profile?locale=TR&amp;count=1
+GET /profile?locale=DE&amp;count=3
+GET /company?locale=TR
+GET /company?locale=US&amp;count=2
+
+<span class="cm"># Profile response (count=1)</span>
+{
+  <span class="st">"result"</span>: {
+    <span class="st">"id"</span>:        <span class="st">"f47ac10b-…"</span>,
+    <span class="st">"firstname"</span>: <span class="st">"Mert"</span>,
+    <span class="st">"phone"</span>:     <span class="st">"+905321234567"</span>,
+    <span class="st">"iban"</span>:      <span class="st">"TR33000610…"</span>
+  }
+}</pre>
+    </div>
+
+    <div class="qs-card">
+      <h3>POST /export &amp; GET /list</h3>
+      <pre><span class="cm"># Export — body</span>
+{
+  <span class="st">"schema_map"</span>: {
+    <span class="st">"id"</span>:   <span class="st">"uuid"</span>,
+    <span class="st">"isim"</span>: <span class="st">"fullname"</span>,
+    <span class="st">"tel"</span>:  <span class="st">"phone"</span>
+  },
+  <span class="st">"count"</span>:  <span class="fn">10</span>,
+  <span class="st">"format"</span>: <span class="st">"csv"</span>,
+  <span class="st">"locale"</span>: <span class="st">"TR"</span>
+}
+
+<span class="cm"># Tüm tipleri listele</span>
+GET /list
+GET /list?cat=Financial</pre>
     </div>
 
   </div>
