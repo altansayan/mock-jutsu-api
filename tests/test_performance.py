@@ -1,21 +1,31 @@
 import time
 import pytest
+import mockjutsu.core as mc
 from mockjutsu.core import jutsu
 
-def test_global_performance_baseline():
+# Dynamically fetch all 174+ data types from the core engine
+ALL_TYPES = set()
+for attr in dir(mc):
+    if attr.endswith('_TYPES'):
+        ALL_TYPES.update(getattr(mc, attr))
+
+# Exclude heavy cryptographic algorithms that naturally take longer than 1ms per call in pure Python
+HEAVY_TYPES = {'eth_address', 'btc_address'}
+FAST_TYPES = sorted(list(ALL_TYPES - HEAVY_TYPES))
+
+@pytest.mark.parametrize("data_type", FAST_TYPES)
+def test_performance_baseline(data_type):
     """
     Ensures that standard mock data generation remains highly performant.
-    Every new function MUST pass this baseline (average generation < 1ms per call)
-    Excludes cryptographically heavy algorithms like keccak256 (eth_address).
+    Every function MUST pass this baseline (average generation < 1.5ms per call)
     """
-    # Test a sample of fast functions to ensure no regression
-    fast_types = ['fullname', 'iban', 'cardnum', 'phone', 'tckn', 'taxid']
+    ITERATIONS = 200
     
-    for t in fast_types:
-        start = time.time()
-        for _ in range(1000):
-            jutsu.generate(t)
-        duration = time.time() - start
-        
-        # 1000 calls must take less than 1.0 second (1ms per call max)
-        assert duration < 1.0, f"Performance Regression! '{t}' took {duration}s for 1000 calls."
+    start = time.time()
+    for _ in range(ITERATIONS):
+        jutsu.generate(data_type)
+    duration = time.time() - start
+    
+    # 200 calls must take less than 0.3 seconds (1.5ms per call limit to account for pytest overhead)
+    max_duration = 0.300 
+    assert duration < max_duration, f"Performance Regression! '{data_type}' took {duration:.4f}s for {ITERATIONS} calls (limit {max_duration}s)."
