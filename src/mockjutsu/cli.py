@@ -182,14 +182,12 @@ _REFERENCE = [
     ("useragent",     "Meta",        False, "Mozilla/5.0 ...",        "generate useragent"),
     ("jwt",           "Meta",        False, "eyJ....eyJ....sig",      "generate jwt"),
     ("bearertoken",   "Meta",        False, "Bearer eyJ....sig",      "generate bearertoken"),
-    ("hash",          "Meta",        False, "e3b0c44298fc...(sha256)", "generate hash --algorithm sha256"),
-    ("hash:sha224",   "Meta",        False, "d14a028c2a3a...(56hex)", "generate hash --algorithm sha224"),
-    ("hash:sha384",   "Meta",        False, "38b060a751ac...(96hex)", "generate hash --algorithm sha384"),
-    ("hash:sha3-256", "Meta",        False, "a7ffc6f8bf1e...(64hex)", "generate hash --algorithm sha3-256"),
-    ("hash:sha3-512", "Meta",        False, "a69f73cca23a...(128hex)","generate hash --algorithm sha3-512"),
-    ("hash:crc32",    "Meta",        False, "414fa339 (8hex)",        "generate hash --algorithm crc32"),
-    ("hash:adler32",  "Meta",        False, "03da017b (8hex)",        "generate hash --algorithm adler32"),
-    ("hash:crc16",    "Meta",        False, "b4c8 (4hex)",            "generate hash --algorithm crc16"),
+    ("hash",          "Meta",        False, "e3b0c44298fc...(64hex)", "generate hash --algorithm sha256"),
+    ("  --algorithm", "Meta",        False, "md5|sha1|sha224|sha256", "generate hash --algorithm md5"),
+    ("  --algorithm", "Meta",        False, "sha384|sha512",          "generate hash --algorithm sha384"),
+    ("  --algorithm", "Meta",        False, "sha3-224|sha3-256",      "generate hash --algorithm sha3-256"),
+    ("  --algorithm", "Meta",        False, "sha3-384|sha3-512",      "generate hash --algorithm sha3-512"),
+    ("  --algorithm", "Meta",        False, "crc32|adler32|crc16",   "generate hash --algorithm crc32"),
     ("mac_address",   "Meta",        False, "A4:C3:F0:3D:8E:21",     "generate mac_address"),
     ("url",           "Meta",        True,  "https://api-42.co.uk/..", "generate url --locale TR"),
     ("domain",        "Meta",        True,  "test-77.com.tr",         "generate domain --locale TR"),
@@ -344,7 +342,7 @@ def generate(data_type, locale, network, currency, carrier):
 @main.command(name='list')
 @click.option('--cat', default='', help='Filter by category  e.g. Financial, NFC, RFID, IR')
 def list_types(cat):
-    """List all 152+ data types with CLI usage examples."""
+    """List all 167+ data types with CLI usage examples."""
     # Column widths
     W_TYPE = 20
     W_EX   = 24
