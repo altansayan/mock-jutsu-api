@@ -14,7 +14,7 @@
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-ff69b4?style=for-the-badge)](#-features-that-will-blow-your-mind)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
 
-*Faker gives you a random 16-digit string and calls it a credit card number.<br>**mock-jutsu runs Luhn. Every. Single. Time.***
+*Traditional Mockers give you a random 16-digit string and call it a credit card number.<br>**mock-jutsu runs Luhn. Every. Single. Time.***
 
 [**Installation**](#%EF%B8%8F-installation) • [**Why mock-jutsu?**](#-why-not-faker) • [**Usage Guide**](#-usage) • [**174 Types**](#-174-supported-data-types)
 
