@@ -1472,6 +1472,39 @@ class TestList:
         r = runner.invoke(main, ['list'])
         assert 'L=v' in r.output
 
+    def test_list_shows_cli_commands_section(self, runner):
+        r = runner.invoke(main, ['list'])
+        assert r.exit_code == 0
+        assert 'CLI COMMANDS' in r.output
+
+    @pytest.mark.parametrize("cmd", [
+        'generate', 'bulk', 'template', 'profile', 'company', 'export', 'list',
+    ])
+    def test_list_cli_commands_contains_all_commands(self, runner, cmd):
+        r = runner.invoke(main, ['list'])
+        assert r.exit_code == 0
+        assert cmd in r.output, f"command '{cmd}' missing from CLI COMMANDS section"
+
+    def test_list_cli_commands_template_examples(self, runner):
+        r = runner.invoke(main, ['list'])
+        assert r.exit_code == 0
+        assert 'template' in r.output
+        assert '--count' in r.output
+        assert '--format' in r.output
+        assert '--locale' in r.output
+
+    def test_list_cli_commands_template_options_hint(self, runner):
+        r = runner.invoke(main, ['list'])
+        assert r.exit_code == 0
+        assert 'json|csv|sql' in r.output
+
+    def test_list_cli_commands_section_at_bottom(self, runner):
+        r = runner.invoke(main, ['list'])
+        assert r.exit_code == 0
+        types_pos   = r.output.find('types listed')
+        commands_pos = r.output.find('CLI COMMANDS')
+        assert types_pos < commands_pos, "CLI COMMANDS section should appear after types list"
+
 
 # ===========================================================================
 # profile
