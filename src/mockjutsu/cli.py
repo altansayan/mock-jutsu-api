@@ -283,7 +283,7 @@ def generate(data_type, locale, network):
         return
     result = jutsu.generate(data_type, locale=locale, network=network)
     color  = 'red' if "ERROR" in str(result) else 'green'
-    click.echo(f"[{locale.upper()}] {data_type}: {click.style(str(result), fg=color, bold=True)}")
+    click.echo(click.style(str(result), fg=color, bold=True))
 
 
 @main.command(name='list')
