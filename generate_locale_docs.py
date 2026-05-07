@@ -14,6 +14,83 @@ ROWS_JS = rows_match.group(1)
 css_match = re.search(r'<style>(.*?)</style>', base, re.DOTALL)
 BASE_CSS = css_match.group(1)
 
+# ── Category translations per locale ─────────────────────────────────────────
+# Keys = exact Turkish strings in ROWS; values = translated display label.
+# TR is identity (no change). Locales that share English use the EN map.
+CAT_TRANSLATIONS = {
+    'TR': {},  # no change — source is already Turkish
+    'EN': {
+        'Kimlik': 'Identity', 'Kimlik/TR': 'Identity/TR', 'Kimlik/US': 'Identity/US',
+        'Kimlik/UK': 'Identity/UK', 'Kimlik/DE': 'Identity/DE',
+        'Kimlik/FR': 'Identity/FR', 'Kimlik/RU': 'Identity/RU',
+        'Kimlik/Vergi': 'Identity/Tax', 'İşveren': 'Employer', 'Sigorta': 'Insurance',
+        'İsim': 'Name', 'Belge': 'Document', 'Demografik': 'Demographic',
+        'Finansal': 'Financial', 'İletişim': 'Contact', 'Meta': 'Meta',
+        'Bankacılık': 'Banking', 'Kurumsal': 'Corporate', 'Sağlık': 'Health',
+        'Ticaret': 'Commerce', 'Güvenlik': 'Security',
+        'IR (Kızılötesi)': 'IR (Infrared)', 'Barkod': 'Barcode',
+    },
+    'UK': {  # same as EN
+        'Kimlik': 'Identity', 'Kimlik/TR': 'Identity/TR', 'Kimlik/US': 'Identity/US',
+        'Kimlik/UK': 'Identity/UK', 'Kimlik/DE': 'Identity/DE',
+        'Kimlik/FR': 'Identity/FR', 'Kimlik/RU': 'Identity/RU',
+        'Kimlik/Vergi': 'Identity/Tax', 'İşveren': 'Employer', 'Sigorta': 'Insurance',
+        'İsim': 'Name', 'Belge': 'Document', 'Demografik': 'Demographic',
+        'Finansal': 'Financial', 'İletişim': 'Contact', 'Meta': 'Meta',
+        'Bankacılık': 'Banking', 'Kurumsal': 'Corporate', 'Sağlık': 'Health',
+        'Ticaret': 'Commerce', 'Güvenlik': 'Security',
+        'IR (Kızılötesi)': 'IR (Infrared)', 'Barkod': 'Barcode',
+    },
+    'DE': {
+        'Kimlik': 'Identität', 'Kimlik/TR': 'Identität/TR', 'Kimlik/US': 'Identität/US',
+        'Kimlik/UK': 'Identität/UK', 'Kimlik/DE': 'Identität/DE',
+        'Kimlik/FR': 'Identität/FR', 'Kimlik/RU': 'Identität/RU',
+        'Kimlik/Vergi': 'Identität/Steuer', 'İşveren': 'Arbeitgeber',
+        'Sigorta': 'Versicherung', 'İsim': 'Name', 'Belge': 'Dokument',
+        'Demografik': 'Demografisch', 'Finansal': 'Finanziell',
+        'İletişim': 'Kontakt', 'Meta': 'Meta', 'Bankacılık': 'Bankwesen',
+        'Kurumsal': 'Unternehmen', 'Sağlık': 'Gesundheit',
+        'Ticaret': 'Handel', 'Güvenlik': 'Sicherheit',
+        'IR (Kızılötesi)': 'IR (Infrarot)', 'Barkod': 'Barcode',
+    },
+    'FR': {
+        'Kimlik': 'Identité', 'Kimlik/TR': 'Identité/TR', 'Kimlik/US': 'Identité/US',
+        'Kimlik/UK': 'Identité/UK', 'Kimlik/DE': 'Identité/DE',
+        'Kimlik/FR': 'Identité/FR', 'Kimlik/RU': 'Identité/RU',
+        'Kimlik/Vergi': 'Identité/Fiscal', 'İşveren': 'Employeur',
+        'Sigorta': 'Assurance', 'İsim': 'Nom', 'Belge': 'Document',
+        'Demografik': 'Démographique', 'Finansal': 'Financier',
+        'İletişim': 'Contact', 'Meta': 'Méta', 'Bankacılık': 'Banque',
+        'Kurumsal': 'Entreprise', 'Sağlık': 'Santé',
+        'Ticaret': 'Commerce', 'Güvenlik': 'Sécurité',
+        'IR (Kızılötesi)': 'IR (Infrarouge)', 'Barkod': 'Code-barres',
+    },
+    'RU': {
+        'Kimlik': 'Идентификация', 'Kimlik/TR': 'Идент./TR',
+        'Kimlik/US': 'Идент./US', 'Kimlik/UK': 'Идент./UK',
+        'Kimlik/DE': 'Идент./DE', 'Kimlik/FR': 'Идент./FR',
+        'Kimlik/RU': 'Идент./RU', 'Kimlik/Vergi': 'Идент./Налог',
+        'İşveren': 'Работодатель', 'Sigorta': 'Страхование',
+        'İsim': 'Имя', 'Belge': 'Документ', 'Demografik': 'Демографический',
+        'Finansal': 'Финансовый', 'İletişim': 'Контакт', 'Meta': 'Мета',
+        'Bankacılık': 'Банковское дело', 'Kurumsal': 'Корпоративный',
+        'Sağlık': 'Здоровье', 'Ticaret': 'Торговля', 'Güvenlik': 'Безопасность',
+        'IR (Kızılötesi)': 'ИК (Инфракрасный)', 'Barkod': 'Штрихкод',
+    },
+}
+
+def translate_rows(rows_js, loc_key):
+    """Replace Turkish category strings inside the ROWS JS literal."""
+    trans = CAT_TRANSLATIONS.get(loc_key, {})
+    if not trans:
+        return rows_js
+    result = rows_js
+    # Categories appear as the 2nd quoted string in each row: ["fn", "CAT", ...
+    # Sort by length descending to avoid partial replacements (e.g. Kimlik before Kimlik/TR)
+    for tr_key in sorted(trans, key=len, reverse=True):
+        result = result.replace(f'"{tr_key}"', f'"{trans[tr_key]}"')
+    return result
+
 # ── Locale configuration ─────────────────────────────────────────────────────
 LOCALES = {
     'TR': {
@@ -331,6 +408,7 @@ def build_qs_cards(cards):
 
 def build_html(loc_key, cfg):
     lc = cfg['locale_code']
+    locale_rows_js = translate_rows(ROWS_JS, loc_key)
     tabs_html = ''.join(
         f'  <div class="tab{" active" if i==0 else ""}" onclick="showTab(\'{tid}\')">{name}</div>\n'
         for i, (tid, name) in enumerate(zip(['ref','qs','power','api'], cfg['tabs']))
@@ -557,7 +635,7 @@ GET /health  <span class="cm">→ {{"status":"ok"}}</span>
 </div>
 
 <script>
-{ROWS_JS}
+{locale_rows_js}
 
 const CAT_CLS = {{
   kimlik:"cat-kimlik", vergi:"cat-vergi", isveren:"cat-isveren",
