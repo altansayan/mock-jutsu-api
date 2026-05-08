@@ -39,9 +39,12 @@ def _print_banner() -> None:
         else:
             body.append(line + "\n", style="bold bright_green")
 
+    # Calculate dynamic stats
+    types_count = len([r for r in _REFERENCE if r[0].strip() and not r[0].strip().startswith("--")])
+    
     body.append("\n")
     body.append("Algorithmic Mock Data Engine\n", style="bold white")
-    body.append("177 Types", style="cyan")
+    body.append(f"{types_count} Types", style="cyan")
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
@@ -290,7 +293,7 @@ _CAT_ORDER = [
     "Financial", "Contact", "Banking", "Corporate",
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "Securities", "Crypto",
-    "E-Commerce", "Location", "Social",
+    "E-Commerce", "Location", "Social", "Hardware",
 ]
 
 _CAT_COLORS = {
@@ -316,13 +319,14 @@ _CAT_COLORS = {
     "E-Commerce":  "yellow",
     "Location":    "bright_blue",
     "Social":      "magenta",
+    "Hardware":    "bright_green",
 }
 
 
 @click.group(invoke_without_command=True)
 @click.pass_context
 def main(ctx):
-    """mock-jutsu -- Algorithmic Mock Data Engine (6 Locales, 174 Types)"""
+    """mock-jutsu -- Algorithmic Mock Data Engine"""
     if ctx.invoked_subcommand is None:
         _print_banner()
         click.echo(ctx.get_help())
@@ -349,7 +353,7 @@ def generate(data_type, locale, network, currency, carrier, algorithm):
 @main.command(name='list')
 @click.option('--cat', default='', help='Filter by category  e.g. Financial, NFC, RFID, IR')
 def list_types(cat):
-    """List all 174 data types with CLI usage examples."""
+    """List all supported data types with CLI usage examples."""
     # Column widths
     W_TYPE = 20
     W_EX   = 24

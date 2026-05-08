@@ -40,6 +40,13 @@ dependencies = [
     "rich>=13.0",
 ]
 
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0",
+    "playwright>=1.30",
+    "pytest-playwright>=0.4",
+]
+
 [project.urls]
 Homepage = "https://github.com/altansayan/mock-jutsu-api"
 Repository = "https://github.com/altansayan/mock-jutsu-api"
