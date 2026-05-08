@@ -5,6 +5,19 @@ Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 
 import random
 import secrets
+from mockjutsu.generators.name_data import NAME_POOLS
+
+def _crc16_emvco(data: str) -> str:
+    crc = 0xFFFF
+    for char in data:
+        crc ^= ord(char) << 8
+        for _ in range(8):
+            if crc & 0x8000:
+                crc = (crc << 1) ^ 0x1021
+            else:
+                crc = crc << 1
+            crc &= 0xFFFF
+    return f"{crc:04X}"
 
 CARD_NETWORKS = {
     "visa":     {"prefixes": [["4"]], "length": 16},
@@ -137,7 +150,48 @@ class FinancialGenerator:
         if dt in ('iban', 'bankaccount'):
             return self.generate_bank_account(locale)
 
+        if dt == 'sepa_qr':
+            return self._generate_sepa_qr(locale)
+            
+        if dt == 'tr_karekod':
+            return self._generate_tr_karekod()
+
         return "FINANCIAL_DATA"
+
+    def _generate_sepa_qr(self, locale: str) -> str:
+        loc = locale if locale in NAME_POOLS else 'DE'
+        names = NAME_POOLS[loc]
+        first_name = random.choice(names[random.choice(['male', 'female'])])
+        name = f"{first_name} {random.choice(names['last'])}"
+        
+        iban = self.generate_bank_account(loc)
+        bic = f"{random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') * 4}{loc}22"
+        amount = f"{random.randrange(10, 1000)}.{random.choice(['00', '50'])}"
+        reference = f"INV-2025-{random.randrange(1000,9999)}"
+        
+        return f"BCD\n002\n1\nSCT\n{bic}\n{name}\n{iban}\nEUR{amount}\n\n{reference}\n\n"
+
+    def _generate_tr_karekod(self) -> str:
+        names = NAME_POOLS['TR']
+        first_name = random.choice(names[random.choice(['male', 'female'])])
+        name = f"{first_name} {random.choice(names['last'])}"
+        iban = self.generate_bank_account('TR')
+        amount = f"{random.randrange(10, 5000)}.{random.choice(['00', '50'])}"
+        
+        p00 = "000201"
+        p01 = "010211"
+        p53 = "5303949"
+        p54 = f"54{len(amount):02d}{amount}"
+        p58 = "5802TR"
+        p59 = f"59{len(name):02d}{name}"
+        
+        merch_info = f"01{len(iban):02d}{iban}"
+        p26 = f"26{len(merch_info):02d}{merch_info}"
+        
+        payload = f"{p00}{p01}{p26}{p53}{p54}{p58}{p59}6304"
+        crc = _crc16_emvco(payload)
+        
+        return payload + crc
 
 
 def _generate_aba_routing():

@@ -1,4 +1,4 @@
-﻿"""
+"""
 mock-jutsu — Core Orchestrator
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
@@ -42,7 +42,7 @@ _IDENTITY_TYPES = {
 _FINANCIAL_TYPES = {
     'cardnum', 'cardnetwork', 'cardtype', 'cardstatus', 'cvv3', 'cvv4',
     'issuer', 'expiry', 'expirymonth', 'expiryyear', 'pin', 'balance',
-    'iban', 'cardcategory', 'credit_score',
+    'iban', 'cardcategory', 'credit_score', 'sepa_qr', 'tr_karekod',
 }
 
 _COMM_TYPES = {

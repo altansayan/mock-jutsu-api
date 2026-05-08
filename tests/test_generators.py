@@ -1,4 +1,4 @@
-﻿"""
+"""
 mock-jutsu — Full-Coverage Unit Tests
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 Purpose: Cross-testing 146 parameters across 6 locales (TR, UK, US, DE, FR, RU).
@@ -2867,6 +2867,34 @@ def test_signature_different_keys():
     v1 = str(jutsu.generate('signature', secret='key1', payload='hello'))
     v2 = str(jutsu.generate('signature', secret='key2', payload='hello'))
     assert v1 != v2, "signature with different keys must differ"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 6J — Financial: SEPA QR and TR Karekod
+# ---------------------------------------------------------------------------
+
+def test_sepa_qr_format():
+    """sepa_qr must start with BCD and have correct line break structure."""
+    for locale in ['DE', 'FR', 'TR']:
+        val = str(jutsu.generate('sepa_qr', locale=locale))
+        lines = val.split('\n')
+        assert lines[0] == 'BCD', f"sepa_qr must start with BCD: {lines[0]}"
+        assert lines[1] == '002', f"sepa_qr version must be 002: {lines[1]}"
+        assert lines[2] == '1', f"sepa_qr encoding must be 1: {lines[2]}"
+        assert lines[3] == 'SCT', f"sepa_qr type must be SCT: {lines[3]}"
+        assert 'EUR' in lines[7], f"sepa_qr amount must have EUR: {lines[7]}"
+
+
+def test_tr_karekod_crc16():
+    """tr_karekod must have a valid EMVCo CRC-16 checksum at the end."""
+    from mockjutsu.generators.financial import _crc16_emvco
+    for _ in range(50):
+        val = str(jutsu.generate('tr_karekod'))
+        assert val[-8:-4] == '6304', f"tr_karekod must end with tag 6304: {val}"
+        payload_without_crc = val[:-4]
+        expected_crc = _crc16_emvco(payload_without_crc)
+        actual_crc = val[-4:]
+        assert actual_crc == expected_crc, f"tr_karekod CRC failed. Expected {expected_crc}, got {actual_crc}"
 
 
 # ---------------------------------------------------------------------------
