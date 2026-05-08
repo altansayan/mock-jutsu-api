@@ -65,7 +65,7 @@ Requires **Python 3.9+**.
 
 ```bash
 # Standard Installation
-pip install git+https://github.com/altansayan/mock-jutsu-api.git#egg=mockjutsu
+pip install mockjutsu
 
 # For Developers (Editable Mode)
 git clone https://github.com/altansayan/mock-jutsu-api.git
