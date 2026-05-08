@@ -45,6 +45,7 @@ QA engineers, Data Scientists, and Fintech developers are tired of test data fai
 | **Telecom (IMEI, ICCID, IMSI)**| ✅ 3GPP / ITU-T Valid | ❌ None |
 | **Securities (ISIN, LEI, SEDOL)**| ✅ Checksum Validated | ❌ None |
 | **Crypto (BTC, ETH addresses)** | ✅ Base58Check / Keccak-256 | ❌ None |
+| **Payment QRs (EMVCo/SEPA)** | ✅ CRC-16 Checksum / BCD Format | ❌ None |
 | **Barcodes (EAN, ISBN, GS1)** | ✅ GS1 v24.0 Valid | ❌ None |
 | **Tracking (USPS/UPS/FedEx)** | ✅ Pub.97 Luhn / Mod-11 | ❌ None |
 | **Banking Routing Codes** | ✅ Valid ABA/Sort/BIC | ⚠️ Format-only |

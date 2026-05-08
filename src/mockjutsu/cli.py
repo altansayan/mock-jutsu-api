@@ -125,6 +125,10 @@ _REFERENCE = [
     ("issuer",        "Financial",   True,  "BosphorusBank A.S.",     "generate issuer --locale TR"),
     ("balance",       "Financial",   False, "12450.75",               "generate balance"),
     ("iban",          "Financial",   True,  "TR330006100519...",      "generate iban --locale TR"),
+    ("sepa_qr",       "Financial",   True,  "BCD\\n002...",           "generate sepa_qr --locale DE"),
+    ("emv_qr_p2p",    "Financial",   True,  "000201010211...",        "generate emv_qr_p2p --locale TR"),
+    ("emv_qr_atm",    "Financial",   True,  "000201010212...",        "generate emv_qr_atm --locale DE"),
+    ("emv_qr_pos",    "Financial",   True,  "000201010211...",        "generate emv_qr_pos --locale FR"),
     # Contact
     ("phone",         "Contact",     True,  "+905325551234",          "generate phone --locale TR"),
     ("phone_country", "Contact",     True,  "+90",                    "generate phone_country --locale TR"),
