@@ -137,6 +137,28 @@ GET http://localhost:8000/profile?locale=DE&count=3
 # Interactive Swagger UI automatically available at http://localhost:8000/docs
 ```
 
+### 🧱 4. Template Generation via CLI
+
+Combine multiple data types into a structured JSON record directly from your terminal.
+
+```bash
+$ mockjutsu template uuid fullname crypto_address --count 2 --locale US
+```
+```json
+[
+  {
+    "uuid": "5ae780dd-1e26-4317-bc87-495eb53563aa",
+    "fullname": "Holly Brandt",
+    "crypto_address": "13gSozPBVaQMfFvVrRB7AQ3Fe6ZLDXErUh"
+  },
+  {
+    "uuid": "76706c3e-3eaa-4afd-a749-e4002764d275",
+    "fullname": "Brooke Lyons",
+    "crypto_address": "1GPuQvEVjYfy7C4fdxtY2Y1q76Awngsk9n"
+  }
+]
+```
+
 ---
 
 ## 🌍 6 Locales. 100% Real Algorithms.
