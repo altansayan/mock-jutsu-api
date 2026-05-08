@@ -41,7 +41,7 @@ def _print_banner() -> None:
 
     body.append("\n")
     body.append("Algorithmic Mock Data Engine\n", style="bold white")
-    body.append("176 Types", style="cyan")
+    body.append("177 Types", style="cyan")
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
@@ -129,6 +129,8 @@ _REFERENCE = [
     ("emv_qr_p2p",    "Financial",   True,  "000201010211...",        "generate emv_qr_p2p --locale TR"),
     ("emv_qr_atm",    "Financial",   True,  "000201010212...",        "generate emv_qr_atm --locale DE"),
     ("emv_qr_pos",    "Financial",   True,  "000201010211...",        "generate emv_qr_pos --locale FR"),
+    # Hardware / Payment
+    ("track2_data",   "Hardware",    False, ";4532...=2812201...?",   "generate track2_data"),
     # Contact
     ("phone",         "Contact",     True,  "+905325551234",          "generate phone --locale TR"),
     ("phone_country", "Contact",     True,  "+90",                    "generate phone_country --locale TR"),
