@@ -119,8 +119,11 @@ $ mockjutsu generate cardnum --network troy
 # Need an array of valid US phone numbers?
 $ mockjutsu bulk phone --count 500 --locale US
 
-# Generate SQL seed files on the fly
-$ mockjutsu export uuid fullname cardnum --count 10000 --format sql --table test_users > seed.sql
+# Generate CSV datasets and save to a file
+$ mockjutsu template uuid fullname crypto_address --count 100 --format csv > users.csv
+
+# Generate SQL seed files and save to a text file
+$ mockjutsu template uuid fullname crypto_address --count 500 --format sql --table USERS > data.txt
 ```
 
 ### 🌐 3. Built-in REST API
