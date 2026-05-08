@@ -51,6 +51,7 @@ QA engineers, Data Scientists, and Fintech developers are tired of test data fai
 | **RFID & NFC Data** | ✅ EPC SGTIN-96, NDEF URI/Text | ❌ None |
 | **Context-Aware Profiles** | ✅ Linked Name ↔ Email ↔ Phone | ⚠️ Disconnected randoms |
 | **SQL/CSV Direct Export** | ✅ Native Support | ❌ Manual generation |
+| **Schema/Template Generation**| ✅ `jutsu.template()` for complex dictionaries | ❌ Manual object mapping |
 | **Built-in CLI Tool** | ✅ Out-of-the-box (`mockjutsu generate`) | ❌ Requires custom scripts |
 | **Built-in REST API** | ✅ 1 command (`mockjutsu start-api`) | ❌ Requires custom wrapper |
 | **External Dependencies** | ✅ **Zero** (Pure Python) | ❌ Relies on external files |
