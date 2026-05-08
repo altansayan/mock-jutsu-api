@@ -190,9 +190,9 @@ We cover everything from standard identities to complex financial market identif
 </details>
 
 <details>
-<summary><b>💳 Financial & Banking (25 types)</b></summary>
+<summary><b>💳 Financial & Banking (27 types)</b></summary>
 <br>
-<code>cardnum</code> <code>cardnetwork</code> <code>iban</code> <code>sepa_qr</code> <code>tr_karekod</code> <code>bic</code> <code>sort_code</code> <code>routing_number</code> +17 more
+<code>cardnum</code> <code>cardnetwork</code> <code>iban</code> <code>sepa_qr</code> <code>emv_qr_p2p</code> <code>emv_qr_atm</code> <code>emv_qr_pos</code> <code>bic</code> <code>sort_code</code> +18 more
 </details>
 
 <details>

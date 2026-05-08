@@ -2885,16 +2885,36 @@ def test_sepa_qr_format():
         assert 'EUR' in lines[7], f"sepa_qr amount must have EUR: {lines[7]}"
 
 
-def test_tr_karekod_crc16():
-    """tr_karekod must have a valid EMVCo CRC-16 checksum at the end."""
+def test_emv_qr_p2p_locales():
+    """emv_qr_p2p must have a valid EMVCo CRC-16 checksum across locales."""
     from mockjutsu.generators.financial import _crc16_emvco
-    for _ in range(50):
-        val = str(jutsu.generate('tr_karekod'))
-        assert val[-8:-4] == '6304', f"tr_karekod must end with tag 6304: {val}"
-        payload_without_crc = val[:-4]
-        expected_crc = _crc16_emvco(payload_without_crc)
-        actual_crc = val[-4:]
-        assert actual_crc == expected_crc, f"tr_karekod CRC failed. Expected {expected_crc}, got {actual_crc}"
+    for locale in ['TR', 'DE', 'US', 'FR']:
+        for _ in range(10):
+            val = str(jutsu.generate('emv_qr_p2p', locale=locale))
+            assert val[-8:-4] == '6304', f"emv_qr_p2p must end with tag 6304: {val}"
+            expected_crc = _crc16_emvco(val[:-4])
+            actual_crc = val[-4:]
+            assert actual_crc == expected_crc, f"emv_qr_p2p CRC failed. Expected {expected_crc}, got {actual_crc}"
+
+def test_emv_qr_atm_locales():
+    """emv_qr_atm must have a valid EMVCo CRC-16 checksum."""
+    from mockjutsu.generators.financial import _crc16_emvco
+    for locale in ['TR', 'DE', 'US', 'FR']:
+        for _ in range(10):
+            val = str(jutsu.generate('emv_qr_atm', locale=locale))
+            assert val[-8:-4] == '6304', f"emv_qr_atm must end with tag 6304: {val}"
+            expected_crc = _crc16_emvco(val[:-4])
+            assert val[-4:] == expected_crc
+
+def test_emv_qr_pos_locales():
+    """emv_qr_pos must have a valid EMVCo CRC-16 checksum."""
+    from mockjutsu.generators.financial import _crc16_emvco
+    for locale in ['TR', 'DE', 'US', 'FR']:
+        for _ in range(10):
+            val = str(jutsu.generate('emv_qr_pos', locale=locale))
+            assert val[-8:-4] == '6304', f"emv_qr_pos must end with tag 6304: {val}"
+            expected_crc = _crc16_emvco(val[:-4])
+            assert val[-4:] == expected_crc
 
 
 # ---------------------------------------------------------------------------

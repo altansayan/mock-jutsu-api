@@ -42,7 +42,8 @@ _IDENTITY_TYPES = {
 _FINANCIAL_TYPES = {
     'cardnum', 'cardnetwork', 'cardtype', 'cardstatus', 'cvv3', 'cvv4',
     'issuer', 'expiry', 'expirymonth', 'expiryyear', 'pin', 'balance',
-    'iban', 'cardcategory', 'credit_score', 'sepa_qr', 'tr_karekod',
+    'iban', 'cardcategory', 'credit_score', 'sepa_qr', 'emv_qr_p2p',
+    'emv_qr_atm', 'emv_qr_pos',
 }
 
 _COMM_TYPES = {

@@ -153,10 +153,30 @@ class FinancialGenerator:
         if dt == 'sepa_qr':
             return self._generate_sepa_qr(locale)
             
-        if dt == 'tr_karekod':
-            return self._generate_tr_karekod()
+        if dt == 'emv_qr_p2p':
+            return self._generate_emv_qr_p2p(locale)
+            
+        if dt == 'emv_qr_atm':
+            return self._generate_emv_qr_atm(locale)
+            
+        if dt == 'emv_qr_pos':
+            return self._generate_emv_qr_pos(locale)
 
         return "FINANCIAL_DATA"
+
+    _CURRENCY_CODES = {
+        'TR': '949',
+        'DE': '978',
+        'FR': '978',
+        'US': '840',
+        'UK': '826',
+        'RU': '643'
+    }
+
+    def _get_emv_locale_data(self, locale: str):
+        loc = locale if locale in self._CURRENCY_CODES else 'TR'
+        currency = self._CURRENCY_CODES[loc]
+        return loc, currency
 
     def _generate_sepa_qr(self, locale: str) -> str:
         loc = locale if locale in NAME_POOLS else 'DE'
@@ -171,24 +191,85 @@ class FinancialGenerator:
         
         return f"BCD\n002\n1\nSCT\n{bic}\n{name}\n{iban}\nEUR{amount}\n\n{reference}\n\n"
 
-    def _generate_tr_karekod(self) -> str:
-        names = NAME_POOLS['TR']
+    def _generate_emv_qr_p2p(self, locale: str) -> str:
+        loc, currency = self._get_emv_locale_data(locale)
+        names = NAME_POOLS.get(loc, NAME_POOLS['TR'])
         first_name = random.choice(names[random.choice(['male', 'female'])])
         name = f"{first_name} {random.choice(names['last'])}"
-        iban = self.generate_bank_account('TR')
+        iban = self.generate_bank_account(loc)
         amount = f"{random.randrange(10, 5000)}.{random.choice(['00', '50'])}"
         
         p00 = "000201"
         p01 = "010211"
-        p53 = "5303949"
+        p53 = f"5303{currency}"
         p54 = f"54{len(amount):02d}{amount}"
-        p58 = "5802TR"
+        p58 = f"5802{loc}"
         p59 = f"59{len(name):02d}{name}"
         
         merch_info = f"01{len(iban):02d}{iban}"
         p26 = f"26{len(merch_info):02d}{merch_info}"
         
         payload = f"{p00}{p01}{p26}{p53}{p54}{p58}{p59}6304"
+        crc = _crc16_emvco(payload)
+        
+        return payload + crc
+
+    def _generate_emv_qr_atm(self, locale: str) -> str:
+        loc, currency = self._get_emv_locale_data(locale)
+        
+        p00 = "000201"
+        p01 = "010212" # Dynamic QR
+        p53 = f"5303{currency}"
+        p58 = f"5802{loc}"
+        
+        atm_name = f"ATM {loc}-{random.randrange(1000, 9999)}"
+        p59 = f"59{len(atm_name):02d}{atm_name}"
+        
+        # Terminal ID and Session Token in Tag 62
+        tid = f"T{random.randrange(1000000, 9999999)}"
+        token = f"TOK{random.randrange(10000000, 99999999)}"
+        
+        tag62_07 = f"07{len(tid):02d}{tid}"
+        tag62_08 = f"08{len(token):02d}{token}"
+        tag62_val = f"{tag62_07}{tag62_08}"
+        p62 = f"62{len(tag62_val):02d}{tag62_val}"
+        
+        payload = f"{p00}{p01}{p53}{p58}{p59}{p62}6304"
+        crc = _crc16_emvco(payload)
+        
+        return payload + crc
+
+    def _generate_emv_qr_pos(self, locale: str) -> str:
+        loc, currency = self._get_emv_locale_data(locale)
+        
+        p00 = "000201"
+        p01 = "010211" # Static POS or dynamic, let's use 11
+        
+        mcc = f"{random.randrange(5000, 5999)}"
+        p52 = f"5204{mcc}"
+        
+        p53 = f"5303{currency}"
+        
+        amount = f"{random.randrange(10, 1000)}.{random.choice(['00', '25', '50', '75'])}"
+        p54 = f"54{len(amount):02d}{amount}"
+        
+        p58 = f"5802{loc}"
+        
+        names = NAME_POOLS.get(loc, NAME_POOLS['TR'])
+        company_suffix = "A.S." if loc == 'TR' else ("GmbH" if loc == 'DE' else ("LLC" if loc == 'US' else "LTD"))
+        merch_name = f"{random.choice(names['last']).upper()} {company_suffix}"
+        p59 = f"59{len(merch_name):02d}{merch_name}"
+        
+        cities = {'TR': 'ISTANBUL', 'DE': 'BERLIN', 'FR': 'PARIS', 'US': 'NEW YORK', 'UK': 'LONDON', 'RU': 'MOSCOW'}
+        city = cities.get(loc, 'CAPITAL')
+        p60 = f"60{len(city):02d}{city}"
+        
+        # tag 26 merchant identifier
+        merch_id = f"{random.randrange(1000000000, 9999999999)}"
+        tag26_01 = f"01{len(merch_id):02d}{merch_id}"
+        p26 = f"26{len(tag26_01):02d}{tag26_01}"
+        
+        payload = f"{p00}{p01}{p26}{p52}{p53}{p54}{p58}{p59}{p60}6304"
         crc = _crc16_emvco(payload)
         
         return payload + crc
