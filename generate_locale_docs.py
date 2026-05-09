@@ -47,6 +47,13 @@ def sync_all_files(types, tests):
         with open(cli_path, "r", encoding="utf-8") as f:
             content = f.read()
         content = re.sub(r'body\.append\("\d+ Tests\\n"', f'body.append("{tests} Tests\\\\n"', content)
+        # Update Engine Title
+        content = re.sub(r'body\.append\(".*Algorithmic Mock Data Engine\\n"', 'body.append("The Ultimate Algorithmic Mock Data Engine\\\\n"', content)
+        # Update Developer
+        content = re.sub(r'body\.append\("Developed by: .*\\n"', 'body.append("Developed by: Altan Sezer Ayan (A.S.A)\\\\n"', content)
+        # Update Docstring
+        content = re.sub(r'"""mock-jutsu -- .*"""', '"""mock-jutsu -- The Ultimate Algorithmic Mock Data Engine"""', content)
+        
         with open(cli_path, "w", encoding="utf-8") as f:
             f.write(content)
 

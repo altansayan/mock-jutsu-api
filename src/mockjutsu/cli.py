@@ -43,14 +43,14 @@ def _print_banner() -> None:
     types_count = len([r for r in _REFERENCE if r[0].strip() and not r[0].strip().startswith("--")])
     
     body.append("\n")
-    body.append("Algorithmic Mock Data Engine\n", style="bold white")
+    body.append("The Ultimate Algorithmic Mock Data Engine\n", style="bold white")
     body.append(f"{types_count} Types", style="cyan")
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
     body.append("2065 Tests\n", style="cyan")
     body.append("\n")
-    body.append("Developed by: Altan Sezer Ayan - A.S.A\n", style="dim white")
+    body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
     body.append("\n")
     body.append("MockJutsu - Api\n",                         style="dim white")
@@ -289,7 +289,7 @@ _CAT_COLORS = {
 @click.group(invoke_without_command=True)
 @click.pass_context
 def main(ctx):
-    """mock-jutsu -- Algorithmic Mock Data Engine"""
+    """mock-jutsu -- The Ultimate Algorithmic Mock Data Engine"""
     if ctx.invoked_subcommand is None:
         _print_banner()
         click.echo(ctx.get_help())
