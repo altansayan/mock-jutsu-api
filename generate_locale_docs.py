@@ -10,6 +10,10 @@ import sys
 # Ensure src is in path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
 from mockjutsu.cli import _REFERENCE
+import mockjutsu.cli
+print(f"DEBUG: cli module path: {mockjutsu.cli.__file__}")
+print(f"DEBUG: First entry length: {len(_REFERENCE[0])}")
+print(f"DEBUG: First entry: {_REFERENCE[0]}")
 
 def get_real_stats():
     # 1. Count actual data types
@@ -75,12 +79,23 @@ background:#f8fafc;color:#1e293b;line-height:1.6}
 .reset-btn{padding:.6rem 1.2rem;background:#f1f5f9;border:1px solid #cbd5e1;border-radius:6px;cursor:pointer;font-size:.9rem;font-weight:500;color:#475569;transition:all .2s}
 .reset-btn:hover{background:#e2e8f0}
 .row-count{font-size:.85rem;color:#64748b;font-weight:500;margin-left:auto}
-.table-wrap{background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.05);overflow-x:auto}
-table{width:100%;border-collapse:collapse;text-align:left;font-size:.9rem}
-th,td{padding:1rem;border-bottom:1px solid #e2e8f0;vertical-align:middle}
-th{background:#f8fafc;font-weight:600;color:#475569;text-transform:uppercase;font-size:.75rem;letter-spacing:.05em;white-space:nowrap}
-tr:hover td{background:#f1f5f9}
-code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:.85rem;padding:.2rem .4rem;background:#f1f5f9;border-radius:4px;color:#0f172a}
+.table-wrap{overflow-x:auto;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.1);background:white;margin-bottom:40px}
+table{width:100%;border-collapse:collapse;min-width:1000px}
+th,td{padding:15px 20px;text-align:left;border-bottom:1px solid #f0f0f0}
+th{background:#f8fafc;font-weight:700;color:#64748b;text-transform:uppercase;font-size:12px;letter-spacing:1px;position:sticky;top:0;z-index:10}
+td{font-size:14px;color:#334155;vertical-align:middle}
+.col-fn{font-weight:700;color:#0f172a;min-width:140px}
+.col-cat{min-width:130px}
+.col-desc{color:#64748b;font-size:13px;line-height:1.4;max-width:300px;min-width:200px}
+.col-locale{text-align:center;min-width:80px}
+.col-extra{min-width:150px;font-family:monospace;font-size:12px;color:#0ea5e9}
+.col-output{font-family:monospace;color:#10b981;font-weight:600;min-width:180px}
+.col-cli{min-width:250px}
+code{background:#f1f5f9;padding:4px 8px;border-radius:6px;font-family:monospace;font-size:13px;color:#475569;display:inline-block}
+.badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.badge-yes{background:#dcfce7;color:#166534}
+.badge-no{background:#f1f5f9;color:#94a3b8}
+.cli-cmd{background:#1e293b;color:#e2e8f0;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;display:inline-block;border-left:4px solid #3b82f6}
 .pill{display:inline-block;padding:.25rem .6rem;border-radius:9999px;font-size:.75rem;font-weight:600;white-space:nowrap}
 .lc{display:inline-block;padding:.15rem .4rem;border-radius:4px;font-size:.7rem;font-weight:700;margin:1px;font-family:monospace}
 .badge-no{color:#94a3b8;font-size:.8rem}
@@ -135,7 +150,69 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;fon
 .locale-card ul{list-style:none;display:flex;gap:.5rem;flex-wrap:wrap;margin:0}
 """
 
-def build_rows_js():
+def translate_description(desc, loc_key):
+    # Basic technical terms dictionary for quick translation
+    terms = {
+        'TR': {
+            'with': 'ile', 'validation': 'doğrulaması', 'checksum': 'kontrolü', 'validation.': 'doğrulaması.',
+            'Modulo': 'Modulo', 'format.': 'formatı.', 'format': 'formatı', 'algorithm': 'algoritması',
+            'check.': 'kontrolü.', 'check': 'kontrolü', 'Generic': 'Genel', 'for': 'için',
+            'specified': 'belirtilen', 'locale.': 'locale.', 'rules.': 'kuralları.', 'Number': 'Numarası',
+            'number': 'numarası', 'Identification': 'Kimlik', 'Business': 'İş/Kurumsal',
+            'simulated': 'simüle edilmiş', 'random': 'rastgele', 'Current': 'Güncel',
+            'Common': 'Yaygın', 'record.': 'kaydı.', 'record': 'kaydı', 'signal': 'sinyali',
+            'data.': 'verisi.', 'values.': 'değerleri.', 'standard.': 'standardı.',
+            'Turkish': 'Türk', 'Foreigner': 'Yabancı', 'Tax': 'Vergi', 'Employer': 'İşveren',
+            'Social Security': 'Sosyal Güvenlik', 'Insurance': 'Sigorta', 'UK': 'İngiltere',
+            'US': 'ABD', 'German': 'Alman', 'French': 'Fransız', 'Russian': 'Rus',
+            'International': 'Uluslararası', 'Credit card': 'Kredi kartı', 'wallet': 'cüzdan',
+            'Geographic': 'Coğrafi', 'profile': 'profil', 'Unique': 'Benzersiz',
+            'Cardholder': 'Kart hamili', 'appropriate': 'uygun', 'account': 'hesap',
+            'precision': 'hassasiyet', 'future': 'gelecek', 'Professional': 'Profesyonel',
+            'height': 'boy', 'weight': 'kilo', 'measurement': 'ölçümü', 'details': 'detayları',
+            'compliant': 'uyumlu', 'API': 'API', 'Hardware': 'Donanım', 'device': 'cihaz',
+            'web': 'web', 'Realistic': 'Gerçekçi', 'Electronic': 'Elektronik',
+            'Comprehensive': 'Kapsamlı', 'delivery': 'teslimat'
+        },
+        'DE': {
+            'with': 'mit', 'validation': 'Validierung', 'checksum': 'Prüfsumme', 'algorithm': 'Algorithmus',
+            'format': 'Format', 'check': 'Prüfung', 'Generic': 'Generisch', 'for': 'für',
+            'specified': 'angegebene', 'locale': 'Locale', 'Number': 'Nummer', 'number': 'Nummer'
+        },
+        'ES': {
+            'with': 'con', 'validation': 'validación', 'checksum': 'suma de comprobación', 'algorithm': 'algoritmo',
+            'format': 'formato', 'check': 'verificación', 'Generic': 'Genérico', 'for': 'para',
+            'specified': 'especificado', 'locale': 'Locale', 'Number': 'Número', 'number': 'número'
+        },
+        'FR': {
+            'with': 'avec', 'validation': 'validation', 'checksum': 'somme de contrôle', 'algorithm': 'algorithme',
+            'format': 'format', 'check': 'vérification', 'Generic': 'Générique', 'for': 'pour',
+            'specified': 'spécifié', 'locale': 'Locale', 'Number': 'Numéro', 'number': 'numéro'
+        },
+        'RU': {
+            'with': 'с', 'validation': 'валидацией', 'checksum': 'контрольной суммой', 'algorithm': 'алгоритм',
+            'format': 'формат', 'check': 'проверка', 'Generic': 'Общий', 'for': 'для',
+            'specified': 'указанного', 'locale': 'Locale', 'Number': 'Номер', 'number': 'номер'
+        }
+    }
+    
+    if loc_key == 'EN': return desc
+    
+    lang_terms = terms.get(loc_key, {})
+    translated = desc
+    # Sort keys by length descending to match longest phrases first
+    for en_word, loc_word in sorted(lang_terms.items(), key=lambda x: len(x[0]), reverse=True):
+        # Use word boundaries \b for whole word matching
+        # Note: \b doesn't work well with non-alphanumeric at ends, so we handle dots etc separately
+        pattern = r'\b' + re.escape(en_word).strip('.') + r'\b'
+        if en_word.endswith('.'):
+            pattern += r'\.'
+            
+        translated = re.sub(pattern, loc_word, translated, flags=re.IGNORECASE)
+        
+    return translated
+
+def build_rows_js(loc_key):
     # Construct ROWS array from _REFERENCE
     rows = []
     for r in _REFERENCE:
@@ -147,10 +224,14 @@ def build_rows_js():
         if "kimlik" in catCls: catCls = "kimlik"
         elif "vergi" in catCls: catCls = "vergi"
         elif "bank" in catCls: catCls = "bankacilik"
-        # simplifications
+        
         localeAware = r[2]
         out = r[3]
         cli = r[4]
+        desc_en = r[5] if len(r) > 5 else ""
+        
+        desc = translate_description(desc_en, loc_key)
+        
         if not cli.startswith("mockjutsu "):
             cli = "mockjutsu " + cli
         extra = "—"
@@ -160,15 +241,15 @@ def build_rows_js():
         
         locales = "TR US UK DE FR RU" if localeAware else ""
         
-        row_str = '  ["{fn}","{cat}","{catCls}",{localeAware_str},"{extra}","{out_safe}","{cli}","{locales}"]'.format(
+        row_str = '  ["{fn}","{cat}","{catCls}",{localeAware_str},"{extra}","{out_safe}","{cli}","{locales}","{desc_safe}"]'.format(
             fn=fn, cat=cat, catCls=catCls, localeAware_str=str(localeAware).lower(),
-            extra=extra, out_safe=out.replace('"', '\\"'), cli=cli, locales=locales
+            extra=extra, out_safe=out.replace('"', '\\"').replace('\n', '\\n'), 
+            cli=cli, locales=locales,
+            desc_safe=desc.replace('"', '\\"')
         )
         rows.append(row_str)
         
     return "const ROWS = [\n" + ",\n".join(rows) + "\n];"
-
-ROWS_JS = build_rows_js()
 
 # ── Category translations per locale ─────────────────────────────────────────
 CAT_TRANSLATIONS = {
@@ -275,7 +356,7 @@ LOCALES = {
         'cat_label': 'Tüm Kategoriler',
         'locale_label': 'Locale Filtresi',
         'reset_btn': 'Sıfırla',
-        'col_fn': 'FONKSİYON', 'col_cat': 'KATEGORİ', 'col_loc': 'LOCALE',
+        'col_fn': 'FONKSİYON', 'col_cat': 'KATEGORİ', 'col_desc': 'AÇIKLAMA', 'col_loc': 'LOCALE',
         'col_extra': 'EK PARAMETRE', 'col_out': 'ÖRNEK ÇIKTI', 'col_cli': 'CLI KOMUTU',
         'badge_yes': 'Evet', 'badge_no': '—',
         'section_qs': 'Hızlı Başlangıç',
@@ -303,7 +384,7 @@ LOCALES = {
         'cat_label': 'All Categories',
         'locale_label': 'Locale Filter',
         'reset_btn': 'Reset',
-        'col_fn': 'FUNCTION', 'col_cat': 'CATEGORY', 'col_loc': 'LOCALE',
+        'col_fn': 'FUNCTION', 'col_cat': 'CATEGORY', 'col_desc': 'DESCRIPTION', 'col_loc': 'LOCALE',
         'col_extra': 'EXTRA PARAM', 'col_out': 'EXAMPLE OUTPUT', 'col_cli': 'CLI COMMAND',
         'badge_yes': 'Yes', 'badge_no': '—',
         'section_qs': 'Quick Start',
@@ -331,7 +412,7 @@ LOCALES = {
         'cat_label': 'All Categories',
         'locale_label': 'Locale Filter',
         'reset_btn': 'Reset',
-        'col_fn': 'FUNCTION', 'col_cat': 'CATEGORY', 'col_loc': 'LOCALE',
+        'col_fn': 'FUNCTION', 'col_cat': 'CATEGORY', 'col_desc': 'DESCRIPTION', 'col_loc': 'LOCALE',
         'col_extra': 'EXTRA PARAM', 'col_out': 'EXAMPLE OUTPUT', 'col_cli': 'CLI COMMAND',
         'badge_yes': 'Yes', 'badge_no': '—',
         'section_qs': 'Quick Start',
@@ -359,7 +440,7 @@ LOCALES = {
         'cat_label': 'Alle Kategorien',
         'locale_label': 'Locale-Filter',
         'reset_btn': 'Zurücksetzen',
-        'col_fn': 'FUNKTION', 'col_cat': 'KATEGORIE', 'col_loc': 'LOCALE',
+        'col_fn': 'FUNKTION', 'col_cat': 'KATEGORIE', 'col_desc': 'BESCHREIBUNG', 'col_loc': 'LOCALE',
         'col_extra': 'EXTRA-PARAM', 'col_out': 'BEISPIELAUSGABE', 'col_cli': 'CLI-BEFEHL',
         'badge_yes': 'Ja', 'badge_no': '—',
         'section_qs': 'Schnellstart',
@@ -387,7 +468,7 @@ LOCALES = {
         'cat_label': 'Toutes Catégories',
         'locale_label': 'Filtre Locale',
         'reset_btn': 'Réinitialiser',
-        'col_fn': 'FONCTION', 'col_cat': 'CATÉGORIE', 'col_loc': 'LOCALE',
+        'col_fn': 'FONCTION', 'col_cat': 'CATÉGORIE', 'col_desc': 'DESCRIPTION', 'col_loc': 'LOCALE',
         'col_extra': 'PARAM EXTRA', 'col_out': 'EXEMPLE DE SORTIE', 'col_cli': 'COMMANDE CLI',
         'badge_yes': 'Oui', 'badge_no': '—',
         'section_qs': 'Démarrage Rapide',
@@ -415,8 +496,8 @@ LOCALES = {
         'cat_label': 'Все Категории',
         'locale_label': 'Фильтр Locale',
         'reset_btn': 'Сбросить',
-        'col_fn': 'ФУНКЦИЯ', 'col_cat': 'КАТЕГОРИЯ', 'col_loc': 'LOCALE',
-        'col_extra': 'ДОП. ПАРАМЕТР', 'col_out': 'ПРИМЕР ВЫВОДА', 'col_cli': 'CLI КОМАНДА',
+        'col_fn': 'ФУНКЦИЯ', 'col_cat': 'КАТЕГОРИЯ', 'col_desc': 'ОПИСАНИЕ', 'col_loc': 'LOCALE',
+        'col_extra': 'ДОП. ПАРАМЕТР', 'col_out': 'ПРИМЕР ВЫВОDA', 'col_cli': 'CLI КОМАНДА',
         'badge_yes': 'Да', 'badge_no': '—',
         'section_qs': 'Быстрый Старт',
         'section_power': 'Расширенные Возможности',
@@ -444,7 +525,8 @@ def build_qs_cards(cards):
 
 def build_html(loc_key, cfg):
     lc = cfg['locale_code']
-    locale_rows_js = translate_rows(ROWS_JS, loc_key)
+    rows_js = build_rows_js(loc_key)
+    locale_rows_js = translate_rows(rows_js, loc_key)
     tabs_html = ''.join(
         f'  <div class="tab{" active" if i==0 else ""}" onclick="showTab(\'{tid}\')">{name}</div>\n'
         for i, (tid, name) in enumerate(zip(['ref','qs','power','api'], cfg['tabs']))
@@ -506,6 +588,7 @@ def build_html(loc_key, cfg):
         <tr>
           <th class="col-fn">{cfg['col_fn']}</th>
           <th class="col-cat">{cfg['col_cat']}</th>
+          <th class="col-desc">{cfg['col_desc']}</th>
           <th class="col-locale">{cfg['col_loc']}</th>
           <th class="col-extra">{cfg['col_extra']}</th>
           <th class="col-output">{cfg['col_out']}</th>
@@ -691,7 +774,7 @@ function buildTable() {{
   const cats = new Set(); const sel = document.getElementById('catFilter');
   const tbody = document.getElementById('refBody');
   tbody.innerHTML = '';
-  ROWS.forEach(([fn,cat,catCls,loc,extra,out,cli,locales]) => {{
+  ROWS.forEach(([fn,cat,catCls,loc,extra,out,cli,locales,desc]) => {{
     cats.add(cat);
     const lc_badges = locales ? locales.split(' ').map(l=>`<span class="lc lc-${{l}}">${{l}}</span>`).join('') : '<span class="col-locale"><span class="badge-no">—</span></span>';
     const tr = document.createElement('tr');
@@ -699,6 +782,7 @@ function buildTable() {{
     tr.innerHTML = `
       <td class="col-fn"><code>${{fn}}</code></td>
       <td class="col-cat"><span class="pill ${{CAT_CLS[catCls]||''}}">${{cat}}</span></td>
+      <td class="col-desc">${{desc}}</td>
       <td class="col-locale">${{lc_badges}}</td>
       <td class="col-extra">${{extra!=='—'?`<code>${{extra}}</code>`:'—'}}</td>
       <td class="col-output"><code>${{out}}</code></td>
