@@ -235,7 +235,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Identity</span></td>
           <td class="col-desc">Turkish ID (TCKN) mit Modulo 10/11 Validierung.</td>
           <td class="col-locale">—</td>
-          <td class="col-extra"><code>--prefix</code></td>
+          <td class="col-extra"><code>--prefix (string)</code></td>
           <td class="col-output"><code>45678901234</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate tckn')">mockjutsu generate tckn</span></td>
         </tr>
@@ -478,7 +478,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Name</span></td>
           <td class="col-desc">Random first name für the angegebene Locale.</td>
           <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
-          <td class="col-extra"><code>--gender</code></td>
+          <td class="col-extra"><code>--gender (male, female)</code></td>
           <td class="col-output"><code>Emre</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate firstname --locale TR')">mockjutsu generate firstname --locale TR</span></td>
         </tr>
@@ -487,7 +487,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Name</span></td>
           <td class="col-desc">Random last name für the angegebene Locale.</td>
           <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
-          <td class="col-extra"><code>--gender</code></td>
+          <td class="col-extra"><code>--gender (male, female)</code></td>
           <td class="col-output"><code>Yilmaz</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate lastname --locale TR')">mockjutsu generate lastname --locale TR</span></td>
         </tr>
@@ -496,7 +496,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Name</span></td>
           <td class="col-desc">Full name (First + Last) für the angegebene Locale.</td>
           <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
-          <td class="col-extra"><code>--gender</code></td>
+          <td class="col-extra"><code>--gender (male, female)</code></td>
           <td class="col-output"><code>Emre Kaya</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate fullname --locale TR')">mockjutsu generate fullname --locale TR</span></td>
         </tr>
@@ -505,7 +505,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Name</span></td>
           <td class="col-desc">Patronymic middle name (common in Russian Locale).</td>
           <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
-          <td class="col-extra"><code>--gender</code></td>
+          <td class="col-extra"><code>--gender (male, female)</code></td>
           <td class="col-output"><code>Ivanovich</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate patronymic --locale RU')">mockjutsu generate patronymic --locale RU</span></td>
         </tr>
@@ -532,7 +532,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Demographic</span></td>
           <td class="col-desc">Random human age (typically 18-90).</td>
           <td class="col-locale">—</td>
-          <td class="col-extra"><code>--min --max</code></td>
+          <td class="col-extra"><code>--min, --max (int)</code></td>
           <td class="col-output"><code>34</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate age')">mockjutsu generate age</span></td>
         </tr>
@@ -559,7 +559,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Financial</span></td>
           <td class="col-desc">Credit card Nummer mit Luhn Algorithmus Validierung.</td>
           <td class="col-locale">—</td>
-          <td class="col-extra"><code>--network</code></td>
+          <td class="col-extra"><code>--network (visa, mc, amex, etc.)</code></td>
           <td class="col-output"><code>4532 0151 9283 1029</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cardnum --network visa')">mockjutsu generate cardnum --network visa</span></td>
         </tr>
@@ -595,7 +595,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Financial</span></td>
           <td class="col-desc">Cardholder name in appropriate Format für Locale.</td>
           <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
-          <td class="col-extra"><code>--gender</code></td>
+          <td class="col-extra"><code>--gender (male, female)</code></td>
           <td class="col-output"><code>JOHN SMITH</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cardowner --locale TR')">mockjutsu generate cardowner --locale TR</span></td>
         </tr>
@@ -667,7 +667,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Financial</span></td>
           <td class="col-desc">Random account balance mit 2 decimal precision.</td>
           <td class="col-locale">—</td>
-          <td class="col-extra"><code>--min --max</code></td>
+          <td class="col-extra"><code>--min, --max (float)</code></td>
           <td class="col-output"><code>12450.75</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate balance')">mockjutsu generate balance</span></td>
         </tr>
@@ -685,7 +685,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Financial</span></td>
           <td class="col-desc">SEPA Credit Transfer QR code (EPC standard).</td>
           <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
-          <td class="col-extra"><code>--amount --currency</code></td>
+          <td class="col-extra"><code>--amount, --currency</code></td>
           <td class="col-output"><code>BCD
 002...</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate sepa_qr --locale DE')">mockjutsu generate sepa_qr --locale DE</span></td>
@@ -695,7 +695,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Financial</span></td>
           <td class="col-desc">EMV QRCPS P2P payment QR code (TRQR compatible).</td>
           <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
-          <td class="col-extra"><code>--amount --currency</code></td>
+          <td class="col-extra"><code>--amount, --currency</code></td>
           <td class="col-output"><code>000201010211...</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate emv_qr_p2p --locale TR')">mockjutsu generate emv_qr_p2p --locale TR</span></td>
         </tr>
@@ -704,7 +704,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Financial</span></td>
           <td class="col-desc">EMV QRCPS ATM cash-out QR code.</td>
           <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
-          <td class="col-extra"><code>--amount --currency</code></td>
+          <td class="col-extra"><code>--amount, --currency</code></td>
           <td class="col-output"><code>000201010212...</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate emv_qr_atm --locale DE')">mockjutsu generate emv_qr_atm --locale DE</span></td>
         </tr>
@@ -713,7 +713,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Financial</span></td>
           <td class="col-desc">EMV QRCPS Merchant/POS QR code.</td>
           <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
-          <td class="col-extra"><code>--amount --currency --merchant --city</code></td>
+          <td class="col-extra"><code>--amount, --currency, --merchant, --city</code></td>
           <td class="col-output"><code>000201010211...</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate emv_qr_pos --locale FR')">mockjutsu generate emv_qr_pos --locale FR</span></td>
         </tr>
@@ -722,7 +722,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Financial</span></td>
           <td class="col-desc">3D Secure 2.0 Cardholder Authentication Verification Value (CAVV).</td>
           <td class="col-locale">—</td>
-          <td class="col-extra"><code>--network</code></td>
+          <td class="col-extra"><code>--network (visa, mc, amex)</code></td>
           <td class="col-output"><code>AAABBIIFmAAAAAAEggWY...</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate 3ds_cavv')">mockjutsu generate 3ds_cavv</span></td>
         </tr>
@@ -731,7 +731,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">Financial</span></td>
           <td class="col-desc">3D Secure Electronic Commerce Indicator (ECI) flag.</td>
           <td class="col-locale">—</td>
-          <td class="col-extra"><code>--network</code></td>
+          <td class="col-extra"><code>--network (visa, mc, amex)</code></td>
           <td class="col-output"><code>05 (Visa) / 02 (MC)</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate 3ds_eci --network visa')">mockjutsu generate 3ds_eci --network visa</span></td>
         </tr>
@@ -1244,7 +1244,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
           <td class="col-desc">Cryptographic hash values für various algorithms.</td>
           <td class="col-locale">—</td>
-          <td class="col-extra"><code>--algorithm</code></td>
+          <td class="col-extra"><code>--algorithm (sha256, md5, sha1)</code></td>
           <td class="col-output"><code>e3b0c44298fc...(64hex)</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate hash --algorithm sha256')">mockjutsu generate hash --algorithm sha256</span></td>
         </tr>
@@ -1595,7 +1595,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill cat-crypto">Crypto</span></td>
           <td class="col-desc">Generisch crypto address für angegebene currency.</td>
           <td class="col-locale">—</td>
-          <td class="col-extra"><code>--currency</code></td>
+          <td class="col-extra"><code>--currency (btc, eth)</code></td>
           <td class="col-output"><code>(btc or eth)</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate crypto_address --currency eth')">mockjutsu generate crypto_address --currency eth</span></td>
         </tr>
@@ -1604,7 +1604,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill cat-crypto">Crypto</span></td>
           <td class="col-desc">Blockchain transaction hash (SHA-256/Keccak-256).</td>
           <td class="col-locale">—</td>
-          <td class="col-extra"><code>--currency</code></td>
+          <td class="col-extra"><code>--currency (btc, eth)</code></td>
           <td class="col-output"><code>a1b2c3...64hex</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate tx_hash --currency btc')">mockjutsu generate tx_hash --currency btc</span></td>
         </tr>
@@ -1613,7 +1613,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill cat-crypto">Crypto</span></td>
           <td class="col-desc">Blockchain block hash identifier.</td>
           <td class="col-locale">—</td>
-          <td class="col-extra"><code>--currency</code></td>
+          <td class="col-extra"><code>--currency (btc, eth)</code></td>
           <td class="col-output"><code>0x+64hex (eth)</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate block_hash --currency eth')">mockjutsu generate block_hash --currency eth</span></td>
         </tr>
@@ -1649,7 +1649,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-cat"><span class="pill ">E-Commerce</span></td>
           <td class="col-desc">Logistic tracking numbers für major carriers.</td>
           <td class="col-locale">—</td>
-          <td class="col-extra"><code>--carrier</code></td>
+          <td class="col-extra"><code>--carrier (fedex, ups, usps, dhl)</code></td>
           <td class="col-output"><code>9400111899223397522384</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate tracking_number --carrier usps')">mockjutsu generate tracking_number --carrier usps</span></td>
         </tr>
@@ -2075,7 +2075,7 @@ GET /health  <span class="cm">→ {"status":"ok"}</span>
 
 <script>
 const ROWS = [
-  ["tckn","Identity","identity",false,"--prefix","45678901234","mockjutsu generate tckn","","Turkish ID (TCKN) mit Modulo 10/11 Validierung."],
+  ["tckn","Identity","identity",false,"--prefix (string)","45678901234","mockjutsu generate tckn","","Turkish ID (TCKN) mit Modulo 10/11 Validierung."],
   ["ykn","Identity","identity",false,"—","99012345678","mockjutsu generate ykn","","Foreigner ID (YKN) mit Modulo 10/11 Validierung."],
   ["nationalid","Identity","identity",true,"—","(by locale)","mockjutsu generate nationalid --locale TR","TR US UK DE FR RU","Generisch National ID für the angegebene Locale."],
   ["vkn","Identity","identity",false,"—","1234567890","mockjutsu generate vkn","","Tax Identification Nummer (VKN) mit Modulo 11 Validierung."],
@@ -2102,20 +2102,20 @@ const ROWS = [
   ["snils","Identity","identity",false,"—","112-233-445 95","mockjutsu generate snils","","Russian Pension Insurance (SNILS) mit Prüfsumme."],
   ["kpp","Identity","identity",false,"—","770701001","mockjutsu generate kpp","","Russian Industrial Enterprises Code (KPP) Format."],
   ["ogrn","Identity","identity",false,"—","1027700132195","mockjutsu generate ogrn","","Russian Primary State Registration Nummer (OGRN)."],
-  ["firstname","Name","name",true,"--gender","Emre","mockjutsu generate firstname --locale TR","TR US UK DE FR RU","Random first name für the angegebene Locale."],
-  ["lastname","Name","name",true,"--gender","Yilmaz","mockjutsu generate lastname --locale TR","TR US UK DE FR RU","Random last name für the angegebene Locale."],
-  ["fullname","Name","name",true,"--gender","Emre Kaya","mockjutsu generate fullname --locale TR","TR US UK DE FR RU","Full name (First + Last) für the angegebene Locale."],
-  ["patronymic","Name","name",true,"--gender","Ivanovich","mockjutsu generate patronymic --locale RU","TR US UK DE FR RU","Patronymic middle name (common in Russian Locale)."],
+  ["firstname","Name","name",true,"--gender (male, female)","Emre","mockjutsu generate firstname --locale TR","TR US UK DE FR RU","Random first name für the angegebene Locale."],
+  ["lastname","Name","name",true,"--gender (male, female)","Yilmaz","mockjutsu generate lastname --locale TR","TR US UK DE FR RU","Random last name für the angegebene Locale."],
+  ["fullname","Name","name",true,"--gender (male, female)","Emre Kaya","mockjutsu generate fullname --locale TR","TR US UK DE FR RU","Full name (First + Last) für the angegebene Locale."],
+  ["patronymic","Name","name",true,"--gender (male, female)","Ivanovich","mockjutsu generate patronymic --locale RU","TR US UK DE FR RU","Patronymic middle name (common in Russian Locale)."],
   ["passport","Document","document",false,"—","P1234567","mockjutsu generate passport","","Generisch passport Nummer Format."],
   ["license","Document","document",false,"—","654321","mockjutsu generate license","","Generisch driver license Nummer Format."],
-  ["age","Demographic","demographic",false,"--min --max","34","mockjutsu generate age","","Random human age (typically 18-90)."],
+  ["age","Demographic","demographic",false,"--min, --max (int)","34","mockjutsu generate age","","Random human age (typically 18-90)."],
   ["gender","Demographic","demographic",false,"—","Male","mockjutsu generate gender","","Binary gender values (Male/Female)."],
   ["birthdate","Demographic","demographic",false,"—","1990-05-14","mockjutsu generate birthdate","","Random date of birth in YYYY-MM-DD Format."],
-  ["cardnum","Financial","financial",false,"--network","4532 0151 9283 1029","mockjutsu generate cardnum --network visa","","Credit card Nummer mit Luhn Algorithmus Validierung."],
+  ["cardnum","Financial","financial",false,"--network (visa, mc, amex, etc.)","4532 0151 9283 1029","mockjutsu generate cardnum --network visa","","Credit card Nummer mit Luhn Algorithmus Validierung."],
   ["cardtype","Financial","financial",false,"—","Credit","mockjutsu generate cardtype","","Payment card type (Credit/Debit/Prepaid)."],
   ["cardstatus","Financial","financial",false,"—","Active","mockjutsu generate cardstatus","","Payment card status (Active/Blocked/Expired)."],
   ["cardcategory","Financial","financial",false,"—","Gold","mockjutsu generate cardcategory","","Card level (Classic/Gold/Platinum/Infinite)."],
-  ["cardowner","Financial","financial",true,"--gender","JOHN SMITH","mockjutsu generate cardowner --locale TR","TR US UK DE FR RU","Cardholder name in appropriate Format für Locale."],
+  ["cardowner","Financial","financial",true,"--gender (male, female)","JOHN SMITH","mockjutsu generate cardowner --locale TR","TR US UK DE FR RU","Cardholder name in appropriate Format für Locale."],
   ["cvv3","Financial","financial",false,"—","847","mockjutsu generate cvv3","","3-digit Card Verification Value (CVV/CVC)."],
   ["cvv4","Financial","financial",false,"—","1234","mockjutsu generate cvv4","","4-digit Card Verification Value für Amex."],
   ["pin","Financial","financial",false,"—","7291","mockjutsu generate pin","","4-digit randomized Personal Identification Nummer."],
@@ -2123,14 +2123,14 @@ const ROWS = [
   ["expirymonth","Financial","financial",false,"—","09","mockjutsu generate expirymonth","","Card expiry month (01-12)."],
   ["expiryyear","Financial","financial",false,"—","27","mockjutsu generate expiryyear","","Card expiry year (last 2 digits)."],
   ["issuer","Financial","financial",true,"—","BosphorusBank A.S.","mockjutsu generate issuer --locale TR","TR US UK DE FR RU","Simulated bank or card issuing entity."],
-  ["balance","Financial","financial",false,"--min --max","12450.75","mockjutsu generate balance","","Random account balance mit 2 decimal precision."],
+  ["balance","Financial","financial",false,"--min, --max (float)","12450.75","mockjutsu generate balance","","Random account balance mit 2 decimal precision."],
   ["iban","Financial","financial",true,"—","TR330006100519...","mockjutsu generate iban --locale TR","TR US UK DE FR RU","International Bank Account Nummer (IBAN) mit Modulo 97 Prüfung."],
-  ["sepa_qr","Financial","financial",true,"--amount --currency","BCD\n002...","mockjutsu generate sepa_qr --locale DE","TR US UK DE FR RU","SEPA Credit Transfer QR code (EPC standard)."],
-  ["emv_qr_p2p","Financial","financial",true,"--amount --currency","000201010211...","mockjutsu generate emv_qr_p2p --locale TR","TR US UK DE FR RU","EMV QRCPS P2P payment QR code (TRQR compatible)."],
-  ["emv_qr_atm","Financial","financial",true,"--amount --currency","000201010212...","mockjutsu generate emv_qr_atm --locale DE","TR US UK DE FR RU","EMV QRCPS ATM cash-out QR code."],
-  ["emv_qr_pos","Financial","financial",true,"--amount --currency --merchant --city","000201010211...","mockjutsu generate emv_qr_pos --locale FR","TR US UK DE FR RU","EMV QRCPS Merchant/POS QR code."],
-  ["3ds_cavv","Financial","financial",false,"--network","AAABBIIFmAAAAAAEggWY...","mockjutsu generate 3ds_cavv","","3D Secure 2.0 Cardholder Authentication Verification Value (CAVV)."],
-  ["3ds_eci","Financial","financial",false,"--network","05 (Visa) / 02 (MC)","mockjutsu generate 3ds_eci --network visa","","3D Secure Electronic Commerce Indicator (ECI) flag."],
+  ["sepa_qr","Financial","financial",true,"--amount, --currency","BCD\n002...","mockjutsu generate sepa_qr --locale DE","TR US UK DE FR RU","SEPA Credit Transfer QR code (EPC standard)."],
+  ["emv_qr_p2p","Financial","financial",true,"--amount, --currency","000201010211...","mockjutsu generate emv_qr_p2p --locale TR","TR US UK DE FR RU","EMV QRCPS P2P payment QR code (TRQR compatible)."],
+  ["emv_qr_atm","Financial","financial",true,"--amount, --currency","000201010212...","mockjutsu generate emv_qr_atm --locale DE","TR US UK DE FR RU","EMV QRCPS ATM cash-out QR code."],
+  ["emv_qr_pos","Financial","financial",true,"--amount, --currency, --merchant, --city","000201010211...","mockjutsu generate emv_qr_pos --locale FR","TR US UK DE FR RU","EMV QRCPS Merchant/POS QR code."],
+  ["3ds_cavv","Financial","financial",false,"--network (visa, mc, amex)","AAABBIIFmAAAAAAEggWY...","mockjutsu generate 3ds_cavv","","3D Secure 2.0 Cardholder Authentication Verification Value (CAVV)."],
+  ["3ds_eci","Financial","financial",false,"--network (visa, mc, amex)","05 (Visa) / 02 (MC)","mockjutsu generate 3ds_eci --network visa","","3D Secure Electronic Commerce Indicator (ECI) flag."],
   ["cardnetwork","Financial","financial",false,"—","VISA / MASTERCARD","mockjutsu generate cardnetwork","","Credit card network name (Visa, MC, Amex, etc.)."],
   ["track2_data","Hardware","hardware",false,"—",";4532...=2812201...?","mockjutsu generate track2_data","","Magnetic stripe Track 2 data (PAN=Expiry+ServiceCode+CVV)."],
   ["chip_data","Hardware","hardware",false,"—","9F0206000000001000...","mockjutsu generate chip_data","","Simulated EMV chip (ICC) tag-length-value (TLV) data."],
@@ -2187,7 +2187,7 @@ const ROWS = [
   ["useragent","Meta","meta",false,"—","Mozilla/5.0 ...","mockjutsu generate useragent","","Realistic browser User-Agent strings."],
   ["jwt","Meta","meta",false,"—","eyJ....eyJ....sig","mockjutsu generate jwt","","Mock JSON Web Token (JWT) mit header/payload/signature structure."],
   ["bearertoken","Meta","meta",false,"—","Bearer eyJ....sig","mockjutsu generate bearertoken","","HTTP Bearer authorization token."],
-  ["hash","Meta","meta",false,"--algorithm","e3b0c44298fc...(64hex)","mockjutsu generate hash --algorithm sha256","","Cryptographic hash values für various algorithms."],
+  ["hash","Meta","meta",false,"--algorithm (sha256, md5, sha1)","e3b0c44298fc...(64hex)","mockjutsu generate hash --algorithm sha256","","Cryptographic hash values für various algorithms."],
   ["mac_address","Meta","meta",false,"—","A4:C3:F0:3D:8E:21","mockjutsu generate mac_address","","48-bit hardware MAC address (IEEE 802)."],
   ["url","Meta","meta",true,"—","https://api-42.co.uk/..","mockjutsu generate url --locale TR","TR US UK DE FR RU","Localized web URLs."],
   ["domain","Meta","meta",true,"—","test-77.com.tr","mockjutsu generate domain --locale TR","TR US UK DE FR RU","Localized domain names mit regional TLDs."],
@@ -2226,13 +2226,13 @@ const ROWS = [
   ["lei","Securities","securities",false,"—","529900T8BM49AURSDO55","mockjutsu generate lei","","Legal Entity Identifier (ISO 17442)."],
   ["btc_address","Crypto","crypto",false,"—","1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf","mockjutsu generate btc_address","","Bitcoin wallet address (P2PKH, P2SH, Bech32)."],
   ["eth_address","Crypto","crypto",false,"—","0x5aAeb6053F3E94C9b9A0...","mockjutsu generate eth_address","","Ethereum/EVM compatible wallet address."],
-  ["crypto_address","Crypto","crypto",false,"--currency","(btc or eth)","mockjutsu generate crypto_address --currency eth","","Generisch crypto address für angegebene currency."],
-  ["tx_hash","Crypto","crypto",false,"--currency","a1b2c3...64hex","mockjutsu generate tx_hash --currency btc","","Blockchain transaction hash (SHA-256/Keccak-256)."],
-  ["block_hash","Crypto","crypto",false,"--currency","0x+64hex (eth)","mockjutsu generate block_hash --currency eth","","Blockchain block hash identifier."],
+  ["crypto_address","Crypto","crypto",false,"--currency (btc, eth)","(btc or eth)","mockjutsu generate crypto_address --currency eth","","Generisch crypto address für angegebene currency."],
+  ["tx_hash","Crypto","crypto",false,"--currency (btc, eth)","a1b2c3...64hex","mockjutsu generate tx_hash --currency btc","","Blockchain transaction hash (SHA-256/Keccak-256)."],
+  ["block_hash","Crypto","crypto",false,"--currency (btc, eth)","0x+64hex (eth)","mockjutsu generate block_hash --currency eth","","Blockchain block hash identifier."],
   ["product_name","E-Commerce","e-commerce",false,"—","Wireless Headphones","mockjutsu generate product_name","","Randomized e-commerce product names."],
   ["sku","E-Commerce","e-commerce",false,"—","AB-123456","mockjutsu generate sku","","Stock Keeping Unit (SKU) identifiers."],
   ["order_id","E-Commerce","e-commerce",false,"—","ORD-A1B2C3D4E5F6","mockjutsu generate order_id","","Unique e-commerce order identifiers."],
-  ["tracking_number","E-Commerce","e-commerce",false,"--carrier","9400111899223397522384","mockjutsu generate tracking_number --carrier usps","","Logistic tracking numbers für major carriers."],
+  ["tracking_number","E-Commerce","e-commerce",false,"--carrier (fedex, ups, usps, dhl)","9400111899223397522384","mockjutsu generate tracking_number --carrier usps","","Logistic tracking numbers für major carriers."],
   ["dhl_tracking","E-Commerce","e-commerce",false,"—","JD123456789","mockjutsu generate dhl_tracking","","DHL Express tracking Nummer Format."],
   ["category","E-Commerce","e-commerce",false,"—","Electronics","mockjutsu generate category","","Product category classifications."],
   ["rating","E-Commerce","e-commerce",false,"—","4.5","mockjutsu generate rating","","Product rating scores (1.0 - 5.0)."],
