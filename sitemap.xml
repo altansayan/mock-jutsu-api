@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://altansayan.github.io/mock-jutsu-api/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-TR.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-EN.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-UK.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-DE.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-FR.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-RU.html</loc>
+    <priority>0.8</priority>
+  </url>
+</urlset>

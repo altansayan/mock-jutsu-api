@@ -559,6 +559,34 @@ def build_html(loc_key, cfg):
     lc = cfg['locale_code']
     rows_js = build_rows_js(loc_key)
     locale_rows_js = translate_rows(rows_js, loc_key)
+    
+    # Generate Hreflang Tags
+    hreflangs = ""
+    for k, v in LOCALES.items():
+        lang_code = v['lang']
+        hreflangs += f'<link rel="alternate" hreflang="{lang_code}" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-{k}.html">\n'
+    hreflangs += '<link rel="alternate" hreflang="x-default" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-EN.html">\n'
+
+    # Generate JSON-LD Structured Data
+    json_ld = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "mock-jutsu",
+        "operatingSystem": "Cross-platform",
+        "applicationCategory": "DeveloperApplication",
+        "description": cfg['meta_desc'],
+        "author": {
+            "@type": "Person",
+            "name": "Altan Sezer Ayan"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    json_ld_str = json.dumps(json_ld, indent=2, ensure_ascii=False)
+
     tabs_html = ''.join(
         f'  <div class="tab{" active" if i==0 else ""}" onclick="showTab(\'{tid}\')">{name}</div>\n'
         for i, (tid, name) in enumerate(zip(['ref','qs','power','api'], cfg['tabs']))
@@ -576,6 +604,7 @@ def build_html(loc_key, cfg):
 <meta name="keywords" content="mock data, fake data, test data, mockjutsu, algorithmic data engine, fintech, banking, identity generation">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="canonical" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-{loc_key}.html">
+{hreflangs}
 
 <!-- Open Graph / Social -->
 <meta property="og:type" content="website">
@@ -590,6 +619,10 @@ def build_html(loc_key, cfg):
 <meta property="twitter:title" content="{cfg['title']}">
 <meta property="twitter:description" content="{cfg['meta_desc']}">
 <meta property="twitter:image" content="https://altansayan.github.io/mock-jutsu-api/assets/banner.png">
+
+<script type="application/ld+json">
+{json_ld_str}
+</script>
 
 <style>
 {BASE_CSS}
@@ -906,10 +939,31 @@ buildTable();
 if __name__ == "__main__":
     base_dir = os.path.dirname(os.path.abspath(__file__))
     
+    # 1. Generate Locale Pages
     for loc_key, cfg in LOCALES.items():
         filename = os.path.join(base_dir, f'HOW-TO-MockJutsu-{loc_key}.html')
         html = build_html(loc_key, cfg)
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(html)
         print(f'Generated: {os.path.basename(filename)}')
+
+    # 2. Generate sitemap.xml
+    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    # Main page
+    sitemap += '  <url>\n    <loc>https://altansayan.github.io/mock-jutsu-api/</loc>\n    <priority>1.0</priority>\n  </url>\n'
+    # Locale pages
+    for loc in LOCALES.keys():
+        sitemap += f'  <url>\n    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-{loc}.html</loc>\n    <priority>0.8</priority>\n  </url>\n'
+    sitemap += '</urlset>'
+    
+    with open(os.path.join(base_dir, "sitemap.xml"), "w", encoding="utf-8") as f:
+        f.write(sitemap)
+    print("Generated: sitemap.xml")
+
+    # 3. Generate robots.txt
+    robots = "User-agent: *\nAllow: /\n\nSitemap: https://altansayan.github.io/mock-jutsu-api/sitemap.xml"
+    with open(os.path.join(base_dir, "robots.txt"), "w", encoding="utf-8") as f:
+        f.write(robots)
+    print("Generated: robots.txt")
+
     print('Done.')

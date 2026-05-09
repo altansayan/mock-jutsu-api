@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://altansayan.github.io/mock-jutsu-api/sitemap.xml
