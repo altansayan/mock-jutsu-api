@@ -11,6 +11,6 @@ repos:
       - id: strict-compliance
         name: Full System Compliance & Test Check
         entry: python scripts/run_all_checks.py
-        language: python
+        language: system
         pass_filenames: false
         stages: [pre-push]
