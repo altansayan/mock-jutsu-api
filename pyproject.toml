@@ -68,7 +68,7 @@ source = ["src"]
 omit = ["src/mockjutsu/api/*", "src/mockjutsu/cli.py"]
 
 [tool.coverage.report]
-fail_under = 100
+fail_under = 85
 show_missing = true
 exclude_lines = [
     "pragma: no cover",

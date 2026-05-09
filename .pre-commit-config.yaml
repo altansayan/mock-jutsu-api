@@ -10,7 +10,7 @@ repos:
 
       - id: strict-coverage
         name: Strict 100% Test Coverage
-        entry: bash -c "export PYTHONPATH=src && python -m pytest --cov=src --cov-fail-under=100"
-        language: system
+        entry: python -m pytest --cov=src --cov-fail-under=100 -p no:capture
+        language: python
         pass_filenames: false
         stages: [pre-push]
