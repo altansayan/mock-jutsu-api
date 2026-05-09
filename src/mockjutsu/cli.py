@@ -361,7 +361,7 @@ def list_types(cat):
             fg=color, bold=True
         ))
 
-        for (typ, _cat, locale_aware, example, cli_cmd) in rows:
+        for (typ, _cat, locale_aware, example, cli_cmd, _desc) in rows:
             loc_flag = click.style("v", fg="green") if locale_aware else click.style("-", fg='bright_black')
             typ_s    = click.style(f"  {typ:<{W_TYPE}}", fg='white', bold=True)
             ex_s     = click.style(f"{example:<{W_EX}}", fg='bright_yellow')
