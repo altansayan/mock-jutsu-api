@@ -48,7 +48,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("2001 Tests\n", style="cyan")
+    body.append("2065 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan - A.S.A\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
