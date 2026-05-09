@@ -19,9 +19,11 @@ def run_checks():
     # 3. Step 1: Run Compliance Auditor
     print("\nStep 1: Running Compliance Auditor...")
     audit_script = os.path.join(BASE_DIR, "scripts", "audit_compliance.py")
-    result = subprocess.run([sys.executable, audit_script], cwd=BASE_DIR, env=env)
+    result = subprocess.run([sys.executable, audit_script], cwd=BASE_DIR, env=env, capture_output=True, text=True)
     if result.returncode != 0:
         print("Compliance Audit FAILED.")
+        print(result.stdout)
+        print(result.stderr)
         return 1
 
     # 4. Step 2: Run Pytest with Coverage
