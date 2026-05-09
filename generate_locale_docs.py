@@ -560,6 +560,45 @@ def build_html(loc_key, cfg):
     rows_js = build_rows_js(loc_key)
     locale_rows_js = translate_rows(rows_js, loc_key)
     
+    # Extract data for SSR (Server Side Rendering)
+    data_str = locale_rows_js.replace('const ROWS = ', '').rstrip(';')
+    data_list = json.loads(data_str)
+    
+    cat_cls_map = {
+        "kimlik":"cat-kimlik", "vergi":"cat-vergi", "isveren":"cat-isveren",
+        "sigorta":"cat-sigorta", "isim":"cat-isim", "belge":"cat-belge",
+        "demografik":"cat-demografik", "finansal":"cat-finansal",
+        "iletisim":"cat-iletisim", "meta":"cat-meta",
+        "bankacilik":"cat-bankacilik", "kurumsal":"cat-kurumsal",
+        "saglik":"cat-saglik", "ticaret":"cat-ticaret",
+        "rfid":"cat-rfid", "nfc":"cat-nfc", "ir":"cat-ir",
+        "barkod":"cat-barkod", "telecom":"cat-telecom",
+        "securities":"cat-securities", "crypto":"cat-crypto",
+        "ecommerce":"cat-ecommerce", "location":"cat-location",
+        "social":"cat-social", "guvenlik":"cat-guvenlik",
+    }
+    
+    pre_rendered_rows = ""
+    for r in data_list:
+        fn, cat, catCls, locAware, extra, out, cli, locales, desc = r
+        lc_badges = "".join(f'<span class="lc lc-{l}">{l}</span>' for l in locales.split()) if locales else "—"
+        if locales:
+            lc_badges = f'<div class="lc-grid">{lc_badges}</div>'
+        
+        extra_html = f'<code>{extra}</code>' if extra != '—' else '—'
+        pill_cls = cat_cls_map.get(catCls, "")
+        
+        pre_rendered_rows += f"""
+        <tr data-fn="{fn}" data-cat="{cat}" data-locales="{locales}">
+          <td class="col-fn"><code>{fn}</code></td>
+          <td class="col-cat"><span class="pill {pill_cls}">{cat}</span></td>
+          <td class="col-desc">{desc}</td>
+          <td class="col-locale">{lc_badges}</td>
+          <td class="col-extra">{extra_html}</td>
+          <td class="col-output"><code>{out}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('{cli}')">{cli}</span></td>
+        </tr>"""
+
     # Generate Hreflang Tags
     hreflangs = ""
     for k, v in LOCALES.items():
@@ -696,7 +735,9 @@ def build_html(loc_key, cfg):
           <th class="col-cli">{cfg['col_cli']}</th>
         </tr>
       </thead>
-      <tbody id="refBody"></tbody>
+      <tbody id="refBody">
+        {pre_rendered_rows}
+      </tbody>
     </table>
   </div>
 </div>

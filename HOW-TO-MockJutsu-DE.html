@@ -228,7 +228,1585 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <th class="col-cli">CLI-BEFEHL</th>
         </tr>
       </thead>
-      <tbody id="refBody"></tbody>
+      <tbody id="refBody">
+        
+        <tr data-fn="tckn" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>tckn</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Turkish ID (TCKN) mit Modulo 10/11 Validierung.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>45678901234</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate tckn')">mockjutsu generate tckn</span></td>
+        </tr>
+        <tr data-fn="ykn" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>ykn</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Foreigner ID (YKN) mit Modulo 10/11 Validierung.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>99012345678</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ykn')">mockjutsu generate ykn</span></td>
+        </tr>
+        <tr data-fn="nationalid" data-cat="Identity" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>nationalid</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Generisch National ID für the angegebene Locale.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>(by locale)</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate nationalid --locale TR')">mockjutsu generate nationalid --locale TR</span></td>
+        </tr>
+        <tr data-fn="vkn" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>vkn</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Tax Identification Nummer (VKN) mit Modulo 11 Validierung.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>1234567890</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate vkn')">mockjutsu generate vkn</span></td>
+        </tr>
+        <tr data-fn="taxid" data-cat="Identity" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>taxid</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Generisch Tax ID für the angegebene Locale.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>(by locale)</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate taxid --locale TR')">mockjutsu generate taxid --locale TR</span></td>
+        </tr>
+        <tr data-fn="employer_id" data-cat="Identity" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>employer_id</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Employer Registration ID mit algorithmic checks.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>(by locale)</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate employer_id --locale TR')">mockjutsu generate employer_id --locale TR</span></td>
+        </tr>
+        <tr data-fn="insurance_id" data-cat="Identity" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>insurance_id</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Social Security / Insurance ID für angegebene Locale.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>(by locale)</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate insurance_id --locale TR')">mockjutsu generate insurance_id --locale TR</span></td>
+        </tr>
+        <tr data-fn="sgk" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>sgk</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Turkish Social Security (SGK) Nummer Format.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>34-0012345-1.01-02</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate sgk')">mockjutsu generate sgk</span></td>
+        </tr>
+        <tr data-fn="mersis" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>mersis</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Turkish Central Registry System (MERSIS) Nummer.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>1234567890012345</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate mersis')">mockjutsu generate mersis</span></td>
+        </tr>
+        <tr data-fn="ssn" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>ssn</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">US Social Security Nummer (SSN) mit area/group rules.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>234-56-7890</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ssn')">mockjutsu generate ssn</span></td>
+        </tr>
+        <tr data-fn="ein" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>ein</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">US Employer Identification Nummer (EIN) Format.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>12-3456789</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ein')">mockjutsu generate ein</span></td>
+        </tr>
+        <tr data-fn="nin" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>nin</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">UK National Insurance Nummer (NIN) Format.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>AB 12 34 56 C</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate nin')">mockjutsu generate nin</span></td>
+        </tr>
+        <tr data-fn="utr" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>utr</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">UK Unique Taxpayer Reference (UTR) mit Modulo 11 Prüfung.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>1234567890</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate utr')">mockjutsu generate utr</span></td>
+        </tr>
+        <tr data-fn="crn" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>crn</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">UK Company Registration Nummer (CRN) Format.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>12345678</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate crn')">mockjutsu generate crn</span></td>
+        </tr>
+        <tr data-fn="paye" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>paye</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">UK PAYE (Pay As You Earn) reference Format.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>123/AB4567</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate paye')">mockjutsu generate paye</span></td>
+        </tr>
+        <tr data-fn="ust_id" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>ust_id</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">German VAT ID (USt-IdNr.) mit ISO 7064 Prüfung.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>DE123456789</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ust_id')">mockjutsu generate ust_id</span></td>
+        </tr>
+        <tr data-fn="ustid" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>ustid</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Alias für German VAT ID.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>DE123456789</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ustid')">mockjutsu generate ustid</span></td>
+        </tr>
+        <tr data-fn="hrb" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>hrb</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">German Commercial Register (Handelsregister) ID.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>HRB 123456</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate hrb')">mockjutsu generate hrb</span></td>
+        </tr>
+        <tr data-fn="rvn" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>rvn</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">German Pension Insurance Nummer (RVNR) Format.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>65 070892 W 1235</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate rvn')">mockjutsu generate rvn</span></td>
+        </tr>
+        <tr data-fn="siren" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>siren</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">French Business Identifier (SIREN) mit Luhn Validierung.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>732829320</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate siren')">mockjutsu generate siren</span></td>
+        </tr>
+        <tr data-fn="siret" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>siret</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">French Establishment Identifier (SIRET) mit Luhn Validierung.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>73282932000074</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate siret')">mockjutsu generate siret</span></td>
+        </tr>
+        <tr data-fn="tva" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>tva</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">French VAT Nummer (TVA) mit ISO 7064 Prüfung.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>FR73732829320</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate tva')">mockjutsu generate tva</span></td>
+        </tr>
+        <tr data-fn="inn" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>inn</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Russian Tax ID (INN) mit Prüfsumme Validierung.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>7707083893</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate inn')">mockjutsu generate inn</span></td>
+        </tr>
+        <tr data-fn="snils" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>snils</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Russian Pension Insurance (SNILS) mit Prüfsumme.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>112-233-445 95</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate snils')">mockjutsu generate snils</span></td>
+        </tr>
+        <tr data-fn="kpp" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>kpp</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Russian Industrial Enterprises Code (KPP) Format.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>770701001</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate kpp')">mockjutsu generate kpp</span></td>
+        </tr>
+        <tr data-fn="ogrn" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>ogrn</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Russian Primary State Registration Nummer (OGRN).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>1027700132195</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ogrn')">mockjutsu generate ogrn</span></td>
+        </tr>
+        <tr data-fn="firstname" data-cat="Name" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>firstname</code></td>
+          <td class="col-cat"><span class="pill ">Name</span></td>
+          <td class="col-desc">Random first name für the angegebene Locale.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Emre</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate firstname --locale TR')">mockjutsu generate firstname --locale TR</span></td>
+        </tr>
+        <tr data-fn="lastname" data-cat="Name" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>lastname</code></td>
+          <td class="col-cat"><span class="pill ">Name</span></td>
+          <td class="col-desc">Random last name für the angegebene Locale.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Yilmaz</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate lastname --locale TR')">mockjutsu generate lastname --locale TR</span></td>
+        </tr>
+        <tr data-fn="fullname" data-cat="Name" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>fullname</code></td>
+          <td class="col-cat"><span class="pill ">Name</span></td>
+          <td class="col-desc">Full name (First + Last) für the angegebene Locale.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Emre Kaya</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate fullname --locale TR')">mockjutsu generate fullname --locale TR</span></td>
+        </tr>
+        <tr data-fn="patronymic" data-cat="Name" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>patronymic</code></td>
+          <td class="col-cat"><span class="pill ">Name</span></td>
+          <td class="col-desc">Patronymic middle name (common in Russian Locale).</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Ivanovich</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate patronymic --locale RU')">mockjutsu generate patronymic --locale RU</span></td>
+        </tr>
+        <tr data-fn="passport" data-cat="Document" data-locales="">
+          <td class="col-fn"><code>passport</code></td>
+          <td class="col-cat"><span class="pill ">Document</span></td>
+          <td class="col-desc">Generisch passport Nummer Format.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>P1234567</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate passport')">mockjutsu generate passport</span></td>
+        </tr>
+        <tr data-fn="license" data-cat="Document" data-locales="">
+          <td class="col-fn"><code>license</code></td>
+          <td class="col-cat"><span class="pill ">Document</span></td>
+          <td class="col-desc">Generisch driver license Nummer Format.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>654321</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate license')">mockjutsu generate license</span></td>
+        </tr>
+        <tr data-fn="age" data-cat="Demographic" data-locales="">
+          <td class="col-fn"><code>age</code></td>
+          <td class="col-cat"><span class="pill ">Demographic</span></td>
+          <td class="col-desc">Random human age (typically 18-90).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>34</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate age')">mockjutsu generate age</span></td>
+        </tr>
+        <tr data-fn="gender" data-cat="Demographic" data-locales="">
+          <td class="col-fn"><code>gender</code></td>
+          <td class="col-cat"><span class="pill ">Demographic</span></td>
+          <td class="col-desc">Binary gender values (Male/Female).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Male</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate gender')">mockjutsu generate gender</span></td>
+        </tr>
+        <tr data-fn="birthdate" data-cat="Demographic" data-locales="">
+          <td class="col-fn"><code>birthdate</code></td>
+          <td class="col-cat"><span class="pill ">Demographic</span></td>
+          <td class="col-desc">Random date of birth in YYYY-MM-DD Format.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>1990-05-14</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate birthdate')">mockjutsu generate birthdate</span></td>
+        </tr>
+        <tr data-fn="cardnum" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>cardnum</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">Credit card Nummer mit Luhn Algorithmus Validierung.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra"><code>--network</code></td>
+          <td class="col-output"><code>4532 0151 9283 1029</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cardnum --network visa')">mockjutsu generate cardnum --network visa</span></td>
+        </tr>
+        <tr data-fn="cardtype" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>cardtype</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">Payment card type (Credit/Debit/Prepaid).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Credit</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cardtype')">mockjutsu generate cardtype</span></td>
+        </tr>
+        <tr data-fn="cardstatus" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>cardstatus</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">Payment card status (Active/Blocked/Expired).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Active</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cardstatus')">mockjutsu generate cardstatus</span></td>
+        </tr>
+        <tr data-fn="cardcategory" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>cardcategory</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">Card level (Classic/Gold/Platinum/Infinite).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Gold</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cardcategory')">mockjutsu generate cardcategory</span></td>
+        </tr>
+        <tr data-fn="cardowner" data-cat="Financial" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>cardowner</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">Cardholder name in appropriate Format für Locale.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>JOHN SMITH</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cardowner --locale TR')">mockjutsu generate cardowner --locale TR</span></td>
+        </tr>
+        <tr data-fn="cvv3" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>cvv3</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">3-digit Card Verification Value (CVV/CVC).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>847</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cvv3')">mockjutsu generate cvv3</span></td>
+        </tr>
+        <tr data-fn="cvv4" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>cvv4</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">4-digit Card Verification Value für Amex.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>1234</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cvv4')">mockjutsu generate cvv4</span></td>
+        </tr>
+        <tr data-fn="pin" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>pin</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">4-digit randomized Personal Identification Nummer.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>7291</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate pin')">mockjutsu generate pin</span></td>
+        </tr>
+        <tr data-fn="expiry" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>expiry</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">Card expiry date (MM/YY) in the future.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>09/27</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate expiry')">mockjutsu generate expiry</span></td>
+        </tr>
+        <tr data-fn="expirymonth" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>expirymonth</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">Card expiry month (01-12).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>09</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate expirymonth')">mockjutsu generate expirymonth</span></td>
+        </tr>
+        <tr data-fn="expiryyear" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>expiryyear</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">Card expiry year (last 2 digits).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>27</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate expiryyear')">mockjutsu generate expiryyear</span></td>
+        </tr>
+        <tr data-fn="issuer" data-cat="Financial" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>issuer</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">Simulated bank or card issuing entity.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>BosphorusBank A.S.</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate issuer --locale TR')">mockjutsu generate issuer --locale TR</span></td>
+        </tr>
+        <tr data-fn="balance" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>balance</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">Random account balance mit 2 decimal precision.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>12450.75</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate balance')">mockjutsu generate balance</span></td>
+        </tr>
+        <tr data-fn="iban" data-cat="Financial" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>iban</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">International Bank Account Nummer (IBAN) mit Modulo 97 Prüfung.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>TR330006100519...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate iban --locale TR')">mockjutsu generate iban --locale TR</span></td>
+        </tr>
+        <tr data-fn="sepa_qr" data-cat="Financial" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>sepa_qr</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">SEPA Credit Transfer QR code (EPC standard).</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>BCD
+002...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate sepa_qr --locale DE')">mockjutsu generate sepa_qr --locale DE</span></td>
+        </tr>
+        <tr data-fn="emv_qr_p2p" data-cat="Financial" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>emv_qr_p2p</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">EMV QRCPS P2P payment QR code (TRQR compatible).</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>000201010211...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate emv_qr_p2p --locale TR')">mockjutsu generate emv_qr_p2p --locale TR</span></td>
+        </tr>
+        <tr data-fn="emv_qr_atm" data-cat="Financial" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>emv_qr_atm</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">EMV QRCPS ATM cash-out QR code.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>000201010212...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate emv_qr_atm --locale DE')">mockjutsu generate emv_qr_atm --locale DE</span></td>
+        </tr>
+        <tr data-fn="emv_qr_pos" data-cat="Financial" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>emv_qr_pos</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">EMV QRCPS Merchant/POS QR code.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>000201010211...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate emv_qr_pos --locale FR')">mockjutsu generate emv_qr_pos --locale FR</span></td>
+        </tr>
+        <tr data-fn="track2_data" data-cat="Hardware" data-locales="">
+          <td class="col-fn"><code>track2_data</code></td>
+          <td class="col-cat"><span class="pill ">Hardware</span></td>
+          <td class="col-desc">Magnetic stripe Track 2 data (PAN=Expiry+ServiceCode+CVV).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>;4532...=2812201...?</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate track2_data')">mockjutsu generate track2_data</span></td>
+        </tr>
+        <tr data-fn="chip_data" data-cat="Hardware" data-locales="">
+          <td class="col-fn"><code>chip_data</code></td>
+          <td class="col-cat"><span class="pill ">Hardware</span></td>
+          <td class="col-desc">Simulated EMV chip (ICC) tag-length-value (TLV) data.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>9F0206000000001000...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate chip_data')">mockjutsu generate chip_data</span></td>
+        </tr>
+        <tr data-fn="pin_block" data-cat="Hardware" data-locales="">
+          <td class="col-fn"><code>pin_block</code></td>
+          <td class="col-cat"><span class="pill ">Hardware</span></td>
+          <td class="col-desc">ISO 9564 Format encrypted PIN block (Format 0/1).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>0123456789ABCDEF</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate pin_block')">mockjutsu generate pin_block</span></td>
+        </tr>
+        <tr data-fn="phone" data-cat="Contact" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>phone</code></td>
+          <td class="col-cat"><span class="pill ">Contact</span></td>
+          <td class="col-desc">Full E.164 formatted telephone Nummer.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>+905325551234</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate phone --locale TR')">mockjutsu generate phone --locale TR</span></td>
+        </tr>
+        <tr data-fn="phone_country" data-cat="Contact" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>phone_country</code></td>
+          <td class="col-cat"><span class="pill ">Contact</span></td>
+          <td class="col-desc">International telephone country dial code.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>+90</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate phone_country --locale TR')">mockjutsu generate phone_country --locale TR</span></td>
+        </tr>
+        <tr data-fn="phone_area" data-cat="Contact" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>phone_area</code></td>
+          <td class="col-cat"><span class="pill ">Contact</span></td>
+          <td class="col-desc">Localized telephone area/operator code.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>532</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate phone_area --locale TR')">mockjutsu generate phone_area --locale TR</span></td>
+        </tr>
+        <tr data-fn="phone_local" data-cat="Contact" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>phone_local</code></td>
+          <td class="col-cat"><span class="pill ">Contact</span></td>
+          <td class="col-desc">Local telephone Nummer part.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>5551234</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate phone_local --locale TR')">mockjutsu generate phone_local --locale TR</span></td>
+        </tr>
+        <tr data-fn="address_city" data-cat="Contact" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>address_city</code></td>
+          <td class="col-cat"><span class="pill ">Contact</span></td>
+          <td class="col-desc">Major city name für the angegebene Locale.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Istanbul</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate address_city --locale TR')">mockjutsu generate address_city --locale TR</span></td>
+        </tr>
+        <tr data-fn="address_street" data-cat="Contact" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>address_street</code></td>
+          <td class="col-cat"><span class="pill ">Contact</span></td>
+          <td class="col-desc">Realistic street/avenue name für the Locale.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Bagdat Caddesi</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate address_street --locale TR')">mockjutsu generate address_street --locale TR</span></td>
+        </tr>
+        <tr data-fn="address_full" data-cat="Contact" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>address_full</code></td>
+          <td class="col-cat"><span class="pill ">Contact</span></td>
+          <td class="col-desc">Complete mailing address für the angegebene Locale.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Istanbul, Bagdat Cad.</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate address_full --locale TR')">mockjutsu generate address_full --locale TR</span></td>
+        </tr>
+        <tr data-fn="postalcode" data-cat="Contact" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>postalcode</code></td>
+          <td class="col-cat"><span class="pill ">Contact</span></td>
+          <td class="col-desc">Locale-specific postal/zip code Format.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>34500</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate postalcode --locale TR')">mockjutsu generate postalcode --locale TR</span></td>
+        </tr>
+        <tr data-fn="plate" data-cat="Contact" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>plate</code></td>
+          <td class="col-cat"><span class="pill ">Contact</span></td>
+          <td class="col-desc">Vehicle license plate Format für the angegebene country.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>34 ABC 123</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate plate --locale TR')">mockjutsu generate plate --locale TR</span></td>
+        </tr>
+        <tr data-fn="email" data-cat="Contact" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>email</code></td>
+          <td class="col-cat"><span class="pill ">Contact</span></td>
+          <td class="col-desc">Randomized email address using common domains.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>user42@gmail.com</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate email --locale TR')">mockjutsu generate email --locale TR</span></td>
+        </tr>
+        <tr data-fn="swift" data-cat="Banking" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>swift</code></td>
+          <td class="col-cat"><span class="pill cat-bankacilik">Banking</span></td>
+          <td class="col-desc">ISO 9362 Business Identifier Code (BIC/SWIFT).</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>DEUTDEDB</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate swift --locale TR')">mockjutsu generate swift --locale TR</span></td>
+        </tr>
+        <tr data-fn="bic" data-cat="Banking" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>bic</code></td>
+          <td class="col-cat"><span class="pill cat-bankacilik">Banking</span></td>
+          <td class="col-desc">Alias für SWIFT/BIC code.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>DEUTDEDB</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate bic --locale TR')">mockjutsu generate bic --locale TR</span></td>
+        </tr>
+        <tr data-fn="sort_code" data-cat="Banking" data-locales="">
+          <td class="col-fn"><code>sort_code</code></td>
+          <td class="col-cat"><span class="pill cat-bankacilik">Banking</span></td>
+          <td class="col-desc">UK 6-digit bank sort code Format.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>20-00-00</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate sort_code')">mockjutsu generate sort_code</span></td>
+        </tr>
+        <tr data-fn="routing_number" data-cat="Banking" data-locales="">
+          <td class="col-fn"><code>routing_number</code></td>
+          <td class="col-cat"><span class="pill cat-bankacilik">Banking</span></td>
+          <td class="col-desc">US 9-digit ABA routing transit Nummer mit Prüfsumme.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>021000021</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate routing_number')">mockjutsu generate routing_number</span></td>
+        </tr>
+        <tr data-fn="bik_code" data-cat="Banking" data-locales="">
+          <td class="col-fn"><code>bik_code</code></td>
+          <td class="col-cat"><span class="pill cat-bankacilik">Banking</span></td>
+          <td class="col-desc">Russian Bank Identification Code (BIK).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>044525225</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate bik_code')">mockjutsu generate bik_code</span></td>
+        </tr>
+        <tr data-fn="bank_name" data-cat="Banking" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>bank_name</code></td>
+          <td class="col-cat"><span class="pill cat-bankacilik">Banking</span></td>
+          <td class="col-desc">Randomized bank name für the angegebene Locale.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Berliner Finanzbank</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate bank_name --locale TR')">mockjutsu generate bank_name --locale TR</span></td>
+        </tr>
+        <tr data-fn="transaction" data-cat="Banking" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>transaction</code></td>
+          <td class="col-cat"><span class="pill cat-bankacilik">Banking</span></td>
+          <td class="col-desc">Complex banking transaction record simulation.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{ref, iban*2, amount}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate transaction --locale TR')">mockjutsu generate transaction --locale TR</span></td>
+        </tr>
+        <tr data-fn="company_name" data-cat="Corporate" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>company_name</code></td>
+          <td class="col-cat"><span class="pill ">Corporate</span></td>
+          <td class="col-desc">Official business name für the angegebene Locale.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Fischer Tech. GmbH</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate company_name --locale TR')">mockjutsu generate company_name --locale TR</span></td>
+        </tr>
+        <tr data-fn="job_title" data-cat="Corporate" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>job_title</code></td>
+          <td class="col-cat"><span class="pill ">Corporate</span></td>
+          <td class="col-desc">Professional job title für the angegebene Locale.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Software Engineer</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate job_title --locale TR')">mockjutsu generate job_title --locale TR</span></td>
+        </tr>
+        <tr data-fn="jobtitle" data-cat="Corporate" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>jobtitle</code></td>
+          <td class="col-cat"><span class="pill ">Corporate</span></td>
+          <td class="col-desc">Alias für job title.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Software Engineer</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate jobtitle --locale TR')">mockjutsu generate jobtitle --locale TR</span></td>
+        </tr>
+        <tr data-fn="occupation" data-cat="Corporate" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>occupation</code></td>
+          <td class="col-cat"><span class="pill ">Corporate</span></td>
+          <td class="col-desc">Professional occupation classification.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Software Engineer</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate occupation --locale TR')">mockjutsu generate occupation --locale TR</span></td>
+        </tr>
+        <tr data-fn="bloodtype" data-cat="Health" data-locales="">
+          <td class="col-fn"><code>bloodtype</code></td>
+          <td class="col-cat"><span class="pill ">Health</span></td>
+          <td class="col-desc">Human blood groups (ABO and Rh factor).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>A+</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate bloodtype')">mockjutsu generate bloodtype</span></td>
+        </tr>
+        <tr data-fn="blood_type" data-cat="Health" data-locales="">
+          <td class="col-fn"><code>blood_type</code></td>
+          <td class="col-cat"><span class="pill ">Health</span></td>
+          <td class="col-desc">Alias für blood type.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>A+</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate blood_type')">mockjutsu generate blood_type</span></td>
+        </tr>
+        <tr data-fn="nhs_number" data-cat="Health" data-locales="">
+          <td class="col-fn"><code>nhs_number</code></td>
+          <td class="col-cat"><span class="pill ">Health</span></td>
+          <td class="col-desc">UK National Health Service Nummer mit Modulo 11 Prüfung.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>943 476 5919</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate nhs_number')">mockjutsu generate nhs_number</span></td>
+        </tr>
+        <tr data-fn="nhsnumber" data-cat="Health" data-locales="">
+          <td class="col-fn"><code>nhsnumber</code></td>
+          <td class="col-cat"><span class="pill ">Health</span></td>
+          <td class="col-desc">Alias für NHS Nummer.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>943 476 5919</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate nhsnumber')">mockjutsu generate nhsnumber</span></td>
+        </tr>
+        <tr data-fn="icd10" data-cat="Health" data-locales="">
+          <td class="col-fn"><code>icd10</code></td>
+          <td class="col-cat"><span class="pill ">Health</span></td>
+          <td class="col-desc">International Classification of Diseases 10th Revision (ICD-10) code.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>J45.909</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate icd10')">mockjutsu generate icd10</span></td>
+        </tr>
+        <tr data-fn="bmi" data-cat="Health" data-locales="">
+          <td class="col-fn"><code>bmi</code></td>
+          <td class="col-cat"><span class="pill ">Health</span></td>
+          <td class="col-desc">Body Mass Index (BMI) calculated value.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>22.5</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate bmi')">mockjutsu generate bmi</span></td>
+        </tr>
+        <tr data-fn="height" data-cat="Health" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>height</code></td>
+          <td class="col-cat"><span class="pill ">Health</span></td>
+          <td class="col-desc">Localized height measurement (cm/inch).</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>178 cm / 5'10"</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate height --locale TR')">mockjutsu generate height --locale TR</span></td>
+        </tr>
+        <tr data-fn="weight" data-cat="Health" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>weight</code></td>
+          <td class="col-cat"><span class="pill ">Health</span></td>
+          <td class="col-desc">Localized weight measurement (kg/lbs).</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>74 kg / 163 lbs</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate weight --locale TR')">mockjutsu generate weight --locale TR</span></td>
+        </tr>
+        <tr data-fn="currency" data-cat="Commerce" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>currency</code></td>
+          <td class="col-cat"><span class="pill ">Commerce</span></td>
+          <td class="col-desc">Localized currency details (ISO code and symbol).</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra"><code>...</code></td>
+          <td class="col-output"><code>{code:TRY, symbol:TL}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate currency --locale TR')">mockjutsu generate currency --locale TR</span></td>
+        </tr>
+        <tr data-fn="tax_rate" data-cat="Commerce" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>tax_rate</code></td>
+          <td class="col-cat"><span class="pill ">Commerce</span></td>
+          <td class="col-desc">Localized tax names and rates (e.g., KDV, VAT).</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{name:KDV, rate:20}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate tax_rate --locale TR')">mockjutsu generate tax_rate --locale TR</span></td>
+        </tr>
+        <tr data-fn="taxrate" data-cat="Commerce" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>taxrate</code></td>
+          <td class="col-cat"><span class="pill ">Commerce</span></td>
+          <td class="col-desc">Alias für tax rate.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{name:KDV, rate:20}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate taxrate --locale TR')">mockjutsu generate taxrate --locale TR</span></td>
+        </tr>
+        <tr data-fn="invoice_number" data-cat="Commerce" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>invoice_number</code></td>
+          <td class="col-cat"><span class="pill ">Commerce</span></td>
+          <td class="col-desc">Localized invoice Nummer formats.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>INV-2024-001234</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate invoice_number --locale TR')">mockjutsu generate invoice_number --locale TR</span></td>
+        </tr>
+        <tr data-fn="invoicenumber" data-cat="Commerce" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>invoicenumber</code></td>
+          <td class="col-cat"><span class="pill ">Commerce</span></td>
+          <td class="col-desc">Alias für invoice Nummer.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>INV-2024-001234</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate invoicenumber --locale TR')">mockjutsu generate invoicenumber --locale TR</span></td>
+        </tr>
+        <tr data-fn="vin" data-cat="Commerce" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>vin</code></td>
+          <td class="col-cat"><span class="pill ">Commerce</span></td>
+          <td class="col-desc">Vehicle Identification Nummer (VIN) mit ISO 3779 Prüfsumme.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>WBA3A5C5XMD123456</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate vin --locale TR')">mockjutsu generate vin --locale TR</span></td>
+        </tr>
+        <tr data-fn="vehicle" data-cat="Commerce" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>vehicle</code></td>
+          <td class="col-cat"><span class="pill ">Commerce</span></td>
+          <td class="col-desc">Comprehensive vehicle data including make/model.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{make,model,year,vin}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate vehicle --locale TR')">mockjutsu generate vehicle --locale TR</span></td>
+        </tr>
+        <tr data-fn="uuid" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>uuid</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">RFC 4122 compliant Universally Unique Identifier (UUID v4).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>550e8400-e29b-41d4-...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate uuid')">mockjutsu generate uuid</span></td>
+        </tr>
+        <tr data-fn="requestid" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>requestid</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Unique request identifier (UUID Format).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>550e8400-e29b-41d4-...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate requestid')">mockjutsu generate requestid</span></td>
+        </tr>
+        <tr data-fn="correlationid" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>correlationid</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Tracing correlation identifier (UUID Format).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>550e8400-e29b-41d4-...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate correlationid')">mockjutsu generate correlationid</span></td>
+        </tr>
+        <tr data-fn="sessionid" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>sessionid</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Unique session identifier (UUID Format).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>550e8400-e29b-41d4-...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate sessionid')">mockjutsu generate sessionid</span></td>
+        </tr>
+        <tr data-fn="idempotencykey" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>idempotencykey</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">API idempotency key für safe retries (UUID Format).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>550e8400-e29b-41d4-...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate idempotencykey')">mockjutsu generate idempotencykey</span></td>
+        </tr>
+        <tr data-fn="deviceid" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>deviceid</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Unique hardware/device identifier (Uppercase UUID).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>550E8400-E29B-41D4-...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate deviceid')">mockjutsu generate deviceid</span></td>
+        </tr>
+        <tr data-fn="timestamp" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>timestamp</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Current Unix epoch timestamp (seconds).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>1714900000</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate timestamp')">mockjutsu generate timestamp</span></td>
+        </tr>
+        <tr data-fn="timestamp_iso" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>timestamp_iso</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">ISO 8601 formatted date-time string.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>2024-05-05T14:30:00</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate timestamp_iso')">mockjutsu generate timestamp_iso</span></td>
+        </tr>
+        <tr data-fn="ipv4" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>ipv4</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Random public or private IPv4 address.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>192.168.1.42</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ipv4')">mockjutsu generate ipv4</span></td>
+        </tr>
+        <tr data-fn="ipv6" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>ipv6</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">RFC 4291 compliant IPv6 address.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>fe80:0000:0000:...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ipv6')">mockjutsu generate ipv6</span></td>
+        </tr>
+        <tr data-fn="browser_name" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>browser_name</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Common web browser names.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Chrome</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate browser_name')">mockjutsu generate browser_name</span></td>
+        </tr>
+        <tr data-fn="browser_version" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>browser_version</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Simulated browser version strings.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>124.0.6367.78</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate browser_version')">mockjutsu generate browser_version</span></td>
+        </tr>
+        <tr data-fn="browser_engine" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>browser_engine</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Web browser layout engines (Blink, WebKit, etc.).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Blink</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate browser_engine')">mockjutsu generate browser_engine</span></td>
+        </tr>
+        <tr data-fn="useragent" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>useragent</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Realistic browser User-Agent strings.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Mozilla/5.0 ...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate useragent')">mockjutsu generate useragent</span></td>
+        </tr>
+        <tr data-fn="jwt" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>jwt</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Mock JSON Web Token (JWT) mit header/payload/signature structure.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>eyJ....eyJ....sig</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate jwt')">mockjutsu generate jwt</span></td>
+        </tr>
+        <tr data-fn="bearertoken" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>bearertoken</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">HTTP Bearer authorization token.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Bearer eyJ....sig</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate bearertoken')">mockjutsu generate bearertoken</span></td>
+        </tr>
+        <tr data-fn="hash" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>hash</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Cryptographic hash values für various algorithms.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra"><code>--algorithm</code></td>
+          <td class="col-output"><code>e3b0c44298fc...(64hex)</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate hash --algorithm sha256')">mockjutsu generate hash --algorithm sha256</span></td>
+        </tr>
+        <tr data-fn="mac_address" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>mac_address</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">48-bit hardware MAC address (IEEE 802).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>A4:C3:F0:3D:8E:21</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate mac_address')">mockjutsu generate mac_address</span></td>
+        </tr>
+        <tr data-fn="url" data-cat="Meta" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>url</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Localized web URLs.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>https://api-42.co.uk/..</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate url --locale TR')">mockjutsu generate url --locale TR</span></td>
+        </tr>
+        <tr data-fn="domain" data-cat="Meta" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>domain</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Localized domain names mit regional TLDs.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>test-77.com.tr</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate domain --locale TR')">mockjutsu generate domain --locale TR</span></td>
+        </tr>
+        <tr data-fn="color" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>color</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Hexadecimal or named color values.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>#3A7BF0</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate color')">mockjutsu generate color</span></td>
+        </tr>
+        <tr data-fn="clientversion" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>clientversion</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Software client versioning (SemVer).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>2.4.1</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate clientversion')">mockjutsu generate clientversion</span></td>
+        </tr>
+        <tr data-fn="signature" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>signature</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Digital signature hex strings.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>a1b2c3d4... (hex)</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate signature')">mockjutsu generate signature</span></td>
+        </tr>
+        <tr data-fn="apppassword" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>apppassword</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">One-time application passwords / PINs.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>481302</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate apppassword')">mockjutsu generate apppassword</span></td>
+        </tr>
+        <tr data-fn="rfid_uid" data-cat="RFID" data-locales="">
+          <td class="col-fn"><code>rfid_uid</code></td>
+          <td class="col-cat"><span class="pill cat-rfid">RFID</span></td>
+          <td class="col-desc">RFID chip unique identifier (UID).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>04:A3:B2:C1:D0:E5:F6</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate rfid_uid')">mockjutsu generate rfid_uid</span></td>
+        </tr>
+        <tr data-fn="epc" data-cat="RFID" data-locales="">
+          <td class="col-fn"><code>epc</code></td>
+          <td class="col-cat"><span class="pill cat-rfid">RFID</span></td>
+          <td class="col-desc">Electronic Product Code (EPC) für RFID tags.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>3034257BF400B718...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate epc')">mockjutsu generate epc</span></td>
+        </tr>
+        <tr data-fn="rfid_tag" data-cat="RFID" data-locales="">
+          <td class="col-fn"><code>rfid_tag</code></td>
+          <td class="col-cat"><span class="pill cat-rfid">RFID</span></td>
+          <td class="col-desc">Comprehensive RFID tag data (UID, Freq, Memory).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{uid,standard,freq,mem}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate rfid_tag')">mockjutsu generate rfid_tag</span></td>
+        </tr>
+        <tr data-fn="nfc_uid" data-cat="NFC" data-locales="">
+          <td class="col-fn"><code>nfc_uid</code></td>
+          <td class="col-cat"><span class="pill cat-nfc">NFC</span></td>
+          <td class="col-desc">NFC chip unique identifier (UID).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>04:A3:B2:C1:D0:E5:F6</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate nfc_uid')">mockjutsu generate nfc_uid</span></td>
+        </tr>
+        <tr data-fn="nfc_atqa" data-cat="NFC" data-locales="">
+          <td class="col-fn"><code>nfc_atqa</code></td>
+          <td class="col-cat"><span class="pill cat-nfc">NFC</span></td>
+          <td class="col-desc">NFC Answer to Request (ATQA) code.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>00:44</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate nfc_atqa')">mockjutsu generate nfc_atqa</span></td>
+        </tr>
+        <tr data-fn="nfc_sak" data-cat="NFC" data-locales="">
+          <td class="col-fn"><code>nfc_sak</code></td>
+          <td class="col-cat"><span class="pill cat-nfc">NFC</span></td>
+          <td class="col-desc">NFC Select Acknowledge (SAK) code.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>20</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate nfc_sak')">mockjutsu generate nfc_sak</span></td>
+        </tr>
+        <tr data-fn="ndef_uri" data-cat="NFC" data-locales="">
+          <td class="col-fn"><code>ndef_uri</code></td>
+          <td class="col-cat"><span class="pill cat-nfc">NFC</span></td>
+          <td class="col-desc">NFC Data Exchange Format (NDEF) URI record.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{raw_hex, decoded url}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ndef_uri')">mockjutsu generate ndef_uri</span></td>
+        </tr>
+        <tr data-fn="ndef_text" data-cat="NFC" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>ndef_text</code></td>
+          <td class="col-cat"><span class="pill cat-nfc">NFC</span></td>
+          <td class="col-desc">NFC Data Exchange Format (NDEF) Text record.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{raw_hex, decoded txt}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ndef_text --locale TR')">mockjutsu generate ndef_text --locale TR</span></td>
+        </tr>
+        <tr data-fn="apdu" data-cat="NFC" data-locales="">
+          <td class="col-fn"><code>apdu</code></td>
+          <td class="col-cat"><span class="pill cat-nfc">NFC</span></td>
+          <td class="col-desc">Smart card Application Protocol Data Unit (APDU) commands.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{cla,ins,p1,p2,hex}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate apdu')">mockjutsu generate apdu</span></td>
+        </tr>
+        <tr data-fn="nfc_tag" data-cat="NFC" data-locales="">
+          <td class="col-fn"><code>nfc_tag</code></td>
+          <td class="col-cat"><span class="pill cat-nfc">NFC</span></td>
+          <td class="col-desc">Comprehensive NFC tag details.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{uid,atqa,sak,ndef}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate nfc_tag')">mockjutsu generate nfc_tag</span></td>
+        </tr>
+        <tr data-fn="ir_nec" data-cat="IR" data-locales="">
+          <td class="col-fn"><code>ir_nec</code></td>
+          <td class="col-cat"><span class="pill cat-ir">IR</span></td>
+          <td class="col-desc">Infrared NEC protocol signal data.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{addr,cmd,hex:20DF10EF}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ir_nec')">mockjutsu generate ir_nec</span></td>
+        </tr>
+        <tr data-fn="ir_rc5" data-cat="IR" data-locales="">
+          <td class="col-fn"><code>ir_rc5</code></td>
+          <td class="col-cat"><span class="pill cat-ir">IR</span></td>
+          <td class="col-desc">Infrared Philips RC5 protocol signal data.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{system,cmd,frame_bits}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ir_rc5')">mockjutsu generate ir_rc5</span></td>
+        </tr>
+        <tr data-fn="ir_pronto" data-cat="IR" data-locales="">
+          <td class="col-fn"><code>ir_pronto</code></td>
+          <td class="col-cat"><span class="pill cat-ir">IR</span></td>
+          <td class="col-desc">Infrared Pronto Hex Format data.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>0000 006D 0022 0000 ..</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ir_pronto')">mockjutsu generate ir_pronto</span></td>
+        </tr>
+        <tr data-fn="ir_raw" data-cat="IR" data-locales="">
+          <td class="col-fn"><code>ir_raw</code></td>
+          <td class="col-cat"><span class="pill cat-ir">IR</span></td>
+          <td class="col-desc">Infrared raw pulse/space timing data.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{carrier_hz,pulses:[]}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ir_raw')">mockjutsu generate ir_raw</span></td>
+        </tr>
+        <tr data-fn="ean13" data-cat="Barcode" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>ean13</code></td>
+          <td class="col-cat"><span class="pill ">Barcode</span></td>
+          <td class="col-desc">International Article Nummer (EAN-13) mit Prüfsumme.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>8680001234567</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ean13 --locale TR')">mockjutsu generate ean13 --locale TR</span></td>
+        </tr>
+        <tr data-fn="ean8" data-cat="Barcode" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>ean8</code></td>
+          <td class="col-cat"><span class="pill ">Barcode</span></td>
+          <td class="col-desc">Compressed EAN-8 barcode mit Prüfsumme.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>86812345</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ean8 --locale TR')">mockjutsu generate ean8 --locale TR</span></td>
+        </tr>
+        <tr data-fn="upca" data-cat="Barcode" data-locales="">
+          <td class="col-fn"><code>upca</code></td>
+          <td class="col-cat"><span class="pill ">Barcode</span></td>
+          <td class="col-desc">Universal Product Code (UPC-A) mit Prüfsumme.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>036000291452</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate upca')">mockjutsu generate upca</span></td>
+        </tr>
+        <tr data-fn="isbn13" data-cat="Barcode" data-locales="">
+          <td class="col-fn"><code>isbn13</code></td>
+          <td class="col-cat"><span class="pill ">Barcode</span></td>
+          <td class="col-desc">International Standard Book Nummer (ISBN-13).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>9780306406157</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate isbn13')">mockjutsu generate isbn13</span></td>
+        </tr>
+        <tr data-fn="isbn10" data-cat="Barcode" data-locales="">
+          <td class="col-fn"><code>isbn10</code></td>
+          <td class="col-cat"><span class="pill ">Barcode</span></td>
+          <td class="col-desc">Legacy ISBN-10 mit Prüfsumme.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>0306406152</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate isbn10')">mockjutsu generate isbn10</span></td>
+        </tr>
+        <tr data-fn="gs1_128" data-cat="Barcode" data-locales="">
+          <td class="col-fn"><code>gs1_128</code></td>
+          <td class="col-cat"><span class="pill ">Barcode</span></td>
+          <td class="col-desc">GS1-128 (formerly UCC/EAN-128) application identifiers.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>(01)...(17)...(10)...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate gs1_128')">mockjutsu generate gs1_128</span></td>
+        </tr>
+        <tr data-fn="imei" data-cat="Telecom" data-locales="">
+          <td class="col-fn"><code>imei</code></td>
+          <td class="col-cat"><span class="pill cat-telecom">Telecom</span></td>
+          <td class="col-desc">International Mobile Equipment Identity (IMEI) mit Luhn.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>490154203237518</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate imei')">mockjutsu generate imei</span></td>
+        </tr>
+        <tr data-fn="imei2" data-cat="Telecom" data-locales="">
+          <td class="col-fn"><code>imei2</code></td>
+          <td class="col-cat"><span class="pill cat-telecom">Telecom</span></td>
+          <td class="col-desc">IMEI in hyphenated Format.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>49-015420-323751-8</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate imei2')">mockjutsu generate imei2</span></td>
+        </tr>
+        <tr data-fn="iccid" data-cat="Telecom" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>iccid</code></td>
+          <td class="col-cat"><span class="pill cat-telecom">Telecom</span></td>
+          <td class="col-desc">SIM card Integrated Circuit Card Identifier (ICCID).</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>8990053412345678901</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate iccid --locale TR')">mockjutsu generate iccid --locale TR</span></td>
+        </tr>
+        <tr data-fn="imsi" data-cat="Telecom" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>imsi</code></td>
+          <td class="col-cat"><span class="pill cat-telecom">Telecom</span></td>
+          <td class="col-desc">International Mobile Subscriber Identity (IMSI).</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>286011234567890</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate imsi --locale TR')">mockjutsu generate imsi --locale TR</span></td>
+        </tr>
+        <tr data-fn="isin" data-cat="Securities" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>isin</code></td>
+          <td class="col-cat"><span class="pill cat-securities">Securities</span></td>
+          <td class="col-desc">International Securities Identification Nummer (ISO 6166).</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>US0378331005</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate isin --locale US')">mockjutsu generate isin --locale US</span></td>
+        </tr>
+        <tr data-fn="cusip" data-cat="Securities" data-locales="">
+          <td class="col-fn"><code>cusip</code></td>
+          <td class="col-cat"><span class="pill cat-securities">Securities</span></td>
+          <td class="col-desc">Committee on Uniform Security Identification Procedures ID.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>037833100</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cusip')">mockjutsu generate cusip</span></td>
+        </tr>
+        <tr data-fn="sedol" data-cat="Securities" data-locales="">
+          <td class="col-fn"><code>sedol</code></td>
+          <td class="col-cat"><span class="pill cat-securities">Securities</span></td>
+          <td class="col-desc">Stock Exchange Daily Official List (UK).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>0263494</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate sedol')">mockjutsu generate sedol</span></td>
+        </tr>
+        <tr data-fn="lei" data-cat="Securities" data-locales="">
+          <td class="col-fn"><code>lei</code></td>
+          <td class="col-cat"><span class="pill cat-securities">Securities</span></td>
+          <td class="col-desc">Legal Entity Identifier (ISO 17442).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>529900T8BM49AURSDO55</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate lei')">mockjutsu generate lei</span></td>
+        </tr>
+        <tr data-fn="btc_address" data-cat="Crypto" data-locales="">
+          <td class="col-fn"><code>btc_address</code></td>
+          <td class="col-cat"><span class="pill cat-crypto">Crypto</span></td>
+          <td class="col-desc">Bitcoin wallet address (P2PKH, P2SH, Bech32).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate btc_address')">mockjutsu generate btc_address</span></td>
+        </tr>
+        <tr data-fn="eth_address" data-cat="Crypto" data-locales="">
+          <td class="col-fn"><code>eth_address</code></td>
+          <td class="col-cat"><span class="pill cat-crypto">Crypto</span></td>
+          <td class="col-desc">Ethereum/EVM compatible wallet address.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>0x5aAeb6053F3E94C9b9A0...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate eth_address')">mockjutsu generate eth_address</span></td>
+        </tr>
+        <tr data-fn="crypto_address" data-cat="Crypto" data-locales="">
+          <td class="col-fn"><code>crypto_address</code></td>
+          <td class="col-cat"><span class="pill cat-crypto">Crypto</span></td>
+          <td class="col-desc">Generisch crypto address für angegebene currency.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra"><code>...</code></td>
+          <td class="col-output"><code>(btc or eth)</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate crypto_address --currency eth')">mockjutsu generate crypto_address --currency eth</span></td>
+        </tr>
+        <tr data-fn="tx_hash" data-cat="Crypto" data-locales="">
+          <td class="col-fn"><code>tx_hash</code></td>
+          <td class="col-cat"><span class="pill cat-crypto">Crypto</span></td>
+          <td class="col-desc">Blockchain transaction hash (SHA-256/Keccak-256).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra"><code>...</code></td>
+          <td class="col-output"><code>a1b2c3...64hex</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate tx_hash --currency btc')">mockjutsu generate tx_hash --currency btc</span></td>
+        </tr>
+        <tr data-fn="block_hash" data-cat="Crypto" data-locales="">
+          <td class="col-fn"><code>block_hash</code></td>
+          <td class="col-cat"><span class="pill cat-crypto">Crypto</span></td>
+          <td class="col-desc">Blockchain block hash identifier.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra"><code>...</code></td>
+          <td class="col-output"><code>0x+64hex (eth)</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate block_hash --currency eth')">mockjutsu generate block_hash --currency eth</span></td>
+        </tr>
+        <tr data-fn="product_name" data-cat="E-Commerce" data-locales="">
+          <td class="col-fn"><code>product_name</code></td>
+          <td class="col-cat"><span class="pill ">E-Commerce</span></td>
+          <td class="col-desc">Randomized e-commerce product names.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Wireless Headphones</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate product_name')">mockjutsu generate product_name</span></td>
+        </tr>
+        <tr data-fn="sku" data-cat="E-Commerce" data-locales="">
+          <td class="col-fn"><code>sku</code></td>
+          <td class="col-cat"><span class="pill ">E-Commerce</span></td>
+          <td class="col-desc">Stock Keeping Unit (SKU) identifiers.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>AB-123456</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate sku')">mockjutsu generate sku</span></td>
+        </tr>
+        <tr data-fn="order_id" data-cat="E-Commerce" data-locales="">
+          <td class="col-fn"><code>order_id</code></td>
+          <td class="col-cat"><span class="pill ">E-Commerce</span></td>
+          <td class="col-desc">Unique e-commerce order identifiers.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>ORD-A1B2C3D4E5F6</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate order_id')">mockjutsu generate order_id</span></td>
+        </tr>
+        <tr data-fn="tracking_number" data-cat="E-Commerce" data-locales="">
+          <td class="col-fn"><code>tracking_number</code></td>
+          <td class="col-cat"><span class="pill ">E-Commerce</span></td>
+          <td class="col-desc">Logistic tracking numbers für major carriers.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>9400111899223397522384</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate tracking_number --carrier usps')">mockjutsu generate tracking_number --carrier usps</span></td>
+        </tr>
+        <tr data-fn="dhl_tracking" data-cat="E-Commerce" data-locales="">
+          <td class="col-fn"><code>dhl_tracking</code></td>
+          <td class="col-cat"><span class="pill ">E-Commerce</span></td>
+          <td class="col-desc">DHL Express tracking Nummer Format.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>JD123456789</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate dhl_tracking')">mockjutsu generate dhl_tracking</span></td>
+        </tr>
+        <tr data-fn="category" data-cat="E-Commerce" data-locales="">
+          <td class="col-fn"><code>category</code></td>
+          <td class="col-cat"><span class="pill ">E-Commerce</span></td>
+          <td class="col-desc">Product category classifications.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Electronics</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate category')">mockjutsu generate category</span></td>
+        </tr>
+        <tr data-fn="rating" data-cat="E-Commerce" data-locales="">
+          <td class="col-fn"><code>rating</code></td>
+          <td class="col-cat"><span class="pill ">E-Commerce</span></td>
+          <td class="col-desc">Product rating scores (1.0 - 5.0).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>4.5</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate rating')">mockjutsu generate rating</span></td>
+        </tr>
+        <tr data-fn="latitude" data-cat="Location" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>latitude</code></td>
+          <td class="col-cat"><span class="pill cat-location">Location</span></td>
+          <td class="col-desc">Geographic latitude coordinate.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>39.925533</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate latitude --locale TR')">mockjutsu generate latitude --locale TR</span></td>
+        </tr>
+        <tr data-fn="longitude" data-cat="Location" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>longitude</code></td>
+          <td class="col-cat"><span class="pill cat-location">Location</span></td>
+          <td class="col-desc">Geographic longitude coordinate.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>32.866287</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate longitude --locale TR')">mockjutsu generate longitude --locale TR</span></td>
+        </tr>
+        <tr data-fn="timezone" data-cat="Location" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>timezone</code></td>
+          <td class="col-cat"><span class="pill cat-location">Location</span></td>
+          <td class="col-desc">IANA/Olson timezone identifiers.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Europe/Istanbul</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate timezone --locale TR')">mockjutsu generate timezone --locale TR</span></td>
+        </tr>
+        <tr data-fn="country_code" data-cat="Location" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>country_code</code></td>
+          <td class="col-cat"><span class="pill cat-location">Location</span></td>
+          <td class="col-desc">ISO 3166-1 alpha-2 country codes.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>TR</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate country_code --locale TR')">mockjutsu generate country_code --locale TR</span></td>
+        </tr>
+        <tr data-fn="coordinates" data-cat="Location" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>coordinates</code></td>
+          <td class="col-cat"><span class="pill cat-location">Location</span></td>
+          <td class="col-desc">Combined Lat/Long coordinate pairs.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>39.925533,32.866287</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate coordinates --locale TR')">mockjutsu generate coordinates --locale TR</span></td>
+        </tr>
+        <tr data-fn="username" data-cat="Social" data-locales="">
+          <td class="col-fn"><code>username</code></td>
+          <td class="col-cat"><span class="pill cat-social">Social</span></td>
+          <td class="col-desc">Social media profile usernames.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>cooldev42</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate username')">mockjutsu generate username</span></td>
+        </tr>
+        <tr data-fn="follower_count" data-cat="Social" data-locales="">
+          <td class="col-fn"><code>follower_count</code></td>
+          <td class="col-cat"><span class="pill cat-social">Social</span></td>
+          <td class="col-desc">Simulated follower/subscriber counts.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>14273</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate follower_count')">mockjutsu generate follower_count</span></td>
+        </tr>
+        <tr data-fn="api_key" data-cat="Security" data-locales="">
+          <td class="col-fn"><code>api_key</code></td>
+          <td class="col-cat"><span class="pill ">Security</span></td>
+          <td class="col-desc">Simulated secure API keys mit prefix/suffix entropy.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>sk-aBcDeFgH...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate api_key')">mockjutsu generate api_key</span></td>
+        </tr>
+        <tr data-fn="totp_code" data-cat="Security" data-locales="">
+          <td class="col-fn"><code>totp_code</code></td>
+          <td class="col-cat"><span class="pill ">Security</span></td>
+          <td class="col-desc">6-digit Time-based One-Time Password (TOTP) codes.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>482931</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate totp_code')">mockjutsu generate totp_code</span></td>
+        </tr>
+        <tr data-fn="webhook_signature" data-cat="Security" data-locales="">
+          <td class="col-fn"><code>webhook_signature</code></td>
+          <td class="col-cat"><span class="pill ">Security</span></td>
+          <td class="col-desc">HMAC webhook signatures für secure delivery.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>sha256=e3b0c44...(71 chars)</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate webhook_signature')">mockjutsu generate webhook_signature</span></td>
+        </tr>
+        <tr data-fn="transaction_id" data-cat="Security" data-locales="">
+          <td class="col-fn"><code>transaction_id</code></td>
+          <td class="col-cat"><span class="pill ">Security</span></td>
+          <td class="col-desc">Unique secure transaction identifier.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>TXN1A2B3C4D5E6F7G8</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate transaction_id')">mockjutsu generate transaction_id</span></td>
+        </tr>
+        <tr data-fn="public_ip" data-cat="Security" data-locales="">
+          <td class="col-fn"><code>public_ip</code></td>
+          <td class="col-cat"><span class="pill ">Security</span></td>
+          <td class="col-desc">Public-facing IPv4 address.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>185.46.212.33</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate public_ip')">mockjutsu generate public_ip</span></td>
+        </tr>
+        <tr data-fn="private_ip" data-cat="Security" data-locales="">
+          <td class="col-fn"><code>private_ip</code></td>
+          <td class="col-cat"><span class="pill ">Security</span></td>
+          <td class="col-desc">Internal/Private IPv4 address.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>192.168.1.42</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate private_ip')">mockjutsu generate private_ip</span></td>
+        </tr>
+        <tr data-fn="tckn_masked" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>tckn_masked</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Masked Turkish ID für privacy compliance.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>***123456**</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate tckn_masked')">mockjutsu generate tckn_masked</span></td>
+        </tr>
+        <tr data-fn="ssn_masked" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>ssn_masked</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Masked US SSN für privacy compliance.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>***-**-6789</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ssn_masked')">mockjutsu generate ssn_masked</span></td>
+        </tr>
+        <tr data-fn="nationality" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>nationality</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">ISO 3166-1 alpha-3 nationality codes.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>TUR</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate nationality')">mockjutsu generate nationality</span></td>
+        </tr>
+        <tr data-fn="sepa_ref" data-cat="Banking" data-locales="">
+          <td class="col-fn"><code>sepa_ref</code></td>
+          <td class="col-cat"><span class="pill cat-bankacilik">Banking</span></td>
+          <td class="col-desc">SEPA End-to-End identification reference.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>SEPAENDTOEND20240501...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate sepa_ref')">mockjutsu generate sepa_ref</span></td>
+        </tr>
+        <tr data-fn="npi" data-cat="Health" data-locales="">
+          <td class="col-fn"><code>npi</code></td>
+          <td class="col-cat"><span class="pill ">Health</span></td>
+          <td class="col-desc">US National Provider Identifier (NPI) mit Luhn.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>1234567893</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate npi')">mockjutsu generate npi</span></td>
+        </tr>
+        <tr data-fn="credit_score" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>credit_score</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">Simulated credit risk score (typically 300-850).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>720</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate credit_score')">mockjutsu generate credit_score</span></td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>
