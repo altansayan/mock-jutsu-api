@@ -346,11 +346,12 @@ def generate(data_type, locale, network, currency, carrier, algorithm, prefix, g
 def list_types(cat):
     """List all supported data types with CLI usage examples."""
     # Column widths
-    W_TYPE = 18
-    W_EX   = 20
-    W_CLI  = 38
-    W_PARAM = 16
-    W      = 2 + W_TYPE + W_EX + W_CLI + W_PARAM + 2
+    W_TYPE = 16
+    W_EX   = 22
+    W_CLI  = 48
+    W_PARAM = 35
+    # Total width with spaces between columns
+    W = 2 + W_TYPE + 1 + W_EX + 1 + W_CLI + 1 + W_PARAM + 2
 
     sep = click.style("-" * W, fg='bright_black')
 
@@ -370,7 +371,7 @@ def list_types(cat):
     h_cli  = click.style(f"{'CLI COMMAND':<{W_CLI}}", fg='bright_black', bold=True)
     h_par  = click.style(f"{'EXTRA PARAM':<{W_PARAM}}", fg='bright_black', bold=True)
     h_loc  = click.style("L", fg='bright_black', bold=True)
-    click.echo(h_type + h_ex + h_cli + h_par + h_loc)
+    click.echo(f"{h_type} {h_ex} {h_cli} {h_par} {h_loc}")
     click.echo(click.style("  " + "-" * (W - 2), fg='bright_black'))
 
     # Group rows by category
@@ -401,7 +402,7 @@ def list_types(cat):
             full_cmd = f"mockjutsu {cli_cmd}"
             cli_s    = click.style(f"{full_cmd:<{W_CLI}}", fg='cyan')
             param_s  = click.style(f"{extra_params:<{W_PARAM}}", fg='bright_white')
-            click.echo(f"{typ_s}{ex_s}{cli_s}{param_s} {loc_flag}")
+            click.echo(f"{typ_s} {ex_s} {cli_s} {param_s} {loc_flag}")
             printed += 1
 
     # Footer — types summary
