@@ -245,6 +245,9 @@ _REFERENCE = [
     ('tckn_masked'    , 'Identity'     , False, '***123456**'           , 'generate tckn_masked'          , 'Masked Turkish ID for privacy compliance.'),
     ('ssn_masked'     , 'Identity'     , False, '***-**-6789'           , 'generate ssn_masked'           , 'Masked US SSN for privacy compliance.'),
     ('nationality'    , 'Identity'     , False, 'TUR'                   , 'generate nationality'          , 'ISO 3166-1 alpha-3 nationality codes.'),
+    ('sepa_ref'       , 'Banking'      , False, 'SEPAENDTOEND20240501...', 'generate sepa_ref'            , 'SEPA End-to-End identification reference.'),
+    ('npi'            , 'Health'       , False, '1234567893'            , 'generate npi'                 , 'US National Provider Identifier (NPI) with Luhn.'),
+    ('credit_score'   , 'Financial'    , False, '720'                   , 'generate credit_score'        , 'Simulated credit risk score (typically 300-850).'),
 ]
 
 # Category display order

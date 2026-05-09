@@ -103,7 +103,7 @@ code{background:#f1f5f9;padding:4px 8px;border-radius:6px;font-family:monospace;
 
 <div class="header">
   <h1>mock-jutsu &mdash; TR Referans Kılavuzu</h1>
-  <div class="sub">6 locale &nbsp;&bull;&nbsp; 172 parametre tipi &nbsp;&bull;&nbsp; 2001 Test &nbsp;&bull;&nbsp; Developer: A.S.A</div>
+  <div class="sub">6 locale &nbsp;&bull;&nbsp; 175 parametre tipi &nbsp;&bull;&nbsp; 2001 Test &nbsp;&bull;&nbsp; Developer: A.S.A</div>
 </div>
 
 <div class="tabs">
@@ -115,7 +115,7 @@ code{background:#f1f5f9;padding:4px 8px;border-radius:6px;font-family:monospace;
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Tüm Parametreler (172)</div>
+  <div class="stitle">Tüm Parametreler (175)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Fonksiyon, CLI komutu veya örnek çıktı ara..." oninput="filterTable()">
@@ -523,7 +523,10 @@ const ROWS = [
   ["private_ip","Güvenlik","security",false,"—","192.168.1.42","mockjutsu generate private_ip","","Internal/Private IPv4 address."],
   ["tckn_masked","Kimlik","identity",false,"—","***123456**","mockjutsu generate tckn_masked","","Masked Türk ID için privacy compliance."],
   ["ssn_masked","Kimlik","identity",false,"—","***-**-6789","mockjutsu generate ssn_masked","","Masked ABD SSN için privacy compliance."],
-  ["nationality","Kimlik","identity",false,"—","TUR","mockjutsu generate nationality","","ISO 3166-1 alpha-3 nationality codes."]
+  ["nationality","Kimlik","identity",false,"—","TUR","mockjutsu generate nationality","","ISO 3166-1 alpha-3 nationality codes."],
+  ["sepa_ref","Bankacılık","bankacilik",false,"—","SEPAENDTOEND20240501...","mockjutsu generate sepa_ref","","SEPA End-to-End Kimlik reference."],
+  ["npi","Sağlık","health",false,"—","1234567893","mockjutsu generate npi","","ABD National Provider Identifier (NPI) ile Luhn."],
+  ["credit_score","Finansal","financial",false,"—","720","mockjutsu generate credit_score","","simüle edilmiş credit risk score (typically 300-850)."]
 ];
 
 const CAT_CLS = {

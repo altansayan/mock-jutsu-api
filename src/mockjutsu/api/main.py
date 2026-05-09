@@ -81,6 +81,7 @@ async def list_types(cat: str = ""):
             "category": r[1],
             "locale_aware": r[2],
             "example": r[3],
+            "description": r[5] if len(r) > 5 else "",
         }
         for r in _REFERENCE
         if r[0].strip() and not r[0].strip().startswith("--")

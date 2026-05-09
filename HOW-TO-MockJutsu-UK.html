@@ -103,7 +103,7 @@ code{background:#f1f5f9;padding:4px 8px;border-radius:6px;font-family:monospace;
 
 <div class="header">
   <h1>mock-jutsu &mdash; UK Reference Guide</h1>
-  <div class="sub">6 locales &nbsp;&bull;&nbsp; 172 data types &nbsp;&bull;&nbsp; Legal algorithms &nbsp;&bull;&nbsp; Developer: Altan Sezer Ayan - A.S.A</div>
+  <div class="sub">6 locales &nbsp;&bull;&nbsp; 175 data types &nbsp;&bull;&nbsp; Legal algorithms &nbsp;&bull;&nbsp; Developer: Altan Sezer Ayan - A.S.A</div>
 </div>
 
 <div class="tabs">
@@ -115,7 +115,7 @@ code{background:#f1f5f9;padding:4px 8px;border-radius:6px;font-family:monospace;
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">All Parameters (172)</div>
+  <div class="stitle">All Parameters (175)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Search function, CLI command or example output..." oninput="filterTable()">
@@ -524,7 +524,10 @@ const ROWS = [
   ["private_ip","Security","security",false,"—","192.168.1.42","mockjutsu generate private_ip","","Internal/Private IPv4 address."],
   ["tckn_masked","Identity","identity",false,"—","***123456**","mockjutsu generate tckn_masked","","Masked Turkish ID for privacy compliance."],
   ["ssn_masked","Identity","identity",false,"—","***-**-6789","mockjutsu generate ssn_masked","","Masked US SSN for privacy compliance."],
-  ["nationality","Identity","identity",false,"—","TUR","mockjutsu generate nationality","","ISO 3166-1 alpha-3 nationality codes."]
+  ["nationality","Identity","identity",false,"—","TUR","mockjutsu generate nationality","","ISO 3166-1 alpha-3 nationality codes."],
+  ["sepa_ref","Banking","bankacilik",false,"—","SEPAENDTOEND20240501...","mockjutsu generate sepa_ref","","SEPA End-to-End identification reference."],
+  ["npi","Health","health",false,"—","1234567893","mockjutsu generate npi","","US National Provider Identifier (NPI) with Luhn."],
+  ["credit_score","Financial","financial",false,"—","720","mockjutsu generate credit_score","","Simulated credit risk score (typically 300-850)."]
 ];
 
 const CAT_CLS = {
