@@ -3,20 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mock-jutsu - Algorithmic Mock Data Engine</title>
-    <meta name="description" content="Generate cryptographically valid test data. 174 Types, 6 Locales, Zero Dependencies.">
+    <title>mock-jutsu — The Ultimate Algorithmic Mock Data Engine</title>
+    <meta name="description" content="Generate cryptographically and algorithmically valid test data. 175+ Types, 6 Locales, Zero Dependencies. The professional choice for fintech and banking simulation.">
+    <meta name="author" content="Altan Sezer Ayan (A.S.A)">
+    <meta name="keywords" content="mock data, fake data, test data generator, mockjutsu, tckn generator, iban generator, algorithmic mock data, fintech testing">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://altansayan.github.io/mock-jutsu-api/">
+    <meta property="og:title" content="mock-jutsu — The Ultimate Algorithmic Mock Data Engine">
+    <meta property="og:description" content="Stop mocking with random strings. Start generating algorithmically valid test data. 175+ Types, 6 Locales.">
+    <meta property="og:image" content="https://altansayan.github.io/mock-jutsu-api/assets/banner.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://altansayan.github.io/mock-jutsu-api/">
+    <meta property="twitter:title" content="mock-jutsu — The Ultimate Algorithmic Mock Data Engine">
+    <meta property="twitter:description" content="175+ Data Types. 6 Locales. High-performance algorithmic mock data generation.">
+    <meta property="twitter:image" content="https://altansayan.github.io/mock-jutsu-api/assets/banner.png">
+
+    <link rel="canonical" href="https://altansayan.github.io/mock-jutsu-api/">
+
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
         :root {
-            --bg-color: #0d1117;
-            --text-color: #c9d1d9;
-            --accent-color: #2ea043;
-            --card-bg: #161b22;
-            --border-color: #30363d;
-            --hover-bg: #21262d;
+            --bg-color: #0f172a;
+            --text-color: #f1f5f9;
+            --accent-color: #3b82f6;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --hover-bg: #334155;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background-color: var(--bg-color);
+            background-image: radial-gradient(circle at top right, rgba(59, 130, 246, 0.05), transparent),
+                              radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.05), transparent);
             color: var(--text-color);
             line-height: 1.6;
             margin: 0;
@@ -28,45 +51,95 @@
             min-height: 100vh;
         }
         .container {
-            max-width: 800px;
-            padding: 2rem;
+            max-width: 900px;
+            padding: 3rem 2rem;
             text-align: center;
+        }
+        .header-accent {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            margin: 0 auto 2rem;
+            border-radius: 2px;
         }
         h1 {
             color: #ffffff;
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 0 0 0.5rem;
+            letter-spacing: -0.025em;
         }
         .ninja {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 5rem;
+            margin-bottom: 0.5rem;
             display: inline-block;
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-20px);}
-            60% {transform: translateY(-10px);}
+            filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.3));
         }
         p.subtitle {
-            font-size: 1.25rem;
-            color: #8b949e;
-            margin-bottom: 3rem;
+            font-size: 1.5rem;
+            color: #94a3b8;
+            margin-bottom: 3.5rem;
+            font-weight: 400;
+        }
+        p.subtitle strong {
+            color: #3b82f6;
+            font-weight: 700;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.85rem 1.75rem;
+            border-radius: 99px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .github-btn {
+            background-color: #334155;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .github-btn:hover {
+            background-color: #475569;
+            transform: translateY(-2px);
+        }
+        .linkedin-btn {
+            background-color: #0a66c2;
+            color: white;
+        }
+        .linkedin-btn:hover {
+            background-color: #0077b5;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(10, 102, 194, 0.4);
+        }
+        .btn svg {
+            fill: currentColor;
+            width: 22px;
+            height: 22px;
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.5rem;
             width: 100%;
         }
         a.lang-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
+            border-radius: 16px;
+            padding: 2rem;
             text-decoration: none;
             color: var(--text-color);
-            transition: all 0.2s ease-in-out;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -74,66 +147,66 @@
         }
         a.lang-card:hover {
             background-color: var(--hover-bg);
-            border-color: #8b949e;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2), 0 10px 10px -5px rgba(0,0,0,0.1);
         }
         .flag {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
         }
         .lang-name {
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #f8fafc;
         }
         .footer {
-            margin-top: 4rem;
-            font-size: 0.9rem;
-            color: #8b949e;
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            color: #64748b;
+            width: 100%;
         }
         .footer a {
-            color: var(--accent-color);
+            color: #3b82f6;
             text-decoration: none;
+            font-weight: 600;
         }
         .footer a:hover {
             text-decoration: underline;
         }
-        .github-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: #238636;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-bottom: 3rem;
-            transition: background-color 0.2s;
-        }
-        .github-btn:hover {
-            background-color: #2ea043;
-        }
-        .github-btn svg {
-            fill: currentColor;
-            width: 20px;
-            height: 20px;
+
+        @media (max-width: 640px) {
+            h1 { font-size: 2.75rem; }
+            p.subtitle { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <div class="header-accent"></div>
         <div class="ninja">🥷</div>
         <h1>mock-jutsu</h1>
-        <p class="subtitle">Stop mocking with random strings. Start generating cryptographically valid test data.<br><strong>174 Types. 6 Locales. Zero Dependencies.</strong></p>
+        <p class="subtitle">
+            The Ultimate Algorithmic Mock Data Engine.<br>
+            <strong>175+ Types. 6 Locales. Zero Dependencies.</strong>
+        </p>
 
-        <a href="https://github.com/altansayan/mock-jutsu-api" class="github-btn">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path></svg>
-            View on GitHub
-        </a>
+        <div class="btn-group">
+            <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="btn github-btn">
+                <svg viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path></svg>
+                GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/altansezerayan/" target="_blank" class="btn linkedin-btn">
+                <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                LinkedIn
+            </a>
+        </div>
 
-        <h2 style="font-size: 1.2rem; font-weight: normal; margin-bottom: 1.5rem; color: #8b949e;">Select your interactive guide:</h2>
+        <h2 style="font-size: 1.35rem; font-weight: 600; margin-bottom: 2rem; color: #94a3b8;">Select your interactive guide:</h2>
 
         <div class="grid">
             <a href="HOW-TO-MockJutsu-EN.html" class="lang-card">
@@ -163,7 +236,8 @@
         </div>
 
         <div class="footer">
-            <p>Released under the MIT License • Copyright © 2025 <a href="https://github.com/altansayan">Altan Sezer Ayan — A.S.A</a></p>
+            <p>Released under the MIT License • Copyright © 2025 <a href="https://github.com/altansayan">Altan Sezer Ayan (A.S.A)</a></p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.7;">Developed with ⚔️ by Altan Sezer Ayan</p>
         </div>
     </div>
 
