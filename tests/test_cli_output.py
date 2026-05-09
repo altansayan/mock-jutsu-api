@@ -58,7 +58,7 @@ def test_cli_help():
     res = run_cli("--help")
     assert res.returncode == 0
     # Check for the banner/engine name instead of hardcoded usage path
-    assert "mock-jutsu -- The Ultimate Algorithmic Mock Data Engine" in res.stdout
+    assert "Mock Jutsu - The Ultimate Algorithmic Mock Data Engine" in res.stdout
     assert "generate" in res.stdout
     assert "bulk" in res.stdout
     assert "template" in res.stdout

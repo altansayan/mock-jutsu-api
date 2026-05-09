@@ -27,11 +27,11 @@ def test_doc_loads_and_has_title(page: Page, loc: str):
     page.goto(file_path)
     
     # Check title
-    expect(page).to_have_title(re.compile(r"mock-jutsu — .*"))
+    expect(page).to_have_title(re.compile(r"Mock Jutsu - .*"))
     
     # Check header
     header = page.locator(".header h1")
-    expect(header).to_contain_text("mock-jutsu")
+    expect(header).to_contain_text("Mock Jutsu")
 
 
 def test_table_search_filter(page: Page):

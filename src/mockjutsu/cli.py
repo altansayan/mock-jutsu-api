@@ -1,5 +1,5 @@
 """
-mock-jutsu -- CLI
+Mock Jutsu - CLI
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
@@ -24,7 +24,7 @@ def _print_banner() -> None:
 
     console = Console(highlight=False)
 
-    raw_art = Figlet(font="small").renderText("mock-jutsu").rstrip("\n")
+    raw_art = Figlet(font="small").renderText("Mock Jutsu").rstrip("\n")
     art_lines = [line.rstrip() for line in raw_art.splitlines()]
     min_i = min((len(l) - len(l.lstrip()) for l in art_lines if l.strip()), default=0)
     art_lines = [l[min_i:] for l in art_lines]
@@ -289,7 +289,7 @@ _CAT_COLORS = {
 @click.group(invoke_without_command=True)
 @click.pass_context
 def main(ctx):
-    """mock-jutsu -- The Ultimate Algorithmic Mock Data Engine"""
+    """Mock Jutsu - The Ultimate Algorithmic Mock Data Engine"""
     if ctx.invoked_subcommand is None:
         _print_banner()
         click.echo(ctx.get_help())
