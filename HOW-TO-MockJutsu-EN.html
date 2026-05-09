@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; US Reference Guide</h1>
   <div class="engine-title">The Ultimate Algorithmic Mock Data Engine</div>
-  <div class="sub"><span>6 locales</span> &bull; <span>175 data types</span> &bull; <span>2065 tests</span></div>
+  <div class="sub"><span>6 locales</span> &bull; <span>178 data types</span> &bull; <span>2065 tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">All Parameters (175)</div>
+  <div class="stitle">All Parameters (178)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Search function, CLI command or example output..." oninput="filterTable()">
@@ -707,6 +707,33 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-extra">—</td>
           <td class="col-output"><code>000201010211...</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate emv_qr_pos --locale FR')">mockjutsu generate emv_qr_pos --locale FR</span></td>
+        </tr>
+        <tr data-fn="3ds_cavv" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>3ds_cavv</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">3D Secure 2.0 Cardholder Authentication Verification Value (CAVV).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>AAABBIIFmAAAAAAEggWY...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate 3ds_cavv')">mockjutsu generate 3ds_cavv</span></td>
+        </tr>
+        <tr data-fn="3ds_eci" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>3ds_eci</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">3D Secure Electronic Commerce Indicator (ECI) flag.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra"><code>--network</code></td>
+          <td class="col-output"><code>05 (Visa) / 02 (MC)</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate 3ds_eci --network visa')">mockjutsu generate 3ds_eci --network visa</span></td>
+        </tr>
+        <tr data-fn="cardnetwork" data-cat="Financial" data-locales="">
+          <td class="col-fn"><code>cardnetwork</code></td>
+          <td class="col-cat"><span class="pill ">Financial</span></td>
+          <td class="col-desc">Credit card network name (Visa, MC, Amex, etc.).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>VISA / MASTERCARD</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cardnetwork')">mockjutsu generate cardnetwork</span></td>
         </tr>
         <tr data-fn="track2_data" data-cat="Hardware" data-locales="">
           <td class="col-fn"><code>track2_data</code></td>
@@ -2056,6 +2083,9 @@ const ROWS = [
   ["emv_qr_p2p","Financial","financial",true,"—","000201010211...","mockjutsu generate emv_qr_p2p --locale TR","TR US UK DE FR RU","EMV QRCPS P2P payment QR code (TRQR compatible)."],
   ["emv_qr_atm","Financial","financial",true,"—","000201010212...","mockjutsu generate emv_qr_atm --locale DE","TR US UK DE FR RU","EMV QRCPS ATM cash-out QR code."],
   ["emv_qr_pos","Financial","financial",true,"—","000201010211...","mockjutsu generate emv_qr_pos --locale FR","TR US UK DE FR RU","EMV QRCPS Merchant/POS QR code."],
+  ["3ds_cavv","Financial","financial",false,"—","AAABBIIFmAAAAAAEggWY...","mockjutsu generate 3ds_cavv","","3D Secure 2.0 Cardholder Authentication Verification Value (CAVV)."],
+  ["3ds_eci","Financial","financial",false,"--network","05 (Visa) / 02 (MC)","mockjutsu generate 3ds_eci --network visa","","3D Secure Electronic Commerce Indicator (ECI) flag."],
+  ["cardnetwork","Financial","financial",false,"—","VISA / MASTERCARD","mockjutsu generate cardnetwork","","Credit card network name (Visa, MC, Amex, etc.)."],
   ["track2_data","Hardware","hardware",false,"—",";4532...=2812201...?","mockjutsu generate track2_data","","Magnetic stripe Track 2 data (PAN=Expiry+ServiceCode+CVV)."],
   ["chip_data","Hardware","hardware",false,"—","9F0206000000001000...","mockjutsu generate chip_data","","Simulated EMV chip (ICC) tag-length-value (TLV) data."],
   ["pin_block","Hardware","hardware",false,"—","0123456789ABCDEF","mockjutsu generate pin_block","","ISO 9564 format encrypted PIN block (Format 0/1)."],

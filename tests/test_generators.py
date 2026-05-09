@@ -19,7 +19,7 @@ TYPES = [
     # Financial (15)
     'cardnum', 'cardnetwork', 'cardtype', 'cardstatus', 'cardowner',
     'cvv3', 'cvv4', 'pin', 'expiry', 'expirymonth', 'expiryyear',
-    'issuer', 'balance', 'iban', 'cardcategory',
+    'issuer', 'balance', 'iban', 'cardcategory', '3ds_cavv', '3ds_eci',
     # Communication (10)
     'phone', 'phone_country', 'phone_area', 'phone_local',
     'address_city', 'address_street', 'address_full', 'postalcode', 'plate', 'email',
@@ -369,6 +369,35 @@ def test_balance_is_numeric():
         val = jutsu.generate('balance')
         assert isinstance(val, (int, float)), f"Balance must be numeric: {val}"
         assert val >= 0, f"Balance must not be negative: {val}"
+
+
+def test_3ds_cavv_format():
+    """3ds_cavv must be a Base64-encoded string of 20 bytes."""
+    import base64
+    for _ in range(50):
+        val = str(jutsu.generate('3ds_cavv'))
+        assert len(val) >= 24, f"3ds_cavv too short: {val}"
+        try:
+            decoded = base64.b64decode(val)
+            assert len(decoded) == 20, f"3ds_cavv decoded length should be 20 bytes: {len(decoded)}"
+        except Exception:
+            pytest.fail(f"3ds_cavv is not valid base64: {val}")
+
+
+def test_3ds_eci_visa():
+    """3ds_eci for Visa must be 05, 06, or 07."""
+    valid = {'05', '06', '07'}
+    for _ in range(50):
+        val = jutsu.generate('3ds_eci', network='visa')
+        assert val in valid, f"Invalid Visa ECI: {val}"
+
+
+def test_3ds_eci_mastercard():
+    """3ds_eci for Mastercard must be 02, 01, or 00."""
+    valid = {'02', '01', '00'}
+    for _ in range(50):
+        val = jutsu.generate('3ds_eci', network='mastercard')
+        assert val in valid, f"Invalid Mastercard ECI: {val}"
 
 
 # ---------------------------------------------------------------------------

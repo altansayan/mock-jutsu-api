@@ -162,7 +162,27 @@ class FinancialGenerator:
         if dt == 'emv_qr_pos':
             return self._generate_emv_qr_pos(locale)
 
+        if dt == '3ds_cavv':
+            return self.generate_3ds_cavv()
+
+        if dt == '3ds_eci':
+            return self.generate_3ds_eci(network)
+
         return "FINANCIAL_DATA"
+
+    def generate_3ds_cavv(self):
+        import secrets
+        import base64
+        raw = secrets.token_bytes(20)
+        return base64.b64encode(raw).decode('utf-8')
+
+    def generate_3ds_eci(self, network="visa"):
+        net = network.lower()
+        if 'visa' in net or 'amex' in net or 'jcb' in net:
+            return random.choice(['05', '06', '07'])
+        if 'mc' in net or 'mastercard' in net:
+            return random.choice(['02', '01', '00'])
+        return random.choice(['05', '02', '06', '01'])
 
     _CURRENCY_CODES = {
         'TR': '949',
