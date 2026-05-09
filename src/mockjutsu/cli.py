@@ -398,7 +398,8 @@ def list_types(cat):
         for (typ, _cat, locale_aware, example, cli_cmd, _desc, extra_params) in rows:
             loc_flag = click.style("v", fg="green") if locale_aware else click.style("-", fg='bright_black')
             typ_s    = click.style(f"  {typ:<{W_TYPE}}", fg='white', bold=True)
-            ex_s     = click.style(f"{example:<{W_EX}}", fg='bright_yellow')
+            ex_clean = str(example).replace("\n", " ")
+            ex_s     = click.style(f"{ex_clean:<{W_EX}}", fg='bright_yellow')
             full_cmd = f"mockjutsu {cli_cmd}"
             cli_s    = click.style(f"{full_cmd:<{W_CLI}}", fg='cyan')
             param_s  = click.style(f"{extra_params:<{W_PARAM}}", fg='bright_white')
