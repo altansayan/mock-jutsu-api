@@ -52,7 +52,7 @@ def sync_all_files(types, tests):
         # Update Developer
         content = re.sub(r'body\.append\("Developed by: .*\\n"', 'body.append("Developed by: Altan Sezer Ayan (A.S.A)\\\\n"', content)
         # Update Docstring
-        content = re.sub(r'"""mock-jutsu -- .*"""', '"""mock-jutsu -- The Ultimate Algorithmic Mock Data Engine"""', content)
+        content = re.sub(r'"""Mock Jutsu -- .*"""', '"""Mock Jutsu -- The Ultimate Algorithmic Mock Data Engine"""', content)
         
         with open(cli_path, "w", encoding="utf-8") as f:
             f.write(content)
@@ -359,9 +359,9 @@ LOCALES = {
     'TR': {
         'lang': 'tr',
         'flag': '🇹🇷',
-        'title': 'mock-jutsu — TR Referans Kılavuzu',
+        'title': 'Mock Jutsu — TR Referans Kılavuzu',
         'meta_desc': 'Mock-Jutsu: Gelişmiş algoritmik sahte veri (mock data) üretim motoru. TCKN, IBAN, Kredi Kartı ve daha fazlası için gerçekçi test verileri üretin.',
-        'header_title': 'mock-jutsu &mdash; TR Referans Kılavuzu',
+        'header_title': 'Mock Jutsu &mdash; TR Referans Kılavuzu',
         'engine_title': 'Nihai Algoritmik Mock Veri Motoru',
         'stats_text': f'<span>6 locale</span> &bull; <span>{TYPES_COUNT} parametre tipi</span> &bull; <span>{TESTS_COUNT} Test</span>',
         'dev_text': 'Developer: Altan Sezer Ayan (A.S.A)',
@@ -392,9 +392,9 @@ LOCALES = {
     'EN': {
         'lang': 'en',
         'flag': '🇺🇸',
-        'title': 'mock-jutsu — US Reference Guide',
+        'title': 'Mock Jutsu — US Reference Guide',
         'meta_desc': 'Mock-Jutsu: The ultimate algorithmic mock data engine. Generate realistic test data for SSN, IBAN, Credit Cards, and more with high-performance algorithms.',
-        'header_title': 'mock-jutsu &mdash; US Reference Guide',
+        'header_title': 'Mock Jutsu &mdash; US Reference Guide',
         'engine_title': 'The Ultimate Algorithmic Mock Data Engine',
         'stats_text': f'<span>6 locales</span> &bull; <span>{TYPES_COUNT} data types</span> &bull; <span>{TESTS_COUNT} tests</span>',
         'dev_text': 'Developer: Altan Sezer Ayan (A.S.A)',
@@ -423,9 +423,9 @@ LOCALES = {
     'UK': {
         'lang': 'en-GB',
         'flag': '🇬🇧',
-        'title': 'mock-jutsu — UK Reference Guide',
+        'title': 'Mock Jutsu — UK Reference Guide',
         'meta_desc': 'Mock-Jutsu: Professional mock data generation for UK developers. High-fidelity test data for NIN, IBAN, and financial services.',
-        'header_title': 'mock-jutsu &mdash; UK Reference Guide',
+        'header_title': 'Mock Jutsu &mdash; UK Reference Guide',
         'engine_title': 'The Ultimate Algorithmic Mock Data Engine',
         'stats_text': f'<span>6 locales</span> &bull; <span>{TYPES_COUNT} data types</span> &bull; <span>{TESTS_COUNT} tests</span>',
         'dev_text': 'Developer: Altan Sezer Ayan (A.S.A)',
@@ -454,9 +454,9 @@ LOCALES = {
     'DE': {
         'lang': 'de',
         'flag': '🇩🇪',
-        'title': 'mock-jutsu — DE Referenzhandbuch',
+        'title': 'Mock Jutsu — DE Referenzhandbuch',
         'meta_desc': 'Mock-Jutsu: Leistungsstarke algorithmische Generierung von Testdaten für Deutschland. Realistische Daten für IBAN, Steuernummern ve mehr.',
-        'header_title': 'mock-jutsu &mdash; DE Referenzhandbuch',
+        'header_title': 'Mock Jutsu &mdash; DE Referenzhandbuch',
         'engine_title': 'Die ultimative algorithmische Mock-Daten-Engine',
         'stats_text': f'<span>6 Sprachräume</span> &bull; <span>{TYPES_COUNT} Datentypen</span> &bull; <span>{TESTS_COUNT} Tests</span>',
         'dev_text': 'Entwickler: Altan Sezer Ayan (A.S.A)',
@@ -485,9 +485,9 @@ LOCALES = {
     'FR': {
         'lang': 'fr',
         'flag': '🇫🇷',
-        'title': 'mock-jutsu — Guide de Référence FR',
+        'title': 'Mock Jutsu — Guide de Référence FR',
         'meta_desc': 'Mock-Jutsu: Moteur de génération de données fictives de haute précision. Générez des données de test réalistes pour SIREN, SIRET, IBAN et plus.',
-        'header_title': 'mock-jutsu &mdash; Guide de Référence FR',
+        'header_title': 'Mock Jutsu &mdash; Guide de Référence FR',
         'engine_title': 'L\'ultime moteur algorithmique de données fictives',
         'stats_text': f'<span>6 régions</span> &bull; <span>{TYPES_COUNT} types de données</span> &bull; <span>{TESTS_COUNT} tests</span>',
         'dev_text': 'Développeur: Altan Sezer Ayan (A.S.A)',
@@ -516,9 +516,9 @@ LOCALES = {
     'RU': {
         'lang': 'ru',
         'flag': '🇷🇺',
-        'title': 'mock-jutsu — Справочник RU',
+        'title': 'Mock Jutsu — Справочник RU',
         'meta_desc': 'Mock-Jutsu: Профессиональный движок для генерации тестовых данных. Реалистичные ИНН, СНИЛС, БИК и многое другое.',
-        'header_title': 'mock-jutsu &mdash; Справочник RU',
+        'header_title': 'Mock Jutsu &mdash; Справочник RU',
         'engine_title': 'Идеальный алгоритмический движок фиктивных данных',
         'stats_text': f'<span>6 регионов</span> &bull; <span>{TYPES_COUNT} типов данных</span> &bull; <span>{TESTS_COUNT} тестов</span>',
         'dev_text': 'Разработчик: Altan Sezer Ayan (A.S.A)',

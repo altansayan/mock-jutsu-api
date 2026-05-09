@@ -3,20 +3,20 @@
 <!-- A placeholder for a future logo or GIF -->
 <!-- <img src="https://raw.githubusercontent.com/altansayan/mock-jutsu-api/main/assets/mock-jutsu-banner.png" alt="mock-jutsu banner" width="100%"> -->
 
-# 🥷 mock-jutsu
+# 🥷 Mock Jutsu
 
 **Stop mocking with random strings. Start generating cryptographically valid test data.**
 
 [![Tests](https://img.shields.io/badge/tests-2065%20passed-22c55e?style=for-the-badge&logo=pytest)](./tests)
 [![Python](https://img.shields.io/badge/python-3.9%2B-3b82f6?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Data Types](https://img.shields.io/badge/Data%20Types-175-a855f7?style=for-the-badge)](./HOW-TO.html)
+[![Data Types](https://img.shields.io/badge/Data%20Types-175-a855f7?style=for-the-badge)](https://altansayan.github.io/mock-jutsu-api/)
 [![Locales](https://img.shields.io/badge/Locales-6-ec4899?style=for-the-badge)](#-6-locales-100-real-algorithms)
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-ff69b4?style=for-the-badge)](#-features-that-will-blow-your-mind)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
 
-*Traditional Mockers give you a random 16-digit string and call it a credit card number.<br>**mock-jutsu runs Luhn. Every. Single. Time.***
+*Traditional Mockers give you a random 16-digit string and call it a credit card number.<br>**Mock Jutsu runs Luhn. Every. Single. Time.***
 
-[**Installation**](#%EF%B8%8F-installation) • [**Why mock-jutsu?**](#-why-not-faker) • [**Usage Guide**](#-usage) • [**175 Types**](#-175-supported-data-types)
+[**Installation**](#%EF%B8%8F-installation) • [**Why Mock Jutsu?**](#-why-not-faker) • [**Usage Guide**](#-usage) • [**175 Types**](#-175-supported-data-types)
 
 </div>
 
@@ -24,7 +24,7 @@
 
 ## 🚀 The Ultimate Algorithmic Mock Data Engine
 
-QA engineers, Data Scientists, and Fintech developers are tired of test data failing at the validation layer. **mock-jutsu** is built differently. It treats every identifier as a strict technical specification. If an algorithm defines a checksum, `mock-jutsu` computes it. **No shortcuts.**
+QA engineers, Data Scientists, and Fintech developers are tired of test data failing at the validation layer. **Mock Jutsu** is built differently. It treats every identifier as a strict technical specification. If an algorithm defines a checksum, `Mock Jutsu` computes it. **No shortcuts.**
 
 ### 🔥 Features That Will Blow Your Mind
 - **Zero External Dependencies**: The core data engine uses pure Python standard library for maximum speed, security, and zero bloat.
@@ -37,7 +37,7 @@ QA engineers, Data Scientists, and Fintech developers are tired of test data fai
 
 ## 🤔 Why Mock Jutsu?
 
-| Capability | `mock-jutsu` 🥷 | Traditional Mockers 🤡 |
+| Capability | `Mock Jutsu` 🥷 | Traditional Mockers 🤡 |
 |:---|:---:|:---:|
 | **Card Numbers (Luhn Valid)** | ✅ 9 Networks Validated | ❌ Random digits |
 | **IBANs (MOD-97 Valid)** | ✅ Country-specific | ❌ Format-only |
@@ -77,7 +77,7 @@ pip install -e .
 
 ## 💻 Usage
 
-Whether you are writing automated tests, working in the terminal, or spinning up a mock API, `mock-jutsu` is ready.
+Whether you are writing automated tests, working in the terminal, or spinning up a mock API, `Mock Jutsu` is ready.
 
 ### 🐍 1. Python SDK
 
@@ -215,13 +215,13 @@ We cover everything from standard identities to complex financial market identif
 </details>
 
 *(See our interactive guides for the full list of 174 types:
-[🇹🇷 TR](./HOW-TO-MockJutsu-TR.html) | [🇺🇸 EN](./HOW-TO-MockJutsu-EN.html) | [🇬🇧 UK](./HOW-TO-MockJutsu-UK.html) | [🇩🇪 DE](./HOW-TO-MockJutsu-DE.html) | [🇫🇷 FR](./HOW-TO-MockJutsu-FR.html) | [🇷🇺 RU](./HOW-TO-MockJutsu-RU.html))*
+[🇹🇷 TR](https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-TR.html) | [🇺🇸 EN](https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-EN.html) | [🇬🇧 UK](https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-UK.html) | [🇩🇪 DE](https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-DE.html) | [🇫🇷 FR](https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-FR.html) | [🇷🇺 RU](https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-RU.html))*
 
 ---
 
 ## 🤝 Contributing
 
-`mock-jutsu` thrives on community contributions. Found a checksum we're not validating? A locale we're missing? We'd love your help!
+`Mock Jutsu` thrives on community contributions. Found a checksum we're not validating? A locale we're missing? We'd love your help!
 
 **🚨 Strict TDD & Performance Mandate**
 To maintain our enterprise-grade quality, this repository mechanically enforces **Test-Driven Development (TDD)**.
