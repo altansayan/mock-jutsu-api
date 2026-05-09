@@ -60,85 +60,85 @@ print(f"✅ System synced: {TYPES_COUNT} types, {TESTS_COUNT} tests.")
 BASE_CSS = """
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-*,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
-body{{font-family:'Inter', -apple-system, sans-serif; background:#f8fafc;color:#1e293b;line-height:1.6; -webkit-font-smoothing: antialiased;}}
-.header{{background:#0f172a;color:#fff;padding:3rem 2rem 4rem;text-align:center}}
-.header h1{{font-size:2.2rem;margin-bottom:.75rem;font-weight:800;letter-spacing:-0.025em}}
-.header .sub{{font-size:1rem;color:#94a3b8; font-weight:400}}
-.tabs{{display:flex;justify-content:center;background:#fff;border-bottom:1px solid #e2e8f0;margin-top:-1.5rem;padding:0 1rem;gap:1.5rem; position:sticky; top:0; z-index:100; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05)}}
-.tab{{padding:1.2rem 1rem;cursor:pointer;font-weight:600;color:#64748b;border-bottom:3px solid transparent;transition:all .2s ease;font-size:0.95rem}}
-.tab:hover{{color:#3b82f6}}
-.tab.active{{color:#3b82f6;border-bottom-color:#3b82f6}}
-.section{{display:none;padding:2.5rem 2rem;max-width:1400px;margin:0 auto}}
-.section.active{{display:block;animation:fadeIn .4s ease-out}}
-@keyframes fadeIn{{from{{opacity:0;transform:translateY(10px)}}to{{opacity:1;transform:translateY(0)}}}}
-.stitle{{font-size:1.5rem;font-weight:700;margin-bottom:2rem;color:#0f172a;padding-left:15px;border-left:5px solid #3b82f6; letter-spacing:-0.02em}}
-.toolbar{{display:flex;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;align-items:center;background:#fff;padding:1.25rem;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.05); border:1px solid #e2e8f0}}
-.toolbar input,.toolbar select{{padding:.7rem 1rem;border:1px solid #cbd5e1;border-radius:8px;font-size:.9rem;outline:none;transition:all .2s; font-family:inherit}}
-.toolbar input:focus,.toolbar select:focus{{border-color:#3b82f6;box-shadow:0 0 0 4px rgba(59,130,246,0.1)}}
-.toolbar input{{flex:1;min-width:300px}}
-.reset-btn{{padding:.7rem 1.5rem;background:#f1f5f9;border:1px solid #cbd5e1;border-radius:8px;cursor:pointer;font-size:.9rem;font-weight:600;color:#475569;transition:all .2s}}
-.reset-btn:hover{{background:#e2e8f0; color:#0f172a}}
-.row-count{{font-size:.9rem;color:#64748b;font-weight:600;margin-left:auto; background:#f1f5f9; padding:0.4rem 0.8rem; border-radius:6px}}
-.table-wrap{{overflow-x:auto; border-radius:12px; border:1px solid #e2e8f0; background:white; margin-bottom:50px; box-shadow:0 20px 25px -5px rgba(0,0,0,0.05), 0 10px 10px -5px rgba(0,0,0,0.04); position:relative}}
-.table-wrap::-webkit-scrollbar{{height:10px}}
-.table-wrap::-webkit-scrollbar-track{{background:#f1f5f9}}
-.table-wrap::-webkit-scrollbar-thumb{{background:#cbd5e1; border-radius:10px; border:3px solid #f1f5f9}}
-.table-wrap::-webkit-scrollbar-thumb:hover{{background:#94a3b8}}
-table{{width:100%; border-collapse:separate; border-spacing:0; table-layout: fixed; min-width:1200px}}
-th,td{{padding:16px 20px; text-align:left; border-bottom:1px solid #f1f5f9}}
-th{{background:#f8fafc; font-weight:700; color:#475569; text-transform:uppercase; font-size:11px; letter-spacing:0.05em; position:sticky; top:0; z-index:20; box-shadow: inset 0 -1px 0 #e2e8f0}}
-td{{font-size:14px; color:#334155; vertical-align:middle; word-wrap: break-word}}
-.col-fn{{width:140px; font-weight:700; color:#0f172a}}
-.col-cat{{width:140px}}
-.col-desc{{width:280px; color:#64748b; font-size:13px; line-height:1.5}}
-.col-locale{{width:100px; text-align:center}
-.col-extra{{width:160px; font-family:'JetBrains Mono', monospace; font-size:12px; color:#0ea5e9}}
-.col-output{{width:220px; font-family:'JetBrains Mono', monospace; color:#10b981; font-weight:600}}
-.col-cli{{width:320px}}
-code{{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBrains Mono', monospace; font-size:13px; color:#475569; border:1px solid #e2e8f0}}
-.badge{{padding:6px 12px; border-radius:8px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.02em}}
-.badge-yes{{background:#dcfce7; color:#15803d}}
-.badge-no{{background:#f1f5f9; color:#94a3b8}}
-.cli-cmd{{background:#0f172a; color:#e2e8f0; padding:10px 14px; border-radius:8px; font-family:'JetBrains Mono', monospace; font-size:11px; display:block; border-left:4px solid #3b82f6; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer; transition:all 0.2s}}
-.cli-cmd:hover{{background:#1e293b; overflow:visible; white-space:normal; position:relative; z-index:50; box-shadow:0 10px 15px -3px rgba(0,0,0,0.1)}}
-.pill{{display:inline-block;padding:.3rem .75rem;border-radius:8px;font-size:.75rem;font-weight:700;white-space:nowrap; border:1px solid rgba(0,0,0,0.05)}}
-.lc-grid{{display:flex; flex-wrap:wrap; gap:4px; justify-content:center}}
-.lc{{display:inline-block;padding:.2rem .5rem;border-radius:4px;font-size:.7rem;font-weight:700;font-family:'JetBrains Mono', monospace}}
-.cat-kimlik{{background:#eff6ff;color:#1d4ed8}}
-.cat-vergi{{background:#fdf4ff;color:#86198f}}
-.cat-isveren{{background:#f0fdf4;color:#15803d}}
-.cat-sigorta{{background:#fffbeb;color:#b45309}}
-.cat-isim{{background:#f0f9ff;color:#0369a1}}
-.cat-belge{{background:#f8fafc;color:#475569}}
-.cat-demografik{{background:#faf5ff;color:#6b21a8}}
-.cat-finansal{{background:#ecfdf5;color:#047857}}
-.cat-iletisim{{background:#fff1f2;color:#be123c}}
-.cat-meta{{background:#f1f5f9;color:#334155}}
-.cat-bankacilik{{background:#eef2ff;color:#4338ca}}
-.cat-kurumsal{{background:#fdf2f8;color:#be185d}}
-.cat-saglik{{background:#f0fdfa;color:#0f766e}}
-.cat-ticaret{{background:#fff7ed;color:#c2410c}}
-.cat-guvenlik{{background:#fee2e2;color:#b91c1c}}
-.cat-rfid,.cat-nfc{{background:#e0e7ff;color:#3730a3}}
-.cat-ir{{background:#ffe4e6;color:#e11d48}}
-.cat-barkod{{background:#f1f5f9;color:#0f172a}}
-.cat-telecom{{background:#fdf4ff;color:#a21caf}}
-.cat-securities{{background:#ecfccb;color:#3f6212}}
-.cat-crypto{{background:#fef3c7;color:#b45309}}
-.cat-ecommerce{{background:#fae8ff;color:#86198f}}
-.cat-location{{background:#e0f2fe;color:#0369a1}}
-.cat-social{{background:#dbeafe;color:#1e40af}}
-.lc-TR{{background:#fee2e2;color:#991b1b}}
-.lc-US{{background:#e0e7ff;color:#3730a3}
-.lc-UK{{background:#dbeafe;color:#1e40af}}
-.lc-FR{{background:#ecfdf5;color:#065f46}}
-.lc-RU{{background:#ffedd5;color:#9a3412}}
-.lc-DE{{background:#fce7f3;color:#9d174d}}
-.qs-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:2rem}}
-.qs-card{{background:#fff;border-radius:12px;padding:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05);border:1px solid #e2e8f0; transition:transform 0.2s, box-shadow 0.2s}}
-.qs-card:hover{{transform:translateY(-4px); box-shadow:0 12px 20px -5px rgba(0,0,0,0.1)}}
-.qs-card h3{{font-size:1.1rem;color:#0f172a;margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem; font-weight:700}}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter', -apple-system, sans-serif; background:#f8fafc;color:#1e293b;line-height:1.6; -webkit-font-smoothing: antialiased;}
+.header{background:#0f172a;color:#fff;padding:3rem 2rem 4rem;text-align:center}
+.header h1{font-size:2.2rem;margin-bottom:.75rem;font-weight:800;letter-spacing:-0.025em}
+.header .sub{font-size:1rem;color:#94a3b8; font-weight:400}
+.tabs{display:flex;justify-content:center;background:#fff;border-bottom:1px solid #e2e8f0;margin-top:-1.5rem;padding:0 1rem;gap:1.5rem; position:sticky; top:0; z-index:100; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05)}
+.tab{padding:1.2rem 1rem;cursor:pointer;font-weight:600;color:#64748b;border-bottom:3px solid transparent;transition:all .2s ease;font-size:0.95rem}
+.tab:hover{color:#3b82f6}
+.tab.active{color:#3b82f6;border-bottom-color:#3b82f6}
+.section{display:none;padding:2.5rem 2rem;max-width:1400px;margin:0 auto}
+.section.active{display:block;animation:fadeIn .4s ease-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.stitle{font-size:1.5rem;font-weight:700;margin-bottom:2rem;color:#0f172a;padding-left:15px;border-left:5px solid #3b82f6; letter-spacing:-0.02em}
+.toolbar{display:flex;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;align-items:center;background:#fff;padding:1.25rem;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.05); border:1px solid #e2e8f0}
+.toolbar input,.toolbar select{padding:.7rem 1rem;border:1px solid #cbd5e1;border-radius:8px;font-size:.9rem;outline:none;transition:all .2s; font-family:inherit}
+.toolbar input:focus,.toolbar select:focus{border-color:#3b82f6;box-shadow:0 0 0 4px rgba(59,130,246,0.1)}
+.toolbar input{flex:1;min-width:300px}
+.reset-btn{padding:.7rem 1.5rem;background:#f1f5f9;border:1px solid #cbd5e1;border-radius:8px;cursor:pointer;font-size:.9rem;font-weight:600;color:#475569;transition:all .2s}
+.reset-btn:hover{background:#e2e8f0; color:#0f172a}
+.row-count{font-size:.9rem;color:#64748b;font-weight:600;margin-left:auto; background:#f1f5f9; padding:0.4rem 0.8rem; border-radius:6px}
+.table-wrap{overflow-x:auto; border-radius:12px; border:1px solid #e2e8f0; background:white; margin-bottom:50px; box-shadow:0 20px 25px -5px rgba(0,0,0,0.05), 0 10px 10px -5px rgba(0,0,0,0.04); position:relative}
+.table-wrap::-webkit-scrollbar{height:10px}
+.table-wrap::-webkit-scrollbar-track{background:#f1f5f9}
+.table-wrap::-webkit-scrollbar-thumb{background:#cbd5e1; border-radius:10px; border:3px solid #f1f5f9}
+.table-wrap::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+table{width:100%; border-collapse:separate; border-spacing:0; table-layout: fixed; min-width:1200px}
+th,td{padding:16px 20px; text-align:left; border-bottom:1px solid #f1f5f9}
+th{background:#f8fafc; font-weight:700; color:#475569; text-transform:uppercase; font-size:11px; letter-spacing:0.05em; position:sticky; top:0; z-index:20; box-shadow: inset 0 -1px 0 #e2e8f0}
+td{font-size:14px; color:#334155; vertical-align:middle; word-wrap: break-word}
+.col-fn{width:140px; font-weight:700; color:#0f172a}
+.col-cat{width:140px}
+.col-desc{width:280px; color:#64748b; font-size:13px; line-height:1.5}
+.col-locale{width:100px; text-align:center}
+.col-extra{width:160px; font-family:'JetBrains Mono', monospace; font-size:12px; color:#0ea5e9}
+.col-output{width:220px; font-family:'JetBrains Mono', monospace; color:#10b981; font-weight:600}
+.col-cli{width:320px}
+code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBrains Mono', monospace; font-size:13px; color:#475569; border:1px solid #e2e8f0}
+.badge{padding:6px 12px; border-radius:8px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.02em}
+.badge-yes{background:#dcfce7; color:#15803d}
+.badge-no{background:#f1f5f9; color:#94a3b8}
+.cli-cmd{background:#0f172a; color:#e2e8f0; padding:10px 14px; border-radius:8px; font-family:'JetBrains Mono', monospace; font-size:11px; display:block; border-left:4px solid #3b82f6; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer; transition:all 0.2s}
+.cli-cmd:hover{background:#1e293b; overflow:visible; white-space:normal; position:relative; z-index:50; box-shadow:0 10px 15px -3px rgba(0,0,0,0.1)}
+.pill{display:inline-block;padding:.3rem .75rem;border-radius:8px;font-size:.75rem;font-weight:700;white-space:nowrap; border:1px solid rgba(0,0,0,0.05)}
+.lc-grid{display:flex; flex-wrap:wrap; gap:4px; justify-content:center}
+.lc{display:inline-block;padding:.2rem .5rem;border-radius:4px;font-size:.7rem;font-weight:700;font-family:'JetBrains Mono', monospace}
+.cat-kimlik{background:#eff6ff;color:#1d4ed8}
+.cat-vergi{background:#fdf4ff;color:#86198f}
+.cat-isveren{background:#f0fdf4;color:#15803d}
+.cat-sigorta{background:#fffbeb;color:#b45309}
+.cat-isim{background:#f0f9ff;color:#0369a1}
+.cat-belge{background:#f8fafc;color:#475569}
+.cat-demografik{background:#faf5ff;color:#6b21a8}
+.cat-finansal{background:#ecfdf5;color:#047857}
+.cat-iletisim{background:#fff1f2;color:#be123c}
+.cat-meta{background:#f1f5f9;color:#334155}
+.cat-bankacilik{background:#eef2ff;color:#4338ca}
+.cat-kurumsal{background:#fdf2f8;color:#be185d}
+.cat-saglik{background:#f0fdfa;color:#0f766e}
+.cat-ticaret{background:#fff7ed;color:#c2410c}
+.cat-guvenlik{background:#fee2e2;color:#b91c1c}
+.cat-rfid,.cat-nfc{background:#e0e7ff;color:#3730a3}
+.cat-ir{background:#ffe4e6;color:#e11d48}
+.cat-barkod{background:#f1f5f9;color:#0f172a}
+.cat-telecom{background:#fdf4ff;color:#a21caf}
+.cat-securities{background:#ecfccb;color:#3f6212}
+.cat-crypto{background:#fef3c7;color:#b45309}
+.cat-ecommerce{background:#fae8ff;color:#86198f}
+.cat-location{background:#e0f2fe;color:#0369a1}
+.cat-social{background:#dbeafe;color:#1e40af}
+.lc-TR{background:#fee2e2;color:#991b1b}
+.lc-US{background:#e0e7ff;color:#3730a3}
+.lc-UK{background:#dbeafe;color:#1e40af}
+.lc-FR{background:#ecfdf5;color:#065f46}
+.lc-RU{background:#ffedd5;color:#9a3412}
+.lc-DE{background:#fce7f3;color:#9d174d}
+.qs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:2rem}
+.qs-card{background:#fff;border-radius:12px;padding:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05);border:1px solid #e2e8f0; transition:transform 0.2s, box-shadow 0.2s}
+.qs-card:hover{transform:translateY(-4px); box-shadow:0 12px 20px -5px rgba(0,0,0,0.1)}
+.qs-card h3{font-size:1.1rem;color:#0f172a;margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem; font-weight:700}
 .qs-card h3::before{content:"";display:block;width:8px;height:8px;background:#3b82f6;border-radius:50%}
 .qs-card pre{background:#0f172a;color:#f8fafc;padding:1rem;border-radius:6px;font-size:.85rem;overflow-x:auto;line-height:1.5}
 .qs-card pre .kw{color:#38bdf8}
