@@ -19,7 +19,7 @@ def run_checks():
     # 3. Step 1: Run Compliance Auditor
     print("\nStep 1: Running Compliance Auditor...")
     audit_script = os.path.join(BASE_DIR, "scripts", "audit_compliance.py")
-    result = subprocess.run([sys.executable, audit_script], cwd=BASE_DIR)
+    result = subprocess.run([sys.executable, audit_script], cwd=BASE_DIR, env=env)
     if result.returncode != 0:
         print("Compliance Audit FAILED.")
         return 1
