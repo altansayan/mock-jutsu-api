@@ -388,7 +388,7 @@ def build_html(loc_key, cfg):
     lc = cfg['locale_code']
     locale_rows_js = translate_rows(ROWS_JS, loc_key)
     tabs_html = ''.join(
-        f'  <div class="tab{{" active" if i==0 else ""}}" onclick="showTab(\'{tid}\')">{name}</div>\n'
+        f'  <div class="tab{" active" if i==0 else ""}" onclick="showTab(\'{tid}\')">{name}</div>\n'
         for i, (tid, name) in enumerate(zip(['ref','qs','power','api'], cfg['tabs']))
     )
     id_badges = ''.join(f'<li><code>{t}</code></li>' for t in cfg['id_types'])
