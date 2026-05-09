@@ -74,8 +74,9 @@ body{font-family:'Inter', -apple-system, sans-serif; background:#f8fafc;color:#1
 .header .sub{font-size:1rem;color:#94a3b8;font-weight:400;display:flex;align-items:center;justify-content:center;gap:0.75rem;flex-wrap:wrap}
 .header .dev-info{font-size:0.9rem;color:#64748b;margin-top:1.5rem}
 .header-links{margin-top:2rem;display:flex;justify-content:center;gap:1rem}
-.github-link{display:flex;align-items:center;gap:0.5rem;color:#f8fafc;text-decoration:none;font-weight:600;background:rgba(255,255,255,0.05);padding:0.6rem 1.2rem;border-radius:99px;transition:all 0.2s;border:1px solid rgba(255,255,255,0.1);font-size:0.95rem}
+.github-link, .linkedin-link{display:flex;align-items:center;gap:0.5rem;color:#f8fafc;text-decoration:none;font-weight:600;background:rgba(255,255,255,0.05);padding:0.6rem 1.2rem;border-radius:99px;transition:all 0.2s;border:1px solid rgba(255,255,255,0.1);font-size:0.95rem}
 .github-link:hover{background:rgba(255,255,255,0.15);transform:translateY(-2px);box-shadow:0 10px 15px -3px rgba(0,0,0,0.1)}
+.linkedin-link:hover{background:rgba(10, 102, 194, 0.2);transform:translateY(-2px);border-color:rgba(10, 102, 194, 0.4)}
 .tabs{display:flex;justify-content:center;background:#fff;border-bottom:1px solid #e2e8f0;margin-top:-1.5rem;padding:0 1rem;gap:1.5rem; position:sticky; top:0; z-index:100; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05)}
 .tab{padding:1.2rem 1rem;cursor:pointer;font-weight:600;color:#64748b;border-bottom:3px solid transparent;transition:all .2s ease;font-size:0.95rem}
 .tab:hover{color:#3b82f6}
@@ -359,6 +360,7 @@ LOCALES = {
         'lang': 'tr',
         'flag': '🇹🇷',
         'title': 'mock-jutsu — TR Referans Kılavuzu',
+        'meta_desc': 'Mock-Jutsu: Gelişmiş algoritmik sahte veri (mock data) üretim motoru. TCKN, IBAN, Kredi Kartı ve daha fazlası için gerçekçi test verileri üretin.',
         'header_title': 'mock-jutsu &mdash; TR Referans Kılavuzu',
         'engine_title': 'Nihai Algoritmik Mock Veri Motoru',
         'stats_text': f'<span>6 locale</span> &bull; <span>{TYPES_COUNT} parametre tipi</span> &bull; <span>{TESTS_COUNT} Test</span>',
@@ -391,6 +393,7 @@ LOCALES = {
         'lang': 'en',
         'flag': '🇺🇸',
         'title': 'mock-jutsu — US Reference Guide',
+        'meta_desc': 'Mock-Jutsu: The ultimate algorithmic mock data engine. Generate realistic test data for SSN, IBAN, Credit Cards, and more with high-performance algorithms.',
         'header_title': 'mock-jutsu &mdash; US Reference Guide',
         'engine_title': 'The Ultimate Algorithmic Mock Data Engine',
         'stats_text': f'<span>6 locales</span> &bull; <span>{TYPES_COUNT} data types</span> &bull; <span>{TESTS_COUNT} tests</span>',
@@ -421,6 +424,7 @@ LOCALES = {
         'lang': 'en-GB',
         'flag': '🇬🇧',
         'title': 'mock-jutsu — UK Reference Guide',
+        'meta_desc': 'Mock-Jutsu: Professional mock data generation for UK developers. High-fidelity test data for NIN, IBAN, and financial services.',
         'header_title': 'mock-jutsu &mdash; UK Reference Guide',
         'engine_title': 'The Ultimate Algorithmic Mock Data Engine',
         'stats_text': f'<span>6 locales</span> &bull; <span>{TYPES_COUNT} data types</span> &bull; <span>{TESTS_COUNT} tests</span>',
@@ -451,6 +455,7 @@ LOCALES = {
         'lang': 'de',
         'flag': '🇩🇪',
         'title': 'mock-jutsu — DE Referenzhandbuch',
+        'meta_desc': 'Mock-Jutsu: Leistungsstarke algorithmische Generierung von Testdaten für Deutschland. Realistische Daten für IBAN, Steuernummern ve mehr.',
         'header_title': 'mock-jutsu &mdash; DE Referenzhandbuch',
         'engine_title': 'Die ultimative algorithmische Mock-Daten-Engine',
         'stats_text': f'<span>6 Sprachräume</span> &bull; <span>{TYPES_COUNT} Datentypen</span> &bull; <span>{TESTS_COUNT} Tests</span>',
@@ -481,6 +486,7 @@ LOCALES = {
         'lang': 'fr',
         'flag': '🇫🇷',
         'title': 'mock-jutsu — Guide de Référence FR',
+        'meta_desc': 'Mock-Jutsu: Moteur de génération de données fictives de haute précision. Générez des données de test réalistes pour SIREN, SIRET, IBAN et plus.',
         'header_title': 'mock-jutsu &mdash; Guide de Référence FR',
         'engine_title': 'L\'ultime moteur algorithmique de données fictives',
         'stats_text': f'<span>6 régions</span> &bull; <span>{TYPES_COUNT} types de données</span> &bull; <span>{TESTS_COUNT} tests</span>',
@@ -511,6 +517,7 @@ LOCALES = {
         'lang': 'ru',
         'flag': '🇷🇺',
         'title': 'mock-jutsu — Справочник RU',
+        'meta_desc': 'Mock-Jutsu: Профессиональный движок для генерации тестовых данных. Реалистичные ИНН, СНИЛС, БИК и многое другое.',
         'header_title': 'mock-jutsu &mdash; Справочник RU',
         'engine_title': 'Идеальный алгоритмический движок фиктивных данных',
         'stats_text': f'<span>6 регионов</span> &bull; <span>{TYPES_COUNT} типов данных</span> &bull; <span>{TESTS_COUNT} тестов</span>',
@@ -564,6 +571,25 @@ def build_html(loc_key, cfg):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{cfg['title']}</title>
+<meta name="description" content="{cfg['meta_desc']}">
+<meta name="author" content="Altan Sezer Ayan (A.S.A)">
+<meta name="keywords" content="mock data, fake data, test data, mockjutsu, algorithmic data engine, fintech, banking, identity generation">
+<link rel="canonical" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-{loc_key}.html">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-{loc_key}.html">
+<meta property="og:title" content="{cfg['title']}">
+<meta property="og:description" content="{cfg['meta_desc']}">
+<meta property="og:image" content="https://altansayan.github.io/mock-jutsu-api/assets/banner.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-{loc_key}.html">
+<meta property="twitter:title" content="{cfg['title']}">
+<meta property="twitter:description" content="{cfg['meta_desc']}">
+<meta property="twitter:image" content="https://altansayan.github.io/mock-jutsu-api/assets/banner.png">
+
 <style>
 {BASE_CSS}
 </style>
@@ -580,6 +606,12 @@ def build_html(loc_key, cfg):
         <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.46-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
       </svg>
       GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/altansezerayan/" target="_blank" class="linkedin-link">
+      <svg height="20" viewBox="0 0 24 24" width="20" fill="currentColor">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+      </svg>
+      LinkedIn
     </a>
   </div>
   <div class="dev-info">{cfg['dev_text']}</div>
