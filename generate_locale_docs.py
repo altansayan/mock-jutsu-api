@@ -127,7 +127,18 @@ ROWS_JS = build_rows_js()
 
 # ── Category translations per locale ─────────────────────────────────────────
 CAT_TRANSLATIONS = {
-    'TR': {},
+    'TR': {
+        'Identity': 'Kimlik', 'Identity/TR': 'Kimlik/TR', 'Identity/US': 'Kimlik/US',
+        'Identity/UK': 'Kimlik/UK', 'Identity/DE': 'Kimlik/DE',
+        'Identity/FR': 'Kimlik/FR', 'Identity/RU': 'Kimlik/RU',
+        'Identity/Tax': 'Kimlik/Vergi', 'Employer': 'İşveren', 'Insurance': 'Sigorta',
+        'Name': 'İsim', 'Document': 'Belge', 'Demographic': 'Demografik',
+        'Financial': 'Finansal', 'Contact': 'İletişim', 'Meta': 'Meta',
+        'Banking': 'Bankacılık', 'Corporate': 'Kurumsal', 'Health': 'Sağlık',
+        'Commerce': 'Ticaret', 'Security': 'Güvenlik',
+        'Hardware': 'Hardware',
+        'IR (Infrared)': 'IR (Kızılötesi)', 'Barcode': 'Barkod',
+    },
     'EN': {
         'Kimlik': 'Identity', 'Kimlik/TR': 'Identity/TR', 'Kimlik/US': 'Identity/US',
         'Kimlik/UK': 'Identity/UK', 'Kimlik/DE': 'Identity/DE',
