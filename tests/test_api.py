@@ -36,8 +36,8 @@ class TestListEndpoint:
         r = client.get("/list")
         assert r.status_code == 200
         data = r.json()
-        assert data["count"] >= 174
-        assert len(data["types"]) >= 174
+        assert data["count"] >= 183
+        assert len(data["types"]) >= 183
 
     def test_list_type_has_required_fields(self):
         r = client.get("/list")
@@ -168,7 +168,7 @@ class TestGenerateEndpoint:
         "btc_address", "eth_address", "crypto_address", "tx_hash", "block_hash",
         # E-Commerce
         "product_name", "sku", "order_id", "tracking_number", "category",
-        "rating", "dhl_tracking",
+        "rating", "dhl_tracking", "3ds_cavv", "3ds_eci",
         # Location
         "latitude", "longitude", "timezone", "country_code", "coordinates",
         # Social

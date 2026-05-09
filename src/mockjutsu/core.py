@@ -123,7 +123,7 @@ _HARDWARE_TYPES = {
 
 
 class MockJutsuCore:
-    """Master orchestrator — 6 locales, 174 data types."""
+    """Master orchestrator — 6 locales, 182 data types."""
 
     def __init__(self, locale='TR'):
         self.locale     = str(locale).upper()

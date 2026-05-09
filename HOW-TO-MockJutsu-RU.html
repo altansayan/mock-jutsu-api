@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; Справочник RU</h1>
   <div class="engine-title">Идеальный алгоритмический движок фиктивных данных</div>
-  <div class="sub"><span>6 регионов</span> &bull; <span>178 типов данных</span> &bull; <span>2065 тестов</span></div>
+  <div class="sub"><span>6 регионов</span> &bull; <span>183 типов данных</span> &bull; <span>1999 тестов</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Все Параметры (178)</div>
+  <div class="stitle">Все Параметры (183)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Поиск функции, CLI команды или примера вывода..." oninput="filterTable()">
@@ -436,6 +436,15 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-extra">—</td>
           <td class="col-output"><code>7707083893</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate inn')">mockjutsu generate inn</span></td>
+        </tr>
+        <tr data-fn="inn_individual" data-cat="Identity" data-locales="">
+          <td class="col-fn"><code>inn_individual</code></td>
+          <td class="col-cat"><span class="pill ">Identity</span></td>
+          <td class="col-desc">Russian Individual Tax ID (INN) с контрольной суммой.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>7707083893</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate inn_individual')">mockjutsu generate inn_individual</span></td>
         </tr>
         <tr data-fn="snils" data-cat="Identity" data-locales="">
           <td class="col-fn"><code>snils</code></td>
@@ -1518,6 +1527,15 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-output"><code>286011234567890</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate imsi --locale TR')">mockjutsu generate imsi --locale TR</span></td>
         </tr>
+        <tr data-fn="msisdn" data-cat="Telecom" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>msisdn</code></td>
+          <td class="col-cat"><span class="pill cat-telecom">Telecom</span></td>
+          <td class="col-desc">Mobile Station International Subscriber Directory Номер (MSISDN).</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>+905321234567</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate msisdn --locale TR')">mockjutsu generate msisdn --locale TR</span></td>
+        </tr>
         <tr data-fn="isin" data-cat="Securities" data-locales="TR US UK DE FR RU">
           <td class="col-fn"><code>isin</code></td>
           <td class="col-cat"><span class="pill cat-securities">Securities</span></td>
@@ -1715,6 +1733,33 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-extra">—</td>
           <td class="col-output"><code>cooldev42</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate username')">mockjutsu generate username</span></td>
+        </tr>
+        <tr data-fn="handle" data-cat="Social" data-locales="">
+          <td class="col-fn"><code>handle</code></td>
+          <td class="col-cat"><span class="pill cat-social">Social</span></td>
+          <td class="col-desc">Social media profile handle с @ prefix.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>@cooldev42</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate handle')">mockjutsu generate handle</span></td>
+        </tr>
+        <tr data-fn="hashtag" data-cat="Social" data-locales="">
+          <td class="col-fn"><code>hashtag</code></td>
+          <td class="col-cat"><span class="pill cat-social">Social</span></td>
+          <td class="col-desc">Trending social media hashtags.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>#mockjutsu</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate hashtag')">mockjutsu generate hashtag</span></td>
+        </tr>
+        <tr data-fn="bio" data-cat="Social" data-locales="">
+          <td class="col-fn"><code>bio</code></td>
+          <td class="col-cat"><span class="pill cat-social">Social</span></td>
+          <td class="col-desc">Social media profile biography text.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>Building the future...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate bio')">mockjutsu generate bio</span></td>
         </tr>
         <tr data-fn="follower_count" data-cat="Social" data-locales="">
           <td class="col-fn"><code>follower_count</code></td>
@@ -2054,6 +2099,7 @@ const ROWS = [
   ["siret","Identity","identity",false,"—","73282932000074","mockjutsu generate siret","","French Establishment Identifier (SIRET) с Luhn валидацией."],
   ["tva","Identity","identity",false,"—","FR73732829320","mockjutsu generate tva","","French VAT Номер (TVA) с ISO 7064 проверка."],
   ["inn","Identity","identity",false,"—","7707083893","mockjutsu generate inn","","Russian Tax ID (INN) с контрольной суммой валидацией."],
+  ["inn_individual","Identity","identity",false,"—","7707083893","mockjutsu generate inn_individual","","Russian Individual Tax ID (INN) с контрольной суммой."],
   ["snils","Identity","identity",false,"—","112-233-445 95","mockjutsu generate snils","","Russian Pension Insurance (SNILS) с контрольной суммой."],
   ["kpp","Identity","identity",false,"—","770701001","mockjutsu generate kpp","","Russian Industrial Enterprises Code (KPP) формат."],
   ["ogrn","Identity","identity",false,"—","1027700132195","mockjutsu generate ogrn","","Russian Primary State Registration Номер (OGRN)."],
@@ -2174,6 +2220,7 @@ const ROWS = [
   ["imei2","Telecom","telecom",false,"—","49-015420-323751-8","mockjutsu generate imei2","","IMEI in hyphenated формат."],
   ["iccid","Telecom","telecom",true,"—","8990053412345678901","mockjutsu generate iccid --locale TR","TR US UK DE FR RU","SIM card Integrated Circuit Card Identifier (ICCID)."],
   ["imsi","Telecom","telecom",true,"—","286011234567890","mockjutsu generate imsi --locale TR","TR US UK DE FR RU","International Mobile Subscriber Identity (IMSI)."],
+  ["msisdn","Telecom","telecom",true,"—","+905321234567","mockjutsu generate msisdn --locale TR","TR US UK DE FR RU","Mobile Station International Subscriber Directory Номер (MSISDN)."],
   ["isin","Securities","securities",true,"—","US0378331005","mockjutsu generate isin --locale US","TR US UK DE FR RU","International Securities Identification Номер (ISO 6166)."],
   ["cusip","Securities","securities",false,"—","037833100","mockjutsu generate cusip","","Committee on Uniform Security Identification Procedures ID."],
   ["sedol","Securities","securities",false,"—","0263494","mockjutsu generate sedol","","Stock Exchange Daily Official List (UK)."],
@@ -2196,6 +2243,9 @@ const ROWS = [
   ["country_code","Location","location",true,"—","TR","mockjutsu generate country_code --locale TR","TR US UK DE FR RU","ISO 3166-1 alpha-2 country codes."],
   ["coordinates","Location","location",true,"—","39.925533,32.866287","mockjutsu generate coordinates --locale TR","TR US UK DE FR RU","Combined Lat/Long coordinate pairs."],
   ["username","Social","social",false,"—","cooldev42","mockjutsu generate username","","Social media profile usernames."],
+  ["handle","Social","social",false,"—","@cooldev42","mockjutsu generate handle","","Social media profile handle с @ prefix."],
+  ["hashtag","Social","social",false,"—","#mockjutsu","mockjutsu generate hashtag","","Trending social media hashtags."],
+  ["bio","Social","social",false,"—","Building the future...","mockjutsu generate bio","","Social media profile biography text."],
   ["follower_count","Social","social",false,"—","14273","mockjutsu generate follower_count","","Simulated follower/subscriber counts."],
   ["api_key","Security","security",false,"—","sk-aBcDeFgH...","mockjutsu generate api_key","","Simulated secure API keys с prefix/suffix entropy."],
   ["totp_code","Security","security",false,"—","482931","mockjutsu generate totp_code","","6-digit Time-based One-Time Password (TOTP) codes."],

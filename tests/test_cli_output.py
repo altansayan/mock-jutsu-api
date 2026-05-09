@@ -45,6 +45,8 @@ def test_cli_list_output_contains_expected_count():
     assert "tckn" in output
     assert "iban" in output
     assert "credit_score" in output
+    assert "3ds_cavv" in output
+    assert "3ds_eci" in output
 
 def test_cli_generate_smoke():
     """Smoke test for generation output."""

@@ -48,7 +48,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("2065 Tests\n", style="cyan")
+    body.append("1999 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -96,6 +96,7 @@ _REFERENCE = [
     ('siret'          , 'Identity'     , False, '73282932000074'        , 'generate siret'                , 'French Establishment Identifier (SIRET) with Luhn validation.'),
     ('tva'            , 'Identity'     , False, 'FR73732829320'         , 'generate tva'                  , 'French VAT Number (TVA) with ISO 7064 check.'),
     ('inn'            , 'Identity'     , False, '7707083893'            , 'generate inn'                  , 'Russian Tax ID (INN) with checksum validation.'),
+    ('inn_individual' , 'Identity'     , False, '7707083893'            , 'generate inn_individual'       , 'Russian Individual Tax ID (INN) with checksum.'),
     ('snils'          , 'Identity'     , False, '112-233-445 95'        , 'generate snils'                , 'Russian Pension Insurance (SNILS) with checksum.'),
     ('kpp'            , 'Identity'     , False, '770701001'             , 'generate kpp'                  , 'Russian Industrial Enterprises Code (KPP) format.'),
     ('ogrn'           , 'Identity'     , False, '1027700132195'         , 'generate ogrn'                 , 'Russian Primary State Registration Number (OGRN).'),
@@ -216,6 +217,7 @@ _REFERENCE = [
     ('imei2'          , 'Telecom'      , False, '49-015420-323751-8'    , 'generate imei2'                , 'IMEI in hyphenated format.'),
     ('iccid'          , 'Telecom'      , True , '8990053412345678901'   , 'generate iccid --locale TR'    , 'SIM card Integrated Circuit Card Identifier (ICCID).'),
     ('imsi'           , 'Telecom'      , True , '286011234567890'       , 'generate imsi --locale TR'     , 'International Mobile Subscriber Identity (IMSI).'),
+    ('msisdn'         , 'Telecom'      , True , '+905321234567'         , 'generate msisdn --locale TR'   , 'Mobile Station International Subscriber Directory Number (MSISDN).'),
     ('isin'           , 'Securities'   , True , 'US0378331005'          , 'generate isin --locale US'     , 'International Securities Identification Number (ISO 6166).'),
     ('cusip'          , 'Securities'   , False, '037833100'             , 'generate cusip'                , 'Committee on Uniform Security Identification Procedures ID.'),
     ('sedol'          , 'Securities'   , False, '0263494'               , 'generate sedol'                , 'Stock Exchange Daily Official List (UK).'),
@@ -238,6 +240,9 @@ _REFERENCE = [
     ('country_code'   , 'Location'     , True , 'TR'                    , 'generate country_code --locale TR', 'ISO 3166-1 alpha-2 country codes.'),
     ('coordinates'    , 'Location'     , True , '39.925533,32.866287'   , 'generate coordinates --locale TR', 'Combined Lat/Long coordinate pairs.'),
     ('username'       , 'Social'       , False, 'cooldev42'             , 'generate username'             , 'Social media profile usernames.'),
+    ('handle'         , 'Social'       , False, '@cooldev42'            , 'generate handle'               , 'Social media profile handle with @ prefix.'),
+    ('hashtag'        , 'Social'       , False, '#mockjutsu'            , 'generate hashtag'              , 'Trending social media hashtags.'),
+    ('bio'            , 'Social'       , False, 'Building the future...' , 'generate bio'                 , 'Social media profile biography text.'),
     ('follower_count' , 'Social'       , False, '14273'                 , 'generate follower_count'       , 'Simulated follower/subscriber counts.'),
     ('api_key'        , 'Security'     , False, 'sk-aBcDeFgH...'        , 'generate api_key'              , 'Simulated secure API keys with prefix/suffix entropy.'),
     ('totp_code'      , 'Security'     , False, '482931'                , 'generate totp_code'            , '6-digit Time-based One-Time Password (TOTP) codes.'),
