@@ -1,0 +1,16 @@
+repos:
+  - repo: local
+    hooks:
+      - id: audit-compliance
+        name: Mock Jutsu Compliance Audit
+        entry: python scripts/audit_compliance.py
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+
+      - id: strict-coverage
+        name: Strict 100% Test Coverage
+        entry: bash -c "export PYTHONPATH=src && python -m pytest --cov=src --cov-fail-under=100"
+        language: system
+        pass_filenames: false
+        stages: [pre-push]

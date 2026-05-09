@@ -1,55 +1,29 @@
-# Contributing to mock-jutsu
+# Contributing to Mock Jutsu
 
-First of all, thank you for considering contributing to `mock-jutsu`! 🥷
-We welcome all contributions that align with our core philosophy: **"Stop mocking with random strings. Start generating cryptographically valid test data."**
+Mock Jutsu is not just a library; it's a high-performance standard for the fintech and testing ecosystem. To maintain this, we follow a rigorous 11-step development lifecycle.
 
-To maintain the highest quality and performance standards, we have strict guidelines that every contributor must follow.
+## 🏗️ Standard Operating Procedure (SOP)
 
-## 🚨 The Golden Rule: Test-Driven Development (TDD)
+Every contribution must pass through these stages:
 
-**Tests first. Then code.**
-We do not accept Pull Requests that add or modify features without accompanying tests.
+1.  **Legal Awareness:** Only mock data types that are legal and safe to simulate are accepted.
+2.  **Strict TDD:** Write unit tests based on ISO/IETF/Industry standards BEFORE writing logic.
+3.  **Zero-Dependency:** Pure Python only. No external packages.
+4.  **Implementation:** Pass the unit tests with clean, modular code.
+5.  **Integration (API):** Verify functionality via the core `jutsu.generate()` engine.
+6.  **CLI/UI Validation:** Ensure the new type works in the terminal and appears in `mockjutsu list`.
+7.  **Multilingual Docs:** Update the HTML documentation in all 6 supported languages.
+8.  **README Maintenance:** Update badges and counts in the main README.md.
+9.  **Profiling:** Latency must be **< 1.5ms**. No exceptions.
+10. **Clean Architecture:** Use detailed docstrings and follow DRY/SOLID principles.
+11. **Final Audit:** Pass `python scripts/audit_compliance.py` and achieve **100% test coverage**.
 
-1. **Write the Test**: Before you write your algorithm, write a test in `tests/test_generators.py` that mathematically validates what the generated data *should* look like (e.g., passing a checksum or matching a regex).
-2. **Watch it Fail**: Run the test. It must fail.
-3. **Write the Code**: Implement the generator algorithm.
-4. **Watch it Pass**: Run the test suite and ensure it passes successfully.
+## 🌍 Global Ecosystem Strategy
+We are expanding Mock Jutsu to Python (PyPI), macOS (Homebrew), Node.js (NPM), .NET (NuGet), and Java (Maven). If you are building a wrapper, ensure it follows the same algorithmic integrity as the core engine.
 
-If you push code without tests, or if your code breaks existing tests, our **GitHub Actions CI Pipeline will automatically reject your Pull Request.**
+## ⚠️ Important Guidelines
+- **Always Ask:** Before modifying existing files or starting a major feature, please discuss it with the maintainers.
+- **PythonPath:** Run tests using: `export PYTHONPATH=src` (or PowerShell equivalent).
+- **Compliance:** We use a pre-push hook. If your code isn't tested or synchronized, you won't be able to push/submit.
 
-## ⚡ Performance Mandate
-
-`mock-jutsu` is designed for massive bulk generation. A generator must be fast.
-- Do **not** use the `secrets` module for standard generation. Use the `random` module (e.g., `random.randrange`, `random.choice`) which is 2x-3x faster. Only use `secrets` for cryptographic functions (like `crypto.py`).
-- Do **not** place `import` statements inside `while` or `for` loops.
-- Your new generator must pass the baseline performance limits defined in `tests/test_performance.py`.
-
-## 🛠️ Local Development Setup
-
-To test your code locally before pushing:
-
-1. Clone the repository and install it in editable mode:
-   ```bash
-   pip install -e .
-   ```
-2. Install test dependencies:
-   ```bash
-   pip install pytest
-   ```
-3. Run the test suite:
-   ```bash
-   pytest tests/
-   ```
-
-### Enforce Pre-Push Checks Locally
-We highly recommend running our setup script to install a git `pre-push` hook. This will automatically run the test suite before you push, saving you from CI failures:
-```bash
-python scripts/setup-hooks.py
-```
-
-## Pull Request Process
-
-1. Fork the repo and create your branch from `main`.
-2. Ensure your code follows the performance and zero-dependency mandates.
-3. Ensure all tests (`pytest tests/`) pass locally.
-4. Open a Pull Request. The GitHub Actions bot will verify your code. Wait for the green checkmark (✅) before requesting a review.
+Stay professional, code with precision. ⚔️

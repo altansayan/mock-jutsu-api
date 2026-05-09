@@ -16,7 +16,7 @@
 
 *Traditional Mockers give you a random 16-digit string and call it a credit card number.<br>**Mock Jutsu runs Luhn. Every. Single. Time.***
 
-[**Installation**](#%EF%B8%8F-installation) • [**Why Mock Jutsu?**](#-why-not-faker) • [**Usage Guide**](#-usage) • [**183 Types**](#-175-supported-data-types)
+[**Installation**](#%EF%B8%8F-installation) • [**Why Mock Jutsu?**](#-why-not-faker) • [**Usage Guide**](#-usage) • [**183 Types**](#-183-supported-data-types)
 
 </div>
 

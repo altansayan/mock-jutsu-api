@@ -59,5 +59,20 @@ mockjutsu = "mockjutsu.cli:main"
 where = ["src"]
 
 [tool.pytest.ini_options]
-addopts = "-p no:capture"
 testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "--cov=src --cov-report=term-missing --cov-report=html"
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["src/mockjutsu/api/*", "src/mockjutsu/cli.py"]
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]

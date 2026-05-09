@@ -173,6 +173,8 @@ class TestGenerateEndpoint:
         "latitude", "longitude", "timezone", "country_code", "coordinates",
         # Social
         "username", "handle", "hashtag", "bio", "follower_count",
+        # Hardware
+        "track2_data", "chip_data", "pin_block",
     ])
     def test_generate_all_supported_types(self, data_type):
         r = client.get(f"/generate/{data_type}")
