@@ -427,7 +427,10 @@ class IdentityGenerator:
 
         # --- Demographics ---
         if dt == 'age':
-            return random.randrange(63) + 18
+            mn = int(kwargs.get('min', 18))
+            mx = int(kwargs.get('max', 80))
+            if mn >= mx: mx = mn + 1
+            return random.randint(mn, mx)
 
         if dt == 'gender':
             return random.choice(['Male', 'Female'])

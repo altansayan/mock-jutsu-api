@@ -152,48 +152,53 @@ class MockJutsuCore:
             return "ERROR: Missing DataType"
         dt     = str(data_type).lower().strip()
         locale = str(kwargs.pop('locale', self.locale)).upper()
+        prefix = str(kwargs.pop('prefix', ''))
 
+        result = ""
         if dt == 'apppassword':
-            return self.meta.generate(dt, **kwargs)
-        if dt == 'cardowner':
-            return str(self.identity.generate('fullname', locale=locale, **kwargs)).upper()
+            result = self.meta.generate(dt, **kwargs)
+        elif dt == 'cardowner':
+            result = str(self.identity.generate('fullname', locale=locale, **kwargs)).upper()
+        elif dt in _IDENTITY_TYPES:
+            result = self.identity.generate(dt, locale=locale, **kwargs)
+        elif dt in _FINANCIAL_TYPES:
+            result = self.financial.generate(dt, locale=locale, **kwargs)
+        elif dt in _COMM_TYPES:
+            result = self.comm.generate(dt, locale=locale, **kwargs)
+        elif dt in _META_TYPES:
+            result = self.meta.generate(dt, locale=locale, **kwargs)
+        elif dt in _BANKING_TYPES:
+            result = self.banking.generate(dt, locale=locale, **kwargs)
+        elif dt in _CORPORATE_TYPES:
+            result = self.corporate.generate(dt, locale=locale, **kwargs)
+        elif dt in _HEALTH_TYPES:
+            result = self.health.generate(dt, locale=locale, **kwargs)
+        elif dt in _COMMERCE_TYPES:
+            result = self.commerce.generate(dt, locale=locale, **kwargs)
+        elif dt in _IOT_TYPES:
+            result = self.iot.generate(dt, locale=locale, **kwargs)
+        elif dt in _BARCODE_TYPES:
+            result = self.barcode.generate(dt, locale=locale, **kwargs)
+        elif dt in _TELECOM_TYPES:
+            result = self.telecom.generate(dt, locale=locale, **kwargs)
+        elif dt in _SECURITIES_TYPES:
+            result = self.securities.generate(dt, locale=locale, **kwargs)
+        elif dt in _CRYPTO_TYPES:
+            result = self.crypto.generate(dt, **kwargs)
+        elif dt in _ECOMMERCE_TYPES:
+            result = self.ecommerce.generate(dt, **kwargs)
+        elif dt in _LOCATION_TYPES:
+            result = self.location.generate(dt, locale=locale, **kwargs)
+        elif dt in _SOCIAL_TYPES:
+            result = self.social.generate(dt, **kwargs)
+        elif dt in _HARDWARE_TYPES:
+            result = self.hardware.generate(dt, **kwargs)
+        else:
+            return f"ERROR: Unknown DataType '{dt}'"
 
-        if dt in _IDENTITY_TYPES:
-            return self.identity.generate(dt, locale=locale, **kwargs)
-        if dt in _FINANCIAL_TYPES:
-            return self.financial.generate(dt, locale=locale, **kwargs)
-        if dt in _COMM_TYPES:
-            return self.comm.generate(dt, locale=locale, **kwargs)
-        if dt in _META_TYPES:
-            return self.meta.generate(dt, locale=locale, **kwargs)
-        if dt in _BANKING_TYPES:
-            return self.banking.generate(dt, locale=locale, **kwargs)
-        if dt in _CORPORATE_TYPES:
-            return self.corporate.generate(dt, locale=locale, **kwargs)
-        if dt in _HEALTH_TYPES:
-            return self.health.generate(dt, locale=locale, **kwargs)
-        if dt in _COMMERCE_TYPES:
-            return self.commerce.generate(dt, locale=locale, **kwargs)
-        if dt in _IOT_TYPES:
-            return self.iot.generate(dt, locale=locale, **kwargs)
-        if dt in _BARCODE_TYPES:
-            return self.barcode.generate(dt, locale=locale, **kwargs)
-        if dt in _TELECOM_TYPES:
-            return self.telecom.generate(dt, locale=locale, **kwargs)
-        if dt in _SECURITIES_TYPES:
-            return self.securities.generate(dt, locale=locale, **kwargs)
-        if dt in _CRYPTO_TYPES:
-            return self.crypto.generate(dt, **kwargs)
-        if dt in _ECOMMERCE_TYPES:
-            return self.ecommerce.generate(dt, **kwargs)
-        if dt in _LOCATION_TYPES:
-            return self.location.generate(dt, locale=locale, **kwargs)
-        if dt in _SOCIAL_TYPES:
-            return self.social.generate(dt, **kwargs)
-        if dt in _HARDWARE_TYPES:
-            return self.hardware.generate(dt, **kwargs)
-
-        return f"ERROR: Unknown DataType '{dt}'"
+        if prefix and not str(result).startswith("ERROR"):
+            return f"{prefix}{result}"
+        return result
 
     # ── Bulk ────────────────────────────────────────────────────────────────────
 

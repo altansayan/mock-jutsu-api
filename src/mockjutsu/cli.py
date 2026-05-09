@@ -323,8 +323,8 @@ def generate(data_type, locale, network, currency, carrier, algorithm, prefix, g
         click.echo("Error: specify a type. Run 'mockjutsu list' to see all types.")
         return
     
-    # Pack extra kwargs
-    kwargs = {
+    # Pack extra kwargs (only non-empty/non-None)
+    raw_kwargs = {
         'prefix': prefix,
         'gender': gender,
         'min': min,
@@ -333,6 +333,7 @@ def generate(data_type, locale, network, currency, carrier, algorithm, prefix, g
         'merchant': merchant,
         'city': city
     }
+    kwargs = {k: v for k, v in raw_kwargs.items() if v is not None and v != ''}
     
     result = jutsu.generate(data_type, locale=locale, network=network,
                             currency=currency, carrier=carrier, algorithm=algorithm, **kwargs)
