@@ -11,9 +11,9 @@ def run_checks():
     env = os.environ.copy()
     env["PYTHONPATH"] = SRC_DIR + os.pathsep + env.get("PYTHONPATH", "")
 
-    print(f"Current Working Directory: {os.getcwd()}")
-    print(f"BASE_DIR calculated as: {BASE_DIR}")
-    print(f"SRC_DIR calculated as: {SRC_DIR}")
+    print(f"Files in BASE_DIR: {os.listdir(BASE_DIR)}")
+    if os.path.exists(os.path.join(BASE_DIR, "tests")):
+        print(f"Files in tests/: {os.listdir(os.path.join(BASE_DIR, 'tests'))}")
     print("Starting Mock Jutsu Master Compliance Check...")
     
     # 3. Step 1: Run Compliance Auditor
