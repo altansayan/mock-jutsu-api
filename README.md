@@ -28,7 +28,7 @@ QA engineers, Data Scientists, and Fintech developers are tired of test data fai
 
 ### 🔥 Features That Will Blow Your Mind
 - **Zero External Dependencies**: The core data engine uses pure Python standard library for maximum speed, security, and zero bloat.
-- **1868 Automated Tests**: We don't guess. We verify. Every single format and locale is rigorously tested against real-world algorithmic specifications.
+- **2001 Automated Tests**: We don't guess. We verify. Every single format and locale is rigorously tested against real-world algorithmic specifications.
 - **Multi-Interface**: Use it as a rich Python SDK, a blazing-fast CLI, or a FastAPI REST endpoint.
 - **Export Anywhere**: Directly export structured records as JSON, CSV, or SQL `INSERT` statements with thousands of rows in milliseconds.
 - **Context-Aware Profiles**: Generate a person, and their email, phone, national ID, and IBAN will inherently match their locale and name.

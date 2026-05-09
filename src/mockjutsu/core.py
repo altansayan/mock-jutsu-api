@@ -118,7 +118,7 @@ _SOCIAL_TYPES = {
 }
 
 _HARDWARE_TYPES = {
-    'track2_data',
+    'track2_data', 'chip_data', 'pin_block',
 }
 
 

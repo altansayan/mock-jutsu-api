@@ -46,11 +46,31 @@ class HardwareGenerator:
         
         return f";{pan}={expiry}{service_code}{discretionary_data}?"
 
+    def generate_chip_data(self) -> str:
+        """Simulated EMV chip (ICC) TLV data (Tag-Length-Value)."""
+        tags = [
+            f"9F0206{random.randrange(100000000000):012d}", # Amount
+            f"9F0306{random.randrange(100000000000):012d}", # Cashback
+            f"9505{random.randrange(10**10):010X}",         # TVR
+            f"5F2A020949",                                 # Currency (TRY)
+            f"9A03250509",                                 # Date
+            f"9C0100"                                      # Trans Type
+        ]
+        return "".join(tags)
+
+    def generate_pin_block(self) -> str:
+        """ISO 9564 format 0 encrypted PIN block (dummy hex)."""
+        return "".join(random.choice("0123456789ABCDEF") for _ in range(16))
+
     def generate(self, data_type: str, **kwargs) -> str:
         """Dispatch generation based on data_type."""
         dt = data_type.lower().strip()
         
         if dt == 'track2_data':
             return self.generate_track2_data()
+        if dt == 'chip_data':
+            return self.generate_chip_data()
+        if dt == 'pin_block':
+            return self.generate_pin_block()
             
         return "HARDWARE_DATA"
