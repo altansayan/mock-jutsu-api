@@ -574,6 +574,7 @@ def build_html(loc_key, cfg):
 <meta name="description" content="{cfg['meta_desc']}">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
 <meta name="keywords" content="mock data, fake data, test data, mockjutsu, algorithmic data engine, fintech, banking, identity generation">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="canonical" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-{loc_key}.html">
 
 <!-- Open Graph / Social -->
