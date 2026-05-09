@@ -243,15 +243,13 @@ def build_rows_js(loc_key):
         out = r[3]
         cli = r[4]
         desc_en = r[5] if len(r) > 5 else ""
-        
         desc = translate_description(desc_en, loc_key)
         
         if not cli.startswith("mockjutsu "):
             cli = "mockjutsu " + cli
-        extra = "—"
-        if "--network" in cli: extra = "--network"
-        elif "--algorithm" in cli: extra = "--algorithm"
-        elif "currency" in cli and "--" in cli: extra = "..."
+
+        extra = r[6] if len(r) > 6 else "—"
+        if not extra or extra == '-': extra = "—"
         
         locales = "TR US UK DE FR RU" if localeAware else ""
         
