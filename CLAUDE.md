@@ -29,6 +29,6 @@ Mock Jutsu aims to be the standard testing tool for all platforms:
 ## ⚠️ MANDATORY RULES & GOTCHAS
 - **NO UNAUTHORIZED CHANGES:** DO NOT change any file without asking the user first. Always ask for permission.
 - **GITHUB MANDATE:** Every project produced by Asa Intelligence MUST be uploaded to GitHub.
-- **PYTHONPATH:** Always run tests with `$env:PYTHONPATH='c:\Users\altan\repos\mock-jutsu-api\src'`.
+- **PYTHONPATH:** Always run tests with `$env:PYTHONPATH='src'` (PowerShell) or `export PYTHONPATH=src` (Bash).
 - **Zero-Dependency:** Strict adherence. No external libraries.
 - **Compliance:** Run `python scripts/audit_compliance.py` and `pytest --cov-fail-under=100` before every push.
