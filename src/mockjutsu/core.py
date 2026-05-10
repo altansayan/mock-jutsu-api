@@ -102,6 +102,7 @@ _SECURITIES_TYPES = {
 
 _CRYPTO_TYPES = {
     'btc_address', 'eth_address', 'crypto_address', 'tx_hash', 'block_hash',
+    'mnemonic',
 }
 
 _ECOMMERCE_TYPES = {

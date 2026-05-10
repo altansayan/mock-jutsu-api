@@ -108,6 +108,7 @@ class CryptoGenerator:
     def generate(self, data_type: str, **kwargs):
         dt = data_type.lower().strip()
         currency = str(kwargs.get('currency', 'btc')).lower()
+        words = int(kwargs.get('words', 12))
 
         if dt == 'btc_address':
             return self._btc_address()
@@ -119,8 +120,46 @@ class CryptoGenerator:
             return self._tx_hash(currency)
         if dt == 'block_hash':
             return self._block_hash(currency)
+        if dt == 'mnemonic':
+            return self._mnemonic(words)
 
         return f"ERROR: Unknown DataType '{dt}'"
+
+    # ── BIP-39 Mnemonic ───────────────────────────────────────────────────────
+
+    def _mnemonic(self, words: int = 12) -> str:
+        """
+        BIP-39 Mnemonic Seed: Entropy -> SHA256 Checksum -> 11-bit Wordlist Mapping.
+        Supported word counts: 12, 15, 18, 21, 24.
+        """
+        if words not in [12, 15, 18, 21, 24]:
+            words = 12
+
+        ent_bits = {12: 128, 15: 160, 18: 192, 21: 224, 24: 256}[words]
+        entropy = secrets.token_bytes(ent_bits // 8)
+
+        # Checksum is first (ENT/32) bits of SHA256(Entropy)
+        h = hashlib.sha256(entropy).digest()
+        cs_len = ent_bits // 32
+
+        # Bit stream: Entropy bits + Checksum bits
+        bits = "".join([bin(b)[2:].zfill(8) for b in entropy])
+        h_bits = "".join([bin(b)[2:].zfill(8) for b in h])
+        full_bits = bits + h_bits[:cs_len]
+
+        # Lazy import of the wordlist to keep memory low if not used
+        try:
+            from ..data.bip39_en import WORDLIST
+        except ImportError:
+            # Fallback for direct script execution or testing environments
+            from mockjutsu.data.bip39_en import WORDLIST
+
+        mnemonic_words = []
+        for i in range(0, len(full_bits), 11):
+            idx = int(full_bits[i:i+11], 2)
+            mnemonic_words.append(WORDLIST[idx])
+
+        return " ".join(mnemonic_words)
 
     # ── BTC P2PKH ─────────────────────────────────────────────────────────────
 

@@ -227,6 +227,7 @@ _REFERENCE = [
     ('crypto_address' , 'Crypto'       , False, '(btc or eth)'          , 'generate crypto_address --currency eth', 'Generic crypto address for specified currency.', '--currency (btc, eth)'),
     ('tx_hash'        , 'Crypto'       , False, 'a1b2c3...64hex'        , 'generate tx_hash --currency btc', 'Blockchain transaction hash (SHA-256/Keccak-256).', '--currency (btc, eth)'),
     ('block_hash'     , 'Crypto'       , False, '0x+64hex (eth)'        , 'generate block_hash --currency eth', 'Blockchain block hash identifier.', '--currency (btc, eth)'),
+    ('mnemonic'       , 'Crypto'       , False, 'abandon ability able...', 'generate mnemonic --words 12' , 'BIP-39 mnemonic recovery phrase (seed phrase).', '--words (12, 15, 18, 21, 24)'),
     ('product_name'   , 'E-Commerce'   , False, 'Wireless Headphones'   , 'generate product_name'         , 'Randomized e-commerce product names.', '-'),
     ('sku'            , 'E-Commerce'   , False, 'AB-123456'             , 'generate sku'                  , 'Stock Keeping Unit (SKU) identifiers.', '-'),
     ('order_id'       , 'E-Commerce'   , False, 'ORD-A1B2C3D4E5F6'      , 'generate order_id'             , 'Unique e-commerce order identifiers.', '-'),

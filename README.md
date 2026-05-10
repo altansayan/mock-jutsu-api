@@ -9,14 +9,14 @@
 
 [![Tests](https://img.shields.io/badge/tests-1999%20passed-22c55e?style=for-the-badge&logo=pytest)](./tests)
 [![Python](https://img.shields.io/badge/python-3.9%2B-3b82f6?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Data Types](https://img.shields.io/badge/Data%20Types-183-a855f7?style=for-the-badge)](https://altansayan.github.io/mock-jutsu-api/)
+[![Data Types](https://img.shields.io/badge/Data%20Types-184-a855f7?style=for-the-badge)](https://altansayan.github.io/mock-jutsu-api/)
 [![Locales](https://img.shields.io/badge/Locales-6-ec4899?style=for-the-badge)](#-6-locales-100-real-algorithms)
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-ff69b4?style=for-the-badge)](#-features-that-will-blow-your-mind)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
 
 *Traditional Mockers give you a random 16-digit string and call it a credit card number.<br>**Mock Jutsu runs Luhn. Every. Single. Time.***
 
-[**Installation**](#%EF%B8%8F-installation) • [**Why Mock Jutsu?**](#-why-not-faker) • [**Usage Guide**](#-usage) • [**183 Types**](#-183-supported-data-types)
+[**Installation**](#%EF%B8%8F-installation) • [**Why Mock Jutsu?**](#-why-not-faker) • [**Usage Guide**](#-usage) • [**184 Types**](#-183-supported-data-types)
 
 </div>
 
@@ -180,7 +180,7 @@ We don't just localize names; we localize **mathematics**.
 
 ---
 
-## 📦 183 Supported Data Types
+## 📦 184 Supported Data Types
 
 We cover everything from standard identities to complex financial market identifiers.
 

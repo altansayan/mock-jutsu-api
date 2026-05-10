@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; TR Referans Kılavuzu</h1>
   <div class="engine-title">Nihai Algoritmik Mock Veri Motoru</div>
-  <div class="sub"><span>6 locale</span> &bull; <span>183 parametre tipi</span> &bull; <span>1999 Test</span></div>
+  <div class="sub"><span>6 locale</span> &bull; <span>184 parametre tipi</span> &bull; <span>1999 Test</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Tüm Parametreler (183)</div>
+  <div class="stitle">Tüm Parametreler (184)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Fonksiyon, CLI komutu veya örnek çıktı ara..." oninput="filterTable()">
@@ -1617,6 +1617,15 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-output"><code>0x+64hex (eth)</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate block_hash --currency eth')">mockjutsu generate block_hash --currency eth</span></td>
         </tr>
+        <tr data-fn="mnemonic" data-cat="Crypto" data-locales="">
+          <td class="col-fn"><code>mnemonic</code></td>
+          <td class="col-cat"><span class="pill cat-crypto">Crypto</span></td>
+          <td class="col-desc">BIP-39 mnemonic recovery phrase (seed phrase).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra"><code>--words (12, 15, 18, 21, 24)</code></td>
+          <td class="col-output"><code>abandon ability able...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate mnemonic --words 12')">mockjutsu generate mnemonic --words 12</span></td>
+        </tr>
         <tr data-fn="product_name" data-cat="E-Commerce" data-locales="">
           <td class="col-fn"><code>product_name</code></td>
           <td class="col-cat"><span class="pill ">E-Commerce</span></td>
@@ -2229,6 +2238,7 @@ const ROWS = [
   ["crypto_address","Crypto","crypto",false,"--currency (btc, eth)","(btc or eth)","mockjutsu generate crypto_address --currency eth","","Genel crypto address için belirtilen currency."],
   ["tx_hash","Crypto","crypto",false,"--currency (btc, eth)","a1b2c3...64hex","mockjutsu generate tx_hash --currency btc","","Blockchain transaction hash (SHA-256/Keccak-256)."],
   ["block_hash","Crypto","crypto",false,"--currency (btc, eth)","0x+64hex (eth)","mockjutsu generate block_hash --currency eth","","Blockchain block hash identifier."],
+  ["mnemonic","Crypto","crypto",false,"--words (12, 15, 18, 21, 24)","abandon ability able...","mockjutsu generate mnemonic --words 12","","BIP-39 mnemonic recovery phrase (seed phrase)."],
   ["product_name","E-Commerce","e-commerce",false,"—","Wireless Headphones","mockjutsu generate product_name","","Randomized e-commerce product names."],
   ["sku","E-Commerce","e-commerce",false,"—","AB-123456","mockjutsu generate sku","","Stock Keeping Unit (SKU) identifiers."],
   ["order_id","E-Commerce","e-commerce",false,"—","ORD-A1B2C3D4E5F6","mockjutsu generate order_id","","Benzersiz e-commerce order identifiers."],
