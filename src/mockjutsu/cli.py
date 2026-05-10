@@ -225,6 +225,7 @@ _REFERENCE = [
     ('cusip'          , 'Securities'   , False, '037833100'             , 'generate cusip'                , 'Committee on Uniform Security Identification Procedures ID.', '-'),
     ('sedol'          , 'Securities'   , False, '0263494'               , 'generate sedol'                , 'Stock Exchange Daily Official List (UK).', '-'),
     ('lei'            , 'Securities'   , False, '529900T8BM49AURSDO55'  , 'generate lei'                  , 'Legal Entity Identifier (ISO 17442).', '-'),
+    ('fix_message'    , 'Securities'   , False, '8=FIX.4.4|9=...|35=D|...|10=NNN|', 'generate fix_message'          , 'FIX Protocol 4.4 New Order Single (MsgType=D) with valid BodyLength and CheckSum.', '-'),
     ('btc_address'    , 'Crypto'       , False, '1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf', 'generate btc_address'          , 'Bitcoin wallet address (P2PKH, P2SH, Bech32).', '-'),
     ('eth_address'    , 'Crypto'       , False, '0x5aAeb6053F3E94C9b9A0...', 'generate eth_address'          , 'Ethereum/EVM compatible wallet address.', '-'),
     ('crypto_address' , 'Crypto'       , False, '(btc or eth)'          , 'generate crypto_address --currency eth', 'Generic crypto address for specified currency.', '--currency (btc, eth)'),

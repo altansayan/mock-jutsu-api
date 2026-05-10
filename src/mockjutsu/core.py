@@ -97,7 +97,7 @@ _TELECOM_TYPES = {
 }
 
 _SECURITIES_TYPES = {
-    'isin', 'cusip', 'sedol', 'lei',
+    'isin', 'cusip', 'sedol', 'lei', 'fix_message',
 }
 
 _CRYPTO_TYPES = {
