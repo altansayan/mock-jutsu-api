@@ -32,7 +32,7 @@ def run_checks():
     pytest_cmd = [
         sys.executable, "-m", "pytest", 
         "tests/", 
-        "--cov=src", 
+        "--cov=mockjutsu", 
         "--cov-fail-under=85", 
         "-p", "no:capture"
     ]

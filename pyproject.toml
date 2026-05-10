@@ -61,10 +61,10 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
-addopts = "--cov=src --cov-report=term-missing --cov-report=html"
+addopts = "--cov=mockjutsu --cov-report=term-missing --cov-report=html"
 
 [tool.coverage.run]
-source = ["src"]
+source = ["mockjutsu"]
 omit = ["src/mockjutsu/api/*", "src/mockjutsu/cli.py", "src/mockjutsu/data/*"]
 
 [tool.coverage.report]
