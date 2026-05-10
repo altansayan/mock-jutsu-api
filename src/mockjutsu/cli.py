@@ -9,11 +9,14 @@ import sys
 import click
 from mockjutsu.core import jutsu
 
-# Force UTF-8 on Windows terminals that default to cp1254/cp1252
-if hasattr(sys.stdout, "buffer"):
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-if hasattr(sys.stderr, "buffer"):
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+
+def _fix_utf8_streams() -> None:
+    # Force UTF-8 on Windows terminals that default to cp1254/cp1252.
+    # Called only at CLI entry — never at import time so pytest capture stays intact.
+    if hasattr(sys.stdout, "buffer"):
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+    if hasattr(sys.stderr, "buffer"):
+        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
 
 def _print_banner() -> None:
@@ -299,6 +302,7 @@ _CAT_COLORS = {
 @click.pass_context
 def main(ctx):
     """Mock Jutsu - The Ultimate Algorithmic Mock Data Engine"""
+    _fix_utf8_streams()
     if ctx.invoked_subcommand is None:
         _print_banner()
         click.echo(ctx.get_help())
