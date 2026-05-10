@@ -9,6 +9,7 @@ Assertions verify the real generation algorithm — checksum, format, range.
 import ast
 import json
 import re
+from datetime import datetime
 import pytest
 from click.testing import CliRunner
 from mockjutsu.cli import main
@@ -774,7 +775,7 @@ class TestGenerateCommerce:
         for key in ('make', 'model', 'year', 'vin', 'color', 'fuel'):
             assert key in val, f"vehicle missing '{key}'"
         assert len(val['vin']) == 17
-        assert 1990 <= val['year'] <= 2025
+        assert 1990 <= val['year'] <= datetime.now().year + 1
 
 
 # ===========================================================================
