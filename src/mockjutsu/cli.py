@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("2875 Tests\n", style="cyan")
+    body.append("2912 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -140,6 +140,10 @@ _REFERENCE = [
     ('cef_log'        , 'Security'     , False, 'CEF:0|Cisco|ASA|9.16|...', 'generate cef_log'           , 'ArcSight CEF log line — vendor, product, severity 0-10, src/dst IPs.', '-'),
     ('x509_cert'      , 'Security'     , False, '{"subject":"CN=api...",...}', 'generate x509_cert'      , 'X.509 certificate fields (JSON): subject, issuer, serial, validity, fingerprint, SANs.', '-'),
     ('pcap_hex'       , 'Security'     , False, 'ff ff 08 00 45 00 ...' , 'generate pcap_hex'             , 'Wireshark-style pcap hex dump of a mock Ethernet+IPv4+TCP frame.', '-'),
+    ('--Aviation--'   , ''             , False, ''                      , ''                              , '', ''),
+    ('iata_ticket'    , 'Aviation'     , False, '0012345678902'         , 'generate iata_ticket'          , 'IATA Electronic Ticket Number (ETN): 3-digit airline code + 9-digit serial + MOD-7 check digit.', '-'),
+    ('imo_number'     , 'Aviation'     , False, 'IMO 9074729'           , 'generate imo_number'           , 'IMO Ship Registration Number: 7-digit identifier with MOD-10 weighted check digit.', '-'),
+    ('pnr_code'       , 'Aviation'     , False, 'K7XR2B'                , 'generate pnr_code'             , 'GDS Passenger Name Record (PNR) locator: 6-char uppercase alphanumeric, no ambiguous chars.', '-'),
     ('phone'          , 'Contact'      , True , '+905325551234'         , 'generate phone --locale TR'    , 'Full E.164 formatted telephone number.', '-'),
     ('phone_country'  , 'Contact'      , True , '+90'                   , 'generate phone_country --locale TR', 'International telephone country dial code.', '-'),
     ('phone_area'     , 'Contact'      , True , '532'                   , 'generate phone_area --locale TR', 'Localized telephone area/operator code.', '-'),
@@ -277,7 +281,7 @@ _CAT_ORDER = [
     "Financial", "Contact", "Banking", "Corporate",
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
-    "E-Commerce", "Location", "Social", "Hardware",
+    "E-Commerce", "Location", "Social", "Hardware", "Aviation",
 ]
 
 _CAT_COLORS = {
@@ -304,6 +308,7 @@ _CAT_COLORS = {
     "Location":    "bright_blue",
     "Social":      "magenta",
     "Hardware":    "bright_green",
+    "Aviation":    "bright_cyan",
 }
 
 

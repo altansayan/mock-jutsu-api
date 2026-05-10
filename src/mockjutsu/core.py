@@ -24,6 +24,7 @@ from .generators.location          import LocationGenerator
 from .generators.social            import SocialGenerator
 from .generators.hardware          import HardwareGenerator
 from .generators.security          import SecurityGenerator
+from .generators.aviation          import AviationGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -128,6 +129,10 @@ _CYBERSEC_TYPES = {
     'cef_log', 'x509_cert', 'pcap_hex',
 }
 
+_AVIATION_TYPES = {
+    'iata_ticket', 'imo_number', 'pnr_code',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -152,6 +157,7 @@ class MockJutsuCore:
         self.social     = SocialGenerator()
         self.hardware   = HardwareGenerator()
         self.cybersec   = SecurityGenerator()
+        self.aviation   = AviationGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -203,6 +209,8 @@ class MockJutsuCore:
             result = self.hardware.generate(dt, **kwargs)
         elif dt in _CYBERSEC_TYPES:
             result = self.cybersec.generate(dt, **kwargs)
+        elif dt in _AVIATION_TYPES:
+            result = self.aviation.generate(dt, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 

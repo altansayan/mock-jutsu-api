@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; US Reference Guide</h1>
   <div class="engine-title">The Ultimate Algorithmic Mock Data Engine</div>
-  <div class="sub"><span>6 locales</span> &bull; <span>192 data types</span> &bull; <span>2875 tests</span></div>
+  <div class="sub"><span>6 locales</span> &bull; <span>195 data types</span> &bull; <span>2912 tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">All Parameters (192)</div>
+  <div class="stitle">All Parameters (195)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Search function, CLI command or example output..." oninput="filterTable()">
@@ -797,6 +797,33 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-extra">—</td>
           <td class="col-output"><code>ff ff 08 00 45 00 ...</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate pcap_hex')">mockjutsu generate pcap_hex</span></td>
+        </tr>
+        <tr data-fn="iata_ticket" data-cat="Aviation" data-locales="">
+          <td class="col-fn"><code>iata_ticket</code></td>
+          <td class="col-cat"><span class="pill ">Aviation</span></td>
+          <td class="col-desc">IATA Electronic Ticket Number (ETN): 3-digit airline code + 9-digit serial + MOD-7 check digit.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>0012345678902</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate iata_ticket')">mockjutsu generate iata_ticket</span></td>
+        </tr>
+        <tr data-fn="imo_number" data-cat="Aviation" data-locales="">
+          <td class="col-fn"><code>imo_number</code></td>
+          <td class="col-cat"><span class="pill ">Aviation</span></td>
+          <td class="col-desc">IMO Ship Registration Number: 7-digit identifier with MOD-10 weighted check digit.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>IMO 9074729</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate imo_number')">mockjutsu generate imo_number</span></td>
+        </tr>
+        <tr data-fn="pnr_code" data-cat="Aviation" data-locales="">
+          <td class="col-fn"><code>pnr_code</code></td>
+          <td class="col-cat"><span class="pill ">Aviation</span></td>
+          <td class="col-desc">GDS Passenger Name Record (PNR) locator: 6-char uppercase alphanumeric, no ambiguous chars.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>K7XR2B</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate pnr_code')">mockjutsu generate pnr_code</span></td>
         </tr>
         <tr data-fn="phone" data-cat="Contact" data-locales="TR US UK DE FR RU">
           <td class="col-fn"><code>phone</code></td>
@@ -2219,6 +2246,9 @@ const ROWS = [
   ["cef_log","Security","security",false,"—","CEF:0|Cisco|ASA|9.16|...","mockjutsu generate cef_log","","ArcSight CEF log line — vendor, product, severity 0-10, src/dst IPs."],
   ["x509_cert","Security","security",false,"—","{\"subject\":\"CN=api...\",...}","mockjutsu generate x509_cert","","X.509 certificate fields (JSON): subject, issuer, serial, validity, fingerprint, SANs."],
   ["pcap_hex","Security","security",false,"—","ff ff 08 00 45 00 ...","mockjutsu generate pcap_hex","","Wireshark-style pcap hex dump of a mock Ethernet+IPv4+TCP frame."],
+  ["iata_ticket","Aviation","aviation",false,"—","0012345678902","mockjutsu generate iata_ticket","","IATA Electronic Ticket Number (ETN): 3-digit airline code + 9-digit serial + MOD-7 check digit."],
+  ["imo_number","Aviation","aviation",false,"—","IMO 9074729","mockjutsu generate imo_number","","IMO Ship Registration Number: 7-digit identifier with MOD-10 weighted check digit."],
+  ["pnr_code","Aviation","aviation",false,"—","K7XR2B","mockjutsu generate pnr_code","","GDS Passenger Name Record (PNR) locator: 6-char uppercase alphanumeric, no ambiguous chars."],
   ["phone","Contact","contact",true,"—","+905325551234","mockjutsu generate phone --locale TR","TR US UK DE FR RU","Full E.164 formatted telephone number."],
   ["phone_country","Contact","contact",true,"—","+90","mockjutsu generate phone_country --locale TR","TR US UK DE FR RU","International telephone country dial code."],
   ["phone_area","Contact","contact",true,"—","532","mockjutsu generate phone_area --locale TR","TR US UK DE FR RU","Localized telephone area/operator code."],
