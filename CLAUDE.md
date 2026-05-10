@@ -243,3 +243,26 @@ _CAT_ORDER = [
 - **Adding to core.py but not cli.py** → `test_sync.py` catches it, push blocked.
 - **Using external libraries** → zero-dependency rule, push blocked by compliance audit.
 - **Running generator with wrong encoding on Windows** → use `$env:PYTHONIOENCODING="utf-8"` in PowerShell.
+
+---
+
+## 🌍 Global Ecosystem Strategy (Fan-out)
+
+Mock Jutsu aims to be the standard testing tool for all platforms:
+- **PyPI (Python):** `pip install mockjutsu` (Active)
+- **Homebrew (macOS/Linux):** `brew install mockjutsu`
+- **NPM (JavaScript):** `npx mockjutsu` wrapper
+- **NuGet (.NET):** Standalone `.exe` via PyInstaller
+- **Maven (Java/Kotlin):** JNI/ProcessBuilder wrapper
+- **VS Code Marketplace:** Extension for direct IBAN/QR/UUID injection
+
+---
+
+## ⚠️ Mandatory Rules & Gotchas
+
+- **NO UNAUTHORIZED CHANGES:** Do NOT change any file without asking the user first. Always ask for permission.
+- **GITHUB MANDATE:** Every project produced by ASA Intelligence MUST be uploaded to GitHub.
+- **PYTHONPATH:** Always run tests with `$env:PYTHONPATH='src'` (PowerShell) or `export PYTHONPATH=src` (Bash).
+- **Zero-Dependency:** Strict adherence. No external libraries in generators.
+- **Compliance:** Run `python scripts/audit_compliance.py` before every push.
+- **Coverage:** `pytest --cov-fail-under=85` — never drop below 85%.

@@ -254,8 +254,26 @@ Python 3.9 reached EOL October 2025 and has been removed permanently.
 
 ---
 
+## 🌍 Global Ecosystem Strategy
+
+We are expanding Mock Jutsu to all major platforms. If you are building a wrapper,
+ensure it follows the same algorithmic integrity as the core engine.
+
+- **PyPI (Python):** `pip install mockjutsu` (Active)
+- **Homebrew (macOS/Linux):** `brew install mockjutsu`
+- **NPM (JavaScript):** `npx mockjutsu` wrapper
+- **NuGet (.NET):** Standalone `.exe` via PyInstaller
+- **Maven (Java/Kotlin):** JNI/ProcessBuilder wrapper
+- **VS Code Marketplace:** Extension for direct IBAN/QR/UUID injection
+
+---
+
 ## Getting Help
 
 - Open an issue: https://github.com/altansayan/mock-jutsu-api/issues
 - Read the type reference: `mockjutsu list`
 - Browse the interactive docs: `HOW-TO-MockJutsu-EN.html`
+
+---
+
+Stay professional, code with precision. ⚔️
