@@ -7,7 +7,8 @@ This guide gets you from zero to your first merged contribution.
 **Developer:** Altan Sezer Ayan  
 **GitHub:** https://github.com/altansayan  
 **LinkedIn:** https://www.linkedin.com/in/altansezerayan/  
-**Repository:** https://github.com/altansayan/mock-jutsu-api
+**Repository:** https://github.com/altansayan/mock-jutsu-api  
+**License:** MIT — https://github.com/altansayan/mock-jutsu-api/blob/main/LICENSE
 
 ---
 
