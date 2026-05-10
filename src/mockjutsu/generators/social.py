@@ -111,7 +111,7 @@ class SocialGenerator:
         """Realistic power-law distribution: most accounts small, few large."""
         tier = random.randrange(100)
         if tier < 40:
-            return random.randrange(500)           # 0–499 (micro)
+            return random.randint(1, 499)          # 1–499 (micro)
         if tier < 65:
             return random.randrange(4500) + 500    # 500–4999
         if tier < 80:
