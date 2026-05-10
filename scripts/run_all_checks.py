@@ -45,8 +45,21 @@ def run_checks():
         print(result.stderr)
         return 1
 
-    # 5. Step 2: Run Pytest with Coverage
-    print("\nStep 2: Running Pytest (Strict Coverage)...")
+    # 5. Step 2: Regenerate locale HTML docs
+    print("\nStep 2: Regenerating locale HTML docs...")
+    gen_script = os.path.join(BASE_DIR, "generate_locale_docs.py")
+    gen_env = env.copy()
+    gen_env["PYTHONIOENCODING"] = "utf-8"
+    result = subprocess.run([sys.executable, gen_script], cwd=BASE_DIR, env=gen_env, capture_output=True, text=True)
+    if result.returncode != 0:
+        print("Locale doc generation FAILED.")
+        print(result.stdout)
+        print(result.stderr)
+        return 1
+    print("  HTML docs regenerated.")
+
+    # 6. Step 3: Run Pytest with Coverage
+    print("\nStep 3: Running Pytest (Strict Coverage)...")
     # We use -p no:capture to avoid the I/O error on some environments
     pytest_cmd = [
         sys.executable, "-m", "pytest", 
