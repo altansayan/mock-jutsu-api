@@ -146,7 +146,7 @@ class BarcodeGenerator:
 
         return f"(01){gtin14}(17){expiry}(10){lot}"
 
-    def generate(self, data_type: str, locale: str = "TR", **_) -> str | None:
+    def generate(self, data_type: str, locale: str = "TR", **_) -> str:
         dt = data_type.lower().replace("_", "").replace("-", "")
         if dt == "ean13":
             return self.generate_ean13(locale)

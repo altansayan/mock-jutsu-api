@@ -157,7 +157,7 @@ class TelecomGenerator:
         subscriber = fixed_prefix + "".join(str(random.randrange(10)) for _ in range(rand_len))
         return cc + subscriber
 
-    def generate(self, data_type: str, locale: str = "TR", **_) -> str | None:
+    def generate(self, data_type: str, locale: str = "TR", **_) -> str:
         dt = data_type.lower().replace("_", "")
         if dt == "imei":
             return self.generate_imei()
