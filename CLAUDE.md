@@ -235,20 +235,6 @@ _CAT_ORDER = [
 
 ---
 
-## God Mode Sprints
-
-Each major feature batch is numbered. Current: **God Mode #7**.
-
-| # | Feature |
-|---|---------|
-| 1-5 | Core types (identity, financial, comm, meta, banking) |
-| 6 | HL7 v2.5 / FHIR R4 / DICOM UID |
-| 7 | CEF log / X.509 cert / pcap hex |
-
-Next sprint: **God Mode #8** (planned after CI is confirmed green for #7).
-
----
-
 ## Common Mistakes to Avoid
 
 - **Lazy imports inside functions** → performance regression in tight loops. Always import at module top.
