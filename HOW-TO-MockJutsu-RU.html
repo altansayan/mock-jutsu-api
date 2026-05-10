@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; Справочник RU</h1>
   <div class="engine-title">Идеальный алгоритмический движок фиктивных данных</div>
-  <div class="sub"><span>6 регионов</span> &bull; <span>184 типов данных</span> &bull; <span>1999 тестов</span></div>
+  <div class="sub"><span>6 регионов</span> &bull; <span>185 типов данных</span> &bull; <span>2173 тестов</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Все Параметры (184)</div>
+  <div class="stitle">Все Параметры (185)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Поиск функции, CLI команды или примера вывода..." oninput="filterTable()">
@@ -1572,6 +1572,15 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-output"><code>529900T8BM49AURSDO55</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate lei')">mockjutsu generate lei</span></td>
         </tr>
+        <tr data-fn="fix_message" data-cat="Securities" data-locales="">
+          <td class="col-fn"><code>fix_message</code></td>
+          <td class="col-cat"><span class="pill cat-securities">Securities</span></td>
+          <td class="col-desc">FIX Protocol 4.4 New Order Single (MsgType=D) с valid BodyLength and контрольной суммой.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>8=FIX.4.4|9=...|35=D|...|10=NNN|</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate fix_message')">mockjutsu generate fix_message</span></td>
+        </tr>
         <tr data-fn="btc_address" data-cat="Crypto" data-locales="">
           <td class="col-fn"><code>btc_address</code></td>
           <td class="col-cat"><span class="pill cat-crypto">Crypto</span></td>
@@ -2234,6 +2243,7 @@ const ROWS = [
   ["cusip","Securities","securities",false,"—","037833100","mockjutsu generate cusip","","Committee on Uniform Security Identification Procedures ID."],
   ["sedol","Securities","securities",false,"—","0263494","mockjutsu generate sedol","","Stock Exchange Daily Official List (UK)."],
   ["lei","Securities","securities",false,"—","529900T8BM49AURSDO55","mockjutsu generate lei","","Legal Entity Identifier (ISO 17442)."],
+  ["fix_message","Securities","securities",false,"—","8=FIX.4.4|9=...|35=D|...|10=NNN|","mockjutsu generate fix_message","","FIX Protocol 4.4 New Order Single (MsgType=D) с valid BodyLength and контрольной суммой."],
   ["btc_address","Crypto","crypto",false,"—","1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf","mockjutsu generate btc_address","","Bitcoin wallet address (P2PKH, P2SH, Bech32)."],
   ["eth_address","Crypto","crypto",false,"—","0x5aAeb6053F3E94C9b9A0...","mockjutsu generate eth_address","","Ethereum/EVM compatible wallet address."],
   ["crypto_address","Crypto","crypto",false,"--currency (btc, eth)","(btc or eth)","mockjutsu generate crypto_address --currency eth","","Общий crypto address для указанного currency."],
