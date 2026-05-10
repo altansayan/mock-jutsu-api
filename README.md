@@ -7,16 +7,16 @@
 
 **Stop mocking with random strings. Start generating cryptographically valid test data.**
 
-[![Tests](https://img.shields.io/badge/tests-2836%20passed-22c55e?style=for-the-badge&logo=pytest)](./tests)
+[![Tests](https://img.shields.io/badge/tests-2875%20passed-22c55e?style=for-the-badge&logo=pytest)](./tests)
 [![Python](https://img.shields.io/badge/python-3.9%2B-3b82f6?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Data Types](https://img.shields.io/badge/Data%20Types-189-a855f7?style=for-the-badge)](https://altansayan.github.io/mock-jutsu-api/)
+[![Data Types](https://img.shields.io/badge/Data%20Types-192-a855f7?style=for-the-badge)](https://altansayan.github.io/mock-jutsu-api/)
 [![Locales](https://img.shields.io/badge/Locales-6-ec4899?style=for-the-badge)](#-6-locales-100-real-algorithms)
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-ff69b4?style=for-the-badge)](#-features-that-will-blow-your-mind)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
 
 *Traditional Mockers give you a random 16-digit string and call it a credit card number.<br>**Mock Jutsu runs Luhn. Every. Single. Time.***
 
-[**Installation**](#%EF%B8%8F-installation) • [**Why Mock Jutsu?**](#-why-not-faker) • [**Usage Guide**](#-usage) • [**189 Types**](#-183-supported-data-types)
+[**Installation**](#%EF%B8%8F-installation) • [**Why Mock Jutsu?**](#-why-not-faker) • [**Usage Guide**](#-usage) • [**192 Types**](#-183-supported-data-types)
 
 </div>
 
@@ -28,7 +28,7 @@ QA engineers, Data Scientists, and Fintech developers are tired of test data fai
 
 ### 🔥 Features That Will Blow Your Mind
 - **Zero External Dependencies**: The core data engine uses pure Python standard library for maximum speed, security, and zero bloat.
-- **2836 Automated Tests**: We don't guess. We verify. Every single format and locale is rigorously tested against real-world algorithmic specifications.
+- **2875 Automated Tests**: We don't guess. We verify. Every single format and locale is rigorously tested against real-world algorithmic specifications.
 - **Multi-Interface**: Use it as a rich Python SDK, a blazing-fast CLI, or a FastAPI REST endpoint.
 - **Export Anywhere**: Directly export structured records as JSON, CSV, or SQL `INSERT` statements with thousands of rows in milliseconds.
 - **Context-Aware Profiles**: Generate a person, and their email, phone, national ID, and IBAN will inherently match their locale and name.
@@ -180,7 +180,7 @@ We don't just localize names; we localize **mathematics**.
 
 ---
 
-## 📦 189 Supported Data Types
+## 📦 192 Supported Data Types
 
 We cover everything from standard identities to complex financial market identifiers.
 
@@ -249,5 +249,5 @@ Generated data is **entirely synthetic and for development/testing environments 
 
 <div align="center">
   <h3>If mock-jutsu saved you from debugging a "valid-looking but broken" test ID, please leave a ⭐!</h3>
-  <p>Released under the <a href="./LICENSE">MIT License</a> • Copyright © 2025 <a href="https://github.com/altansayan">Altan Sezer Ayan — A.S.A</a></p>
+  <p>Released under the <a href="./LICENSE">MIT License</a> • Copyright © 2026 <a href="https://github.com/altansayan">Altan Sezer Ayan — A.S.A</a></p>
 </div>
