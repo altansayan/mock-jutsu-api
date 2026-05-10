@@ -17,6 +17,8 @@ Entropy:
 import json
 import random
 import secrets
+import uuid as _uuid
+from datetime import datetime, timezone
 
 # Common ICD-10 codes (public WHO standard)
 ICD10_POOL = [
@@ -202,7 +204,6 @@ class HealthGenerator:
         Segments: MSH | EVN | PID | PV1, CR-terminated (\\r).
         No check digit — transport reliability delegated to TCP/IP per HL7 spec.
         """
-        from datetime import datetime
         ts    = datetime.now().strftime("%Y%m%d%H%M%S")
         # Date of birth: random year 1940–2000, random month 01–12, day 01–28
         dob   = (f"{random.randint(1940, 2000)}"
@@ -247,9 +248,6 @@ class HealthGenerator:
         HL7 FHIR v4.0.1 §8.1 — resourceType Patient.
         Locale-aware: names, city, and ISO 3166-1 country code.
         """
-        import uuid as _uuid
-        from datetime import datetime, timezone
-
         loc       = locale.upper() if locale.upper() in _FHIR_FAMILIES else "US"
         gender    = random.choice(["male", "female", "other", "unknown"])
         families  = _FHIR_FAMILIES.get(loc, _FHIR_FAMILIES["US"])
