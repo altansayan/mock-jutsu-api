@@ -95,21 +95,16 @@ def test_core_type_visible_in_html_tr(data_type):
 
 @pytest.mark.parametrize("locale", LOCALES)
 def test_html_type_count_matches_core(locale):
-    """Total unique type count in HTML header badge must match _REFERENCE count."""
+    """Every type in _REFERENCE must have a data-fn row in the HTML."""
     import re
     html = _html_content(locale)
-
-    # The HTML badge reads e.g. "184 parametre tipi" or "184 data types"
-    match = re.search(r'(\d+)\s+(?:parametre tipi|data types|Datentypen|types de donn|типов данных|типів даних)', html)
-    if not match:
-        pytest.skip(f"Could not find type count badge in {locale} HTML")
-
-    html_count = int(match.group(1))
+    html_types = set(re.findall(r'data-fn="([^"]+)"', html))
     core_count = len(_REF_TYPES)
+    html_count = len(html_types)
     assert html_count == core_count, (
-        f"HOW-TO-MockJutsu-{locale}.html shows {html_count} types "
+        f"HOW-TO-MockJutsu-{locale}.html has {html_count} data-fn rows "
         f"but core has {core_count}.\n"
-        f"Fix: re-run `python generate_locale_docs.py` after adding new types."
+        f"Missing: {_REF_TYPES - html_types}"
     )
 
 
