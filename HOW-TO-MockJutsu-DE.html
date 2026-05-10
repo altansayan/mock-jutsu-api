@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; DE Referenzhandbuch</h1>
   <div class="engine-title">Die ultimative algorithmische Mock-Daten-Engine</div>
-  <div class="sub"><span>6 Sprachräume</span> &bull; <span>189 Datentypen</span> &bull; <span>2836 Tests</span></div>
+  <div class="sub"><span>6 Sprachräume</span> &bull; <span>192 Datentypen</span> &bull; <span>2875 Tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Alle Parameter (189)</div>
+  <div class="stitle">Alle Parameter (192)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Funktion, CLI-Befehl oder Beispielausgabe suchen..." oninput="filterTable()">
@@ -770,6 +770,33 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-extra">—</td>
           <td class="col-output"><code>0123456789ABCDEF</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate pin_block')">mockjutsu generate pin_block</span></td>
+        </tr>
+        <tr data-fn="cef_log" data-cat="Security" data-locales="">
+          <td class="col-fn"><code>cef_log</code></td>
+          <td class="col-cat"><span class="pill ">Security</span></td>
+          <td class="col-desc">ArcSight CEF log line — vendor, product, severity 0-10, src/dst IPs.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>CEF:0|Cisco|ASA|9.16|...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cef_log')">mockjutsu generate cef_log</span></td>
+        </tr>
+        <tr data-fn="x509_cert" data-cat="Security" data-locales="">
+          <td class="col-fn"><code>x509_cert</code></td>
+          <td class="col-cat"><span class="pill ">Security</span></td>
+          <td class="col-desc">X.509 certificate fields (JSON): subject, issuer, serial, validity, fingerprint, SANs.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"subject":"CN=api...",...}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate x509_cert')">mockjutsu generate x509_cert</span></td>
+        </tr>
+        <tr data-fn="pcap_hex" data-cat="Security" data-locales="">
+          <td class="col-fn"><code>pcap_hex</code></td>
+          <td class="col-cat"><span class="pill ">Security</span></td>
+          <td class="col-desc">Wireshark-style pcap hex dump of a mock Ethernet+IPv4+TCP frame.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>ff ff 08 00 45 00 ...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate pcap_hex')">mockjutsu generate pcap_hex</span></td>
         </tr>
         <tr data-fn="phone" data-cat="Contact" data-locales="TR US UK DE FR RU">
           <td class="col-fn"><code>phone</code></td>
@@ -1932,33 +1959,6 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-output"><code>2.25.329800735698586629...</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate dicom_uid')">mockjutsu generate dicom_uid</span></td>
         </tr>
-        <tr data-fn="cef_log" data-cat="Security" data-locales="">
-          <td class="col-fn"><code>cef_log</code></td>
-          <td class="col-cat"><span class="pill ">Security</span></td>
-          <td class="col-desc">ArcSight CEF log line — vendor, product, severity 0-10, src/dst IPs.</td>
-          <td class="col-locale">—</td>
-          <td class="col-extra">—</td>
-          <td class="col-output"><code>CEF:0|Cisco|ASA|9.16|...</code></td>
-          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cef_log')">mockjutsu generate cef_log</span></td>
-        </tr>
-        <tr data-fn="x509_cert" data-cat="Security" data-locales="">
-          <td class="col-fn"><code>x509_cert</code></td>
-          <td class="col-cat"><span class="pill ">Security</span></td>
-          <td class="col-desc">X.509 certificate fields (JSON): subject, issuer, serial, validity, fingerprint, SANs.</td>
-          <td class="col-locale">—</td>
-          <td class="col-extra">—</td>
-          <td class="col-output"><code>{"subject":"CN=api...",...}</code></td>
-          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate x509_cert')">mockjutsu generate x509_cert</span></td>
-        </tr>
-        <tr data-fn="pcap_hex" data-cat="Security" data-locales="">
-          <td class="col-fn"><code>pcap_hex</code></td>
-          <td class="col-cat"><span class="pill ">Security</span></td>
-          <td class="col-desc">Wireshark-style pcap hex dump of a mock Ethernet+IPv4+TCP frame.</td>
-          <td class="col-locale">—</td>
-          <td class="col-extra">—</td>
-          <td class="col-output"><code>ff ff 08 00 45 00 ...</code></td>
-          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate pcap_hex')">mockjutsu generate pcap_hex</span></td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -2216,6 +2216,9 @@ const ROWS = [
   ["track2_data","Hardware","hardware",false,"—",";4532...=2812201...?","mockjutsu generate track2_data","","Magnetic stripe Track 2 data (PAN=Expiry+ServiceCode+CVV)."],
   ["chip_data","Hardware","hardware",false,"—","9F0206000000001000...","mockjutsu generate chip_data","","Simulated EMV chip (ICC) tag-length-value (TLV) data."],
   ["pin_block","Hardware","hardware",false,"—","0123456789ABCDEF","mockjutsu generate pin_block","","ISO 9564 Format encrypted PIN block (Format 0/1)."],
+  ["cef_log","Security","security",false,"—","CEF:0|Cisco|ASA|9.16|...","mockjutsu generate cef_log","","ArcSight CEF log line — vendor, product, severity 0-10, src/dst IPs."],
+  ["x509_cert","Security","security",false,"—","{\"subject\":\"CN=api...\",...}","mockjutsu generate x509_cert","","X.509 certificate fields (JSON): subject, issuer, serial, validity, fingerprint, SANs."],
+  ["pcap_hex","Security","security",false,"—","ff ff 08 00 45 00 ...","mockjutsu generate pcap_hex","","Wireshark-style pcap hex dump of a mock Ethernet+IPv4+TCP frame."],
   ["phone","Contact","contact",true,"—","+905325551234","mockjutsu generate phone --locale TR","TR US UK DE FR RU","Full E.164 formatted telephone Nummer."],
   ["phone_country","Contact","contact",true,"—","+90","mockjutsu generate phone_country --locale TR","TR US UK DE FR RU","International telephone country dial code."],
   ["phone_area","Contact","contact",true,"—","532","mockjutsu generate phone_area --locale TR","TR US UK DE FR RU","Localized telephone area/operator code."],
