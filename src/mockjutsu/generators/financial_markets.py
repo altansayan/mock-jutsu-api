@@ -12,9 +12,15 @@ Standards:
                CheckSum   = sum of all bytes before tag-10 field, mod 256
 """
 
+import base64
+import hashlib
+import hmac
+import json
 import random
 import secrets
 import string
+import time
+import uuid
 from datetime import datetime, timezone
 
 # ── Constants ────────────────────────────────────────────────────────────────
@@ -34,6 +40,33 @@ _ISIN_COUNTRY = {
 # NSIN character pool per locale (exchange-appropriate, no vowels in non-digit parts)
 _ISIN_NSIN_ALPHA = 'BCDFGHJKLMNPQRSTVWXYZ'
 _ISIN_NSIN_DIGIT = string.digits
+
+# PSD2 / Open Banking data pools
+_PSD2_CURRENCY = {
+    'TR': 'TRY', 'UK': 'GBP', 'US': 'USD', 'DE': 'EUR', 'FR': 'EUR', 'RU': 'RUB',
+}
+_PSD2_SCHEME = {
+    'TR': 'TR.IBAN',
+    'UK': 'UK.OBIE.SortCodeAccountNumber',
+    'US': 'US.RoutingNumberAccountNumber',
+    'DE': 'IBAN',
+    'FR': 'IBAN',
+    'RU': 'RU.IBAN',
+}
+_PSD2_ISSUERS = [
+    'C=GB, ST=England, O=Acme Bank, OU=PISP, CN=PISP/openbanking.org.uk',
+    'C=GB, ST=England, O=Fintech Ltd, OU=AISP, CN=AISP/openbanking.org.uk',
+    'C=DE, ST=Bayern, O=TechBank GmbH, OU=PISP, CN=PISP/openbanking.org.uk',
+    'C=TR, ST=Istanbul, O=FinKurumu AS, OU=PISP, CN=PISP/openbanking.org.uk',
+]
+_PSD2_CREDITOR_NAMES = [
+    'Acme Inc', 'TechCorp Ltd', 'Global Trade GmbH', 'FinServ SA',
+    'Nordic Pay AB', 'EastBank LLC', 'Metro Supplies Co', 'AlphaFunds Ltd',
+]
+_PSD2_UNSTRUCTURED = [
+    'Internal ops code 5120101', 'Supplier payment Q2', 'Invoice settlement',
+    'Contract payment ref 7821', 'Monthly retainer fee', 'Project milestone 3',
+]
 
 # FIX 4.4 data pools
 _FIX_SOH = chr(1)
@@ -119,6 +152,9 @@ class FinancialMarketsGenerator:
             return self._lei()
         if dt == 'fix_message':
             return self._fix_message()
+        if dt == 'psd2_consent':
+            amount = kwargs.get('amount')
+            return self._psd2_consent(loc, amount=float(amount) if amount else None)
 
         return f"ERROR: Unknown DataType '{dt}'"
 
@@ -239,3 +275,99 @@ class FinancialMarketsGenerator:
         checksum             = sum(ord(c) for c in before_checksum) % 256
 
         return before_checksum + f'10={checksum:03d}{SOH}'
+
+    # ── PSD2 / Open Banking JWS ───────────────────────────────────────────────
+
+    def _psd2_consent(self, locale: str = 'UK', amount: float | None = None) -> str:
+        """UK Open Banking v3.1 Payment Consent — compact JWS (header.payload.signature).
+
+        Header claims follow RFC 7797 (b64=false, detached) and OB Security Profile.
+        Signature: HMAC-SHA256 over signing_input with ephemeral 32-byte key.
+        """
+        loc = locale if locale in _PSD2_CURRENCY else 'UK'
+        currency = _PSD2_CURRENCY[loc]
+        scheme   = _PSD2_SCHEME[loc]
+
+        # ── JWS Header ──────────────────────────────────────────────────────
+        kid    = secrets.token_hex(8).upper()
+        issuer = random.choice(_PSD2_ISSUERS)
+        iat    = int(time.time())
+
+        header_dict = {
+            'alg': 'HS256',
+            'kid': kid,
+            'b64': False,
+            'crit': [
+                'b64',
+                'http://openbanking.org.uk/iat',
+                'http://openbanking.org.uk/iss',
+                'http://openbanking.org.uk/tan',
+            ],
+            'http://openbanking.org.uk/iat': iat,
+            'http://openbanking.org.uk/iss': issuer,
+            'http://openbanking.org.uk/tan': 'openbanking.org.uk',
+        }
+        header_b64 = base64.urlsafe_b64encode(
+            json.dumps(header_dict, separators=(',', ':')).encode()
+        ).rstrip(b'=').decode()
+
+        # ── JWS Payload ─────────────────────────────────────────────────────
+        consent_id   = f'aac-{uuid.uuid4().hex[:16]}'
+        instr_id     = secrets.token_hex(4).upper()
+        e2e_id       = f'E2E-{secrets.token_hex(5).upper()}'
+        amount_val   = round(amount, 2) if amount is not None else round(random.uniform(10.0, 9999.99), 2)
+        creditor_name = random.choice(_PSD2_CREDITOR_NAMES)
+        creditor_id   = self._creditor_id(loc)
+        ref           = f'REF-{secrets.token_hex(4).upper()}'
+
+        payload_dict = {
+            'Data': {
+                'ConsentId': consent_id,
+                'Initiation': {
+                    'InstructionIdentification': instr_id,
+                    'EndToEndIdentification': e2e_id,
+                    'InstructedAmount': {
+                        'Amount': f'{amount_val:.2f}',
+                        'Currency': currency,
+                    },
+                    'CreditorAccount': {
+                        'SchemeName': scheme,
+                        'Identification': creditor_id,
+                        'Name': creditor_name,
+                    },
+                    'RemittanceInformation': {
+                        'Reference': ref,
+                        'Unstructured': random.choice(_PSD2_UNSTRUCTURED),
+                    },
+                },
+            },
+            'Risk': {},
+        }
+        payload_b64 = base64.urlsafe_b64encode(
+            json.dumps(payload_dict, separators=(',', ':')).encode()
+        ).rstrip(b'=').decode()
+
+        # ── HMAC-SHA256 Signature ────────────────────────────────────────────
+        signing_input = f'{header_b64}.{payload_b64}'.encode()
+        key           = secrets.token_bytes(32)
+        sig           = hmac.new(key, signing_input, hashlib.sha256).digest()
+        sig_b64       = base64.urlsafe_b64encode(sig).rstrip(b'=').decode()
+
+        return f'{header_b64}.{payload_b64}.{sig_b64}'
+
+    @staticmethod
+    def _creditor_id(locale: str) -> str:
+        """Generate a locale-appropriate creditor account identifier."""
+        if locale == 'UK':
+            sort = f'{random.randint(10,99)}-{random.randint(10,99)}-{random.randint(10,99)}'
+            acct = f'{random.randint(10000000, 99999999)}'
+            return sort + acct
+        if locale == 'US':
+            routing = f'{random.randint(100000000, 999999999)}'
+            acct    = f'{random.randint(100000000, 9999999999)}'
+            return routing + acct
+        # IBAN-style for TR, DE, FR, RU
+        prefix = {'TR': 'TR', 'DE': 'DE', 'FR': 'FR', 'RU': 'RU'}.get(locale, 'GB')
+        return prefix + f'{random.randint(10, 99)}' + ''.join(
+            str(random.randint(0, 9)) for _ in range(16)
+        )
