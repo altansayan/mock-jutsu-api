@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; US Reference Guide</h1>
   <div class="engine-title">The Ultimate Algorithmic Mock Data Engine</div>
-  <div class="sub"><span>6 locales</span> &bull; <span>197 data types</span> &bull; <span>2939 tests</span></div>
+  <div class="sub"><span>6 locales</span> &bull; <span>199 data types</span> &bull; <span>2967 tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">All Parameters (197)</div>
+  <div class="stitle">All Parameters (199)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Search function, CLI command or example output..." oninput="filterTable()">
@@ -1509,6 +1509,24 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-output"><code>{carrier_hz,pulses:[]}</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ir_raw')">mockjutsu generate ir_raw</span></td>
         </tr>
+        <tr data-fn="mqtt_payload" data-cat="Wireless" data-locales="">
+          <td class="col-fn"><code>mqtt_payload</code></td>
+          <td class="col-cat"><span class="pill ">Wireless</span></td>
+          <td class="col-desc">IoT sensor MQTT payload JSON (device_id, timestamp, sensor readings, RSSI, battery).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"device_id":"...","sensor_type":"temperature",...}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate mqtt_payload')">mockjutsu generate mqtt_payload</span></td>
+        </tr>
+        <tr data-fn="lora_packet" data-cat="Wireless" data-locales="">
+          <td class="col-fn"><code>lora_packet</code></td>
+          <td class="col-cat"><span class="pill ">Wireless</span></td>
+          <td class="col-desc">LoRaWAN 1.0.x uplink MAC frame hex: MHDR(0x40) + FHDR + FPort + FRMPayload + MIC.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>40 a1 b2 c3 d4 00 ...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate lora_packet')">mockjutsu generate lora_packet</span></td>
+        </tr>
         <tr data-fn="ean13" data-cat="Barcode" data-locales="TR US UK DE FR RU">
           <td class="col-fn"><code>ean13</code></td>
           <td class="col-cat"><span class="pill ">Barcode</span></td>
@@ -2343,6 +2361,8 @@ const ROWS = [
   ["ir_rc5","IR","ir",false,"—","{system,cmd,frame_bits}","mockjutsu generate ir_rc5","","Infrared Philips RC5 protocol signal data."],
   ["ir_pronto","IR","ir",false,"—","0000 006D 0022 0000 ..","mockjutsu generate ir_pronto","","Infrared Pronto Hex format data."],
   ["ir_raw","IR","ir",false,"—","{carrier_hz,pulses:[]}","mockjutsu generate ir_raw","","Infrared raw pulse/space timing data."],
+  ["mqtt_payload","Wireless","wireless",false,"—","{\"device_id\":\"...\",\"sensor_type\":\"temperature\",...}","mockjutsu generate mqtt_payload","","IoT sensor MQTT payload JSON (device_id, timestamp, sensor readings, RSSI, battery)."],
+  ["lora_packet","Wireless","wireless",false,"—","40 a1 b2 c3 d4 00 ...","mockjutsu generate lora_packet","","LoRaWAN 1.0.x uplink MAC frame hex: MHDR(0x40) + FHDR + FPort + FRMPayload + MIC."],
   ["ean13","Barcode","barcode",true,"—","8680001234567","mockjutsu generate ean13 --locale TR","TR US UK DE FR RU","International Article Number (EAN-13) with checksum."],
   ["ean8","Barcode","barcode",true,"—","86812345","mockjutsu generate ean8 --locale TR","TR US UK DE FR RU","Compressed EAN-8 barcode with checksum."],
   ["upca","Barcode","barcode",false,"—","036000291452","mockjutsu generate upca","","Universal Product Code (UPC-A) with checksum."],

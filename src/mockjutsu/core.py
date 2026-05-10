@@ -90,6 +90,7 @@ _IOT_TYPES = {
     'rfid_uid', 'epc', 'rfid_tag',
     'nfc_uid', 'nfc_atqa', 'nfc_sak', 'ndef_uri', 'ndef_text', 'apdu', 'nfc_tag',
     'ir_nec', 'ir_rc5', 'ir_pronto', 'ir_raw',
+    'mqtt_payload', 'lora_packet',
 }
 
 _BARCODE_TYPES = {

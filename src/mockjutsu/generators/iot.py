@@ -8,8 +8,10 @@ Entropy strategy:
     the unique identifier parts always come from secrets
 """
 
+import json
 import secrets
 import random
+from datetime import datetime, timezone, timedelta
 
 # ── RFID ─────────────────────────────────────────────────────────────────────
 
@@ -454,6 +456,70 @@ class IoTGenerator:
             "pulse_count": len(pulses),
         }
 
+    # ── MQTT Payload ─────────────────────────────────────────────────────────
+
+    @staticmethod
+    def generate_mqtt_payload() -> str:
+        """IoT sensor MQTT payload — JSON with device_id, timestamp, sensor readings.
+
+        Sensor types: temperature, humidity, pressure, motion, light, co2, voltage.
+        Signal quality (rssi, snr) and battery_pct are included for realism.
+        """
+        sensor_type = random.choice(
+            ['temperature', 'humidity', 'pressure', 'motion', 'light', 'co2', 'voltage']
+        )
+        readings_map = {
+            'temperature': {'celsius': round(random.uniform(-40.0, 85.0), 2),
+                            'fahrenheit': round(random.uniform(-40.0, 85.0) * 9 / 5 + 32, 2)},
+            'humidity':    {'percent': round(random.uniform(0.0, 100.0), 2)},
+            'pressure':    {'hpa': round(random.uniform(900.0, 1100.0), 2)},
+            'motion':      {'detected': random.choice([True, False]),
+                            'count': random.randint(0, 50)},
+            'light':       {'lux': round(random.uniform(0.0, 100000.0), 1)},
+            'co2':         {'ppm': random.randint(400, 5000)},
+            'voltage':     {'volts': round(random.uniform(0.0, 5.0), 3)},
+        }
+        offset_sec = random.randrange(7 * 24 * 3600)
+        ts = (datetime.now(timezone.utc) - timedelta(seconds=offset_sec)).strftime('%Y-%m-%dT%H:%M:%SZ')
+        device_id = secrets.token_hex(4) + '-' + secrets.token_hex(2) + '-' + secrets.token_hex(2)
+        payload = {
+            'device_id':   device_id,
+            'timestamp':   ts,
+            'sensor_type': sensor_type,
+            'readings':    readings_map[sensor_type],
+            'rssi':        random.randint(-120, -30),
+            'snr':         round(random.uniform(-20.0, 10.0), 1),
+            'battery_pct': random.randint(0, 100),
+        }
+        return json.dumps(payload, separators=(',', ':'))
+
+    # ── LoRaWAN Packet ────────────────────────────────────────────────────────
+
+    @staticmethod
+    def generate_lora_packet() -> str:
+        """LoRaWAN 1.0.x uplink MAC frame — hex string.
+
+        Frame layout (LoRaWAN spec Section 4):
+          MHDR(1) = 0x40  Unconfirmed Data Up
+          FHDR:
+            DevAddr(4)  — random device address (little-endian)
+            FCtrl(1)    = 0x00  (no ADR, no ACK, FOptsLen=0)
+            FCnt(2)     — frame counter (little-endian)
+          FPort(1)      — application port 1–10
+          FRMPayload(N) — simulated encrypted sensor data (4–12 bytes)
+          MIC(4)        — simulated (not AES-CMAC; structure is correct)
+        """
+        mhdr = bytes([0x40])
+        dev_addr = secrets.token_bytes(4)
+        fctrl = bytes([0x00])
+        fcnt = secrets.token_bytes(2)
+        fport = bytes([random.randint(1, 10)])
+        payload_len = random.randint(4, 12)
+        frm_payload = secrets.token_bytes(payload_len)
+        mic = secrets.token_bytes(4)
+        frame = mhdr + dev_addr + fctrl + fcnt + fport + frm_payload + mic
+        return ' '.join(f'{b:02x}' for b in frame)
+
     # ── Dispatcher ────────────────────────────────────────────────────────────
 
     def generate(self, data_type: str, locale: str = "TR", **kwargs):
@@ -472,7 +538,9 @@ class IoTGenerator:
             "ir_nec":    self.generate_ir_nec,
             "ir_rc5":    self.generate_ir_rc5,
             "ir_pronto": self.generate_ir_pronto,
-            "ir_raw":    self.generate_ir_raw,
+            "ir_raw":      self.generate_ir_raw,
+            "mqtt_payload": self.generate_mqtt_payload,
+            "lora_packet":  self.generate_lora_packet,
         }
         fn = _dispatch.get(dt)
         return fn() if fn else None

@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("2939 Tests\n", style="cyan")
+    body.append("2967 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -220,6 +220,9 @@ _REFERENCE = [
     ('ir_rc5'         , 'IR'           , False, '{system,cmd,frame_bits}', 'generate ir_rc5'               , 'Infrared Philips RC5 protocol signal data.', '-'),
     ('ir_pronto'      , 'IR'           , False, '0000 006D 0022 0000 ..', 'generate ir_pronto'            , 'Infrared Pronto Hex format data.', '-'),
     ('ir_raw'         , 'IR'           , False, '{carrier_hz,pulses:[]}', 'generate ir_raw'               , 'Infrared raw pulse/space timing data.', '-'),
+    ('--Wireless--'   , ''            , False, ''                      , ''                              , '', ''),
+    ('mqtt_payload'   , 'Wireless'    , False, '{"device_id":"...","sensor_type":"temperature",...}', 'generate mqtt_payload', 'IoT sensor MQTT payload JSON (device_id, timestamp, sensor readings, RSSI, battery).', '-'),
+    ('lora_packet'    , 'Wireless'    , False, '40 a1 b2 c3 d4 00 ...' , 'generate lora_packet'          , 'LoRaWAN 1.0.x uplink MAC frame hex: MHDR(0x40) + FHDR + FPort + FRMPayload + MIC.', '-'),
     ('ean13'          , 'Barcode'      , True , '8680001234567'         , 'generate ean13 --locale TR'    , 'International Article Number (EAN-13) with checksum.', '-'),
     ('ean8'           , 'Barcode'      , True , '86812345'              , 'generate ean8 --locale TR'     , 'Compressed EAN-8 barcode with checksum.', '-'),
     ('upca'           , 'Barcode'      , False, '036000291452'          , 'generate upca'                 , 'Universal Product Code (UPC-A) with checksum.', '-'),
@@ -283,7 +286,7 @@ _CAT_ORDER = [
     "Financial", "Contact", "Banking", "Corporate",
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
-    "E-Commerce", "Location", "Social", "Hardware", "Aviation",
+    "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless",
 ]
 
 _CAT_COLORS = {
@@ -311,6 +314,7 @@ _CAT_COLORS = {
     "Social":      "magenta",
     "Hardware":    "bright_green",
     "Aviation":    "bright_cyan",
+    "Wireless":    "bright_magenta",
 }
 
 
