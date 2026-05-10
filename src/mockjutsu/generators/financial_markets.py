@@ -88,7 +88,7 @@ _FIX_SYMBOLS = [
 
 # ── Checksum helpers ─────────────────────────────────────────────────────────
 
-def _luhn_check(digits: list[int]) -> int:
+def _luhn_check(digits) -> int:
     """Standard Luhn check digit for a payload (rightmost payload digit at position 1)."""
     total = 0
     for i, d in enumerate(reversed(digits)):
@@ -278,7 +278,7 @@ class FinancialMarketsGenerator:
 
     # ── PSD2 / Open Banking JWS ───────────────────────────────────────────────
 
-    def _psd2_consent(self, locale: str = 'UK', amount: float | None = None) -> str:
+    def _psd2_consent(self, locale: str = 'UK', amount=None) -> str:
         """UK Open Banking v3.1 Payment Consent — compact JWS (header.payload.signature).
 
         Header claims follow RFC 7797 (b64=false, detached) and OB Security Profile.
