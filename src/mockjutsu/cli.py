@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("2836 Tests\n", style="cyan")
+    body.append("2875 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -225,12 +225,12 @@ _REFERENCE = [
     ('iccid'          , 'Telecom'      , True , '8990053412345678901'   , 'generate iccid --locale TR'    , 'SIM card Integrated Circuit Card Identifier (ICCID).', '-'),
     ('imsi'           , 'Telecom'      , True , '286011234567890'       , 'generate imsi --locale TR'     , 'International Mobile Subscriber Identity (IMSI).', '-'),
     ('msisdn'         , 'Telecom'      , True , '+905321234567'         , 'generate msisdn --locale TR'   , 'Mobile Station International Subscriber Directory Number (MSISDN).', '-'),
-    ('isin'           , 'Securities'   , True , 'US0378331005'          , 'generate isin --locale US'     , 'International Securities Identification Number (ISO 6166).', '-'),
-    ('cusip'          , 'Securities'   , False, '037833100'             , 'generate cusip'                , 'Committee on Uniform Security Identification Procedures ID.', '-'),
-    ('sedol'          , 'Securities'   , False, '0263494'               , 'generate sedol'                , 'Stock Exchange Daily Official List (UK).', '-'),
-    ('lei'            , 'Securities'   , False, '529900T8BM49AURSDO55'  , 'generate lei'                  , 'Legal Entity Identifier (ISO 17442).', '-'),
-    ('fix_message'    , 'Securities'   , False, '8=FIX.4.4|9=...|35=D|...|10=NNN|', 'generate fix_message'          , 'FIX Protocol 4.4 New Order Single (MsgType=D) with valid BodyLength and CheckSum.', '-'),
-    ('psd2_consent'   , 'Securities'   , True , 'eyJhbGci...<JWS>'               , 'generate psd2_consent --locale UK --amount 250.00', 'PSD2 / UK Open Banking v3.1 Payment Consent — compact JWS (HMAC-SHA256).', '--locale --amount'),
+    ('isin'           , 'CapMarkets(Trading)'   , True , 'US0378331005'          , 'generate isin --locale US'     , 'International CapMarkets(Trading) Identification Number (ISO 6166).', '-'),
+    ('cusip'          , 'CapMarkets(Trading)'   , False, '037833100'             , 'generate cusip'                , 'Committee on Uniform Security Identification Procedures ID.', '-'),
+    ('sedol'          , 'CapMarkets(Trading)'   , False, '0263494'               , 'generate sedol'                , 'Stock Exchange Daily Official List (UK).', '-'),
+    ('lei'            , 'CapMarkets(Trading)'   , False, '529900T8BM49AURSDO55'  , 'generate lei'                  , 'Legal Entity Identifier (ISO 17442).', '-'),
+    ('fix_message'    , 'CapMarkets(Trading)'   , False, '8=FIX.4.4|9=...|35=D|...|10=NNN|', 'generate fix_message'          , 'FIX Protocol 4.4 New Order Single (MsgType=D) with valid BodyLength and CheckSum.', '-'),
+    ('psd2_consent'   , 'CapMarkets(Trading)'   , True , 'eyJhbGci...<JWS>'               , 'generate psd2_consent --locale UK --amount 250.00', 'PSD2 / UK Open Banking v3.1 Payment Consent — compact JWS (HMAC-SHA256).', '--locale --amount'),
     ('btc_address'    , 'Crypto'       , False, '1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf', 'generate btc_address'          , 'Bitcoin wallet address (P2PKH, P2SH, Bech32).', '-'),
     ('eth_address'    , 'Crypto'       , False, '0x5aAeb6053F3E94C9b9A0...', 'generate eth_address'          , 'Ethereum/EVM compatible wallet address.', '-'),
     ('crypto_address' , 'Crypto'       , False, '(btc or eth)'          , 'generate crypto_address --currency eth', 'Generic crypto address for specified currency.', '--currency (btc, eth)'),
@@ -276,7 +276,7 @@ _CAT_ORDER = [
     "Identity", "Name", "Document", "Demographic",
     "Financial", "Contact", "Banking", "Corporate",
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
-    "Barcode", "Telecom", "Securities", "Crypto",
+    "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
     "E-Commerce", "Location", "Social", "Hardware",
 ]
 
@@ -298,7 +298,7 @@ _CAT_COLORS = {
     "IR":          "red",
     "Barcode":     "bright_yellow",
     "Telecom":     "bright_magenta",
-    "Securities":  "bright_cyan",
+    "CapMarkets(Trading)":  "bright_cyan",
     "Crypto":      "bright_green",
     "E-Commerce":  "yellow",
     "Location":    "bright_blue",

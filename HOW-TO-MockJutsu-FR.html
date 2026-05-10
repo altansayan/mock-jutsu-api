@@ -1563,54 +1563,54 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-output"><code>+905321234567</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate msisdn --locale TR')">mockjutsu generate msisdn --locale TR</span></td>
         </tr>
-        <tr data-fn="isin" data-cat="Securities" data-locales="TR US UK DE FR RU">
+        <tr data-fn="isin" data-cat="CapMarkets(Trading)" data-locales="TR US UK DE FR RU">
           <td class="col-fn"><code>isin</code></td>
-          <td class="col-cat"><span class="pill cat-securities">Securities</span></td>
-          <td class="col-desc">International Securities Identification Numéro (ISO 6166).</td>
+          <td class="col-cat"><span class="pill ">CapMarkets(Trading)</span></td>
+          <td class="col-desc">International CapMarkets(Trading) Identification Numéro (ISO 6166).</td>
           <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
           <td class="col-extra">—</td>
           <td class="col-output"><code>US0378331005</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate isin --locale US')">mockjutsu generate isin --locale US</span></td>
         </tr>
-        <tr data-fn="cusip" data-cat="Securities" data-locales="">
+        <tr data-fn="cusip" data-cat="CapMarkets(Trading)" data-locales="">
           <td class="col-fn"><code>cusip</code></td>
-          <td class="col-cat"><span class="pill cat-securities">Securities</span></td>
+          <td class="col-cat"><span class="pill ">CapMarkets(Trading)</span></td>
           <td class="col-desc">Committee on Uniform Security Identification Procedures ID.</td>
           <td class="col-locale">—</td>
           <td class="col-extra">—</td>
           <td class="col-output"><code>037833100</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cusip')">mockjutsu generate cusip</span></td>
         </tr>
-        <tr data-fn="sedol" data-cat="Securities" data-locales="">
+        <tr data-fn="sedol" data-cat="CapMarkets(Trading)" data-locales="">
           <td class="col-fn"><code>sedol</code></td>
-          <td class="col-cat"><span class="pill cat-securities">Securities</span></td>
+          <td class="col-cat"><span class="pill ">CapMarkets(Trading)</span></td>
           <td class="col-desc">Stock Exchange Daily Official List (UK).</td>
           <td class="col-locale">—</td>
           <td class="col-extra">—</td>
           <td class="col-output"><code>0263494</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate sedol')">mockjutsu generate sedol</span></td>
         </tr>
-        <tr data-fn="lei" data-cat="Securities" data-locales="">
+        <tr data-fn="lei" data-cat="CapMarkets(Trading)" data-locales="">
           <td class="col-fn"><code>lei</code></td>
-          <td class="col-cat"><span class="pill cat-securities">Securities</span></td>
+          <td class="col-cat"><span class="pill ">CapMarkets(Trading)</span></td>
           <td class="col-desc">Legal Entity Identifier (ISO 17442).</td>
           <td class="col-locale">—</td>
           <td class="col-extra">—</td>
           <td class="col-output"><code>529900T8BM49AURSDO55</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate lei')">mockjutsu generate lei</span></td>
         </tr>
-        <tr data-fn="fix_message" data-cat="Securities" data-locales="">
+        <tr data-fn="fix_message" data-cat="CapMarkets(Trading)" data-locales="">
           <td class="col-fn"><code>fix_message</code></td>
-          <td class="col-cat"><span class="pill cat-securities">Securities</span></td>
+          <td class="col-cat"><span class="pill ">CapMarkets(Trading)</span></td>
           <td class="col-desc">FIX Protocol 4.4 New Order Single (MsgType=D) avec valid BodyLength and somme de contrôle.</td>
           <td class="col-locale">—</td>
           <td class="col-extra">—</td>
           <td class="col-output"><code>8=FIX.4.4|9=...|35=D|...|10=NNN|</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate fix_message')">mockjutsu generate fix_message</span></td>
         </tr>
-        <tr data-fn="psd2_consent" data-cat="Securities" data-locales="TR US UK DE FR RU">
+        <tr data-fn="psd2_consent" data-cat="CapMarkets(Trading)" data-locales="TR US UK DE FR RU">
           <td class="col-fn"><code>psd2_consent</code></td>
-          <td class="col-cat"><span class="pill cat-securities">Securities</span></td>
+          <td class="col-cat"><span class="pill ">CapMarkets(Trading)</span></td>
           <td class="col-desc">PSD2 / UK Open Banking v3.1 Payment Consent — compact JWS (HMAC-SHA256).</td>
           <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
           <td class="col-extra"><code>--locale --amount</code></td>
@@ -2304,12 +2304,12 @@ const ROWS = [
   ["iccid","Telecom","telecom",true,"—","8990053412345678901","mockjutsu generate iccid --locale TR","TR US UK DE FR RU","SIM card Integrated Circuit Card Identifier (ICCID)."],
   ["imsi","Telecom","telecom",true,"—","286011234567890","mockjutsu generate imsi --locale TR","TR US UK DE FR RU","International Mobile Subscriber Identity (IMSI)."],
   ["msisdn","Telecom","telecom",true,"—","+905321234567","mockjutsu generate msisdn --locale TR","TR US UK DE FR RU","Mobile Station International Subscriber Directory Numéro (MSISDN)."],
-  ["isin","Securities","securities",true,"—","US0378331005","mockjutsu generate isin --locale US","TR US UK DE FR RU","International Securities Identification Numéro (ISO 6166)."],
-  ["cusip","Securities","securities",false,"—","037833100","mockjutsu generate cusip","","Committee on Uniform Security Identification Procedures ID."],
-  ["sedol","Securities","securities",false,"—","0263494","mockjutsu generate sedol","","Stock Exchange Daily Official List (UK)."],
-  ["lei","Securities","securities",false,"—","529900T8BM49AURSDO55","mockjutsu generate lei","","Legal Entity Identifier (ISO 17442)."],
-  ["fix_message","Securities","securities",false,"—","8=FIX.4.4|9=...|35=D|...|10=NNN|","mockjutsu generate fix_message","","FIX Protocol 4.4 New Order Single (MsgType=D) avec valid BodyLength and somme de contrôle."],
-  ["psd2_consent","Securities","securities",true,"--locale --amount","eyJhbGci...<JWS>","mockjutsu generate psd2_consent --locale UK --amount 250.00","TR US UK DE FR RU","PSD2 / UK Open Banking v3.1 Payment Consent — compact JWS (HMAC-SHA256)."],
+  ["isin","CapMarkets(Trading)","capmarkets(trading)",true,"—","US0378331005","mockjutsu generate isin --locale US","TR US UK DE FR RU","International CapMarkets(Trading) Identification Numéro (ISO 6166)."],
+  ["cusip","CapMarkets(Trading)","capmarkets(trading)",false,"—","037833100","mockjutsu generate cusip","","Committee on Uniform Security Identification Procedures ID."],
+  ["sedol","CapMarkets(Trading)","capmarkets(trading)",false,"—","0263494","mockjutsu generate sedol","","Stock Exchange Daily Official List (UK)."],
+  ["lei","CapMarkets(Trading)","capmarkets(trading)",false,"—","529900T8BM49AURSDO55","mockjutsu generate lei","","Legal Entity Identifier (ISO 17442)."],
+  ["fix_message","CapMarkets(Trading)","capmarkets(trading)",false,"—","8=FIX.4.4|9=...|35=D|...|10=NNN|","mockjutsu generate fix_message","","FIX Protocol 4.4 New Order Single (MsgType=D) avec valid BodyLength and somme de contrôle."],
+  ["psd2_consent","CapMarkets(Trading)","capmarkets(trading)",true,"--locale --amount","eyJhbGci...<JWS>","mockjutsu generate psd2_consent --locale UK --amount 250.00","TR US UK DE FR RU","PSD2 / UK Open Banking v3.1 Payment Consent — compact JWS (HMAC-SHA256)."],
   ["btc_address","Crypto","crypto",false,"—","1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf","mockjutsu generate btc_address","","Bitcoin wallet address (P2PKH, P2SH, Bech32)."],
   ["eth_address","Crypto","crypto",false,"—","0x5aAeb6053F3E94C9b9A0...","mockjutsu generate eth_address","","Ethereum/EVM compatible wallet address."],
   ["crypto_address","Crypto","crypto",false,"--currency (btc, eth)","(btc or eth)","mockjutsu generate crypto_address --currency eth","","Générique crypto address pour spécifié currency."],
