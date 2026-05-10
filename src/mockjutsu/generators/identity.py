@@ -289,6 +289,42 @@ class IdentityGenerator:
         key   = (12 + 3 * (int(siren) % 97)) % 97
         return f"FR{key:02d}{siren}"
 
+    # EU VIES VAT key charset for FR: A-Z excluding I and O, plus digits 0-9
+    _FR_VAT_KEY_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789'
+
+    @staticmethod
+    def generate_vat_number(locale: str) -> str:
+        """EU/Global VAT number with country prefix — VIES-compatible format.
+
+        TR: TR + 10-digit VKN  |  DE: DE + 9 digits
+        FR: FR + 2 alphanumeric key chars + 9-digit SIREN
+        UK: GB + 9 digits      |  US: US + EIN-style XX-XXXXXXX
+        RU: RU + 10-digit INN
+        """
+        l = locale.upper()
+        if l == 'TR':
+            return f"TR{IdentityGenerator.generate_tr_vkn()}"
+        if l == 'DE':
+            first = random.randrange(1, 10)
+            rest = ''.join(str(random.randrange(10)) for _ in range(8))
+            return f"DE{first}{rest}"
+        if l == 'FR':
+            key = ''.join(random.choice(IdentityGenerator._FR_VAT_KEY_CHARS) for _ in range(2))
+            siren = IdentityGenerator.generate_fr_siren()
+            return f"FR{key}{siren}"
+        if l == 'UK':
+            first = random.randrange(1, 10)
+            rest = ''.join(str(random.randrange(10)) for _ in range(8))
+            return f"GB{first}{rest}"
+        if l == 'US':
+            prefix = random.randrange(10, 100)
+            suffix = random.randrange(1000000, 10000000)
+            return f"US{prefix:02d}-{suffix:07d}"
+        if l == 'RU':
+            return f"RU{IdentityGenerator.generate_ru_inn_corporate()}"
+        # fallback → TR format
+        return f"TR{IdentityGenerator.generate_tr_vkn()}"
+
     # ── RU ──────────────────────────────────────────────────────────────────────
 
     @staticmethod
@@ -356,6 +392,9 @@ class IdentityGenerator:
             if l == 'FR': return self.generate_fr_siren()
             if l == 'RU': return self.generate_ru_inn_corporate()
             return self.generate_tr_vkn()
+
+        if dt == 'vat_number':
+            return self.generate_vat_number(l)
 
         if dt == 'inn':
             return self.generate_ru_inn_corporate()

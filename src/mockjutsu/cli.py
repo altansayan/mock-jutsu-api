@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("2912 Tests\n", style="cyan")
+    body.append("2939 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -140,6 +140,8 @@ _REFERENCE = [
     ('cef_log'        , 'Security'     , False, 'CEF:0|Cisco|ASA|9.16|...', 'generate cef_log'           , 'ArcSight CEF log line — vendor, product, severity 0-10, src/dst IPs.', '-'),
     ('x509_cert'      , 'Security'     , False, '{"subject":"CN=api...",...}', 'generate x509_cert'      , 'X.509 certificate fields (JSON): subject, issuer, serial, validity, fingerprint, SANs.', '-'),
     ('pcap_hex'       , 'Security'     , False, 'ff ff 08 00 45 00 ...' , 'generate pcap_hex'             , 'Wireshark-style pcap hex dump of a mock Ethernet+IPv4+TCP frame.', '-'),
+    ('creditor_ref'   , 'Banking'      , False, 'RF18539007547034'      , 'generate creditor_ref'         , 'ISO 11649 Creditor Reference: RF + 2-digit MOD-97 check + 3-21 alphanumeric chars.', '-'),
+    ('vat_number'     , 'Identity'     , True , 'TR1234567890'          , 'generate vat_number --locale TR', 'EU/Global VIES VAT number with country prefix (TR/DE/FR/UK/US/RU).', '-'),
     ('--Aviation--'   , ''             , False, ''                      , ''                              , '', ''),
     ('iata_ticket'    , 'Aviation'     , False, '0012345678902'         , 'generate iata_ticket'          , 'IATA Electronic Ticket Number (ETN): 3-digit airline code + 9-digit serial + MOD-7 check digit.', '-'),
     ('imo_number'     , 'Aviation'     , False, 'IMO 9074729'           , 'generate imo_number'           , 'IMO Ship Registration Number: 7-digit identifier with MOD-10 weighted check digit.', '-'),

@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; TR Referans Kılavuzu</h1>
   <div class="engine-title">Nihai Algoritmik Mock Veri Motoru</div>
-  <div class="sub"><span>6 locale</span> &bull; <span>195 parametre tipi</span> &bull; <span>2912 Test</span></div>
+  <div class="sub"><span>6 locale</span> &bull; <span>197 parametre tipi</span> &bull; <span>2939 Test</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Tüm Parametreler (195)</div>
+  <div class="stitle">Tüm Parametreler (197)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Fonksiyon, CLI komutu veya örnek çıktı ara..." oninput="filterTable()">
@@ -797,6 +797,24 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-extra">—</td>
           <td class="col-output"><code>ff ff 08 00 45 00 ...</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate pcap_hex')">mockjutsu generate pcap_hex</span></td>
+        </tr>
+        <tr data-fn="creditor_ref" data-cat="Bankacılık" data-locales="">
+          <td class="col-fn"><code>creditor_ref</code></td>
+          <td class="col-cat"><span class="pill cat-bankacilik">Bankacılık</span></td>
+          <td class="col-desc">ISO 11649 Creditor Reference: RF + 2-digit MOD-97 kontrolü + 3-21 alphanumeric chars.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>RF18539007547034</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate creditor_ref')">mockjutsu generate creditor_ref</span></td>
+        </tr>
+        <tr data-fn="vat_number" data-cat="Kimlik" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>vat_number</code></td>
+          <td class="col-cat"><span class="pill ">Kimlik</span></td>
+          <td class="col-desc">EU/Global VIES VAT Numarası ile country prefix (TR/DE/FR/İngiltere/ABD/RU).</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>TR1234567890</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate vat_number --locale TR')">mockjutsu generate vat_number --locale TR</span></td>
         </tr>
         <tr data-fn="iata_ticket" data-cat="Aviation" data-locales="">
           <td class="col-fn"><code>iata_ticket</code></td>
@@ -2246,6 +2264,8 @@ const ROWS = [
   ["cef_log","Güvenlik","security",false,"—","CEF:0|Cisco|ASA|9.16|...","mockjutsu generate cef_log","","ArcSight CEF log line — vendor, product, severity 0-10, src/dst IPs."],
   ["x509_cert","Güvenlik","security",false,"—","{\"subject\":\"CN=api...\",...}","mockjutsu generate x509_cert","","X.509 certificate fields (JSON): subject, issuer, serial, validity, fingerprint, SANs."],
   ["pcap_hex","Güvenlik","security",false,"—","ff ff 08 00 45 00 ...","mockjutsu generate pcap_hex","","Wireshark-style pcap hex dump of a mock Ethernet+IPv4+TCP frame."],
+  ["creditor_ref","Bankacılık","bankacilik",false,"—","RF18539007547034","mockjutsu generate creditor_ref","","ISO 11649 Creditor Reference: RF + 2-digit MOD-97 kontrolü + 3-21 alphanumeric chars."],
+  ["vat_number","Kimlik","identity",true,"—","TR1234567890","mockjutsu generate vat_number --locale TR","TR US UK DE FR RU","EU/Global VIES VAT Numarası ile country prefix (TR/DE/FR/İngiltere/ABD/RU)."],
   ["iata_ticket","Aviation","aviation",false,"—","0012345678902","mockjutsu generate iata_ticket","","IATA Elektronik Ticket Numarası (ETN): 3-digit airline code + 9-digit serial + MOD-7 kontrolü digit."],
   ["imo_number","Aviation","aviation",false,"—","IMO 9074729","mockjutsu generate imo_number","","IMO Ship Registration Numarası: 7-digit identifier ile MOD-10 weighted kontrolü digit."],
   ["pnr_code","Aviation","aviation",false,"—","K7XR2B","mockjutsu generate pnr_code","","GDS Passenger Name kaydı (PNR) locator: 6-char uppercase alphanumeric, no ambiguous chars."],

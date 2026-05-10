@@ -153,6 +153,23 @@ class BankingGenerator:
         return "".join(random.choice(_SEPA_CHARS) for _ in range(length))
 
     @staticmethod
+    def generate_creditor_ref():
+        """ISO 11649 Creditor Reference — RF + 2-digit MOD-97 check + 3-21 alphanumeric chars.
+
+        Algorithm (identical to IBAN ISO 13616):
+          1. Generate reference chars (uppercase alphanumeric, 3–21 chars)
+          2. Rearrange: ref + 'RF00' → convert letters to digits (A=10…Z=35)
+          3. check = 98 − (numeric MOD 97), zero-padded to 2 digits
+          4. Output: 'RF' + check + ref
+        """
+        length = random.randrange(3, 22)  # 3–21 chars
+        ref = "".join(random.choice(_SEPA_CHARS) for _ in range(length))
+        rearranged = ref + "RF00"
+        numeric = "".join(str(ord(c) - 55) if c.isalpha() else c for c in rearranged)
+        check = 98 - int(numeric) % 97
+        return f"RF{check:02d}{ref}"
+
+    @staticmethod
     def generate_transaction(locale="TR"):
         l = locale.upper()
         currency = CURRENCIES.get(l, "TRY")
@@ -207,4 +224,6 @@ class BankingGenerator:
             return random.choice(BANK_NAMES.get(l, BANK_NAMES["TR"]))
         if dt == "sepa_ref":
             return self.generate_sepa_ref()
+        if dt == "creditor_ref":
+            return self.generate_creditor_ref()
         return None

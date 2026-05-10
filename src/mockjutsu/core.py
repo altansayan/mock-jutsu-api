@@ -40,6 +40,7 @@ _IDENTITY_TYPES = {
     'firstname', 'lastname', 'fullname', 'patronymic',
     'passport', 'license', 'age', 'gender', 'birthdate',
     'tckn_masked', 'ssn_masked', 'nationality',
+    'vat_number',
 }
 
 _FINANCIAL_TYPES = {
@@ -67,7 +68,7 @@ _META_TYPES = {
 
 _BANKING_TYPES = {
     'swift', 'bic', 'sort_code', 'routing_number', 'bik_code',
-    'transaction', 'bank_name', 'sepa_ref',
+    'transaction', 'bank_name', 'sepa_ref', 'creditor_ref',
 }
 
 _CORPORATE_TYPES = {
