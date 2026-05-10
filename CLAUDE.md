@@ -2,6 +2,10 @@
 
 This document provides strict rules and patterns for AI agents (Claude, Cursor, etc.) working on the Mock Jutsu ecosystem.
 
+**Developer:** Altan Sezer Ayan
+**GitHub:** https://github.com/altansayan
+**Repository:** https://github.com/altansayan/mock-jutsu-api
+
 ## 🛡️ STRICT DEVELOPMENT PROTOCOL (SOP)
 The following 11-step lifecycle MUST be followed for every module. **No shortcuts allowed.**
 
@@ -28,7 +32,7 @@ Mock Jutsu aims to be the standard testing tool for all platforms:
 
 ## ⚠️ MANDATORY RULES & GOTCHAS
 - **NO UNAUTHORIZED CHANGES:** DO NOT change any file without asking the user first. Always ask for permission.
-- **GITHUB MANDATE:** Every project produced by ASA Intelligence MUST be uploaded to GitHub.
+- **GITHUB MANDATE:** Every project produced by Altan Sezer Ayan MUST be uploaded to GitHub.
 - **PYTHONPATH:** Always run tests with `$env:PYTHONPATH='src'` (PowerShell) or `export PYTHONPATH=src` (Bash).
 - **Zero-Dependency:** Strict adherence. No external libraries.
 - **Compliance:** Run `python scripts/audit_compliance.py` and `pytest --cov-fail-under=85` before every push.
