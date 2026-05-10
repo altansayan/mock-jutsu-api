@@ -4,12 +4,9 @@ Mock Jutsu is a zero-dependency, pure-Python algorithmic mock data engine.
 192 data types, 6 locales, real checksums and ISO-compliant formats.
 This guide gets you from zero to your first merged contribution.
 
-**Developer:** Altan Sezer Ayan
-
-**GitHub:** https://github.com/altansayan
-
-**LinkedIn:** https://www.linkedin.com/in/altansezerayan/
-
+**Developer:** Altan Sezer Ayan  
+**GitHub:** https://github.com/altansayan  
+**LinkedIn:** https://www.linkedin.com/in/altansezerayan/  
 **Repository:** https://github.com/altansayan/mock-jutsu-api
 
 ---
