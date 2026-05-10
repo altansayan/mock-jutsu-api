@@ -4,6 +4,7 @@ This document provides strict rules and patterns for AI agents (Claude, Cursor, 
 
 **Developer:** Altan Sezer Ayan
 **GitHub:** https://github.com/altansayan
+**LinkedIn:** https://www.linkedin.com/in/altansezerayan/
 **Repository:** https://github.com/altansayan/mock-jutsu-api
 
 ## 🛡️ STRICT DEVELOPMENT PROTOCOL (SOP)
