@@ -318,7 +318,8 @@ def main(ctx):
 @click.option('--amount',    default=None,     help='Amount for QR/Transactions', type=float)
 @click.option('--merchant',  default='MOCK STORE', help='Merchant name')
 @click.option('--city',      default='ISTANBUL', help='Merchant city')
-def generate(data_type, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, merchant, city):
+@click.option('--words',     default=None,     help='Word count for mnemonic (12, 15, 18, 21, 24)', type=int)
+def generate(data_type, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, merchant, city, words):
     """Generate mock data.  Example: mockjutsu generate tckn --locale TR"""
     if not data_type:
         click.echo("Error: specify a type. Run 'mockjutsu list' to see all types.")
@@ -332,7 +333,8 @@ def generate(data_type, locale, network, currency, carrier, algorithm, prefix, g
         'max': max,
         'amount': amount,
         'merchant': merchant,
-        'city': city
+        'city': city,
+        'words': words
     }
     kwargs = {k: v for k, v in raw_kwargs.items() if v is not None and v != ''}
     
@@ -481,12 +483,35 @@ def company(locale, count):
 
 @main.command()
 @click.argument('data_type')
-@click.option('--count',  default=10,  help='Number of values to generate', type=int)
-@click.option('--locale', default='TR', help='Locale: TR UK US DE FR RU')
-def bulk(data_type, count, locale):
+@click.option('--count',     default=10,       help='Number of values to generate', type=int)
+@click.option('--locale',    default='TR',     help='Locale: TR UK US DE FR RU')
+@click.option('--network',   default='visa',   help='Card network: visa mc amex troy mir')
+@click.option('--currency',  default='btc',    help='Crypto currency: btc eth')
+@click.option('--carrier',   default='usps',   help='Tracking carrier: usps ups fedex')
+@click.option('--algorithm', default='sha256', help='Hash algorithm')
+@click.option('--prefix',    default='',       help='Prefix for IDs')
+@click.option('--gender',    default='',       help='Gender: male/female')
+@click.option('--min',       default=None,     help='Minimum value', type=float)
+@click.option('--max',       default=None,     help='Maximum value', type=float)
+@click.option('--amount',    default=None,     help='Amount', type=float)
+@click.option('--words',     default=None,     help='Word count', type=int)
+def bulk(data_type, count, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, words):
     """Generate multiple values of the same type.  Example: mockjutsu bulk tckn --count 5"""
     import json
-    results = jutsu.bulk(data_type, count=count, locale=locale)
+    raw_kwargs = {
+        'prefix': prefix,
+        'gender': gender,
+        'min': min,
+        'max': max,
+        'amount': amount,
+        'words': words,
+        'network': network,
+        'currency': currency,
+        'carrier': carrier,
+        'algorithm': algorithm
+    }
+    kwargs = {k: v for k, v in raw_kwargs.items() if v is not None and v != ''}
+    results = jutsu.bulk(data_type, count=count, locale=locale, **kwargs)
     click.echo(json.dumps(results, ensure_ascii=False, indent=2))
 
 
