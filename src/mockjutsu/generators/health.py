@@ -1,8 +1,20 @@
 """
-mock-jutsu — Health Generator (Blood Type, NHS, ICD-10, Height/Weight, NPI, BMI)
+mock-jutsu — Health Generator
+Standards:
+  HL7 v2.5 §2.9 / §3.3.1 (ADT^A01 message structure)
+  HL7 FHIR R4 v4.0.1 §8.1 (Patient resource)
+  NEMA DICOM PS3.5 §9.1 + ISO/IEC 9834-8 (UUID-based UID root 2.25)
+  NHS Number Standard (NHS Digital, weighted Mod-11 checksum)
+  CMS NPI Algorithm (Luhn with 80840 prefix)
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
+
+Entropy:
+  hl7_message : unique per call (MSG + 8 hex control ID = 2^32 space)
+  fhir_patient: UUID v4 ID → ~5.3×10^36
+  dicom_uid   : 128-bit random decimal → ~3.4×10^38
 """
 
+import json
 import random
 import secrets
 
@@ -29,6 +41,74 @@ ICD10_POOL = [
     ("I25.10", "Atherosclerotic heart disease, unspecified vessel"),
     ("J20.9",  "Acute bronchitis, unspecified"),
 ]
+
+# ──────────────────────────────────────────────────────────────────────────────
+# HL7 v2.5 ADT^A01 — static lookup tables
+# HL7 International standard; all field values are synthetic.
+# ──────────────────────────────────────────────────────────────────────────────
+_HL7_APPS: list[str] = ["EMR_SYS", "LIS", "RADIOLOGY", "PHARMACY", "BILLING"]
+_HL7_FACILITIES: list[str] = ["CITYHOSP", "METRO_MEDICAL", "ST_JOHNS", "CENTRAL_CLINIC"]
+_HL7_UNITS: list[str] = ["2EAST", "3WEST", "ICU", "ED", "ONCOLOGY", "SURGERY"]
+_HL7_LAST_NAMES: list[str] = [
+    "SMITH", "JONES", "WILLIAMS", "BROWN", "TAYLOR",
+    "ANDERSON", "THOMAS", "JACKSON", "WHITE", "HARRIS",
+]
+_HL7_FIRST_NAMES: list[str] = [
+    "JAMES", "MARY", "ROBERT", "LINDA", "MICHAEL",
+    "PATRICIA", "WILLIAM", "BARBARA", "DAVID", "SUSAN",
+]
+_HL7_PHYSICIANS: list[str] = [
+    "001^SMITH^JAMES^A^^MD", "002^JOHNSON^MARY^B^^DO",
+    "003^WILLIAMS^ROBERT^C^^MD", "004^BROWN^LINDA^D^^NP",
+    "005^DAVIS^MICHAEL^E^^MD", "006^MILLER^SUSAN^F^^DO",
+]
+
+# ──────────────────────────────────────────────────────────────────────────────
+# FHIR R4 Patient — static lookup tables
+# HL7 FHIR R4 v4.0.1 §8.1; synthetic names, real country codes.
+# ──────────────────────────────────────────────────────────────────────────────
+_FHIR_FAMILIES: dict[str, list[str]] = {
+    "TR": ["Yılmaz", "Kaya", "Demir", "Şahin", "Çelik", "Aydın", "Arslan"],
+    "US": ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller"],
+    "UK": ["Smith", "Jones", "Taylor", "Brown", "Davies", "Evans", "Wilson"],
+    "DE": ["Müller", "Schmidt", "Schneider", "Fischer", "Weber", "Meyer"],
+    "FR": ["Martin", "Bernard", "Dubois", "Thomas", "Robert", "Richard"],
+    "RU": ["Иванов", "Смирнов", "Кузнецов", "Попов", "Васильев", "Новиков"],
+}
+_FHIR_GIVENS_M: dict[str, list[str]] = {
+    "TR": ["Ahmet", "Mehmet", "Mustafa", "Ali", "Hüseyin", "Hasan"],
+    "US": ["James", "John", "Robert", "Michael", "William", "David"],
+    "UK": ["Oliver", "George", "Harry", "Jack", "Charlie", "Thomas"],
+    "DE": ["Lukas", "Jonas", "Leon", "Finn", "Elias", "Noah"],
+    "FR": ["Lucas", "Hugo", "Gabriel", "Arthur", "Louis", "Raphaël"],
+    "RU": ["Александр", "Дмитрий", "Максим", "Сергей", "Андрей", "Алексей"],
+}
+_FHIR_GIVENS_F: dict[str, list[str]] = {
+    "TR": ["Fatma", "Ayşe", "Emine", "Hatice", "Zeynep", "Elif"],
+    "US": ["Mary", "Patricia", "Jennifer", "Linda", "Barbara", "Susan"],
+    "UK": ["Olivia", "Amelia", "Isla", "Ava", "Mia", "Isabella"],
+    "DE": ["Emma", "Mia", "Hannah", "Lena", "Lea", "Anna"],
+    "FR": ["Emma", "Jade", "Louise", "Alice", "Chloé", "Inès"],
+    "RU": ["Анастасия", "Мария", "Анна", "Виктория", "Екатерина", "Наталья"],
+}
+_FHIR_CITIES: dict[str, list[str]] = {
+    "TR": ["İstanbul", "Ankara", "İzmir", "Bursa", "Antalya"],
+    "US": ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix"],
+    "UK": ["London", "Birmingham", "Manchester", "Leeds", "Glasgow"],
+    "DE": ["Berlin", "Hamburg", "München", "Köln", "Frankfurt"],
+    "FR": ["Paris", "Lyon", "Marseille", "Toulouse", "Nice"],
+    "RU": ["Москва", "Санкт-Петербург", "Новосибирск", "Екатеринбург", "Казань"],
+}
+# ISO 3166-1 alpha-2
+_FHIR_COUNTRY_CODE: dict[str, str] = {
+    "TR": "TR", "US": "US", "UK": "GB", "DE": "DE", "FR": "FR", "RU": "RU",
+}
+
+# ──────────────────────────────────────────────────────────────────────────────
+# DICOM UID — root 2.25 (ISO/IEC 9834-8 UUID-derived UID org root)
+# NEMA DICOM PS3.5 §9.1: digits and dots only, max 64 chars, no leading zeros.
+# ──────────────────────────────────────────────────────────────────────────────
+_DICOM_ROOT = "2.25"
 
 
 class HealthGenerator:
@@ -114,6 +194,137 @@ class HealthGenerator:
         raw = 18.5 + random.randrange(166) / 10  # 18.5–35.0 (0.1 steps)
         return round(raw, 1)
 
+    @staticmethod
+    def generate_hl7_message() -> str:
+        """
+        HL7 v2.5 ADT^A01 (Patient Admission) message.
+        HL7 International standard v2.5 §3.3.1.
+        Segments: MSH | EVN | PID | PV1, CR-terminated (\\r).
+        No check digit — transport reliability delegated to TCP/IP per HL7 spec.
+        """
+        from datetime import datetime
+        ts    = datetime.now().strftime("%Y%m%d%H%M%S")
+        # Date of birth: random year 1940–2000, random month 01–12, day 01–28
+        dob   = (f"{random.randint(1940, 2000)}"
+                 f"{random.randint(1, 12):02d}"
+                 f"{random.randint(1, 28):02d}")
+
+        sending_app  = random.choice(_HL7_APPS)
+        sending_fac  = random.choice(_HL7_FACILITIES)
+        recv_app     = random.choice(_HL7_APPS)
+        recv_fac     = random.choice(_HL7_FACILITIES)
+        ctrl_id      = "MSG" + secrets.token_hex(4).upper()  # MSG + 8 hex chars = 11 chars total
+        last         = random.choice(_HL7_LAST_NAMES)
+        first        = random.choice(_HL7_FIRST_NAMES)
+        gender       = random.choice(["M", "F"])
+        mrn          = f"MRN{random.randint(100000, 999999)}"
+        unit         = random.choice(_HL7_UNITS)
+        room         = random.randint(100, 499)
+        bed          = random.choice(["A", "B", "C"])
+        physician    = random.choice(_HL7_PHYSICIANS)
+
+        SEP = "|"
+        msh = SEP.join([
+            "MSH", r"^~\&", sending_app, sending_fac, recv_app, recv_fac,
+            ts, "", "ADT^A01^ADT_A01", ctrl_id, "P", "2.5",
+        ])
+        evn = SEP.join(["EVN", "A01", ts])
+        pid = SEP.join([
+            "PID", "1", "", f"{mrn}^^^{sending_fac}^MR", "",
+            f"{last}^{first}^", "", dob, gender,
+            "", "", "", "", "S",
+        ])
+        pv1 = SEP.join([
+            "PV1", "1", "I", f"{unit}^{room}^{bed}", "E",
+            "", "", physician, "", "", "MED", "", "", "A",
+        ])
+        return "\r".join([msh, evn, pid, pv1]) + "\r"
+
+    @staticmethod
+    def generate_fhir_patient(locale: str = "TR") -> str:
+        """
+        FHIR R4 Patient resource (JSON string).
+        HL7 FHIR v4.0.1 §8.1 — resourceType Patient.
+        Locale-aware: names, city, and ISO 3166-1 country code.
+        """
+        import uuid as _uuid
+        from datetime import datetime, timezone
+
+        loc       = locale.upper() if locale.upper() in _FHIR_FAMILIES else "US"
+        gender    = random.choice(["male", "female", "other", "unknown"])
+        families  = _FHIR_FAMILIES.get(loc, _FHIR_FAMILIES["US"])
+        givens_m  = _FHIR_GIVENS_M.get(loc, _FHIR_GIVENS_M["US"])
+        givens_f  = _FHIR_GIVENS_F.get(loc, _FHIR_GIVENS_F["US"])
+        givens    = givens_f if gender == "female" else givens_m
+        family    = random.choice(families)
+        given     = random.choice(givens)
+        cities    = _FHIR_CITIES.get(loc, _FHIR_CITIES["US"])
+        country   = _FHIR_COUNTRY_CODE.get(loc, loc)
+        city      = random.choice(cities)
+        birth_yr  = random.randint(1940, 2005)
+        birth_mo  = random.randint(1, 12)
+        birth_day = random.randint(1, 28)
+        birth_dt  = f"{birth_yr}-{birth_mo:02d}-{birth_day:02d}"
+        now_iso   = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+        patient_id = str(_uuid.uuid4())
+
+        resource = {
+            "resourceType": "Patient",
+            "id": patient_id,
+            "meta": {
+                "versionId": "1",
+                "lastUpdated": now_iso,
+                "profile": [
+                    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+                ],
+            },
+            "active": True,
+            "identifier": [
+                {
+                    "use": "official",
+                    "system": "urn:oid:2.16.840.1.113883.4.1",
+                    "value": f"{random.randint(100,999)}-{random.randint(10,99)}-{random.randint(1000,9999)}",
+                }
+            ],
+            "name": [
+                {
+                    "use": "official",
+                    "family": family,
+                    "given": [given],
+                }
+            ],
+            "telecom": [
+                {
+                    "system": "phone",
+                    "value": f"+{random.randint(1,99)}-{random.randint(100,999)}-{random.randint(1000000,9999999)}",
+                    "use": "home",
+                }
+            ],
+            "gender": gender,
+            "birthDate": birth_dt,
+            "address": [
+                {
+                    "use": "home",
+                    "type": "physical",
+                    "city": city,
+                    "country": country,
+                }
+            ],
+        }
+        return json.dumps(resource, ensure_ascii=False)
+
+    @staticmethod
+    def generate_dicom_uid() -> str:
+        """
+        DICOM UID — root 2.25 (ISO/IEC 9834-8, UUID-based org root).
+        NEMA DICOM PS3.5 §9.1: only digits and dots, max 64 chars,
+        no component starts with 0 (unless the component is '0' itself).
+        Suffix = 128-bit random integer represented as decimal (≤ 39 digits).
+        """
+        # 16 random bytes = 128-bit integer; strip leading zeros from decimal repr.
+        decimal_suffix = str(int.from_bytes(secrets.token_bytes(16), "big"))
+        return f"{_DICOM_ROOT}.{decimal_suffix}"
+
     def generate(self, data_type, locale="TR", **kwargs):
         dt = data_type.lower().replace("_", "")
         if dt == "bloodtype":
@@ -131,4 +342,10 @@ class HealthGenerator:
             return self.generate_npi()
         if dt == "bmi":
             return self.generate_bmi()
+        if dt == "hl7message":
+            return self.generate_hl7_message()
+        if dt == "fhirpatient":
+            return self.generate_fhir_patient(locale)
+        if dt == "dicomuid":
+            return self.generate_dicom_uid()
         return None

@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("2772 Tests\n", style="cyan")
+    body.append("2836 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -262,6 +262,9 @@ _REFERENCE = [
     ('sepa_ref'       , 'Banking'      , False, 'SEPAENDTOEND20240501...', 'generate sepa_ref'            , 'SEPA End-to-End identification reference.', '-'),
     ('npi'            , 'Health'       , False, '1234567893'            , 'generate npi'                 , 'US National Provider Identifier (NPI) with Luhn.', '-'),
     ('credit_score'   , 'Financial'    , False, '720'                   , 'generate credit_score'        , 'Simulated credit risk score (typically 300-850).', '-'),
+    ('hl7_message'    , 'Health'       , False, 'MSH|[enc]|EMR_SYS|...|ADT^A01^ADT_A01|...|2.5', 'generate hl7_message'  , 'HL7 v2.5 ADT^A01 patient admission message (MSH/EVN/PID/PV1 segments).', '-'),
+    ('fhir_patient'   , 'Health'       , True , '{"resourceType":"Patient","id":"..."}', 'generate fhir_patient --locale UK', 'FHIR R4 Patient resource (JSON) with UUID id, name, gender, birthDate, address.', '--locale'),
+    ('dicom_uid'      , 'Health'       , False, '2.25.329800735698586629...', 'generate dicom_uid'        , 'DICOM UID (ISO/IEC 9834-8 root 2.25) — digits and dots, max 64 chars.', '-'),
 ]
 
 # Category display order

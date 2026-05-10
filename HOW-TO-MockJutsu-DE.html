@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; DE Referenzhandbuch</h1>
   <div class="engine-title">Die ultimative algorithmische Mock-Daten-Engine</div>
-  <div class="sub"><span>6 Sprachräume</span> &bull; <span>186 Datentypen</span> &bull; <span>2772 Tests</span></div>
+  <div class="sub"><span>6 Sprachräume</span> &bull; <span>189 Datentypen</span> &bull; <span>2836 Tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Alle Parameter (186)</div>
+  <div class="stitle">Alle Parameter (189)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Funktion, CLI-Befehl oder Beispielausgabe suchen..." oninput="filterTable()">
@@ -1905,6 +1905,33 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-output"><code>720</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate credit_score')">mockjutsu generate credit_score</span></td>
         </tr>
+        <tr data-fn="hl7_message" data-cat="Health" data-locales="">
+          <td class="col-fn"><code>hl7_message</code></td>
+          <td class="col-cat"><span class="pill ">Health</span></td>
+          <td class="col-desc">HL7 v2.5 ADT^A01 patient admission message (MSH/EVN/PID/PV1 segments).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>MSH|[enc]|EMR_SYS|...|ADT^A01^ADT_A01|...|2.5</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate hl7_message')">mockjutsu generate hl7_message</span></td>
+        </tr>
+        <tr data-fn="fhir_patient" data-cat="Health" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>fhir_patient</code></td>
+          <td class="col-cat"><span class="pill ">Health</span></td>
+          <td class="col-desc">FHIR R4 Patient resource (JSON) mit UUID id, name, gender, birthDate, address.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra"><code>--locale</code></td>
+          <td class="col-output"><code>{"resourceType":"Patient","id":"..."}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate fhir_patient --locale UK')">mockjutsu generate fhir_patient --locale UK</span></td>
+        </tr>
+        <tr data-fn="dicom_uid" data-cat="Health" data-locales="">
+          <td class="col-fn"><code>dicom_uid</code></td>
+          <td class="col-cat"><span class="pill ">Health</span></td>
+          <td class="col-desc">DICOM UID (ISO/IEC 9834-8 root 2.25) — digits and dots, max 64 chars.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>2.25.329800735698586629...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate dicom_uid')">mockjutsu generate dicom_uid</span></td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -2287,7 +2314,10 @@ const ROWS = [
   ["nationality","Identity","identity",false,"—","TUR","mockjutsu generate nationality","","ISO 3166-1 alpha-3 nationality codes."],
   ["sepa_ref","Banking","bankacilik",false,"—","SEPAENDTOEND20240501...","mockjutsu generate sepa_ref","","SEPA End-to-End identification reference."],
   ["npi","Health","health",false,"—","1234567893","mockjutsu generate npi","","US National Provider Identifier (NPI) mit Luhn."],
-  ["credit_score","Financial","financial",false,"—","720","mockjutsu generate credit_score","","Simulated credit risk score (typically 300-850)."]
+  ["credit_score","Financial","financial",false,"—","720","mockjutsu generate credit_score","","Simulated credit risk score (typically 300-850)."],
+  ["hl7_message","Health","health",false,"—","MSH|[enc]|EMR_SYS|...|ADT^A01^ADT_A01|...|2.5","mockjutsu generate hl7_message","","HL7 v2.5 ADT^A01 patient admission message (MSH/EVN/PID/PV1 segments)."],
+  ["fhir_patient","Health","health",true,"--locale","{\"resourceType\":\"Patient\",\"id\":\"...\"}","mockjutsu generate fhir_patient --locale UK","TR US UK DE FR RU","FHIR R4 Patient resource (JSON) mit UUID id, name, gender, birthDate, address."],
+  ["dicom_uid","Health","health",false,"—","2.25.329800735698586629...","mockjutsu generate dicom_uid","","DICOM UID (ISO/IEC 9834-8 root 2.25) — digits and dots, max 64 chars."]
 ];
 
 const CAT_CLS = {

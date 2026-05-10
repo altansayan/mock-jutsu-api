@@ -75,6 +75,7 @@ _CORPORATE_TYPES = {
 _HEALTH_TYPES = {
     'blood_type', 'bloodtype', 'nhs_number', 'nhsnumber',
     'icd10', 'height', 'weight', 'npi', 'bmi',
+    'hl7_message', 'fhir_patient', 'dicom_uid',
 }
 
 _COMMERCE_TYPES = {
