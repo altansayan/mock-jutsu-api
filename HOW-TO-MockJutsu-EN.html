@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; US Reference Guide</h1>
   <div class="engine-title">The Ultimate Algorithmic Mock Data Engine</div>
-  <div class="sub"><span>6 locales</span> &bull; <span>199 data types</span> &bull; <span>2967 tests</span></div>
+  <div class="sub"><span>6 locales</span> &bull; <span>200 data types</span> &bull; <span>3000 tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">All Parameters (199)</div>
+  <div class="stitle">All Parameters (200)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Search function, CLI command or example output..." oninput="filterTable()">
@@ -842,6 +842,15 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-extra">—</td>
           <td class="col-output"><code>K7XR2B</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate pnr_code')">mockjutsu generate pnr_code</span></td>
+        </tr>
+        <tr data-fn="regex_string" data-cat="Meta" data-locales="">
+          <td class="col-fn"><code>regex_string</code></td>
+          <td class="col-cat"><span class="pill cat-meta">Meta</span></td>
+          <td class="col-desc">Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra"><code>--pattern (regex)</code></td>
+          <td class="col-output"><code>A4F-2819</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate regex_string')">mockjutsu generate regex_string</span></td>
         </tr>
         <tr data-fn="phone" data-cat="Contact" data-locales="TR US UK DE FR RU">
           <td class="col-fn"><code>phone</code></td>
@@ -2287,6 +2296,7 @@ const ROWS = [
   ["iata_ticket","Aviation","aviation",false,"—","0012345678902","mockjutsu generate iata_ticket","","IATA Electronic Ticket Number (ETN): 3-digit airline code + 9-digit serial + MOD-7 check digit."],
   ["imo_number","Aviation","aviation",false,"—","IMO 9074729","mockjutsu generate imo_number","","IMO Ship Registration Number: 7-digit identifier with MOD-10 weighted check digit."],
   ["pnr_code","Aviation","aviation",false,"—","K7XR2B","mockjutsu generate pnr_code","","GDS Passenger Name Record (PNR) locator: 6-char uppercase alphanumeric, no ambiguous chars."],
+  ["regex_string","Meta","meta",false,"--pattern (regex)","A4F-2819","mockjutsu generate regex_string","","Reverse regex engine: generates a string matching any regex pattern (use --pattern flag)."],
   ["phone","Contact","contact",true,"—","+905325551234","mockjutsu generate phone --locale TR","TR US UK DE FR RU","Full E.164 formatted telephone number."],
   ["phone_country","Contact","contact",true,"—","+90","mockjutsu generate phone_country --locale TR","TR US UK DE FR RU","International telephone country dial code."],
   ["phone_area","Contact","contact",true,"—","532","mockjutsu generate phone_area --locale TR","TR US UK DE FR RU","Localized telephone area/operator code."],

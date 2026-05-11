@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("2967 Tests\n", style="cyan")
+    body.append("3000 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -146,6 +146,7 @@ _REFERENCE = [
     ('iata_ticket'    , 'Aviation'     , False, '0012345678902'         , 'generate iata_ticket'          , 'IATA Electronic Ticket Number (ETN): 3-digit airline code + 9-digit serial + MOD-7 check digit.', '-'),
     ('imo_number'     , 'Aviation'     , False, 'IMO 9074729'           , 'generate imo_number'           , 'IMO Ship Registration Number: 7-digit identifier with MOD-10 weighted check digit.', '-'),
     ('pnr_code'       , 'Aviation'     , False, 'K7XR2B'                , 'generate pnr_code'             , 'GDS Passenger Name Record (PNR) locator: 6-char uppercase alphanumeric, no ambiguous chars.', '-'),
+    ('regex_string'   , 'Meta'         , False, 'A4F-2819'               , 'generate regex_string'         , 'Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).', '--pattern (regex)'),
     ('phone'          , 'Contact'      , True , '+905325551234'         , 'generate phone --locale TR'    , 'Full E.164 formatted telephone number.', '-'),
     ('phone_country'  , 'Contact'      , True , '+90'                   , 'generate phone_country --locale TR', 'International telephone country dial code.', '-'),
     ('phone_area'     , 'Contact'      , True , '532'                   , 'generate phone_area --locale TR', 'Localized telephone area/operator code.', '-'),

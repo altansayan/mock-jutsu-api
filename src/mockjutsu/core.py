@@ -25,6 +25,7 @@ from .generators.social            import SocialGenerator
 from .generators.hardware          import HardwareGenerator
 from .generators.security          import SecurityGenerator
 from .generators.aviation          import AviationGenerator
+from .generators.reverse_regex     import ReverseRegexGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -65,6 +66,8 @@ _META_TYPES = {
     'api_key', 'totp_code', 'webhook_signature', 'transaction_id',
     'public_ip', 'private_ip',
 }
+
+_REVERSE_REGEX_TYPES = {'regex_string'}
 
 _BANKING_TYPES = {
     'swift', 'bic', 'sort_code', 'routing_number', 'bik_code',
@@ -159,7 +162,8 @@ class MockJutsuCore:
         self.social     = SocialGenerator()
         self.hardware   = HardwareGenerator()
         self.cybersec   = SecurityGenerator()
-        self.aviation   = AviationGenerator()
+        self.aviation       = AviationGenerator()
+        self.reverse_regex  = ReverseRegexGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -213,6 +217,8 @@ class MockJutsuCore:
             result = self.cybersec.generate(dt, **kwargs)
         elif dt in _AVIATION_TYPES:
             result = self.aviation.generate(dt, **kwargs)
+        elif dt in _REVERSE_REGEX_TYPES:
+            result = self.reverse_regex.generate(dt, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 
