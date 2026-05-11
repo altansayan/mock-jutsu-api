@@ -32,6 +32,7 @@ from .generators.ai_vector         import AiVectorGenerator
 from .generators.oidc              import OidcGenerator
 from .generators.bank_statement    import BankStatementGenerator
 from .generators.edi               import EdiGenerator
+from .generators.event_sourcing    import EventSourcingGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -168,6 +169,10 @@ _EDI_TYPES = {
     'edi_850', 'edifact_orders',
 }
 
+_EVENT_SOURCING_TYPES = {
+    'event_stream', 'cdc_event',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -200,6 +205,7 @@ class MockJutsuCore:
         self.oidc           = OidcGenerator()
         self.bank_statement = BankStatementGenerator()
         self.edi            = EdiGenerator()
+        self.event_sourcing = EventSourcingGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -267,6 +273,8 @@ class MockJutsuCore:
             result = self.bank_statement.generate(dt, locale=locale, **kwargs)
         elif dt in _EDI_TYPES:
             result = self.edi.generate(dt, **kwargs)
+        elif dt in _EVENT_SOURCING_TYPES:
+            result = self.event_sourcing.generate(dt, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 

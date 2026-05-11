@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("3462 Tests\n", style="cyan")
+    body.append("3504 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -167,6 +167,9 @@ _REFERENCE = [
     ('--EDI--'        , ''             , False, ''                           , ''                              , '', ''),
     ('edi_850'        , 'EDI'          , True , 'ISA*00*...*:~\nGS*PO*...'  , 'generate edi_850'              , 'ANSI X12 EDI 850 Purchase Order: ISA/GS/ST/BEG/N1/PO1/CTT/SE/GE/IEA. ISA13==IEA02, GS06==GE02, SE01==segment count.', '-'),
     ('edifact_orders' , 'EDI'          , True , "UNB+UNOC:3+...\nUNH+..."   , 'generate edifact_orders'       , "UN/EDIFACT ORDERS D96A: UNB/UNH/BGM/DTM/NAD/LIN/QTY/PRI/UNS/CNT/UNT/UNZ. UNT01==seg count, UNZ02==UNB ctrl ref.", '-'),
+    ('--EventSourcing--', ''           , False, ''                           , ''                              , '', ''),
+    ('event_stream'   , 'EventSourcing', False, '[{"event_type":"login",...}]', 'generate event_stream'         , 'Markov Chain user-journey event sequence (Login→Browse→Cart→Checkout→Logout). JSON array with correlation_id, timestamps, payloads.', '-'),
+    ('cdc_event'      , 'EventSourcing', False, '{"op":"u","before":{...},"after":{...}}', 'generate cdc_event', 'Debezium-style CDC event (INSERT/UPDATE/DELETE). op c/u/d, ts_ms, source db+table, before/after payloads.', '-'),
     ('regex_string'   , 'Meta'         , False, 'A4F-2819'               , 'generate regex_string'         , 'Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).', '--pattern (regex)'),
     ('phone'          , 'Contact'      , True , '+905325551234'         , 'generate phone --locale TR'    , 'Full E.164 formatted telephone number.', '-'),
     ('phone_country'  , 'Contact'      , True , '+90'                   , 'generate phone_country --locale TR', 'International telephone country dial code.', '-'),
@@ -309,7 +312,7 @@ _CAT_ORDER = [
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
     "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless", "WebAuthn", "Wallet",
-    "AI Vector", "OIDC", "BankStatement", "EDI",
+    "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing",
 ]
 
 _CAT_COLORS = {
@@ -344,6 +347,7 @@ _CAT_COLORS = {
     "OIDC":        "bright_cyan",
     "BankStatement": "bright_blue",
     "EDI":           "bright_yellow",
+    "EventSourcing": "magenta",
 }
 
 

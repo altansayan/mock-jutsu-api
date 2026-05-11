@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; TR Referans Kılavuzu</h1>
   <div class="engine-title">Nihai Algoritmik Mock Veri Motoru</div>
-  <div class="sub"><span>6 locale</span> &bull; <span>215 parametre tipi</span> &bull; <span>3462 Test</span></div>
+  <div class="sub"><span>6 locale</span> &bull; <span>217 parametre tipi</span> &bull; <span>3504 Test</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Tüm Parametreler (215)</div>
+  <div class="stitle">Tüm Parametreler (217)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Fonksiyon, CLI komutu veya örnek çıktı ara..." oninput="filterTable()">
@@ -981,6 +981,24 @@ GS*PO*...</code></td>
           <td class="col-output"><code>UNB+UNOC:3+...
 UNH+...</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate edifact_orders')">mockjutsu generate edifact_orders</span></td>
+        </tr>
+        <tr data-fn="event_stream" data-cat="EventSourcing" data-locales="">
+          <td class="col-fn"><code>event_stream</code></td>
+          <td class="col-cat"><span class="pill ">EventSourcing</span></td>
+          <td class="col-desc">Markov Chain user-journey event sequence (Login→Browse→Cart→Checkout→Logout). JSON array ile correlation_id, timestamps, payloads.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>[{"event_type":"login",...}]</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate event_stream')">mockjutsu generate event_stream</span></td>
+        </tr>
+        <tr data-fn="cdc_event" data-cat="EventSourcing" data-locales="">
+          <td class="col-fn"><code>cdc_event</code></td>
+          <td class="col-cat"><span class="pill ">EventSourcing</span></td>
+          <td class="col-desc">Debezium-style CDC event (INSERT/UPDATE/DELETE). op c/u/d, ts_ms, source db+table, before/after payloads.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"op":"u","before":{...},"after":{...}}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate cdc_event')">mockjutsu generate cdc_event</span></td>
         </tr>
         <tr data-fn="regex_string" data-cat="Meta" data-locales="">
           <td class="col-fn"><code>regex_string</code></td>
@@ -2450,6 +2468,8 @@ const ROWS = [
   ["camt053","BankStatement","bankacilik",true,"—","<?xml...camt.053...","mockjutsu generate camt053 --locale TR","TR US UK DE FR RU","ISO 20022 CAMT.053 XML bank statement: MsgId, IBAN, OPBD/CLBD balances, Ntry entries. Dot decimal (500.00)."],
   ["edi_850","EDI","edi",true,"—","ISA*00*...*:~\nGS*PO*...","mockjutsu generate edi_850","TR US UK DE FR RU","ANSI X12 EDI 850 Purchase Order: ISA/GS/ST/BEG/N1/PO1/CTT/SE/GE/IEA. ISA13==IEA02, GS06==GE02, SE01==segment count."],
   ["edifact_orders","EDI","edi",true,"—","UNB+UNOC:3+...\nUNH+...","mockjutsu generate edifact_orders","TR US UK DE FR RU","UN/EDIFACT ORDERS D96A: UNB/UNH/BGM/DTM/NAD/LIN/QTY/PRI/UNS/CNT/UNT/UNZ. UNT01==seg count, UNZ02==UNB ctrl ref."],
+  ["event_stream","EventSourcing","eventsourcing",false,"—","[{\"event_type\":\"login\",...}]","mockjutsu generate event_stream","","Markov Chain user-journey event sequence (Login→Browse→Cart→Checkout→Logout). JSON array ile correlation_id, timestamps, payloads."],
+  ["cdc_event","EventSourcing","eventsourcing",false,"—","{\"op\":\"u\",\"before\":{...},\"after\":{...}}","mockjutsu generate cdc_event","","Debezium-style CDC event (INSERT/UPDATE/DELETE). op c/u/d, ts_ms, source db+table, before/after payloads."],
   ["regex_string","Meta","meta",false,"--pattern (regex)","A4F-2819","mockjutsu generate regex_string","","Reverse regex engine: generates a string matching any regex pattern (use --pattern flag)."],
   ["phone","İletişim","contact",true,"—","+905325551234","mockjutsu generate phone --locale TR","TR US UK DE FR RU","Full E.164 formatted telephone Numarası."],
   ["phone_country","İletişim","contact",true,"—","+90","mockjutsu generate phone_country --locale TR","TR US UK DE FR RU","Uluslararası telephone country dial code."],
