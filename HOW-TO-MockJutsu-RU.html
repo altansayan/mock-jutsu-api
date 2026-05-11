@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; Справочник RU</h1>
   <div class="engine-title">Идеальный алгоритмический движок фиктивных данных</div>
-  <div class="sub"><span>6 регионов</span> &bull; <span>221 типов данных</span> &bull; <span>3590 тестов</span></div>
+  <div class="sub"><span>6 регионов</span> &bull; <span>223 типов данных</span> &bull; <span>3640 тестов</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Все Параметры (221)</div>
+  <div class="stitle">Все Параметры (223)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Поиск функции, CLI команды или примера вывода..." oninput="filterTable()">
@@ -1017,6 +1017,24 @@ UNH+...</code></td>
           <td class="col-extra">—</td>
           <td class="col-output"><code>{"drone_id":...,"samples":[{"lat":...,"alt_m":...}]}</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate drone_telemetry')">mockjutsu generate drone_telemetry</span></td>
+        </tr>
+        <tr data-fn="mrz_td3" data-cat="MRZ" data-locales="">
+          <td class="col-fn"><code>mrz_td3</code></td>
+          <td class="col-cat"><span class="pill ">MRZ</span></td>
+          <td class="col-desc">ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal Номер, composite проверка digit (ICAO 9303 Part 3).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"mrz_type":"TD3","lines":["P<TUR...","ABCD123456<..."]}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate mrz_td3')">mockjutsu generate mrz_td3</span></td>
+        </tr>
+        <tr data-fn="mrz_td1" data-cat="MRZ" data-locales="">
+          <td class="col-fn"><code>mrz_td1</code></td>
+          <td class="col-cat"><span class="pill ">MRZ</span></td>
+          <td class="col-desc">ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc Номер, DOB, expiry, composite проверка digit (ICAO 9303 Part 5).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"mrz_type":"TD1","lines":["I<TUR...","...","SMITH<<JOHN<"]}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate mrz_td1')">mockjutsu generate mrz_td1</span></td>
         </tr>
         <tr data-fn="jwt_attack" data-cat="PenTest" data-locales="">
           <td class="col-fn"><code>jwt_attack</code></td>
@@ -2509,6 +2527,8 @@ const ROWS = [
   ["cdc_event","EventSourcing","eventsourcing",false,"—","{\"op\":\"u\",\"before\":{...},\"after\":{...}}","mockjutsu generate cdc_event","","Debezium-style CDC event (INSERT/UPDATE/DELETE). op c/u/d, ts_ms, source db+table, before/after payloads."],
   ["fdr_record","Telemetry","telemetry",false,"—","{\"flight_id\":...,\"samples\":[{\"pitch\":2.1,...}]}","mockjutsu generate fdr_record","","Flight Data Recorder time-series: pitch/roll/yaw/altitude_ft/speed_kts/vspeed_fpm/g_force. Physics-constrained bounded random walk (10 Hz)."],
   ["drone_telemetry","Telemetry","telemetry",false,"—","{\"drone_id\":...,\"samples\":[{\"lat\":...,\"alt_m\":...}]}","mockjutsu generate drone_telemetry","","Drone telemetry time-series: lat/lon/alt_m/pitch/roll/yaw/speed_ms/battery_pct/rssi. Battery monotonically decreasing (20 Hz)."],
+  ["mrz_td3","MRZ","mrz",false,"—","{\"mrz_type\":\"TD3\",\"lines\":[\"P<TUR...\",\"ABCD123456<...\"]}","mockjutsu generate mrz_td3","","ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal Номер, composite проверка digit (ICAO 9303 Part 3)."],
+  ["mrz_td1","MRZ","mrz",false,"—","{\"mrz_type\":\"TD1\",\"lines\":[\"I<TUR...\",\"...\",\"SMITH<<JOHN<\"]}","mockjutsu generate mrz_td1","","ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc Номер, DOB, expiry, composite проверка digit (ICAO 9303 Part 5)."],
   ["jwt_attack","PenTest","pentest",false,"—","{\"token\":\"eyJ...\",\"attack_type\":\"none_alg\",\"description\":\"...\"}","mockjutsu generate jwt_attack","","Crafted JWT attack payloads: none_alg (CVE bypass), expired, invalid_signature (bit-flip), alg_confusion (RS256/HS256), kid_injection (path/SQL), empty_password."],
   ["asn1_fuzz","PenTest","pentest",false,"—","{\"hex\":\"3008...\",\"fuzz_type\":\"truncated\",\"length\":10}","mockjutsu generate asn1_fuzz","","ASN.1/DER malformed payloads: truncated, overflow_length (long-form 0x82), wrong_tag, nested_mismatch, zero_length, random_bytes."],
   ["regex_string","Мета","meta",false,"--pattern (regex)","A4F-2819","mockjutsu generate regex_string","","Reverse regex engine: generates a string matching any regex pattern (use --pattern flag)."],
