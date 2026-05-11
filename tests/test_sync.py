@@ -118,3 +118,43 @@ def test_no_orphan_types_in_reference():
         f"Types in _REFERENCE but NOT in core.py: {orphans}\n"
         f"Fix: remove or move these entries."
     )
+
+
+# ── 4. CLI option ↔ _REFERENCE extra_params sync ────────────────────────────
+
+def test_cli_options_documented_in_reference():
+    """Every custom @click.option on 'generate' must appear in at least one
+    _REFERENCE extra_params column — otherwise it's either dead code or the
+    developer forgot to document the flag.
+
+    Exempt options are global/implicit flags that apply to all types.
+    """
+    import re
+    from mockjutsu.cli import main as _main
+
+    # Options present on the generate command
+    generate_cmd  = _main.commands['generate']
+    cli_options   = {
+        f"--{p.name.replace('_', '-')}"
+        for p in generate_cmd.params
+        if hasattr(p, 'name')
+    }
+
+    # Options that apply to every type implicitly — exempt from the check
+    _GLOBAL_OPTIONS = {'--locale', '--data-type', '--help'}
+    custom_options = cli_options - _GLOBAL_OPTIONS
+
+    # Flags documented in _REFERENCE extra_params
+    documented_flags: set[str] = set()
+    for row in _REFERENCE:
+        if not row[0].strip() or row[0].strip().startswith('--'):
+            continue
+        documented_flags.update(re.findall(r'--\w[\w-]*', row[6]))
+
+    undocumented = custom_options - documented_flags
+    assert not undocumented, (
+        f"CLI options present in 'generate' command but missing from all "
+        f"_REFERENCE extra_params columns:\n  {undocumented}\n"
+        f"Fix: add the flag to at least one type's extra_params in cli.py _REFERENCE,\n"
+        f"then add a safe default to _FLAG_DEFAULTS in tests/test_cli.py."
+    )
