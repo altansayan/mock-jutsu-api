@@ -29,6 +29,7 @@ from .generators.reverse_regex     import ReverseRegexGenerator
 from .generators.fido2             import Fido2Generator
 from .generators.wallet            import WalletGenerator
 from .generators.ai_vector         import AiVectorGenerator
+from .generators.oidc              import OidcGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -153,6 +154,10 @@ _AI_VECTOR_TYPES = {
     'ai_embedding', 'ai_vector', 'ai_sparse_vector',
 }
 
+_OIDC_TYPES = {
+    'oidc_token_set', 'jwks', 'oidc_token',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -182,6 +187,7 @@ class MockJutsuCore:
         self.fido2          = Fido2Generator()
         self.wallet         = WalletGenerator()
         self.ai_vector      = AiVectorGenerator()
+        self.oidc           = OidcGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -243,6 +249,8 @@ class MockJutsuCore:
             result = self.wallet.generate(dt, **kwargs)
         elif dt in _AI_VECTOR_TYPES:
             result = self.ai_vector.generate(dt, **kwargs)
+        elif dt in _OIDC_TYPES:
+            result = self.oidc.generate(dt, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 

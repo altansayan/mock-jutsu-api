@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("3328 Tests\n", style="cyan")
+    body.append("3376 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -157,6 +157,10 @@ _REFERENCE = [
     ('ai_embedding'  , 'AI Vector'    , False, '[0.021,-0.184,...]'         , 'generate ai_embedding'         , '1536-dim L2-normalized float vector (OpenAI Ada-002 / Pinecone compatible). JSON array of floats with |v|₂=1.', '--dims (int)'),
     ('ai_vector'     , 'AI Vector'    , False, '[0.089,-0.234,...]'         , 'generate ai_vector'            , 'N-dim L2-normalized unit vector for embedding models (default 384-dim). Configurable via --dims.', '--dims (int)'),
     ('ai_sparse_vector', 'AI Vector'  , False, '{"indices":[...],"values":[...]}', 'generate ai_sparse_vector', 'Sparse {indices, values} vector with L2-normalized positive weights for hybrid search (Pinecone/Qdrant). 128 non-zero entries in 10k-dim space.', '--dims (int)'),
+    ('--OIDC--'       , ''             , False, ''                           , ''                              , '', ''),
+    ('oidc_token_set' , 'OIDC'         , False, '{"token":"eyJ...","jwks":{...},"kid":"...","claims":{...}}', 'generate oidc_token_set', 'ES256 key pair (P-256) → signed JWT + verifiable JWKS (kid linked). Full OIDC claims: iss, sub, aud, exp, iat, jti, email.', '-'),
+    ('jwks'           , 'OIDC'         , False, '{"keys":[{"kty":"EC","crv":"P-256",...}]}', 'generate jwks', 'Standalone JWK Set — fresh P-256 EC public key (kty=EC, crv=P-256, use=sig, alg=ES256). Mock /.well-known/jwks.json endpoint.', '-'),
+    ('oidc_token'     , 'OIDC'         , False, 'eyJhbGciOiJIUzI1NiJ9...'    , 'generate oidc_token'           , 'HS256 JWT with standard OIDC claims (iss, sub, aud, exp, iat, jti). Fast symmetric signing — no key pair needed.', '-'),
     ('regex_string'   , 'Meta'         , False, 'A4F-2819'               , 'generate regex_string'         , 'Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).', '--pattern (regex)'),
     ('phone'          , 'Contact'      , True , '+905325551234'         , 'generate phone --locale TR'    , 'Full E.164 formatted telephone number.', '-'),
     ('phone_country'  , 'Contact'      , True , '+90'                   , 'generate phone_country --locale TR', 'International telephone country dial code.', '-'),
@@ -299,7 +303,7 @@ _CAT_ORDER = [
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
     "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless", "WebAuthn", "Wallet",
-    "AI Vector",
+    "AI Vector", "OIDC",
 ]
 
 _CAT_COLORS = {
@@ -331,6 +335,7 @@ _CAT_COLORS = {
     "WebAuthn":    "bright_yellow",
     "Wallet":      "bright_green",
     "AI Vector":   "bright_magenta",
+    "OIDC":        "bright_cyan",
 }
 
 
