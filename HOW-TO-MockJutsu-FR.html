@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; Guide de Référence FR</h1>
   <div class="engine-title">L'ultime moteur algorithmique de données fictives</div>
-  <div class="sub"><span>6 régions</span> &bull; <span>219 types de données</span> &bull; <span>3551 tests</span></div>
+  <div class="sub"><span>6 régions</span> &bull; <span>221 types de données</span> &bull; <span>3590 tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Tous les Paramètres (219)</div>
+  <div class="stitle">Tous les Paramètres (221)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Rechercher une fonction, commande CLI ou exemple..." oninput="filterTable()">
@@ -1017,6 +1017,24 @@ UNH+...</code></td>
           <td class="col-extra">—</td>
           <td class="col-output"><code>{"drone_id":...,"samples":[{"lat":...,"alt_m":...}]}</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate drone_telemetry')">mockjutsu generate drone_telemetry</span></td>
+        </tr>
+        <tr data-fn="jwt_attack" data-cat="PenTest" data-locales="">
+          <td class="col-fn"><code>jwt_attack</code></td>
+          <td class="col-cat"><span class="pill ">PenTest</span></td>
+          <td class="col-desc">Crafted JWT attack payloads: none_alg (CVE bypass), expired, invalid_signature (bit-flip), alg_confusion (RS256/HS256), kid_injection (path/SQL), empty_password.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"token":"eyJ...","attack_type":"none_alg","description":"..."}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate jwt_attack')">mockjutsu generate jwt_attack</span></td>
+        </tr>
+        <tr data-fn="asn1_fuzz" data-cat="PenTest" data-locales="">
+          <td class="col-fn"><code>asn1_fuzz</code></td>
+          <td class="col-cat"><span class="pill ">PenTest</span></td>
+          <td class="col-desc">ASN.1/DER malformed payloads: truncated, overflow_length (long-form 0x82), wrong_tag, nested_mismatch, zero_length, random_bytes.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"hex":"3008...","fuzz_type":"truncated","length":10}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate asn1_fuzz')">mockjutsu generate asn1_fuzz</span></td>
         </tr>
         <tr data-fn="regex_string" data-cat="Méta" data-locales="">
           <td class="col-fn"><code>regex_string</code></td>
@@ -2490,6 +2508,8 @@ const ROWS = [
   ["cdc_event","EventSourcing","eventsourcing",false,"—","{\"op\":\"u\",\"before\":{...},\"after\":{...}}","mockjutsu generate cdc_event","","Debezium-style CDC event (INSERT/UPDATE/DELETE). op c/u/d, ts_ms, source db+table, before/after payloads."],
   ["fdr_record","Telemetry","telemetry",false,"—","{\"flight_id\":...,\"samples\":[{\"pitch\":2.1,...}]}","mockjutsu generate fdr_record","","Flight Data Recorder time-series: pitch/roll/yaw/altitude_ft/speed_kts/vspeed_fpm/g_force. Physics-constrained bounded random walk (10 Hz)."],
   ["drone_telemetry","Telemetry","telemetry",false,"—","{\"drone_id\":...,\"samples\":[{\"lat\":...,\"alt_m\":...}]}","mockjutsu generate drone_telemetry","","Drone telemetry time-series: lat/lon/alt_m/pitch/roll/yaw/speed_ms/battery_pct/rssi. Battery monotonically decreasing (20 Hz)."],
+  ["jwt_attack","PenTest","pentest",false,"—","{\"token\":\"eyJ...\",\"attack_type\":\"none_alg\",\"description\":\"...\"}","mockjutsu generate jwt_attack","","Crafted JWT attack payloads: none_alg (CVE bypass), expired, invalid_signature (bit-flip), alg_confusion (RS256/HS256), kid_injection (path/SQL), empty_password."],
+  ["asn1_fuzz","PenTest","pentest",false,"—","{\"hex\":\"3008...\",\"fuzz_type\":\"truncated\",\"length\":10}","mockjutsu generate asn1_fuzz","","ASN.1/DER malformed payloads: truncated, overflow_length (long-form 0x82), wrong_tag, nested_mismatch, zero_length, random_bytes."],
   ["regex_string","Méta","meta",false,"--pattern (regex)","A4F-2819","mockjutsu generate regex_string","","Reverse regex engine: generates a string matching any regex pattern (use --pattern flag)."],
   ["phone","Contact","contact",true,"—","+905325551234","mockjutsu generate phone --locale TR","TR US UK DE FR RU","Full E.164 formatted telephone Numéro."],
   ["phone_country","Contact","contact",true,"—","+90","mockjutsu generate phone_country --locale TR","TR US UK DE FR RU","International telephone country dial code."],
