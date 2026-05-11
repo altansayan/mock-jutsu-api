@@ -40,6 +40,7 @@ from .generators.ohlcv             import OhlcvGenerator
 from .generators.nmea              import NmeaGenerator
 from .generators.prometheus        import PrometheusGenerator
 from .generators.gamedev           import GameDevGenerator
+from .generators.ubl               import UblGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -208,6 +209,10 @@ _GAMEDEV_TYPES = {
     'quaternion', 'navmesh_path',
 }
 
+_UBL_TYPES = {
+    'ubl_invoice', 'xmldsig',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -248,6 +253,7 @@ class MockJutsuCore:
         self.nmea           = NmeaGenerator()
         self.prometheus     = PrometheusGenerator()
         self.gamedev        = GameDevGenerator()
+        self.ubl            = UblGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -331,6 +337,8 @@ class MockJutsuCore:
             result = self.prometheus.generate(dt, **kwargs)
         elif dt in _GAMEDEV_TYPES:
             result = self.gamedev.generate(dt, **kwargs)
+        elif dt in _UBL_TYPES:
+            result = self.ubl.generate(dt, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 

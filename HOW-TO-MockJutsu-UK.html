@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; UK Reference Guide</h1>
   <div class="engine-title">The Ultimate Algorithmic Mock Data Engine</div>
-  <div class="sub"><span>6 locales</span> &bull; <span>231 data types</span> &bull; <span>3853 tests</span></div>
+  <div class="sub"><span>6 locales</span> &bull; <span>233 data types</span> &bull; <span>3912 tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">All Parameters (231)</div>
+  <div class="stitle">All Parameters (233)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Search function, CLI command or example output..." oninput="filterTable()">
@@ -1053,6 +1053,24 @@ UNH+...</code></td>
           <td class="col-extra">—</td>
           <td class="col-output"><code>{"mrz_type":"TD1","lines":["I<TUR...","...","SMITH<<JOHN<"]}</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate mrz_td1')">mockjutsu generate mrz_td1</span></td>
+        </tr>
+        <tr data-fn="ubl_invoice" data-cat="EInvoice" data-locales="">
+          <td class="col-fn"><code>ubl_invoice</code></td>
+          <td class="col-cat"><span class="pill ">EInvoice</span></td>
+          <td class="col-desc">OASIS UBL 2.1 Invoice XML (Turkey GIB e-fatura): consistent amounts (net+tax=gross), 1-5 line items, INV-YYYY-NNNNN ID, uppercase UUID, TaxTotal, LegalMonetaryTotal.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>invoice_id:INV-2026-00001 | uuid:UUID | currency:TRY | tax_rate:18 | net:1000.00 | gross:1180.00 | xml:<?xml...Invoice...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ubl_invoice')">mockjutsu generate ubl_invoice</span></td>
+        </tr>
+        <tr data-fn="xmldsig" data-cat="EInvoice" data-locales="">
+          <td class="col-fn"><code>xmldsig</code></td>
+          <td class="col-cat"><span class="pill ">EInvoice</span></td>
+          <td class="col-desc">W3C XML Digital Signature (XMLDSig) enveloped: RSA-SHA256 signature, SHA-256 digest, C14N canonicalization. DigestValue=44 chars (32 bytes), SignatureValue=344 chars (256 bytes).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>sig_id:Signature-A1B2C3D4 | digest_value:44-char-base64 | signature_value:344-char-base64 | xml:<ds:Signature...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate xmldsig')">mockjutsu generate xmldsig</span></td>
         </tr>
         <tr data-fn="quaternion" data-cat="GameDev" data-locales="">
           <td class="col-fn"><code>quaternion</code></td>
@@ -2607,6 +2625,8 @@ const ROWS = [
   ["market_tick","OHLCV","ohlcv",false,"—","{\"symbol\":\"AAPL\",\"price\":150.23,\"bid\":150.20,\"ask\":150.25,\"side\":\"buy\",\"size\":100}","mockjutsu generate market_tick","","Individual exchange trade tick: bid < price <= ask, positive spread, Lee-Ready side (buy/sell), lot size, sequence number."],
   ["mrz_td3","MRZ","mrz",false,"—","{\"mrz_type\":\"TD3\",\"lines\":[\"P<TUR...\",\"ABCD123456<...\"]}","mockjutsu generate mrz_td3","","ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal number, composite check digit (ICAO 9303 Part 3)."],
   ["mrz_td1","MRZ","mrz",false,"—","{\"mrz_type\":\"TD1\",\"lines\":[\"I<TUR...\",\"...\",\"SMITH<<JOHN<\"]}","mockjutsu generate mrz_td1","","ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc number, DOB, expiry, composite check digit (ICAO 9303 Part 5)."],
+  ["ubl_invoice","EInvoice","einvoice",false,"—","invoice_id:INV-2026-00001 | uuid:UUID | currency:TRY | tax_rate:18 | net:1000.00 | gross:1180.00 | xml:<?xml...Invoice...","mockjutsu generate ubl_invoice","","OASIS UBL 2.1 Invoice XML (Turkey GIB e-fatura): consistent amounts (net+tax=gross), 1-5 line items, INV-YYYY-NNNNN ID, uppercase UUID, TaxTotal, LegalMonetaryTotal."],
+  ["xmldsig","EInvoice","einvoice",false,"—","sig_id:Signature-A1B2C3D4 | digest_value:44-char-base64 | signature_value:344-char-base64 | xml:<ds:Signature...","mockjutsu generate xmldsig","","W3C XML Digital Signature (XMLDSig) enveloped: RSA-SHA256 signature, SHA-256 digest, C14N canonicalization. DigestValue=44 chars (32 bytes), SignatureValue=344 chars (256 bytes)."],
   ["quaternion","GameDev","gamedev",false,"—","{\"x\":0.12345678,\"y\":0.45678901,\"z\":0.78901234,\"w\":0.34567890,\"magnitude\":1.0,\"euler_degrees\":{\"pitch\":12.3,\"yaw\":45.6,\"roll\":78.9}}","mockjutsu generate quaternion","","L2-normalized unit quaternion (Gaussian sampling): sqrt(x²+y²+z²+w²)=1.0. Pre-computed Euler angles (ZYX, degrees). Unity/Unreal compatible."],
   ["navmesh_path","GameDev","gamedev",false,"—","{\"start\":{\"x\":10.5,\"y\":0.0,\"z\":20.3},\"end\":{...},\"waypoints\":[...],\"total_distance\":87.3,\"waypoint_count\":8}","mockjutsu generate navmesh_path","","A*-compatible NavMesh waypoint path: 3-15 waypoints, random heading ±60° turns, 5-25 unit steps, terrain height bounded ±5. start=waypoints[0], end=waypoints[-1]."],
   ["prometheus_metrics","Prometheus","prometheus",false,"—","{\"exposition\":\"# HELP process_cpu_seconds_total...\nhttp_requests_total{...} 1234\n\",\"format\":\"prometheus\",...}","mockjutsu generate prometheus_metrics","","Prometheus text exposition: process CPU/memory, HTTP counter (method/path/status), HTTP histogram (monotonic buckets, +Inf==count), Go runtime metrics."],
