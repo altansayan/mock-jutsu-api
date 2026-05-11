@@ -26,6 +26,7 @@ from .generators.hardware          import HardwareGenerator
 from .generators.security          import SecurityGenerator
 from .generators.aviation          import AviationGenerator
 from .generators.reverse_regex     import ReverseRegexGenerator
+from .generators.fido2             import Fido2Generator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -138,6 +139,10 @@ _AVIATION_TYPES = {
     'iata_ticket', 'imo_number', 'pnr_code',
 }
 
+_FIDO2_TYPES = {
+    'webauthn_credential', 'fido2_assertion',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -164,6 +169,7 @@ class MockJutsuCore:
         self.cybersec   = SecurityGenerator()
         self.aviation       = AviationGenerator()
         self.reverse_regex  = ReverseRegexGenerator()
+        self.fido2          = Fido2Generator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -219,6 +225,8 @@ class MockJutsuCore:
             result = self.aviation.generate(dt, **kwargs)
         elif dt in _REVERSE_REGEX_TYPES:
             result = self.reverse_regex.generate(dt, **kwargs)
+        elif dt in _FIDO2_TYPES:
+            result = self.fido2.generate(dt, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 
