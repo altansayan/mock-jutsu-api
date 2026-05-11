@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("3640 Tests\n", style="cyan")
+    body.append("3685 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -173,6 +173,9 @@ _REFERENCE = [
     ('--Telemetry--'  , ''             , False, ''                           , ''                              , '', ''),
     ('fdr_record'     , 'Telemetry'    , False, '{"flight_id":...,"samples":[{"pitch":2.1,...}]}', 'generate fdr_record', 'Flight Data Recorder time-series: pitch/roll/yaw/altitude_ft/speed_kts/vspeed_fpm/g_force. Physics-constrained bounded random walk (10 Hz).', '-'),
     ('drone_telemetry', 'Telemetry'    , False, '{"drone_id":...,"samples":[{"lat":...,"alt_m":...}]}', 'generate drone_telemetry', 'Drone telemetry time-series: lat/lon/alt_m/pitch/roll/yaw/speed_ms/battery_pct/rssi. Battery monotonically decreasing (20 Hz).', '-'),
+    ('--OHLCV--'       , ''             , False, ''                           , ''                              , '', ''),
+    ('ohlcv_candles'  , 'OHLCV'        , False, '{"symbol":"AAPL","interval":"1h","candles":[{"t":"...","o":150.23,"h":151.45,"l":149.87,"c":150.89,"v":1234567}]}', 'generate ohlcv_candles', 'OHLCV candlestick series via Geometric Brownian Motion: H>=max(O,C), L<=min(O,C), Open[i]=Close[i-1]. 10-30 candles, intervals: 1m/5m/15m/1h/4h/1d.', '-'),
+    ('market_tick'    , 'OHLCV'        , False, '{"symbol":"AAPL","price":150.23,"bid":150.20,"ask":150.25,"side":"buy","size":100}', 'generate market_tick', 'Individual exchange trade tick: bid < price <= ask, positive spread, Lee-Ready side (buy/sell), lot size, sequence number.', '-'),
     ('--MRZ--'        , ''             , False, ''                           , ''                              , '', ''),
     ('mrz_td3'        , 'MRZ'          , False, '{"mrz_type":"TD3","lines":["P<TUR...","ABCD123456<..."]}', 'generate mrz_td3', 'ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal number, composite check digit (ICAO 9303 Part 3).', '-'),
     ('mrz_td1'        , 'MRZ'          , False, '{"mrz_type":"TD1","lines":["I<TUR...","...","SMITH<<JOHN<"]}', 'generate mrz_td1', 'ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc number, DOB, expiry, composite check digit (ICAO 9303 Part 5).', '-'),
@@ -321,7 +324,7 @@ _CAT_ORDER = [
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
     "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless", "WebAuthn", "Wallet",
-    "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing", "Telemetry", "MRZ", "PenTest",
+    "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing", "Telemetry", "OHLCV", "MRZ", "PenTest",
 ]
 
 _CAT_COLORS = {
@@ -358,6 +361,7 @@ _CAT_COLORS = {
     "EDI":           "bright_yellow",
     "EventSourcing": "magenta",
     "Telemetry":     "bright_cyan",
+    "OHLCV":         "bright_green",
     "MRZ":           "bright_blue",
     "PenTest":       "bright_red",
 }

@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; TR Referans Kılavuzu</h1>
   <div class="engine-title">Nihai Algoritmik Mock Veri Motoru</div>
-  <div class="sub"><span>6 locale</span> &bull; <span>223 parametre tipi</span> &bull; <span>3640 Test</span></div>
+  <div class="sub"><span>6 locale</span> &bull; <span>225 parametre tipi</span> &bull; <span>3685 Test</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Tüm Parametreler (223)</div>
+  <div class="stitle">Tüm Parametreler (225)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Fonksiyon, CLI komutu veya örnek çıktı ara..." oninput="filterTable()">
@@ -1017,6 +1017,24 @@ UNH+...</code></td>
           <td class="col-extra">—</td>
           <td class="col-output"><code>{"drone_id":...,"samples":[{"lat":...,"alt_m":...}]}</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate drone_telemetry')">mockjutsu generate drone_telemetry</span></td>
+        </tr>
+        <tr data-fn="ohlcv_candles" data-cat="OHLCV" data-locales="">
+          <td class="col-fn"><code>ohlcv_candles</code></td>
+          <td class="col-cat"><span class="pill ">OHLCV</span></td>
+          <td class="col-desc">OHLCV candlestick series via Geometric Brownian Motion: H>=max(O,C), L<=min(O,C), Open[i]=Close[i-1]. 10-30 candles, intervals: 1m/5m/15m/1h/4h/1d.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"symbol":"AAPL","interval":"1h","candles":[{"t":"...","o":150.23,"h":151.45,"l":149.87,"c":150.89,"v":1234567}]}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate ohlcv_candles')">mockjutsu generate ohlcv_candles</span></td>
+        </tr>
+        <tr data-fn="market_tick" data-cat="OHLCV" data-locales="">
+          <td class="col-fn"><code>market_tick</code></td>
+          <td class="col-cat"><span class="pill ">OHLCV</span></td>
+          <td class="col-desc">Individual exchange trade tick: bid < price <= ask, positive spread, Lee-Ready side (buy/sell), lot size, sequence Numarası.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"symbol":"AAPL","price":150.23,"bid":150.20,"ask":150.25,"side":"buy","size":100}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate market_tick')">mockjutsu generate market_tick</span></td>
         </tr>
         <tr data-fn="mrz_td3" data-cat="MRZ" data-locales="">
           <td class="col-fn"><code>mrz_td3</code></td>
@@ -2526,6 +2544,8 @@ const ROWS = [
   ["cdc_event","EventSourcing","eventsourcing",false,"—","{\"op\":\"u\",\"before\":{...},\"after\":{...}}","mockjutsu generate cdc_event","","Debezium-style CDC event (INSERT/UPDATE/DELETE). op c/u/d, ts_ms, source db+table, before/after payloads."],
   ["fdr_record","Telemetry","telemetry",false,"—","{\"flight_id\":...,\"samples\":[{\"pitch\":2.1,...}]}","mockjutsu generate fdr_record","","Flight Data Recorder time-series: pitch/roll/yaw/altitude_ft/speed_kts/vspeed_fpm/g_force. Physics-constrained bounded rastgele walk (10 Hz)."],
   ["drone_telemetry","Telemetry","telemetry",false,"—","{\"drone_id\":...,\"samples\":[{\"lat\":...,\"alt_m\":...}]}","mockjutsu generate drone_telemetry","","Drone telemetry time-series: lat/lon/alt_m/pitch/roll/yaw/speed_ms/battery_pct/rssi. Battery monotonically decreasing (20 Hz)."],
+  ["ohlcv_candles","OHLCV","ohlcv",false,"—","{\"symbol\":\"AAPL\",\"interval\":\"1h\",\"candles\":[{\"t\":\"...\",\"o\":150.23,\"h\":151.45,\"l\":149.87,\"c\":150.89,\"v\":1234567}]}","mockjutsu generate ohlcv_candles","","OHLCV candlestick series via Geometric Brownian Motion: H>=max(O,C), L<=min(O,C), Open[i]=Close[i-1]. 10-30 candles, intervals: 1m/5m/15m/1h/4h/1d."],
+  ["market_tick","OHLCV","ohlcv",false,"—","{\"symbol\":\"AAPL\",\"price\":150.23,\"bid\":150.20,\"ask\":150.25,\"side\":\"buy\",\"size\":100}","mockjutsu generate market_tick","","Individual exchange trade tick: bid < price <= ask, positive spread, Lee-Ready side (buy/sell), lot size, sequence Numarası."],
   ["mrz_td3","MRZ","mrz",false,"—","{\"mrz_type\":\"TD3\",\"lines\":[\"P<TUR...\",\"ABCD123456<...\"]}","mockjutsu generate mrz_td3","","ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal Numarası, composite kontrolü digit (ICAO 9303 Part 3)."],
   ["mrz_td1","MRZ","mrz",false,"—","{\"mrz_type\":\"TD1\",\"lines\":[\"I<TUR...\",\"...\",\"SMITH<<JOHN<\"]}","mockjutsu generate mrz_td1","","ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc Numarası, DOB, expiry, composite kontrolü digit (ICAO 9303 Part 5)."],
   ["jwt_attack","PenTest","pentest",false,"—","{\"token\":\"eyJ...\",\"attack_type\":\"none_alg\",\"description\":\"...\"}","mockjutsu generate jwt_attack","","Crafted JWT attack payloads: none_alg (CVE bypass), expired, invalid_signature (bit-flip), alg_confusion (RS256/HS256), kid_injection (path/SQL), empty_password."],
