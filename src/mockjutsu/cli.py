@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("3685 Tests\n", style="cyan")
+    body.append("3749 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -179,6 +179,9 @@ _REFERENCE = [
     ('--MRZ--'        , ''             , False, ''                           , ''                              , '', ''),
     ('mrz_td3'        , 'MRZ'          , False, '{"mrz_type":"TD3","lines":["P<TUR...","ABCD123456<..."]}', 'generate mrz_td3', 'ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal number, composite check digit (ICAO 9303 Part 3).', '-'),
     ('mrz_td1'        , 'MRZ'          , False, '{"mrz_type":"TD1","lines":["I<TUR...","...","SMITH<<JOHN<"]}', 'generate mrz_td1', 'ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc number, DOB, expiry, composite check digit (ICAO 9303 Part 5).', '-'),
+    ('--NMEA--'       , ''             , False, ''                           , ''                              , '', ''),
+    ('nmea_gpgga'    , 'NMEA'         , False, '{"sentence":"$GPGGA,123519.00,4807.0381,N,01131.0000,E,1,08,0.9,545.4,M,46.9,M,,*XX","type":"GPGGA",...}', 'generate nmea_gpgga', 'GPGGA GPS Fix Data sentence: lat/lon (DDMM.MMMM), fix quality, satellite count, HDOP, altitude. XOR checksum validated.', '-'),
+    ('nmea_gprmc'    , 'NMEA'         , False, '{"sentence":"$GPRMC,123519.00,A,4807.0381,N,01131.0000,E,0.0,25.3,120526,,*XX","type":"GPRMC",...}', 'generate nmea_gprmc', 'GPRMC Recommended Minimum GPS Data sentence: status A, lat/lon, speed (knots), course, date (DDMMYY). XOR checksum validated.', '-'),
     ('--PenTest--'    , ''             , False, ''                           , ''                              , '', ''),
     ('jwt_attack'     , 'PenTest'      , False, '{"token":"eyJ...","attack_type":"none_alg","description":"..."}', 'generate jwt_attack', 'Crafted JWT attack payloads: none_alg (CVE bypass), expired, invalid_signature (bit-flip), alg_confusion (RS256/HS256), kid_injection (path/SQL), empty_password.', '-'),
     ('asn1_fuzz'      , 'PenTest'      , False, '{"hex":"3008...","fuzz_type":"truncated","length":10}', 'generate asn1_fuzz', 'ASN.1/DER malformed payloads: truncated, overflow_length (long-form 0x82), wrong_tag, nested_mismatch, zero_length, random_bytes.', '-'),
@@ -324,7 +327,7 @@ _CAT_ORDER = [
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
     "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless", "WebAuthn", "Wallet",
-    "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing", "Telemetry", "OHLCV", "MRZ", "PenTest",
+    "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing", "Telemetry", "OHLCV", "NMEA", "MRZ", "PenTest",
 ]
 
 _CAT_COLORS = {
@@ -362,6 +365,7 @@ _CAT_COLORS = {
     "EventSourcing": "magenta",
     "Telemetry":     "bright_cyan",
     "OHLCV":         "bright_green",
+    "NMEA":          "bright_yellow",
     "MRZ":           "bright_blue",
     "PenTest":       "bright_red",
 }

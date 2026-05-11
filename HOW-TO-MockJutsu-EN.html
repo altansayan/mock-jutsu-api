@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; US Reference Guide</h1>
   <div class="engine-title">The Ultimate Algorithmic Mock Data Engine</div>
-  <div class="sub"><span>6 locales</span> &bull; <span>225 data types</span> &bull; <span>3685 tests</span></div>
+  <div class="sub"><span>6 locales</span> &bull; <span>227 data types</span> &bull; <span>3749 tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">All Parameters (225)</div>
+  <div class="stitle">All Parameters (227)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Search function, CLI command or example output..." oninput="filterTable()">
@@ -1053,6 +1053,24 @@ UNH+...</code></td>
           <td class="col-extra">—</td>
           <td class="col-output"><code>{"mrz_type":"TD1","lines":["I<TUR...","...","SMITH<<JOHN<"]}</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate mrz_td1')">mockjutsu generate mrz_td1</span></td>
+        </tr>
+        <tr data-fn="nmea_gpgga" data-cat="NMEA" data-locales="">
+          <td class="col-fn"><code>nmea_gpgga</code></td>
+          <td class="col-cat"><span class="pill ">NMEA</span></td>
+          <td class="col-desc">GPGGA GPS Fix Data sentence: lat/lon (DDMM.MMMM), fix quality, satellite count, HDOP, altitude. XOR checksum validated.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"sentence":"$GPGGA,123519.00,4807.0381,N,01131.0000,E,1,08,0.9,545.4,M,46.9,M,,*XX","type":"GPGGA",...}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate nmea_gpgga')">mockjutsu generate nmea_gpgga</span></td>
+        </tr>
+        <tr data-fn="nmea_gprmc" data-cat="NMEA" data-locales="">
+          <td class="col-fn"><code>nmea_gprmc</code></td>
+          <td class="col-cat"><span class="pill ">NMEA</span></td>
+          <td class="col-desc">GPRMC Recommended Minimum GPS Data sentence: status A, lat/lon, speed (knots), course, date (DDMMYY). XOR checksum validated.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"sentence":"$GPRMC,123519.00,A,4807.0381,N,01131.0000,E,0.0,25.3,120526,,*XX","type":"GPRMC",...}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate nmea_gprmc')">mockjutsu generate nmea_gprmc</span></td>
         </tr>
         <tr data-fn="jwt_attack" data-cat="PenTest" data-locales="">
           <td class="col-fn"><code>jwt_attack</code></td>
@@ -2548,6 +2566,8 @@ const ROWS = [
   ["market_tick","OHLCV","ohlcv",false,"—","{\"symbol\":\"AAPL\",\"price\":150.23,\"bid\":150.20,\"ask\":150.25,\"side\":\"buy\",\"size\":100}","mockjutsu generate market_tick","","Individual exchange trade tick: bid < price <= ask, positive spread, Lee-Ready side (buy/sell), lot size, sequence number."],
   ["mrz_td3","MRZ","mrz",false,"—","{\"mrz_type\":\"TD3\",\"lines\":[\"P<TUR...\",\"ABCD123456<...\"]}","mockjutsu generate mrz_td3","","ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal number, composite check digit (ICAO 9303 Part 3)."],
   ["mrz_td1","MRZ","mrz",false,"—","{\"mrz_type\":\"TD1\",\"lines\":[\"I<TUR...\",\"...\",\"SMITH<<JOHN<\"]}","mockjutsu generate mrz_td1","","ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc number, DOB, expiry, composite check digit (ICAO 9303 Part 5)."],
+  ["nmea_gpgga","NMEA","nmea",false,"—","{\"sentence\":\"$GPGGA,123519.00,4807.0381,N,01131.0000,E,1,08,0.9,545.4,M,46.9,M,,*XX\",\"type\":\"GPGGA\",...}","mockjutsu generate nmea_gpgga","","GPGGA GPS Fix Data sentence: lat/lon (DDMM.MMMM), fix quality, satellite count, HDOP, altitude. XOR checksum validated."],
+  ["nmea_gprmc","NMEA","nmea",false,"—","{\"sentence\":\"$GPRMC,123519.00,A,4807.0381,N,01131.0000,E,0.0,25.3,120526,,*XX\",\"type\":\"GPRMC\",...}","mockjutsu generate nmea_gprmc","","GPRMC Recommended Minimum GPS Data sentence: status A, lat/lon, speed (knots), course, date (DDMMYY). XOR checksum validated."],
   ["jwt_attack","PenTest","pentest",false,"—","{\"token\":\"eyJ...\",\"attack_type\":\"none_alg\",\"description\":\"...\"}","mockjutsu generate jwt_attack","","Crafted JWT attack payloads: none_alg (CVE bypass), expired, invalid_signature (bit-flip), alg_confusion (RS256/HS256), kid_injection (path/SQL), empty_password."],
   ["asn1_fuzz","PenTest","pentest",false,"—","{\"hex\":\"3008...\",\"fuzz_type\":\"truncated\",\"length\":10}","mockjutsu generate asn1_fuzz","","ASN.1/DER malformed payloads: truncated, overflow_length (long-form 0x82), wrong_tag, nested_mismatch, zero_length, random_bytes."],
   ["regex_string","Meta","meta",false,"--pattern (regex)","A4F-2819","mockjutsu generate regex_string","","Reverse regex engine: generates a string matching any regex pattern (use --pattern flag)."],

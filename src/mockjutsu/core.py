@@ -37,6 +37,7 @@ from .generators.telemetry         import TelemetryGenerator
 from .generators.crypto_fuzz       import CryptoFuzzGenerator
 from .generators.mrz               import MrzGenerator
 from .generators.ohlcv             import OhlcvGenerator
+from .generators.nmea              import NmeaGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -193,6 +194,10 @@ _OHLCV_TYPES = {
     'ohlcv_candles', 'market_tick',
 }
 
+_NMEA_TYPES = {
+    'nmea_gpgga', 'nmea_gprmc',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -230,6 +235,7 @@ class MockJutsuCore:
         self.crypto_fuzz    = CryptoFuzzGenerator()
         self.mrz            = MrzGenerator()
         self.ohlcv          = OhlcvGenerator()
+        self.nmea           = NmeaGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -307,6 +313,8 @@ class MockJutsuCore:
             result = self.mrz.generate(dt, **kwargs)
         elif dt in _OHLCV_TYPES:
             result = self.ohlcv.generate(dt, **kwargs)
+        elif dt in _NMEA_TYPES:
+            result = self.nmea.generate(dt, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 
