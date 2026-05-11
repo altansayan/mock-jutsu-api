@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("3749 Tests\n", style="cyan")
+    body.append("3807 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -179,6 +179,9 @@ _REFERENCE = [
     ('--MRZ--'        , ''             , False, ''                           , ''                              , '', ''),
     ('mrz_td3'        , 'MRZ'          , False, '{"mrz_type":"TD3","lines":["P<TUR...","ABCD123456<..."]}', 'generate mrz_td3', 'ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal number, composite check digit (ICAO 9303 Part 3).', '-'),
     ('mrz_td1'        , 'MRZ'          , False, '{"mrz_type":"TD1","lines":["I<TUR...","...","SMITH<<JOHN<"]}', 'generate mrz_td1', 'ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc number, DOB, expiry, composite check digit (ICAO 9303 Part 5).', '-'),
+    ('--Prometheus--'  , ''             , False, ''                           , ''                              , '', ''),
+    ('prometheus_metrics'  , 'Prometheus', False, '{"exposition":"# HELP process_cpu_seconds_total...\\nhttp_requests_total{...} 1234\\n","format":"prometheus",...}', 'generate prometheus_metrics', 'Prometheus text exposition: process CPU/memory, HTTP counter (method/path/status), HTTP histogram (monotonic buckets, +Inf==count), Go runtime metrics.', '-'),
+    ('openmetrics_snapshot', 'Prometheus', False, '{"exposition":"# HELP ...\\n# EOF\\n","format":"openmetrics",...}', 'generate openmetrics_snapshot', 'OpenMetrics exposition (Prometheus superset): same metric families, mandatory # EOF terminator. Compatible with OTLP/Grafana Mimir.', '-'),
     ('--NMEA--'       , ''             , False, ''                           , ''                              , '', ''),
     ('nmea_gpgga'    , 'NMEA'         , False, '{"sentence":"$GPGGA,123519.00,4807.0381,N,01131.0000,E,1,08,0.9,545.4,M,46.9,M,,*XX","type":"GPGGA",...}', 'generate nmea_gpgga', 'GPGGA GPS Fix Data sentence: lat/lon (DDMM.MMMM), fix quality, satellite count, HDOP, altitude. XOR checksum validated.', '-'),
     ('nmea_gprmc'    , 'NMEA'         , False, '{"sentence":"$GPRMC,123519.00,A,4807.0381,N,01131.0000,E,0.0,25.3,120526,,*XX","type":"GPRMC",...}', 'generate nmea_gprmc', 'GPRMC Recommended Minimum GPS Data sentence: status A, lat/lon, speed (knots), course, date (DDMMYY). XOR checksum validated.', '-'),
@@ -327,7 +330,7 @@ _CAT_ORDER = [
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
     "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless", "WebAuthn", "Wallet",
-    "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing", "Telemetry", "OHLCV", "NMEA", "MRZ", "PenTest",
+    "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing", "Telemetry", "OHLCV", "Prometheus", "NMEA", "MRZ", "PenTest",
 ]
 
 _CAT_COLORS = {
@@ -365,6 +368,7 @@ _CAT_COLORS = {
     "EventSourcing": "magenta",
     "Telemetry":     "bright_cyan",
     "OHLCV":         "bright_green",
+    "Prometheus":    "bright_red",
     "NMEA":          "bright_yellow",
     "MRZ":           "bright_blue",
     "PenTest":       "bright_red",

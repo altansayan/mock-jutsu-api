@@ -38,6 +38,7 @@ from .generators.crypto_fuzz       import CryptoFuzzGenerator
 from .generators.mrz               import MrzGenerator
 from .generators.ohlcv             import OhlcvGenerator
 from .generators.nmea              import NmeaGenerator
+from .generators.prometheus        import PrometheusGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -198,6 +199,10 @@ _NMEA_TYPES = {
     'nmea_gpgga', 'nmea_gprmc',
 }
 
+_PROMETHEUS_TYPES = {
+    'prometheus_metrics', 'openmetrics_snapshot',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -236,6 +241,7 @@ class MockJutsuCore:
         self.mrz            = MrzGenerator()
         self.ohlcv          = OhlcvGenerator()
         self.nmea           = NmeaGenerator()
+        self.prometheus     = PrometheusGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -315,6 +321,8 @@ class MockJutsuCore:
             result = self.ohlcv.generate(dt, **kwargs)
         elif dt in _NMEA_TYPES:
             result = self.nmea.generate(dt, **kwargs)
+        elif dt in _PROMETHEUS_TYPES:
+            result = self.prometheus.generate(dt, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 
