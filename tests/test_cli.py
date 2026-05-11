@@ -2608,39 +2608,89 @@ class TestTemplateCommand:
 # ---------------------------------------------------------------------------
 # Structural guard — every _REFERENCE type must be CLI-invocable
 #
-# When a new type is added to _REFERENCE in cli.py, this parametrized test
-# automatically picks it up. It catches:
-#   - Missing dispatch in core.py
-#   - Missing CLI options (e.g. --pattern was absent for regex_string)
-#   - Generator crashes on first call
+# HOW IT WORKS
+# ────────────
+# _REFERENCE (in cli.py) is the single source of truth for the CLI contract.
+# Each row carries an extra_params column (index 6) that documents which flags
+# a type needs — e.g. '--pattern (regex)', '--words (int)'.
 #
-# All known extra options are supplied with safe defaults so types that
-# need them (e.g. regex_string → --pattern) are fully exercised.
+# This guard:
+#   1. Parses every '--flag' name from extra_params at import time.
+#   2. Looks it up in _FLAG_DEFAULTS to get a safe test value.
+#   3. Builds the exact 'generate <type> --flag value …' invocation.
+#   4. Asserts exit_code == 0 and no ERROR output.
+#
+# ADDING A NEW FLAG
+# ─────────────────
+# If you add a new flag (e.g. --format) to a type:
+#   Step 1  Add it to the 'generate' command in cli.py     → or test fails exit_code 2
+#   Step 2  Document it in extra_params in _REFERENCE      → required for guard to see it
+#   Step 3  Add a safe default to _FLAG_DEFAULTS below     → or test raises AssertionError
+#
+# This three-step chain makes it impossible to forget any of the three changes.
 # ---------------------------------------------------------------------------
 
-_REFERENCE_TYPES = [
-    row[0] for row in _REFERENCE
+# Safe default value for every known CLI flag.
+# If a flag appears in _REFERENCE extra_params but is missing here → AssertionError
+# at parametrize time, before any test runs.
+_FLAG_DEFAULTS: dict[str, str] = {
+    '--pattern':   '[A-Z]{3}',
+    '--words':     '12',
+    '--network':   'visa',
+    '--currency':  'btc',
+    '--carrier':   'usps',
+    '--algorithm': 'sha256',
+    '--gender':    'male',
+    '--prefix':    'TEST',
+    '--amount':    '100.0',
+    '--merchant':  'MOCK STORE',
+    '--city':      'ISTANBUL',
+    '--min':       '1.0',
+    '--max':       '100.0',
+    '--locale':    'TR',
+}
+
+
+def _parse_flags(extra_params: str) -> list[str]:
+    """Extract '--flag' names from an extra_params string like '--pattern (regex)'."""
+    return re.findall(r'--\w+', extra_params)
+
+
+def _build_invocation(row) -> tuple[str, list[str]]:
+    """Return (type_name, full_args_list) for one _REFERENCE row."""
+    type_name   = row[0]
+    extra_str   = row[6]
+    flags       = _parse_flags(extra_str)
+    args        = ['generate', type_name]
+    for flag in flags:
+        assert flag in _FLAG_DEFAULTS, (
+            f"\n\nNew flag '{flag}' found in _REFERENCE for type '{type_name}' "
+            f"but it has no safe default in _FLAG_DEFAULTS.\n"
+            f"Add it to _FLAG_DEFAULTS in tests/test_cli.py."
+        )
+        args += [flag, _FLAG_DEFAULTS[flag]]
+    return type_name, args
+
+
+_REFERENCE_INVOCATIONS: list[tuple[str, list[str]]] = [
+    _build_invocation(row)
+    for row in _REFERENCE
     if row[0].strip() and not row[0].strip().startswith('--')
 ]
 
-_SAFE_EXTRA_ARGS = [
-    '--pattern',   '[A-Z]{3}',   # regex_string
-    '--words',     '12',         # mnemonic
-    '--network',   'visa',       # cardnum
-    '--currency',  'btc',        # crypto
-    '--carrier',   'usps',       # tracking
-    '--algorithm', 'sha256',     # hash
-]
 
+@pytest.mark.parametrize('data_type,args', _REFERENCE_INVOCATIONS, ids=[r[0] for r in _REFERENCE_INVOCATIONS])
+def test_every_reference_type_is_cli_invocable(data_type, args):
+    """Every type in _REFERENCE must be invocable via CLI with exit_code 0 and no ERROR output.
 
-@pytest.mark.parametrize('data_type', _REFERENCE_TYPES)
-def test_every_reference_type_is_cli_invocable(data_type):
-    """Every type in _REFERENCE must be invocable via CLI with exit_code 0 and no ERROR output."""
+    Flags are derived from _REFERENCE extra_params — not hardcoded here.
+    To add a new flag: cli.py generate command → _REFERENCE extra_params → _FLAG_DEFAULTS.
+    """
     runner = CliRunner()
-    args = ['generate', data_type] + _SAFE_EXTRA_ARGS
     r = runner.invoke(main, args)
     assert r.exit_code == 0, (
-        f"CLI exited with code {r.exit_code} for type '{data_type}':\n{r.output}"
+        f"CLI exited with code {r.exit_code} for type '{data_type}':\n{r.output}\n"
+        f"Invoked with: {args}"
     )
     out = r.output.strip()
     assert not out.startswith('ERROR'), (
