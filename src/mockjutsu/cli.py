@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("3807 Tests\n", style="cyan")
+    body.append("3853 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -179,6 +179,9 @@ _REFERENCE = [
     ('--MRZ--'        , ''             , False, ''                           , ''                              , '', ''),
     ('mrz_td3'        , 'MRZ'          , False, '{"mrz_type":"TD3","lines":["P<TUR...","ABCD123456<..."]}', 'generate mrz_td3', 'ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal number, composite check digit (ICAO 9303 Part 3).', '-'),
     ('mrz_td1'        , 'MRZ'          , False, '{"mrz_type":"TD1","lines":["I<TUR...","...","SMITH<<JOHN<"]}', 'generate mrz_td1', 'ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc number, DOB, expiry, composite check digit (ICAO 9303 Part 5).', '-'),
+    ('--GameDev--'     , ''             , False, ''                           , ''                              , '', ''),
+    ('quaternion'     , 'GameDev'      , False, '{"x":0.12345678,"y":0.45678901,"z":0.78901234,"w":0.34567890,"magnitude":1.0,"euler_degrees":{"pitch":12.3,"yaw":45.6,"roll":78.9}}', 'generate quaternion', 'L2-normalized unit quaternion (Gaussian sampling): sqrt(x²+y²+z²+w²)=1.0. Pre-computed Euler angles (ZYX, degrees). Unity/Unreal compatible.', '-'),
+    ('navmesh_path'   , 'GameDev'      , False, '{"start":{"x":10.5,"y":0.0,"z":20.3},"end":{...},"waypoints":[...],"total_distance":87.3,"waypoint_count":8}', 'generate navmesh_path', 'A*-compatible NavMesh waypoint path: 3-15 waypoints, random heading ±60° turns, 5-25 unit steps, terrain height bounded ±5. start=waypoints[0], end=waypoints[-1].', '-'),
     ('--Prometheus--'  , ''             , False, ''                           , ''                              , '', ''),
     ('prometheus_metrics'  , 'Prometheus', False, '{"exposition":"# HELP process_cpu_seconds_total...\\nhttp_requests_total{...} 1234\\n","format":"prometheus",...}', 'generate prometheus_metrics', 'Prometheus text exposition: process CPU/memory, HTTP counter (method/path/status), HTTP histogram (monotonic buckets, +Inf==count), Go runtime metrics.', '-'),
     ('openmetrics_snapshot', 'Prometheus', False, '{"exposition":"# HELP ...\\n# EOF\\n","format":"openmetrics",...}', 'generate openmetrics_snapshot', 'OpenMetrics exposition (Prometheus superset): same metric families, mandatory # EOF terminator. Compatible with OTLP/Grafana Mimir.', '-'),
@@ -330,7 +333,7 @@ _CAT_ORDER = [
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
     "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless", "WebAuthn", "Wallet",
-    "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing", "Telemetry", "OHLCV", "Prometheus", "NMEA", "MRZ", "PenTest",
+    "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing", "Telemetry", "OHLCV", "GameDev", "Prometheus", "NMEA", "MRZ", "PenTest",
 ]
 
 _CAT_COLORS = {
@@ -368,6 +371,7 @@ _CAT_COLORS = {
     "EventSourcing": "magenta",
     "Telemetry":     "bright_cyan",
     "OHLCV":         "bright_green",
+    "GameDev":       "bright_magenta",
     "Prometheus":    "bright_red",
     "NMEA":          "bright_yellow",
     "MRZ":           "bright_blue",

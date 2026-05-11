@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; UK Reference Guide</h1>
   <div class="engine-title">The Ultimate Algorithmic Mock Data Engine</div>
-  <div class="sub"><span>6 locales</span> &bull; <span>229 data types</span> &bull; <span>3807 tests</span></div>
+  <div class="sub"><span>6 locales</span> &bull; <span>231 data types</span> &bull; <span>3853 tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">All Parameters (229)</div>
+  <div class="stitle">All Parameters (231)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Search function, CLI command or example output..." oninput="filterTable()">
@@ -1053,6 +1053,24 @@ UNH+...</code></td>
           <td class="col-extra">—</td>
           <td class="col-output"><code>{"mrz_type":"TD1","lines":["I<TUR...","...","SMITH<<JOHN<"]}</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate mrz_td1')">mockjutsu generate mrz_td1</span></td>
+        </tr>
+        <tr data-fn="quaternion" data-cat="GameDev" data-locales="">
+          <td class="col-fn"><code>quaternion</code></td>
+          <td class="col-cat"><span class="pill ">GameDev</span></td>
+          <td class="col-desc">L2-normalized unit quaternion (Gaussian sampling): sqrt(x²+y²+z²+w²)=1.0. Pre-computed Euler angles (ZYX, degrees). Unity/Unreal compatible.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"x":0.12345678,"y":0.45678901,"z":0.78901234,"w":0.34567890,"magnitude":1.0,"euler_degrees":{"pitch":12.3,"yaw":45.6,"roll":78.9}}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate quaternion')">mockjutsu generate quaternion</span></td>
+        </tr>
+        <tr data-fn="navmesh_path" data-cat="GameDev" data-locales="">
+          <td class="col-fn"><code>navmesh_path</code></td>
+          <td class="col-cat"><span class="pill ">GameDev</span></td>
+          <td class="col-desc">A*-compatible NavMesh waypoint path: 3-15 waypoints, random heading ±60° turns, 5-25 unit steps, terrain height bounded ±5. start=waypoints[0], end=waypoints[-1].</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"start":{"x":10.5,"y":0.0,"z":20.3},"end":{...},"waypoints":[...],"total_distance":87.3,"waypoint_count":8}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate navmesh_path')">mockjutsu generate navmesh_path</span></td>
         </tr>
         <tr data-fn="prometheus_metrics" data-cat="Prometheus" data-locales="">
           <td class="col-fn"><code>prometheus_metrics</code></td>
@@ -2589,6 +2607,8 @@ const ROWS = [
   ["market_tick","OHLCV","ohlcv",false,"—","{\"symbol\":\"AAPL\",\"price\":150.23,\"bid\":150.20,\"ask\":150.25,\"side\":\"buy\",\"size\":100}","mockjutsu generate market_tick","","Individual exchange trade tick: bid < price <= ask, positive spread, Lee-Ready side (buy/sell), lot size, sequence number."],
   ["mrz_td3","MRZ","mrz",false,"—","{\"mrz_type\":\"TD3\",\"lines\":[\"P<TUR...\",\"ABCD123456<...\"]}","mockjutsu generate mrz_td3","","ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal number, composite check digit (ICAO 9303 Part 3)."],
   ["mrz_td1","MRZ","mrz",false,"—","{\"mrz_type\":\"TD1\",\"lines\":[\"I<TUR...\",\"...\",\"SMITH<<JOHN<\"]}","mockjutsu generate mrz_td1","","ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc number, DOB, expiry, composite check digit (ICAO 9303 Part 5)."],
+  ["quaternion","GameDev","gamedev",false,"—","{\"x\":0.12345678,\"y\":0.45678901,\"z\":0.78901234,\"w\":0.34567890,\"magnitude\":1.0,\"euler_degrees\":{\"pitch\":12.3,\"yaw\":45.6,\"roll\":78.9}}","mockjutsu generate quaternion","","L2-normalized unit quaternion (Gaussian sampling): sqrt(x²+y²+z²+w²)=1.0. Pre-computed Euler angles (ZYX, degrees). Unity/Unreal compatible."],
+  ["navmesh_path","GameDev","gamedev",false,"—","{\"start\":{\"x\":10.5,\"y\":0.0,\"z\":20.3},\"end\":{...},\"waypoints\":[...],\"total_distance\":87.3,\"waypoint_count\":8}","mockjutsu generate navmesh_path","","A*-compatible NavMesh waypoint path: 3-15 waypoints, random heading ±60° turns, 5-25 unit steps, terrain height bounded ±5. start=waypoints[0], end=waypoints[-1]."],
   ["prometheus_metrics","Prometheus","prometheus",false,"—","{\"exposition\":\"# HELP process_cpu_seconds_total...\nhttp_requests_total{...} 1234\n\",\"format\":\"prometheus\",...}","mockjutsu generate prometheus_metrics","","Prometheus text exposition: process CPU/memory, HTTP counter (method/path/status), HTTP histogram (monotonic buckets, +Inf==count), Go runtime metrics."],
   ["openmetrics_snapshot","Prometheus","prometheus",false,"—","{\"exposition\":\"# HELP ...\n# EOF\n\",\"format\":\"openmetrics\",...}","mockjutsu generate openmetrics_snapshot","","OpenMetrics exposition (Prometheus superset): same metric families, mandatory # EOF terminator. Compatible with OTLP/Grafana Mimir."],
   ["nmea_gpgga","NMEA","nmea",false,"—","{\"sentence\":\"$GPGGA,123519.00,4807.0381,N,01131.0000,E,1,08,0.9,545.4,M,46.9,M,,*XX\",\"type\":\"GPGGA\",...}","mockjutsu generate nmea_gpgga","","GPGGA GPS Fix Data sentence: lat/lon (DDMM.MMMM), fix quality, satellite count, HDOP, altitude. XOR checksum validated."],
