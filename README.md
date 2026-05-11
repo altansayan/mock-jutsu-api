@@ -55,6 +55,7 @@ QA engineers, Data Scientists, and Fintech developers are tired of test data fai
 | **Schema/Template Generation**| ✅ `jutsu.template()` for complex dictionaries | ❌ Manual object mapping |
 | **Built-in CLI Tool** | ✅ Out-of-the-box (`mockjutsu generate`) | ❌ Requires custom scripts |
 | **Built-in REST API** | ✅ 1 command (`mockjutsu start-api`) | ❌ Requires custom wrapper |
+| **Reverse Regex Generation** | ✅ Pattern → valid string (stdlib only) | ❌ None |
 | **External Dependencies** | ✅ **Zero** (Pure Python) | ❌ Relies on external files |
 
 ---
