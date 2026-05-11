@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; UK Reference Guide</h1>
   <div class="engine-title">The Ultimate Algorithmic Mock Data Engine</div>
-  <div class="sub"><span>6 locales</span> &bull; <span>213 data types</span> &bull; <span>3418 tests</span></div>
+  <div class="sub"><span>6 locales</span> &bull; <span>215 data types</span> &bull; <span>3462 tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">All Parameters (213)</div>
+  <div class="stitle">All Parameters (215)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Search function, CLI command or example output..." oninput="filterTable()">
@@ -961,6 +961,26 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-extra">—</td>
           <td class="col-output"><code><?xml...camt.053...</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate camt053 --locale TR')">mockjutsu generate camt053 --locale TR</span></td>
+        </tr>
+        <tr data-fn="edi_850" data-cat="EDI" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>edi_850</code></td>
+          <td class="col-cat"><span class="pill ">EDI</span></td>
+          <td class="col-desc">ANSI X12 EDI 850 Purchase Order: ISA/GS/ST/BEG/N1/PO1/CTT/SE/GE/IEA. ISA13==IEA02, GS06==GE02, SE01==segment count.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>ISA*00*...*:~
+GS*PO*...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate edi_850')">mockjutsu generate edi_850</span></td>
+        </tr>
+        <tr data-fn="edifact_orders" data-cat="EDI" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>edifact_orders</code></td>
+          <td class="col-cat"><span class="pill ">EDI</span></td>
+          <td class="col-desc">UN/EDIFACT ORDERS D96A: UNB/UNH/BGM/DTM/NAD/LIN/QTY/PRI/UNS/CNT/UNT/UNZ. UNT01==seg count, UNZ02==UNB ctrl ref.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>UNB+UNOC:3+...
+UNH+...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate edifact_orders')">mockjutsu generate edifact_orders</span></td>
         </tr>
         <tr data-fn="regex_string" data-cat="Meta" data-locales="">
           <td class="col-fn"><code>regex_string</code></td>
@@ -2429,6 +2449,8 @@ const ROWS = [
   ["oidc_token","OIDC","oidc",false,"—","eyJhbGciOiJIUzI1NiJ9...","mockjutsu generate oidc_token","","HS256 JWT with standard OIDC claims (iss, sub, aud, exp, iat, jti). Fast symmetric signing — no key pair needed."],
   ["mt940","BankStatement","bankacilik",true,"—",":20:REF...\n:60F:C...\n:62F:C...","mockjutsu generate mt940 --locale TR","TR US UK DE FR RU","SWIFT MT940 bank statement: :20: :25: :28C: :60F: :61: :86: :62F: fields. Comma decimal (500,00). 2-5 transactions."],
   ["camt053","BankStatement","bankacilik",true,"—","<?xml...camt.053...","mockjutsu generate camt053 --locale TR","TR US UK DE FR RU","ISO 20022 CAMT.053 XML bank statement: MsgId, IBAN, OPBD/CLBD balances, Ntry entries. Dot decimal (500.00)."],
+  ["edi_850","EDI","edi",true,"—","ISA*00*...*:~\nGS*PO*...","mockjutsu generate edi_850","TR US UK DE FR RU","ANSI X12 EDI 850 Purchase Order: ISA/GS/ST/BEG/N1/PO1/CTT/SE/GE/IEA. ISA13==IEA02, GS06==GE02, SE01==segment count."],
+  ["edifact_orders","EDI","edi",true,"—","UNB+UNOC:3+...\nUNH+...","mockjutsu generate edifact_orders","TR US UK DE FR RU","UN/EDIFACT ORDERS D96A: UNB/UNH/BGM/DTM/NAD/LIN/QTY/PRI/UNS/CNT/UNT/UNZ. UNT01==seg count, UNZ02==UNB ctrl ref."],
   ["regex_string","Meta","meta",false,"--pattern (regex)","A4F-2819","mockjutsu generate regex_string","","Reverse regex engine: generates a string matching any regex pattern (use --pattern flag)."],
   ["phone","Contact","contact",true,"—","+905325551234","mockjutsu generate phone --locale TR","TR US UK DE FR RU","Full E.164 formatted telephone number."],
   ["phone_country","Contact","contact",true,"—","+90","mockjutsu generate phone_country --locale TR","TR US UK DE FR RU","International telephone country dial code."],
