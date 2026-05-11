@@ -12,7 +12,7 @@ import re
 from datetime import datetime
 import pytest
 from click.testing import CliRunner
-from mockjutsu.cli import main
+from mockjutsu.cli import main, _REFERENCE
 
 
 # ---------------------------------------------------------------------------
@@ -2603,3 +2603,76 @@ class TestTemplateCommand:
         data = json.loads(r.output)
         assert isinstance(data, list)
         assert len(data) == 10
+
+
+# ---------------------------------------------------------------------------
+# Structural guard — every _REFERENCE type must be CLI-invocable
+#
+# When a new type is added to _REFERENCE in cli.py, this parametrized test
+# automatically picks it up. It catches:
+#   - Missing dispatch in core.py
+#   - Missing CLI options (e.g. --pattern was absent for regex_string)
+#   - Generator crashes on first call
+#
+# All known extra options are supplied with safe defaults so types that
+# need them (e.g. regex_string → --pattern) are fully exercised.
+# ---------------------------------------------------------------------------
+
+_REFERENCE_TYPES = [
+    row[0] for row in _REFERENCE
+    if row[0].strip() and not row[0].strip().startswith('--')
+]
+
+_SAFE_EXTRA_ARGS = [
+    '--pattern',   '[A-Z]{3}',   # regex_string
+    '--words',     '12',         # mnemonic
+    '--network',   'visa',       # cardnum
+    '--currency',  'btc',        # crypto
+    '--carrier',   'usps',       # tracking
+    '--algorithm', 'sha256',     # hash
+]
+
+
+@pytest.mark.parametrize('data_type', _REFERENCE_TYPES)
+def test_every_reference_type_is_cli_invocable(data_type):
+    """Every type in _REFERENCE must be invocable via CLI with exit_code 0 and no ERROR output."""
+    runner = CliRunner()
+    args = ['generate', data_type] + _SAFE_EXTRA_ARGS
+    r = runner.invoke(main, args)
+    assert r.exit_code == 0, (
+        f"CLI exited with code {r.exit_code} for type '{data_type}':\n{r.output}"
+    )
+    out = r.output.strip()
+    assert not out.startswith('ERROR'), (
+        f"Type '{data_type}' returned ERROR via CLI:\n{out}"
+    )
+    # Note: patronymic legitimately returns empty string for non-RU locales — no len() check
+
+
+class TestRegexStringCLI:
+    """Dedicated CLI tests for regex_string — verifies --pattern flag works end-to-end."""
+
+    def _invoke(self, runner, *args):
+        return runner.invoke(main, ['generate', 'regex_string'] + list(args))
+
+    def test_pattern_hex8(self, runner):
+        r = self._invoke(runner, '--pattern', '[A-Fa-f0-9]{8}')
+        assert r.exit_code == 0
+        import re as _re
+        assert _re.fullmatch(r'[A-Fa-f0-9]{8}', r.output.strip())
+
+    def test_pattern_digits(self, runner):
+        r = self._invoke(runner, '--pattern', r'\d{5}')
+        assert r.exit_code == 0
+        assert r.output.strip().isdigit() and len(r.output.strip()) == 5
+
+    def test_pattern_alternation(self, runner):
+        r = self._invoke(runner, '--pattern', '(alpha|beta|gamma)')
+        assert r.exit_code == 0
+        assert r.output.strip() in ('alpha', 'beta', 'gamma')
+
+    def test_no_pattern_uses_preset(self, runner):
+        r = self._invoke(runner)
+        assert r.exit_code == 0
+        assert len(r.output.strip()) > 0
+        assert not r.output.strip().startswith('ERROR')
