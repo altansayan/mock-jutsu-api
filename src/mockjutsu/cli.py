@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("3244 Tests\n", style="cyan")
+    body.append("3285 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -149,6 +149,10 @@ _REFERENCE = [
     ('--WebAuthn--'   , ''             , False, ''                       , ''                              , '', ''),
     ('webauthn_credential', 'WebAuthn' , False, '{"id":"aB3x...","type":"public-key",...}', 'generate webauthn_credential', 'FIDO2/WebAuthn registration response: CBOR attestationObject + clientDataJSON (webauthn.create), all fields base64url encoded.', '-'),
     ('fido2_assertion', 'WebAuthn'     , False, '{"id":"kR7m...","type":"public-key",...}', 'generate fido2_assertion'    , 'FIDO2/WebAuthn authentication response: 37-byte authenticatorData + DER ECDSA signature + userHandle, base64url encoded.', '-'),
+    ('--Wallet--'     , ''             , False, ''                       , ''                              , '', ''),
+    ('eth_wallet'     , 'Wallet'       , False, '{"private_key":"a1b2...","address":"0xAb...",...}', 'generate eth_wallet', 'Full ETH wallet: secp256k1 scalar mult → Keccak-256 → EIP-55 checksummed address. JSON with private_key, public_key, address.', '-'),
+    ('btc_wallet'     , 'Wallet'       , False, '{"private_key":"c3d4...","wif":"K2...","address":"1A...",...}', 'generate btc_wallet', 'Full BTC wallet: secp256k1 → SHA256+RIPEMD160 → P2PKH Base58Check + compressed WIF. JSON with private_key, wif, public_key, address.', '-'),
+    ('sol_wallet'     , 'Wallet'       , False, '{"private_key":"e5f6...","address":"4Aa...",...}', 'generate sol_wallet', 'Full Solana wallet: Ed25519 scalar mult → base58 address. JSON with private_key, public_key, address, keypair (Phantom format).', '-'),
     ('regex_string'   , 'Meta'         , False, 'A4F-2819'               , 'generate regex_string'         , 'Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).', '--pattern (regex)'),
     ('phone'          , 'Contact'      , True , '+905325551234'         , 'generate phone --locale TR'    , 'Full E.164 formatted telephone number.', '-'),
     ('phone_country'  , 'Contact'      , True , '+90'                   , 'generate phone_country --locale TR', 'International telephone country dial code.', '-'),
@@ -290,7 +294,7 @@ _CAT_ORDER = [
     "Financial", "Contact", "Banking", "Corporate",
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
-    "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless", "WebAuthn",
+    "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless", "WebAuthn", "Wallet",
 ]
 
 _CAT_COLORS = {
@@ -320,6 +324,7 @@ _CAT_COLORS = {
     "Aviation":    "bright_cyan",
     "Wireless":    "bright_magenta",
     "WebAuthn":    "bright_yellow",
+    "Wallet":      "bright_green",
 }
 
 

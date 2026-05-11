@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; UK Reference Guide</h1>
   <div class="engine-title">The Ultimate Algorithmic Mock Data Engine</div>
-  <div class="sub"><span>6 locales</span> &bull; <span>202 data types</span> &bull; <span>3244 tests</span></div>
+  <div class="sub"><span>6 locales</span> &bull; <span>205 data types</span> &bull; <span>3285 tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">All Parameters (202)</div>
+  <div class="stitle">All Parameters (205)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Search function, CLI command or example output..." oninput="filterTable()">
@@ -860,6 +860,33 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-extra">—</td>
           <td class="col-output"><code>{"id":"kR7m...","type":"public-key",...}</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate fido2_assertion')">mockjutsu generate fido2_assertion</span></td>
+        </tr>
+        <tr data-fn="eth_wallet" data-cat="Wallet" data-locales="">
+          <td class="col-fn"><code>eth_wallet</code></td>
+          <td class="col-cat"><span class="pill ">Wallet</span></td>
+          <td class="col-desc">Full ETH wallet: secp256k1 scalar mult → Keccak-256 → EIP-55 checksummed address. JSON with private_key, public_key, address.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"private_key":"a1b2...","address":"0xAb...",...}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate eth_wallet')">mockjutsu generate eth_wallet</span></td>
+        </tr>
+        <tr data-fn="btc_wallet" data-cat="Wallet" data-locales="">
+          <td class="col-fn"><code>btc_wallet</code></td>
+          <td class="col-cat"><span class="pill ">Wallet</span></td>
+          <td class="col-desc">Full BTC wallet: secp256k1 → SHA256+RIPEMD160 → P2PKH Base58Check + compressed WIF. JSON with private_key, wif, public_key, address.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"private_key":"c3d4...","wif":"K2...","address":"1A...",...}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate btc_wallet')">mockjutsu generate btc_wallet</span></td>
+        </tr>
+        <tr data-fn="sol_wallet" data-cat="Wallet" data-locales="">
+          <td class="col-fn"><code>sol_wallet</code></td>
+          <td class="col-cat"><span class="pill ">Wallet</span></td>
+          <td class="col-desc">Full Solana wallet: Ed25519 scalar mult → base58 address. JSON with private_key, public_key, address, keypair (Phantom format).</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>{"private_key":"e5f6...","address":"4Aa...",...}</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate sol_wallet')">mockjutsu generate sol_wallet</span></td>
         </tr>
         <tr data-fn="regex_string" data-cat="Meta" data-locales="">
           <td class="col-fn"><code>regex_string</code></td>
@@ -2317,6 +2344,9 @@ const ROWS = [
   ["pnr_code","Aviation","aviation",false,"—","K7XR2B","mockjutsu generate pnr_code","","GDS Passenger Name Record (PNR) locator: 6-char uppercase alphanumeric, no ambiguous chars."],
   ["webauthn_credential","WebAuthn","webauthn",false,"—","{\"id\":\"aB3x...\",\"type\":\"public-key\",...}","mockjutsu generate webauthn_credential","","FIDO2/WebAuthn registration response: CBOR attestationObject + clientDataJSON (webauthn.create), all fields base64url encoded."],
   ["fido2_assertion","WebAuthn","webauthn",false,"—","{\"id\":\"kR7m...\",\"type\":\"public-key\",...}","mockjutsu generate fido2_assertion","","FIDO2/WebAuthn authentication response: 37-byte authenticatorData + DER ECDSA signature + userHandle, base64url encoded."],
+  ["eth_wallet","Wallet","wallet",false,"—","{\"private_key\":\"a1b2...\",\"address\":\"0xAb...\",...}","mockjutsu generate eth_wallet","","Full ETH wallet: secp256k1 scalar mult → Keccak-256 → EIP-55 checksummed address. JSON with private_key, public_key, address."],
+  ["btc_wallet","Wallet","wallet",false,"—","{\"private_key\":\"c3d4...\",\"wif\":\"K2...\",\"address\":\"1A...\",...}","mockjutsu generate btc_wallet","","Full BTC wallet: secp256k1 → SHA256+RIPEMD160 → P2PKH Base58Check + compressed WIF. JSON with private_key, wif, public_key, address."],
+  ["sol_wallet","Wallet","wallet",false,"—","{\"private_key\":\"e5f6...\",\"address\":\"4Aa...\",...}","mockjutsu generate sol_wallet","","Full Solana wallet: Ed25519 scalar mult → base58 address. JSON with private_key, public_key, address, keypair (Phantom format)."],
   ["regex_string","Meta","meta",false,"--pattern (regex)","A4F-2819","mockjutsu generate regex_string","","Reverse regex engine: generates a string matching any regex pattern (use --pattern flag)."],
   ["phone","Contact","contact",true,"—","+905325551234","mockjutsu generate phone --locale TR","TR US UK DE FR RU","Full E.164 formatted telephone number."],
   ["phone_country","Contact","contact",true,"—","+90","mockjutsu generate phone_country --locale TR","TR US UK DE FR RU","International telephone country dial code."],

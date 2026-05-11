@@ -27,6 +27,7 @@ from .generators.security          import SecurityGenerator
 from .generators.aviation          import AviationGenerator
 from .generators.reverse_regex     import ReverseRegexGenerator
 from .generators.fido2             import Fido2Generator
+from .generators.wallet            import WalletGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -143,6 +144,10 @@ _FIDO2_TYPES = {
     'webauthn_credential', 'fido2_assertion',
 }
 
+_WALLET_TYPES = {
+    'eth_wallet', 'btc_wallet', 'sol_wallet',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -170,6 +175,7 @@ class MockJutsuCore:
         self.aviation       = AviationGenerator()
         self.reverse_regex  = ReverseRegexGenerator()
         self.fido2          = Fido2Generator()
+        self.wallet         = WalletGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -227,6 +233,8 @@ class MockJutsuCore:
             result = self.reverse_regex.generate(dt, **kwargs)
         elif dt in _FIDO2_TYPES:
             result = self.fido2.generate(dt, **kwargs)
+        elif dt in _WALLET_TYPES:
+            result = self.wallet.generate(dt, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 
