@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("3504 Tests\n", style="cyan")
+    body.append("3551 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -170,6 +170,9 @@ _REFERENCE = [
     ('--EventSourcing--', ''           , False, ''                           , ''                              , '', ''),
     ('event_stream'   , 'EventSourcing', False, '[{"event_type":"login",...}]', 'generate event_stream'         , 'Markov Chain user-journey event sequence (Login→Browse→Cart→Checkout→Logout). JSON array with correlation_id, timestamps, payloads.', '-'),
     ('cdc_event'      , 'EventSourcing', False, '{"op":"u","before":{...},"after":{...}}', 'generate cdc_event', 'Debezium-style CDC event (INSERT/UPDATE/DELETE). op c/u/d, ts_ms, source db+table, before/after payloads.', '-'),
+    ('--Telemetry--'  , ''             , False, ''                           , ''                              , '', ''),
+    ('fdr_record'     , 'Telemetry'    , False, '{"flight_id":...,"samples":[{"pitch":2.1,...}]}', 'generate fdr_record', 'Flight Data Recorder time-series: pitch/roll/yaw/altitude_ft/speed_kts/vspeed_fpm/g_force. Physics-constrained bounded random walk (10 Hz).', '-'),
+    ('drone_telemetry', 'Telemetry'    , False, '{"drone_id":...,"samples":[{"lat":...,"alt_m":...}]}', 'generate drone_telemetry', 'Drone telemetry time-series: lat/lon/alt_m/pitch/roll/yaw/speed_ms/battery_pct/rssi. Battery monotonically decreasing (20 Hz).', '-'),
     ('regex_string'   , 'Meta'         , False, 'A4F-2819'               , 'generate regex_string'         , 'Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).', '--pattern (regex)'),
     ('phone'          , 'Contact'      , True , '+905325551234'         , 'generate phone --locale TR'    , 'Full E.164 formatted telephone number.', '-'),
     ('phone_country'  , 'Contact'      , True , '+90'                   , 'generate phone_country --locale TR', 'International telephone country dial code.', '-'),
@@ -312,7 +315,7 @@ _CAT_ORDER = [
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
     "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless", "WebAuthn", "Wallet",
-    "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing",
+    "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing", "Telemetry",
 ]
 
 _CAT_COLORS = {
@@ -348,6 +351,7 @@ _CAT_COLORS = {
     "BankStatement": "bright_blue",
     "EDI":           "bright_yellow",
     "EventSourcing": "magenta",
+    "Telemetry":     "bright_cyan",
 }
 
 

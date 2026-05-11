@@ -33,6 +33,7 @@ from .generators.oidc              import OidcGenerator
 from .generators.bank_statement    import BankStatementGenerator
 from .generators.edi               import EdiGenerator
 from .generators.event_sourcing    import EventSourcingGenerator
+from .generators.telemetry         import TelemetryGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -173,6 +174,10 @@ _EVENT_SOURCING_TYPES = {
     'event_stream', 'cdc_event',
 }
 
+_TELEMETRY_TYPES = {
+    'fdr_record', 'drone_telemetry',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -206,6 +211,7 @@ class MockJutsuCore:
         self.bank_statement = BankStatementGenerator()
         self.edi            = EdiGenerator()
         self.event_sourcing = EventSourcingGenerator()
+        self.telemetry      = TelemetryGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -275,6 +281,8 @@ class MockJutsuCore:
             result = self.edi.generate(dt, **kwargs)
         elif dt in _EVENT_SOURCING_TYPES:
             result = self.event_sourcing.generate(dt, **kwargs)
+        elif dt in _TELEMETRY_TYPES:
+            result = self.telemetry.generate(dt, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 
