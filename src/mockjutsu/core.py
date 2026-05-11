@@ -34,6 +34,7 @@ from .generators.bank_statement    import BankStatementGenerator
 from .generators.edi               import EdiGenerator
 from .generators.event_sourcing    import EventSourcingGenerator
 from .generators.telemetry         import TelemetryGenerator
+from .generators.crypto_fuzz       import CryptoFuzzGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -178,6 +179,10 @@ _TELEMETRY_TYPES = {
     'fdr_record', 'drone_telemetry',
 }
 
+_CRYPTO_FUZZ_TYPES = {
+    'jwt_attack', 'asn1_fuzz',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -212,6 +217,7 @@ class MockJutsuCore:
         self.edi            = EdiGenerator()
         self.event_sourcing = EventSourcingGenerator()
         self.telemetry      = TelemetryGenerator()
+        self.crypto_fuzz    = CryptoFuzzGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -283,6 +289,8 @@ class MockJutsuCore:
             result = self.event_sourcing.generate(dt, **kwargs)
         elif dt in _TELEMETRY_TYPES:
             result = self.telemetry.generate(dt, **kwargs)
+        elif dt in _CRYPTO_FUZZ_TYPES:
+            result = self.crypto_fuzz.generate(dt, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 
