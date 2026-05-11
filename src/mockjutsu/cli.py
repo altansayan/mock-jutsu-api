@@ -344,12 +344,13 @@ def main(ctx):
 @click.option('--merchant',  default='MOCK STORE', help='Merchant name')
 @click.option('--city',      default='ISTANBUL', help='Merchant city')
 @click.option('--words',     default=None,     help='Word count for mnemonic (12, 15, 18, 21, 24)', type=int)
-def generate(data_type, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, merchant, city, words):
+@click.option('--pattern',   default=None,     help='Regex pattern for regex_string type (e.g. "[A-Z]{3}\\d{4}")')
+def generate(data_type, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, merchant, city, words, pattern):
     """Generate mock data.  Example: mockjutsu generate tckn --locale TR"""
     if not data_type:
         click.echo("Error: specify a type. Run 'mockjutsu list' to see all types.")
         return
-    
+
     # Pack extra kwargs (only non-empty/non-None)
     raw_kwargs = {
         'prefix': prefix,
@@ -359,10 +360,11 @@ def generate(data_type, locale, network, currency, carrier, algorithm, prefix, g
         'amount': amount,
         'merchant': merchant,
         'city': city,
-        'words': words
+        'words': words,
+        'pattern': pattern,
     }
     kwargs = {k: v for k, v in raw_kwargs.items() if v is not None and v != ''}
-    
+
     result = jutsu.generate(data_type, locale=locale, network=network,
                             currency=currency, carrier=carrier, algorithm=algorithm, **kwargs)
     color  = 'red' if "ERROR" in str(result) else 'green'
