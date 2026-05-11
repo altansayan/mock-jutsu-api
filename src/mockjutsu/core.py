@@ -28,6 +28,7 @@ from .generators.aviation          import AviationGenerator
 from .generators.reverse_regex     import ReverseRegexGenerator
 from .generators.fido2             import Fido2Generator
 from .generators.wallet            import WalletGenerator
+from .generators.ai_vector         import AiVectorGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -148,6 +149,10 @@ _WALLET_TYPES = {
     'eth_wallet', 'btc_wallet', 'sol_wallet',
 }
 
+_AI_VECTOR_TYPES = {
+    'ai_embedding', 'ai_vector', 'ai_sparse_vector',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -176,6 +181,7 @@ class MockJutsuCore:
         self.reverse_regex  = ReverseRegexGenerator()
         self.fido2          = Fido2Generator()
         self.wallet         = WalletGenerator()
+        self.ai_vector      = AiVectorGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -235,6 +241,8 @@ class MockJutsuCore:
             result = self.fido2.generate(dt, **kwargs)
         elif dt in _WALLET_TYPES:
             result = self.wallet.generate(dt, **kwargs)
+        elif dt in _AI_VECTOR_TYPES:
+            result = self.ai_vector.generate(dt, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 

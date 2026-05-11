@@ -10,7 +10,8 @@ for attr in dir(mc):
         ALL_TYPES.update(getattr(mc, attr))
 
 # Exclude heavy cryptographic algorithms that naturally take longer than 1ms per call in pure Python
-HEAVY_TYPES = {'eth_address', 'btc_address', 'eth_wallet', 'btc_wallet', 'sol_wallet'}
+HEAVY_TYPES = {'eth_address', 'btc_address', 'eth_wallet', 'btc_wallet', 'sol_wallet',
+               'ai_embedding', 'ai_vector'}  # EC math or high-dim Gaussian generation exceeds 1.5ms/call
 FAST_TYPES = sorted(list(ALL_TYPES - HEAVY_TYPES))
 
 @pytest.mark.parametrize("data_type", FAST_TYPES)

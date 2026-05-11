@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("3285 Tests\n", style="cyan")
+    body.append("3328 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -153,6 +153,10 @@ _REFERENCE = [
     ('eth_wallet'     , 'Wallet'       , False, '{"private_key":"a1b2...","address":"0xAb...",...}', 'generate eth_wallet', 'Full ETH wallet: secp256k1 scalar mult → Keccak-256 → EIP-55 checksummed address. JSON with private_key, public_key, address.', '-'),
     ('btc_wallet'     , 'Wallet'       , False, '{"private_key":"c3d4...","wif":"K2...","address":"1A...",...}', 'generate btc_wallet', 'Full BTC wallet: secp256k1 → SHA256+RIPEMD160 → P2PKH Base58Check + compressed WIF. JSON with private_key, wif, public_key, address.', '-'),
     ('sol_wallet'     , 'Wallet'       , False, '{"private_key":"e5f6...","address":"4Aa...",...}', 'generate sol_wallet', 'Full Solana wallet: Ed25519 scalar mult → base58 address. JSON with private_key, public_key, address, keypair (Phantom format).', '-'),
+    ('--AIVector--'  , ''             , False, ''                           , ''                              , '', ''),
+    ('ai_embedding'  , 'AI Vector'    , False, '[0.021,-0.184,...]'         , 'generate ai_embedding'         , '1536-dim L2-normalized float vector (OpenAI Ada-002 / Pinecone compatible). JSON array of floats with |v|₂=1.', '--dims (int)'),
+    ('ai_vector'     , 'AI Vector'    , False, '[0.089,-0.234,...]'         , 'generate ai_vector'            , 'N-dim L2-normalized unit vector for embedding models (default 384-dim). Configurable via --dims.', '--dims (int)'),
+    ('ai_sparse_vector', 'AI Vector'  , False, '{"indices":[...],"values":[...]}', 'generate ai_sparse_vector', 'Sparse {indices, values} vector with L2-normalized positive weights for hybrid search (Pinecone/Qdrant). 128 non-zero entries in 10k-dim space.', '--dims (int)'),
     ('regex_string'   , 'Meta'         , False, 'A4F-2819'               , 'generate regex_string'         , 'Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).', '--pattern (regex)'),
     ('phone'          , 'Contact'      , True , '+905325551234'         , 'generate phone --locale TR'    , 'Full E.164 formatted telephone number.', '-'),
     ('phone_country'  , 'Contact'      , True , '+90'                   , 'generate phone_country --locale TR', 'International telephone country dial code.', '-'),
@@ -295,6 +299,7 @@ _CAT_ORDER = [
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
     "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless", "WebAuthn", "Wallet",
+    "AI Vector",
 ]
 
 _CAT_COLORS = {
@@ -325,6 +330,7 @@ _CAT_COLORS = {
     "Wireless":    "bright_magenta",
     "WebAuthn":    "bright_yellow",
     "Wallet":      "bright_green",
+    "AI Vector":   "bright_magenta",
 }
 
 
@@ -354,7 +360,8 @@ def main(ctx):
 @click.option('--city',      default='ISTANBUL', help='Merchant city')
 @click.option('--words',     default=None,     help='Word count for mnemonic (12, 15, 18, 21, 24)', type=int)
 @click.option('--pattern',   default=None,     help='Regex pattern for regex_string type (e.g. "[A-Z]{3}\\d{4}")')
-def generate(data_type, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, merchant, city, words, pattern):
+@click.option('--dims',      default=None,     help='Vector dimension for ai_embedding / ai_vector / ai_sparse_vector', type=int)
+def generate(data_type, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, merchant, city, words, pattern, dims):
     """Generate mock data.  Example: mockjutsu generate tckn --locale TR"""
     if not data_type:
         click.echo("Error: specify a type. Run 'mockjutsu list' to see all types.")
@@ -371,6 +378,7 @@ def generate(data_type, locale, network, currency, carrier, algorithm, prefix, g
         'city': city,
         'words': words,
         'pattern': pattern,
+        'dims': dims,
     }
     kwargs = {k: v for k, v in raw_kwargs.items() if v is not None and v != ''}
 

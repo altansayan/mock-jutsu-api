@@ -2648,6 +2648,7 @@ _FLAG_DEFAULTS: dict[str, str] = {
     '--min':       '1.0',
     '--max':       '100.0',
     '--locale':    'TR',
+    '--dims':      '16',
 }
 
 
