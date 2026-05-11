@@ -30,6 +30,7 @@ from .generators.fido2             import Fido2Generator
 from .generators.wallet            import WalletGenerator
 from .generators.ai_vector         import AiVectorGenerator
 from .generators.oidc              import OidcGenerator
+from .generators.bank_statement    import BankStatementGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -158,6 +159,10 @@ _OIDC_TYPES = {
     'oidc_token_set', 'jwks', 'oidc_token',
 }
 
+_BANK_STATEMENT_TYPES = {
+    'mt940', 'camt053',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -188,6 +193,7 @@ class MockJutsuCore:
         self.wallet         = WalletGenerator()
         self.ai_vector      = AiVectorGenerator()
         self.oidc           = OidcGenerator()
+        self.bank_statement = BankStatementGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -251,6 +257,8 @@ class MockJutsuCore:
             result = self.ai_vector.generate(dt, **kwargs)
         elif dt in _OIDC_TYPES:
             result = self.oidc.generate(dt, **kwargs)
+        elif dt in _BANK_STATEMENT_TYPES:
+            result = self.bank_statement.generate(dt, locale=locale, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 

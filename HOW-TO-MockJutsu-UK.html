@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; UK Reference Guide</h1>
   <div class="engine-title">The Ultimate Algorithmic Mock Data Engine</div>
-  <div class="sub"><span>6 locales</span> &bull; <span>211 data types</span> &bull; <span>3376 tests</span></div>
+  <div class="sub"><span>6 locales</span> &bull; <span>213 data types</span> &bull; <span>3418 tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">All Parameters (211)</div>
+  <div class="stitle">All Parameters (213)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Search function, CLI command or example output..." oninput="filterTable()">
@@ -941,6 +941,26 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
           <td class="col-extra">—</td>
           <td class="col-output"><code>eyJhbGciOiJIUzI1NiJ9...</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate oidc_token')">mockjutsu generate oidc_token</span></td>
+        </tr>
+        <tr data-fn="mt940" data-cat="BankStatement" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>mt940</code></td>
+          <td class="col-cat"><span class="pill cat-bankacilik">BankStatement</span></td>
+          <td class="col-desc">SWIFT MT940 bank statement: :20: :25: :28C: :60F: :61: :86: :62F: fields. Comma decimal (500,00). 2-5 transactions.</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>:20:REF...
+:60F:C...
+:62F:C...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate mt940 --locale TR')">mockjutsu generate mt940 --locale TR</span></td>
+        </tr>
+        <tr data-fn="camt053" data-cat="BankStatement" data-locales="TR US UK DE FR RU">
+          <td class="col-fn"><code>camt053</code></td>
+          <td class="col-cat"><span class="pill cat-bankacilik">BankStatement</span></td>
+          <td class="col-desc">ISO 20022 CAMT.053 XML bank statement: MsgId, IBAN, OPBD/CLBD balances, Ntry entries. Dot decimal (500.00).</td>
+          <td class="col-locale"><div class="lc-grid"><span class="lc lc-TR">TR</span><span class="lc lc-US">US</span><span class="lc lc-UK">UK</span><span class="lc lc-DE">DE</span><span class="lc lc-FR">FR</span><span class="lc lc-RU">RU</span></div></td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code><?xml...camt.053...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate camt053 --locale TR')">mockjutsu generate camt053 --locale TR</span></td>
         </tr>
         <tr data-fn="regex_string" data-cat="Meta" data-locales="">
           <td class="col-fn"><code>regex_string</code></td>
@@ -2407,6 +2427,8 @@ const ROWS = [
   ["oidc_token_set","OIDC","oidc",false,"—","{\"token\":\"eyJ...\",\"jwks\":{...},\"kid\":\"...\",\"claims\":{...}}","mockjutsu generate oidc_token_set","","ES256 key pair (P-256) → signed JWT + verifiable JWKS (kid linked). Full OIDC claims: iss, sub, aud, exp, iat, jti, email."],
   ["jwks","OIDC","oidc",false,"—","{\"keys\":[{\"kty\":\"EC\",\"crv\":\"P-256\",...}]}","mockjutsu generate jwks","","Standalone JWK Set — fresh P-256 EC public key (kty=EC, crv=P-256, use=sig, alg=ES256). Mock /.well-known/jwks.json endpoint."],
   ["oidc_token","OIDC","oidc",false,"—","eyJhbGciOiJIUzI1NiJ9...","mockjutsu generate oidc_token","","HS256 JWT with standard OIDC claims (iss, sub, aud, exp, iat, jti). Fast symmetric signing — no key pair needed."],
+  ["mt940","BankStatement","bankacilik",true,"—",":20:REF...\n:60F:C...\n:62F:C...","mockjutsu generate mt940 --locale TR","TR US UK DE FR RU","SWIFT MT940 bank statement: :20: :25: :28C: :60F: :61: :86: :62F: fields. Comma decimal (500,00). 2-5 transactions."],
+  ["camt053","BankStatement","bankacilik",true,"—","<?xml...camt.053...","mockjutsu generate camt053 --locale TR","TR US UK DE FR RU","ISO 20022 CAMT.053 XML bank statement: MsgId, IBAN, OPBD/CLBD balances, Ntry entries. Dot decimal (500.00)."],
   ["regex_string","Meta","meta",false,"--pattern (regex)","A4F-2819","mockjutsu generate regex_string","","Reverse regex engine: generates a string matching any regex pattern (use --pattern flag)."],
   ["phone","Contact","contact",true,"—","+905325551234","mockjutsu generate phone --locale TR","TR US UK DE FR RU","Full E.164 formatted telephone number."],
   ["phone_country","Contact","contact",true,"—","+90","mockjutsu generate phone_country --locale TR","TR US UK DE FR RU","International telephone country dial code."],
