@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; Guide de Référence FR</h1>
   <div class="engine-title">L'ultime moteur algorithmique de données fictives</div>
-  <div class="sub"><span>6 régions</span> &bull; <span>233 types de données</span> &bull; <span>3912 tests</span></div>
+  <div class="sub"><span>6 régions</span> &bull; <span>235 types de données</span> &bull; <span>3967 tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">Tous les Paramètres (233)</div>
+  <div class="stitle">Tous les Paramètres (235)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Rechercher une fonction, commande CLI ou exemple..." oninput="filterTable()">
@@ -1053,6 +1053,24 @@ UNH+...</code></td>
           <td class="col-extra">—</td>
           <td class="col-output"><code>{"mrz_type":"TD1","lines":["I<TUR...","...","SMITH<<JOHN<"]}</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate mrz_td1')">mockjutsu generate mrz_td1</span></td>
+        </tr>
+        <tr data-fn="can_frame" data-cat="Automotive" data-locales="">
+          <td class="col-fn"><code>can_frame</code></td>
+          <td class="col-cat"><span class="pill ">Automotive</span></td>
+          <td class="col-desc">Raw CAN Bus frame (ISO 11898-1): standard (11-bit) or extended (29-bit) ID, DLC 0-8, CRC-15 polynomial 0xC599 verified over SOF+ID+Control+Data. SocketCAN notation.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>frame_type:standard | can_id:0x1A2 | dlc:4 | data_hex:DEADBEEF | crc15:12345 | socketcan:1A2#DEADBEEF</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate can_frame')">mockjutsu generate can_frame</span></td>
+        </tr>
+        <tr data-fn="obd2_response" data-cat="Automotive" data-locales="">
+          <td class="col-fn"><code>obd2_response</code></td>
+          <td class="col-cat"><span class="pill ">Automotive</span></td>
+          <td class="col-desc">OBD-II live snapshot (SAE J1979 / ISO 15765-4): Mode 01 PIDs (RPM, Speed, Coolant, Throttle, Engine Load, Fuel Level). Each PID is a CAN frame (0x7E8) avec verified CRC-15. Optional DTCs.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>ecu_id:7E8 | rpm:2500.0 | speed_kmh:80 | coolant:90C | dtcs:[] | pids:[{pid:0C,crc15:...}]</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate obd2_response')">mockjutsu generate obd2_response</span></td>
         </tr>
         <tr data-fn="ubl_invoice" data-cat="EInvoice" data-locales="">
           <td class="col-fn"><code>ubl_invoice</code></td>
@@ -2624,6 +2642,8 @@ const ROWS = [
   ["market_tick","OHLCV","ohlcv",false,"—","{\"symbol\":\"AAPL\",\"price\":150.23,\"bid\":150.20,\"ask\":150.25,\"side\":\"buy\",\"size\":100}","mockjutsu generate market_tick","","Individual exchange trade tick: bid < price <= ask, positive spread, Lee-Ready side (buy/sell), lot size, sequence Numéro."],
   ["mrz_td3","MRZ","mrz",false,"—","{\"mrz_type\":\"TD3\",\"lines\":[\"P<TUR...\",\"ABCD123456<...\"]}","mockjutsu generate mrz_td3","","ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal Numéro, composite vérification digit (ICAO 9303 Part 3)."],
   ["mrz_td1","MRZ","mrz",false,"—","{\"mrz_type\":\"TD1\",\"lines\":[\"I<TUR...\",\"...\",\"SMITH<<JOHN<\"]}","mockjutsu generate mrz_td1","","ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc Numéro, DOB, expiry, composite vérification digit (ICAO 9303 Part 5)."],
+  ["can_frame","Automotive","automotive",false,"—","frame_type:standard | can_id:0x1A2 | dlc:4 | data_hex:DEADBEEF | crc15:12345 | socketcan:1A2#DEADBEEF","mockjutsu generate can_frame","","Raw CAN Bus frame (ISO 11898-1): standard (11-bit) or extended (29-bit) ID, DLC 0-8, CRC-15 polynomial 0xC599 verified over SOF+ID+Control+Data. SocketCAN notation."],
+  ["obd2_response","Automotive","automotive",false,"—","ecu_id:7E8 | rpm:2500.0 | speed_kmh:80 | coolant:90C | dtcs:[] | pids:[{pid:0C,crc15:...}]","mockjutsu generate obd2_response","","OBD-II live snapshot (SAE J1979 / ISO 15765-4): Mode 01 PIDs (RPM, Speed, Coolant, Throttle, Engine Load, Fuel Level). Each PID is a CAN frame (0x7E8) avec verified CRC-15. Optional DTCs."],
   ["ubl_invoice","EInvoice","einvoice",false,"—","invoice_id:INV-2026-00001 | uuid:UUID | currency:TRY | tax_rate:18 | net:1000.00 | gross:1180.00 | xml:<?xml...Invoice...","mockjutsu generate ubl_invoice","","OASIS UBL 2.1 Invoice XML (Turkey GIB e-fatura): consistent amounts (net+tax=gross), 1-5 line items, INV-YYYY-NNNNN ID, uppercase UUID, TaxTotal, LegalMonetaryTotal."],
   ["xmldsig","EInvoice","einvoice",false,"—","sig_id:Signature-A1B2C3D4 | digest_value:44-char-base64 | signature_value:344-char-base64 | xml:<ds:Signature...","mockjutsu generate xmldsig","","W3C XML Digital Signature (XMLDSig) enveloped: RSA-SHA256 signature, SHA-256 digest, C14N canonicalization. DigestValue=44 chars (32 bytes), SignatureValue=344 chars (256 bytes)."],
   ["quaternion","GameDev","gamedev",false,"—","{\"x\":0.12345678,\"y\":0.45678901,\"z\":0.78901234,\"w\":0.34567890,\"magnitude\":1.0,\"euler_degrees\":{\"pitch\":12.3,\"yaw\":45.6,\"roll\":78.9}}","mockjutsu generate quaternion","","L2-normalized unit quaternion (Gaussian sampling): sqrt(x²+y²+z²+w²)=1.0. Pre-computed Euler angles (ZYX, degrees). Unity/Unreal compatible."],
