@@ -391,7 +391,7 @@ class TestGenerateDocumentDemographic:
         val = _gen(runner, 'birthdate')
         assert re.match(r'^\d{4}-\d{2}-\d{2}$', val)
         year = int(val[:4])
-        assert 1940 <= year <= 2006
+        assert 1940 <= year <= datetime.now().year - 18
 
 
 # ===========================================================================
