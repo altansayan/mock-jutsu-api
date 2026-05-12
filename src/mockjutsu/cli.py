@@ -51,7 +51,7 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("3967 Tests\n", style="cyan")
+    body.append("4008 Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
@@ -179,6 +179,8 @@ _REFERENCE = [
     ('--MRZ--'        , ''             , False, ''                           , ''                              , '', ''),
     ('mrz_td3'        , 'MRZ'          , False, '{"mrz_type":"TD3","lines":["P<TUR...","ABCD123456<..."]}', 'generate mrz_td3', 'ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal number, composite check digit (ICAO 9303 Part 3).', '-'),
     ('mrz_td1'        , 'MRZ'          , False, '{"mrz_type":"TD1","lines":["I<TUR...","...","SMITH<<JOHN<"]}', 'generate mrz_td1', 'ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc number, DOB, expiry, composite check digit (ICAO 9303 Part 5).', '-'),
+    ('--TLE--'         , ''             , False, ''                           , ''                              , '', ''),
+    ('tle_satellite'   , 'TLE'          , False, 'name:MOCKSAT-42 | orbit:LEO | incl:51.6434 | raan:339.7939 | ecc:0.0001785 | mm:15.49320826 | line1:1 25544U... | line2:2 25544...', 'generate tle_satellite', 'Two-Line Element Set (TLE) per NORAD/USSPACECOM standard: LEO/MEO/GEO/SSO/HEO orbit types, physics-consistent parameters. NORAD Modulo-10 checksum verified on both 69-char lines.', '-'),
     ('--Automotive--'  , ''             , False, ''                           , ''                              , '', ''),
     ('can_frame'       , 'Automotive'   , False, 'frame_type:standard | can_id:0x1A2 | dlc:4 | data_hex:DEADBEEF | crc15:12345 | socketcan:1A2#DEADBEEF', 'generate can_frame', 'Raw CAN Bus frame (ISO 11898-1): standard (11-bit) or extended (29-bit) ID, DLC 0-8, CRC-15 polynomial 0xC599 verified over SOF+ID+Control+Data. SocketCAN notation.', '-'),
     ('obd2_response'   , 'Automotive'   , False, 'ecu_id:7E8 | rpm:2500.0 | speed_kmh:80 | coolant:90C | dtcs:[] | pids:[{pid:0C,crc15:...}]', 'generate obd2_response', 'OBD-II live snapshot (SAE J1979 / ISO 15765-4): Mode 01 PIDs (RPM, Speed, Coolant, Throttle, Engine Load, Fuel Level). Each PID is a CAN frame (0x7E8) with verified CRC-15. Optional DTCs.', '-'),
@@ -339,7 +341,7 @@ _CAT_ORDER = [
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
     "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless", "WebAuthn", "Wallet",
-    "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing", "Telemetry", "OHLCV", "Automotive", "EInvoice", "GameDev", "Prometheus", "NMEA", "MRZ", "PenTest",
+    "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing", "Telemetry", "OHLCV", "TLE", "Automotive", "EInvoice", "GameDev", "Prometheus", "NMEA", "MRZ", "PenTest",
 ]
 
 _CAT_COLORS = {
@@ -377,6 +379,7 @@ _CAT_COLORS = {
     "EventSourcing": "magenta",
     "Telemetry":     "bright_cyan",
     "OHLCV":         "bright_green",
+    "TLE":           "bright_cyan",
     "Automotive":    "bright_yellow",
     "EInvoice":      "bright_cyan",
     "GameDev":       "bright_magenta",

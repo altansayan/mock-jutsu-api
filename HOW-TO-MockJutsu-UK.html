@@ -161,7 +161,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 <div class="header">
   <h1>Mock Jutsu &mdash; UK Reference Guide</h1>
   <div class="engine-title">The Ultimate Algorithmic Mock Data Engine</div>
-  <div class="sub"><span>6 locales</span> &bull; <span>235 data types</span> &bull; <span>3967 tests</span></div>
+  <div class="sub"><span>6 locales</span> &bull; <span>236 data types</span> &bull; <span>4008 tests</span></div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="github-link">
       <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" fill="currentColor">
@@ -188,7 +188,7 @@ code{background:#f1f5f9; padding:4px 8px; border-radius:6px; font-family:'JetBra
 
 <!-- REFERENCE -->
 <div class="section active" id="tab-ref">
-  <div class="stitle">All Parameters (235)</div>
+  <div class="stitle">All Parameters (236)</div>
 
   <div class="toolbar">
     <input id="searchBox" type="text" placeholder="Search function, CLI command or example output..." oninput="filterTable()">
@@ -1053,6 +1053,15 @@ UNH+...</code></td>
           <td class="col-extra">—</td>
           <td class="col-output"><code>{"mrz_type":"TD1","lines":["I<TUR...","...","SMITH<<JOHN<"]}</code></td>
           <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate mrz_td1')">mockjutsu generate mrz_td1</span></td>
+        </tr>
+        <tr data-fn="tle_satellite" data-cat="TLE" data-locales="">
+          <td class="col-fn"><code>tle_satellite</code></td>
+          <td class="col-cat"><span class="pill ">TLE</span></td>
+          <td class="col-desc">Two-Line Element Set (TLE) per NORAD/USSPACECOM standard: LEO/MEO/GEO/SSO/HEO orbit types, physics-consistent parameters. NORAD Modulo-10 checksum verified on both 69-char lines.</td>
+          <td class="col-locale">—</td>
+          <td class="col-extra">—</td>
+          <td class="col-output"><code>name:MOCKSAT-42 | orbit:LEO | incl:51.6434 | raan:339.7939 | ecc:0.0001785 | mm:15.49320826 | line1:1 25544U... | line2:2 25544...</code></td>
+          <td class="col-cli"><span class="cli-cmd" title="Click to copy" onclick="navigator.clipboard.writeText('mockjutsu generate tle_satellite')">mockjutsu generate tle_satellite</span></td>
         </tr>
         <tr data-fn="can_frame" data-cat="Automotive" data-locales="">
           <td class="col-fn"><code>can_frame</code></td>
@@ -2643,6 +2652,7 @@ const ROWS = [
   ["market_tick","OHLCV","ohlcv",false,"—","{\"symbol\":\"AAPL\",\"price\":150.23,\"bid\":150.20,\"ask\":150.25,\"side\":\"buy\",\"size\":100}","mockjutsu generate market_tick","","Individual exchange trade tick: bid < price <= ask, positive spread, Lee-Ready side (buy/sell), lot size, sequence number."],
   ["mrz_td3","MRZ","mrz",false,"—","{\"mrz_type\":\"TD3\",\"lines\":[\"P<TUR...\",\"ABCD123456<...\"]}","mockjutsu generate mrz_td3","","ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal number, composite check digit (ICAO 9303 Part 3)."],
   ["mrz_td1","MRZ","mrz",false,"—","{\"mrz_type\":\"TD1\",\"lines\":[\"I<TUR...\",\"...\",\"SMITH<<JOHN<\"]}","mockjutsu generate mrz_td1","","ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc number, DOB, expiry, composite check digit (ICAO 9303 Part 5)."],
+  ["tle_satellite","TLE","tle",false,"—","name:MOCKSAT-42 | orbit:LEO | incl:51.6434 | raan:339.7939 | ecc:0.0001785 | mm:15.49320826 | line1:1 25544U... | line2:2 25544...","mockjutsu generate tle_satellite","","Two-Line Element Set (TLE) per NORAD/USSPACECOM standard: LEO/MEO/GEO/SSO/HEO orbit types, physics-consistent parameters. NORAD Modulo-10 checksum verified on both 69-char lines."],
   ["can_frame","Automotive","automotive",false,"—","frame_type:standard | can_id:0x1A2 | dlc:4 | data_hex:DEADBEEF | crc15:12345 | socketcan:1A2#DEADBEEF","mockjutsu generate can_frame","","Raw CAN Bus frame (ISO 11898-1): standard (11-bit) or extended (29-bit) ID, DLC 0-8, CRC-15 polynomial 0xC599 verified over SOF+ID+Control+Data. SocketCAN notation."],
   ["obd2_response","Automotive","automotive",false,"—","ecu_id:7E8 | rpm:2500.0 | speed_kmh:80 | coolant:90C | dtcs:[] | pids:[{pid:0C,crc15:...}]","mockjutsu generate obd2_response","","OBD-II live snapshot (SAE J1979 / ISO 15765-4): Mode 01 PIDs (RPM, Speed, Coolant, Throttle, Engine Load, Fuel Level). Each PID is a CAN frame (0x7E8) with verified CRC-15. Optional DTCs."],
   ["ubl_invoice","EInvoice","einvoice",false,"—","invoice_id:INV-2026-00001 | uuid:UUID | currency:TRY | tax_rate:18 | net:1000.00 | gross:1180.00 | xml:<?xml...Invoice...","mockjutsu generate ubl_invoice","","OASIS UBL 2.1 Invoice XML (Turkey GIB e-fatura): consistent amounts (net+tax=gross), 1-5 line items, INV-YYYY-NNNNN ID, uppercase UUID, TaxTotal, LegalMonetaryTotal."],

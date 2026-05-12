@@ -42,6 +42,7 @@ from .generators.prometheus        import PrometheusGenerator
 from .generators.gamedev           import GameDevGenerator
 from .generators.ubl               import UblGenerator
 from .generators.automotive        import AutomotiveGenerator
+from .generators.tle               import TleGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -218,6 +219,10 @@ _AUTOMOTIVE_TYPES = {
     'can_frame', 'obd2_response',
 }
 
+_TLE_TYPES = {
+    'tle_satellite',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -260,6 +265,7 @@ class MockJutsuCore:
         self.gamedev        = GameDevGenerator()
         self.ubl            = UblGenerator()
         self.automotive     = AutomotiveGenerator()
+        self.tle            = TleGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -347,6 +353,8 @@ class MockJutsuCore:
             result = self.ubl.generate(dt, **kwargs)
         elif dt in _AUTOMOTIVE_TYPES:
             result = self.automotive.generate(dt, **kwargs)
+        elif dt in _TLE_TYPES:
+            result = self.tle.generate(dt, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 
