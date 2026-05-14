@@ -1377,6 +1377,16 @@ def update_readme(readme_path: str, total: int, cat_counts: dict) -> None:
     print(f"README:  {total} total types, group counts updated")
 
 
+def update_index(index_path: str, total: int) -> None:
+    with open(index_path, "r", encoding="utf-8") as f:
+        text = f.read()
+    # "N+ Types." / "N+ Types," / "N+ Data Types." — replace only the number
+    text = re.sub(r'\d+(\+ (?:Data )?Types[.,])', rf'{total}\1', text)
+    with open(index_path, "w", encoding="utf-8") as f:
+        f.write(text)
+    print(f"index.html: {total}+ Types updated")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Mock Jutsu HOW-TO 2.0 generator")
     parser.add_argument("--lang", default="", help="Only this language (TR/EN/UK/DE/FR/RU)")
@@ -1437,6 +1447,10 @@ def main():
             os.path.join(BASE_DIR, "README.md"),
             total=len(data_funcs),
             cat_counts=cat_counts,
+        )
+        update_index(
+            os.path.join(BASE_DIR, "index.html"),
+            total=len(data_funcs),
         )
 
 
