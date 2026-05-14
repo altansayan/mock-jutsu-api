@@ -43,6 +43,7 @@ from .generators.gamedev           import GameDevGenerator
 from .generators.ubl               import UblGenerator
 from .generators.automotive        import AutomotiveGenerator
 from .generators.tle               import TleGenerator
+from .generators.payments          import PaymentsGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -223,6 +224,10 @@ _TLE_TYPES = {
     'tle_satellite',
 }
 
+_PAYMENTS_TYPES = {
+    'swift_mt103', 'pain001', 'nacha_ach', 'sepa_mandate', 'fedwire',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -266,6 +271,7 @@ class MockJutsuCore:
         self.ubl            = UblGenerator()
         self.automotive     = AutomotiveGenerator()
         self.tle            = TleGenerator()
+        self.payments       = PaymentsGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -355,6 +361,8 @@ class MockJutsuCore:
             result = self.automotive.generate(dt, **kwargs)
         elif dt in _TLE_TYPES:
             result = self.tle.generate(dt, **kwargs)
+        elif dt in _PAYMENTS_TYPES:
+            result = self.payments.generate(dt, locale=locale, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 
