@@ -1288,18 +1288,44 @@ function copyTerm(id) {
 
 
 # ── Sitemap ───────────────────────────────────────────────────────────────────
+def _sitemap_entry(loc: str, priority: str, changefreq: str) -> str:
+    import datetime
+    today = datetime.date.today().isoformat()
+    return (
+        f"  <url>\n"
+        f"    <loc>{loc}</loc>\n"
+        f"    <lastmod>{today}</lastmod>\n"
+        f"    <changefreq>{changefreq}</changefreq>\n"
+        f"    <priority>{priority}</priority>\n"
+        f"  </url>"
+    )
+
+
 def build_sitemap(funcs: list) -> str:
-    urls = ['<?xml version="1.0" encoding="UTF-8"?>',
-            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    urls.append('  <url><loc>https://altansayan.github.io/mock-jutsu-api/</loc><priority>1.0</priority></url>')
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+        '        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"',
+        '        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9',
+        '          http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">',
+        "",
+        "  <!-- Homepage -->",
+        _sitemap_entry("https://altansayan.github.io/mock-jutsu-api/", "1.0", "weekly"),
+        "",
+        "  <!-- Language listing pages -->",
+    ]
     for lang in LANGS:
-        urls.append(f'  <url><loc>{listing_url(lang)}</loc><priority>0.9</priority></url>')
+        lines.append(_sitemap_entry(listing_url(lang), "0.9", "weekly"))
+    lines.append("")
+    lines.append("  <!-- Function detail pages -->")
     for r in funcs:
-        fn = r[0]
+        fn  = r[0]
+        cat = r[1] if len(r) > 1 else ""
+        pri = "0.6" if cat == "Commands" else "0.8"
         for lang in LANGS:
-            urls.append(f'  <url><loc>{detail_url(fn, lang)}</loc><priority>0.7</priority></url>')
-    urls.append('</urlset>')
-    return "\n".join(urls)
+            lines.append(_sitemap_entry(detail_url(fn, lang), pri, "monthly"))
+    lines.append("</urlset>")
+    return "\n".join(lines)
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
@@ -1339,12 +1365,18 @@ def main():
             if done % 50 == 0:
                 print(f"[{done:>4}/{total_pages}] {lang}/FUNCTION/{fn}-{lang}.html")
 
-    # Sitemap
-    sitemap_path = os.path.join(OUT_DIR, "sitemap-howto.xml")
-    with open(sitemap_path, "w", encoding="utf-8") as f:
-        f.write(build_sitemap(funcs))
-    print(f"\nSitemap: {os.path.relpath(sitemap_path, BASE_DIR)}")
-    print(f"\nDone — {done} pages generated.")
+    # Sitemap — write to both root and HOW-TO/
+    sitemap_xml = build_sitemap(funcs)
+    for sm_path in [
+        os.path.join(BASE_DIR, "sitemap.xml"),
+        os.path.join(OUT_DIR, "sitemap-howto.xml"),
+    ]:
+        with open(sm_path, "w", encoding="utf-8") as f:
+            f.write(sitemap_xml)
+        print(f"Sitemap: {os.path.relpath(sm_path, BASE_DIR)}")
+
+    total_urls = 1 + len(langs) + len(funcs) * len(langs)
+    print(f"\nDone — {done} pages + {total_urls} sitemap URLs generated.")
     print("Open:  HOW-TO/TR/HOW-TO-MockJutsu-TR.html")
 
 
