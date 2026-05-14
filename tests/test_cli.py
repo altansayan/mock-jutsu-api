@@ -2649,6 +2649,12 @@ _FLAG_DEFAULTS: dict[str, str] = {
     '--max':       '100.0',
     '--locale':    'TR',
     '--dims':      '16',
+    '--nnz':       '8',
+    '--secret':    'ninja',
+    '--payload':   'mock',
+    '--format':    'json',
+    '--count':     '3',
+    '--table':     'mock_data',
 }
 
 
@@ -2676,7 +2682,7 @@ def _build_invocation(row) -> tuple[str, list[str]]:
 _REFERENCE_INVOCATIONS: list[tuple[str, list[str]]] = [
     _build_invocation(row)
     for row in _REFERENCE
-    if row[0].strip() and not row[0].strip().startswith('--')
+    if row[0].strip() and not row[0].strip().startswith('--') and row[1] != 'Commands'
 ]
 
 

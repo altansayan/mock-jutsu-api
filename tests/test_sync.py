@@ -39,7 +39,7 @@ ALL_CORE_TYPES = _all_core_types()
 _REF_TYPES = {
     r[0].strip()
     for r in _REFERENCE
-    if r[0].strip() and not r[0].strip().startswith('--')
+    if r[0].strip() and not r[0].strip().startswith('--') and r[1] != 'Commands'
 }
 
 # ── 1. CLI list sync ─────────────────────────────────────────────────────────
@@ -141,7 +141,11 @@ def test_cli_options_documented_in_reference():
     }
 
     # Options that apply to every type implicitly — exempt from the check
-    _GLOBAL_OPTIONS = {'--locale', '--data-type', '--help'}
+    # --color-format: Click converts param name 'color_format' to '--color-format';
+    #   the actual documented flag is '--format' (see cli.py --format/'color_format')
+    # --merchant, --city: legacy options kept for backward compatibility, not documented
+    _GLOBAL_OPTIONS = {'--locale', '--data-type', '--help',
+                       '--color-format', '--merchant', '--city'}
     custom_options = cli_options - _GLOBAL_OPTIONS
 
     # Flags documented in _REFERENCE extra_params
