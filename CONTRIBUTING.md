@@ -55,7 +55,7 @@ Every data type is registered in two places in `core.py`:
 
 `_REFERENCE` is a list of tuples that drives:
 - `mockjutsu list` output
-- All 6 multilingual HTML documentation files (via `generate_locale_docs.py`)
+- All 6 multilingual HTML documentation files (via `generate_full_docs.py`)
 - Sync guard tests (`test_sync.py`)
 
 ```python
@@ -155,18 +155,19 @@ The 6 multilingual HTML files are auto-generated — never edit them manually.
 
 ```powershell
 # Windows PowerShell
-$env:PYTHONIOENCODING="utf-8"; python generate_locale_docs.py
+$env:PYTHONIOENCODING="utf-8"; python generate_full_docs.py
 
 # Linux / macOS
-PYTHONIOENCODING=utf-8 python generate_locale_docs.py
+PYTHONIOENCODING=utf-8 python generate_full_docs.py
 ```
 
 Expected output:
 ```
-✅ System synced: 195 types, 2900 tests.
-Generated: HOW-TO-MockJutsu-TR.html
-Generated: HOW-TO-MockJutsu-EN.html
+Generating HOW-TO 2.0 — 236 functions × 6 languages
 ...
+Done — 1452 pages + 1453 sitemap URLs generated.
+README:  236 total types, group counts updated
+index.html: 236+ Types updated
 ```
 
 ### 6. Run the full test suite
@@ -214,7 +215,7 @@ The pre-push hook runs automatically before upload:
 | `test_html_type_count_matches_core` | `data-fn` count in all 6 HTML files must equal `_REFERENCE` count |
 | `test_no_orphan_types_in_reference` | No `_REFERENCE` type may be missing from `core.py` |
 
-**If you forget to run `generate_locale_docs.py`**, the HTML won't have the new `data-fn` rows,
+**If you forget to run `generate_full_docs.py`**, the HTML won't have the new `data-fn` rows,
 the count test fails, and push is blocked. This is by design.
 
 ---
@@ -239,7 +240,7 @@ Python 3.9 reached EOL October 2025 and has been removed permanently.
 | Zero dependencies | Only Python stdlib. `import requests` → rejected. |
 | No lazy imports | Imports inside functions hurt performance at 200 iter/call. |
 | No hardcoded years | Use `datetime.now().year` — hardcoded years break next January. |
-| No manual HTML edits | Always run `generate_locale_docs.py` — HTML is generated. |
+| No manual HTML edits | Always run `generate_full_docs.py` — HTML is generated. |
 | Test coverage ≥ 85% | Enforced by pyproject.toml and CI. Currently ~97%. |
 | Latency < 1.5ms/call | Enforced by `test_performance.py`. |
 

@@ -17,7 +17,7 @@ The following 11-step lifecycle MUST be followed for every module. **No shortcut
 4.  **Code Development:** Implement the generator logic to pass the unit tests.
 5.  **Integration (API) Tests:** Verify the data via the main API (`jutsu.generate()`) to ensure algorithmic compliance.
 6.  **CLI & UI Tests:** Implement/test the CLI command and verify the new type appears in `mockjutsu list`.
-7.  **Documentation Sync:** Run `generate_locale_docs.py` to regenerate all 6 multilingual HTML files. Never edit HTML manually.
+7.  **Documentation Sync:** Run `generate_full_docs.py` to regenerate all 6 multilingual HTML files. Never edit HTML manually.
 8.  **README.md Update:** Update the supported type counts, test counts, and UI badges in the main README.
 9.  **Performance & Profiling:** Ensure latency is **< 1.5ms**. Test for CPU/RAM bottlenecks. Refactor if needed.
 10. **Clean Code & DRY:** High readability, detailed docstrings, and modular architecture. Avoid spaghetti code.
@@ -90,11 +90,12 @@ mock-jutsu-api/
 │   ├── test_hl7_fhir_dicom.py   # HL7 / FHIR / DICOM tests
 │   └── ...                      # Other domain-specific test files
 │
-├── generate_locale_docs.py      # HTML doc generator — MUST run before every push
+├── generate_full_docs.py        # HOW-TO 2.0 generator — MUST run before every push
 ├── scripts/
 │   ├── audit_compliance.py      # Pre-push compliance auditor
 │   └── run_all_checks.py        # Pre-push hook entry point
-├── HOW-TO-MockJutsu-{TR,EN,UK,DE,FR,RU}.html  # Generated — do not edit manually
+├── HOW-TO/{LANG}/HOW-TO-MockJutsu-{LANG}.html  # Generated listing pages — do not edit manually
+├── HOW-TO/{LANG}/FUNCTION/{fn}-{LANG}.html     # Generated detail pages
 ├── pyproject.toml               # Build config, test config, coverage config
 └── .github/workflows/ci.yml     # CI: Python 3.10-3.13, fail-fast: false
 ```
@@ -157,10 +158,10 @@ If adding a **new category**, also add to `_CAT_ORDER` and `_CAT_COLORS` in cli.
 
 ```powershell
 # Windows PowerShell
-$env:PYTHONIOENCODING="utf-8"; python generate_locale_docs.py
+$env:PYTHONIOENCODING="utf-8"; python generate_full_docs.py
 
 # Linux / macOS
-PYTHONIOENCODING=utf-8 python generate_locale_docs.py
+PYTHONIOENCODING=utf-8 python generate_full_docs.py
 ```
 
 **Never manually edit the HTML files** — they will be overwritten by the generator.
@@ -198,8 +199,8 @@ Push is blocked if either fails.
 | Test | What it checks | What breaks it |
 |------|---------------|----------------|
 | `test_core_type_in_reference_table` | Every `core.py` type is in `cli.py _REFERENCE` | Adding to core but forgetting cli.py |
-| `test_core_type_visible_in_html_tr` | Every `_REFERENCE` type has a `data-fn` row in TR HTML | Forgetting to run `generate_locale_docs.py` |
-| `test_html_type_count_matches_core` | `data-fn` count == `_REFERENCE` count (all 6 locales) | Forgetting to run `generate_locale_docs.py` |
+| `test_core_type_visible_in_html_tr` | Every `_REFERENCE` type has a `data-fn` row in TR HTML | Forgetting to run `generate_full_docs.py` |
+| `test_html_type_count_matches_core` | `data-fn` count == `_REFERENCE` count (all 6 locales) | Forgetting to run `generate_full_docs.py` |
 | `test_no_orphan_types_in_reference` | No `_REFERENCE` type missing from `core.py` | Adding to cli.py without core.py |
 
 ---
@@ -249,7 +250,7 @@ _CAT_ORDER = [
 
 - **Lazy imports inside functions** → performance regression. Always import at module top.
 - **Hardcoding the current year** in tests → breaks next year (use `datetime.now().year`).
-- **Manually editing HTML files** → overwritten by generator. Always run `generate_locale_docs.py`.
+- **Manually editing HTML files** → overwritten by generator. Always run `generate_full_docs.py`.
 - **Adding to core.py but not cli.py** → `test_sync.py` catches it, push blocked.
 - **Using external libraries** → zero-dependency rule, push blocked by compliance audit.
 - **Running generator with wrong encoding on Windows** → use `$env:PYTHONIOENCODING="utf-8"` in PowerShell.
