@@ -152,6 +152,35 @@ _CAT_COLORS = {'MyCategory': 'bright_magenta'}
 ### 5. Regenerate HTML documentation (MANDATORY)
 
 The 6 multilingual HTML files are auto-generated — never edit them manually.
+The process has two steps: first generate AI-written content, then build the HTML.
+
+#### 5a. Set up your Gemini API key (one-time)
+
+`generate_ai_content.py` calls the Gemini API to write the descriptive content
+(use-cases, code examples, notes) that appears on each type's documentation page.
+Without it, new types will be missing from the HTML and `test_sync.py` will block your push.
+
+```bash
+cp .env.example .env
+# Then open .env and fill in your key:
+# GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+Get a free key at: https://aistudio.google.com/
+
+The script also accepts `GOOGLE_API_KEY` as a fallback. The `.env` file is in
+`.gitignore` — never commit your key.
+
+#### 5b. Generate AI content for new types
+
+```bash
+python generate_ai_content.py
+```
+
+Already-generated types are skipped automatically (`SKIP` in the output).
+Only new or missing types call the API, so this is fast on subsequent runs.
+
+#### 5c. Build the HTML
 
 ```powershell
 # Windows PowerShell
