@@ -215,7 +215,7 @@ _REFERENCE = [
     ('sort_code'      , 'Banking'      , False, '20-00-00'              , 'generate sort_code'            , 'UK 6-digit bank sort code format.', '-'),
     ('routing_number' , 'Banking'      , False, '021000021'             , 'generate routing_number'       , 'US 9-digit ABA routing transit number with checksum.', '-'),
     ('bik_code'       , 'Banking'      , False, '044525225'             , 'generate bik_code'             , 'Russian Bank Identification Code (BIK).', '-'),
-    ('bank_name'      , 'Banking'      , True , 'Berliner Finanzbank'   , 'generate bank_name --locale TR', 'Randomized bank name for the specified locale.', '-'),
+    ('bank_name'      , 'Banking'      , True , 'Novex Trust Corp'      , 'generate bank_name --locale TR', 'Randomized bank name for the specified locale.', '-'),
     ('transaction'    , 'Banking'      , True , '{ref, iban*2, amount}' , 'generate transaction --locale TR', 'Complex banking transaction record simulation.', '-'),
     ('company_name'   , 'Corporate'    , True , 'Fischer Tech. GmbH'    , 'generate company_name --locale TR', 'Official business name for the specified locale.', '-'),
     ('job_title'      , 'Corporate'    , True , 'Software Engineer'     , 'generate job_title --locale TR', 'Professional job title for the specified locale.', '-'),
