@@ -5,6 +5,7 @@ Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 
 import random
 import secrets
+from datetime import datetime
 from mockjutsu.generators.name_data import NAME_POOLS
 
 def _crc16_emvco(data: str) -> str:
@@ -131,10 +132,12 @@ class FinancialGenerator:
             return f"{random.randrange(12) + 1:02d}"
 
         if dt == 'expiryyear':
-            return f"{random.randrange(6) + 25}"
+            yy = datetime.now().year % 100
+            return f"{random.randrange(6) + yy}"
 
         if dt == 'expiry':
-            return f"{random.randrange(12) + 1:02d}/{random.randrange(6) + 25}"
+            yy = datetime.now().year % 100
+            return f"{random.randrange(12) + 1:02d}/{random.randrange(6) + yy}"
 
         if dt == 'issuer':
             return random.choice(ISSUERS.get(l, ISSUERS['TR']))
@@ -207,8 +210,8 @@ class FinancialGenerator:
         iban = self.generate_bank_account(loc)
         bic = f"{random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') * 4}{loc}22"
         amount = f"{random.randrange(10, 1000)}.{random.choice(['00', '50'])}"
-        reference = f"INV-2025-{random.randrange(1000,9999)}"
-        
+        reference = f"INV-{datetime.now().year}-{random.randrange(1000,9999)}"
+
         return f"BCD\n002\n1\nSCT\n{bic}\n{name}\n{iban}\nEUR{amount}\n\n{reference}\n\n"
 
     def _generate_emv_qr_p2p(self, locale: str) -> str:

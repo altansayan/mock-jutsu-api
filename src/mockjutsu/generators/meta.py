@@ -329,7 +329,7 @@ class MetaGenerator:
         # ── Security / API types ─────────────────────────────────────────────
 
         if dt == 'api_key':
-            suffix = "".join(random.choice(_API_KEY_CHARS) for _ in range(48))
+            suffix = "".join(secrets.choice(_API_KEY_CHARS) for _ in range(48))
             return f"sk-{suffix}"
 
         if dt == 'totp_code':

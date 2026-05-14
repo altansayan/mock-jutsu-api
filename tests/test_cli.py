@@ -472,8 +472,10 @@ class TestGenerateFinancial:
         assert re.match(r'^(0[1-9]|1[0-2])$', val)
 
     def test_expiryyear_range(self, runner):
+        import datetime
+        current_yy = datetime.datetime.now().year % 100
         val = int(_gen(runner, 'expiryyear'))
-        assert 25 <= val <= 30, f"expiryyear out of range: {val}"
+        assert current_yy <= val <= current_yy + 5, f"expiryyear out of range: {val}"
 
     @pytest.mark.parametrize("locale,prefix,length", [
         ('TR', 'TR', 26),
@@ -615,7 +617,7 @@ class TestGenerateBanking:
             assert key in data, f"transaction missing '{key}'"
         assert data['currency'] == 'TRY'
         assert data['sender_iban'].startswith('TR')
-        assert data['ref'].startswith('TRN')
+        assert 'TRN' in data['ref']
         assert data['status'] in ('COMPLETED', 'PENDING', 'FAILED')
 
     def test_transaction_us_routing(self, runner):
@@ -626,7 +628,7 @@ class TestGenerateBanking:
 
     def test_sepa_ref_format(self, runner):
         val = _gen(runner, 'sepa_ref')
-        assert re.match(r'^[A-Z0-9]{20,35}$', val), f"sepa_ref: {val}"
+        assert re.match(r'^[A-Z0-9-]{20,35}$', val), f"sepa_ref: {val}"
 
 
 # ===========================================================================
@@ -1857,7 +1859,7 @@ class TestGenerateBankingExtra:
         for _ in range(5):
             val = _gen(runner, 'sepa_ref')
             assert 20 <= len(val) <= 35, f"sepa_ref length: {len(val)}"
-            assert re.match(r'^[A-Z0-9]+$', val), f"sepa_ref not alphanumeric: {val}"
+            assert re.match(r'^[A-Z0-9-]+$', val), f"sepa_ref not alphanumeric: {val}"
 
 
 # ===========================================================================

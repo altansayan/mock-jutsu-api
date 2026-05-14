@@ -4,6 +4,7 @@ Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
 import random
+from datetime import datetime
 
 from .financial import FinancialGenerator
 
@@ -27,7 +28,8 @@ class HardwareGenerator:
         pan = self.financial.generate_card_number('visa')
         
         # 2. Expiry YYMM
-        yy = random.randint(25, 35)
+        current_yy = datetime.now().year % 100
+        yy = random.randint(current_yy, current_yy + 10)
         mm = random.randint(1, 12)
         expiry = f"{yy:02d}{mm:02d}"
         
@@ -53,7 +55,7 @@ class HardwareGenerator:
             f"9F0306{random.randrange(100000000000):012d}", # Cashback
             f"9505{random.randrange(10**10):010X}",         # TVR
             f"5F2A020949",                                 # Currency (TRY)
-            f"9A03250509",                                 # Date
+            f"9A03{datetime.now().strftime('%y%m%d')}",    # Date YYMMDD
             f"9C0100"                                      # Trans Type
         ]
         return "".join(tags)

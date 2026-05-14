@@ -2309,12 +2309,12 @@ def test_transaction_id_format():
 
 
 def test_sepa_ref_format():
-    """sepa_ref must be alphanumeric, max 35 chars (ISO 20022 end-to-end ref)."""
+    """sepa_ref must be max 35 chars, ISO 20022 SEPA charset (uppercase alphanumeric + dash)."""
     for _ in range(100):
         val = str(jutsu.generate('sepa_ref'))
         assert len(val) <= 35, f"sepa_ref too long: {len(val)}"
         assert len(val) >= 5, f"sepa_ref too short: {len(val)}"
-        assert re.match(r'^[A-Z0-9]+$', val), f"sepa_ref must be uppercase alphanumeric: {val}"
+        assert re.match(r'^[A-Z0-9-]+$', val), f"sepa_ref invalid charset: {val}"
 
 
 # ---------------------------------------------------------------------------
@@ -2637,11 +2637,13 @@ def test_expirymonth_format():
 
 
 def test_expiryyear_format():
-    """expiryyear must be a 2-digit string in range 25–30."""
+    """expiryyear must be a 2-digit string in range current_year to current_year+5."""
+    import datetime
+    current_yy = datetime.datetime.now().year % 100
     for _ in range(100):
         val = str(jutsu.generate('expiryyear'))
         assert re.match(r'^\d{2}$', val), f"expiryyear must be 2 digits: {val}"
-        assert 25 <= int(val) <= 30, f"expiryyear out of range: {val}"
+        assert current_yy <= int(val) <= current_yy + 5, f"expiryyear out of range: {val}"
 
 
 def test_issuer_nonempty_per_locale():
