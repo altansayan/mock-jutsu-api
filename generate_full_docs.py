@@ -695,7 +695,13 @@ def build_listing_page(lang: str) -> str:
         cat_map.setdefault(r[1], []).append(r)
     cats = [c for c in order if c in cat_map] + [c for c in cat_map if c not in order]
 
+    # Category filter buttons
+    cat_filter_btns = '<button class="cat-btn active" data-cat="all">All</button>\n'
+    for cat in cats:
+        cat_filter_btns += f'<button class="cat-btn" data-cat="{cat}">{cat}</button>\n'
+
     cards_html = ""
+    total_fn = 0
     for cat in cats:
         rows = cat_map[cat]
         cards = ""
@@ -704,13 +710,14 @@ def build_listing_page(lang: str) -> str:
             locale_badge = f'<span class="badge-locale" style="font-size:.65rem">{ui["badge_locale"]}</span>' if locale_aware else ""
             url = detail_url(fn, lang)
             short_desc = desc[:90] + "…" if len(desc) > 90 else desc
-            cards += f"""<a href="{url}" class="fn-card">
+            cards += f"""<a href="{url}" class="fn-card" data-fn="{fn}" data-cat="{cat}" data-desc="{desc[:120]}">
   <div class="fn-name">{fn}</div>
   <div class="fn-desc">{short_desc}</div>
   <div class="fn-locale">{locale_badge}</div>
 </a>"""
-        cards_html += f"""<div class="cat-section" id="{cat}">
-  <div class="cat-header">{cat} <small style="font-weight:400;color:#64748b">({len(rows)})</small></div>
+            total_fn += 1
+        cards_html += f"""<div class="cat-section" id="{cat}" data-cat-block="{cat}">
+  <div class="cat-header">{cat} <small style="font-weight:400;color:#64748b">(<span class="cat-count">{len(rows)}</span>)</small></div>
   <div class="fn-grid">{cards}</div>
 </div>"""
 
@@ -735,7 +742,102 @@ def build_listing_page(lang: str) -> str:
         "← mock-jutsu",
     )
 
+    search_and_filter = f"""
+<div class="list-controls">
+  <div class="search-wrap">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="fn-search" placeholder="Search {total_fn} functions…" autocomplete="off" spellcheck="false">
+    <span id="search-count" style="display:none"></span>
+  </div>
+  <div class="cat-filters" id="cat-filters">
+    {cat_filter_btns}
+  </div>
+</div>
+<div id="no-results" style="display:none;text-align:center;padding:3rem;color:#64748b;font-size:.95rem">
+  No functions found. Try a different search term.
+</div>"""
+
+    search_js = """
+<script>
+(function(){
+  var search  = document.getElementById('fn-search');
+  var countEl = document.getElementById('search-count');
+  var noRes   = document.getElementById('no-results');
+  var cards   = Array.from(document.querySelectorAll('.fn-card'));
+  var catBtns = Array.from(document.querySelectorAll('.cat-btn'));
+  var activeCat = 'all';
+
+  function update(){
+    var q = search.value.trim().toLowerCase();
+    var visible = 0;
+    var catVisible = {};
+
+    cards.forEach(function(c){
+      var fn   = (c.dataset.fn  || '').toLowerCase();
+      var desc = (c.dataset.desc|| '').toLowerCase();
+      var cat  = c.dataset.cat  || '';
+      var matchQ   = !q || fn.indexOf(q) !== -1 || desc.indexOf(q) !== -1;
+      var matchCat = activeCat === 'all' || cat === activeCat;
+      var show = matchQ && matchCat;
+      c.style.display = show ? '' : 'none';
+      if(show){ visible++; catVisible[cat] = (catVisible[cat]||0)+1; }
+    });
+
+    // Show/hide category sections and update counts
+    document.querySelectorAll('[data-cat-block]').forEach(function(sec){
+      var cat = sec.dataset.catBlock;
+      var cnt = catVisible[cat] || 0;
+      sec.style.display = cnt > 0 ? '' : 'none';
+      var countSpan = sec.querySelector('.cat-count');
+      if(countSpan) countSpan.textContent = cnt;
+    });
+
+    noRes.style.display = visible === 0 ? '' : 'none';
+    if(q){
+      countEl.textContent = visible + ' result' + (visible !== 1 ? 's' : '');
+      countEl.style.display = '';
+    } else {
+      countEl.style.display = 'none';
+      // Restore original counts when no search
+      document.querySelectorAll('[data-cat-block]').forEach(function(sec){
+        var cnt = sec.querySelectorAll('.fn-card').length;
+        var vis = sec.querySelectorAll('.fn-card:not([style*="none"])').length;
+        var countSpan = sec.querySelector('.cat-count');
+        if(countSpan) countSpan.textContent = vis;
+      });
+    }
+  }
+
+  search.addEventListener('input', update);
+
+  catBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      activeCat = btn.dataset.cat;
+      catBtns.forEach(function(b){ b.classList.toggle('active', b === btn); });
+      update();
+    });
+  });
+})();
+</script>"""
+
+    search_css = """
+<style>
+.list-controls{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.75rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.search-wrap{position:relative;margin-bottom:1rem}
+.search-icon{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#94a3b8;pointer-events:none}
+#fn-search{width:100%;padding:.65rem 1rem .65rem 2.5rem;border:1px solid #e2e8f0;border-radius:8px;font-size:.9rem;color:#0f172a;background:#f8fafc;outline:none;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}
+#fn-search:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12);background:#fff}
+#search-count{position:absolute;right:.85rem;top:50%;transform:translateY(-50%);font-size:.78rem;color:#64748b;background:#f1f5f9;padding:.15rem .5rem;border-radius:20px}
+.cat-filters{display:flex;flex-wrap:wrap;gap:.4rem}
+.cat-btn{background:#f1f5f9;border:1px solid #e2e8f0;color:#475569;font-size:.78rem;padding:.3rem .75rem;border-radius:20px;cursor:pointer;transition:all .15s;font-family:inherit}
+.cat-btn:hover{border-color:#3b82f6;color:#3b82f6}
+.cat-btn.active{background:#3b82f6;border-color:#3b82f6;color:#fff}
+</style>"""
+
     return f"""{head}
+{search_css}
 <body>
 {header}
 <div class="container" style="max-width:1100px">
@@ -743,12 +845,14 @@ def build_listing_page(lang: str) -> str:
     <h3>{ui['lang_switch']}</h3>
     <div class="lang-pills">{lang_pills}</div>
   </div>
+  {search_and_filter}
   {cards_html}
 </div>
 <div class="footer">
   mock-jutsu &mdash; Developed by <strong>Altan Sezer Ayan - A.S.A</strong>
   &nbsp;&bull;&nbsp; <a href="https://github.com/altansayan/mock-jutsu-api">GitHub</a>
 </div>
+{search_js}
 </body>
 </html>"""
 

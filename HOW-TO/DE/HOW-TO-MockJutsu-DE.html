@@ -132,6 +132,19 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .footer a:hover{text-decoration:underline}
 </style>
 </head>
+
+<style>
+.list-controls{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.75rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.search-wrap{position:relative;margin-bottom:1rem}
+.search-icon{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#94a3b8;pointer-events:none}
+#fn-search{width:100%;padding:.65rem 1rem .65rem 2.5rem;border:1px solid #e2e8f0;border-radius:8px;font-size:.9rem;color:#0f172a;background:#f8fafc;outline:none;box-sizing:border-box;transition:border-color .15s,box-shadow .15s}
+#fn-search:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12);background:#fff}
+#search-count{position:absolute;right:.85rem;top:50%;transform:translateY(-50%);font-size:.78rem;color:#64748b;background:#f1f5f9;padding:.15rem .5rem;border-radius:20px}
+.cat-filters{display:flex;flex-wrap:wrap;gap:.4rem}
+.cat-btn{background:#f1f5f9;border:1px solid #e2e8f0;color:#475569;font-size:.78rem;padding:.3rem .75rem;border-radius:20px;cursor:pointer;transition:all .15s;font-family:inherit}
+.cat-btn:hover{border-color:#3b82f6;color:#3b82f6}
+.cat-btn.active{background:#3b82f6;border-color:#3b82f6;color:#fff}
+</style>
 <body>
 <div class="header">
   <h1>Mock Jutsu HOW-TO</h1>
@@ -152,1095 +165,1155 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 <a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html" class="lang-pill ">🇷🇺 RU</a>
 </div>
   </div>
-  <div class="cat-section" id="Identity">
-  <div class="cat-header">Identity <small style="font-weight:400;color:#64748b">(31)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tckn-DE.html" class="fn-card">
+  
+<div class="list-controls">
+  <div class="search-wrap">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="fn-search" placeholder="Search 241 functions…" autocomplete="off" spellcheck="false">
+    <span id="search-count" style="display:none"></span>
+  </div>
+  <div class="cat-filters" id="cat-filters">
+    <button class="cat-btn active" data-cat="all">All</button>
+<button class="cat-btn" data-cat="Identity">Identity</button>
+<button class="cat-btn" data-cat="Name">Name</button>
+<button class="cat-btn" data-cat="Document">Document</button>
+<button class="cat-btn" data-cat="Demographic">Demographic</button>
+<button class="cat-btn" data-cat="Financial">Financial</button>
+<button class="cat-btn" data-cat="Contact">Contact</button>
+<button class="cat-btn" data-cat="Banking">Banking</button>
+<button class="cat-btn" data-cat="Corporate">Corporate</button>
+<button class="cat-btn" data-cat="Health">Health</button>
+<button class="cat-btn" data-cat="Commerce">Commerce</button>
+<button class="cat-btn" data-cat="Meta">Meta</button>
+<button class="cat-btn" data-cat="Security">Security</button>
+<button class="cat-btn" data-cat="RFID">RFID</button>
+<button class="cat-btn" data-cat="NFC">NFC</button>
+<button class="cat-btn" data-cat="IR">IR</button>
+<button class="cat-btn" data-cat="Barcode">Barcode</button>
+<button class="cat-btn" data-cat="Telecom">Telecom</button>
+<button class="cat-btn" data-cat="CapMarkets(Trading)">CapMarkets(Trading)</button>
+<button class="cat-btn" data-cat="Crypto">Crypto</button>
+<button class="cat-btn" data-cat="E-Commerce">E-Commerce</button>
+<button class="cat-btn" data-cat="Location">Location</button>
+<button class="cat-btn" data-cat="Social">Social</button>
+<button class="cat-btn" data-cat="Hardware">Hardware</button>
+<button class="cat-btn" data-cat="Aviation">Aviation</button>
+<button class="cat-btn" data-cat="Wireless">Wireless</button>
+<button class="cat-btn" data-cat="WebAuthn">WebAuthn</button>
+<button class="cat-btn" data-cat="Wallet">Wallet</button>
+<button class="cat-btn" data-cat="AI Vector">AI Vector</button>
+<button class="cat-btn" data-cat="OIDC">OIDC</button>
+<button class="cat-btn" data-cat="BankStatement">BankStatement</button>
+<button class="cat-btn" data-cat="EDI">EDI</button>
+<button class="cat-btn" data-cat="EventSourcing">EventSourcing</button>
+<button class="cat-btn" data-cat="Telemetry">Telemetry</button>
+<button class="cat-btn" data-cat="OHLCV">OHLCV</button>
+<button class="cat-btn" data-cat="TLE">TLE</button>
+<button class="cat-btn" data-cat="Automotive">Automotive</button>
+<button class="cat-btn" data-cat="EInvoice">EInvoice</button>
+<button class="cat-btn" data-cat="GameDev">GameDev</button>
+<button class="cat-btn" data-cat="Prometheus">Prometheus</button>
+<button class="cat-btn" data-cat="NMEA">NMEA</button>
+<button class="cat-btn" data-cat="MRZ">MRZ</button>
+<button class="cat-btn" data-cat="PenTest">PenTest</button>
+<button class="cat-btn" data-cat="Commands">Commands</button>
+
+  </div>
+</div>
+<div id="no-results" style="display:none;text-align:center;padding:3rem;color:#64748b;font-size:.95rem">
+  No functions found. Try a different search term.
+</div>
+  <div class="cat-section" id="Identity" data-cat-block="Identity">
+  <div class="cat-header">Identity <small style="font-weight:400;color:#64748b">(<span class="cat-count">31</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tckn-DE.html" class="fn-card" data-fn="tckn" data-cat="Identity" data-desc="Turkish ID (TCKN) with Modulo 10/11 validation.">
   <div class="fn-name">tckn</div>
   <div class="fn-desc">Turkish ID (TCKN) with Modulo 10/11 validation.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ykn-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ykn-DE.html" class="fn-card" data-fn="ykn" data-cat="Identity" data-desc="Foreigner ID (YKN) with Modulo 10/11 validation.">
   <div class="fn-name">ykn</div>
   <div class="fn-desc">Foreigner ID (YKN) with Modulo 10/11 validation.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nationalid-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nationalid-DE.html" class="fn-card" data-fn="nationalid" data-cat="Identity" data-desc="Generic National ID for the specified locale.">
   <div class="fn-name">nationalid</div>
   <div class="fn-desc">Generic National ID for the specified locale.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/vkn-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/vkn-DE.html" class="fn-card" data-fn="vkn" data-cat="Identity" data-desc="Tax Identification Number (VKN) with Modulo 11 validation.">
   <div class="fn-name">vkn</div>
   <div class="fn-desc">Tax Identification Number (VKN) with Modulo 11 validation.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/taxid-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/taxid-DE.html" class="fn-card" data-fn="taxid" data-cat="Identity" data-desc="Generic Tax ID for the specified locale.">
   <div class="fn-name">taxid</div>
   <div class="fn-desc">Generic Tax ID for the specified locale.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/employer_id-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/employer_id-DE.html" class="fn-card" data-fn="employer_id" data-cat="Identity" data-desc="Employer Registration ID with algorithmic checks.">
   <div class="fn-name">employer_id</div>
   <div class="fn-desc">Employer Registration ID with algorithmic checks.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/insurance_id-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/insurance_id-DE.html" class="fn-card" data-fn="insurance_id" data-cat="Identity" data-desc="Social Security / Insurance ID for specified locale.">
   <div class="fn-name">insurance_id</div>
   <div class="fn-desc">Social Security / Insurance ID for specified locale.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sgk-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sgk-DE.html" class="fn-card" data-fn="sgk" data-cat="Identity" data-desc="Turkish Social Security (SGK) number format.">
   <div class="fn-name">sgk</div>
   <div class="fn-desc">Turkish Social Security (SGK) number format.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mersis-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mersis-DE.html" class="fn-card" data-fn="mersis" data-cat="Identity" data-desc="Turkish Central Registry System (MERSIS) number.">
   <div class="fn-name">mersis</div>
   <div class="fn-desc">Turkish Central Registry System (MERSIS) number.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ssn-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ssn-DE.html" class="fn-card" data-fn="ssn" data-cat="Identity" data-desc="US Social Security Number (SSN) with area/group rules.">
   <div class="fn-name">ssn</div>
   <div class="fn-desc">US Social Security Number (SSN) with area/group rules.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ein-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ein-DE.html" class="fn-card" data-fn="ein" data-cat="Identity" data-desc="US Employer Identification Number (EIN) format.">
   <div class="fn-name">ein</div>
   <div class="fn-desc">US Employer Identification Number (EIN) format.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nin-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nin-DE.html" class="fn-card" data-fn="nin" data-cat="Identity" data-desc="UK National Insurance Number (NIN) format.">
   <div class="fn-name">nin</div>
   <div class="fn-desc">UK National Insurance Number (NIN) format.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/utr-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/utr-DE.html" class="fn-card" data-fn="utr" data-cat="Identity" data-desc="UK Unique Taxpayer Reference (UTR) with Modulo 11 check.">
   <div class="fn-name">utr</div>
   <div class="fn-desc">UK Unique Taxpayer Reference (UTR) with Modulo 11 check.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/crn-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/crn-DE.html" class="fn-card" data-fn="crn" data-cat="Identity" data-desc="UK Company Registration Number (CRN) format.">
   <div class="fn-name">crn</div>
   <div class="fn-desc">UK Company Registration Number (CRN) format.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/paye-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/paye-DE.html" class="fn-card" data-fn="paye" data-cat="Identity" data-desc="UK PAYE (Pay As You Earn) reference format.">
   <div class="fn-name">paye</div>
   <div class="fn-desc">UK PAYE (Pay As You Earn) reference format.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ust_id-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ust_id-DE.html" class="fn-card" data-fn="ust_id" data-cat="Identity" data-desc="German VAT ID (USt-IdNr.) with ISO 7064 check.">
   <div class="fn-name">ust_id</div>
   <div class="fn-desc">German VAT ID (USt-IdNr.) with ISO 7064 check.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ustid-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ustid-DE.html" class="fn-card" data-fn="ustid" data-cat="Identity" data-desc="Alias for German VAT ID.">
   <div class="fn-name">ustid</div>
   <div class="fn-desc">Alias for German VAT ID.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/hrb-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/hrb-DE.html" class="fn-card" data-fn="hrb" data-cat="Identity" data-desc="German Commercial Register (Handelsregister) ID.">
   <div class="fn-name">hrb</div>
   <div class="fn-desc">German Commercial Register (Handelsregister) ID.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/rvn-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/rvn-DE.html" class="fn-card" data-fn="rvn" data-cat="Identity" data-desc="German Pension Insurance Number (RVNR) format.">
   <div class="fn-name">rvn</div>
   <div class="fn-desc">German Pension Insurance Number (RVNR) format.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/siren-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/siren-DE.html" class="fn-card" data-fn="siren" data-cat="Identity" data-desc="French Business Identifier (SIREN) with Luhn validation.">
   <div class="fn-name">siren</div>
   <div class="fn-desc">French Business Identifier (SIREN) with Luhn validation.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/siret-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/siret-DE.html" class="fn-card" data-fn="siret" data-cat="Identity" data-desc="French Establishment Identifier (SIRET) with Luhn validation.">
   <div class="fn-name">siret</div>
   <div class="fn-desc">French Establishment Identifier (SIRET) with Luhn validation.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tva-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tva-DE.html" class="fn-card" data-fn="tva" data-cat="Identity" data-desc="French VAT Number (TVA) with ISO 7064 check.">
   <div class="fn-name">tva</div>
   <div class="fn-desc">French VAT Number (TVA) with ISO 7064 check.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/inn-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/inn-DE.html" class="fn-card" data-fn="inn" data-cat="Identity" data-desc="Russian Tax ID (INN) with checksum validation.">
   <div class="fn-name">inn</div>
   <div class="fn-desc">Russian Tax ID (INN) with checksum validation.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/inn_individual-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/inn_individual-DE.html" class="fn-card" data-fn="inn_individual" data-cat="Identity" data-desc="Russian Individual Tax ID (INN) with checksum.">
   <div class="fn-name">inn_individual</div>
   <div class="fn-desc">Russian Individual Tax ID (INN) with checksum.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/snils-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/snils-DE.html" class="fn-card" data-fn="snils" data-cat="Identity" data-desc="Russian Pension Insurance (SNILS) with checksum.">
   <div class="fn-name">snils</div>
   <div class="fn-desc">Russian Pension Insurance (SNILS) with checksum.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/kpp-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/kpp-DE.html" class="fn-card" data-fn="kpp" data-cat="Identity" data-desc="Russian Industrial Enterprises Code (KPP) format.">
   <div class="fn-name">kpp</div>
   <div class="fn-desc">Russian Industrial Enterprises Code (KPP) format.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ogrn-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ogrn-DE.html" class="fn-card" data-fn="ogrn" data-cat="Identity" data-desc="Russian Primary State Registration Number (OGRN).">
   <div class="fn-name">ogrn</div>
   <div class="fn-desc">Russian Primary State Registration Number (OGRN).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/vat_number-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/vat_number-DE.html" class="fn-card" data-fn="vat_number" data-cat="Identity" data-desc="EU/Global VIES VAT number with country prefix (TR/DE/FR/UK/US/RU).">
   <div class="fn-name">vat_number</div>
   <div class="fn-desc">EU/Global VIES VAT number with country prefix (TR/DE/FR/UK/US/RU).</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tckn_masked-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tckn_masked-DE.html" class="fn-card" data-fn="tckn_masked" data-cat="Identity" data-desc="Masked Turkish ID for privacy compliance.">
   <div class="fn-name">tckn_masked</div>
   <div class="fn-desc">Masked Turkish ID for privacy compliance.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ssn_masked-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ssn_masked-DE.html" class="fn-card" data-fn="ssn_masked" data-cat="Identity" data-desc="Masked US SSN for privacy compliance.">
   <div class="fn-name">ssn_masked</div>
   <div class="fn-desc">Masked US SSN for privacy compliance.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nationality-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nationality-DE.html" class="fn-card" data-fn="nationality" data-cat="Identity" data-desc="ISO 3166-1 alpha-3 nationality codes.">
   <div class="fn-name">nationality</div>
   <div class="fn-desc">ISO 3166-1 alpha-3 nationality codes.</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Name">
-  <div class="cat-header">Name <small style="font-weight:400;color:#64748b">(4)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/firstname-DE.html" class="fn-card">
+</div><div class="cat-section" id="Name" data-cat-block="Name">
+  <div class="cat-header">Name <small style="font-weight:400;color:#64748b">(<span class="cat-count">4</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/firstname-DE.html" class="fn-card" data-fn="firstname" data-cat="Name" data-desc="Random first name for the specified locale.">
   <div class="fn-name">firstname</div>
   <div class="fn-desc">Random first name for the specified locale.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/lastname-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/lastname-DE.html" class="fn-card" data-fn="lastname" data-cat="Name" data-desc="Random last name for the specified locale.">
   <div class="fn-name">lastname</div>
   <div class="fn-desc">Random last name for the specified locale.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/fullname-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/fullname-DE.html" class="fn-card" data-fn="fullname" data-cat="Name" data-desc="Full name (First + Last) for the specified locale.">
   <div class="fn-name">fullname</div>
   <div class="fn-desc">Full name (First + Last) for the specified locale.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/patronymic-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/patronymic-DE.html" class="fn-card" data-fn="patronymic" data-cat="Name" data-desc="Patronymic middle name (common in Russian locale).">
   <div class="fn-name">patronymic</div>
   <div class="fn-desc">Patronymic middle name (common in Russian locale).</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
 </a></div>
-</div><div class="cat-section" id="Document">
-  <div class="cat-header">Document <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/passport-DE.html" class="fn-card">
+</div><div class="cat-section" id="Document" data-cat-block="Document">
+  <div class="cat-header">Document <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/passport-DE.html" class="fn-card" data-fn="passport" data-cat="Document" data-desc="Generic passport number format.">
   <div class="fn-name">passport</div>
   <div class="fn-desc">Generic passport number format.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/license-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/license-DE.html" class="fn-card" data-fn="license" data-cat="Document" data-desc="Generic driver license number format.">
   <div class="fn-name">license</div>
   <div class="fn-desc">Generic driver license number format.</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Demographic">
-  <div class="cat-header">Demographic <small style="font-weight:400;color:#64748b">(3)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/age-DE.html" class="fn-card">
+</div><div class="cat-section" id="Demographic" data-cat-block="Demographic">
+  <div class="cat-header">Demographic <small style="font-weight:400;color:#64748b">(<span class="cat-count">3</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/age-DE.html" class="fn-card" data-fn="age" data-cat="Demographic" data-desc="Random human age (typically 18-90).">
   <div class="fn-name">age</div>
   <div class="fn-desc">Random human age (typically 18-90).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/gender-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/gender-DE.html" class="fn-card" data-fn="gender" data-cat="Demographic" data-desc="Binary gender values (Male/Female).">
   <div class="fn-name">gender</div>
   <div class="fn-desc">Binary gender values (Male/Female).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/birthdate-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/birthdate-DE.html" class="fn-card" data-fn="birthdate" data-cat="Demographic" data-desc="Random date of birth in YYYY-MM-DD format.">
   <div class="fn-name">birthdate</div>
   <div class="fn-desc">Random date of birth in YYYY-MM-DD format.</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Financial">
-  <div class="cat-header">Financial <small style="font-weight:400;color:#64748b">(22)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardnum-DE.html" class="fn-card">
+</div><div class="cat-section" id="Financial" data-cat-block="Financial">
+  <div class="cat-header">Financial <small style="font-weight:400;color:#64748b">(<span class="cat-count">22</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardnum-DE.html" class="fn-card" data-fn="cardnum" data-cat="Financial" data-desc="Credit card number with Luhn algorithm validation.">
   <div class="fn-name">cardnum</div>
   <div class="fn-desc">Credit card number with Luhn algorithm validation.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardtype-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardtype-DE.html" class="fn-card" data-fn="cardtype" data-cat="Financial" data-desc="Payment card type (Credit/Debit/Prepaid).">
   <div class="fn-name">cardtype</div>
   <div class="fn-desc">Payment card type (Credit/Debit/Prepaid).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardstatus-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardstatus-DE.html" class="fn-card" data-fn="cardstatus" data-cat="Financial" data-desc="Payment card status (Active/Blocked/Expired).">
   <div class="fn-name">cardstatus</div>
   <div class="fn-desc">Payment card status (Active/Blocked/Expired).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardcategory-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardcategory-DE.html" class="fn-card" data-fn="cardcategory" data-cat="Financial" data-desc="Card level (Classic/Gold/Platinum/Infinite).">
   <div class="fn-name">cardcategory</div>
   <div class="fn-desc">Card level (Classic/Gold/Platinum/Infinite).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardowner-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardowner-DE.html" class="fn-card" data-fn="cardowner" data-cat="Financial" data-desc="Cardholder name in appropriate format for locale.">
   <div class="fn-name">cardowner</div>
   <div class="fn-desc">Cardholder name in appropriate format for locale.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cvv3-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cvv3-DE.html" class="fn-card" data-fn="cvv3" data-cat="Financial" data-desc="3-digit Card Verification Value (CVV/CVC).">
   <div class="fn-name">cvv3</div>
   <div class="fn-desc">3-digit Card Verification Value (CVV/CVC).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cvv4-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cvv4-DE.html" class="fn-card" data-fn="cvv4" data-cat="Financial" data-desc="4-digit Card Verification Value for Amex.">
   <div class="fn-name">cvv4</div>
   <div class="fn-desc">4-digit Card Verification Value for Amex.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/pin-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/pin-DE.html" class="fn-card" data-fn="pin" data-cat="Financial" data-desc="4-digit randomized Personal Identification Number.">
   <div class="fn-name">pin</div>
   <div class="fn-desc">4-digit randomized Personal Identification Number.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/expiry-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/expiry-DE.html" class="fn-card" data-fn="expiry" data-cat="Financial" data-desc="Card expiry date (MM/YY) in the future.">
   <div class="fn-name">expiry</div>
   <div class="fn-desc">Card expiry date (MM/YY) in the future.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/expirymonth-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/expirymonth-DE.html" class="fn-card" data-fn="expirymonth" data-cat="Financial" data-desc="Card expiry month (01-12).">
   <div class="fn-name">expirymonth</div>
   <div class="fn-desc">Card expiry month (01-12).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/expiryyear-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/expiryyear-DE.html" class="fn-card" data-fn="expiryyear" data-cat="Financial" data-desc="Card expiry year (last 2 digits).">
   <div class="fn-name">expiryyear</div>
   <div class="fn-desc">Card expiry year (last 2 digits).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/issuer-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/issuer-DE.html" class="fn-card" data-fn="issuer" data-cat="Financial" data-desc="Simulated bank or card issuing entity.">
   <div class="fn-name">issuer</div>
   <div class="fn-desc">Simulated bank or card issuing entity.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/balance-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/balance-DE.html" class="fn-card" data-fn="balance" data-cat="Financial" data-desc="Random account balance with 2 decimal precision.">
   <div class="fn-name">balance</div>
   <div class="fn-desc">Random account balance with 2 decimal precision.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/iban-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/iban-DE.html" class="fn-card" data-fn="iban" data-cat="Financial" data-desc="International Bank Account Number (IBAN) with Modulo 97 check.">
   <div class="fn-name">iban</div>
   <div class="fn-desc">International Bank Account Number (IBAN) with Modulo 97 check.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sepa_qr-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sepa_qr-DE.html" class="fn-card" data-fn="sepa_qr" data-cat="Financial" data-desc="SEPA Credit Transfer QR code (EPC standard).">
   <div class="fn-name">sepa_qr</div>
   <div class="fn-desc">SEPA Credit Transfer QR code (EPC standard).</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/emv_qr_p2p-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/emv_qr_p2p-DE.html" class="fn-card" data-fn="emv_qr_p2p" data-cat="Financial" data-desc="EMV QRCPS P2P payment QR code (TRQR compatible).">
   <div class="fn-name">emv_qr_p2p</div>
   <div class="fn-desc">EMV QRCPS P2P payment QR code (TRQR compatible).</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/emv_qr_atm-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/emv_qr_atm-DE.html" class="fn-card" data-fn="emv_qr_atm" data-cat="Financial" data-desc="EMV QRCPS ATM cash-out QR code.">
   <div class="fn-name">emv_qr_atm</div>
   <div class="fn-desc">EMV QRCPS ATM cash-out QR code.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/emv_qr_pos-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/emv_qr_pos-DE.html" class="fn-card" data-fn="emv_qr_pos" data-cat="Financial" data-desc="EMV QRCPS Merchant/POS QR code.">
   <div class="fn-name">emv_qr_pos</div>
   <div class="fn-desc">EMV QRCPS Merchant/POS QR code.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/3ds_cavv-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/3ds_cavv-DE.html" class="fn-card" data-fn="3ds_cavv" data-cat="Financial" data-desc="3D Secure 2.0 Cardholder Authentication Verification Value (CAVV).">
   <div class="fn-name">3ds_cavv</div>
   <div class="fn-desc">3D Secure 2.0 Cardholder Authentication Verification Value (CAVV).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/3ds_eci-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/3ds_eci-DE.html" class="fn-card" data-fn="3ds_eci" data-cat="Financial" data-desc="3D Secure Electronic Commerce Indicator (ECI) flag.">
   <div class="fn-name">3ds_eci</div>
   <div class="fn-desc">3D Secure Electronic Commerce Indicator (ECI) flag.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardnetwork-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardnetwork-DE.html" class="fn-card" data-fn="cardnetwork" data-cat="Financial" data-desc="Credit card network name (Visa, MC, Amex, etc.).">
   <div class="fn-name">cardnetwork</div>
   <div class="fn-desc">Credit card network name (Visa, MC, Amex, etc.).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/credit_score-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/credit_score-DE.html" class="fn-card" data-fn="credit_score" data-cat="Financial" data-desc="Simulated credit risk score (typically 300-850).">
   <div class="fn-name">credit_score</div>
   <div class="fn-desc">Simulated credit risk score (typically 300-850).</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Contact">
-  <div class="cat-header">Contact <small style="font-weight:400;color:#64748b">(10)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/phone-DE.html" class="fn-card">
+</div><div class="cat-section" id="Contact" data-cat-block="Contact">
+  <div class="cat-header">Contact <small style="font-weight:400;color:#64748b">(<span class="cat-count">10</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/phone-DE.html" class="fn-card" data-fn="phone" data-cat="Contact" data-desc="Full E.164 formatted telephone number.">
   <div class="fn-name">phone</div>
   <div class="fn-desc">Full E.164 formatted telephone number.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/phone_country-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/phone_country-DE.html" class="fn-card" data-fn="phone_country" data-cat="Contact" data-desc="International telephone country dial code.">
   <div class="fn-name">phone_country</div>
   <div class="fn-desc">International telephone country dial code.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/phone_area-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/phone_area-DE.html" class="fn-card" data-fn="phone_area" data-cat="Contact" data-desc="Localized telephone area/operator code.">
   <div class="fn-name">phone_area</div>
   <div class="fn-desc">Localized telephone area/operator code.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/phone_local-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/phone_local-DE.html" class="fn-card" data-fn="phone_local" data-cat="Contact" data-desc="Local telephone number part.">
   <div class="fn-name">phone_local</div>
   <div class="fn-desc">Local telephone number part.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/address_city-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/address_city-DE.html" class="fn-card" data-fn="address_city" data-cat="Contact" data-desc="Major city name for the specified locale.">
   <div class="fn-name">address_city</div>
   <div class="fn-desc">Major city name for the specified locale.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/address_street-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/address_street-DE.html" class="fn-card" data-fn="address_street" data-cat="Contact" data-desc="Realistic street/avenue name for the locale.">
   <div class="fn-name">address_street</div>
   <div class="fn-desc">Realistic street/avenue name for the locale.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/address_full-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/address_full-DE.html" class="fn-card" data-fn="address_full" data-cat="Contact" data-desc="Complete mailing address for the specified locale.">
   <div class="fn-name">address_full</div>
   <div class="fn-desc">Complete mailing address for the specified locale.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/postalcode-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/postalcode-DE.html" class="fn-card" data-fn="postalcode" data-cat="Contact" data-desc="Locale-specific postal/zip code format.">
   <div class="fn-name">postalcode</div>
   <div class="fn-desc">Locale-specific postal/zip code format.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/plate-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/plate-DE.html" class="fn-card" data-fn="plate" data-cat="Contact" data-desc="Vehicle license plate format for the specified country.">
   <div class="fn-name">plate</div>
   <div class="fn-desc">Vehicle license plate format for the specified country.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/email-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/email-DE.html" class="fn-card" data-fn="email" data-cat="Contact" data-desc="Randomized email address using common domains.">
   <div class="fn-name">email</div>
   <div class="fn-desc">Randomized email address using common domains.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
 </a></div>
-</div><div class="cat-section" id="Banking">
-  <div class="cat-header">Banking <small style="font-weight:400;color:#64748b">(9)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/creditor_ref-DE.html" class="fn-card">
+</div><div class="cat-section" id="Banking" data-cat-block="Banking">
+  <div class="cat-header">Banking <small style="font-weight:400;color:#64748b">(<span class="cat-count">9</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/creditor_ref-DE.html" class="fn-card" data-fn="creditor_ref" data-cat="Banking" data-desc="ISO 11649 Creditor Reference: RF + 2-digit MOD-97 check + 3-21 alphanumeric chars.">
   <div class="fn-name">creditor_ref</div>
   <div class="fn-desc">ISO 11649 Creditor Reference: RF + 2-digit MOD-97 check + 3-21 alphanumeric chars.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/swift-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/swift-DE.html" class="fn-card" data-fn="swift" data-cat="Banking" data-desc="ISO 9362 Business Identifier Code (BIC/SWIFT).">
   <div class="fn-name">swift</div>
   <div class="fn-desc">ISO 9362 Business Identifier Code (BIC/SWIFT).</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bic-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bic-DE.html" class="fn-card" data-fn="bic" data-cat="Banking" data-desc="Alias for SWIFT/BIC code.">
   <div class="fn-name">bic</div>
   <div class="fn-desc">Alias for SWIFT/BIC code.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sort_code-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sort_code-DE.html" class="fn-card" data-fn="sort_code" data-cat="Banking" data-desc="UK 6-digit bank sort code format.">
   <div class="fn-name">sort_code</div>
   <div class="fn-desc">UK 6-digit bank sort code format.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/routing_number-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/routing_number-DE.html" class="fn-card" data-fn="routing_number" data-cat="Banking" data-desc="US 9-digit ABA routing transit number with checksum.">
   <div class="fn-name">routing_number</div>
   <div class="fn-desc">US 9-digit ABA routing transit number with checksum.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bik_code-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bik_code-DE.html" class="fn-card" data-fn="bik_code" data-cat="Banking" data-desc="Russian Bank Identification Code (BIK).">
   <div class="fn-name">bik_code</div>
   <div class="fn-desc">Russian Bank Identification Code (BIK).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bank_name-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bank_name-DE.html" class="fn-card" data-fn="bank_name" data-cat="Banking" data-desc="Randomized bank name for the specified locale.">
   <div class="fn-name">bank_name</div>
   <div class="fn-desc">Randomized bank name for the specified locale.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/transaction-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/transaction-DE.html" class="fn-card" data-fn="transaction" data-cat="Banking" data-desc="Complex banking transaction record simulation.">
   <div class="fn-name">transaction</div>
   <div class="fn-desc">Complex banking transaction record simulation.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sepa_ref-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sepa_ref-DE.html" class="fn-card" data-fn="sepa_ref" data-cat="Banking" data-desc="SEPA End-to-End identification reference.">
   <div class="fn-name">sepa_ref</div>
   <div class="fn-desc">SEPA End-to-End identification reference.</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Corporate">
-  <div class="cat-header">Corporate <small style="font-weight:400;color:#64748b">(4)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/company_name-DE.html" class="fn-card">
+</div><div class="cat-section" id="Corporate" data-cat-block="Corporate">
+  <div class="cat-header">Corporate <small style="font-weight:400;color:#64748b">(<span class="cat-count">4</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/company_name-DE.html" class="fn-card" data-fn="company_name" data-cat="Corporate" data-desc="Official business name for the specified locale.">
   <div class="fn-name">company_name</div>
   <div class="fn-desc">Official business name for the specified locale.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/job_title-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/job_title-DE.html" class="fn-card" data-fn="job_title" data-cat="Corporate" data-desc="Professional job title for the specified locale.">
   <div class="fn-name">job_title</div>
   <div class="fn-desc">Professional job title for the specified locale.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/jobtitle-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/jobtitle-DE.html" class="fn-card" data-fn="jobtitle" data-cat="Corporate" data-desc="Alias for job title.">
   <div class="fn-name">jobtitle</div>
   <div class="fn-desc">Alias for job title.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/occupation-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/occupation-DE.html" class="fn-card" data-fn="occupation" data-cat="Corporate" data-desc="Professional occupation classification.">
   <div class="fn-name">occupation</div>
   <div class="fn-desc">Professional occupation classification.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
 </a></div>
-</div><div class="cat-section" id="Health">
-  <div class="cat-header">Health <small style="font-weight:400;color:#64748b">(12)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bloodtype-DE.html" class="fn-card">
+</div><div class="cat-section" id="Health" data-cat-block="Health">
+  <div class="cat-header">Health <small style="font-weight:400;color:#64748b">(<span class="cat-count">12</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bloodtype-DE.html" class="fn-card" data-fn="bloodtype" data-cat="Health" data-desc="Human blood groups (ABO and Rh factor).">
   <div class="fn-name">bloodtype</div>
   <div class="fn-desc">Human blood groups (ABO and Rh factor).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/blood_type-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/blood_type-DE.html" class="fn-card" data-fn="blood_type" data-cat="Health" data-desc="Alias for blood type.">
   <div class="fn-name">blood_type</div>
   <div class="fn-desc">Alias for blood type.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nhs_number-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nhs_number-DE.html" class="fn-card" data-fn="nhs_number" data-cat="Health" data-desc="UK National Health Service number with Modulo 11 check.">
   <div class="fn-name">nhs_number</div>
   <div class="fn-desc">UK National Health Service number with Modulo 11 check.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nhsnumber-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nhsnumber-DE.html" class="fn-card" data-fn="nhsnumber" data-cat="Health" data-desc="Alias for NHS number.">
   <div class="fn-name">nhsnumber</div>
   <div class="fn-desc">Alias for NHS number.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/icd10-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/icd10-DE.html" class="fn-card" data-fn="icd10" data-cat="Health" data-desc="International Classification of Diseases 10th Revision (ICD-10) code.">
   <div class="fn-name">icd10</div>
   <div class="fn-desc">International Classification of Diseases 10th Revision (ICD-10) code.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bmi-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bmi-DE.html" class="fn-card" data-fn="bmi" data-cat="Health" data-desc="Body Mass Index (BMI) calculated value.">
   <div class="fn-name">bmi</div>
   <div class="fn-desc">Body Mass Index (BMI) calculated value.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/height-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/height-DE.html" class="fn-card" data-fn="height" data-cat="Health" data-desc="Localized height measurement (cm/inch).">
   <div class="fn-name">height</div>
   <div class="fn-desc">Localized height measurement (cm/inch).</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/weight-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/weight-DE.html" class="fn-card" data-fn="weight" data-cat="Health" data-desc="Localized weight measurement (kg/lbs).">
   <div class="fn-name">weight</div>
   <div class="fn-desc">Localized weight measurement (kg/lbs).</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/npi-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/npi-DE.html" class="fn-card" data-fn="npi" data-cat="Health" data-desc="US National Provider Identifier (NPI) with Luhn.">
   <div class="fn-name">npi</div>
   <div class="fn-desc">US National Provider Identifier (NPI) with Luhn.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/hl7_message-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/hl7_message-DE.html" class="fn-card" data-fn="hl7_message" data-cat="Health" data-desc="HL7 v2.5 ADT^A01 patient admission message (MSH/EVN/PID/PV1 segments).">
   <div class="fn-name">hl7_message</div>
   <div class="fn-desc">HL7 v2.5 ADT^A01 patient admission message (MSH/EVN/PID/PV1 segments).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/fhir_patient-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/fhir_patient-DE.html" class="fn-card" data-fn="fhir_patient" data-cat="Health" data-desc="FHIR R4 Patient resource (JSON) with UUID id, name, gender, birthDate, address.">
   <div class="fn-name">fhir_patient</div>
   <div class="fn-desc">FHIR R4 Patient resource (JSON) with UUID id, name, gender, birthDate, address.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/dicom_uid-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/dicom_uid-DE.html" class="fn-card" data-fn="dicom_uid" data-cat="Health" data-desc="DICOM UID (ISO/IEC 9834-8 root 2.25) — digits and dots, max 64 chars.">
   <div class="fn-name">dicom_uid</div>
   <div class="fn-desc">DICOM UID (ISO/IEC 9834-8 root 2.25) — digits and dots, max 64 chars.</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Commerce">
-  <div class="cat-header">Commerce <small style="font-weight:400;color:#64748b">(7)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/currency-DE.html" class="fn-card">
+</div><div class="cat-section" id="Commerce" data-cat-block="Commerce">
+  <div class="cat-header">Commerce <small style="font-weight:400;color:#64748b">(<span class="cat-count">7</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/currency-DE.html" class="fn-card" data-fn="currency" data-cat="Commerce" data-desc="Localized currency details (ISO code and symbol).">
   <div class="fn-name">currency</div>
   <div class="fn-desc">Localized currency details (ISO code and symbol).</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tax_rate-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tax_rate-DE.html" class="fn-card" data-fn="tax_rate" data-cat="Commerce" data-desc="Localized tax names and rates (e.g., KDV, VAT).">
   <div class="fn-name">tax_rate</div>
   <div class="fn-desc">Localized tax names and rates (e.g., KDV, VAT).</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/taxrate-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/taxrate-DE.html" class="fn-card" data-fn="taxrate" data-cat="Commerce" data-desc="Alias for tax rate.">
   <div class="fn-name">taxrate</div>
   <div class="fn-desc">Alias for tax rate.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/invoice_number-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/invoice_number-DE.html" class="fn-card" data-fn="invoice_number" data-cat="Commerce" data-desc="Localized invoice number formats.">
   <div class="fn-name">invoice_number</div>
   <div class="fn-desc">Localized invoice number formats.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/invoicenumber-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/invoicenumber-DE.html" class="fn-card" data-fn="invoicenumber" data-cat="Commerce" data-desc="Alias for invoice number.">
   <div class="fn-name">invoicenumber</div>
   <div class="fn-desc">Alias for invoice number.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/vin-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/vin-DE.html" class="fn-card" data-fn="vin" data-cat="Commerce" data-desc="Vehicle Identification Number (VIN) with ISO 3779 checksum.">
   <div class="fn-name">vin</div>
   <div class="fn-desc">Vehicle Identification Number (VIN) with ISO 3779 checksum.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/vehicle-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/vehicle-DE.html" class="fn-card" data-fn="vehicle" data-cat="Commerce" data-desc="Comprehensive vehicle data including make/model.">
   <div class="fn-name">vehicle</div>
   <div class="fn-desc">Comprehensive vehicle data including make/model.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
 </a></div>
-</div><div class="cat-section" id="Meta">
-  <div class="cat-header">Meta <small style="font-weight:400;color:#64748b">(25)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/regex_string-DE.html" class="fn-card">
+</div><div class="cat-section" id="Meta" data-cat-block="Meta">
+  <div class="cat-header">Meta <small style="font-weight:400;color:#64748b">(<span class="cat-count">25</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/regex_string-DE.html" class="fn-card" data-fn="regex_string" data-cat="Meta" data-desc="Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).">
   <div class="fn-name">regex_string</div>
   <div class="fn-desc">Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/uuid-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/uuid-DE.html" class="fn-card" data-fn="uuid" data-cat="Meta" data-desc="RFC 4122 compliant Universally Unique Identifier (UUID v4).">
   <div class="fn-name">uuid</div>
   <div class="fn-desc">RFC 4122 compliant Universally Unique Identifier (UUID v4).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/requestid-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/requestid-DE.html" class="fn-card" data-fn="requestid" data-cat="Meta" data-desc="Unique request identifier (UUID format).">
   <div class="fn-name">requestid</div>
   <div class="fn-desc">Unique request identifier (UUID format).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/correlationid-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/correlationid-DE.html" class="fn-card" data-fn="correlationid" data-cat="Meta" data-desc="Tracing correlation identifier (UUID format).">
   <div class="fn-name">correlationid</div>
   <div class="fn-desc">Tracing correlation identifier (UUID format).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sessionid-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sessionid-DE.html" class="fn-card" data-fn="sessionid" data-cat="Meta" data-desc="Unique session identifier (UUID format).">
   <div class="fn-name">sessionid</div>
   <div class="fn-desc">Unique session identifier (UUID format).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/idempotencykey-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/idempotencykey-DE.html" class="fn-card" data-fn="idempotencykey" data-cat="Meta" data-desc="API idempotency key for safe retries (UUID format).">
   <div class="fn-name">idempotencykey</div>
   <div class="fn-desc">API idempotency key for safe retries (UUID format).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/deviceid-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/deviceid-DE.html" class="fn-card" data-fn="deviceid" data-cat="Meta" data-desc="Unique hardware/device identifier (Uppercase UUID).">
   <div class="fn-name">deviceid</div>
   <div class="fn-desc">Unique hardware/device identifier (Uppercase UUID).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/timestamp-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/timestamp-DE.html" class="fn-card" data-fn="timestamp" data-cat="Meta" data-desc="Current Unix epoch timestamp (seconds).">
   <div class="fn-name">timestamp</div>
   <div class="fn-desc">Current Unix epoch timestamp (seconds).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/timestamp_iso-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/timestamp_iso-DE.html" class="fn-card" data-fn="timestamp_iso" data-cat="Meta" data-desc="ISO 8601 formatted date-time string.">
   <div class="fn-name">timestamp_iso</div>
   <div class="fn-desc">ISO 8601 formatted date-time string.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ipv4-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ipv4-DE.html" class="fn-card" data-fn="ipv4" data-cat="Meta" data-desc="Random public or private IPv4 address.">
   <div class="fn-name">ipv4</div>
   <div class="fn-desc">Random public or private IPv4 address.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ipv6-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ipv6-DE.html" class="fn-card" data-fn="ipv6" data-cat="Meta" data-desc="RFC 4291 compliant IPv6 address.">
   <div class="fn-name">ipv6</div>
   <div class="fn-desc">RFC 4291 compliant IPv6 address.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/browser_name-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/browser_name-DE.html" class="fn-card" data-fn="browser_name" data-cat="Meta" data-desc="Common web browser names.">
   <div class="fn-name">browser_name</div>
   <div class="fn-desc">Common web browser names.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/browser_version-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/browser_version-DE.html" class="fn-card" data-fn="browser_version" data-cat="Meta" data-desc="Simulated browser version strings.">
   <div class="fn-name">browser_version</div>
   <div class="fn-desc">Simulated browser version strings.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/browser_engine-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/browser_engine-DE.html" class="fn-card" data-fn="browser_engine" data-cat="Meta" data-desc="Web browser layout engines (Blink, WebKit, etc.).">
   <div class="fn-name">browser_engine</div>
   <div class="fn-desc">Web browser layout engines (Blink, WebKit, etc.).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/useragent-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/useragent-DE.html" class="fn-card" data-fn="useragent" data-cat="Meta" data-desc="Realistic browser User-Agent strings.">
   <div class="fn-name">useragent</div>
   <div class="fn-desc">Realistic browser User-Agent strings.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/jwt-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/jwt-DE.html" class="fn-card" data-fn="jwt" data-cat="Meta" data-desc="Mock JSON Web Token (JWT) with header/payload/signature structure.">
   <div class="fn-name">jwt</div>
   <div class="fn-desc">Mock JSON Web Token (JWT) with header/payload/signature structure.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bearertoken-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bearertoken-DE.html" class="fn-card" data-fn="bearertoken" data-cat="Meta" data-desc="HTTP Bearer authorization token.">
   <div class="fn-name">bearertoken</div>
   <div class="fn-desc">HTTP Bearer authorization token.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/hash-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/hash-DE.html" class="fn-card" data-fn="hash" data-cat="Meta" data-desc="Cryptographic hash values for various algorithms.">
   <div class="fn-name">hash</div>
   <div class="fn-desc">Cryptographic hash values for various algorithms.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mac_address-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mac_address-DE.html" class="fn-card" data-fn="mac_address" data-cat="Meta" data-desc="48-bit hardware MAC address (IEEE 802).">
   <div class="fn-name">mac_address</div>
   <div class="fn-desc">48-bit hardware MAC address (IEEE 802).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/url-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/url-DE.html" class="fn-card" data-fn="url" data-cat="Meta" data-desc="Localized web URLs.">
   <div class="fn-name">url</div>
   <div class="fn-desc">Localized web URLs.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/domain-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/domain-DE.html" class="fn-card" data-fn="domain" data-cat="Meta" data-desc="Localized domain names with regional TLDs.">
   <div class="fn-name">domain</div>
   <div class="fn-desc">Localized domain names with regional TLDs.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/color-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/color-DE.html" class="fn-card" data-fn="color" data-cat="Meta" data-desc="Hexadecimal or named color values.">
   <div class="fn-name">color</div>
   <div class="fn-desc">Hexadecimal or named color values.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/clientversion-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/clientversion-DE.html" class="fn-card" data-fn="clientversion" data-cat="Meta" data-desc="Software client versioning (SemVer).">
   <div class="fn-name">clientversion</div>
   <div class="fn-desc">Software client versioning (SemVer).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/signature-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/signature-DE.html" class="fn-card" data-fn="signature" data-cat="Meta" data-desc="HMAC-SHA256 digital signature hex string.">
   <div class="fn-name">signature</div>
   <div class="fn-desc">HMAC-SHA256 digital signature hex string.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/apppassword-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/apppassword-DE.html" class="fn-card" data-fn="apppassword" data-cat="Meta" data-desc="One-time application passwords / PINs.">
   <div class="fn-name">apppassword</div>
   <div class="fn-desc">One-time application passwords / PINs.</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Security">
-  <div class="cat-header">Security <small style="font-weight:400;color:#64748b">(9)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cef_log-DE.html" class="fn-card">
+</div><div class="cat-section" id="Security" data-cat-block="Security">
+  <div class="cat-header">Security <small style="font-weight:400;color:#64748b">(<span class="cat-count">9</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cef_log-DE.html" class="fn-card" data-fn="cef_log" data-cat="Security" data-desc="ArcSight CEF log line — vendor, product, severity 0-10, src/dst IPs.">
   <div class="fn-name">cef_log</div>
   <div class="fn-desc">ArcSight CEF log line — vendor, product, severity 0-10, src/dst IPs.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/x509_cert-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/x509_cert-DE.html" class="fn-card" data-fn="x509_cert" data-cat="Security" data-desc="X.509 certificate fields (JSON): subject, issuer, serial, validity, fingerprint, SANs.">
   <div class="fn-name">x509_cert</div>
   <div class="fn-desc">X.509 certificate fields (JSON): subject, issuer, serial, validity, fingerprint, SANs.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/pcap_hex-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/pcap_hex-DE.html" class="fn-card" data-fn="pcap_hex" data-cat="Security" data-desc="Wireshark-style pcap hex dump of a mock Ethernet+IPv4+TCP frame.">
   <div class="fn-name">pcap_hex</div>
   <div class="fn-desc">Wireshark-style pcap hex dump of a mock Ethernet+IPv4+TCP frame.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/api_key-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/api_key-DE.html" class="fn-card" data-fn="api_key" data-cat="Security" data-desc="Simulated secure API keys with prefix/suffix entropy.">
   <div class="fn-name">api_key</div>
   <div class="fn-desc">Simulated secure API keys with prefix/suffix entropy.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/totp_code-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/totp_code-DE.html" class="fn-card" data-fn="totp_code" data-cat="Security" data-desc="6-digit Time-based One-Time Password (TOTP) codes.">
   <div class="fn-name">totp_code</div>
   <div class="fn-desc">6-digit Time-based One-Time Password (TOTP) codes.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/webhook_signature-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/webhook_signature-DE.html" class="fn-card" data-fn="webhook_signature" data-cat="Security" data-desc="HMAC webhook signatures for secure delivery.">
   <div class="fn-name">webhook_signature</div>
   <div class="fn-desc">HMAC webhook signatures for secure delivery.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/transaction_id-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/transaction_id-DE.html" class="fn-card" data-fn="transaction_id" data-cat="Security" data-desc="Unique secure transaction identifier.">
   <div class="fn-name">transaction_id</div>
   <div class="fn-desc">Unique secure transaction identifier.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/public_ip-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/public_ip-DE.html" class="fn-card" data-fn="public_ip" data-cat="Security" data-desc="Public-facing IPv4 address.">
   <div class="fn-name">public_ip</div>
   <div class="fn-desc">Public-facing IPv4 address.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/private_ip-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/private_ip-DE.html" class="fn-card" data-fn="private_ip" data-cat="Security" data-desc="Internal/Private IPv4 address.">
   <div class="fn-name">private_ip</div>
   <div class="fn-desc">Internal/Private IPv4 address.</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="RFID">
-  <div class="cat-header">RFID <small style="font-weight:400;color:#64748b">(3)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/rfid_uid-DE.html" class="fn-card">
+</div><div class="cat-section" id="RFID" data-cat-block="RFID">
+  <div class="cat-header">RFID <small style="font-weight:400;color:#64748b">(<span class="cat-count">3</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/rfid_uid-DE.html" class="fn-card" data-fn="rfid_uid" data-cat="RFID" data-desc="RFID chip unique identifier (UID).">
   <div class="fn-name">rfid_uid</div>
   <div class="fn-desc">RFID chip unique identifier (UID).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/epc-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/epc-DE.html" class="fn-card" data-fn="epc" data-cat="RFID" data-desc="Electronic Product Code (EPC) for RFID tags.">
   <div class="fn-name">epc</div>
   <div class="fn-desc">Electronic Product Code (EPC) for RFID tags.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/rfid_tag-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/rfid_tag-DE.html" class="fn-card" data-fn="rfid_tag" data-cat="RFID" data-desc="Comprehensive RFID tag data (UID, Freq, Memory).">
   <div class="fn-name">rfid_tag</div>
   <div class="fn-desc">Comprehensive RFID tag data (UID, Freq, Memory).</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="NFC">
-  <div class="cat-header">NFC <small style="font-weight:400;color:#64748b">(7)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nfc_uid-DE.html" class="fn-card">
+</div><div class="cat-section" id="NFC" data-cat-block="NFC">
+  <div class="cat-header">NFC <small style="font-weight:400;color:#64748b">(<span class="cat-count">7</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nfc_uid-DE.html" class="fn-card" data-fn="nfc_uid" data-cat="NFC" data-desc="NFC chip unique identifier (UID).">
   <div class="fn-name">nfc_uid</div>
   <div class="fn-desc">NFC chip unique identifier (UID).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nfc_atqa-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nfc_atqa-DE.html" class="fn-card" data-fn="nfc_atqa" data-cat="NFC" data-desc="NFC Answer to Request (ATQA) code.">
   <div class="fn-name">nfc_atqa</div>
   <div class="fn-desc">NFC Answer to Request (ATQA) code.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nfc_sak-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nfc_sak-DE.html" class="fn-card" data-fn="nfc_sak" data-cat="NFC" data-desc="NFC Select Acknowledge (SAK) code.">
   <div class="fn-name">nfc_sak</div>
   <div class="fn-desc">NFC Select Acknowledge (SAK) code.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ndef_uri-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ndef_uri-DE.html" class="fn-card" data-fn="ndef_uri" data-cat="NFC" data-desc="NFC Data Exchange Format (NDEF) URI record.">
   <div class="fn-name">ndef_uri</div>
   <div class="fn-desc">NFC Data Exchange Format (NDEF) URI record.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ndef_text-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ndef_text-DE.html" class="fn-card" data-fn="ndef_text" data-cat="NFC" data-desc="NFC Data Exchange Format (NDEF) Text record.">
   <div class="fn-name">ndef_text</div>
   <div class="fn-desc">NFC Data Exchange Format (NDEF) Text record.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/apdu-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/apdu-DE.html" class="fn-card" data-fn="apdu" data-cat="NFC" data-desc="Smart card Application Protocol Data Unit (APDU) commands.">
   <div class="fn-name">apdu</div>
   <div class="fn-desc">Smart card Application Protocol Data Unit (APDU) commands.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nfc_tag-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nfc_tag-DE.html" class="fn-card" data-fn="nfc_tag" data-cat="NFC" data-desc="Comprehensive NFC tag details.">
   <div class="fn-name">nfc_tag</div>
   <div class="fn-desc">Comprehensive NFC tag details.</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="IR">
-  <div class="cat-header">IR <small style="font-weight:400;color:#64748b">(4)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ir_nec-DE.html" class="fn-card">
+</div><div class="cat-section" id="IR" data-cat-block="IR">
+  <div class="cat-header">IR <small style="font-weight:400;color:#64748b">(<span class="cat-count">4</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ir_nec-DE.html" class="fn-card" data-fn="ir_nec" data-cat="IR" data-desc="Infrared NEC protocol signal data.">
   <div class="fn-name">ir_nec</div>
   <div class="fn-desc">Infrared NEC protocol signal data.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ir_rc5-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ir_rc5-DE.html" class="fn-card" data-fn="ir_rc5" data-cat="IR" data-desc="Infrared Philips RC5 protocol signal data.">
   <div class="fn-name">ir_rc5</div>
   <div class="fn-desc">Infrared Philips RC5 protocol signal data.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ir_pronto-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ir_pronto-DE.html" class="fn-card" data-fn="ir_pronto" data-cat="IR" data-desc="Infrared Pronto Hex format data.">
   <div class="fn-name">ir_pronto</div>
   <div class="fn-desc">Infrared Pronto Hex format data.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ir_raw-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ir_raw-DE.html" class="fn-card" data-fn="ir_raw" data-cat="IR" data-desc="Infrared raw pulse/space timing data.">
   <div class="fn-name">ir_raw</div>
   <div class="fn-desc">Infrared raw pulse/space timing data.</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Barcode">
-  <div class="cat-header">Barcode <small style="font-weight:400;color:#64748b">(6)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ean13-DE.html" class="fn-card">
+</div><div class="cat-section" id="Barcode" data-cat-block="Barcode">
+  <div class="cat-header">Barcode <small style="font-weight:400;color:#64748b">(<span class="cat-count">6</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ean13-DE.html" class="fn-card" data-fn="ean13" data-cat="Barcode" data-desc="International Article Number (EAN-13) with checksum.">
   <div class="fn-name">ean13</div>
   <div class="fn-desc">International Article Number (EAN-13) with checksum.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ean8-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ean8-DE.html" class="fn-card" data-fn="ean8" data-cat="Barcode" data-desc="Compressed EAN-8 barcode with checksum.">
   <div class="fn-name">ean8</div>
   <div class="fn-desc">Compressed EAN-8 barcode with checksum.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/upca-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/upca-DE.html" class="fn-card" data-fn="upca" data-cat="Barcode" data-desc="Universal Product Code (UPC-A) with checksum.">
   <div class="fn-name">upca</div>
   <div class="fn-desc">Universal Product Code (UPC-A) with checksum.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/isbn13-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/isbn13-DE.html" class="fn-card" data-fn="isbn13" data-cat="Barcode" data-desc="International Standard Book Number (ISBN-13).">
   <div class="fn-name">isbn13</div>
   <div class="fn-desc">International Standard Book Number (ISBN-13).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/isbn10-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/isbn10-DE.html" class="fn-card" data-fn="isbn10" data-cat="Barcode" data-desc="Legacy ISBN-10 with checksum.">
   <div class="fn-name">isbn10</div>
   <div class="fn-desc">Legacy ISBN-10 with checksum.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/gs1_128-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/gs1_128-DE.html" class="fn-card" data-fn="gs1_128" data-cat="Barcode" data-desc="GS1-128 (formerly UCC/EAN-128) application identifiers.">
   <div class="fn-name">gs1_128</div>
   <div class="fn-desc">GS1-128 (formerly UCC/EAN-128) application identifiers.</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Telecom">
-  <div class="cat-header">Telecom <small style="font-weight:400;color:#64748b">(5)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/imei-DE.html" class="fn-card">
+</div><div class="cat-section" id="Telecom" data-cat-block="Telecom">
+  <div class="cat-header">Telecom <small style="font-weight:400;color:#64748b">(<span class="cat-count">5</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/imei-DE.html" class="fn-card" data-fn="imei" data-cat="Telecom" data-desc="International Mobile Equipment Identity (IMEI) with Luhn.">
   <div class="fn-name">imei</div>
   <div class="fn-desc">International Mobile Equipment Identity (IMEI) with Luhn.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/imei2-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/imei2-DE.html" class="fn-card" data-fn="imei2" data-cat="Telecom" data-desc="IMEI in hyphenated format.">
   <div class="fn-name">imei2</div>
   <div class="fn-desc">IMEI in hyphenated format.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/iccid-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/iccid-DE.html" class="fn-card" data-fn="iccid" data-cat="Telecom" data-desc="SIM card Integrated Circuit Card Identifier (ICCID).">
   <div class="fn-name">iccid</div>
   <div class="fn-desc">SIM card Integrated Circuit Card Identifier (ICCID).</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/imsi-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/imsi-DE.html" class="fn-card" data-fn="imsi" data-cat="Telecom" data-desc="International Mobile Subscriber Identity (IMSI).">
   <div class="fn-name">imsi</div>
   <div class="fn-desc">International Mobile Subscriber Identity (IMSI).</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/msisdn-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/msisdn-DE.html" class="fn-card" data-fn="msisdn" data-cat="Telecom" data-desc="Mobile Station International Subscriber Directory Number (MSISDN).">
   <div class="fn-name">msisdn</div>
   <div class="fn-desc">Mobile Station International Subscriber Directory Number (MSISDN).</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
 </a></div>
-</div><div class="cat-section" id="CapMarkets(Trading)">
-  <div class="cat-header">CapMarkets(Trading) <small style="font-weight:400;color:#64748b">(6)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/isin-DE.html" class="fn-card">
+</div><div class="cat-section" id="CapMarkets(Trading)" data-cat-block="CapMarkets(Trading)">
+  <div class="cat-header">CapMarkets(Trading) <small style="font-weight:400;color:#64748b">(<span class="cat-count">6</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/isin-DE.html" class="fn-card" data-fn="isin" data-cat="CapMarkets(Trading)" data-desc="International CapMarkets(Trading) Identification Number (ISO 6166).">
   <div class="fn-name">isin</div>
   <div class="fn-desc">International CapMarkets(Trading) Identification Number (ISO 6166).</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cusip-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cusip-DE.html" class="fn-card" data-fn="cusip" data-cat="CapMarkets(Trading)" data-desc="Committee on Uniform Security Identification Procedures ID.">
   <div class="fn-name">cusip</div>
   <div class="fn-desc">Committee on Uniform Security Identification Procedures ID.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sedol-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sedol-DE.html" class="fn-card" data-fn="sedol" data-cat="CapMarkets(Trading)" data-desc="Stock Exchange Daily Official List (UK).">
   <div class="fn-name">sedol</div>
   <div class="fn-desc">Stock Exchange Daily Official List (UK).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/lei-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/lei-DE.html" class="fn-card" data-fn="lei" data-cat="CapMarkets(Trading)" data-desc="Legal Entity Identifier (ISO 17442).">
   <div class="fn-name">lei</div>
   <div class="fn-desc">Legal Entity Identifier (ISO 17442).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/fix_message-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/fix_message-DE.html" class="fn-card" data-fn="fix_message" data-cat="CapMarkets(Trading)" data-desc="FIX Protocol 4.4 New Order Single (MsgType=D) with valid BodyLength and CheckSum.">
   <div class="fn-name">fix_message</div>
   <div class="fn-desc">FIX Protocol 4.4 New Order Single (MsgType=D) with valid BodyLength and CheckSum.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/psd2_consent-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/psd2_consent-DE.html" class="fn-card" data-fn="psd2_consent" data-cat="CapMarkets(Trading)" data-desc="PSD2 / UK Open Banking v3.1 Payment Consent — compact JWS (HMAC-SHA256).">
   <div class="fn-name">psd2_consent</div>
   <div class="fn-desc">PSD2 / UK Open Banking v3.1 Payment Consent — compact JWS (HMAC-SHA256).</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
 </a></div>
-</div><div class="cat-section" id="Crypto">
-  <div class="cat-header">Crypto <small style="font-weight:400;color:#64748b">(6)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/btc_address-DE.html" class="fn-card">
+</div><div class="cat-section" id="Crypto" data-cat-block="Crypto">
+  <div class="cat-header">Crypto <small style="font-weight:400;color:#64748b">(<span class="cat-count">6</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/btc_address-DE.html" class="fn-card" data-fn="btc_address" data-cat="Crypto" data-desc="Bitcoin wallet address (P2PKH, P2SH, Bech32).">
   <div class="fn-name">btc_address</div>
   <div class="fn-desc">Bitcoin wallet address (P2PKH, P2SH, Bech32).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/eth_address-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/eth_address-DE.html" class="fn-card" data-fn="eth_address" data-cat="Crypto" data-desc="Ethereum/EVM compatible wallet address.">
   <div class="fn-name">eth_address</div>
   <div class="fn-desc">Ethereum/EVM compatible wallet address.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/crypto_address-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/crypto_address-DE.html" class="fn-card" data-fn="crypto_address" data-cat="Crypto" data-desc="Generic crypto address for specified currency.">
   <div class="fn-name">crypto_address</div>
   <div class="fn-desc">Generic crypto address for specified currency.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tx_hash-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tx_hash-DE.html" class="fn-card" data-fn="tx_hash" data-cat="Crypto" data-desc="Blockchain transaction hash (SHA-256/Keccak-256).">
   <div class="fn-name">tx_hash</div>
   <div class="fn-desc">Blockchain transaction hash (SHA-256/Keccak-256).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/block_hash-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/block_hash-DE.html" class="fn-card" data-fn="block_hash" data-cat="Crypto" data-desc="Blockchain block hash identifier.">
   <div class="fn-name">block_hash</div>
   <div class="fn-desc">Blockchain block hash identifier.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mnemonic-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mnemonic-DE.html" class="fn-card" data-fn="mnemonic" data-cat="Crypto" data-desc="BIP-39 mnemonic recovery phrase (seed phrase).">
   <div class="fn-name">mnemonic</div>
   <div class="fn-desc">BIP-39 mnemonic recovery phrase (seed phrase).</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="E-Commerce">
-  <div class="cat-header">E-Commerce <small style="font-weight:400;color:#64748b">(7)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/product_name-DE.html" class="fn-card">
+</div><div class="cat-section" id="E-Commerce" data-cat-block="E-Commerce">
+  <div class="cat-header">E-Commerce <small style="font-weight:400;color:#64748b">(<span class="cat-count">7</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/product_name-DE.html" class="fn-card" data-fn="product_name" data-cat="E-Commerce" data-desc="Randomized e-commerce product names.">
   <div class="fn-name">product_name</div>
   <div class="fn-desc">Randomized e-commerce product names.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sku-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sku-DE.html" class="fn-card" data-fn="sku" data-cat="E-Commerce" data-desc="Stock Keeping Unit (SKU) identifiers.">
   <div class="fn-name">sku</div>
   <div class="fn-desc">Stock Keeping Unit (SKU) identifiers.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/order_id-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/order_id-DE.html" class="fn-card" data-fn="order_id" data-cat="E-Commerce" data-desc="Unique e-commerce order identifiers.">
   <div class="fn-name">order_id</div>
   <div class="fn-desc">Unique e-commerce order identifiers.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tracking_number-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tracking_number-DE.html" class="fn-card" data-fn="tracking_number" data-cat="E-Commerce" data-desc="Logistic tracking numbers for major carriers.">
   <div class="fn-name">tracking_number</div>
   <div class="fn-desc">Logistic tracking numbers for major carriers.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/dhl_tracking-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/dhl_tracking-DE.html" class="fn-card" data-fn="dhl_tracking" data-cat="E-Commerce" data-desc="DHL Express tracking number format.">
   <div class="fn-name">dhl_tracking</div>
   <div class="fn-desc">DHL Express tracking number format.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/category-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/category-DE.html" class="fn-card" data-fn="category" data-cat="E-Commerce" data-desc="Product category classifications.">
   <div class="fn-name">category</div>
   <div class="fn-desc">Product category classifications.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/rating-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/rating-DE.html" class="fn-card" data-fn="rating" data-cat="E-Commerce" data-desc="Product rating scores (1.0 - 5.0).">
   <div class="fn-name">rating</div>
   <div class="fn-desc">Product rating scores (1.0 - 5.0).</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Location">
-  <div class="cat-header">Location <small style="font-weight:400;color:#64748b">(5)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/latitude-DE.html" class="fn-card">
+</div><div class="cat-section" id="Location" data-cat-block="Location">
+  <div class="cat-header">Location <small style="font-weight:400;color:#64748b">(<span class="cat-count">5</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/latitude-DE.html" class="fn-card" data-fn="latitude" data-cat="Location" data-desc="Geographic latitude coordinate.">
   <div class="fn-name">latitude</div>
   <div class="fn-desc">Geographic latitude coordinate.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/longitude-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/longitude-DE.html" class="fn-card" data-fn="longitude" data-cat="Location" data-desc="Geographic longitude coordinate.">
   <div class="fn-name">longitude</div>
   <div class="fn-desc">Geographic longitude coordinate.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/timezone-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/timezone-DE.html" class="fn-card" data-fn="timezone" data-cat="Location" data-desc="IANA/Olson timezone identifiers.">
   <div class="fn-name">timezone</div>
   <div class="fn-desc">IANA/Olson timezone identifiers.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/country_code-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/country_code-DE.html" class="fn-card" data-fn="country_code" data-cat="Location" data-desc="ISO 3166-1 alpha-2 country codes.">
   <div class="fn-name">country_code</div>
   <div class="fn-desc">ISO 3166-1 alpha-2 country codes.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/coordinates-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/coordinates-DE.html" class="fn-card" data-fn="coordinates" data-cat="Location" data-desc="Combined Lat/Long coordinate pairs.">
   <div class="fn-name">coordinates</div>
   <div class="fn-desc">Combined Lat/Long coordinate pairs.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
 </a></div>
-</div><div class="cat-section" id="Social">
-  <div class="cat-header">Social <small style="font-weight:400;color:#64748b">(5)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/username-DE.html" class="fn-card">
+</div><div class="cat-section" id="Social" data-cat-block="Social">
+  <div class="cat-header">Social <small style="font-weight:400;color:#64748b">(<span class="cat-count">5</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/username-DE.html" class="fn-card" data-fn="username" data-cat="Social" data-desc="Social media profile usernames.">
   <div class="fn-name">username</div>
   <div class="fn-desc">Social media profile usernames.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/handle-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/handle-DE.html" class="fn-card" data-fn="handle" data-cat="Social" data-desc="Social media profile handle with @ prefix.">
   <div class="fn-name">handle</div>
   <div class="fn-desc">Social media profile handle with @ prefix.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/hashtag-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/hashtag-DE.html" class="fn-card" data-fn="hashtag" data-cat="Social" data-desc="Trending social media hashtags.">
   <div class="fn-name">hashtag</div>
   <div class="fn-desc">Trending social media hashtags.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bio-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bio-DE.html" class="fn-card" data-fn="bio" data-cat="Social" data-desc="Social media profile biography text.">
   <div class="fn-name">bio</div>
   <div class="fn-desc">Social media profile biography text.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/follower_count-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/follower_count-DE.html" class="fn-card" data-fn="follower_count" data-cat="Social" data-desc="Simulated follower/subscriber counts.">
   <div class="fn-name">follower_count</div>
   <div class="fn-desc">Simulated follower/subscriber counts.</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Hardware">
-  <div class="cat-header">Hardware <small style="font-weight:400;color:#64748b">(3)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/track2_data-DE.html" class="fn-card">
+</div><div class="cat-section" id="Hardware" data-cat-block="Hardware">
+  <div class="cat-header">Hardware <small style="font-weight:400;color:#64748b">(<span class="cat-count">3</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/track2_data-DE.html" class="fn-card" data-fn="track2_data" data-cat="Hardware" data-desc="Magnetic stripe Track 2 data (PAN=Expiry+ServiceCode+CVV).">
   <div class="fn-name">track2_data</div>
   <div class="fn-desc">Magnetic stripe Track 2 data (PAN=Expiry+ServiceCode+CVV).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/chip_data-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/chip_data-DE.html" class="fn-card" data-fn="chip_data" data-cat="Hardware" data-desc="Simulated EMV chip (ICC) tag-length-value (TLV) data.">
   <div class="fn-name">chip_data</div>
   <div class="fn-desc">Simulated EMV chip (ICC) tag-length-value (TLV) data.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/pin_block-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/pin_block-DE.html" class="fn-card" data-fn="pin_block" data-cat="Hardware" data-desc="ISO 9564 format encrypted PIN block (Format 0/1).">
   <div class="fn-name">pin_block</div>
   <div class="fn-desc">ISO 9564 format encrypted PIN block (Format 0/1).</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Aviation">
-  <div class="cat-header">Aviation <small style="font-weight:400;color:#64748b">(3)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/iata_ticket-DE.html" class="fn-card">
+</div><div class="cat-section" id="Aviation" data-cat-block="Aviation">
+  <div class="cat-header">Aviation <small style="font-weight:400;color:#64748b">(<span class="cat-count">3</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/iata_ticket-DE.html" class="fn-card" data-fn="iata_ticket" data-cat="Aviation" data-desc="IATA Electronic Ticket Number (ETN): 3-digit airline code + 9-digit serial + MOD-7 check digit.">
   <div class="fn-name">iata_ticket</div>
   <div class="fn-desc">IATA Electronic Ticket Number (ETN): 3-digit airline code + 9-digit serial + MOD-7 check d…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/imo_number-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/imo_number-DE.html" class="fn-card" data-fn="imo_number" data-cat="Aviation" data-desc="IMO Ship Registration Number: 7-digit identifier with MOD-10 weighted check digit.">
   <div class="fn-name">imo_number</div>
   <div class="fn-desc">IMO Ship Registration Number: 7-digit identifier with MOD-10 weighted check digit.</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/pnr_code-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/pnr_code-DE.html" class="fn-card" data-fn="pnr_code" data-cat="Aviation" data-desc="GDS Passenger Name Record (PNR) locator: 6-char uppercase alphanumeric, no ambiguous chars.">
   <div class="fn-name">pnr_code</div>
   <div class="fn-desc">GDS Passenger Name Record (PNR) locator: 6-char uppercase alphanumeric, no ambiguous chars…</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Wireless">
-  <div class="cat-header">Wireless <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mqtt_payload-DE.html" class="fn-card">
+</div><div class="cat-section" id="Wireless" data-cat-block="Wireless">
+  <div class="cat-header">Wireless <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mqtt_payload-DE.html" class="fn-card" data-fn="mqtt_payload" data-cat="Wireless" data-desc="IoT sensor MQTT payload JSON (device_id, timestamp, sensor readings, RSSI, battery).">
   <div class="fn-name">mqtt_payload</div>
   <div class="fn-desc">IoT sensor MQTT payload JSON (device_id, timestamp, sensor readings, RSSI, battery).</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/lora_packet-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/lora_packet-DE.html" class="fn-card" data-fn="lora_packet" data-cat="Wireless" data-desc="LoRaWAN 1.0.x uplink MAC frame hex: MHDR(0x40) + FHDR + FPort + FRMPayload + MIC.">
   <div class="fn-name">lora_packet</div>
   <div class="fn-desc">LoRaWAN 1.0.x uplink MAC frame hex: MHDR(0x40) + FHDR + FPort + FRMPayload + MIC.</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="WebAuthn">
-  <div class="cat-header">WebAuthn <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/webauthn_credential-DE.html" class="fn-card">
+</div><div class="cat-section" id="WebAuthn" data-cat-block="WebAuthn">
+  <div class="cat-header">WebAuthn <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/webauthn_credential-DE.html" class="fn-card" data-fn="webauthn_credential" data-cat="WebAuthn" data-desc="FIDO2/WebAuthn registration response: CBOR attestationObject + clientDataJSON (webauthn.create), all fields base64url en">
   <div class="fn-name">webauthn_credential</div>
   <div class="fn-desc">FIDO2/WebAuthn registration response: CBOR attestationObject + clientDataJSON (webauthn.cr…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/fido2_assertion-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/fido2_assertion-DE.html" class="fn-card" data-fn="fido2_assertion" data-cat="WebAuthn" data-desc="FIDO2/WebAuthn authentication response: 37-byte authenticatorData + DER ECDSA signature + userHandle, base64url encoded.">
   <div class="fn-name">fido2_assertion</div>
   <div class="fn-desc">FIDO2/WebAuthn authentication response: 37-byte authenticatorData + DER ECDSA signature + …</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Wallet">
-  <div class="cat-header">Wallet <small style="font-weight:400;color:#64748b">(3)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/eth_wallet-DE.html" class="fn-card">
+</div><div class="cat-section" id="Wallet" data-cat-block="Wallet">
+  <div class="cat-header">Wallet <small style="font-weight:400;color:#64748b">(<span class="cat-count">3</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/eth_wallet-DE.html" class="fn-card" data-fn="eth_wallet" data-cat="Wallet" data-desc="Full ETH wallet: secp256k1 scalar mult → Keccak-256 → EIP-55 checksummed address. JSON with private_key, public_key, add">
   <div class="fn-name">eth_wallet</div>
   <div class="fn-desc">Full ETH wallet: secp256k1 scalar mult → Keccak-256 → EIP-55 checksummed address. JSON wit…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/btc_wallet-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/btc_wallet-DE.html" class="fn-card" data-fn="btc_wallet" data-cat="Wallet" data-desc="Full BTC wallet: secp256k1 → SHA256+RIPEMD160 → P2PKH Base58Check + compressed WIF. JSON with private_key, wif, public_k">
   <div class="fn-name">btc_wallet</div>
   <div class="fn-desc">Full BTC wallet: secp256k1 → SHA256+RIPEMD160 → P2PKH Base58Check + compressed WIF. JSON w…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sol_wallet-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sol_wallet-DE.html" class="fn-card" data-fn="sol_wallet" data-cat="Wallet" data-desc="Full Solana wallet: Ed25519 scalar mult → base58 address. JSON with private_key, public_key, address, keypair (Phantom f">
   <div class="fn-name">sol_wallet</div>
   <div class="fn-desc">Full Solana wallet: Ed25519 scalar mult → base58 address. JSON with private_key, public_ke…</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="AI Vector">
-  <div class="cat-header">AI Vector <small style="font-weight:400;color:#64748b">(3)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ai_embedding-DE.html" class="fn-card">
+</div><div class="cat-section" id="AI Vector" data-cat-block="AI Vector">
+  <div class="cat-header">AI Vector <small style="font-weight:400;color:#64748b">(<span class="cat-count">3</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ai_embedding-DE.html" class="fn-card" data-fn="ai_embedding" data-cat="AI Vector" data-desc="1536-dim L2-normalized float vector (OpenAI Ada-002 / Pinecone compatible). JSON array of floats with |v|₂=1.">
   <div class="fn-name">ai_embedding</div>
   <div class="fn-desc">1536-dim L2-normalized float vector (OpenAI Ada-002 / Pinecone compatible). JSON array of …</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ai_vector-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ai_vector-DE.html" class="fn-card" data-fn="ai_vector" data-cat="AI Vector" data-desc="N-dim L2-normalized unit vector for embedding models (default 384-dim). Configurable via --dims.">
   <div class="fn-name">ai_vector</div>
   <div class="fn-desc">N-dim L2-normalized unit vector for embedding models (default 384-dim). Configurable via -…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ai_sparse_vector-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ai_sparse_vector-DE.html" class="fn-card" data-fn="ai_sparse_vector" data-cat="AI Vector" data-desc="Sparse {indices, values} vector with L2-normalized positive weights for hybrid search (Pinecone/Qdrant). 128 non-zero en">
   <div class="fn-name">ai_sparse_vector</div>
   <div class="fn-desc">Sparse {indices, values} vector with L2-normalized positive weights for hybrid search (Pin…</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="OIDC">
-  <div class="cat-header">OIDC <small style="font-weight:400;color:#64748b">(3)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/oidc_token_set-DE.html" class="fn-card">
+</div><div class="cat-section" id="OIDC" data-cat-block="OIDC">
+  <div class="cat-header">OIDC <small style="font-weight:400;color:#64748b">(<span class="cat-count">3</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/oidc_token_set-DE.html" class="fn-card" data-fn="oidc_token_set" data-cat="OIDC" data-desc="ES256 key pair (P-256) → signed JWT + verifiable JWKS (kid linked). Full OIDC claims: iss, sub, aud, exp, iat, jti, emai">
   <div class="fn-name">oidc_token_set</div>
   <div class="fn-desc">ES256 key pair (P-256) → signed JWT + verifiable JWKS (kid linked). Full OIDC claims: iss,…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/jwks-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/jwks-DE.html" class="fn-card" data-fn="jwks" data-cat="OIDC" data-desc="Standalone JWK Set — fresh P-256 EC public key (kty=EC, crv=P-256, use=sig, alg=ES256). Mock /.well-known/jwks.json endp">
   <div class="fn-name">jwks</div>
   <div class="fn-desc">Standalone JWK Set — fresh P-256 EC public key (kty=EC, crv=P-256, use=sig, alg=ES256). Mo…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/oidc_token-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/oidc_token-DE.html" class="fn-card" data-fn="oidc_token" data-cat="OIDC" data-desc="HS256 JWT with standard OIDC claims (iss, sub, aud, exp, iat, jti). Fast symmetric signing — no key pair needed.">
   <div class="fn-name">oidc_token</div>
   <div class="fn-desc">HS256 JWT with standard OIDC claims (iss, sub, aud, exp, iat, jti). Fast symmetric signing…</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="BankStatement">
-  <div class="cat-header">BankStatement <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mt940-DE.html" class="fn-card">
+</div><div class="cat-section" id="BankStatement" data-cat-block="BankStatement">
+  <div class="cat-header">BankStatement <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mt940-DE.html" class="fn-card" data-fn="mt940" data-cat="BankStatement" data-desc="SWIFT MT940 bank statement: :20: :25: :28C: :60F: :61: :86: :62F: fields. Comma decimal (500,00). 2-5 transactions.">
   <div class="fn-name">mt940</div>
   <div class="fn-desc">SWIFT MT940 bank statement: :20: :25: :28C: :60F: :61: :86: :62F: fields. Comma decimal (5…</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/camt053-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/camt053-DE.html" class="fn-card" data-fn="camt053" data-cat="BankStatement" data-desc="ISO 20022 CAMT.053 XML bank statement: MsgId, IBAN, OPBD/CLBD balances, Ntry entries. Dot decimal (500.00).">
   <div class="fn-name">camt053</div>
   <div class="fn-desc">ISO 20022 CAMT.053 XML bank statement: MsgId, IBAN, OPBD/CLBD balances, Ntry entries. Dot …</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
 </a></div>
-</div><div class="cat-section" id="EDI">
-  <div class="cat-header">EDI <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/edi_850-DE.html" class="fn-card">
+</div><div class="cat-section" id="EDI" data-cat-block="EDI">
+  <div class="cat-header">EDI <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/edi_850-DE.html" class="fn-card" data-fn="edi_850" data-cat="EDI" data-desc="ANSI X12 EDI 850 Purchase Order: ISA/GS/ST/BEG/N1/PO1/CTT/SE/GE/IEA. ISA13==IEA02, GS06==GE02, SE01==segment count.">
   <div class="fn-name">edi_850</div>
   <div class="fn-desc">ANSI X12 EDI 850 Purchase Order: ISA/GS/ST/BEG/N1/PO1/CTT/SE/GE/IEA. ISA13==IEA02, GS06==G…</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/edifact_orders-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/edifact_orders-DE.html" class="fn-card" data-fn="edifact_orders" data-cat="EDI" data-desc="UN/EDIFACT ORDERS D96A: UNB/UNH/BGM/DTM/NAD/LIN/QTY/PRI/UNS/CNT/UNT/UNZ. UNT01==seg count, UNZ02==UNB ctrl ref.">
   <div class="fn-name">edifact_orders</div>
   <div class="fn-desc">UN/EDIFACT ORDERS D96A: UNB/UNH/BGM/DTM/NAD/LIN/QTY/PRI/UNS/CNT/UNT/UNZ. UNT01==seg count,…</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
 </a></div>
-</div><div class="cat-section" id="EventSourcing">
-  <div class="cat-header">EventSourcing <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/event_stream-DE.html" class="fn-card">
+</div><div class="cat-section" id="EventSourcing" data-cat-block="EventSourcing">
+  <div class="cat-header">EventSourcing <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/event_stream-DE.html" class="fn-card" data-fn="event_stream" data-cat="EventSourcing" data-desc="Markov Chain user-journey event sequence (Login→Browse→Cart→Checkout→Logout). JSON array with correlation_id, timestamps">
   <div class="fn-name">event_stream</div>
   <div class="fn-desc">Markov Chain user-journey event sequence (Login→Browse→Cart→Checkout→Logout). JSON array w…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cdc_event-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cdc_event-DE.html" class="fn-card" data-fn="cdc_event" data-cat="EventSourcing" data-desc="Debezium-style CDC event (INSERT/UPDATE/DELETE). op c/u/d, ts_ms, source db+table, before/after payloads.">
   <div class="fn-name">cdc_event</div>
   <div class="fn-desc">Debezium-style CDC event (INSERT/UPDATE/DELETE). op c/u/d, ts_ms, source db+table, before/…</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Telemetry">
-  <div class="cat-header">Telemetry <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/fdr_record-DE.html" class="fn-card">
+</div><div class="cat-section" id="Telemetry" data-cat-block="Telemetry">
+  <div class="cat-header">Telemetry <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/fdr_record-DE.html" class="fn-card" data-fn="fdr_record" data-cat="Telemetry" data-desc="Flight Data Recorder time-series: pitch/roll/yaw/altitude_ft/speed_kts/vspeed_fpm/g_force. Physics-constrained bounded r">
   <div class="fn-name">fdr_record</div>
   <div class="fn-desc">Flight Data Recorder time-series: pitch/roll/yaw/altitude_ft/speed_kts/vspeed_fpm/g_force.…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/drone_telemetry-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/drone_telemetry-DE.html" class="fn-card" data-fn="drone_telemetry" data-cat="Telemetry" data-desc="Drone telemetry time-series: lat/lon/alt_m/pitch/roll/yaw/speed_ms/battery_pct/rssi. Battery monotonically decreasing (2">
   <div class="fn-name">drone_telemetry</div>
   <div class="fn-desc">Drone telemetry time-series: lat/lon/alt_m/pitch/roll/yaw/speed_ms/battery_pct/rssi. Batte…</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="OHLCV">
-  <div class="cat-header">OHLCV <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ohlcv_candles-DE.html" class="fn-card">
+</div><div class="cat-section" id="OHLCV" data-cat-block="OHLCV">
+  <div class="cat-header">OHLCV <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ohlcv_candles-DE.html" class="fn-card" data-fn="ohlcv_candles" data-cat="OHLCV" data-desc="OHLCV candlestick series via Geometric Brownian Motion: H>=max(O,C), L<=min(O,C), Open[i]=Close[i-1]. 10-30 candles, int">
   <div class="fn-name">ohlcv_candles</div>
   <div class="fn-desc">OHLCV candlestick series via Geometric Brownian Motion: H>=max(O,C), L<=min(O,C), Open[i]=…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/market_tick-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/market_tick-DE.html" class="fn-card" data-fn="market_tick" data-cat="OHLCV" data-desc="Individual exchange trade tick: bid < price <= ask, positive spread, Lee-Ready side (buy/sell), lot size, sequence numbe">
   <div class="fn-name">market_tick</div>
   <div class="fn-desc">Individual exchange trade tick: bid < price <= ask, positive spread, Lee-Ready side (buy/s…</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="TLE">
-  <div class="cat-header">TLE <small style="font-weight:400;color:#64748b">(1)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tle_satellite-DE.html" class="fn-card">
+</div><div class="cat-section" id="TLE" data-cat-block="TLE">
+  <div class="cat-header">TLE <small style="font-weight:400;color:#64748b">(<span class="cat-count">1</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tle_satellite-DE.html" class="fn-card" data-fn="tle_satellite" data-cat="TLE" data-desc="Two-Line Element Set (TLE) per NORAD/USSPACECOM standard: LEO/MEO/GEO/SSO/HEO orbit types, physics-consistent parameters">
   <div class="fn-name">tle_satellite</div>
   <div class="fn-desc">Two-Line Element Set (TLE) per NORAD/USSPACECOM standard: LEO/MEO/GEO/SSO/HEO orbit types,…</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Automotive">
-  <div class="cat-header">Automotive <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/can_frame-DE.html" class="fn-card">
+</div><div class="cat-section" id="Automotive" data-cat-block="Automotive">
+  <div class="cat-header">Automotive <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/can_frame-DE.html" class="fn-card" data-fn="can_frame" data-cat="Automotive" data-desc="Raw CAN Bus frame (ISO 11898-1): standard (11-bit) or extended (29-bit) ID, DLC 0-8, CRC-15 polynomial 0xC599 verified o">
   <div class="fn-name">can_frame</div>
   <div class="fn-desc">Raw CAN Bus frame (ISO 11898-1): standard (11-bit) or extended (29-bit) ID, DLC 0-8, CRC-1…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/obd2_response-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/obd2_response-DE.html" class="fn-card" data-fn="obd2_response" data-cat="Automotive" data-desc="OBD-II live snapshot (SAE J1979 / ISO 15765-4): Mode 01 PIDs (RPM, Speed, Coolant, Throttle, Engine Load, Fuel Level). E">
   <div class="fn-name">obd2_response</div>
   <div class="fn-desc">OBD-II live snapshot (SAE J1979 / ISO 15765-4): Mode 01 PIDs (RPM, Speed, Coolant, Throttl…</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="EInvoice">
-  <div class="cat-header">EInvoice <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ubl_invoice-DE.html" class="fn-card">
+</div><div class="cat-section" id="EInvoice" data-cat-block="EInvoice">
+  <div class="cat-header">EInvoice <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ubl_invoice-DE.html" class="fn-card" data-fn="ubl_invoice" data-cat="EInvoice" data-desc="OASIS UBL 2.1 Invoice XML (Turkey GIB e-fatura): consistent amounts (net+tax=gross), 1-5 line items, INV-YYYY-NNNNN ID, ">
   <div class="fn-name">ubl_invoice</div>
   <div class="fn-desc">OASIS UBL 2.1 Invoice XML (Turkey GIB e-fatura): consistent amounts (net+tax=gross), 1-5 l…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/xmldsig-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/xmldsig-DE.html" class="fn-card" data-fn="xmldsig" data-cat="EInvoice" data-desc="W3C XML Digital Signature (XMLDSig) enveloped: RSA-SHA256 signature, SHA-256 digest, C14N canonicalization. DigestValue=">
   <div class="fn-name">xmldsig</div>
   <div class="fn-desc">W3C XML Digital Signature (XMLDSig) enveloped: RSA-SHA256 signature, SHA-256 digest, C14N …</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="GameDev">
-  <div class="cat-header">GameDev <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/quaternion-DE.html" class="fn-card">
+</div><div class="cat-section" id="GameDev" data-cat-block="GameDev">
+  <div class="cat-header">GameDev <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/quaternion-DE.html" class="fn-card" data-fn="quaternion" data-cat="GameDev" data-desc="L2-normalized unit quaternion (Gaussian sampling): sqrt(x²+y²+z²+w²)=1.0. Pre-computed Euler angles (ZYX, degrees). Unit">
   <div class="fn-name">quaternion</div>
   <div class="fn-desc">L2-normalized unit quaternion (Gaussian sampling): sqrt(x²+y²+z²+w²)=1.0. Pre-computed Eul…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/navmesh_path-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/navmesh_path-DE.html" class="fn-card" data-fn="navmesh_path" data-cat="GameDev" data-desc="A*-compatible NavMesh waypoint path: 3-15 waypoints, random heading ±60° turns, 5-25 unit steps, terrain height bounded ">
   <div class="fn-name">navmesh_path</div>
   <div class="fn-desc">A*-compatible NavMesh waypoint path: 3-15 waypoints, random heading ±60° turns, 5-25 unit …</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Prometheus">
-  <div class="cat-header">Prometheus <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/prometheus_metrics-DE.html" class="fn-card">
+</div><div class="cat-section" id="Prometheus" data-cat-block="Prometheus">
+  <div class="cat-header">Prometheus <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/prometheus_metrics-DE.html" class="fn-card" data-fn="prometheus_metrics" data-cat="Prometheus" data-desc="Prometheus text exposition: process CPU/memory, HTTP counter (method/path/status), HTTP histogram (monotonic buckets, +I">
   <div class="fn-name">prometheus_metrics</div>
   <div class="fn-desc">Prometheus text exposition: process CPU/memory, HTTP counter (method/path/status), HTTP hi…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/openmetrics_snapshot-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/openmetrics_snapshot-DE.html" class="fn-card" data-fn="openmetrics_snapshot" data-cat="Prometheus" data-desc="OpenMetrics exposition (Prometheus superset): same metric families, mandatory # EOF terminator. Compatible with OTLP/Gra">
   <div class="fn-name">openmetrics_snapshot</div>
   <div class="fn-desc">OpenMetrics exposition (Prometheus superset): same metric families, mandatory # EOF termin…</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="NMEA">
-  <div class="cat-header">NMEA <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nmea_gpgga-DE.html" class="fn-card">
+</div><div class="cat-section" id="NMEA" data-cat-block="NMEA">
+  <div class="cat-header">NMEA <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nmea_gpgga-DE.html" class="fn-card" data-fn="nmea_gpgga" data-cat="NMEA" data-desc="GPGGA GPS Fix Data sentence: lat/lon (DDMM.MMMM), fix quality, satellite count, HDOP, altitude. XOR checksum validated.">
   <div class="fn-name">nmea_gpgga</div>
   <div class="fn-desc">GPGGA GPS Fix Data sentence: lat/lon (DDMM.MMMM), fix quality, satellite count, HDOP, alti…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nmea_gprmc-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nmea_gprmc-DE.html" class="fn-card" data-fn="nmea_gprmc" data-cat="NMEA" data-desc="GPRMC Recommended Minimum GPS Data sentence: status A, lat/lon, speed (knots), course, date (DDMMYY). XOR checksum valid">
   <div class="fn-name">nmea_gprmc</div>
   <div class="fn-desc">GPRMC Recommended Minimum GPS Data sentence: status A, lat/lon, speed (knots), course, dat…</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="MRZ">
-  <div class="cat-header">MRZ <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mrz_td3-DE.html" class="fn-card">
+</div><div class="cat-section" id="MRZ" data-cat-block="MRZ">
+  <div class="cat-header">MRZ <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mrz_td3-DE.html" class="fn-card" data-fn="mrz_td3" data-cat="MRZ" data-desc="ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal number, composite check digit (ICAO 9303 Par">
   <div class="fn-name">mrz_td3</div>
   <div class="fn-desc">ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal number, compos…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mrz_td1-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mrz_td1-DE.html" class="fn-card" data-fn="mrz_td1" data-cat="MRZ" data-desc="ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc number, DOB, expiry, composite check digit (ICAO 9303 Part 5).">
   <div class="fn-name">mrz_td1</div>
   <div class="fn-desc">ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc number, DOB, expiry, composite check di…</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="PenTest">
-  <div class="cat-header">PenTest <small style="font-weight:400;color:#64748b">(2)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/jwt_attack-DE.html" class="fn-card">
+</div><div class="cat-section" id="PenTest" data-cat-block="PenTest">
+  <div class="cat-header">PenTest <small style="font-weight:400;color:#64748b">(<span class="cat-count">2</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/jwt_attack-DE.html" class="fn-card" data-fn="jwt_attack" data-cat="PenTest" data-desc="Crafted JWT attack payloads: none_alg (CVE bypass), expired, invalid_signature (bit-flip), alg_confusion (RS256/HS256), ">
   <div class="fn-name">jwt_attack</div>
   <div class="fn-desc">Crafted JWT attack payloads: none_alg (CVE bypass), expired, invalid_signature (bit-flip),…</div>
   <div class="fn-locale"></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/asn1_fuzz-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/asn1_fuzz-DE.html" class="fn-card" data-fn="asn1_fuzz" data-cat="PenTest" data-desc="ASN.1/DER malformed payloads: truncated, overflow_length (long-form 0x82), wrong_tag, nested_mismatch, zero_length, rand">
   <div class="fn-name">asn1_fuzz</div>
   <div class="fn-desc">ASN.1/DER malformed payloads: truncated, overflow_length (long-form 0x82), wrong_tag, nest…</div>
   <div class="fn-locale"></div>
 </a></div>
-</div><div class="cat-section" id="Commands">
-  <div class="cat-header">Commands <small style="font-weight:400;color:#64748b">(5)</small></div>
-  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bulk-DE.html" class="fn-card">
+</div><div class="cat-section" id="Commands" data-cat-block="Commands">
+  <div class="cat-header">Commands <small style="font-weight:400;color:#64748b">(<span class="cat-count">5</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bulk-DE.html" class="fn-card" data-fn="bulk" data-cat="Commands" data-desc="Generate N values of any single type. Supports all --generate flags (--network, --currency, --locale, etc.).">
   <div class="fn-name">bulk</div>
   <div class="fn-desc">Generate N values of any single type. Supports all --generate flags (--network, --currency…</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/template-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/template-DE.html" class="fn-card" data-fn="template" data-cat="Commands" data-desc="Combine multiple data types into one structured record. Output as JSON, CSV or SQL INSERT.">
   <div class="fn-name">template</div>
   <div class="fn-desc">Combine multiple data types into one structured record. Output as JSON, CSV or SQL INSERT.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/export-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/export-DE.html" class="fn-card" data-fn="export" data-cat="Commands" data-desc="Bulk export multiple types as JSON array, CSV file or SQL INSERT statements.">
   <div class="fn-name">export</div>
   <div class="fn-desc">Bulk export multiple types as JSON array, CSV file or SQL INSERT statements.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/profile-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/profile-DE.html" class="fn-card" data-fn="profile" data-cat="Commands" data-desc="Generate a complete person profile: fullname, national ID, phone, email, address, birthdate, gender.">
   <div class="fn-name">profile</div>
   <div class="fn-desc">Generate a complete person profile: fullname, national ID, phone, email, address, birthdat…</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
-</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/company-DE.html" class="fn-card">
+</a><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/company-DE.html" class="fn-card" data-fn="company" data-cat="Commands" data-desc="Generate a complete company profile: name, tax ID, address, phone, IBAN, sector.">
   <div class="fn-name">company</div>
   <div class="fn-desc">Generate a complete company profile: name, tax ID, address, phone, IBAN, sector.</div>
   <div class="fn-locale"><span class="badge-locale" style="font-size:.65rem">Locale-fähig</span></div>
@@ -1251,5 +1324,67 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   mock-jutsu &mdash; Developed by <strong>Altan Sezer Ayan - A.S.A</strong>
   &nbsp;&bull;&nbsp; <a href="https://github.com/altansayan/mock-jutsu-api">GitHub</a>
 </div>
+
+<script>
+(function(){
+  var search  = document.getElementById('fn-search');
+  var countEl = document.getElementById('search-count');
+  var noRes   = document.getElementById('no-results');
+  var cards   = Array.from(document.querySelectorAll('.fn-card'));
+  var catBtns = Array.from(document.querySelectorAll('.cat-btn'));
+  var activeCat = 'all';
+
+  function update(){
+    var q = search.value.trim().toLowerCase();
+    var visible = 0;
+    var catVisible = {};
+
+    cards.forEach(function(c){
+      var fn   = (c.dataset.fn  || '').toLowerCase();
+      var desc = (c.dataset.desc|| '').toLowerCase();
+      var cat  = c.dataset.cat  || '';
+      var matchQ   = !q || fn.indexOf(q) !== -1 || desc.indexOf(q) !== -1;
+      var matchCat = activeCat === 'all' || cat === activeCat;
+      var show = matchQ && matchCat;
+      c.style.display = show ? '' : 'none';
+      if(show){ visible++; catVisible[cat] = (catVisible[cat]||0)+1; }
+    });
+
+    // Show/hide category sections and update counts
+    document.querySelectorAll('[data-cat-block]').forEach(function(sec){
+      var cat = sec.dataset.catBlock;
+      var cnt = catVisible[cat] || 0;
+      sec.style.display = cnt > 0 ? '' : 'none';
+      var countSpan = sec.querySelector('.cat-count');
+      if(countSpan) countSpan.textContent = cnt;
+    });
+
+    noRes.style.display = visible === 0 ? '' : 'none';
+    if(q){
+      countEl.textContent = visible + ' result' + (visible !== 1 ? 's' : '');
+      countEl.style.display = '';
+    } else {
+      countEl.style.display = 'none';
+      // Restore original counts when no search
+      document.querySelectorAll('[data-cat-block]').forEach(function(sec){
+        var cnt = sec.querySelectorAll('.fn-card').length;
+        var vis = sec.querySelectorAll('.fn-card:not([style*="none"])').length;
+        var countSpan = sec.querySelector('.cat-count');
+        if(countSpan) countSpan.textContent = vis;
+      });
+    }
+  }
+
+  search.addEventListener('input', update);
+
+  catBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      activeCat = btn.dataset.cat;
+      catBtns.forEach(function(b){ b.classList.toggle('active', b === btn); });
+      update();
+    });
+  });
+})();
+</script>
 </body>
 </html>
