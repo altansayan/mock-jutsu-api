@@ -1331,6 +1331,52 @@ def build_sitemap(funcs: list) -> str:
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
+# ── README auto-update ────────────────────────────────────────────────────────
+
+_README_GROUPS = {
+    "Identity & Demographic": ["Identity", "Demographic", "Name", "Document", "MRZ"],
+    "Financial & Banking":    ["Financial", "Banking", "BankStatement", "Wallet", "EInvoice"],
+    "Telecom & IoT":          ["Telecom", "NFC", "RFID", "IR"],
+    "Securities & Crypto":    ["CapMarkets(Trading)", "Crypto", "OHLCV"],
+    "E-Commerce & Barcodes":  ["E-Commerce", "Barcode", "Commerce"],
+}
+
+
+def update_readme(readme_path: str, total: int, cat_counts: dict) -> None:
+    with open(readme_path, "r", encoding="utf-8") as f:
+        text = f.read()
+
+    # Badge: Data%20Types-236-
+    text = re.sub(r'Data%20Types-\d+-', f'Data%20Types-{total}-', text)
+
+    # Nav link: [**236 Types**]
+    text = re.sub(r'\[\*\*\d+ Types\*\*\]', f'[**{total} Types**]', text)
+
+    # Section anchor in nav: #-NNN-supported-data-types
+    text = re.sub(r'#-\d+-supported-data-types', f'#{total}-supported-data-types', text)
+
+    # Section title: ## 📦 236 Supported Data Types
+    text = re.sub(r'(## 📦 )\d+( Supported Data Types)', rf'\g<1>{total}\g<2>', text)
+
+    # Footer note: full list of 236 types:
+    text = re.sub(r'full list of \d+ types:', f'full list of {total} types:', text)
+
+    # Group summaries: Label (N types)
+    for label, cats in _README_GROUPS.items():
+        count = sum(cat_counts.get(c, 0) for c in cats)
+        escaped = re.escape(label)
+        text = re.sub(
+            rf'({escaped} \()\d+( types\))',
+            rf'\g<1>{count}\g<2>',
+            text,
+        )
+
+    with open(readme_path, "w", encoding="utf-8") as f:
+        f.write(text)
+
+    print(f"README:  {total} total types, group counts updated")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Mock Jutsu HOW-TO 2.0 generator")
     parser.add_argument("--lang", default="", help="Only this language (TR/EN/UK/DE/FR/RU)")
@@ -1380,6 +1426,18 @@ def main():
     total_urls = 1 + len(langs) + len(funcs) * len(langs)
     print(f"\nDone — {done} pages + {total_urls} sitemap URLs generated.")
     print("Open:  HOW-TO/TR/HOW-TO-MockJutsu-TR.html")
+
+    # README — only update when generating all languages (not --lang single pass)
+    if not args.lang:
+        data_funcs = [r for r in funcs if r[1] != "Commands"]
+        cat_counts: dict = {}
+        for r in data_funcs:
+            cat_counts[r[1]] = cat_counts.get(r[1], 0) + 1
+        update_readme(
+            os.path.join(BASE_DIR, "README.md"),
+            total=len(data_funcs),
+            cat_counts=cat_counts,
+        )
 
 
 if __name__ == "__main__":

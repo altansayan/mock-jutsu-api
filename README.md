@@ -16,7 +16,7 @@
 
 *Traditional Mockers give you a random 16-digit string and call it a credit card number.<br>**Mock Jutsu runs Luhn. Every. Single. Time.***
 
-[**Installation**](#%EF%B8%8F-installation) • [**Why Mock Jutsu?**](#-why-not-faker) • [**Usage Guide**](#-usage) • [**236 Types**](#-183-supported-data-types)
+[**Installation**](#%EF%B8%8F-installation) • [**Why Mock Jutsu?**](#-why-not-faker) • [**Usage Guide**](#-usage) • [**236 Types**](#236-supported-data-types)
 
 </div>
 
@@ -186,31 +186,31 @@ We don't just localize names; we localize **mathematics**.
 We cover everything from standard identities to complex financial market identifiers.
 
 <details>
-<summary><b>👤 Identity & Demographic (32 types)</b></summary>
+<summary><b>👤 Identity & Demographic (42 types)</b></summary>
 <br>
 <code>tckn</code> <code>ssn</code> <code>ein</code> <code>nin</code> <code>siren</code> <code>siret</code> <code>tva</code> <code>inn</code> <code>snils</code> <code>ogrn</code> <code>passport</code> <code>license</code> +20 more
 </details>
 
 <details>
-<summary><b>💳 Financial & Banking (27 types)</b></summary>
+<summary><b>💳 Financial & Banking (38 types)</b></summary>
 <br>
 <code>cardnum</code> <code>cardnetwork</code> <code>iban</code> <code>sepa_qr</code> <code>emv_qr_p2p</code> <code>emv_qr_atm</code> <code>emv_qr_pos</code> <code>bic</code> <code>sort_code</code> +18 more
 </details>
 
 <details>
-<summary><b>📡 Telecom & IoT (20 types)</b></summary>
+<summary><b>📡 Telecom & IoT (19 types)</b></summary>
 <br>
 <code>imei</code> <code>iccid</code> <code>imsi</code> <code>msisdn</code> <code>rfid_uid</code> <code>epc</code> <code>nfc_uid</code> <code>ndef_uri</code> <code>apdu</code> <code>ir_nec</code> +10 more
 </details>
 
 <details>
-<summary><b>💹 Securities & Crypto (9 types)</b></summary>
+<summary><b>💹 Securities & Crypto (14 types)</b></summary>
 <br>
 <code>isin</code> <code>cusip</code> <code>sedol</code> <code>lei</code> <code>btc_address</code> <code>eth_address</code> <code>tx_hash</code> <code>block_hash</code>
 </details>
 
 <details>
-<summary><b>📦 E-Commerce & Barcodes (12 types)</b></summary>
+<summary><b>📦 E-Commerce & Barcodes (20 types)</b></summary>
 <br>
 <code>ean13</code> <code>upca</code> <code>isbn13</code> <code>gs1_128</code> <code>tracking_number</code> <code>sku</code> <code>order_id</code> +5 more
 </details>
