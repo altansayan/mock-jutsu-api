@@ -204,6 +204,188 @@ PARAM_INFO = {
     "--table":     ("string",              "SQL table name for INSERT statements (default: records)"),
 }
 
+# ── Listing-page extras ────────────────────────────────────────────────────────
+
+TAB_LABELS = {
+    "TR": ("Tam Referans", "Hızlı Başlangıç", "Güçlü Özellikler", "REST API"),
+    "EN": ("Full Reference", "Quick Start",    "Power Features",   "REST API"),
+    "UK": ("Full Reference", "Quick Start",    "Power Features",   "REST API"),
+    "DE": ("Vollständige Referenz", "Schnellstart", "Leistungsfunktionen", "REST API"),
+    "FR": ("Référence complète", "Démarrage rapide", "Fonctionnalités", "REST API"),
+    "RU": ("Полный справочник", "Быстрый старт", "Функции", "REST API"),
+}
+
+HEADER_ENGINE = {
+    "TR": "Nihai Algoritmik Mock Veri Motoru",
+    "EN": "The Ultimate Algorithmic Mock Data Engine",
+    "UK": "The Ultimate Algorithmic Mock Data Engine",
+    "DE": "Die Ultimative Mock-Daten-Engine",
+    "FR": "Le Moteur de Données Fictives Algorithmiques",
+    "RU": "Максимальный Движок Мок-Данных",
+}
+
+HEADER_LISTING_TITLE = {
+    "TR": "Mock Jutsu &mdash; TR Rehberi",
+    "EN": "Mock Jutsu &mdash; EN Guide",
+    "UK": "Mock Jutsu &mdash; UK Guide",
+    "DE": "Mock Jutsu &mdash; DE Handbuch",
+    "FR": "Mock Jutsu &mdash; Guide FR",
+    "RU": "Mock Jutsu &mdash; Руководство RU",
+}
+
+QS_LOCALE_INFO = {
+    "TR": {
+        "locale": "TR", "card_net": "troy",
+        "profile_title": "TR Kimlik Profili",
+        "fintech_title": "TR Fintech Örneği",
+        "profile_code": (
+            "p = jutsu.profile(locale='TR')\n"
+            "# tckn, firstname, lastname,\n"
+            "# phone (+90...), email,\n"
+            "# iban (TR...), address\n\n"
+            "# CLI\n"
+            "mockjutsu profile --locale TR --count 3"
+        ),
+        "fintech_code": (
+            "jutsu.generate('tckn')          # 34521876543\n"
+            "jutsu.generate('vkn')           # 1234567890\n"
+            "jutsu.generate('sgk')           # 34-0012345-1.01-02\n"
+            "jutsu.generate('mersis')        # 1234567890012345\n"
+            "jutsu.generate('iban', locale='TR')\n"
+            "jutsu.generate('plate', locale='TR')  # 34 ABC 123"
+        ),
+    },
+    "EN": {
+        "locale": "US", "card_net": "visa",
+        "profile_title": "US Identity Profile",
+        "fintech_title": "US Fintech Example",
+        "profile_code": (
+            "p = jutsu.profile(locale='US')\n"
+            "# ssn, firstname, lastname,\n"
+            "# phone (+1...), email,\n"
+            "# iban (US...), address\n\n"
+            "# CLI\n"
+            "mockjutsu profile --locale US --count 3"
+        ),
+        "fintech_code": (
+            "jutsu.generate('ssn')           # 234-56-7890\n"
+            "jutsu.generate('ein')           # 12-3456789\n"
+            "jutsu.generate('routing_number') # 021000021\n"
+            "jutsu.generate('aba')           # 021000021\n"
+            "jutsu.generate('iban', locale='US')\n"
+            "jutsu.generate('cardnum', network='visa')"
+        ),
+    },
+    "UK": {
+        "locale": "UK", "card_net": "visa",
+        "profile_title": "UK Identity Profile",
+        "fintech_title": "UK Fintech Example",
+        "profile_code": (
+            "p = jutsu.profile(locale='UK')\n"
+            "# nin, firstname, lastname,\n"
+            "# phone (+44...), email,\n"
+            "# iban (GB...), address\n\n"
+            "# CLI\n"
+            "mockjutsu profile --locale UK --count 3"
+        ),
+        "fintech_code": (
+            "jutsu.generate('nin')           # AB 12 34 56 C\n"
+            "jutsu.generate('utr')           # 1234567890\n"
+            "jutsu.generate('crn')           # 12345678\n"
+            "jutsu.generate('sort_code')     # 40-47-84\n"
+            "jutsu.generate('iban', locale='UK')\n"
+            "jutsu.generate('cardnum', network='visa')"
+        ),
+    },
+    "DE": {
+        "locale": "DE", "card_net": "visa",
+        "profile_title": "DE Identitätsprofil",
+        "fintech_title": "DE Fintech-Beispiel",
+        "profile_code": (
+            "p = jutsu.profile(locale='DE')\n"
+            "# steuer_id, firstname, lastname,\n"
+            "# phone (+49...), email,\n"
+            "# iban (DE...), address\n\n"
+            "# CLI\n"
+            "mockjutsu profile --locale DE --count 3"
+        ),
+        "fintech_code": (
+            "jutsu.generate('steuer_id')     # 86094599602\n"
+            "jutsu.generate('ust_id')        # DE123456789\n"
+            "jutsu.generate('hrb')           # HRB 123456\n"
+            "jutsu.generate('rvn')           # 65 070892 W 1235\n"
+            "jutsu.generate('iban', locale='DE')\n"
+            "jutsu.generate('cardnum', network='visa')"
+        ),
+    },
+    "FR": {
+        "locale": "FR", "card_net": "visa",
+        "profile_title": "Profil identité FR",
+        "fintech_title": "Exemple Fintech FR",
+        "profile_code": (
+            "p = jutsu.profile(locale='FR')\n"
+            "# siren, firstname, lastname,\n"
+            "# phone (+33...), email,\n"
+            "# iban (FR...), address\n\n"
+            "# CLI\n"
+            "mockjutsu profile --locale FR --count 3"
+        ),
+        "fintech_code": (
+            "jutsu.generate('siren')         # 732829320\n"
+            "jutsu.generate('siret')         # 73282932000074\n"
+            "jutsu.generate('tva')           # FR73732829320\n"
+            "jutsu.generate('iban', locale='FR')\n"
+            "jutsu.generate('cardnum', network='visa')"
+        ),
+    },
+    "RU": {
+        "locale": "RU", "card_net": "mir",
+        "profile_title": "Профиль идентификации RU",
+        "fintech_title": "Пример Fintech RU",
+        "profile_code": (
+            "p = jutsu.profile(locale='RU')\n"
+            "# inn, firstname, lastname,\n"
+            "# phone (+7...), email,\n"
+            "# iban (RU...), address\n\n"
+            "# CLI\n"
+            "mockjutsu profile --locale RU --count 3"
+        ),
+        "fintech_code": (
+            "jutsu.generate('inn')           # 7707083893\n"
+            "jutsu.generate('snils')         # 112-233-445 95\n"
+            "jutsu.generate('ogrn')          # 1027700132195\n"
+            "jutsu.generate('kpp')           # 770701001\n"
+            "jutsu.generate('iban', locale='RU')\n"
+            "jutsu.generate('cardnum', network='mir')"
+        ),
+    },
+}
+
+LISTING_EXTRA_CSS = """
+/* ── Listing header extras ── */
+.lhdr-engine{font-size:1.1rem;color:#cbd5e1;font-weight:500;margin-bottom:.75rem}
+.lhdr-stats{font-size:.95rem;color:#94a3b8;display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;margin:.25rem 0 1.25rem}
+.lhdr-devinfo{font-size:.85rem;color:#64748b;margin-top:1.25rem}
+.linkedin-link{display:flex;align-items:center;gap:.5rem;color:#f8fafc;text-decoration:none;font-weight:600;background:rgba(255,255,255,.05);padding:.55rem 1.1rem;border-radius:99px;transition:all .2s;border:1px solid rgba(255,255,255,.1);font-size:.9rem}
+.linkedin-link:hover{background:rgba(10,102,194,.25);transform:translateY(-2px);border-color:rgba(10,102,194,.4)}
+/* ── Tabs ── */
+.tabs{display:flex;justify-content:center;background:#fff;border-bottom:1px solid #e2e8f0;padding:0 1rem;gap:1.25rem;position:sticky;top:0;z-index:100;box-shadow:0 4px 6px -1px rgba(0,0,0,.05);flex-wrap:wrap}
+.tab{padding:1rem .9rem;cursor:pointer;font-weight:600;color:#64748b;border-bottom:3px solid transparent;transition:all .2s;font-size:.92rem;white-space:nowrap}
+.tab:hover{color:#3b82f6}
+.tab.active{color:#3b82f6;border-bottom-color:#3b82f6}
+.tab-section{display:none}
+.tab-section.active{display:block;animation:fadeIn .35s ease-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+/* ── QS / Power cards ── */
+.stitle{font-size:1.4rem;font-weight:700;margin-bottom:2rem;color:#0f172a;padding-left:14px;border-left:5px solid #3b82f6;letter-spacing:-.02em}
+.qs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.75rem;margin-bottom:2rem}
+.qs-card{background:#fff;border-radius:12px;padding:1.75rem;box-shadow:0 1px 3px rgba(0,0,0,.05);border:1px solid #e2e8f0;transition:transform .2s,box-shadow .2s}
+.qs-card:hover{transform:translateY(-3px);box-shadow:0 10px 20px -5px rgba(0,0,0,.1)}
+.qs-card h3{font-size:.95rem;color:#0f172a;margin-bottom:1rem;display:flex;align-items:center;gap:.65rem;font-weight:700}
+.qs-card h3::before{content:"";display:block;width:7px;height:7px;background:#3b82f6;border-radius:50%;flex-shrink:0}
+.qs-card pre{background:#0f172a;color:#f8fafc;padding:.9rem 1rem;border-radius:6px;font-size:.81rem;overflow-x:auto;line-height:1.65;white-space:pre-wrap;font-family:'JetBrains Mono',monospace;margin:0}
+"""
+
 # ── Related functions by category ─────────────────────────────────────────────
 def build_related_map():
     cat_map: dict[str, list[str]] = {}
@@ -681,8 +863,12 @@ function copyTerm(id) {{
 
 # ── Listing page builder ──────────────────────────────────────────────────────
 def build_listing_page(lang: str) -> str:
-    ui  = UI[lang]
+    ui    = UI[lang]
     funcs = get_functions()
+    qs    = QS_LOCALE_INFO[lang]
+    loc   = qs["locale"]
+    net   = qs["card_net"]
+    t_ref, t_qs, t_power, t_api = TAB_LABELS[lang]
 
     # Group by category (preserve _CAT_ORDER if available)
     try:
@@ -695,31 +881,53 @@ def build_listing_page(lang: str) -> str:
         cat_map.setdefault(r[1], []).append(r)
     cats = [c for c in order if c in cat_map] + [c for c in cat_map if c not in order]
 
-    # Category filter buttons (numeric catid avoids special char issues)
+    # Skip Commands in the card grid
+    non_cmd_cats = [c for c in cats if c != "Commands"]
+
+    # Category filter buttons (numeric catid avoids special-char issues)
     cat_filter_btns = '<button class="cat-btn active" data-catid="all">All</button>\n'
-    for cat_idx, cat in enumerate(cats):
+    for cat_idx, cat in enumerate(non_cmd_cats):
         cat_filter_btns += f'<button class="cat-btn" data-catid="{cat_idx}">{cat}</button>\n'
 
     cards_html = ""
     total_fn = 0
-    for cat_idx, cat in enumerate(cats):
+    for cat_idx, cat in enumerate(non_cmd_cats):
         rows = cat_map[cat]
         cards = ""
         for r in rows:
-            fn, _, locale_aware, _, _, desc = r[0], r[1], r[2], r[3], r[4], r[5]
-            locale_badge = f'<span class="badge-locale" style="font-size:.65rem">{ui["badge_locale"]}</span>' if locale_aware else ""
+            fn            = r[0]
+            locale_aware  = r[2]
+            example       = r[3].replace('"', "&quot;")
+            cli_cmd       = r[4].replace('"', "&quot;")
+            desc          = r[5]
+            short_desc    = desc[:90] + "…" if len(desc) > 90 else desc
+            safe_desc     = desc[:120].replace('"', "&quot;")
+            locale_badge  = (
+                f'<span class="badge-locale" style="font-size:.65rem">{ui["badge_locale"]}</span>'
+                if locale_aware else ""
+            )
             url = detail_url(fn, lang)
-            short_desc = desc[:90] + "…" if len(desc) > 90 else desc
-            cards += f"""<a href="{url}" class="fn-card" data-fn="{fn}" data-catid="{cat_idx}" data-desc="{desc[:120]}">
-  <div class="fn-name">{fn}</div>
-  <div class="fn-desc">{short_desc}</div>
-  <div class="fn-locale">{locale_badge}</div>
-</a>"""
+            cards += (
+                f'<a href="{url}" class="fn-card"'
+                f' data-fn="{fn}" data-catid="{cat_idx}"'
+                f' data-desc="{safe_desc}"'
+                f' data-example="{example}"'
+                f' data-cli="{cli_cmd}">\n'
+                f'  <div class="fn-name">{fn}</div>\n'
+                f'  <div class="fn-desc">{short_desc}</div>\n'
+                f'  <div class="fn-locale">{locale_badge}</div>\n'
+                f'</a>\n'
+            )
             total_fn += 1
-        cards_html += f"""<div class="cat-section" id="cat-{cat_idx}" data-catid="{cat_idx}" data-cattotal="{len(rows)}">
-  <div class="cat-header">{cat} <small style="font-weight:400;color:#64748b">(<span class="cat-count">{len(rows)}</span>)</small></div>
-  <div class="fn-grid">{cards}</div>
-</div>"""
+        cards_html += (
+            f'<div class="cat-section" id="cat-{cat_idx}"'
+            f' data-catid="{cat_idx}" data-cattotal="{len(rows)}">\n'
+            f'  <div class="cat-header">{cat}'
+            f' <small style="font-weight:400;color:#64748b">'
+            f'(<span class="cat-count">{len(rows)}</span>)</small></div>\n'
+            f'  <div class="fn-grid">{cards}</div>\n'
+            f'</div>\n'
+        )
 
     lang_pills = ""
     for l in LANGS:
@@ -729,103 +937,244 @@ def build_listing_page(lang: str) -> str:
 
     canonical = listing_url(lang)
     head = html_head(
-        ui["listing_title"],
-        ui["listing_desc"],
-        canonical,
-        lang, ui, None,
-        json_ld_listing(lang, ui),
-    )
-    header = html_header(
-        "Mock Jutsu HOW-TO",
-        ui["listing_subtitle"],
-        "https://altansayan.github.io/mock-jutsu-api/",
-        "← mock-jutsu",
+        ui["listing_title"], ui["listing_desc"], canonical,
+        lang, ui, None, json_ld_listing(lang, ui),
     )
 
-    search_and_filter = f"""
-<div class="list-controls">
-  <div class="search-wrap">
-    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-    </svg>
-    <input type="text" id="fn-search" placeholder="Search {total_fn} functions…" autocomplete="off" spellcheck="false">
-    <span id="search-count" style="display:none"></span>
-  </div>
-  <div class="cat-filters" id="cat-filters">
-    {cat_filter_btns}
-  </div>
-</div>
-<div id="no-results" style="display:none;text-align:center;padding:3rem;color:#64748b;font-size:.95rem">
-  No functions found. Try a different search term.
-</div>"""
+    # SVG icons
+    gh_svg = (
+        '<svg height="18" viewBox="0 0 16 16" width="18" fill="currentColor">'
+        '<path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38'
+        ' 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95'
+        ' 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27'
+        '-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12'
+        '-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07'
+        '-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13'
+        '.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.46-.55.38A7.995 7.995 0 0 1 0 8'
+        'c0-4.42 3.58-8 8-8Z"/></svg>'
+    )
+    li_svg = (
+        '<svg height="18" viewBox="0 0 24 24" width="18" fill="currentColor">'
+        '<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239'
+        ' 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79'
+        '-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5'
+        ' 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777'
+        ' 7 2.476v6.759z"/></svg>'
+    )
 
-    search_js = """
-<script>
-(function(){
-  var search  = document.getElementById('fn-search');
-  var countEl = document.getElementById('search-count');
-  var noRes   = document.getElementById('no-results');
-  var cards   = Array.from(document.querySelectorAll('.fn-card'));
-  var catBtns = Array.from(document.querySelectorAll('.cat-btn'));
-  var sections = Array.from(document.querySelectorAll('.cat-section[data-catid]'));
-  var activeCatId = 'all';
+    # ── Custom listing header ─────────────────────────────────────────────────
+    listing_header = (
+        '<div class="header">\n'
+        f'  <h1>{HEADER_LISTING_TITLE[lang]}</h1>\n'
+        f'  <div class="lhdr-engine">{HEADER_ENGINE[lang]}</div>\n'
+        '  <div class="lhdr-stats">\n'
+        f'    <span>6 locale</span> &bull; <span>{total_fn} types</span>'
+        ' &bull; <span>4008 tests</span>\n'
+        '  </div>\n'
+        '  <div class="header-links">\n'
+        '    <a href="https://github.com/altansayan/mock-jutsu-api"'
+        f' target="_blank" class="hlink">{gh_svg} GitHub</a>\n'
+        '    <a href="https://www.linkedin.com/in/altansezerayan/"'
+        f' target="_blank" class="linkedin-link">{li_svg} LinkedIn</a>\n'
+        '  </div>\n'
+        '  <div class="lhdr-devinfo">Developer: Altan Sezer Ayan (A.S.A)</div>\n'
+        '</div>\n'
+    )
 
-  function update(){
-    var q = search.value.trim().toLowerCase();
-    var totalVisible = 0;
-    // matched count per catid
-    var matched = {};
+    # ── Tab navigation ────────────────────────────────────────────────────────
+    tab_nav = (
+        '<div class="tabs">\n'
+        f'  <div class="tab active" onclick="showTab(\'ref\', this)">{t_ref}</div>\n'
+        f'  <div class="tab" onclick="showTab(\'qs\', this)">{t_qs}</div>\n'
+        f'  <div class="tab" onclick="showTab(\'power\', this)">{t_power}</div>\n'
+        f'  <div class="tab" onclick="showTab(\'api\', this)">{t_api}</div>\n'
+        '</div>\n'
+    )
 
-    cards.forEach(function(c){
-      var fn    = (c.dataset.fn   || '').toLowerCase();
-      var desc  = (c.dataset.desc || '').toLowerCase();
-      var catid = c.dataset.catid || '';
-      var matchQ   = !q || fn.indexOf(q) !== -1 || desc.indexOf(q) !== -1;
-      var matchCat = activeCatId === 'all' || catid === activeCatId;
-      var show = matchQ && matchCat;
-      c.style.display = show ? '' : 'none';
-      if(show){ totalVisible++; matched[catid] = (matched[catid] || 0) + 1; }
-    });
+    # ── Reference tab content ─────────────────────────────────────────────────
+    ref_section = (
+        '<div class="tab-section active" id="tab-ref">\n'
+        '<div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">\n'
+        '<div class="lang-switch" style="margin-bottom:1.5rem">'
+        f'<h3>{ui["lang_switch"]}</h3>'
+        f'<div class="lang-pills">{lang_pills}</div></div>\n'
+        '<div class="list-controls">\n'
+        '  <div class="search-wrap">\n'
+        '    <svg class="search-icon" viewBox="0 0 24 24" fill="none"'
+        ' stroke="currentColor" stroke-width="2">'
+        '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>\n'
+        f'    <input type="text" id="fn-search" placeholder="Search {total_fn} functions&hellip;"'
+        ' autocomplete="off" spellcheck="false">\n'
+        '    <span id="search-count" style="display:none"></span>\n'
+        '  </div>\n'
+        f'  <div class="cat-filters" id="cat-filters">{cat_filter_btns}</div>\n'
+        '</div>\n'
+        '<div id="no-results" style="display:none;text-align:center;padding:3rem;'
+        'color:#64748b;font-size:.95rem">'
+        'No functions found. Try a different search term.</div>\n'
+        + cards_html +
+        '</div></div>\n'
+    )
 
-    // Update section visibility and count label
-    sections.forEach(function(sec){
-      var catid = sec.dataset.catid;
-      var total = parseInt(sec.dataset.cattotal, 10);
-      var cnt   = matched[catid] || 0;
-      sec.style.display = cnt > 0 ? '' : 'none';
-      var span = sec.querySelector('.cat-count');
-      if(span){
-        if(q && cnt < total){
-          span.textContent = cnt + '/' + total;
-        } else {
-          span.textContent = total;
-        }
-      }
-    });
+    # ── Pre-build QS/Power/API content blocks (avoids f-string { } escaping) ──
+    qs_py = (
+        "jutsu.generate('iban', locale='" + loc + "')\n"
+        "jutsu.generate('phone', locale='" + loc + "')\n"
+        "jutsu.generate('cardnum', network='" + net + "')\n"
+        "jutsu.generate('fullname', locale='" + loc + "')"
+    )
+    qs_cli = (
+        "mockjutsu generate iban --locale " + loc + "\n"
+        "mockjutsu generate phone --locale " + loc + "\n"
+        "mockjutsu generate cardnum --network " + net + "\n"
+        "mockjutsu bulk phone --count 1000 --locale " + loc + "\n"
+        "mockjutsu template uuid fullname phone iban --locale " + loc + "\n"
+        "mockjutsu start-api --port 8000"
+    )
+    pwr_profile = (
+        "# Python\n"
+        "jutsu.profile(locale='" + loc + "')\n\n"
+        "# CLI\n"
+        "mockjutsu profile --locale " + loc + "\n"
+        "mockjutsu profile --locale " + loc + " --count 5"
+    )
+    pwr_company = (
+        "# Python\n"
+        "jutsu.company(locale='" + loc + "')\n\n"
+        "# CLI\n"
+        "mockjutsu company --locale " + loc + "\n"
+        "mockjutsu company --locale " + loc + " --count 3"
+    )
+    pwr_bulk = (
+        "# Python\n"
+        "jutsu.bulk('phone', count=100, locale='" + loc + "')\n"
+        "jutsu.bulk('iban',  count=500, locale='" + loc + "')\n\n"
+        "# CLI\n"
+        "mockjutsu bulk phone --count 100 --locale " + loc + "\n"
+        "mockjutsu bulk iban  --count 500 --locale " + loc
+    )
+    pwr_template = (
+        "# Python\n"
+        "jutsu.template(\n"
+        "  ['uuid', 'phone', 'iban'],\n"
+        "  count=10, locale='" + loc + "')\n\n"
+        "# CLI\n"
+        "mockjutsu template uuid phone iban --locale " + loc + " --count 10\n"
+        "mockjutsu template uuid phone iban --format csv\n"
+        "mockjutsu template uuid phone iban --format sql --table users"
+    )
+    pwr_export = (
+        "# Python\n"
+        "jutsu.export(\n"
+        "  {'id':'uuid','phone':'phone','iban':'iban'},\n"
+        "  count=1000, format='sql',\n"
+        "  table='users', locale='" + loc + "')\n\n"
+        "# CLI\n"
+        "mockjutsu export uuid phone iban"
+        " --count 1000 --format sql --table users --locale " + loc
+    )
+    pwr_rest = (
+        "# Start server\n"
+        "mockjutsu start-api --port 8000\n\n"
+        "GET /generate/phone?locale=" + loc + "\n"
+        "GET /bulk/iban?count=10&locale=" + loc + "\n"
+        "GET /profile?locale=" + loc + "&count=1\n"
+        'POST /template\n'
+        '  {"types":["uuid","phone","iban"],"locale":"' + loc + '","count":1}\n\n'
+        "# Swagger UI\n"
+        "# http://localhost:8000/docs"
+    )
+    api_generate = (
+        "GET /generate/phone?locale=" + loc + "\n"
+        "GET /generate/iban?locale=" + loc + "\n"
+        "GET /generate/cardnum?network=" + net + "\n"
+        "GET /generate/hash?algorithm=sha256\n\n"
+        "# Response\n"
+        '{"type":"phone","locale":"' + loc + '",\n'
+        '  "result":"...","status":"success"}'
+    )
+    api_bulk = (
+        "GET /bulk/phone?count=10&locale=" + loc + "\n"
+        "GET /bulk/iban?count=5&locale=" + loc + "\n\n"
+        "# Response\n"
+        '{"type":"phone","count":10,\n'
+        '  "results":["...","..."]}'
+    )
+    api_template = (
+        '{"types":["uuid","phone","iban"],\n'
+        ' "count":1,"locale":"' + loc + '"}\n\n'
+        "# count=1 -> single object\n"
+        "# count>1 -> array"
+    )
+    api_profile = (
+        "GET /profile?locale=" + loc + "&count=1\n"
+        "GET /company?locale=" + loc + "&count=1"
+    )
+    api_export = (
+        '{"schema_map":{"id":"uuid","p":"phone"},\n'
+        ' "count":10,"locale":"' + loc + '",\n'
+        ' "format":"csv","table":"users"}'
+    )
+    api_list = (
+        "GET /list\n"
+        "GET /list?cat=Financial\n"
+        'GET /health  -> {"status":"ok"}\n\n'
+        "# Swagger UI\n"
+        "# http://localhost:8000/docs"
+    )
 
-    noRes.style.display = totalVisible === 0 ? '' : 'none';
-    if(q){
-      countEl.textContent = totalVisible + ' result' + (totalVisible !== 1 ? 's' : '');
-      countEl.style.display = '';
-    } else {
-      countEl.style.display = 'none';
-    }
-  }
+    def qs_card(title: str, code: str) -> str:
+        return (
+            '<div class="qs-card">'
+            f'<h3>{title}</h3>'
+            f'<pre>{code}</pre>'
+            '</div>\n'
+        )
 
-  search.addEventListener('input', update);
+    # ── Quick Start tab ───────────────────────────────────────────────────────
+    qs_section = (
+        '<div class="tab-section" id="tab-qs">\n'
+        '<div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">\n'
+        f'<div class="stitle">{t_qs}</div>\n'
+        '<div class="qs-grid">\n'
+        + qs_card("Python API", qs_py)
+        + qs_card("CLI", qs_cli)
+        + qs_card(qs["profile_title"], qs["profile_code"])
+        + qs_card(qs["fintech_title"], qs["fintech_code"])
+        + '</div></div></div>\n'
+    )
 
-  catBtns.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      activeCatId = btn.dataset.catid;
-      catBtns.forEach(function(b){ b.classList.toggle('active', b === btn); });
-      update();
-    });
-  });
-})();
-</script>"""
+    # ── Power Features tab ────────────────────────────────────────────────────
+    power_section = (
+        '<div class="tab-section" id="tab-power">\n'
+        '<div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">\n'
+        f'<div class="stitle">{t_power}</div>\n'
+        '<div class="qs-grid">\n'
+        + qs_card("profile()", pwr_profile)
+        + qs_card("company()", pwr_company)
+        + qs_card("bulk()", pwr_bulk)
+        + qs_card("template()", pwr_template)
+        + qs_card("export()", pwr_export)
+        + qs_card("REST API", pwr_rest)
+        + '</div></div></div>\n'
+    )
 
-    search_css = """
-<style>
+    # ── REST API tab ──────────────────────────────────────────────────────────
+    api_section = (
+        '<div class="tab-section" id="tab-api">\n'
+        '<div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">\n'
+        f'<div class="stitle">{t_api}</div>\n'
+        '<div class="qs-grid">\n'
+        + qs_card("GET /generate/{type}", api_generate)
+        + qs_card("GET /bulk/{type}", api_bulk)
+        + qs_card("POST /template", api_template)
+        + qs_card("GET /profile &amp; /company", api_profile)
+        + qs_card("POST /export", api_export)
+        + qs_card("GET /list", api_list)
+        + '</div></div></div>\n'
+    )
+
+    search_css = """<style>
 .list-controls{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.75rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .search-wrap{position:relative;margin-bottom:1rem}
 .search-icon{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#94a3b8;pointer-events:none}
@@ -838,25 +1187,104 @@ def build_listing_page(lang: str) -> str:
 .cat-btn.active{background:#3b82f6;border-color:#3b82f6;color:#fff}
 </style>"""
 
-    return f"""{head}
-{search_css}
-<body>
-{header}
-<div class="container" style="max-width:1100px">
-  <div class="lang-switch" style="margin-bottom:1.5rem">
-    <h3>{ui['lang_switch']}</h3>
-    <div class="lang-pills">{lang_pills}</div>
-  </div>
-  {search_and_filter}
-  {cards_html}
-</div>
-<div class="footer">
-  mock-jutsu &mdash; Developed by <strong>Altan Sezer Ayan - A.S.A</strong>
-  &nbsp;&bull;&nbsp; <a href="https://github.com/altansayan/mock-jutsu-api">GitHub</a>
-</div>
-{search_js}
-</body>
-</html>"""
+    search_js = """<script>
+(function(){
+  var search   = document.getElementById('fn-search');
+  var countEl  = document.getElementById('search-count');
+  var noRes    = document.getElementById('no-results');
+  var cards    = Array.from(document.querySelectorAll('.fn-card'));
+  var catBtns  = Array.from(document.querySelectorAll('.cat-btn'));
+  var sections = Array.from(document.querySelectorAll('.cat-section[data-catid]'));
+  var activeCatId = 'all';
+
+  function update(){
+    var q = search.value.trim().toLowerCase();
+    var totalVisible = 0;
+    var matched = {};
+    cards.forEach(function(c){
+      var fn      = (c.dataset.fn      || '').toLowerCase();
+      var desc    = (c.dataset.desc    || '').toLowerCase();
+      var example = (c.dataset.example || '').toLowerCase();
+      var cli     = (c.dataset.cli     || '').toLowerCase();
+      var catid   = c.dataset.catid    || '';
+      var matchQ   = !q || fn.indexOf(q)!=-1 || desc.indexOf(q)!=-1
+                       || example.indexOf(q)!=-1 || cli.indexOf(q)!=-1;
+      var matchCat = activeCatId==='all' || catid===activeCatId;
+      var show = matchQ && matchCat;
+      c.style.display = show ? '' : 'none';
+      if(show){ totalVisible++; matched[catid]=(matched[catid]||0)+1; }
+    });
+    sections.forEach(function(sec){
+      var catid = sec.dataset.catid;
+      var total = parseInt(sec.dataset.cattotal,10);
+      var cnt   = matched[catid]||0;
+      sec.style.display = cnt>0 ? '' : 'none';
+      var span = sec.querySelector('.cat-count');
+      if(span){ span.textContent = (q&&cnt<total) ? cnt+'/'+total : total; }
+    });
+    noRes.style.display = totalVisible===0 ? '' : 'none';
+    if(q){
+      countEl.textContent = totalVisible+' result'+(totalVisible!==1?'s':'');
+      countEl.style.display = '';
+    } else { countEl.style.display='none'; }
+  }
+
+  search.addEventListener('input', update);
+  catBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      activeCatId = btn.dataset.catid;
+      catBtns.forEach(function(b){ b.classList.toggle('active',b===btn); });
+      update();
+    });
+  });
+})();
+</script>"""
+
+    tab_js = """<script>
+function showTab(id, el) {
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.tab-section').forEach(function(s){ s.classList.remove('active'); });
+  el.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+</script>"""
+
+    copy_js = """<script>
+function copyTerm(id) {
+  var el = document.getElementById(id);
+  var txt = Array.from(el.querySelectorAll('code')).map(function(c){ return c.textContent; }).join('\n');
+  navigator.clipboard.writeText(txt).then(function(){
+    var btn = el.previousElementSibling.querySelector('.copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(function(){ btn.textContent = 'copy'; }, 1500);
+  });
+}
+</script>"""
+
+    footer = (
+        '<div class="footer">\n'
+        '  mock-jutsu &mdash; Developed by <strong>Altan Sezer Ayan - A.S.A</strong>\n'
+        '  &nbsp;&bull;&nbsp; <a href="https://github.com/altansayan/mock-jutsu-api">GitHub</a>\n'
+        '</div>\n'
+    )
+
+    return (
+        head + '\n'
+        '<style>' + LISTING_EXTRA_CSS + '</style>\n'
+        + search_css + '\n'
+        '<body>\n'
+        + listing_header
+        + tab_nav
+        + ref_section
+        + qs_section
+        + power_section
+        + api_section
+        + footer
+        + tab_js + '\n'
+        + search_js + '\n'
+        + copy_js + '\n'
+        '</body>\n</html>'
+    )
 
 
 # ── Sitemap ───────────────────────────────────────────────────────────────────
