@@ -44,6 +44,7 @@ from .generators.ubl               import UblGenerator
 from .generators.automotive        import AutomotiveGenerator
 from .generators.tle               import TleGenerator
 from .generators.payments          import PaymentsGenerator
+from .generators.cardphysics       import CardPhysicsGenerator
 from .generators.communication     import EMAIL_DOMAINS
 
 _IDENTITY_TYPES = {
@@ -145,7 +146,13 @@ _SOCIAL_TYPES = {
 }
 
 _HARDWARE_TYPES = {
-    'track2_data', 'chip_data', 'pin_block',
+    'track1_data', 'track2_data', 'chip_data', 'pin_block', 'pin_block_fmt3',
+}
+
+_CARDPHYSICS_TYPES = {
+    'emv_arqc', 'emv_atc', 'emv_iad',
+    'iso8583_auth_request', 'iso8583_auth_response', 'iso8583_reversal',
+    'atm_session', 'pos_receipt',
 }
 
 _CYBERSEC_TYPES = {
@@ -272,6 +279,7 @@ class MockJutsuCore:
         self.automotive     = AutomotiveGenerator()
         self.tle            = TleGenerator()
         self.payments       = PaymentsGenerator()
+        self.cardphysics    = CardPhysicsGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -320,7 +328,7 @@ class MockJutsuCore:
         elif dt in _SOCIAL_TYPES:
             result = self.social.generate(dt, **kwargs)
         elif dt in _HARDWARE_TYPES:
-            result = self.hardware.generate(dt, **kwargs)
+            result = self.hardware.generate(dt, locale=locale, **kwargs)
         elif dt in _CYBERSEC_TYPES:
             result = self.cybersec.generate(dt, **kwargs)
         elif dt in _AVIATION_TYPES:
@@ -363,6 +371,8 @@ class MockJutsuCore:
             result = self.tle.generate(dt, **kwargs)
         elif dt in _PAYMENTS_TYPES:
             result = self.payments.generate(dt, locale=locale, **kwargs)
+        elif dt in _CARDPHYSICS_TYPES:
+            result = self.cardphysics.generate(dt, locale=locale, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 

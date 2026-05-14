@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mock Jutsu — chip_data | DE</title>
-<meta name="description" content="Simulated EMV chip (ICC) tag-length-value (TLV) data.">
+<meta name="description" content="Simulated EMV chip (ICC) TLV data. Currency (5F2A) is locale-aware.">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
 <meta name="keywords" content="mock data, fake data, test data, mockjutsu, mock-jutsu, chip_data">
 <link rel="icon" type="image/png" href="https://altansayan.github.io/mock-jutsu-api/assets/favicon.png">
@@ -19,12 +19,12 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/chip_data-DE.html">
 <meta property="og:title" content="Mock Jutsu — chip_data | DE">
-<meta property="og:description" content="Simulated EMV chip (ICC) tag-length-value (TLV) data.">
+<meta property="og:description" content="Simulated EMV chip (ICC) TLV data. Currency (5F2A) is locale-aware.">
 <meta property="og:image" content="https://altansayan.github.io/mock-jutsu-api/assets/banner.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/chip_data-DE.html">
 <meta name="twitter:title" content="Mock Jutsu — chip_data | DE">
-<meta name="twitter:description" content="Simulated EMV chip (ICC) tag-length-value (TLV) data.">
+<meta name="twitter:description" content="Simulated EMV chip (ICC) TLV data. Currency (5F2A) is locale-aware.">
 <meta name="twitter:image" content="https://altansayan.github.io/mock-jutsu-api/assets/banner.png">
 <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -32,7 +32,7 @@
     {
       "@type": "TechArticle",
       "headline": "Mock Jutsu — chip_data — DE",
-      "description": "Simulated EMV chip (ICC) tag-length-value (TLV) data.",
+      "description": "Simulated EMV chip (ICC) TLV data. Currency (5F2A) is locale-aware.",
       "url": "https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/chip_data-DE.html",
       "inLanguage": "de",
       "author": {
@@ -170,7 +170,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 </head>
 <body>
 <div class="header">
-  <h1><code style='font-size:1.6rem'>chip_data</code><span class="badge-cat">Hardware</span></h1>
+  <h1><code style='font-size:1.6rem'>chip_data</code><span class="badge-cat">Hardware</span><span class="badge-locale">Locale-fähig</span></h1>
   <div class="subtitle">Mock Jutsu HOW-TO | DE</div>
   <div class="header-links">
     <a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/HOW-TO-MockJutsu-DE.html" class="hlink">← Alle Funktionen</a>
@@ -201,7 +201,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">CLI-Verwendung</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-chip_data')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-chip_data"><code class="p">mockjutsu generate chip_data</code><code class="p">mockjutsu bulk chip_data --count 10</code><code class="o">mockjutsu export chip_data --count 10 --format json</code><code class="o">mockjutsu export chip_data --count 10 --format csv</code><code class="o">mockjutsu export chip_data --count 10 --format sql</code></div>
+  <div class="term-body" id="term-cli-chip_data"><code class="p">mockjutsu generate chip_data --locale TR</code><code class="p">mockjutsu generate chip_data --locale DE</code><code class="p">mockjutsu bulk chip_data --count 10 --locale TR</code><code class="o">mockjutsu export chip_data --count 10 --format json --locale TR</code><code class="o">mockjutsu export chip_data --count 10 --format csv --locale TR</code><code class="o">mockjutsu export chip_data --count 10 --format sql --locale TR</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -209,7 +209,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Python API</span>
     <button class="copy-btn" onclick="copyTerm('term-py-chip_data')">copy</button>
   </div>
-  <div class="term-body" id="term-py-chip_data"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('chip_data')</code><code class="py">jutsu.bulk('chip_data', count=10)</code><code class="c"></code><code class="py">jutsu.template(['chip_data'], count=5)</code></div>
+  <div class="term-body" id="term-py-chip_data"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('chip_data', locale='TR')</code><code class="py">jutsu.bulk('chip_data', count=10, locale='TR')</code><code class="c"></code><code class="py">jutsu.template(['chip_data'], count=5, locale='TR')</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-chip_data')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-chip_data"><code class="jm">${__mockjutsu(chip_data)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu</code><code class="c"># Parameter 1: chip_data</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+  <div class="term-body" id="term-jm-chip_data"><code class="jm">${__mockjutsu(chip_data,TR)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu</code><code class="c"># Parameter 1: chip_data</code><code class="c"># Parameter 2: locale (TR/UK/US/DE/FR/RU)</code><code class="jm">${__mockjutsu(chip_data,DE)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -225,15 +225,35 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">REST API</span>
     <button class="copy-btn" onclick="copyTerm('term-api-chip_data')">copy</button>
   </div>
-  <div class="term-body" id="term-api-chip_data"><code class="p">GET /generate/chip_data</code><code class="c"># → {"type":"chip_data","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/chip_data?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["chip_data"],"count":1}</code></div>
+  <div class="term-body" id="term-api-chip_data"><code class="p">GET /generate/chip_data?locale=TR</code><code class="c"># → {"type":"chip_data","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/chip_data?count=10&locale=TR</code><code class="p">POST /template</code><code class="p">     {"types":["chip_data"],"count":1,"locale":"TR"}</code></div>
 </div>
   </div>
 
-  
+  <div class="params-section">
+  <h2>Parameter</h2>
+  <table>
+    <thead><tr>
+      <th>Parameter</th>
+      <th>Werte</th>
+      <th>Beschreibung</th>
+    </tr></thead>
+    <tbody><tr>
+              <td><span class="param-flag">--locale</span></td>
+              <td><span class="param-vals">TR|UK|US|DE|FR|RU</span></td>
+              <td>Region / locale for locale-aware output</td>
+            </tr><tr>
+              <td><span class="param-flag">--locale</span></td>
+              <td><span class="param-vals">TR|UK|US|DE|FR|RU</span></td>
+              <td>Region / locale for locale-aware output</td>
+            </tr></tbody>
+  </table>
+</div>
   <div class="related">
   <h2>Verwandte Funktionen</h2>
-  <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/track2_data-DE.html" class="rel-link"><code>track2_data</code></a>
+  <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/track1_data-DE.html" class="rel-link"><code>track1_data</code></a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/track2_data-DE.html" class="rel-link"><code>track2_data</code></a>
 <a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/pin_block-DE.html" class="rel-link"><code>pin_block</code></a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/pin_block_fmt3-DE.html" class="rel-link"><code>pin_block_fmt3</code></a>
 </div>
 </div>
 
