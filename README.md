@@ -215,8 +215,8 @@ We cover everything from standard identities to complex financial market identif
 <code>ean13</code> <code>upca</code> <code>isbn13</code> <code>gs1_128</code> <code>tracking_number</code> <code>sku</code> <code>order_id</code> +5 more
 </details>
 
-*(See our interactive guides for the full list of 174 types:
-[🇹🇷 TR](https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-TR.html) | [🇺🇸 EN](https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-EN.html) | [🇬🇧 UK](https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-UK.html) | [🇩🇪 DE](https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-DE.html) | [🇫🇷 FR](https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-FR.html) | [🇷🇺 RU](https://altansayan.github.io/mock-jutsu-api/HOW-TO-MockJutsu-RU.html))*
+*(See our interactive guides for the full list of 236 types:
+[🇹🇷 TR](https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/HOW-TO-MockJutsu-TR.html) | [🇺🇸 EN](https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/HOW-TO-MockJutsu-EN.html) | [🇬🇧 UK](https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/HOW-TO-MockJutsu-UK.html) | [🇩🇪 DE](https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/HOW-TO-MockJutsu-DE.html) | [🇫🇷 FR](https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/HOW-TO-MockJutsu-FR.html) | [🇷🇺 RU](https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html))*
 
 ---
 
