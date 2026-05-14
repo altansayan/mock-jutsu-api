@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>emv_iad</strong>
   </nav>
 
-  <div class="article"><p>Contenu non encore généré. Exécutez generate_ai_content.py.</p></div>
+  <div class="article"><p>La bibliothèque mock-jutsu s'impose comme un outil indispensable pour les ingénieurs et développeurs travaillant sur les systèmes de paiement électronique modernes. Parmi ses fonctionnalités spécialisées dans la catégorie CardPhysics, la fonction emv_iad permet de générer des données de test précises pour l'Issuer Application Data (IAD), couramment identifié par le tag EMV 9F10. Ces données fictives sont cruciales pour simuler le comportement d'une puce bancaire lors d'une transaction, garantissant que les systèmes d'autorisation et les serveurs back-end traitent correctement les informations propriétaires envoyées par la carte à l'émetteur.</p>
+
+<p>Techniquement, la fonction emv_iad produit une chaîne hexadécimale rigoureuse de 22 caractères, ce qui correspond au format standard de 11 octets. La structure générée respecte scrupuleusement les normes de l'industrie avec un en-tête fixe (0A), suivi de l'indice de dérivation de clé (DKI), du numéro de version de vérification (CVN), du résultat de vérification de la carte (CVR), ainsi que des données additionnelles (ADD) et du bourrage (PAD). En utilisant mock-jutsu, l'utilisateur obtient instantanément une valeur telle que 0A02102B0F12ABCD1234, imitant parfaitement les réponses d'un cryptogramme sécurisé sans avoir à manipuler de véritables clés cryptographiques ou des cartes physiques.</p>
+
+<p>L'intégration de cette fonction dans un pipeline de développement est facilitée par sa grande polyvalence technique. Que ce soit via l'interface en ligne de commande (CLI) pour des tests unitaires rapides, directement dans un script Python via jutsu.generate('emv_iad'), ou encore au sein de scénarios de montée en charge avec JMeter via l'expression dédiée, emv_iad offre une flexibilité totale. Les cas d'usage types incluent la validation des modules de sécurité matériels (HSM), le test des parseurs de messages ISO 8583 et la vérification de la cohérence des flux de données dans les environnements de pré-production.</p>
+
+<p>L'avantage majeur pour le développeur réside dans l'automatisation et la sécurité des processus. En exploitant les données de test générées par mock-jutsu, les équipes techniques s'affranchissent des contraintes lourdes liées à la conformité PCI-DSS tout en disposant de jeux de données cohérents et structurés. La fonction emv_iad élimine les risques d'erreurs de saisie manuelle lors de la création de trames hexadécimales complexes, permettant ainsi de se concentrer sur l'optimisation de la logique métier et la robustesse de l'infrastructure de paiement globale.</p></div>
 
   <div class="terminals">
     <div class="term">

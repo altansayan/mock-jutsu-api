@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>pin_block_fmt3</strong>
   </nav>
 
-  <div class="article"><p>Contenu non encore généré. Exécutez generate_ai_content.py.</p></div>
+  <div class="article"><p>La génération de données de test pour les systèmes de paiement exige une précision technique rigoureuse afin de respecter les normes de sécurité internationales. Au sein de la bibliothèque mock-jutsu, la fonction pin_block_fmt3 répond spécifiquement à ce besoin en produisant des blocs PIN conformes au standard ISO 9564-1 Format 3. Ce format est essentiel pour simuler des échanges sécurisés entre un terminal de saisie et un serveur d'authentification, garantissant que les protocoles de chiffrement sont testés avec des structures de données réalistes et valides avant toute mise en production.</p>
+
+<p>D'un point de vue technique, la fonction pin_block_fmt3 génère une chaîne de 16 caractères hexadécimaux parfaitement structurée. L'algorithme commence par insérer le chiffre 3, qui sert d'identifiant pour le format, immédiatement suivi par un indicateur de longueur du code PIN. Les chiffres réels du PIN sont ensuite placés dans le bloc, et l'espace restant est comblé par un remplissage aléatoire, également appelé "filler", composé de valeurs hexadécimales allant de A à F. Cette méthode de remplissage aléatoire constitue une amélioration majeure par rapport au Format 0, car elle limite les fuites d'informations potentielles lors des phases de développement et de débogage des systèmes transactionnels.</p>
+
+<p>L'utilisation de ces données fictives est particulièrement bénéfique lors du test de modules de sécurité matériels (HSM) ou de passerelles de paiement complexes. En intégrant pin_block_fmt3 dans vos suites de tests, vous pouvez valider la robustesse de vos algorithmes de formatage et de déformatage sans jamais manipuler de véritables données bancaires sensibles. Cela permet de maintenir un environnement de développement conforme aux exigences de sécurité les plus strictes, comme la norme PCI-DSS, tout en assurant une couverture de test exhaustive pour les différents scénarios de saisie de code PIN.</p>
+
+<p>La flexibilité de mock-jutsu permet d'appeler cette fonction de multiples manières selon votre flux de travail. Les développeurs Python peuvent l'invoquer directement via jutsu.generate('pin_block_fmt3'), tandis que les ingénieurs QA peuvent utiliser l'interface en ligne de commande pour générer des échantillons rapides. Pour les tests de performance, l'intégration native dans JMeter permet de simuler des milliers de transactions par seconde avec des blocs PIN uniques et valides. En choisissant mock-jutsu, vous optimisez votre cycle de développement grâce à des données de test fiables, prêtes à l'emploi et parfaitement conformes aux standards du secteur bancaire.</p></div>
 
   <div class="terminals">
     <div class="term">

@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>pin_block_fmt3</strong>
   </nav>
 
-  <div class="article"><p>İçerik henüz üretilmedi. generate_ai_content.py çalıştırın.</p></div>
+  <div class="article"><p>Finansal teknoloji dünyasında güvenlik, her şeyin merkezinde yer alır. Özellikle ödeme sistemleri ve bankacılık uygulamaları geliştirirken, PIN (Kişisel Kimlik Numarası) verilerinin güvenli bir şekilde taşınması ve işlenmesi kritik bir öneme sahiptir. Mock-jutsu kütüphanesinin sunduğu pin_block_fmt3 fonksiyonu, ISO 9564-1 standardına tam uyumlu Format 3 PIN blokları üreterek geliştiricilerin bu karmaşık süreçleri simüle etmesine olanak tanır. Gerçekçi mock data ihtiyacını karşılayan bu araç, donanım seviyesindeki entegrasyon testlerinde hata payını minimuma indirerek güvenli bir geliştirme ortamı sağlar.</p>
+
+<p>ISO 9564-1 Format 3 standardı, verinin yapısı gereği belirli bir dizilim izler. pin_block_fmt3 fonksiyonu tarafından üretilen test verisi, yapısı itibarıyla ilk olarak '3' rakamıyla (format nibble) başlar, ardından PIN uzunluğunu belirten bir haneyi takip eder ve asıl PIN rakamlarını içerir. Bloğun geri kalan kısmı ise standardın gerektirdiği şekilde rastgele rakamlarla (random fill) doldurulur. Bu yapı, özellikle ATM sistemleri, POS terminalleri ve HSM (Hardware Security Module) cihazlarıyla iletişim kuran yazılımların doğrulanmasında vazgeçilmezdir. Geliştiriciler, gerçek ve hassas PIN verilerini riske atmadan, sistemlerinin bu veriyi doğru şekilde ayrıştırıp ayrıştıramadığını mock-jutsu ile kolayca test edebilirler.</p>
+
+<p>Kullanım kolaylığı açısından mock-jutsu, farklı çalışma ortamlarına mükemmel uyum sağlayacak şekilde tasarlanmıştır. Python projelerinizde jutsu.generate('pin_block_fmt3') komutuyla saniyeler içinde veri üretebilir, terminal üzerinden hızlıca sonuç almak için mockjutsu generate pin_block_fmt3 komutunu kullanabilirsiniz. Ayrıca, performans ve yük testi süreçlerinde JMeter kullanan ekipler için ${__mockjutsu(pin_block_fmt3,)} fonksiyonuyla dinamik veri üretimi desteklenmektedir. Bu esneklik, CI/CD süreçlerinden manuel test aşamalarına kadar her noktada mühendislere büyük bir zaman tasarrufu sağlar.</p>
+
+<p>Sonuç olarak, pin_block_fmt3 fonksiyonu, finansal yazılım ekosisteminde çalışan profesyoneller için standartlara uygun ve güvenli bir test verisi oluşturma çözümü sunar. Karmaşık kriptografik yapıları manuel olarak oluşturmak yerine, bu fonksiyonu kullanarak saniyeler içinde binlerce benzersiz ve geçerli PIN bloğu üretebilirsiniz. Mock-jutsu kullanarak oluşturulan bu veriler, hem yazılımın uçtan uca güvenilirliğini artırır hem de geliştirme maliyetlerini düşürerek daha sağlam bir kod mimarisi oluşturmanıza yardımcı olur.</p></div>
 
   <div class="terminals">
     <div class="term">

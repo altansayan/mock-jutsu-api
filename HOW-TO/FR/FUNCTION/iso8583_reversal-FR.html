@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>iso8583_reversal</strong>
   </nav>
 
-  <div class="article"><p>Contenu non encore généré. Exécutez generate_ai_content.py.</p></div>
+  <div class="article"><p>Dans l'écosystème complexe des transactions financières, la simulation de flux de paiement exige une précision rigoureuse pour garantir la robustesse des infrastructures bancaires. La fonction iso8583_reversal, intégrée à la bibliothèque mock-jutsu, répond précisément à ce besoin en générant des données fictives conformes à la norme ISO 8583 version 1987. Ce générateur se spécialise dans la création de messages de demande d'annulation, identifiés par le Message Type Indicator (MTI) 0400, permettant aux développeurs de simuler des scénarios où une transaction doit être invalidée suite à un incident technique ou une expiration de délai.</p>
+
+<p>L'aspect le plus critique de la fonction iso8583_reversal réside dans sa gestion automatique de l'élément de données DE056 (Original Data Elements). Pour qu'une demande d'annulation soit valide dans un système de production, elle doit impérativement contenir les références précises de la transaction d'origine. L'algorithme de mock-jutsu assure la cohérence structurelle entre le MTI, le bitmap et les champs de données, produisant ainsi des données de test de haute qualité qui respectent les contraintes de formatage binaire ou hexadécimal attendues par les serveurs d'autorisation et les passerelles de paiement.</p>
+
+<p>L'intégration de cette fonction dans un cycle de développement est pensée pour une efficacité maximale. Les ingénieurs QA peuvent utiliser l'interface en ligne de commande (CLI) pour obtenir instantanément une trame ISO, tandis que les développeurs backend peuvent l'incorporer directement dans leurs suites de tests unitaires via l'API Python avec la commande jutsu.generate. Pour les tests de performance, l'intégration native avec JMeter permet de simuler des rafales de messages d'annulation, facilitant ainsi l'évaluation de la capacité de traitement des systèmes transactionnels sous forte charge.</p>
+
+<p>En utilisant iso8583_reversal, les entreprises de la Fintech réduisent considérablement le temps consacré à la préparation manuelle de fichiers de données complexes. Les avantages pour le développeur sont multiples : réduction drastique des erreurs de syntaxe dans les messages ISO, couverture complète des cas limites liés aux annulations et isolation totale de l'environnement de test par rapport aux données sensibles. En somme, mock-jutsu transforme une tâche fastidieuse et sujette aux erreurs en un processus automatisé, fluide et parfaitement aligné sur les standards internationaux de la CardPhysics.</p></div>
 
   <div class="terminals">
     <div class="term">

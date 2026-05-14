@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>iso8583_reversal</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>The iso8583_reversal function within the mock-jutsu library is a specialized tool designed for fintech developers and QA engineers who require high-quality test data for payment processing systems. As a core component of the CardPhysics category, this function generates a standardized ISO 8583 v1987 Reversal Request, specifically utilizing the Message Type Indicator (MTI) 0400. By automating the creation of complex financial messages, mock-jutsu ensures that developers can simulate real-world transaction flows without manually constructing intricate bitmapped strings or calculating field lengths.</p>
+
+<p>At the heart of the iso8583_reversal generation is a strict adherence to the 1987 version of the ISO 8583 standard. The function meticulously populates Data Element 056 (DE056), which contains the original data elements required to link a reversal back to its parent transaction. This typically includes the original MTI, Systems Trace Audit Number (STAN), and the local transaction date and time. By providing a structurally sound DE056, the mock data produced allows for deep integration testing where the receiving host must validate the reversal against a previously stored authorization record.</p>
+
+<p>Utilizing this function is critical for testing various edge-case scenarios, such as communication timeouts, partial reversals, or manual cancellations at the point of sale. Because iso8583_reversal generates realistic bitmaps and field values, it is ideal for stress-testing middleware and core banking systems. Engineers can easily integrate this test data into their workflows using the CLI, direct Python calls via the jutsu.generate method, or even within performance testing suites like JMeter using the specialized mock-jutsu function string. This versatility ensures that regardless of the environment, the financial logic remains robust and compliant with international messaging standards.</p>
+
+<p>The primary benefit of using mock-jutsu for reversal simulation is the significant reduction in development overhead. Manually crafting an MTI 0400 message is error-prone and time-consuming, often leading to formatting issues that derail testing phases. By leveraging the iso8583_reversal function, teams can accelerate their CI/CD pipelines and ensure that their payment gateways handle transaction reversals with absolute accuracy. This automated approach to generating mock data empowers developers to focus on core feature implementation rather than the tedious minutiae of financial protocol specifications.</p></div>
 
   <div class="terminals">
     <div class="term">
