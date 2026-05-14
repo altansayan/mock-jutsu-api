@@ -909,7 +909,7 @@ def build_listing_page(lang: str) -> str:
             url = detail_url(fn, lang)
             cards += (
                 f'<a href="{url}" class="fn-card"'
-                f' data-fn="{fn}" data-catid="{cat_idx}"'
+                f' data-fn="{fn}" data-catid="{cat_idx}" data-cat="{cat.lower()}"'
                 f' data-desc="{safe_desc}"'
                 f' data-example="{example}"'
                 f' data-cli="{cli_cmd}">\n'
@@ -1206,9 +1206,11 @@ def build_listing_page(lang: str) -> str:
       var desc    = (c.dataset.desc    || '').toLowerCase();
       var example = (c.dataset.example || '').toLowerCase();
       var cli     = (c.dataset.cli     || '').toLowerCase();
+      var cat     = (c.dataset.cat     || '').toLowerCase();
       var catid   = c.dataset.catid    || '';
       var matchQ   = !q || fn.indexOf(q)!=-1 || desc.indexOf(q)!=-1
-                       || example.indexOf(q)!=-1 || cli.indexOf(q)!=-1;
+                       || example.indexOf(q)!=-1 || cli.indexOf(q)!=-1
+                       || cat.indexOf(q)!=-1;
       var matchCat = activeCatId==='all' || catid===activeCatId;
       var show = matchQ && matchCat;
       c.style.display = show ? '' : 'none';
