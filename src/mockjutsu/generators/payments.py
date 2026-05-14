@@ -206,7 +206,8 @@ def _nacha_ach():
     amount_str = str(amount_cents).zfill(10)
     indiv_name = f"MOCKJ USER {random.randint(100, 999)}"
     indiv_id = f"MOCKJ-{random.randint(100000, 999999)}"[:15]
-    trace_num = odfi_routing[:8] + f"{random.randint(1, 9999999):07d}"
+    # Trace Number = 16 chars: ODFI routing (8) + sequence (8, zero-padded)
+    trace_num = odfi_routing[:8] + f"{random.randint(1, 99999999):08d}"
     account_num = f"{random.randint(10000000000, 99999999999)}"[:17].ljust(17)
 
     # ── Entry Detail (type 6), 94 chars ─────────────────────────────────────
@@ -218,9 +219,9 @@ def _nacha_ach():
         + amount_str
         + indiv_id.ljust(15)
         + indiv_name[:22].ljust(22)
-        + "  "
-        + "1"
-        + trace_num[:15]
+        + " "   # pos 77: discretionary data
+        + "1"   # pos 78: addenda record indicator
+        + trace_num  # pos 79-94: 16-char trace (ODFI 8 + seq 8)
     )
 
     # ── Addenda (type 7), 94 chars ───────────────────────────────────────────
@@ -305,7 +306,7 @@ def _sepa_mandate(strict=False):
 
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.008.001.02">\n'
+        '<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.008.001.08">\n'
         "  <CstmrDrctDbtInitn>\n"
         "    <GrpHdr>\n"
         f"      <MsgId>{msg_id}</MsgId>\n"
