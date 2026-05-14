@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>nacha_ach</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>The nacha_ach function within the mock-jutsu library provides developers with a streamlined way to generate realistic mock data for financial testing. Specifically designed for the Payments category, this function adheres to the strict standards set by the National Automated Clearing House Association. By generating high-quality test data, developers can simulate the complex ecosystem of electronic funds transfers without the security risks associated with using real financial records or sensitive personally identifiable information during the development lifecycle.</p>
+
+<p>At its core, the nacha_ach function produces a multi-layered file structure consisting of 94-character fixed-width records, which is the industry standard for ACH processing in the United States. Every generated file includes essential components such as the File Header (Type 1), Batch Header (Type 5), Entry Detail (Type 6), Batch Control (Type 8), and File Control (Type 9). A critical feature of this mock-jutsu function is its ability to accurately calculate the hash total and record counts. This ensures that the mock data passes rigorous validation checks in banking software that verifies the integrity and mathematical consistency of the transaction batch before processing.</p>
+
+<p>Utilizing mock-jutsu for ACH generation is particularly beneficial for testing payment gateways, automated payroll systems, and bank reconciliation modules. The nacha_ach generator allows QA teams to stress-test their ingestion pipelines by creating large volumes of valid files with varying transaction types. Because the function handles the complexities of padding, alignment, and control totals automatically, engineers can focus on edge-case scenarios, such as handling different service class codes or verifying the routing number validation logic within their own internal applications.</p>
+
+<p>Integration is seamless across various environments, whether you are using the CLI for quick file generation, the Python API for programmatic test suites, or JMeter for performance testing. The nacha_ach function eliminates the manual overhead of building flat-file structures from scratch, significantly reducing the time required to set up a robust financial testing environment. By choosing mock-jutsu, developers ensure their systems are compliant, stable, and ready for production-grade financial processing without the friction of manual data entry.</p></div>
 
   <div class="terminals">
     <div class="term">
