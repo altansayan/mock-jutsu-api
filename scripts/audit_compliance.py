@@ -47,9 +47,11 @@ def audit():
             errors.append(f"[Test Missing] No mention of '{dt}' found in tests/. Every type must have unit and api tests.")
 
     # Check for orphans (types in reference but not in core)
-    # cardowner is a known alias
+    # cardowner is a known alias; Commands category entries are CLI commands, not data types
+    _COMMANDS = {r[0].strip() for r in _REFERENCE if r[1] == "Commands"}
+    _KNOWN_NON_TYPES = {"cardowner"} | _COMMANDS
     for rt in ref_types:
-        if rt not in core_types and rt != "cardowner":
+        if rt not in core_types and rt not in _KNOWN_NON_TYPES:
             errors.append(f"[Orphan] Type '{rt}' is in CLI reference but NOT in core registries.")
 
     print("-" * 50)
