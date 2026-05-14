@@ -4,11 +4,11 @@ Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 
 Guard: Every type registered in core.py MUST appear in:
   1. mockjutsu list  (CLI output)
-  2. HOW-TO-MockJutsu-TR.html  (documentation)
+  2. HOW-TO/{LANG}/HOW-TO-MockJutsu-{LANG}.html  (documentation)
 
 If either check fails after adding a new type, the developer forgot to:
   - Add the type to cli.py _REFERENCE  (causes list failure)
-  - Re-run generate_locale_docs.py     (causes HTML failure)
+  - Re-run generate_full_docs.py       (causes HTML failure)
 
 These tests run in pre-push hook and CI — push is blocked until both pass.
 """
@@ -20,8 +20,9 @@ from click.testing import CliRunner
 import mockjutsu.core as mc
 from mockjutsu.cli import main, _REFERENCE
 
-DOCS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-LOCALES  = ["TR", "EN", "UK", "DE", "FR", "RU"]
+BASE_DIR    = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+HOW_TO_DIR  = os.path.join(BASE_DIR, "HOW-TO")
+LOCALES     = ["TR", "EN", "UK", "DE", "FR", "RU"]
 
 # ── Collect all registered types from core ───────────────────────────────────
 
@@ -76,20 +77,20 @@ def test_core_type_in_reference_table(data_type):
 # ── 2. HOW-TO HTML sync ──────────────────────────────────────────────────────
 
 def _html_content(locale: str) -> str:
-    path = os.path.join(DOCS_DIR, f"HOW-TO-MockJutsu-{locale}.html")
+    path = os.path.join(HOW_TO_DIR, locale, f"HOW-TO-MockJutsu-{locale}.html")
     if not os.path.exists(path):
-        pytest.skip(f"HOW-TO-MockJutsu-{locale}.html not found — run generate_locale_docs.py")
+        pytest.skip(f"HOW-TO/{locale}/HOW-TO-MockJutsu-{locale}.html not found — run generate_full_docs.py")
     with open(path, encoding="utf-8") as f:
         return f.read()
 
 
 @pytest.mark.parametrize("data_type", sorted(ALL_CORE_TYPES))
 def test_core_type_visible_in_html_tr(data_type):
-    """Every core type must appear in HOW-TO-MockJutsu-TR.html."""
+    """Every core type must appear in HOW-TO/TR/HOW-TO-MockJutsu-TR.html."""
     html = _html_content("TR")
     assert data_type in html, (
-        f"Type '{data_type}' is registered in core.py but MISSING from HOW-TO-MockJutsu-TR.html.\n"
-        f"Fix: re-run `python generate_locale_docs.py` and commit the updated HTML files."
+        f"Type '{data_type}' is registered in core.py but MISSING from HOW-TO/TR/HOW-TO-MockJutsu-TR.html.\n"
+        f"Fix: re-run `python generate_full_docs.py` and commit the updated HTML files."
     )
 
 
@@ -102,7 +103,7 @@ def test_html_type_count_matches_core(locale):
     core_count = len(_REF_TYPES)
     html_count = len(html_types)
     assert html_count == core_count, (
-        f"HOW-TO-MockJutsu-{locale}.html has {html_count} data-fn rows "
+        f"HOW-TO/{locale}/HOW-TO-MockJutsu-{locale}.html has {html_count} data-fn rows "
         f"but core has {core_count}.\n"
         f"Missing: {_REF_TYPES - html_types}"
     )

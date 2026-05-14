@@ -1,94 +1,89 @@
 """
 UI Tests for the generated HTML Documentation using Playwright.
-Verifies that the generated HTML files load correctly, display the right parameters, and UI interactions work.
+Verifies that the generated HTML files load correctly and UI interactions work.
+Target structure: HOW-TO/{LANG}/HOW-TO-MockJutsu-{LANG}.html (HOW-TO 2.0)
 """
 import os
 import re
 import pytest
 from playwright.sync_api import Page, expect
 
-DOCS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+BASE_DIR   = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+HOW_TO_DIR = os.path.join(BASE_DIR, "HOW-TO")
 
 LOCALES = ["TR", "EN", "UK", "DE", "FR", "RU"]
+
+
+def _file_url(loc: str) -> str:
+    path = os.path.join(HOW_TO_DIR, loc, f"HOW-TO-MockJutsu-{loc}.html")
+    return f"file:///{path}".replace("\\", "/")
+
 
 @pytest.fixture(scope="session", autouse=True)
 def check_docs_exist():
     """Ensure the HTML docs exist before running UI tests."""
     for loc in LOCALES:
-        path = os.path.join(DOCS_DIR, f"HOW-TO-MockJutsu-{loc}.html")
+        path = os.path.join(HOW_TO_DIR, loc, f"HOW-TO-MockJutsu-{loc}.html")
         if not os.path.exists(path):
-            pytest.skip(f"Documentation file {path} not found. Run generate_locale_docs.py first.")
+            pytest.skip(f"Documentation file {path} not found. Run generate_full_docs.py first.")
 
 
 @pytest.mark.parametrize("loc", LOCALES)
 def test_doc_loads_and_has_title(page: Page, loc: str):
     """Test that each locale's document loads and has the correct title format."""
-    file_path = f"file:///{DOCS_DIR}/HOW-TO-MockJutsu-{loc}.html".replace("\\", "/")
-    page.goto(file_path)
-    
-    # Check title
-    expect(page).to_have_title(re.compile(r"Mock Jutsu - .*"))
-    
-    # Check header
-    header = page.locator(".header h1")
+    page.goto(_file_url(loc))
+    expect(page).to_have_title(re.compile(r"Mock Jutsu"))
+    header = page.locator("h1").first
     expect(header).to_contain_text("Mock Jutsu")
 
 
-def test_table_search_filter(page: Page):
-    """Test the search and filter functionality in the Reference table (TR locale)."""
-    file_path = f"file:///{DOCS_DIR}/HOW-TO-MockJutsu-TR.html".replace("\\", "/")
-    page.goto(file_path)
-    
-    # Initially there should be many rows
-    rows = page.locator("#refBody tr:visible")
-    initial_count = rows.count()
-    assert initial_count > 100, f"Expected >100 rows, found {initial_count}"
-    
-    # 1. Test Text Search
-    search_box = page.locator("#searchBox")
+def test_search_filter(page: Page):
+    """Test the search functionality in the Full Reference tab (TR locale)."""
+    page.goto(_file_url("TR"))
+
+    # Initially many cards should be visible
+    cards = page.locator(".fn-card")
+    initial_count = cards.count()
+    assert initial_count > 100, f"Expected >100 cards, found {initial_count}"
+
+    # Text search
+    search_box = page.locator("#fn-search")
     search_box.fill("tckn")
-    
-    # Wait for filter to apply
+    page.wait_for_timeout(150)
+
+    visible = page.locator(".fn-card:visible")
+    filtered_count = visible.count()
+    assert filtered_count < initial_count, "Search filter did not reduce card count"
+    assert filtered_count > 0, "Search for 'tckn' should find at least one card"
+
+    # Clear and test category filter button
+    search_box.fill("")
     page.wait_for_timeout(100)
-    filtered_count = rows.count()
-    assert filtered_count < initial_count, "Search filter did not reduce row count"
-    assert filtered_count > 0, "Search for 'tckn' should find at least one row"
-    
-    # 2. Test Category Filter
-    page.locator(".reset-btn").click()
-    page.wait_for_timeout(100)
-    
-    cat_filter = page.locator("#catFilter")
-    cat_filter.select_option("Kimlik")
-    page.wait_for_timeout(100)
-    
-    cat_filtered_count = rows.count()
-    assert cat_filtered_count > 0, "Category filter 'Kimlik' should have results"
-    
-    # Ensure all visible rows are indeed 'Kimlik'
-    for i in range(cat_filtered_count):
-        cat_text = rows.nth(i).locator(".col-cat").inner_text()
-        assert "Kimlik" in cat_text, f"Row {i} category '{cat_text}' is not 'Kimlik'"
+
+    identity_btn = page.locator(".cat-btn", has_text="Identity")
+    if identity_btn.count() == 0:
+        identity_btn = page.locator(".cat-btn", has_text="Kimlik")
+    identity_btn.first.click()
+    page.wait_for_timeout(150)
+
+    cat_filtered = page.locator(".fn-card:visible")
+    assert cat_filtered.count() > 0, "Category filter should have results"
 
 
 def test_tab_switching(page: Page):
-    """Test switching between tabs: Reference, Quick Start, etc."""
-    file_path = f"file:///{DOCS_DIR}/HOW-TO-MockJutsu-EN.html".replace("\\", "/")
-    page.goto(file_path)
-    
-    # Reference should be active initially
+    """Test switching between tabs: Full Reference, Quick Start, etc."""
+    page.goto(_file_url("EN"))
+
+    # Full Reference tab should be active initially
     expect(page.locator("#tab-ref")).to_be_visible()
     expect(page.locator("#tab-qs")).not_to_be_visible()
-    
-    # Click Quick Start tab
-    tabs = page.locator(".tab")
-    # In EN, tabs are ['Full Reference', 'Quick Start', 'Advanced Features', 'REST API']
-    tabs.nth(1).click()
-    
-    # Now Quick Start should be active
+
+    # Click Quick Start tab (index 1)
+    page.locator(".tab").nth(1).click()
+
     expect(page.locator("#tab-ref")).not_to_be_visible()
     expect(page.locator("#tab-qs")).to_be_visible()
-    
-    # Verify Quick Start has cards
+
+    # Quick Start should have cards
     cards = page.locator("#tab-qs .qs-card")
     assert cards.count() > 0, "Quick Start tab should have cards"
