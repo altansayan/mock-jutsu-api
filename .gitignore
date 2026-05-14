@@ -33,3 +33,10 @@ Thumbs.db
 # Reports (generated)
 reports/
 tests/test_results.txt
+
+# Environment variables
+.env
+.env.local
+
+# HOW-TO backup (local only)
+HOW-TO-BACKUP/

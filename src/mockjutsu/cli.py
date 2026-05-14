@@ -112,7 +112,7 @@ _REFERENCE = [
     ('age'            , 'Demographic'  , False, '34'                    , 'generate age'                  , 'Random human age (typically 18-90).', '--min, --max (int)'),
     ('gender'         , 'Demographic'  , False, 'Male'                  , 'generate gender'               , 'Binary gender values (Male/Female).', '-'),
     ('birthdate'      , 'Demographic'  , False, '1990-05-14'            , 'generate birthdate'            , 'Random date of birth in YYYY-MM-DD format.', '-'),
-    ('cardnum'        , 'Financial'    , False, '4532 0151 9283 1029'   , 'generate cardnum --network visa', 'Credit card number with Luhn algorithm validation.', '--network (visa, mc, amex, etc.)'),
+    ('cardnum'        , 'Financial'    , False, '4532 0151 9283 1029'   , 'generate cardnum --network visa', 'Credit card number with Luhn algorithm validation.', '--network (visa|mc|amex|troy|mir|jcb|discover|unionpay|maestro)'),
     ('cardtype'       , 'Financial'    , False, 'Credit'                , 'generate cardtype'             , 'Payment card type (Credit/Debit/Prepaid).', '-'),
     ('cardstatus'     , 'Financial'    , False, 'Active'                , 'generate cardstatus'           , 'Payment card status (Active/Blocked/Expired).', '-'),
     ('cardcategory'   , 'Financial'    , False, 'Gold'                  , 'generate cardcategory'         , 'Card level (Classic/Gold/Platinum/Infinite).', '-'),
@@ -126,12 +126,12 @@ _REFERENCE = [
     ('issuer'         , 'Financial'    , True , 'BosphorusBank A.S.'    , 'generate issuer --locale TR'   , 'Simulated bank or card issuing entity.', '-'),
     ('balance'        , 'Financial'    , False, '12450.75'              , 'generate balance'              , 'Random account balance with 2 decimal precision.', '--min, --max (float)'),
     ('iban'           , 'Financial'    , True , 'TR330006100519...'     , 'generate iban --locale TR'     , 'International Bank Account Number (IBAN) with Modulo 97 check.', '-'),
-    ('sepa_qr'        , 'Financial'    , True , 'BCD\n002...'           , 'generate sepa_qr --locale DE'  , 'SEPA Credit Transfer QR code (EPC standard).', '--amount, --currency'),
-    ('emv_qr_p2p'     , 'Financial'    , True , '000201010211...'       , 'generate emv_qr_p2p --locale TR', 'EMV QRCPS P2P payment QR code (TRQR compatible).', '--amount, --currency'),
-    ('emv_qr_atm'     , 'Financial'    , True , '000201010212...'       , 'generate emv_qr_atm --locale DE', 'EMV QRCPS ATM cash-out QR code.', '--amount, --currency'),
-    ('emv_qr_pos'     , 'Financial'    , True , '000201010211...'       , 'generate emv_qr_pos --locale FR', 'EMV QRCPS Merchant/POS QR code.', '--amount, --currency, --merchant, --city'),
-    ('3ds_cavv'       , 'Financial'    , False, 'AAABBIIFmAAAAAAEggWY...', 'generate 3ds_cavv'            , '3D Secure 2.0 Cardholder Authentication Verification Value (CAVV).', '--network (visa, mc, amex)'),
-    ('3ds_eci'        , 'Financial'    , False, '05 (Visa) / 02 (MC)'   , 'generate 3ds_eci --network visa', '3D Secure Electronic Commerce Indicator (ECI) flag.', '--network (visa, mc, amex)'),
+    ('sepa_qr'        , 'Financial'    , True , 'BCD\n002...'           , 'generate sepa_qr --locale DE'  , 'SEPA Credit Transfer QR code (EPC standard).', '-'),
+    ('emv_qr_p2p'     , 'Financial'    , True , '000201010211...'       , 'generate emv_qr_p2p --locale TR', 'EMV QRCPS P2P payment QR code (TRQR compatible).', '-'),
+    ('emv_qr_atm'     , 'Financial'    , True , '000201010212...'       , 'generate emv_qr_atm --locale DE', 'EMV QRCPS ATM cash-out QR code.', '-'),
+    ('emv_qr_pos'     , 'Financial'    , True , '000201010211...'       , 'generate emv_qr_pos --locale FR', 'EMV QRCPS Merchant/POS QR code.', '-'),
+    ('3ds_cavv'       , 'Financial'    , False, 'AAABBIIFmAAAAAAEggWY...', 'generate 3ds_cavv'            , '3D Secure 2.0 Cardholder Authentication Verification Value (CAVV).', '-'),
+    ('3ds_eci'        , 'Financial'    , False, '05 (Visa) / 02 (MC)'   , 'generate 3ds_eci --network visa', '3D Secure Electronic Commerce Indicator (ECI) flag.', '--network (visa|mc|amex|jcb)'),
     ('cardnetwork'    , 'Financial'    , False, 'VISA / MASTERCARD'     , 'generate cardnetwork'          , 'Credit card network name (Visa, MC, Amex, etc.).', '-'),
     ('track2_data'    , 'Hardware'     , False, ';4532...=2812201...?'  , 'generate track2_data'          , 'Magnetic stripe Track 2 data (PAN=Expiry+ServiceCode+CVV).', '-'),
     ('chip_data'      , 'Hardware'     , False, '9F0206000000001000...' , 'generate chip_data'            , 'Simulated EMV chip (ICC) tag-length-value (TLV) data.', '-'),
@@ -156,7 +156,7 @@ _REFERENCE = [
     ('--AIVector--'  , ''             , False, ''                           , ''                              , '', ''),
     ('ai_embedding'  , 'AI Vector'    , False, '[0.021,-0.184,...]'         , 'generate ai_embedding'         , '1536-dim L2-normalized float vector (OpenAI Ada-002 / Pinecone compatible). JSON array of floats with |v|₂=1.', '--dims (int)'),
     ('ai_vector'     , 'AI Vector'    , False, '[0.089,-0.234,...]'         , 'generate ai_vector'            , 'N-dim L2-normalized unit vector for embedding models (default 384-dim). Configurable via --dims.', '--dims (int)'),
-    ('ai_sparse_vector', 'AI Vector'  , False, '{"indices":[...],"values":[...]}', 'generate ai_sparse_vector', 'Sparse {indices, values} vector with L2-normalized positive weights for hybrid search (Pinecone/Qdrant). 128 non-zero entries in 10k-dim space.', '--dims (int)'),
+    ('ai_sparse_vector', 'AI Vector'  , False, '{"indices":[...],"values":[...]}', 'generate ai_sparse_vector', 'Sparse {indices, values} vector with L2-normalized positive weights for hybrid search (Pinecone/Qdrant). 128 non-zero entries in 10k-dim space.', '--dims (int), --nnz (int)'),
     ('--OIDC--'       , ''             , False, ''                           , ''                              , '', ''),
     ('oidc_token_set' , 'OIDC'         , False, '{"token":"eyJ...","jwks":{...},"kid":"...","claims":{...}}', 'generate oidc_token_set', 'ES256 key pair (P-256) → signed JWT + verifiable JWKS (kid linked). Full OIDC claims: iss, sub, aud, exp, iat, jti, email.', '-'),
     ('jwks'           , 'OIDC'         , False, '{"keys":[{"kty":"EC","crv":"P-256",...}]}', 'generate jwks', 'Standalone JWK Set — fresh P-256 EC public key (kty=EC, crv=P-256, use=sig, alg=ES256). Mock /.well-known/jwks.json endpoint.', '-'),
@@ -252,13 +252,13 @@ _REFERENCE = [
     ('useragent'      , 'Meta'         , False, 'Mozilla/5.0 ...'       , 'generate useragent'            , 'Realistic browser User-Agent strings.', '-'),
     ('jwt'            , 'Meta'         , False, 'eyJ....eyJ....sig'     , 'generate jwt'                  , 'Mock JSON Web Token (JWT) with header/payload/signature structure.', '-'),
     ('bearertoken'    , 'Meta'         , False, 'Bearer eyJ....sig'     , 'generate bearertoken'          , 'HTTP Bearer authorization token.', '-'),
-    ('hash'           , 'Meta'         , False, 'e3b0c44298fc...(64hex)', 'generate hash --algorithm sha256', 'Cryptographic hash values for various algorithms.', '--algorithm (sha256, md5, sha1)'),
+    ('hash'           , 'Meta'         , False, 'e3b0c44298fc...(64hex)', 'generate hash --algorithm sha256', 'Cryptographic hash values for various algorithms.', '--algorithm (md5|sha1|sha224|sha256|sha384|sha512|sha3-224|sha3-256|sha3-384|sha3-512|crc32|adler32|crc16)'),
     ('mac_address'    , 'Meta'         , False, 'A4:C3:F0:3D:8E:21'     , 'generate mac_address'          , '48-bit hardware MAC address (IEEE 802).', '-'),
     ('url'            , 'Meta'         , True , 'https://api-42.co.uk/..', 'generate url --locale TR'      , 'Localized web URLs.', '-'),
     ('domain'         , 'Meta'         , True , 'test-77.com.tr'        , 'generate domain --locale TR'   , 'Localized domain names with regional TLDs.', '-'),
-    ('color'          , 'Meta'         , False, '#3A7BF0'               , 'generate color'                , 'Hexadecimal or named color values.', '-'),
+    ('color'          , 'Meta'         , False, '#3A7BF0'               , 'generate color'                , 'Hexadecimal or named color values.', '--format (hex|rgb|hsl|name)'),
     ('clientversion'  , 'Meta'         , False, '2.4.1'                 , 'generate clientversion'        , 'Software client versioning (SemVer).', '-'),
-    ('signature'      , 'Meta'         , False, 'a1b2c3d4... (hex)'     , 'generate signature'            , 'Digital signature hex strings.', '-'),
+    ('signature'      , 'Meta'         , False, 'a1b2c3d4... (hex)'     , 'generate signature'            , 'HMAC-SHA256 digital signature hex string.', '--secret (string), --payload (string)'),
     ('apppassword'    , 'Meta'         , False, '481302'                , 'generate apppassword'          , 'One-time application passwords / PINs.', '-'),
     ('rfid_uid'       , 'RFID'         , False, '04:A3:B2:C1:D0:E5:F6'  , 'generate rfid_uid'             , 'RFID chip unique identifier (UID).', '-'),
     ('epc'            , 'RFID'         , False, '3034257BF400B718...'   , 'generate epc'                  , 'Electronic Product Code (EPC) for RFID tags.', '-'),
@@ -293,7 +293,7 @@ _REFERENCE = [
     ('sedol'          , 'CapMarkets(Trading)'   , False, '0263494'               , 'generate sedol'                , 'Stock Exchange Daily Official List (UK).', '-'),
     ('lei'            , 'CapMarkets(Trading)'   , False, '529900T8BM49AURSDO55'  , 'generate lei'                  , 'Legal Entity Identifier (ISO 17442).', '-'),
     ('fix_message'    , 'CapMarkets(Trading)'   , False, '8=FIX.4.4|9=...|35=D|...|10=NNN|', 'generate fix_message'          , 'FIX Protocol 4.4 New Order Single (MsgType=D) with valid BodyLength and CheckSum.', '-'),
-    ('psd2_consent'   , 'CapMarkets(Trading)'   , True , 'eyJhbGci...<JWS>'               , 'generate psd2_consent --locale UK --amount 250.00', 'PSD2 / UK Open Banking v3.1 Payment Consent — compact JWS (HMAC-SHA256).', '--locale --amount'),
+    ('psd2_consent'   , 'CapMarkets(Trading)'   , True , 'eyJhbGci...<JWS>'               , 'generate psd2_consent --locale UK --amount 250.00', 'PSD2 / UK Open Banking v3.1 Payment Consent — compact JWS (HMAC-SHA256).', '--amount (float)'),
     ('btc_address'    , 'Crypto'       , False, '1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf', 'generate btc_address'          , 'Bitcoin wallet address (P2PKH, P2SH, Bech32).', '-'),
     ('eth_address'    , 'Crypto'       , False, '0x5aAeb6053F3E94C9b9A0...', 'generate eth_address'          , 'Ethereum/EVM compatible wallet address.', '-'),
     ('crypto_address' , 'Crypto'       , False, '(btc or eth)'          , 'generate crypto_address --currency eth', 'Generic crypto address for specified currency.', '--currency (btc, eth)'),
@@ -332,6 +332,12 @@ _REFERENCE = [
     ('hl7_message'    , 'Health'       , False, 'MSH|[enc]|EMR_SYS|...|ADT^A01^ADT_A01|...|2.5', 'generate hl7_message'  , 'HL7 v2.5 ADT^A01 patient admission message (MSH/EVN/PID/PV1 segments).', '-'),
     ('fhir_patient'   , 'Health'       , True , '{"resourceType":"Patient","id":"..."}', 'generate fhir_patient --locale UK', 'FHIR R4 Patient resource (JSON) with UUID id, name, gender, birthDate, address.', '--locale'),
     ('dicom_uid'      , 'Health'       , False, '2.25.329800735698586629...', 'generate dicom_uid'        , 'DICOM UID (ISO/IEC 9834-8 root 2.25) — digits and dots, max 64 chars.', '-'),
+    ('--Commands--'   , ''             , False, ''                          , ''                           , '', ''),
+    ('bulk'           , 'Commands'     , True , '["45678901234","98701234567",...]', 'bulk tckn --count 10 --locale TR', 'Generate N values of any single type. Supports all --generate flags (--network, --currency, --locale, etc.).', '--count (int)'),
+    ('template'       , 'Commands'     , True , '{"fullname":"Emre Kaya","tckn":"45678901234","phone":"+905321234567"}', 'template fullname tckn phone --locale TR', 'Combine multiple data types into one structured record. Output as JSON, CSV or SQL INSERT.', '--count (int), --format (json|csv|sql), --table (string)'),
+    ('export'         , 'Commands'     , True , 'fullname,tckn,phone\n"Emre Kaya","45678901234","+905321234567"', 'export fullname tckn phone --count 10 --format csv --locale TR', 'Bulk export multiple types as JSON array, CSV file or SQL INSERT statements.', '--count (int), --format (json|csv|sql), --table (string)'),
+    ('profile'        , 'Commands'     , True , '{"fullname":"Emre Kaya","tckn":"45678901234","phone":"+90532...","email":"...","address":"...","birthdate":"1990-05-14","gender":"Male"}', 'profile --locale TR', 'Generate a complete person profile: fullname, national ID, phone, email, address, birthdate, gender.', '--count (int)'),
+    ('company'        , 'Commands'     , True , '{"name":"Fischer Tech. GmbH","vkn":"1234567890","address":"...","phone":"...","iban":"DE...","sector":"Technology"}', 'company --locale DE', 'Generate a complete company profile: name, tax ID, address, phone, IBAN, sector.', '--count (int)'),
 ]
 
 # Category display order
@@ -342,6 +348,7 @@ _CAT_ORDER = [
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
     "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless", "WebAuthn", "Wallet",
     "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing", "Telemetry", "OHLCV", "TLE", "Automotive", "EInvoice", "GameDev", "Prometheus", "NMEA", "MRZ", "PenTest",
+    "Commands",
 ]
 
 _CAT_COLORS = {
@@ -387,6 +394,7 @@ _CAT_COLORS = {
     "NMEA":          "bright_yellow",
     "MRZ":           "bright_blue",
     "PenTest":       "bright_red",
+    "Commands":      "bright_cyan",
 }
 
 
@@ -417,7 +425,11 @@ def main(ctx):
 @click.option('--words',     default=None,     help='Word count for mnemonic (12, 15, 18, 21, 24)', type=int)
 @click.option('--pattern',   default=None,     help='Regex pattern for regex_string type (e.g. "[A-Z]{3}\\d{4}")')
 @click.option('--dims',      default=None,     help='Vector dimension for ai_embedding / ai_vector / ai_sparse_vector', type=int)
-def generate(data_type, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, merchant, city, words, pattern, dims):
+@click.option('--nnz',      default=None,     help='Non-zero entry count for ai_sparse_vector (default 128)', type=int)
+@click.option('--secret',   default=None,     help='HMAC signing key for signature type (default: ninja)')
+@click.option('--payload',  default=None,     help='Message to sign for signature type (default: mock)')
+@click.option('--format',   'color_format',   default=None, help='Color output format: hex rgb hsl name')
+def generate(data_type, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, merchant, city, words, pattern, dims, nnz, secret, payload, color_format):
     """Generate mock data.  Example: mockjutsu generate tckn --locale TR"""
     if not data_type:
         click.echo("Error: specify a type. Run 'mockjutsu list' to see all types.")
@@ -435,6 +447,10 @@ def generate(data_type, locale, network, currency, carrier, algorithm, prefix, g
         'words': words,
         'pattern': pattern,
         'dims': dims,
+        'nnz': nnz,
+        'secret': secret,
+        'payload': payload,
+        'format': color_format,
     }
     kwargs = {k: v for k, v in raw_kwargs.items() if v is not None and v != ''}
 

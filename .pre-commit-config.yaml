@@ -14,3 +14,11 @@ repos:
         language: system
         pass_filenames: false
         stages: [pre-push]
+
+      - id: validate-functions
+        name: Mock Jutsu Function Validator
+        entry: python validate_functions.py
+        language: system
+        pass_filenames: false
+        files: 'src/mockjutsu/(cli\.py|generators/)'
+        stages: [pre-push]
