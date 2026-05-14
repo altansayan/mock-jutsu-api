@@ -19,12 +19,12 @@ BIC_CODES = {
 
 # Fictional bank names (locale-aware legal entity names)
 BANK_NAMES = {
-    "TR": ["AnadoluFinans A.Ş.", "BosphorusBank A.Ş.", "GüvenFinans A.Ş.", "Boğaz Finans A.Ş.", "MaviBank A.Ş."],
-    "US": ["Pacific Trust Bank", "Liberty National Bank", "Freedom Financial", "American Commerce Bank", "Pioneer Bank"],
-    "UK": ["Royal Borough Bank", "Crown Finance Trust", "London Clearing Bank", "Imperial Trust", "Commonwealth Bank plc"],
-    "DE": ["Volksbank Nord GmbH", "Rheinische Sparkasse", "Berliner Finanzbank", "Saxon Trust AG", "Nord Finance GmbH"],
-    "FR": ["Crédit Parisien SARL", "Banque Nationale Libre", "Loire Finance SA", "Société de Crédit SAS", "Paris Finance SA"],
-    "RU": ["Народный Банк ООО", "Столичный Банк АО", "Восточный Кредит ООО", "Русфинанс АО", "МоскваБанк ПАО"],
+    "TR": ["MOCKJ Finans A.Ş.", "AnadoluFinans A.Ş.", "BosphorusBank A.Ş.", "GüvenFinans A.Ş.", "MaviBank A.Ş."],
+    "US": ["MOCKJ Federal Bank", "Pacific Trust Bank", "Liberty National Bank", "Freedom Financial", "Pioneer Bank"],
+    "UK": ["MOCKJ Crown Bank", "Royal Borough Bank", "Crown Finance Trust", "London Clearing Bank", "Imperial Trust"],
+    "DE": ["MOCKJ Deutsche Finans", "Volksbank Nord GmbH", "Rheinische Sparkasse", "Berliner Finanzbank", "Saxon Trust AG"],
+    "FR": ["MOCKJ Paris Banque", "Crédit Parisien SARL", "Banque Nationale Libre", "Loire Finance SA", "Paris Finance SA"],
+    "RU": ["MOCKJ Народный Банк", "Столичный Банк АО", "Восточный Кредит ООО", "Русфинанс АО", "МоскваБанк ПАО"],
 }
 
 # Public sort code pools (Pay.UK Vocalink published directory)
@@ -149,25 +149,19 @@ class BankingGenerator:
     @staticmethod
     def generate_sepa_ref():
         """SEPA end-to-end reference — ISO 20022, max 35 uppercase alphanumeric chars."""
-        length = random.randrange(16) + 20  # 20–35 chars
-        return "".join(random.choice(_SEPA_CHARS) for _ in range(length))
+        length = random.randrange(10) + 10  # 10–20 chars
+        return f"MOCKJ-E2E-{''.join(random.choice(_SEPA_CHARS) for _ in range(length))}"
 
     @staticmethod
     def generate_creditor_ref():
-        """ISO 11649 Creditor Reference — RF + 2-digit MOD-97 check + 3-21 alphanumeric chars.
-
-        Algorithm (identical to IBAN ISO 13616):
-          1. Generate reference chars (uppercase alphanumeric, 3–21 chars)
-          2. Rearrange: ref + 'RF00' → convert letters to digits (A=10…Z=35)
-          3. check = 98 − (numeric MOD 97), zero-padded to 2 digits
-          4. Output: 'RF' + check + ref
-        """
-        length = random.randrange(3, 22)  # 3–21 chars
-        ref = "".join(random.choice(_SEPA_CHARS) for _ in range(length))
-        rearranged = ref + "RF00"
+        """ISO 11649 Creditor Reference — RF + 2-digit MOD-97 check + 3-21 alphanumeric chars."""
+        length = random.randrange(10) + 5
+        # Prefix the body with MOCKJ to label the data clearly
+        body = f"MOCKJ{''.join(random.choice(_SEPA_CHARS) for _ in range(length))}"
+        rearranged = body + "RF00"
         numeric = "".join(str(ord(c) - 55) if c.isalpha() else c for c in rearranged)
         check = 98 - int(numeric) % 97
-        return f"RF{check:02d}{ref}"
+        return f"RF{check:02d}{body}"
 
     @staticmethod
     def generate_transaction(locale="TR"):
@@ -195,7 +189,7 @@ class BankingGenerator:
             receiver_iban = f"RT:{BankingGenerator.generate_routing_number()}"
 
         return {
-            "ref":           f"TRN{ref_date}-{random.randrange(90000) + 10000}",
+            "ref":           f"MOCKJ-TRN{ref_date}-{random.randrange(90000) + 10000}",
             "sender_iban":   sender_iban,
             "receiver_iban": receiver_iban,
             "amount":        amount,
