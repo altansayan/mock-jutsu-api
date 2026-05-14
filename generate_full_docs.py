@@ -361,6 +361,15 @@ QS_LOCALE_INFO = {
     },
 }
 
+QS_INSTALL_LABELS = {
+    "TR": ("Kurulum",         "Geliştirici Kurulumu"),
+    "EN": ("Install",         "Developer Setup"),
+    "UK": ("Install",         "Developer Setup"),
+    "DE": ("Installation",    "Entwickler-Setup"),
+    "FR": ("Installation",    "Configuration développeur"),
+    "RU": ("Установка",       "Настройка разработчика"),
+}
+
 LISTING_EXTRA_CSS = """
 /* ── Listing header extras ── */
 .lhdr-engine{font-size:1.1rem;color:#cbd5e1;font-weight:500;margin-bottom:.75rem}
@@ -1017,6 +1026,21 @@ def build_listing_page(lang: str) -> str:
     )
 
     # ── Pre-build QS/Power/API content blocks (avoids f-string { } escaping) ──
+    install_user_title, install_dev_title = QS_INSTALL_LABELS[lang]
+    qs_install_user = (
+        "pip install mock-jutsu\n\n"
+        "# verify\n"
+        "mockjutsu --version\n"
+        "python -c \"import mockjutsu; print('OK')\""
+    )
+    qs_install_dev = (
+        "git clone https://github.com/altansayan/mock-jutsu-api.git\n"
+        "cd mock-jutsu-api\n\n"
+        "pip install -e \".[dev]\"\n\n"
+        "# run tests\n"
+        "pytest tests/ -v"
+    )
+
     qs_py = (
         "jutsu.generate('iban', locale='" + loc + "')\n"
         "jutsu.generate('phone', locale='" + loc + "')\n"
@@ -1137,6 +1161,8 @@ def build_listing_page(lang: str) -> str:
         '<div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">\n'
         f'<div class="stitle">{t_qs}</div>\n'
         '<div class="qs-grid">\n'
+        + qs_card(install_user_title, qs_install_user)
+        + qs_card(install_dev_title, qs_install_dev)
         + qs_card("Python API", qs_py)
         + qs_card("CLI", qs_cli)
         + qs_card(qs["profile_title"], qs["profile_code"])

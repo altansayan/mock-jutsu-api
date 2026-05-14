@@ -1606,6 +1606,18 @@ UNH+..." data-cli="generate edifact_orders">
 <div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">
 <div class="stitle">Quick Start</div>
 <div class="qs-grid">
+<div class="qs-card"><h3>Install</h3><pre>pip install mock-jutsu
+
+# verify
+mockjutsu --version
+python -c "import mockjutsu; print('OK')"</pre></div>
+<div class="qs-card"><h3>Developer Setup</h3><pre>git clone https://github.com/altansayan/mock-jutsu-api.git
+cd mock-jutsu-api
+
+pip install -e ".[dev]"
+
+# run tests
+pytest tests/ -v</pre></div>
 <div class="qs-card"><h3>Python API</h3><pre>jutsu.generate('iban', locale='UK')
 jutsu.generate('phone', locale='UK')
 jutsu.generate('cardnum', network='visa')
