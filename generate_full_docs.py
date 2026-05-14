@@ -695,14 +695,14 @@ def build_listing_page(lang: str) -> str:
         cat_map.setdefault(r[1], []).append(r)
     cats = [c for c in order if c in cat_map] + [c for c in cat_map if c not in order]
 
-    # Category filter buttons
-    cat_filter_btns = '<button class="cat-btn active" data-cat="all">All</button>\n'
-    for cat in cats:
-        cat_filter_btns += f'<button class="cat-btn" data-cat="{cat}">{cat}</button>\n'
+    # Category filter buttons (numeric catid avoids special char issues)
+    cat_filter_btns = '<button class="cat-btn active" data-catid="all">All</button>\n'
+    for cat_idx, cat in enumerate(cats):
+        cat_filter_btns += f'<button class="cat-btn" data-catid="{cat_idx}">{cat}</button>\n'
 
     cards_html = ""
     total_fn = 0
-    for cat in cats:
+    for cat_idx, cat in enumerate(cats):
         rows = cat_map[cat]
         cards = ""
         for r in rows:
@@ -710,13 +710,13 @@ def build_listing_page(lang: str) -> str:
             locale_badge = f'<span class="badge-locale" style="font-size:.65rem">{ui["badge_locale"]}</span>' if locale_aware else ""
             url = detail_url(fn, lang)
             short_desc = desc[:90] + "…" if len(desc) > 90 else desc
-            cards += f"""<a href="{url}" class="fn-card" data-fn="{fn}" data-cat="{cat}" data-desc="{desc[:120]}">
+            cards += f"""<a href="{url}" class="fn-card" data-fn="{fn}" data-catid="{cat_idx}" data-desc="{desc[:120]}">
   <div class="fn-name">{fn}</div>
   <div class="fn-desc">{short_desc}</div>
   <div class="fn-locale">{locale_badge}</div>
 </a>"""
             total_fn += 1
-        cards_html += f"""<div class="cat-section" id="{cat}" data-cat-block="{cat}">
+        cards_html += f"""<div class="cat-section" id="cat-{cat_idx}" data-catid="{cat_idx}" data-cattotal="{len(rows)}">
   <div class="cat-header">{cat} <small style="font-weight:400;color:#64748b">(<span class="cat-count">{len(rows)}</span>)</small></div>
   <div class="fn-grid">{cards}</div>
 </div>"""
@@ -767,46 +767,48 @@ def build_listing_page(lang: str) -> str:
   var noRes   = document.getElementById('no-results');
   var cards   = Array.from(document.querySelectorAll('.fn-card'));
   var catBtns = Array.from(document.querySelectorAll('.cat-btn'));
-  var activeCat = 'all';
+  var sections = Array.from(document.querySelectorAll('.cat-section[data-catid]'));
+  var activeCatId = 'all';
 
   function update(){
     var q = search.value.trim().toLowerCase();
-    var visible = 0;
-    var catVisible = {};
+    var totalVisible = 0;
+    // matched count per catid
+    var matched = {};
 
     cards.forEach(function(c){
-      var fn   = (c.dataset.fn  || '').toLowerCase();
-      var desc = (c.dataset.desc|| '').toLowerCase();
-      var cat  = c.dataset.cat  || '';
+      var fn    = (c.dataset.fn   || '').toLowerCase();
+      var desc  = (c.dataset.desc || '').toLowerCase();
+      var catid = c.dataset.catid || '';
       var matchQ   = !q || fn.indexOf(q) !== -1 || desc.indexOf(q) !== -1;
-      var matchCat = activeCat === 'all' || cat === activeCat;
+      var matchCat = activeCatId === 'all' || catid === activeCatId;
       var show = matchQ && matchCat;
       c.style.display = show ? '' : 'none';
-      if(show){ visible++; catVisible[cat] = (catVisible[cat]||0)+1; }
+      if(show){ totalVisible++; matched[catid] = (matched[catid] || 0) + 1; }
     });
 
-    // Show/hide category sections and update counts
-    document.querySelectorAll('[data-cat-block]').forEach(function(sec){
-      var cat = sec.dataset.catBlock;
-      var cnt = catVisible[cat] || 0;
+    // Update section visibility and count label
+    sections.forEach(function(sec){
+      var catid = sec.dataset.catid;
+      var total = parseInt(sec.dataset.cattotal, 10);
+      var cnt   = matched[catid] || 0;
       sec.style.display = cnt > 0 ? '' : 'none';
-      var countSpan = sec.querySelector('.cat-count');
-      if(countSpan) countSpan.textContent = cnt;
+      var span = sec.querySelector('.cat-count');
+      if(span){
+        if(q && cnt < total){
+          span.textContent = cnt + '/' + total;
+        } else {
+          span.textContent = total;
+        }
+      }
     });
 
-    noRes.style.display = visible === 0 ? '' : 'none';
+    noRes.style.display = totalVisible === 0 ? '' : 'none';
     if(q){
-      countEl.textContent = visible + ' result' + (visible !== 1 ? 's' : '');
+      countEl.textContent = totalVisible + ' result' + (totalVisible !== 1 ? 's' : '');
       countEl.style.display = '';
     } else {
       countEl.style.display = 'none';
-      // Restore original counts when no search
-      document.querySelectorAll('[data-cat-block]').forEach(function(sec){
-        var cnt = sec.querySelectorAll('.fn-card').length;
-        var vis = sec.querySelectorAll('.fn-card:not([style*="none"])').length;
-        var countSpan = sec.querySelector('.cat-count');
-        if(countSpan) countSpan.textContent = vis;
-      });
     }
   }
 
@@ -814,7 +816,7 @@ def build_listing_page(lang: str) -> str:
 
   catBtns.forEach(function(btn){
     btn.addEventListener('click', function(){
-      activeCat = btn.dataset.cat;
+      activeCatId = btn.dataset.catid;
       catBtns.forEach(function(b){ b.classList.toggle('active', b === btn); });
       update();
     });
