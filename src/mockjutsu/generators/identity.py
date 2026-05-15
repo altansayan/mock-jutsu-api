@@ -185,6 +185,16 @@ class IdentityGenerator:
     # ── US ──────────────────────────────────────────────────────────────────────
 
     @staticmethod
+    def generate_us_ssn():
+        """US Social Security Number — area 001-899 excluding 000 and 666, group 01-99, serial 0001-9999."""
+        area = random.randrange(898) + 1   # 1-898; shift >=666 to skip 666
+        if area >= 666:
+            area += 1                       # maps 1-665 → 1-665, 666-898 → 667-899
+        group  = random.randrange(99) + 1   # 01-99 (00 invalid per SSA)
+        serial = random.randrange(9999) + 1 # 0001-9999 (0000 invalid per SSA)
+        return f"{area:03d}-{group:02d}-{serial:04d}"
+
+    @staticmethod
     def generate_us_ein():
         """US Employer Identification Number — XX-XXXXXXX."""
         return f"{random.randrange(90) + 10}-{random.randrange(9000000) + 1000000}"
@@ -363,11 +373,15 @@ class IdentityGenerator:
             if l == 'RU':
                 return f"{random.randrange(9000) + 1000} {random.randrange(900000) + 100000}"
             if l == 'US':
-                return f"{random.randrange(800) + 100:03d}-{random.randrange(90) + 10:02d}-{random.randrange(9000) + 1000:04d}"
+                return self.generate_us_ssn()
             if l == 'UK':
                 return self.generate_uk_ni()
             if l == 'FR':
-                base = (f"{random.randrange(2) + 1}{random.randrange(60) + 40:02d}{random.randrange(12) + 1:02d}"
+                if random.random() < 0.1:
+                    month = random.randint(13, 20)
+                else:
+                    month = random.randint(1, 12)
+                base = (f"{random.randrange(2) + 1}{random.randrange(60) + 40:02d}{month:02d}"
                         f"{random.randrange(95) + 1:02d}{random.randrange(999) + 1:03d}{random.randrange(999) + 1:03d}")
                 return f"{base}{97 - (int(base) % 97):02d}"
             if l == 'DE':
@@ -375,7 +389,7 @@ class IdentityGenerator:
             return self.generate_tr_id()
 
         if dt == 'ssn':
-            return f"{random.randrange(800) + 100:03d}-{random.randrange(90) + 10:02d}-{random.randrange(9000) + 1000:04d}"
+            return self.generate_us_ssn()
 
         if dt == 'nin':
             return self.generate_uk_ni()
@@ -447,11 +461,15 @@ class IdentityGenerator:
 
         if dt == 'insurance_id':
             if l == 'TR': return self.generate_tr_sgk()
-            if l == 'US': return f"{random.randrange(800) + 100:03d}-{random.randrange(90) + 10:02d}-{random.randrange(9000) + 1000:04d}"
+            if l == 'US': return self.generate_us_ssn()
             if l == 'UK': return self.generate_uk_paye()
             if l == 'DE': return self.generate_de_rvn()
             if l == 'FR':
-                base = (f"{random.randrange(2) + 1}{random.randrange(60) + 40:02d}{random.randrange(12) + 1:02d}"
+                if random.random() < 0.1:
+                    month = random.randint(13, 20)
+                else:
+                    month = random.randint(1, 12)
+                base = (f"{random.randrange(2) + 1}{random.randrange(60) + 40:02d}{month:02d}"
                         f"{random.randrange(95) + 1:02d}{random.randrange(999) + 1:03d}{random.randrange(999) + 1:03d}")
                 return f"{base}{97 - (int(base) % 97):02d}"
             if l == 'RU': return self.generate_ru_snils()

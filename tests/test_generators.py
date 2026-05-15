@@ -2502,11 +2502,12 @@ def test_ssn_format():
 
 
 def test_ssn_first_group_range():
-    """SSN first group must be 100–899 (not 000 or 900+)."""
-    for _ in range(100):
+    """SSN area must be 001-899 (not 000, 666, or 900+) per SSA rules."""
+    for _ in range(500):
         val = str(jutsu.generate('ssn'))
         first = int(val[:3])
-        assert 100 <= first <= 899, f"SSN first group out of range: {val}"
+        assert 1 <= first <= 899, f"SSN area out of range: {val}"
+        assert first != 666, f"SSN area 666 is invalid per SSA: {val}"
 
 
 def test_nin_format():

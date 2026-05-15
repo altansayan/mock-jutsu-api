@@ -106,7 +106,7 @@ def _isin_luhn_check(payload: str) -> int:
 
 
 def _cusip_check(payload: str) -> int:
-    """ABA CUSIP check digit — odd positions (0-indexed) ×2 with digit-sum."""
+    """ABA CUSIP check digit — even 1-indexed (odd 0-indexed) positions ×2 with digit-sum."""
     total = 0
     for i, c in enumerate(payload):
         v = int(c) if c.isdigit() else ord(c) - 55
