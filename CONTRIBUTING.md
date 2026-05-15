@@ -67,6 +67,43 @@ Every data type is registered in two places in `core.py`:
 
 ## Adding a New Data Type — Step by Step
 
+> **See also:** [`GENERATOR_SOP.md`](GENERATOR_SOP.md) — the authoritative 6-step quality checklist that must be completed before any PR is merged.
+
+### 0. Update compliance files (MANDATORY — do this before writing any code)
+
+Every new type must be registered in the compliance layer first.
+
+**`compliance/algorithm_vectors.json`** — add at least one known-valid real-world value:
+```json
+"my_type": {
+  "standard": "ISO XXXX or RFC YYYY",
+  "reference": "https://...",
+  "rule": "describe the checksum/format rule",
+  "valid": ["known-valid-value-1", "known-valid-value-2"],
+  "invalid": ["known-invalid-value"]
+}
+```
+
+**`compliance/format_contracts.json`** — add the canonical regex pattern:
+```json
+"my_type": {"pattern": "^[A-Z]{2}\\d{10}$", "example": "AB1234567890"}
+```
+
+**`tests/test_known_vectors.py`** — add a vector test function:
+```python
+def test_my_type_known_vectors():
+    v = _load_vectors()
+    for val in v["my_type"]["valid"]:
+        assert _my_type_check(val), f"Vector failed: {val}"
+```
+
+Run to confirm the vector test passes:
+```bash
+pytest tests/test_known_vectors.py -q --no-cov
+```
+
+If you are also adding a Java counterpart in `mock-jutsu-jmeter`, update `KnownVectorTest.java` with the same vectors — `compliance/` is the single source of truth for both repos.
+
 ### 1. Write tests first (TDD)
 
 Create `tests/test_<domain>.py` or extend an existing one.
