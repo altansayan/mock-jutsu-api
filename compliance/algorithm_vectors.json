@@ -1,0 +1,59 @@
+{
+  "_comment": "Known-valid test vectors for checksum algorithms. Add vectors when implementing new generators.",
+  "cusip": {
+    "standard": "ABA CUSIP 9-character identifier",
+    "reference": "https://www.cusip.com/identifiers.html",
+    "rule": "payload[8]: double value at 0-indexed ODD positions (i%2==1), digit-sum, (10-total%10)%10",
+    "valid_complete": ["037833100", "68389X105", "594918104"],
+    "invalid_check": ["037833101", "037833102"]
+  },
+  "aba_routing": {
+    "standard": "ABA Routing Transit Number (Federal Reserve)",
+    "reference": "https://www.federalreserve.gov/releases/frservices/",
+    "rule": "3*(d0+d3+d6) + 7*(d1+d4+d7) + (d2+d5+d8) ≡ 0 mod 10",
+    "valid": ["021000021", "121042882", "011000138"],
+    "invalid": ["021000020", "121042883"]
+  },
+  "tckn": {
+    "standard": "T.C. Kimlik Numarası (Turkish Identity)",
+    "reference": "https://tckimlik.nvi.gov.tr/",
+    "rule": "d9=(7*odd_sum - even_sum)%10, d10=sum(d0..d9)%10, first digit 1-9",
+    "valid": ["12345678028"],
+    "invalid": ["12345678021", "10000000000"]
+  },
+  "ean13": {
+    "standard": "GS1 EAN-13 (ISO/IEC 15420)",
+    "reference": "https://www.gs1.org/",
+    "rule": "alternate weights 1,3 from left; check=(10-sum%10)%10",
+    "valid": ["5901234123457", "4006381333931", "9780306406157"],
+    "invalid": ["5901234123458", "4006381333932"]
+  },
+  "isin": {
+    "standard": "ISO 6166 ISIN",
+    "reference": "https://www.iso.org/standard/78502.html",
+    "rule": "12 chars: CC(2)+NSIN(9)+check(1); Luhn on expanded numeric string",
+    "valid": ["US0378331005", "US5949181045", "GB0002634946"],
+    "invalid": ["US0378331006", "US5949181046"]
+  },
+  "luhn": {
+    "standard": "Luhn algorithm (ISO/IEC 7812-1)",
+    "reference": "https://www.iso.org/standard/31534.html",
+    "rule": "double every other digit from right; digit-sum; divisible by 10",
+    "valid": ["4532015112830366", "5425233430109903", "378282246310005"],
+    "invalid": ["4532015112830367", "5425233430109904"]
+  },
+  "nhs": {
+    "standard": "UK NHS Number",
+    "reference": "https://www.datadictionary.nhs.uk/attributes/nhs_number.html",
+    "rule": "weights [10,9,8,7,6,5,4,3,2]; check=11-(sum%11); invalid if remainder=10",
+    "valid": ["9434765870", "4505577104"],
+    "invalid": ["9434765871", "1234567890"]
+  },
+  "iban_de": {
+    "standard": "ISO 13616 German IBAN (22 chars)",
+    "reference": "https://www.swift.com/standards/data-standards/iban",
+    "rule": "DE + 2 check + 18 BBAN; MOD-97-10",
+    "valid": ["DE89370400440532013000"],
+    "invalid": ["DE89370400440532013001"]
+  }
+}
