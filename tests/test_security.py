@@ -97,6 +97,10 @@ class TestX509Cert:
 
 
 class TestPcapHex:
+    # PCAP structure: global_header(24B) + pkt_record_header(16B) + ethernet_frame
+    # Ethernet frame starts at byte offset 40 → hex offset 80
+    _FRAME_OFFSET = 80   # hex chars
+
     def _clean(self):
         return jutsu.generate('pcap_hex').replace(' ', '').replace('\n', '')
 
@@ -106,17 +110,33 @@ class TestPcapHex:
     def test_valid_hex(self):
         bytes.fromhex(self._clean())
 
-    def test_minimum_frame_length(self):
-        # Ethernet(14) + IP(20) + TCP(20) = 54 bytes min → 108 hex chars
-        assert len(self._clean()) >= 108
+    def test_minimum_total_length(self):
+        # global(24) + pkt_hdr(16) + Ethernet(14) + IP(20) + TCP(20) = 94 bytes min → 188 hex chars
+        assert len(self._clean()) >= 188
+
+    def test_pcap_global_header_magic(self):
+        # Bytes 0-3: magic number d4c3b2a1 (little-endian 0xa1b2c3d4)
+        assert self._clean()[0:8] == 'd4c3b2a1'
+
+    def test_pcap_global_header_version(self):
+        # Bytes 4-5: version major = 0x0002; bytes 6-7: minor = 0x0004
+        h = self._clean()
+        assert h[8:12] == '0200'
+        assert h[12:16] == '0400'
+
+    def test_pcap_linktype_ethernet(self):
+        # Bytes 20-23: network = 1 (LINKTYPE_ETHERNET), little-endian
+        assert self._clean()[40:48] == '01000000'
 
     def test_ipv4_ethertype(self):
-        # Bytes 12-13 of Ethernet frame = 0x0800
-        assert self._clean()[24:28] == '0800'
+        # EtherType at frame bytes 12-13 = 0x0800 (IPv4)
+        # Absolute hex offset: 80 + 12*2 = 104
+        assert self._clean()[self._FRAME_OFFSET + 24: self._FRAME_OFFSET + 28] == '0800'
 
     def test_ip_version_4(self):
-        # First nibble of IP header (frame byte 14) = 4
-        assert int(self._clean()[28], 16) == 4
+        # First nibble of IP header at frame byte 14 = 4
+        # Absolute hex offset: 80 + 14*2 = 108
+        assert int(self._clean()[self._FRAME_OFFSET + 28], 16) == 4
 
     def test_hex_line_format(self):
         pcap = jutsu.generate('pcap_hex')

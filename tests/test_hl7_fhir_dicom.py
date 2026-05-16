@@ -263,6 +263,17 @@ class TestFhirPatient:
         data = json.loads(result.output.strip())
         assert data["address"][0]["country"] == "US"
 
+    def test_telecom_e164_country_code_per_locale(self):
+        """FHIR patient phone must use correct E.164 country code per locale."""
+        expected = {"TR": "90", "US": "1", "UK": "44", "DE": "49", "FR": "33", "RU": "7"}
+        for locale, cc in expected.items():
+            for _ in range(10):
+                pat = self._patient(locale=locale)
+                phones = [t["value"] for t in pat["telecom"] if t["system"] == "phone"]
+                for phone in phones:
+                    assert phone.startswith(f"+{cc}-"), \
+                        f"FHIR {locale} phone must start with +{cc}-, got: {phone}"
+
 
 # ═════════════════════════════════════════════════════════════════
 # DICOM UID Tests

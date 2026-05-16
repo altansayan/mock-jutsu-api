@@ -105,6 +105,10 @@ _FHIR_CITIES: dict[str, list[str]] = {
 _FHIR_COUNTRY_CODE: dict[str, str] = {
     "TR": "TR", "US": "US", "UK": "GB", "DE": "DE", "FR": "FR", "RU": "RU",
 }
+# E.164 country calling codes per locale
+_E164_CC: dict[str, str] = {
+    "TR": "90", "US": "1", "UK": "44", "DE": "49", "FR": "33", "RU": "7",
+}
 
 # ──────────────────────────────────────────────────────────────────────────────
 # DICOM UID — root 2.25 (ISO/IEC 9834-8 UUID-derived UID org root)
@@ -294,7 +298,7 @@ class HealthGenerator:
             "telecom": [
                 {
                     "system": "phone",
-                    "value": f"+{random.randint(1,99)}-{random.randint(100,999)}-{random.randint(1000000,9999999)}",
+                    "value": f"+{_E164_CC.get(loc, '90')}-{random.randint(100,999)}-{random.randint(1000000,9999999)}",
                     "use": "home",
                 }
             ],

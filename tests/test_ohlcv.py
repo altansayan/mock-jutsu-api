@@ -186,11 +186,11 @@ class TestMarketTick:
                 f"bid={data['bid']} >= ask={data['ask']}"
 
     def test_price_between_bid_and_ask(self):
-        """bid <= price <= ask."""
-        for _ in range(20):
+        """bid < price <= ask (strictly greater than bid per Lee-Ready convention)."""
+        for _ in range(200):
             data = json.loads(jutsu.generate('market_tick'))
-            assert data['bid'] <= data['price'] <= data['ask'], \
-                f"price={data['price']} not in [{data['bid']}, {data['ask']}]"
+            assert data['bid'] < data['price'] <= data['ask'], \
+                f"price={data['price']} not strictly in ({data['bid']}, {data['ask']}]"
 
     def test_price_positive(self):
         for _ in range(20):

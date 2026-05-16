@@ -152,10 +152,11 @@ def generate_market_tick() -> str:
     bid     = round(max(0.01, mid_price - half), 2)
     ask     = round(bid + spread, 2)
 
-    # Trade price: anywhere between bid and ask (inclusive)
+    # Trade price: strictly bid < price <= ask
     price = round(random.uniform(bid, ask), 2)
-    # Guarantee bid <= price <= ask after rounding
     price = round(max(bid, min(ask, price)), 2)
+    if price <= bid:
+        price = round(min(ask, bid + 0.01), 2)
 
     # Side: Lee-Ready rule — above midpoint = buy, below = sell
     midpoint = round((bid + ask) / 2, 2)

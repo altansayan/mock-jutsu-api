@@ -120,9 +120,10 @@ def generate_mt940(locale: str = 'TR') -> str:
         f":60F:C{_mt940_date(start_date)}{currency}{_mt940_amount(opening)}",
     ]
     for t in txns:
-        ind = 'C' if t['credit'] else 'D'
-        d   = _mt940_date(t['date'])
-        lines.append(f":61:{d}{d}{ind}{_mt940_amount(t['amount'])}{t['code']}{t['ref']}//{t['ref'][:8]}")
+        ind  = 'C' if t['credit'] else 'D'
+        d    = _mt940_date(t['date'])           # value date YYMMDD
+        mmdd = t['date'].strftime('%m%d')       # booking date MMDD (MT940 :61: spec)
+        lines.append(f":61:{d}{mmdd}{ind}{_mt940_amount(t['amount'])}{t['code']}{t['ref']}//{t['ref'][:8]}")
         lines.append(f":86:{t['desc']}")
     lines.append(f":62F:C{_mt940_date(end_date)}{currency}{_mt940_amount(closing)}")
 

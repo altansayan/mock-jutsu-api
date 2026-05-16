@@ -84,18 +84,13 @@ def _random_doc_number() -> str:
 
 
 def _random_date(past: bool = False) -> str:
-    """Generate YYMMDD. past=True → birth date, past=False → expiry (future)."""
+    """Generate YYMMDD. past=True → birth date (1940-2009), past=False → expiry (2026-2035)."""
     if past:
-        yy = random.randint(40, 99)    # 1940-1999
-        yy2 = random.randint(0, 9)
-        yy = random.choice([yy, yy2 + 0])
-        # Combine: birth years 40-99 or 00-09
         yy = random.choice([
             str(random.randint(40, 99)),
             f"0{random.randint(0, 9)}",
         ])
     else:
-        # Expiry: future (2026-2035)
         yy = str(random.randint(26, 35))
     mm = f"{random.randint(1, 12):02d}"
     dd = f"{random.randint(1, 28):02d}"   # 28 to avoid invalid dates

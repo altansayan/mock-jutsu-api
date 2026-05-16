@@ -113,6 +113,28 @@ class TestMt940:
             refs.append(ref_line)
         assert len(set(refs)) == 5
 
+    def test_61_booking_date_is_mmdd(self):
+        """MT940 :61: booking date must be MMDD (4 chars), not YYMMDD (6 chars).
+        Format: :61:YYMMDD{MMDD}{C|D}{amount}{code}{ref}//{ref}
+        After the 6-char value date, booking date must be exactly 4 digits.
+        """
+        import re
+        for _ in range(20):
+            stmt = jutsu.generate('mt940')
+            for line in stmt.splitlines():
+                if line.startswith(':61:'):
+                    # :61: body after the tag (4 chars)
+                    body = line[4:]
+                    # value date = first 6 chars (YYMMDD)
+                    # booking date = next 4 chars (MMDD)
+                    assert re.match(r'^\d{6}\d{4}[CD]', body), \
+                        f":61: booking date not MMDD: {line}"
+                    mmdd = body[6:10]
+                    mm = int(mmdd[:2])
+                    dd = int(mmdd[2:])
+                    assert 1 <= mm <= 12, f":61: booking month out of range: {line}"
+                    assert 1 <= dd <= 31, f":61: booking day out of range: {line}"
+
 
 # ── camt053 ───────────────────────────────────────────────────────────────────
 

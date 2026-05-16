@@ -51,6 +51,26 @@ def _b64(n_bytes: int) -> str:
     return base64.b64encode(random.randbytes(n_bytes)).decode()
 
 
+def _mock_x509_der() -> bytes:
+    """Minimal structurally-plausible X.509 DER mock (not cryptographically valid).
+    Starts with proper ASN.1 SEQUENCE header and embeds sha256WithRSAEncryption OID.
+    """
+    # OID 1.2.840.113549.1.1.11 = sha256WithRSAEncryption
+    oid_sha256_rsa = bytes([0x06, 0x09, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x01, 0x0b, 0x05, 0x00])
+    serial = random.randbytes(16)
+    pad_tbs = random.randbytes(800)
+    pad_sig = random.randbytes(256)
+    tbs = (
+        bytes([0xa0, 0x03, 0x02, 0x01, 0x02]) +   # version = 2 (v3)
+        bytes([0x02, len(serial)]) + serial +       # serialNumber
+        oid_sha256_rsa +
+        pad_tbs
+    )
+    tbs_seq = bytes([0x30, 0x82]) + len(tbs).to_bytes(2, 'big') + tbs
+    cert = tbs_seq + oid_sha256_rsa + bytes([0x03, 0x82]) + len(pad_sig).to_bytes(2, 'big') + pad_sig
+    return bytes([0x30, 0x82]) + len(cert).to_bytes(2, 'big') + cert
+
+
 def _fake_vkn() -> str:
     return ''.join(str(random.randint(0, 9)) for _ in range(10))
 
@@ -198,7 +218,7 @@ def generate_xmldsig() -> str:
 
     digest_value    = _b64(32)    # SHA-256 = 32 bytes → 44 Base64 chars
     signature_value = _b64(256)   # RSA-2048 = 256 bytes → 344 Base64 chars
-    x509_cert       = _b64(512)   # Simulated DER cert
+    x509_cert       = base64.b64encode(_mock_x509_der()).decode()  # ASN.1 DER mock
 
     xml = (
         f'<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" Id="{sig_id}">\n'

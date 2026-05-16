@@ -208,7 +208,7 @@ class FinancialGenerator:
         name = f"{first_name} {random.choice(names['last'])}"
         
         iban = self.generate_bank_account(loc)
-        bic = f"{random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') * 4}{loc}22"
+        bic = f"{''.join(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(4))}{loc}22"
         amount = f"{random.randrange(10, 1000)}.{random.choice(['00', '50'])}"
         reference = f"INV-{datetime.now().year}-{random.randrange(1000,9999)}"
 

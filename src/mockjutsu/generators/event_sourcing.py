@@ -96,6 +96,8 @@ def generate_event_stream(max_steps: int = 15) -> str:
     for _ in range(max_steps):
         events.append({
             'event_id':       _rand_uuid(),
+            'aggregate_id':   user_id,
+            'aggregate_type': 'User',
             'correlation_id': correlation_id,
             'session_id':     session_id,
             'user_id':        user_id,
@@ -116,6 +118,8 @@ def generate_event_stream(max_steps: int = 15) -> str:
     if events[-1]['event_type'] != 'logout':
         events.append({
             'event_id':       _rand_uuid(),
+            'aggregate_id':   user_id,
+            'aggregate_type': 'User',
             'correlation_id': correlation_id,
             'session_id':     session_id,
             'user_id':        user_id,

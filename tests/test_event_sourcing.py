@@ -19,7 +19,7 @@ jutsu = MockJutsuCore()
 
 _VALID_EVENT_TYPES = {'login', 'page_view', 'search', 'add_to_cart', 'checkout', 'payment', 'logout'}
 _TS_RE = re.compile(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$')
-_REQUIRED_FIELDS = {'event_id', 'correlation_id', 'session_id', 'user_id', 'timestamp', 'event_type', 'payload'}
+_REQUIRED_FIELDS = {'event_id', 'aggregate_id', 'aggregate_type', 'correlation_id', 'session_id', 'user_id', 'timestamp', 'event_type', 'payload'}
 
 
 # ── event_stream ──────────────────────────────────────────────────────────────
@@ -96,6 +96,15 @@ class TestEventStream:
         events = json.loads(jutsu.generate('event_stream'))
         for e in events:
             assert isinstance(e['payload'], dict), f"payload is not dict for {e['event_type']}"
+
+    def test_aggregate_id_equals_user_id(self):
+        """aggregate_id must equal user_id (User aggregate root) for all events in a stream."""
+        events = json.loads(jutsu.generate('event_stream'))
+        for e in events:
+            assert e['aggregate_id'] == e['user_id'], \
+                f"aggregate_id {e['aggregate_id']} != user_id {e['user_id']}"
+            assert e['aggregate_type'] == 'User', \
+                f"aggregate_type must be 'User': {e['aggregate_type']}"
 
     def test_timestamp_format(self):
         """Timestamps must be ISO 8601 with milliseconds: 2026-05-11T20:15:30.123Z"""

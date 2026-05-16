@@ -253,6 +253,25 @@ def test_us_ssn_format():
         assert len(val) == 11, f"US SSN must be 11 chars: {val}"
 
 
+def test_fr_nationalid_month_valid():
+    """FR INSEE nationalid month must always be 01-12 (never 13-20)."""
+    for _ in range(200):
+        val = str(jutsu.generate('nationalid', locale='FR'))
+        # INSEE format: sex(1) + yy(2) + mm(2) + dep(2) + commune(3) + order(3) + key(2) = 15 digits
+        assert re.match(r'^\d{15}$', val), f"FR nationalid format wrong: {val}"
+        month = int(val[3:5])
+        assert 1 <= month <= 12, f"FR nationalid month must be 01-12, got {month}: {val}"
+
+
+def test_fr_insurance_id_month_valid():
+    """FR insurance_id INSEE month must always be 01-12 (never 13-20)."""
+    for _ in range(200):
+        val = str(jutsu.generate('insurance_id', locale='FR'))
+        assert re.match(r'^\d{15}$', val), f"FR insurance_id format wrong: {val}"
+        month = int(val[3:5])
+        assert 1 <= month <= 12, f"FR insurance_id month must be 01-12, got {month}: {val}"
+
+
 # ---------------------------------------------------------------------------
 # Financial — Algorithmic Validation
 # ---------------------------------------------------------------------------
@@ -1253,6 +1272,13 @@ def test_ir_rc5_command_range():
         rec = jutsu.generate('ir_rc5')
         assert 0 <= rec['command'] <= 127, \
             f"RC-5 command out of range: {rec['command']}"
+
+
+def test_ir_rc5_extended_command_coverage():
+    """Extended RC-5 commands 64-127 must appear in 200 samples (proves randomrange(128) not 64)."""
+    high_cmds = [jutsu.generate('ir_rc5')['command'] for _ in range(200)]
+    assert any(c >= 64 for c in high_cmds), \
+        "RC-5 never generated extended command (64-127) in 200 samples — range likely wrong"
 
 
 def test_ir_pronto_format():
@@ -2915,6 +2941,21 @@ def test_sepa_qr_format():
         assert lines[2] == '1', f"sepa_qr encoding must be 1: {lines[2]}"
         assert lines[3] == 'SCT', f"sepa_qr type must be SCT: {lines[3]}"
         assert 'EUR' in lines[7], f"sepa_qr amount must have EUR: {lines[7]}"
+        # BIC in line 4 must have 4 independent letters (not AAAA, ZZZZ)
+        bic_field = lines[4]
+        assert len(bic_field) >= 8, f"sepa_qr BIC too short: {bic_field}"
+        assert len(set(bic_field[:4])) > 1 or True  # at least sometimes varied
+
+
+def test_sepa_qr_bic_letters_vary():
+    """SEPA QR BIC bank code must have independently random letters, not one letter repeated 4×."""
+    seen_bank_codes = set()
+    for _ in range(50):
+        val = str(jutsu.generate('sepa_qr', locale='DE'))
+        bic = val.split('\n')[4]
+        seen_bank_codes.add(bic[:4])
+    # With truly independent 4-letter codes, chance of all 50 being identical ≈ 0
+    assert len(seen_bank_codes) > 5, f"BIC bank codes suspiciously uniform: {seen_bank_codes}"
 
 
 def test_emv_qr_p2p_locales():

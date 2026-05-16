@@ -285,3 +285,20 @@ class TestXmlDSig:
     def test_bulk_variety(self):
         ids = {json.loads(r)['signature_id'] for r in jutsu.bulk('xmldsig', 5)}
         assert len(ids) > 1
+
+    def test_x509_cert_starts_with_der_sequence(self):
+        """X.509 DER mock must start with ASN.1 SEQUENCE bytes (0x30 0x82).
+        Verifies _mock_x509_der() produces structurally-plausible DER, not random bytes.
+        """
+        import base64
+        for _ in range(5):
+            data = json.loads(jutsu.generate('xmldsig'))
+            xml = data['xml']
+            # Extract Base64 value between X509Certificate tags
+            import re
+            m = re.search(r'<ds:X509Certificate>([^<]+)</ds:X509Certificate>', xml)
+            assert m, "X509Certificate tag not found"
+            der = base64.b64decode(m.group(1))
+            # ASN.1 SEQUENCE tag = 0x30, long-form length = 0x82
+            assert der[0] == 0x30, f"DER must start with 0x30 (SEQUENCE), got 0x{der[0]:02x}"
+            assert der[1] == 0x82, f"DER length must use long-form 0x82, got 0x{der[1]:02x}"

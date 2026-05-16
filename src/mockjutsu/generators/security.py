@@ -124,6 +124,18 @@ def generate_x509_cert():
 
 
 def generate_pcap_hex():
+    # PCAP global header (libpcap format, RFC — tcpdump.org/linktypes.html)
+    # magic=0xa1b2c3d4, version 2.4, thiszone=0, sigfigs=0, snaplen=65535, network=1 (ETHERNET)
+    global_header = (
+        b'\xd4\xc3\xb2\xa1' +   # magic (little-endian)
+        b'\x02\x00' +            # version major = 2
+        b'\x04\x00' +            # version minor = 4
+        b'\x00\x00\x00\x00' +   # thiszone
+        b'\x00\x00\x00\x00' +   # sigfigs
+        b'\xff\xff\x00\x00' +   # snaplen = 65535
+        b'\x01\x00\x00\x00'     # network = LINKTYPE_ETHERNET
+    )
+
     dst_mac   = bytes(random.randint(0, 255) for _ in range(6))
     src_mac   = bytes(random.randint(0, 255) for _ in range(6))
     ethertype = b'\x08\x00'   # IPv4
@@ -156,7 +168,20 @@ def generate_pcap_hex():
     )
 
     frame = dst_mac + src_mac + ethertype + ip_header + tcp_header + payload
-    pairs = [f'{b:02x}' for b in frame]
+    frame_len = len(frame)
+
+    import time as _time
+    ts = int(_time.time())
+    # Packet record header: ts_sec, ts_usec, incl_len, orig_len (all LE uint32)
+    pkt_header = (
+        ts.to_bytes(4, 'little') +
+        b'\x00\x00\x00\x00' +
+        frame_len.to_bytes(4, 'little') +
+        frame_len.to_bytes(4, 'little')
+    )
+
+    raw = global_header + pkt_header + frame
+    pairs = [f'{b:02x}' for b in raw]
     lines = [' '.join(pairs[i:i+16]) for i in range(0, len(pairs), 16)]
     return '\n'.join(lines)
 

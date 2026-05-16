@@ -377,10 +377,7 @@ class IdentityGenerator:
             if l == 'UK':
                 return self.generate_uk_ni()
             if l == 'FR':
-                if random.random() < 0.1:
-                    month = random.randint(13, 20)
-                else:
-                    month = random.randint(1, 12)
+                month = random.randint(1, 12)
                 base = (f"{random.randrange(2) + 1}{random.randrange(60) + 40:02d}{month:02d}"
                         f"{random.randrange(95) + 1:02d}{random.randrange(999) + 1:03d}{random.randrange(999) + 1:03d}")
                 return f"{base}{97 - (int(base) % 97):02d}"
@@ -465,10 +462,7 @@ class IdentityGenerator:
             if l == 'UK': return self.generate_uk_paye()
             if l == 'DE': return self.generate_de_rvn()
             if l == 'FR':
-                if random.random() < 0.1:
-                    month = random.randint(13, 20)
-                else:
-                    month = random.randint(1, 12)
+                month = random.randint(1, 12)
                 base = (f"{random.randrange(2) + 1}{random.randrange(60) + 40:02d}{month:02d}"
                         f"{random.randrange(95) + 1:02d}{random.randrange(999) + 1:03d}{random.randrange(999) + 1:03d}")
                 return f"{base}{97 - (int(base) % 97):02d}"

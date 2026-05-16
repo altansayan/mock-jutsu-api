@@ -385,7 +385,7 @@ class IoTGenerator:
         Carrier: 36 kHz.
         """
         system  = random.choice(list(_RC5_SYSTEMS.keys()))
-        command = random.randrange(64)
+        command = random.randrange(128)   # Extended RC-5: 0-127 (7-bit via field bit)
         toggle  = random.randrange(2)
         return {
             "system":      system,
