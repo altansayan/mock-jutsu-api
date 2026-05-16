@@ -251,11 +251,34 @@ class TestIso8583AuthRequest:
 
     def test_locale_tr_currency_949(self):
         val = jutsu.generate('iso8583_auth_request', locale='TR')
-        assert 'DE049:0949' in val, f"TR locale must have currency 0949"
+        assert 'DE049:949' in val, f"TR locale must have ISO 4217 numeric 949 (n3): {val}"
 
     def test_locale_us_currency_840(self):
         val = jutsu.generate('iso8583_auth_request', locale='US')
-        assert 'DE049:0840' in val, f"US locale must have currency 0840"
+        assert 'DE049:840' in val, f"US locale must have ISO 4217 numeric 840 (n3): {val}"
+
+    def test_locale_de_currency_978(self):
+        val = jutsu.generate('iso8583_auth_request', locale='DE')
+        assert 'DE049:978' in val, f"DE locale must have ISO 4217 numeric 978 (n3): {val}"
+
+    def test_locale_uk_currency_826(self):
+        val = jutsu.generate('iso8583_auth_request', locale='UK')
+        assert 'DE049:826' in val, f"UK locale must have ISO 4217 numeric 826 (n3): {val}"
+
+    def test_de049_exactly_3_digits(self):
+        """DE049 must be exactly n3 per ISO 8583 — not 4 digits with leading zero."""
+        for locale in ['TR', 'US', 'DE', 'UK', 'RU']:
+            val = jutsu.generate('iso8583_auth_request', locale=locale)
+            lines = dict(l.split(':', 1) for l in val.strip().splitlines() if ':' in l)
+            de049 = lines.get('DE049', '')
+            assert re.match(r'^\d{3}$', de049), \
+                f"DE049 must be exactly 3 digits (ISO 8583 n3), got '{de049}' for locale {locale}"
+
+    def test_de022_varies(self):
+        """DE022 entry mode must not be hardcoded — should vary across samples."""
+        modes = {jutsu.generate('iso8583_auth_request').split('DE022:')[1].split('\n')[0]
+                 for _ in range(50)}
+        assert len(modes) > 1, f"DE022 entry mode never varies: {modes}"
 
 
 class TestIso8583AuthResponse:

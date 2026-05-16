@@ -52,6 +52,27 @@ YANLIŞ: "çalışıyor gibi görünüyor" ile bırak
 DOĞRU:  Gerçek-dünya değerini (IBM CUSIP, Apple ISIN) hardcode et
 ```
 
+## Çok-Alanlı Format Tipleri İçin Ek Kural
+
+ISO 8583 mesajları, MT940, FHIR, EDI gibi iç yapısı olan tiplerde
+output-level regex testi YETERSİZDİR.
+
+Her alan ayrı ayrı doğrulanmalı:
+
+```
+YANLIŞ: assert 'DE049:0949' in val   # implementation'ı doğrular, standardı değil
+DOĞRU:  assert re.match(r'^\d{3}$', de049)  # ISO 8583 n3 standardını doğrular
+```
+
+### Çok-alanlı tip eklendiğinde zorunlu testler:
+
+1. **Her alan varlığı**: Bitmap'te bildirilen tüm DE'ler çıktıda var mı?
+2. **Her alan değeri standardı karşılıyor mu?** (uzunluk, format, değer aralığı)
+3. **Rastgele alanlar gerçekten rastgele mi?** (50 örnekte çeşitlilik kontrolü)
+4. **Locale bağımlı alanlar doğru mu?** (TR→949, US→840, DE→978 gibi)
+
+Aynı testler hem Python (test_cardphysics.py) hem Java (FormatValidationTest.java) tarafında yazılmalı.
+
 ## Commit Mesajı Formatı
 
 ```

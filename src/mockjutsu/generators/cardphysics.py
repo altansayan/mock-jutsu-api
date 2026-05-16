@@ -12,14 +12,16 @@ from datetime import datetime
 from .financial import FinancialGenerator
 
 
-# ISO 4217 currency (BCD code, name) keyed by mock-jutsu locale
+# ISO 4217 currency: (DE049 numeric n3, alphabetic name) keyed by mock-jutsu locale
+# DE049 is n3 per ISO 8583 — 3 digits, no leading zero prefix.
+# NOTE: EMV chip tag 5F2A uses 2-byte BCD (e.g. 0x09 0x49 for TRY) — that lives in hardware.py.
 _CURRENCY = {
-    'TR': ('0949', 'TRY'),
-    'DE': ('0978', 'EUR'),
-    'FR': ('0978', 'EUR'),
-    'UK': ('0826', 'GBP'),
-    'US': ('0840', 'USD'),
-    'RU': ('0643', 'RUB'),
+    'TR': ('949', 'TRY'),
+    'DE': ('978', 'EUR'),
+    'FR': ('978', 'EUR'),
+    'UK': ('826', 'GBP'),
+    'US': ('840', 'USD'),
+    'RU': ('643', 'RUB'),
 }
 
 # EMV AID pool (Visa, MC, JCB, Amex) — public application identifiers
