@@ -40,3 +40,6 @@ tests/test_results.txt
 
 # HOW-TO backup (local only)
 HOW-TO-BACKUP/
+
+# Generated test stats (written by run_all_checks.py, not source code)
+compliance/test_stats.json
