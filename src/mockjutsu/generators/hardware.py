@@ -55,7 +55,7 @@ class HardwareGenerator:
         """
         pan = self.financial.generate_card_number('visa')
         current_yy = datetime.now().year % 100
-        yy = random.randint(current_yy, current_yy + 10)
+        yy = random.randint(current_yy + 1, current_yy + 10)
         mm = random.randint(1, 12)
         expiry = f"{yy:02d}{mm:02d}"
         sc1 = random.choice(['1', '2'])

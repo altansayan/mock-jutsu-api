@@ -39,10 +39,10 @@ def _check_digit(s: str) -> str:
 # ── Data pools ────────────────────────────────────────────────────────────────
 
 _COUNTRIES = [
-    'TUR', 'USA', 'GBR', 'DEU', 'FRA', 'RUS', 'CHN', 'JPN', 'ITA', 'ESP',
+    'TUR', 'USA', 'GBR', 'D<<', 'FRA', 'RUS', 'CHN', 'JPN', 'ITA', 'ESP',
     'CAN', 'AUS', 'BRA', 'IND', 'KOR', 'NLD', 'BEL', 'SWE', 'NOR', 'CHE',
     'AUT', 'POL', 'CZE', 'HUN', 'PRT', 'GRC', 'FIN', 'DNK', 'UKR', 'IRN',
-]
+]  # Germany uses ICAO code 'D' (padded 'D<<'), not ISO 3166-1 alpha-3 'DEU'
 
 _SURNAMES = [
     'SMITH', 'JOHNSON', 'WILLIAMS', 'BROWN', 'JONES', 'GARCIA', 'MILLER',
@@ -165,7 +165,7 @@ def generate_mrz_td3() -> str:
         'lines':      [line1, line2],
         'surname':    surname,
         'given_names': given,
-        'nationality': nationality,
+        'nationality': nationality.rstrip('<'),
         'doc_number':  doc_no,
         'dob':         dob,
         'sex':         sex,
@@ -212,11 +212,12 @@ def generate_mrz_td1() -> str:
 
     opt2     = '<' * 11
 
-    # Composite: line1[5:30] + line2[0:7] + line2[8:29] (sex at [7] excluded)
+    # ICAO 9303-5: composite = line1[5:30] + line2[0:7] + line2[8:15] + line2[18:29]
+    # sex (pos 7) and nationality (pos 15:18) are excluded per standard
     composite_input = (line1[5:30] +
                        dob + cd_dob +
                        expiry + cd_exp +
-                       nationality + opt2)
+                       opt2)
     cd_comp = _check_digit(composite_input)  # line2[29]
 
     line2 = (dob + cd_dob +
@@ -236,7 +237,7 @@ def generate_mrz_td1() -> str:
         'lines':       [line1, line2, line3],
         'surname':     surname,
         'given_names': given,
-        'nationality': nationality,
+        'nationality': nationality.rstrip('<'),
         'doc_number':  doc_no,
         'dob':         dob,
         'sex':         sex,

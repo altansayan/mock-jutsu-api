@@ -89,10 +89,14 @@ class IdentityGenerator:
 
     @staticmethod
     def generate_de_steuer_id():
-        """German Steuerliche Identifikationsnummer — 11 digits, ISO 7064 MOD 11,10 checksum."""
+        """German Steuerliche Identifikationsnummer — 11 digits, ISO 7064 MOD 11,10 checksum.
+        BZSt rule: among first 10 digits, exactly one digit must appear 2 or 3 times;
+        all other digits appear at most once (per stdnum.de.idnr specification).
+        """
         while True:
             base = [random.randrange(9) + 1] + [random.randrange(10) for _ in range(9)]
-            if max(Counter(base).values()) > 3:
+            counts = [c for c in Counter(base).values() if c > 1]
+            if len(counts) != 1 or counts[0] not in (2, 3):
                 continue
             product = 10
             for d in base:
@@ -194,17 +198,44 @@ class IdentityGenerator:
         serial = random.randrange(9999) + 1 # 0001-9999 (0000 invalid per SSA)
         return f"{area:03d}-{group:02d}-{serial:04d}"
 
+    # IRS campus-assigned EIN prefixes (invalid ones excluded per stdnum.us.ein numdb)
+    _VALID_EIN_PREFIXES = [
+        10, 11, 12, 13, 14, 15, 16, 20, 21, 22, 23, 24, 25, 26, 27,
+        30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48,
+        50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68,
+        71, 72, 73, 74, 75, 76, 77, 80, 81, 82, 83, 84, 85, 86, 87, 88,
+        90, 91, 92, 93, 94, 95, 98, 99,
+    ]
+
     @staticmethod
     def generate_us_ein():
-        """US Employer Identification Number — XX-XXXXXXX."""
-        return f"{random.randrange(90) + 10}-{random.randrange(9000000) + 1000000}"
+        """US Employer Identification Number — XX-XXXXXXX, IRS campus prefix only."""
+        prefix = random.choice(IdentityGenerator._VALID_EIN_PREFIXES)
+        return f"{prefix:02d}-{random.randrange(9000000) + 1000000}"
 
     # ── UK ──────────────────────────────────────────────────────────────────────
 
     @staticmethod
     def generate_uk_utr():
-        """UK Unique Taxpayer Reference — 10 digits."""
-        return str(random.randrange(9000000000) + 1000000000)
+        """UK Unique Taxpayer Reference — 10 digits, weighted check as first digit."""
+        # weights and check map from stdnum.gb.utr
+        _weights = (6, 7, 8, 9, 10, 5, 4, 3, 2)
+        _check_map = '21987654321'
+        digits = [random.randrange(10) for _ in range(9)]
+        check = _check_map[sum(d * w for d, w in zip(digits, _weights)) % 11]
+        return check + ''.join(map(str, digits))
+
+    @staticmethod
+    def generate_gb_vat():
+        """UK VAT registration number — GB + 9 digits, mod-97 weighted checksum."""
+        _weights = (8, 7, 6, 5, 4, 3, 2)
+        # First digit ≥ 1 so 3-digit prefix ≥ 100, which allows checksum in {0, 42, 55}
+        d = [random.randrange(1, 10)] + [random.randrange(10) for _ in range(6)]
+        partial = sum(w * di for w, di in zip(_weights, d))
+        # Solve last 2 digits for target checksum 0 (deterministic, target always ≤ 96)
+        target = (-partial) % 97  # in [0, 96]
+        d7, d8 = target // 10, target % 10
+        return f"GB{''.join(map(str, d))}{d7}{d8}"
 
     @staticmethod
     def generate_uk_crn():
@@ -306,26 +337,19 @@ class IdentityGenerator:
     def generate_vat_number(locale: str) -> str:
         """EU/Global VAT number with country prefix — VIES-compatible format.
 
-        TR: TR + 10-digit VKN  |  DE: DE + 9 digits
-        FR: FR + 2 alphanumeric key chars + 9-digit SIREN
-        UK: GB + 9 digits      |  US: US + EIN-style XX-XXXXXXX
-        RU: RU + 10-digit INN
+        TR: TR + 10-digit VKN  |  DE: DE + 9 digits (ISO 7064 MOD 11,10)
+        FR: FR + mod-97 key + SIREN  |  GB/UK: GB + 9 digits (mod-97 weighted checksum)
+        US: US + EIN-style XX-XXXXXXX  |  RU: RU + 10-digit INN
         """
         l = locale.upper()
         if l == 'TR':
             return f"TR{IdentityGenerator.generate_tr_vkn()}"
         if l == 'DE':
-            first = random.randrange(1, 10)
-            rest = ''.join(str(random.randrange(10)) for _ in range(8))
-            return f"DE{first}{rest}"
+            return IdentityGenerator.generate_de_ust_id()
         if l == 'FR':
-            key = ''.join(random.choice(IdentityGenerator._FR_VAT_KEY_CHARS) for _ in range(2))
-            siren = IdentityGenerator.generate_fr_siren()
-            return f"FR{key}{siren}"
-        if l == 'UK':
-            first = random.randrange(1, 10)
-            rest = ''.join(str(random.randrange(10)) for _ in range(8))
-            return f"GB{first}{rest}"
+            return IdentityGenerator.generate_fr_tva()
+        if l in ('UK', 'GB'):
+            return IdentityGenerator.generate_gb_vat()
         if l == 'US':
             prefix = random.randrange(10, 100)
             suffix = random.randrange(1000000, 10000000)

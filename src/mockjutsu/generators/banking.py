@@ -9,7 +9,7 @@ from datetime import datetime, timezone, timedelta
 
 # Public BIC/SWIFT codes — published by SWIFT (swift.com) and individual banks
 BIC_CODES = {
-    "TR": ["TCZBTR2A", "ISCTRISM", "AKBKTRIS", "HLBKTRIS", "TVBATR2A", "DENITRIS", "TEBUTRIS", "GRNBTRIS"],
+    "TR": ["TCZBTR2A", "ISBKTRIS", "AKBKTRIS", "HLBKTRIS", "TVBATR2A", "DENITRIS", "TEBUTRIS", "GRNBTRIS"],
     "US": ["CHASUS33", "BOFAUS3N", "CITIUS33", "WFBIUS6S", "USBKUS44", "PNCCUS33", "SVBKUS6S"],
     "UK": ["BUKBGB22", "HBUKGB4B", "LOYDGB2L", "NWBKGB2L", "ABBYGB2L", "RBOSGB2L", "HLFXGB21"],
     "DE": ["DEUTDEDB", "COBADEFF", "HYVEDEMM", "GENODEFF", "BELADEBE", "INGDDEFF", "DRESDEFF"],
