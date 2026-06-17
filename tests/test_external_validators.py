@@ -5,7 +5,7 @@ Doğrulama Yol Haritası — Faz 2
 Her test N_SAMPLES örnek üretir ve kütüphane ile parse/validate eder.
 
 Çalıştır (dev-deps gerekli):
-    pip install python-stdnum schwifty bip-utils python-mrz lxml PyJWT \
+    pip install python-stdnum schwifty bip-utils mrz lxml PyJWT \
                 cryptography mt940 hl7 fhir.resources simplefix netaddr \
                 icd10-cm fido2 signxml pynacha cbor2
     pytest tests/test_external_validators.py -v
