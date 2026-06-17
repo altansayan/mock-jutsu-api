@@ -68,6 +68,10 @@ class HardwareGenerator:
     def generate_chip_data(self, locale: str = 'TR') -> str:
         """Simulated EMV chip (ICC) TLV data (Tag-Length-Value).
         Currency (5F2A) is locale-aware; ISO 4217 BCD encoding.
+
+        MOCK LIMITATION: cryptographic tags (9F26 ARQC, 9F10 IAD, 9F36 ATC) are absent.
+        Real chip data requires card-specific key derivation inside the chip.
+        Use for format/structure tests only — will NOT pass EMV terminal authentication.
         """
         currency_tlv = _CURRENCY_TLV.get(locale, _CURRENCY_TLV['TR'])
         tags = [
@@ -83,6 +87,12 @@ class HardwareGenerator:
     def generate_pin_block(self) -> str:
         """ISO 9564-1 Format 0 PIN block — 16 hex nibbles.
         Structure: [0][L][P1..PL][F..F] where L=PIN len, P=digit, F=0xF fill.
+
+        MOCK LIMITATION: this is the plaintext PIN block *before* XOR encryption
+        with the PAN block. Real PIN blocks transmitted over payment networks are
+        always XOR-encrypted with a PAN block and then 3DES/AES encrypted under a
+        PIN Encryption Key (PEK) stored in an HSM. This output is safe for format
+        testing but must NOT be used in real payment message flows.
         """
         pin_len = random.randint(4, 6)
         pin_digits = [random.randint(0, 9) for _ in range(pin_len)]
@@ -93,6 +103,8 @@ class HardwareGenerator:
     def generate_pin_block_fmt3(self) -> str:
         """ISO 9564-1 Format 3 PIN block — 16 hex nibbles.
         Same as Format 0 but format nibble = 3 and fill = random decimal digits 0-9.
+
+        MOCK LIMITATION: plaintext pre-XOR block. Same constraints as generate_pin_block().
         """
         pin_len = random.randint(4, 6)
         pin_digits = [random.randint(0, 9) for _ in range(pin_len)]

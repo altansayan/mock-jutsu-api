@@ -171,13 +171,48 @@ class IdentityGenerator:
 
     @staticmethod
     def generate_tr_sgk():
-        """Turkish SGK Employer Registration — il-sequence-unit.branch-sub."""
+        """Turkish SGK Employer Registration Number — il-sequence-unit.branch-sub.
+        Format: XX-XXXXXXX-X.XX-XX (province-sequence-unit.branch-subbranch).
+        This is the *employer* registration number, not the individual health ID.
+        For individual insurance ID use insurance_id[TR] which returns TCKN-format.
+        """
         il   = random.randrange(81) + 1
         seq  = random.randrange(9999999) + 1
         unit = random.randrange(9) + 1
         sub  = random.randrange(99) + 1
         sube = random.randrange(99) + 1
         return f"{il:02d}-{seq:07d}-{unit}.{sub:02d}-{sube:02d}"
+
+    @staticmethod
+    def _generate_tr_individual_insurance():
+        """Turkish individual social/health insurance ID.
+        Turkey uses TC Kimlik No (TCKN) as the primary SGK/health insurance identifier.
+        Format: 11-digit, first digit 1-9, MOD-11 checksum (same algorithm as TCKN).
+        """
+        d = [random.randrange(9) + 1] + [random.randrange(10) for _ in range(8)]
+        d9 = ((7 * (d[0] + d[2] + d[4] + d[6] + d[8])) -
+              (d[1] + d[3] + d[5] + d[7])) % 10
+        d10 = (d[0] + d[1] + d[2] + d[3] + d[4] +
+               d[5] + d[6] + d[7] + d[8] + d9) % 10
+        return "".join(map(str, d + [d9, d10]))
+
+    @staticmethod
+    def _generate_uk_nhs_number():
+        """UK NHS Number — 10 digits, weighted Mod-11 checksum (weights 10→2).
+        Format: XXX XXX XXXX (displayed with spaces).
+        """
+        while True:
+            base = [random.randrange(10) for _ in range(9)]
+            weights = [10, 9, 8, 7, 6, 5, 4, 3, 2]
+            total = sum(d * w for d, w in zip(base, weights))
+            remainder = total % 11
+            if remainder == 1:
+                continue
+            check = 0 if remainder == 0 else 11 - remainder
+            if check == 10:
+                continue
+            digits = "".join(map(str, base)) + str(check)
+            return f"{digits[:3]} {digits[3:6]} {digits[6:]}"
 
     @staticmethod
     def generate_tr_mersis():
@@ -481,9 +516,16 @@ class IdentityGenerator:
             return self.generate_tr_mersis()
 
         if dt == 'insurance_id':
-            if l == 'TR': return self.generate_tr_sgk()
+            # TR: Individual social/health insurance ID = TCKN-style 11-digit number
+            #     (Turkey uses TC Kimlik No as the primary SGK/health insurance identifier)
+            # US: SSN is the standard health/social insurance identifier (Medicare, Medicaid)
+            # UK: NHS Number (10-digit, weighted checksum) — the individual health ID
+            # DE: Rentenversicherungsnummer — the statutory social insurance number
+            # FR: Numéro de sécurité sociale (NIR) — French social insurance number
+            # RU: SNILS — Russian individual insurance account number
+            if l == 'TR': return self._generate_tr_individual_insurance()
             if l == 'US': return self.generate_us_ssn()
-            if l == 'UK': return self.generate_uk_paye()
+            if l == 'UK': return self._generate_uk_nhs_number()
             if l == 'DE': return self.generate_de_rvn()
             if l == 'FR':
                 month = random.randint(1, 12)

@@ -195,9 +195,21 @@ class MetaGenerator:
         return f"{random.randrange(21) + 100}.0"
 
     def _bearer_token(self):
+        # MOCK LIMITATION: signature is random bytes — will NOT pass cryptographic
+        # verification. Use for format/structure tests only, not for real JWT middleware.
+        now = int(time.time())
         header  = base64.urlsafe_b64encode(b'{"alg":"HS256","typ":"JWT"}').decode().rstrip('=')
-        payload_str = f'{{"sub":"{uuid.uuid4()}","iat":{int(time.time())}}}'
-        payload = base64.urlsafe_b64encode(payload_str.encode()).decode().rstrip('=')
+        payload_dict = {
+            "sub": str(uuid.uuid4()),
+            "iss": "https://auth.mockjutsu.dev",
+            "aud": "mockjutsu-api",
+            "iat": now,
+            "exp": now + 3600,
+        }
+        import json as _json
+        payload = base64.urlsafe_b64encode(
+            _json.dumps(payload_dict, separators=(',', ':')).encode()
+        ).decode().rstrip('=')
         sig_bytes = secrets.token_bytes(32)
         signature = base64.urlsafe_b64encode(sig_bytes).decode().rstrip('=')
         return f"Bearer {header}.{payload}.{signature}"
@@ -329,8 +341,10 @@ class MetaGenerator:
         # ── Security / API types ─────────────────────────────────────────────
 
         if dt == 'api_key':
+            # Prefix 'mjk-' (MockJutsuKey) avoids triggering secret scanners
+            # (GitGuardian, GitHub Push Protection, Snyk) that flag 'sk-' as an OpenAI key.
             suffix = "".join(secrets.choice(_API_KEY_CHARS) for _ in range(48))
-            return f"sk-{suffix}"
+            return f"mjk-{suffix}"
 
         if dt == 'totp_code':
             return f"{random.randrange(1000000):06d}"

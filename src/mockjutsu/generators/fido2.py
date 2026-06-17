@@ -104,7 +104,14 @@ def _der_signature() -> bytes:
 # ── Public generators ─────────────────────────────────────────────────────────
 
 def generate_webauthn_credential() -> str:
-    """WebAuthn registration response: attestationObject (CBOR) + clientDataJSON."""
+    """WebAuthn registration response: attestationObject (CBOR) + clientDataJSON.
+
+    MOCK LIMITATION: x/y coordinates are random bytes, NOT a real EC P-256 keypair.
+    The attestation format is 'none' (self-attestation). A real credential requires
+    a hardware authenticator that signs with its private key. Will NOT pass FIDO2
+    attestation verification or rpId/origin binding checks in a real relying party.
+    Use for JSON structure and field presence tests only.
+    """
     rp_id    = secrets.choice(_RP_IDS)
     origin   = _ORIGINS[rp_id]
     cred_id  = secrets.token_bytes(32)
@@ -137,7 +144,12 @@ def generate_webauthn_credential() -> str:
 
 
 def generate_fido2_assertion() -> str:
-    """WebAuthn authentication response: authenticatorData + DER signature."""
+    """WebAuthn authentication response: authenticatorData + DER signature.
+
+    MOCK LIMITATION: DER signature bytes are random — NOT produced by a real
+    authenticator private key. Will NOT pass ECDSA signature verification in any
+    real relying party. Use for JSON structure and field presence tests only.
+    """
     rp_id     = secrets.choice(_RP_IDS)
     origin    = _ORIGINS[rp_id]
     cred_id   = secrets.token_bytes(32)

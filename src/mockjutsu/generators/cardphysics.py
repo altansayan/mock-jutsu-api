@@ -63,7 +63,12 @@ class CardPhysicsGenerator:
     # ── EMV Cryptograms ─────────────────────────────────────────────────────
 
     def emv_arqc(self) -> str:
-        """Application Request Cryptogram (EMV tag 9F26) — 8 bytes / 16 hex."""
+        """Application Request Cryptogram (EMV tag 9F26) — 8 bytes / 16 hex.
+
+        MOCK LIMITATION: random bytes, NOT a real cryptogram. Genuine ARQC is
+        derived inside the card chip using card-specific session keys (MKAC, SKac).
+        Will NOT pass issuer ARQC verification. Use for field presence / format tests.
+        """
         return secrets.token_hex(8).upper()
 
     def emv_atc(self) -> str:
@@ -74,6 +79,9 @@ class CardPhysicsGenerator:
         """Issuer Application Data (EMV tag 9F10) — 11 bytes / 22 hex.
         Layout: 0A(len) | DKI(1B) | CVN(1B) | CVR(2B) | ADD(4B) | PAD(2B)
         CVN values: 0x10=CVN10 (Visa legacy), 0x1A=CVN17, 0x22=CVN18
+
+        MOCK LIMITATION: CVR/ADD fields are random. Real IAD is issuer-computed
+        and verified during ARQC validation. Use for TLV structure tests only.
         """
         dki = random.randint(1, 3)
         cvn = random.choice([0x10, 0x1A, 0x22])
@@ -185,7 +193,13 @@ class CardPhysicsGenerator:
     # ── ATM / POS ───────────────────────────────────────────────────────────
 
     def atm_session(self, locale: str = 'TR') -> str:
-        """ATM session data record (ISO 8583-compatible fields) as JSON string."""
+        """ATM session data record (ISO 8583-compatible fields) as JSON string.
+
+        MOCK LIMITATION: auth_code and arqc are randomly generated and carry no
+        cryptographic binding to any issuer or terminal. A real ATM session requires
+        HSM-derived session keys and message authentication codes (MAC). Use for
+        field presence, JSON structure, and currency/locale mapping tests only.
+        """
         curr_code, curr_name = _CURRENCY.get(locale, _CURRENCY['TR'])
         pan        = self._fin.generate_card_number('visa')
         masked_pan = f"{pan[:4]} **** **** {pan[-4:]}"
@@ -219,7 +233,12 @@ class CardPhysicsGenerator:
         return json.dumps(data)
 
     def pos_receipt(self, locale: str = 'TR') -> str:
-        """POS receipt formatted text (40-char wide)."""
+        """POS receipt formatted text (40-char wide).
+
+        MOCK LIMITATION: auth_code is a fictional MOCKJ-prefixed value. A real
+        receipt auth code is issued by the card issuer during online authorization.
+        Suitable for UI/print layout tests; will NOT match real issuer auth records.
+        """
         _, curr_name = _CURRENCY.get(locale, _CURRENCY['TR'])
         pan        = self._fin.generate_card_number('visa')
         masked_pan = f"**** **** **** {pan[-4:]}"

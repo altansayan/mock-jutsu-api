@@ -281,8 +281,11 @@ class FinancialMarketsGenerator:
     def _psd2_consent(self, locale: str = 'UK', amount=None) -> str:
         """UK Open Banking v3.1 Payment Consent — compact JWS (header.payload.signature).
 
-        Header claims follow RFC 7797 (b64=false, detached) and OB Security Profile.
-        Signature: HMAC-SHA256 over signing_input with ephemeral 32-byte key.
+        Header: alg=PS256 per OB Security Profile v3.1 §6.3.
+        MOCK LIMITATION: signature bytes are random — the private key does not exist.
+        A real PSD2 JWS is signed by an eIDAS-qualified certificate held by the PISP.
+        Will NOT pass signature verification in any real Open Banking environment.
+        Use for header/claim structure tests only.
         """
         loc = locale if locale in _PSD2_CURRENCY else 'UK'
         currency = _PSD2_CURRENCY[loc]
