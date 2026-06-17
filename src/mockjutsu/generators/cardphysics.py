@@ -204,7 +204,7 @@ class CardPhysicsGenerator:
             "terminal_location": f"MOCKJ Bank Branch {random.randint(1, 99)}",
             "card_scheme":       "VISA",
             "masked_pan":        masked_pan,
-            "expiry":            f"{exp_yy:02d}/{exp_mm:02d}",
+            "expiry":            f"{exp_mm:02d}/{exp_yy:02d}",
             "transaction_type":  random.choice(["CASH_WITHDRAWAL", "BALANCE_INQUIRY", "MINI_STATEMENT"]),
             "amount":            f"{amount:.2f}",
             "currency":          curr_name,

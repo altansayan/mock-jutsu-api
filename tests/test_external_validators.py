@@ -1075,3 +1075,171 @@ class TestMsisdn:
                 except Exception:
                     results.append(False)
         _assert_all("msisdn", results)
+
+
+# ─── Fintech Critical Types ──────────────────────────────────────────────────
+
+
+class TestFintechCritical:
+
+    def test_atm_session_expiry_format(self):
+        """atm_session expiry must be MM/YY (card standard), not YY/MM."""
+        import re
+        results = []
+        for v in _gen("atm_session"):
+            try:
+                obj = json.loads(v)
+                expiry = obj["expiry"]
+                # MM/YY: month 01-12, year 2 digits
+                m = re.match(r'^(0[1-9]|1[0-2])/(\d{2})$', expiry)
+                results.append(m is not None)
+            except Exception:
+                results.append(False)
+        _assert_all("atm_session expiry MM/YY", results)
+
+    def test_atm_session_mockj_marker(self):
+        """atm_session must contain MOCKJ safety marker in session_id and auth_code."""
+        results = []
+        for v in _gen("atm_session"):
+            try:
+                obj = json.loads(v)
+                has_marker = (
+                    "MOCKJ" in obj.get("session_id", "") and
+                    "MOCKJ" in obj.get("auth_code", "")
+                )
+                results.append(has_marker)
+            except Exception:
+                results.append(False)
+        _assert_all("atm_session MOCKJ marker", results)
+
+    def test_pos_receipt_mockj_marker(self):
+        """pos_receipt must contain MOCKJ safety marker."""
+        results = []
+        for v in _gen("pos_receipt"):
+            try:
+                results.append("MOCKJ" in v)
+            except Exception:
+                results.append(False)
+        _assert_all("pos_receipt MOCKJ marker", results)
+
+    def test_3ds_cavv_base64_20bytes(self):
+        """3ds_cavv must be a valid base64 string encoding exactly 20 bytes (EMV 3DS)."""
+        import base64
+        results = []
+        for v in _gen("3ds_cavv"):
+            try:
+                decoded = base64.b64decode(v)
+                results.append(len(decoded) == 20)
+            except Exception:
+                results.append(False)
+        _assert_all("3ds_cavv base64 20-byte", results)
+
+    def test_3ds_eci_visa_values(self):
+        """3ds_eci for Visa must be one of 05, 06, 07 (EMVCo 3DS ECI spec)."""
+        valid_visa = {"05", "06", "07"}
+        results = []
+        for v in [jutsu.generate("3ds_eci", network="visa") for _ in range(N)]:
+            results.append(v in valid_visa)
+        _assert_all("3ds_eci Visa codes", results)
+
+    def test_3ds_eci_mastercard_values(self):
+        """3ds_eci for Mastercard must be one of 02, 01, 00 (EMVCo 3DS ECI spec)."""
+        valid_mc = {"02", "01", "00"}
+        results = []
+        for v in [jutsu.generate("3ds_eci", network="mc") for _ in range(N)]:
+            results.append(v in valid_mc)
+        _assert_all("3ds_eci Mastercard codes", results)
+
+    def test_sepa_qr_header(self):
+        """sepa_qr must start with BCD header per EPC QR Code Guideline v2.1."""
+        results = []
+        for v in _gen("sepa_qr"):
+            try:
+                lines = v.strip().split("\n")
+                results.append(lines[0] == "BCD" and lines[1] == "002" and lines[3] == "SCT")
+            except Exception:
+                results.append(False)
+        _assert_all("sepa_qr EPC header", results)
+
+    def test_sepa_qr_uses_sepa_iban(self):
+        """sepa_qr must contain a SEPA-zone IBAN (GB/DE/FR), never TR/US/RU."""
+        sepa_prefixes = ("GB", "DE", "FR")
+        non_sepa_prefixes = ("TR", "US", "RU")
+        results = []
+        for locale in ["TR", "US", "RU", "DE", "FR", "UK"]:
+            for v in [jutsu.generate("sepa_qr", locale=locale) for _ in range(20)]:
+                try:
+                    lines = v.strip().split("\n")
+                    iban_line = lines[6]
+                    ok = (
+                        any(iban_line.startswith(p) for p in sepa_prefixes) and
+                        not any(iban_line.startswith(p) for p in non_sepa_prefixes)
+                    )
+                    results.append(ok)
+                except Exception:
+                    results.append(False)
+        _assert_all("sepa_qr SEPA-zone IBAN", results)
+
+    def test_emv_qr_country_code_iso3166(self):
+        """EMV QR p58 country code must be ISO 3166-1 alpha-2 (UK locale → GB, not UK)."""
+        _locale_to_iso = {
+            "TR": "TR", "DE": "DE", "FR": "FR",
+            "US": "US", "UK": "GB", "RU": "RU",
+        }
+        import re
+        results = []
+        for qr_type in ["emv_qr_p2p", "emv_qr_atm", "emv_qr_pos"]:
+            for locale, expected_cc in _locale_to_iso.items():
+                for v in [jutsu.generate(qr_type, locale=locale) for _ in range(10)]:
+                    try:
+                        m = re.search(r'5802([A-Z]{2})', v)
+                        results.append(m is not None and m.group(1) == expected_cc)
+                    except Exception:
+                        results.append(False)
+        _assert_all("emv_qr p58 ISO 3166-1 country code", results)
+
+    def test_emv_qr_crc_present(self):
+        """EMV QR must end with 6304 + 4 uppercase hex chars (CRC-16-CCITT)."""
+        import re
+        results = []
+        for qr_type in ["emv_qr_p2p", "emv_qr_atm", "emv_qr_pos"]:
+            for v in _gen(qr_type):
+                results.append(bool(re.search(r'6304[0-9A-F]{4}$', v)))
+        _assert_all("emv_qr CRC-16 trailer", results)
+
+    def test_psd2_consent_alg_ps256(self):
+        """psd2_consent JWS header must use alg=PS256 (UK OB Security Profile v3.1 §6.3)."""
+        pytest.importorskip("jwt")
+        import jwt
+        import base64
+        results = []
+        for v in _gen("psd2_consent"):
+            try:
+                obj = json.loads(v) if isinstance(v, str) and v.startswith("{") else {"jws": v}
+                jws = obj.get("jws", obj.get("consent_jws", ""))
+                # Decode header without verification
+                header_b64 = jws.split(".")[0]
+                padding = 4 - len(header_b64) % 4
+                if padding != 4:
+                    header_b64 += "=" * padding
+                header = json.loads(base64.urlsafe_b64decode(header_b64))
+                results.append(header.get("alg") == "PS256")
+            except Exception:
+                results.append(False)
+        _assert_all("psd2_consent alg=PS256", results)
+
+    def test_psd2_consent_mockj_marker(self):
+        """psd2_consent JWT payload must contain MOCKJ safety marker in ConsentId."""
+        import base64
+        results = []
+        for v in _gen("psd2_consent"):
+            try:
+                payload_b64 = v.split(".")[1]
+                padding = 4 - len(payload_b64) % 4
+                if padding != 4:
+                    payload_b64 += "=" * padding
+                payload = base64.urlsafe_b64decode(payload_b64).decode("utf-8")
+                results.append("MOCKJ" in payload)
+            except Exception:
+                results.append(False)
+        _assert_all("psd2_consent MOCKJ marker", results)

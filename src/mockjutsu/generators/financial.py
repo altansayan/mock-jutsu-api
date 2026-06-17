@@ -196,37 +196,50 @@ class FinancialGenerator:
         'RU': '643'
     }
 
+    # ISO 3166-1 alpha-2 mapping for EMVCo country code field
+    _EMV_COUNTRY_CODE = {
+        'TR': 'TR', 'DE': 'DE', 'FR': 'FR', 'US': 'US', 'UK': 'GB', 'RU': 'RU',
+    }
+    # SEPA-zone locales only (EPC QR code is SEPA-specific)
+    _SEPA_LOCALE_FALLBACK = {
+        'DE': 'DE', 'FR': 'FR', 'UK': 'UK',
+        'TR': 'DE', 'US': 'DE', 'RU': 'FR',  # non-SEPA → fallback to SEPA locale
+    }
+
     def _get_emv_locale_data(self, locale: str):
         loc = locale if locale in self._CURRENCY_CODES else 'TR'
         currency = self._CURRENCY_CODES[loc]
-        return loc, currency
+        country_code = self._EMV_COUNTRY_CODE.get(loc, loc)
+        return loc, currency, country_code
 
     def _generate_sepa_qr(self, locale: str) -> str:
-        loc = locale if locale in NAME_POOLS else 'DE'
-        names = NAME_POOLS[loc]
+        # SEPA QR (EPC QR Code Guideline v2.1) only valid for SEPA-zone IBANs
+        sepa_loc = self._SEPA_LOCALE_FALLBACK.get(locale, 'DE')
+        names = NAME_POOLS.get(sepa_loc, NAME_POOLS['DE'])
         first_name = random.choice(names[random.choice(['male', 'female'])])
         name = f"{first_name} {random.choice(names['last'])}"
-        
-        iban = self.generate_bank_account(loc)
-        bic = f"{''.join(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(4))}{loc}22"
+
+        iban = self.generate_bank_account(sepa_loc)
+        bic_cc = {'DE': 'DE', 'FR': 'FR', 'UK': 'GB'}.get(sepa_loc, 'DE')
+        bic = f"{''.join(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(4))}{bic_cc}2X"
         amount = f"{random.randrange(10, 1000)}.{random.choice(['00', '50'])}"
         reference = f"INV-{datetime.now().year}-{random.randrange(1000,9999)}"
 
         return f"BCD\n002\n1\nSCT\n{bic}\n{name}\n{iban}\nEUR{amount}\n\n{reference}\n\n"
 
     def _generate_emv_qr_p2p(self, locale: str) -> str:
-        loc, currency = self._get_emv_locale_data(locale)
+        loc, currency, country_code = self._get_emv_locale_data(locale)
         names = NAME_POOLS.get(loc, NAME_POOLS['TR'])
         first_name = random.choice(names[random.choice(['male', 'female'])])
         name = f"{first_name} {random.choice(names['last'])}"
         iban = self.generate_bank_account(loc)
         amount = f"{random.randrange(10, 5000)}.{random.choice(['00', '50'])}"
-        
+
         p00 = "000201"
         p01 = "010211"
         p53 = f"5303{currency}"
         p54 = f"54{len(amount):02d}{amount}"
-        p58 = f"5802{loc}"
+        p58 = f"5802{country_code}"
         p59 = f"59{len(name):02d}{name}"
         
         merch_info = f"01{len(iban):02d}{iban}"
@@ -238,12 +251,12 @@ class FinancialGenerator:
         return payload + crc
 
     def _generate_emv_qr_atm(self, locale: str) -> str:
-        loc, currency = self._get_emv_locale_data(locale)
-        
+        loc, currency, country_code = self._get_emv_locale_data(locale)
+
         p00 = "000201"
-        p01 = "010212" # Dynamic QR
+        p01 = "010212"
         p53 = f"5303{currency}"
-        p58 = f"5802{loc}"
+        p58 = f"5802{country_code}"
         
         atm_name = f"ATM {loc}-{random.randrange(1000, 9999)}"
         p59 = f"59{len(atm_name):02d}{atm_name}"
@@ -263,20 +276,20 @@ class FinancialGenerator:
         return payload + crc
 
     def _generate_emv_qr_pos(self, locale: str) -> str:
-        loc, currency = self._get_emv_locale_data(locale)
-        
+        loc, currency, country_code = self._get_emv_locale_data(locale)
+
         p00 = "000201"
-        p01 = "010211" # Static POS or dynamic, let's use 11
-        
+        p01 = "010211"
+
         mcc = f"{random.randrange(5000, 5999)}"
         p52 = f"5204{mcc}"
-        
+
         p53 = f"5303{currency}"
-        
+
         amount = f"{random.randrange(10, 1000)}.{random.choice(['00', '25', '50', '75'])}"
         p54 = f"54{len(amount):02d}{amount}"
-        
-        p58 = f"5802{loc}"
+
+        p58 = f"5802{country_code}"
         
         names = NAME_POOLS.get(loc, NAME_POOLS['TR'])
         company_suffix = "A.S." if loc == 'TR' else ("GmbH" if loc == 'DE' else ("LLC" if loc == 'US' else "LTD"))

@@ -294,11 +294,9 @@ class FinancialMarketsGenerator:
         iat    = int(time.time())
 
         header_dict = {
-            'alg': 'HS256',
+            'alg': 'PS256',  # UK OB Security Profile v3.1 §6.3 requires PS256
             'kid': kid,
-            'b64': False,
             'crit': [
-                'b64',
                 'http://openbanking.org.uk/iat',
                 'http://openbanking.org.uk/iss',
                 'http://openbanking.org.uk/tan',
@@ -312,7 +310,7 @@ class FinancialMarketsGenerator:
         ).rstrip(b'=').decode()
 
         # ── JWS Payload ─────────────────────────────────────────────────────
-        consent_id   = f'aac-{uuid.uuid4().hex[:16]}'
+        consent_id   = f'MOCKJ-aac-{uuid.uuid4().hex[:12]}'
         instr_id     = secrets.token_hex(4).upper()
         e2e_id       = f'E2E-{secrets.token_hex(5).upper()}'
         amount_val   = round(amount, 2) if amount is not None else round(random.uniform(10.0, 9999.99), 2)

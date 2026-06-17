@@ -176,5 +176,50 @@
   "iso8583_reversal": {
     "pattern": "^MTI:0400\\nBITMAP:[0-9A-F]{16}\\nDE002:\\d{13,19}\\nDE003:000000",
     "example": "MTI:0400\nBITMAP:7238000008C08100\nDE002:4111111111111111\nDE003:000000"
+  },
+  "3ds_cavv": {
+    "pattern": "^[A-Za-z0-9+/]{28}=$",
+    "note": "base64(20 bytes) = 28 chars + 1 padding =",
+    "example": "KHEJqv2gMf2kbKVoF17qAzLDS8s="
+  },
+  "3ds_eci": {
+    "pattern": "^(05|06|07|02|01|00)$",
+    "note": "EMVCo 3DS ECI: 05/06/07=Visa/Amex/JCB; 02/01/00=MC",
+    "example": "05"
+  },
+  "sepa_qr": {
+    "pattern": "^BCD\n002\n1\nSCT\n",
+    "note": "EPC QR Code Guideline v2.1 header: BCD, version 002, SCT",
+    "example": "BCD\n002\n1\nSCT\nXXXXGB2X\nJohn Doe\nGB29NWBK60161331926819\nEUR100.00\n\nINV-2026-1234\n\n"
+  },
+  "emv_qr_p2p": {
+    "pattern": "^000201.*6304[0-9A-F]{4}$",
+    "note": "EMVCo QRCPS-MPM: starts with format indicator, ends with 6304+CRC16-CCITT",
+    "example": "00020101021126...6304ABCD"
+  },
+  "emv_qr_atm": {
+    "pattern": "^000201.*6304[0-9A-F]{4}$",
+    "note": "EMVCo QRCPS-MPM dynamic ATM QR: format indicator + CRC-16 trailer",
+    "example": "000201010212...6304EFAB"
+  },
+  "emv_qr_pos": {
+    "pattern": "^000201.*6304[0-9A-F]{4}$",
+    "note": "EMVCo QRCPS-MPM POS QR: format indicator + MCC(5204) + CRC-16 trailer",
+    "example": "000201010211...52045411...6304CDEF"
+  },
+  "atm_session": {
+    "pattern": "^\\{.*session_id.*expiry.*\\}$",
+    "note": "JSON object with session_id (MOCKJ prefix), expiry MM/YY format",
+    "example": "{session_id:MOCKJ-ATM-AF4728F4,expiry:06/27,...}"
+  },
+  "pos_receipt": {
+    "pattern": "MOCKJ",
+    "note": "40-char wide receipt text; must contain MOCKJ safety marker",
+    "example": "========================================\n   MOCKJ MERCHANT SERVICES   \n..."
+  },
+  "psd2_consent": {
+    "pattern": "^[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]*$",
+    "note": "Compact JWS (3-part base64url): alg=PS256, ConsentId contains MOCKJ",
+    "example": "eyJhbGciOiJQUzI1NiJ9.eyJEYXRhIjp7IkNvbnNlbnRJZCI6Ik1PQ0tKLWFhYy0uLi4ifX0.sig"
   }
 }

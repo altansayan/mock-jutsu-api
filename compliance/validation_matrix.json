@@ -4,10 +4,10 @@
   "_summary": {
     "total": 251,
     "by_quality": {
-      "official_vector": 45,
-      "smoke_only": 132,
+      "official_vector": 50,
+      "smoke_only": 123,
       "external_validated": 67,
-      "non_circular_structural": 5,
+      "non_circular_structural": 9,
       "circular_or_smoke": 2
     },
     "by_badge": {
@@ -579,64 +579,64 @@
       "validation_category": "yapisal_gecerlilik",
       "badge_target": "📐",
       "phase": 4,
-      "current_test_quality": "smoke_only",
+      "current_test_quality": "non_circular_structural",
       "target_validator": "format_contracts.json + spec belge okuma",
-      "test_vector_source": "manual standards review"
+      "test_vector_source": "test_external_validators.py::TestFintechCritical"
     },
     {
       "type": "emv_qr_p2p",
       "category_legacy": "Financial",
       "locale_aware": true,
       "validation_category": "yapisal_gecerlilik",
-      "badge_target": "📐",
-      "phase": 4,
-      "current_test_quality": "smoke_only",
+      "badge_target": "checksum",
+      "phase": 3,
+      "current_test_quality": "official_vector",
       "target_validator": "format_contracts.json + spec belge okuma",
-      "test_vector_source": "manual standards review"
+      "test_vector_source": "test_external_validators.py::TestFintechCritical"
     },
     {
       "type": "emv_qr_atm",
       "category_legacy": "Financial",
       "locale_aware": true,
       "validation_category": "yapisal_gecerlilik",
-      "badge_target": "📐",
-      "phase": 4,
-      "current_test_quality": "smoke_only",
+      "badge_target": "checksum",
+      "phase": 3,
+      "current_test_quality": "official_vector",
       "target_validator": "format_contracts.json + spec belge okuma",
-      "test_vector_source": "manual standards review"
+      "test_vector_source": "test_external_validators.py::TestFintechCritical"
     },
     {
       "type": "emv_qr_pos",
       "category_legacy": "Financial",
       "locale_aware": true,
       "validation_category": "yapisal_gecerlilik",
-      "badge_target": "📐",
-      "phase": 4,
-      "current_test_quality": "smoke_only",
+      "badge_target": "checksum",
+      "phase": 3,
+      "current_test_quality": "official_vector",
       "target_validator": "format_contracts.json + spec belge okuma",
-      "test_vector_source": "manual standards review"
+      "test_vector_source": "test_external_validators.py::TestFintechCritical"
     },
     {
       "type": "3ds_cavv",
       "category_legacy": "Financial",
       "locale_aware": false,
       "validation_category": "yapisal_gecerlilik",
-      "badge_target": "📐",
-      "phase": 4,
-      "current_test_quality": "smoke_only",
+      "badge_target": "checksum",
+      "phase": 3,
+      "current_test_quality": "official_vector",
       "target_validator": "format_contracts.json + spec belge okuma",
-      "test_vector_source": "manual standards review"
+      "test_vector_source": "test_external_validators.py::TestFintechCritical"
     },
     {
       "type": "3ds_eci",
       "category_legacy": "Financial",
       "locale_aware": false,
       "validation_category": "yapisal_gecerlilik",
-      "badge_target": "📐",
-      "phase": 4,
-      "current_test_quality": "smoke_only",
+      "badge_target": "checksum",
+      "phase": 3,
+      "current_test_quality": "official_vector",
       "target_validator": "format_contracts.json + spec belge okuma",
-      "test_vector_source": "manual standards review"
+      "test_vector_source": "test_external_validators.py::TestFintechCritical"
     },
     {
       "type": "cardnetwork",
@@ -2196,9 +2196,9 @@
       "validation_category": "yapisal_gecerlilik",
       "badge_target": "📐",
       "phase": 4,
-      "current_test_quality": "smoke_only",
+      "current_test_quality": "non_circular_structural",
       "target_validator": "format_contracts.json + spec belge okuma",
-      "test_vector_source": "manual standards review"
+      "test_vector_source": "test_external_validators.py::TestFintechCritical"
     },
     {
       "type": "btc_address",
@@ -2746,9 +2746,9 @@
       "validation_category": "yapisal_gecerlilik",
       "badge_target": "📐",
       "phase": 4,
-      "current_test_quality": "smoke_only",
+      "current_test_quality": "non_circular_structural",
       "target_validator": "format_contracts.json + spec belge okuma",
-      "test_vector_source": "manual standards review"
+      "test_vector_source": "test_external_validators.py::TestFintechCritical"
     },
     {
       "type": "pos_receipt",
@@ -2757,9 +2757,9 @@
       "validation_category": "yapisal_gecerlilik",
       "badge_target": "📐",
       "phase": 4,
-      "current_test_quality": "smoke_only",
+      "current_test_quality": "non_circular_structural",
       "target_validator": "format_contracts.json + spec belge okuma",
-      "test_vector_source": "manual standards review"
+      "test_vector_source": "test_external_validators.py::TestFintechCritical"
     },
     {
       "type": "edifact_orders",
