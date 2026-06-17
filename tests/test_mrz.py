@@ -270,11 +270,11 @@ class TestMrzTd1:
                 f"TD1 expiry check digit failed: {expiry}+{actual} (expected {expected})"
 
     def test_line2_composite_check_digit(self):
-        """Line 2 position 29: composite check over all of line1 + line2[0:7] + line2[8:29]."""
+        """Line 2 position 29: ICAO 9303-5 composite — sex and nationality excluded."""
         for _ in range(20):
             lines = json.loads(jutsu.generate('mrz_td1'))['lines']
             line1, line2 = lines[0], lines[1]
-            composite_input = line1[5:30] + line2[0:7] + line2[8:29]
+            composite_input = line1[5:30] + line2[0:7] + line2[8:15] + line2[18:29]
             expected = _check_digit(composite_input)
             actual = int(line2[29])
             assert actual == expected, \

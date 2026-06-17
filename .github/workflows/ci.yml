@@ -35,4 +35,25 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pytest tests/ -v --cov=mockjutsu --cov-fail-under=85
+        pytest tests/ -v --cov=mockjutsu --cov-fail-under=85 --ignore=tests/test_external_validators.py
+
+  validate-external:
+    runs-on: ubuntu-latest
+    name: "External Validator Tests (Python 3.12)"
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install mock-jutsu + validation deps
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[validation]"
+
+    - name: Run external validator tests
+      run: |
+        pytest tests/test_external_validators.py -v

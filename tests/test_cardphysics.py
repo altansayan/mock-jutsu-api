@@ -51,6 +51,52 @@ class TestTrack1Data:
             assert len(val) <= 79, f"Track 1 exceeds 79 chars: {len(val)}"
 
 
+class TestTrack2Data:
+    def test_starts_with_sentinel(self):
+        for _ in range(30):
+            val = jutsu.generate('track2_data')
+            assert val.startswith(';'), f"Missing ; sentinel: {val}"
+
+    def test_ends_with_sentinel(self):
+        for _ in range(30):
+            val = jutsu.generate('track2_data')
+            assert val.endswith('?'), f"Missing ? sentinel: {val}"
+
+    def test_has_equals_field_separator(self):
+        for _ in range(30):
+            val = jutsu.generate('track2_data')
+            body = val[1:-1]
+            assert '=' in body, f"Missing = separator: {val}"
+
+    def test_total_length_within_40(self):
+        for _ in range(50):
+            val = jutsu.generate('track2_data')
+            assert len(val) <= 40, f"Track 2 exceeds 40 chars: {len(val)}"
+
+    def test_expiry_always_future(self):
+        from datetime import datetime
+        current_yy = datetime.now().year % 100
+        current_mm = datetime.now().month
+        for _ in range(100):
+            val = jutsu.generate('track2_data')
+            body = val[1:-1]
+            rest = body.split('=', 1)[1]
+            yy = int(rest[:2])
+            mm = int(rest[2:4])
+            is_future = yy > current_yy or (yy == current_yy and mm >= current_mm)
+            assert is_future, f"Expired expiry in track2: yy={yy} mm={mm} (current {current_yy}/{current_mm:02d})"
+
+    def test_service_code_valid(self):
+        for _ in range(30):
+            val = jutsu.generate('track2_data')
+            body = val[1:-1]
+            rest = body.split('=', 1)[1]
+            sc = rest[4:7]
+            assert sc[0] in '12', f"SC1 must be 1 or 2: {sc}"
+            assert sc[1] == '0', f"SC2 must be 0: {sc}"
+            assert sc[2] in '16', f"SC3 must be 1 or 6: {sc}"
+
+
 class TestPinBlockFormat0:
     def test_length_is_16(self):
         for _ in range(50):

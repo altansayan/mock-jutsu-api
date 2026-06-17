@@ -46,6 +46,23 @@ test = [
     "playwright>=1.30",
     "pytest-playwright>=0.4",
 ]
+validation = [
+    "python-stdnum>=1.20",
+    "schwifty>=2023.0",
+    "bip-utils>=2.9",
+    "python-mrz>=0.8",
+    "lxml>=5.0",
+    "PyJWT>=2.8",
+    "cryptography>=42.0",
+    "mt940>=0.8",
+    "hl7>=0.4",
+    "fhir.resources>=7.0",
+    "simplefix>=1.0",
+    "netaddr>=1.0",
+    "icd10-cm>=0.0.5",
+    "cbor2>=5.0",
+    "fido2>=1.1",
+]
 
 [project.urls]
 Homepage = "https://github.com/altansayan/mock-jutsu-api"
