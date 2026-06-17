@@ -581,7 +581,7 @@ class TestGenerateContact:
 class TestGenerateBanking:
 
     def test_swift_tr_in_known_list(self, runner):
-        BIC_TR = ["TCZBTR2A","ISCTRISM","AKBKTRIS","HLBKTRIS","TVBATR2A",
+        BIC_TR = ["TCZBTR2A","ISBKTRIS","AKBKTRIS","HLBKTRIS","TVBATR2A",
                   "DENITRIS","TEBUTRIS","GRNBTRIS"]
         val = _gen(runner, 'swift', '--locale', 'TR')
         assert val in BIC_TR, f"SWIFT TR not in known list: {val}"
