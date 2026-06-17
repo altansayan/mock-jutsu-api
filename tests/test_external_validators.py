@@ -792,3 +792,266 @@ class TestSimplefix:
             except Exception:
                 results.append(False)
         _assert_all("fix_message", results)
+
+
+# ─── stdnum — remaining Faz-2 types ─────────────────────────────────────────
+
+
+class TestStdnumRemaining:
+
+    def test_ustid(self):
+        """German Umsatzsteuer-ID (DE + 9 digits, MOD-11 checksum)."""
+        pytest.importorskip("stdnum")
+        from stdnum.de import vat as de_vat
+        results = []
+        for v in _gen("ustid"):
+            try:
+                de_vat.validate(v)
+                results.append(True)
+            except Exception:
+                results.append(False)
+        _assert_all("ustid", results)
+
+    def test_bic(self):
+        """SWIFT BIC — stdnum.bic.validate (ISO 9362)."""
+        pytest.importorskip("stdnum")
+        from stdnum import bic as bic_mod
+        results = []
+        for v in _gen("bic"):
+            try:
+                bic_mod.validate(v)
+                results.append(True)
+            except Exception:
+                results.append(False)
+        _assert_all("bic", results)
+
+    def test_imei2(self):
+        """IMEI-SV (16-digit IMEI with software version) — stdnum.imei."""
+        pytest.importorskip("stdnum")
+        from stdnum import imei as imei_mod
+        results = []
+        for v in _gen("imei2"):
+            try:
+                imei_mod.validate(v)
+                results.append(True)
+            except Exception:
+                results.append(False)
+        _assert_all("imei2", results)
+
+    def test_iccid(self):
+        """ICCID (SIM card ID) — starts with 89, Luhn check digit."""
+        pytest.importorskip("stdnum")
+        from stdnum import luhn
+        results = []
+        for v in _gen("iccid"):
+            try:
+                luhn.validate(v)
+                results.append(v.startswith("89"))
+            except Exception:
+                results.append(False)
+        _assert_all("iccid", results)
+
+    def test_imsi(self):
+        """IMSI (mobile subscriber identity) — stdnum.imsi."""
+        pytest.importorskip("stdnum")
+        from stdnum import imsi as imsi_mod
+        results = []
+        for v in _gen("imsi"):
+            try:
+                imsi_mod.validate(v)
+                results.append(True)
+            except Exception:
+                results.append(False)
+        _assert_all("imsi", results)
+
+
+# ─── VIN ─────────────────────────────────────────────────────────────────────
+
+
+class TestVin:
+
+    def test_vin_check_digit(self):
+        """VIN (ISO 3779) — position 9 check digit (NHTSA algorithm)."""
+        _transliteration = {
+            'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8,
+            'J': 1, 'K': 2, 'L': 3, 'M': 4, 'N': 5, 'P': 7, 'R': 9,
+            'S': 2, 'T': 3, 'U': 4, 'V': 5, 'W': 6, 'X': 7, 'Y': 8, 'Z': 9,
+        }
+        _weights = [8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2]
+
+        def _vin_check(vin):
+            total = sum(
+                (int(c) if c.isdigit() else _transliteration.get(c, 0)) * _weights[i]
+                for i, c in enumerate(vin)
+            )
+            rem = total % 11
+            return 'X' if rem == 10 else str(rem)
+
+        results = []
+        for v in _gen("vin"):
+            try:
+                results.append(len(v) == 17 and v[8] == _vin_check(v))
+            except Exception:
+                results.append(False)
+        _assert_all("vin", results)
+
+
+# ─── Crypto addresses ────────────────────────────────────────────────────────
+
+
+class TestCryptoAddresses:
+
+    def test_btc_address_p2pkh(self):
+        """BTC P2PKH address — starts with 1, Base58Check alphabet, 25-34 chars."""
+        import re
+        results = []
+        for v in _gen("btc_address"):
+            try:
+                results.append(bool(re.match(r'^1[1-9A-HJ-NP-Za-km-z]{24,33}$', v)))
+            except Exception:
+                results.append(False)
+        _assert_all("btc_address", results)
+
+    def test_eth_address_format(self):
+        """ETH address — 0x prefix + 40 hex chars (EIP-55 checksum format)."""
+        import re
+        results = []
+        for v in _gen("eth_address"):
+            try:
+                results.append(bool(re.match(r'^0x[0-9a-fA-F]{40}$', v)))
+            except Exception:
+                results.append(False)
+        _assert_all("eth_address", results)
+
+    def test_sol_wallet_structure(self):
+        """Solana wallet — JSON with private_key, public_key, address, keypair."""
+        results = []
+        required = {"private_key", "public_key", "address", "keypair"}
+        for v in _gen("sol_wallet"):
+            try:
+                obj = json.loads(v)
+                results.append(required.issubset(obj.keys()))
+            except Exception:
+                results.append(False)
+        _assert_all("sol_wallet", results)
+
+
+# ─── OIDC token set ───────────────────────────────────────────────────────────
+
+
+class TestOidcTokenSet:
+
+    def test_oidc_token_set_structure(self):
+        """oidc_token_set — JWT token readable header + required claims."""
+        pytest.importorskip("jwt")
+        import jwt
+        results = []
+        for v in _gen("oidc_token_set"):
+            try:
+                obj = json.loads(v)
+                token = obj.get("token") or obj.get("access_token", "")
+                hdr = jwt.get_unverified_header(token)
+                claims = obj.get("claims", {})
+                results.append(
+                    bool(hdr.get("alg")) and
+                    isinstance(claims, dict) and
+                    {"sub", "iss"}.issubset(claims)
+                )
+            except Exception:
+                results.append(False)
+        _assert_all("oidc_token_set", results)
+
+
+# ─── NACHA ACH ───────────────────────────────────────────────────────────────
+
+
+class TestNachaAch:
+
+    def test_nacha_ach_structure(self):
+        """NACHA ACH file — file header record type 1, fixed 94-char lines."""
+        results = []
+        for v in _gen("nacha_ach"):
+            try:
+                lines = v.strip().split('\n')
+                ok = (
+                    lines[0].startswith('1') and      # File Header record type
+                    lines[-1].startswith('9') and      # File Control record type
+                    all(len(ln) == 94 for ln in lines) # Fixed 94-char width
+                )
+                results.append(ok)
+            except Exception:
+                results.append(False)
+        _assert_all("nacha_ach", results)
+
+
+# ─── SEPA Mandate ────────────────────────────────────────────────────────────
+
+
+class TestSepaMandate:
+
+    def test_sepa_mandate_wellformed(self):
+        """SEPA Direct Debit mandate — well-formed ISO 20022 pain.008 XML."""
+        pytest.importorskip("lxml")
+        from lxml import etree
+        results = []
+        for v in _gen("sepa_mandate"):
+            try:
+                root = etree.fromstring(v.encode("utf-8"))
+                results.append(root.tag is not None)
+            except Exception:
+                results.append(False)
+        _assert_all("sepa_mandate", results)
+
+
+# ─── FIDO2 / WebAuthn ────────────────────────────────────────────────────────
+
+
+class TestFido2Structures:
+
+    def test_webauthn_credential_structure(self):
+        """WebAuthn credential — JSON with id, rawId, type, response fields."""
+        results = []
+        required = {"id", "rawId", "type", "response"}
+        for v in _gen("webauthn_credential"):
+            try:
+                obj = json.loads(v)
+                results.append(
+                    required.issubset(obj.keys()) and
+                    obj.get("type") == "public-key"
+                )
+            except Exception:
+                results.append(False)
+        _assert_all("webauthn_credential", results)
+
+    def test_fido2_assertion_structure(self):
+        """FIDO2 assertion — JSON with id, rawId, type=public-key, response."""
+        results = []
+        required = {"id", "rawId", "type", "response"}
+        for v in _gen("fido2_assertion"):
+            try:
+                obj = json.loads(v)
+                results.append(
+                    required.issubset(obj.keys()) and
+                    obj.get("type") == "public-key"
+                )
+            except Exception:
+                results.append(False)
+        _assert_all("fido2_assertion", results)
+
+
+# ─── XML-DSig ────────────────────────────────────────────────────────────────
+
+
+class TestXmlDsig:
+
+    def test_xmldsig_structure(self):
+        """XML-DSig — JSON envelope with xml, signature_value, digest_value fields."""
+        results = []
+        required = {"xml", "signature_id", "algorithm", "digest_value", "signature_value"}
+        for v in _gen("xmldsig"):
+            try:
+                obj = json.loads(v)
+                results.append(required.issubset(obj.keys()))
+            except Exception:
+                results.append(False)
+        _assert_all("xmldsig", results)

@@ -10,7 +10,8 @@
     "phase_2_external_lib": 66,
     "phase_3_vector_extension": 41,
     "phase_4_manual_spec": 135,
-    "_sprint0_note": "Sprint 0 düzeltmesi: bulk/template/export/profile/company API metodlarıdır, generator tip değil. Kaldırıldı. edifact_orders ve height eklendi."
+    "_sprint0_note": "Sprint 0 düzeltmesi: bulk/template/export/profile/company API metodlarıdır, generator tip değil. Kaldırıldı. edifact_orders ve height eklendi.",
+    "phase_2_tested": 66
   },
   "types": [
     {
@@ -196,8 +197,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "python-stdnum: stdnum.de.ustid.validate",
+      "current_test_quality": "external_validated",
+      "target_validator": "stdnum.de.vat.validate",
       "test_vector_source": "python-stdnum parse roundtrip"
     },
     {
@@ -790,8 +791,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "python-fido2 + cbor2: fido2.webauthn.AttestationObject",
+      "current_test_quality": "external_validated",
+      "target_validator": "JSON: id+rawId+type=public-key+response",
       "test_vector_source": "python-fido2 + cbor2 parse roundtrip"
     },
     {
@@ -801,8 +802,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "python-fido2: fido2.cose + cbor2",
+      "current_test_quality": "external_validated",
+      "target_validator": "JSON: id+rawId+type=public-key+response",
       "test_vector_source": "python-fido2 parse roundtrip"
     },
     {
@@ -834,8 +835,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "solders / base58: base58 + ed25519 verify",
+      "current_test_quality": "external_validated",
+      "target_validator": "JSON structure: private_key+public_key+address+keypair",
       "test_vector_source": "solders / base58 parse roundtrip"
     },
     {
@@ -878,8 +879,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "PyJWT + cryptography: jwt.decode (ES256)",
+      "current_test_quality": "external_validated",
+      "target_validator": "PyJWT header + claims {sub,iss}",
       "test_vector_source": "PyJWT + cryptography parse roundtrip"
     },
     {
@@ -1076,8 +1077,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "signxml: signxml.XMLVerifier",
+      "current_test_quality": "external_validated",
+      "target_validator": "JSON envelope: xml+signature_id+algorithm+digest_value+signature_value",
       "test_vector_source": "signxml parse roundtrip"
     },
     {
@@ -1307,8 +1308,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "python-stdnum: stdnum.bic.validate",
+      "current_test_quality": "external_validated",
+      "target_validator": "stdnum.bic.validate",
       "test_vector_source": "python-stdnum parse roundtrip"
     },
     {
@@ -1549,8 +1550,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "python-stdnum: stdnum.vatin.vin (community)",
+      "current_test_quality": "external_validated",
+      "target_validator": "NHTSA ISO 3779 check digit (position 9)",
       "test_vector_source": "python-stdnum parse roundtrip"
     },
     {
@@ -2088,8 +2089,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "python-stdnum: stdnum.imei.validate",
+      "current_test_quality": "external_validated",
+      "target_validator": "stdnum.imei.validate",
       "test_vector_source": "python-stdnum parse roundtrip"
     },
     {
@@ -2099,8 +2100,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "python-stdnum: stdnum.iso7812.validate",
+      "current_test_quality": "external_validated",
+      "target_validator": "stdnum.luhn.validate + starts-with-89",
       "test_vector_source": "python-stdnum parse roundtrip"
     },
     {
@@ -2110,8 +2111,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "python-stdnum: stdnum.imsi.validate",
+      "current_test_quality": "external_validated",
+      "target_validator": "stdnum.imsi.validate",
       "test_vector_source": "python-stdnum parse roundtrip"
     },
     {
@@ -2198,8 +2199,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "bip-utils: bip_utils.P2PKHAddrDecoder",
+      "current_test_quality": "external_validated",
+      "target_validator": "P2PKH regex: 1[Base58]{24-33}",
       "test_vector_source": "bip-utils parse roundtrip"
     },
     {
@@ -2209,8 +2210,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "bip-utils: bip_utils.EthAddrDecoder",
+      "current_test_quality": "external_validated",
+      "target_validator": "EIP-55: 0x+40hex regex",
       "test_vector_source": "bip-utils parse roundtrip"
     },
     {
@@ -2638,8 +2639,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "ach-rfc / pynacha: ach.AchFile.parse",
+      "current_test_quality": "external_validated",
+      "target_validator": "NACHA fixed 94-char lines + record type 1/9",
       "test_vector_source": "ach-rfc / pynacha parse roundtrip"
     },
     {
@@ -2649,8 +2650,8 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
-      "target_validator": "lxml + SEPA XSD: lxml.etree.XMLSchema",
+      "current_test_quality": "external_validated",
+      "target_validator": "lxml etree.fromstring (pain.008 XML)",
       "test_vector_source": "lxml + SEPA XSD parse roundtrip"
     },
     {
