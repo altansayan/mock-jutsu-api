@@ -55,5 +55,313 @@
     "rule": "DE + 2 check + 18 BBAN; MOD-97-10",
     "valid": ["DE89370400440532013000"],
     "invalid": ["DE89370400440532013001"]
+  },
+  "creditor_ref": {
+    "standard": "ISO 11649:2009 SEPA Creditor Reference (Structured Creditor Reference)",
+    "reference": "https://www.iso.org/standard/50649.html",
+    "rule": "RF + 2-digit check + 3-21 char reference; reorder ref+RF+check → numeric; mod 97 == 1",
+    "valid": ["RF18539007547034", "RF04000000000000"],
+    "invalid": ["RF19539007547034", "RF05000000000000"],
+    "notes": "RF18539007547034 from SWIFT SEPA Credit Transfer Implementation Guide"
+  },
+  "imo_number": {
+    "standard": "IMO Ship Identification Number (IMO Resolution A.600(15))",
+    "reference": "https://www.imo.org/en/OurWork/MSAS/Pages/IMO-identification-number-scheme.aspx",
+    "rule": "7 digits: sum(d[i] * (7-i) for i in 0..5); check digit = sum % 10 == d[6]",
+    "valid": ["9074729", "8814275"],
+    "invalid": ["9074720", "8814276"],
+    "notes": "9074729 verified: 9×7+0×6+7×5+4×4+7×3+2×2=139 → 9; 8814275: 8×7+8×6+1×5+4×4+2×3+7×2=145 → 5"
+  },
+  "sedol": {
+    "standard": "LSE SEDOL (Stock Exchange Daily Official List) 7-character identifier",
+    "reference": "https://www.lseg.com/en/analytics/sedol",
+    "rule": "7 chars; weights=[1,3,1,7,3,9] for first 6; char_val: '0'-'9'=0-9, 'A'-'Z'=10-35; check=(10-sum%10)%10",
+    "valid": ["0263494", "3091357"],
+    "invalid": ["0263490", "3091350"],
+    "notes": "0263494=BT Group; 3091357=HSBC Holdings. Verified: 126%10→check=4; 73%10→check=7"
+  },
+  "nmea_gpgga": {
+    "standard": "NMEA 0183 GPGGA sentence (Global Positioning Fix Data)",
+    "reference": "https://www.nmea.org/content/STANDARDS/NMEA_0183_Standard",
+    "rule": "XOR of all ASCII bytes between '$' and '*' (exclusive) == 2-hex-digit checksum after '*'",
+    "valid_sentences": [
+      "$GPGGA,092750.000,5321.6802,N,00630.3372,W,1,8,1.03,61.7,M,55.2,M,,*76",
+      "$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,,*47"
+    ]
+  },
+  "nmea_gprmc": {
+    "standard": "NMEA 0183 GPRMC sentence (Recommended Minimum Navigation Information)",
+    "reference": "https://www.nmea.org/content/STANDARDS/NMEA_0183_Standard",
+    "rule": "XOR of all ASCII bytes between '$' and '*' (exclusive) == 2-hex-digit checksum after '*'",
+    "valid_sentences": [
+      "$GPRMC,220516,A,5133.82,N,00042.24,W,173.8,231.8,130694,004.2,W*70",
+      "$GPRMC,092750.000,A,5321.6802,N,00630.3372,W,0.02,31.66,280511,,,A*43"
+    ]
+  },
+  "tle_satellite": {
+    "standard": "NORAD Two-Line Element Set (TLE) checksum (Celestrak format documentation)",
+    "reference": "https://celestrak.com/NORAD/documentation/tle-fmt.php",
+    "rule": "positions 0-67: sum digits (0-9) + 1 per '-'; all other chars = 0; check = sum % 10 at position 68",
+    "valid_lines": [
+      "1 25544U 98067A   08264.51782528 -.00002182  00000-0 -11606-4 0  2927",
+      "2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.72125391563537"
+    ],
+    "notes": "ISS TLE from Celestrak format documentation page. Line 1 sum=157→7; Line 2 sum=197→7"
+  },
+  "gs1_128": {
+    "standard": "GS1-128 GTIN-14 check digit (GS1 General Specifications section 5.2)",
+    "reference": "https://www.gs1.org/standards/barcodes/gs1-128",
+    "rule": "14-digit GTIN: alternate weights 3,1 from position 0 for first 13 digits; check=(10-sum%10)%10",
+    "valid_gtin14": ["00614141000418", "09780306406157"],
+    "invalid_gtin14": ["00614141000419", "09780306406158"],
+    "notes": "00614141000418: sum=52→check=8; 09780306406157 (ISBN-13 9780306406157 as GTIN-14): sum=93→check=7"
+  },
+  "iata_ticket": {
+    "standard": "IATA Electronically Ticketed Document (ETD) Resolution 722 — ETN Mod-7 check digit",
+    "reference": "https://www.iata.org/en/publications/store/passenger-services-conference-resolutions-manual/",
+    "rule": "13-digit ETN: airline_code(3) + form_serial(9) + check(1); check = int(form_serial) % 7",
+    "valid": ["0011720097444", "0010000000000"],
+    "invalid": ["0011720097445", "0010000000001"],
+    "notes": "172009744 % 7 = 4; 000000000 % 7 = 0"
+  },
+  "ir_nec": {
+    "standard": "NEC Infrared Protocol (38kHz carrier, 32-bit frame)",
+    "reference": "https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol",
+    "rule": "32-bit (8 hex chars): byte[0]=address, byte[1]=~address, byte[2]=command, byte[3]=~command; byte[0]^byte[1]==0xFF and byte[2]^byte[3]==0xFF",
+    "valid_hex32": ["B04F30CF", "619E16E9", "00FFFF00"],
+    "invalid_hex32": ["B04F30CD", "619E16EB", "00FF0001"],
+    "notes": "0xB0^0x4F=0xFF ✓; 0x61^0x9E=0xFF ✓; 0x30^0xCF=0xFF ✓; 0xFF^0x00=0xFF ✓"
+  },
+  "ir_rc5": {
+    "standard": "Philips RC-5 Infrared Protocol (36kHz carrier, 14-bit Manchester frame)",
+    "reference": "https://www.sbprojects.net/knowledge/ir/rc5.php",
+    "rule": "14-bit word (as 16-bit): bit 13 (0x2000) = S1 start bit must always be 1; bits 12-8 = system(5), bits 5-0 = command(6)",
+    "valid_words_hex": ["340C", "2800", "3FFF"],
+    "invalid_words_hex": ["140C", "0000", "0800"],
+    "notes": "0x340C bit13=1 (S1=1,S2=1,T=0,Sys=16,Cmd=12); 0x2800 (S1=1,S2=0,T=1,Sys=0,Cmd=0)"
+  },
+  "pin_block": {
+    "standard": "ISO 9564-1:2017 Personal Identification Number — PIN Block Format 0",
+    "reference": "https://www.iso.org/standard/67648.html",
+    "rule": "16 hex nibbles: nibble[0]=0 (format), nibble[1]=PIN_len(4-12), nibbles[2..1+PIN_len]=PIN digits(0-9), remaining=0xF",
+    "valid_blocks": ["041234FFFFFFFFFF", "0512345FFFFFFFFF"],
+    "invalid_blocks": ["0112340FFFFFFFFF", "341234FFFFFFFFFF"],
+    "notes": "Format 0 filler is 0xF; Format 3 filler is random 0-9; len=1 invalid (too short)"
+  },
+  "pin_block_fmt3": {
+    "standard": "ISO 9564-1:2017 Personal Identification Number — PIN Block Format 3",
+    "reference": "https://www.iso.org/standard/67648.html",
+    "rule": "16 hex nibbles: nibble[0]=3 (format), nibble[1]=PIN_len(4-12), nibbles[2..1+PIN_len]=PIN digits(0-9), remaining=random 0-9 (not 0xF)",
+    "valid_blocks": ["3412340000000000", "3512345123456789"],
+    "invalid_blocks": ["0412340000000000", "341234FFFFFFFFFF"],
+    "notes": "Format 3 differs from Format 0 in format nibble (3 vs 0) and filler (0-9 vs 0xF)"
+  },
+  "ndef_uri": {
+    "standard": "NFC Forum Type RTD URI Record v1.0",
+    "reference": "https://nfc-forum.org/our-work/specification-releases/",
+    "rule": "Header: 0xD1 (MB|ME|SR|TNF=0x01), Type_Len=0x01, Payload_Len, Type=0x55('U'), Prefix_Code(0x00-0x23), URI_bytes",
+    "valid_hex_records": [
+      "D1010C55037777772E6E66632E636F6D",
+      "D1010855036E66632E636F6D"
+    ],
+    "invalid_hex_records": ["A1010C55037777772E6E66632E636F6D"],
+    "notes": "byte[0]=0xD1 (MB=1,ME=1,CF=0,SR=1,IL=0,TNF=001); byte[3]=0x55='U' (URI type); prefix 0x03=http://"
+  },
+  "ndef_text": {
+    "standard": "NFC Forum Type RTD Text Record v1.0",
+    "reference": "https://nfc-forum.org/our-work/specification-releases/",
+    "rule": "Header: 0xD1, Type_Len=0x01, Payload_Len, Type=0x54('T'), Status_byte, Lang_bytes(status&0x3F bytes), Text_bytes",
+    "valid_hex_records": [
+      "D101085402656E48656C6C6F",
+      "D1010754026672426F6E6A6F7572"
+    ],
+    "invalid_hex_records": ["A101085402656E48656C6C6F"],
+    "notes": "byte[3]=0x54='T' (Text type); status 0x02: UTF-8, lang_len=2; 'en'=0x656E; 'Hello'=0x48656C6C6F"
+  },
+  "apdu": {
+    "standard": "ISO/IEC 7816-4 APDU (Application Protocol Data Unit) — SELECT by AID command",
+    "reference": "https://www.iso.org/standard/77180.html",
+    "rule": "SELECT AID: CLA=0x00, INS=0xA4, P1=0x04 (by name), P2=0x00, Lc=AID_len, Data=AID; EMVCo RID prefix A0000000",
+    "valid_select_apdus": [
+      "00A4040007A0000000031010",
+      "00A4040007A0000000041010"
+    ],
+    "invalid_select_apdus": ["01A4040007A0000000031010", "00A5040007A0000000031010"],
+    "notes": "INS=0xA4 (SELECT); P1=0x04 (select by name); AID A0000000031010=Visa Credit; A0000000041010=MC Credit"
+  },
+  "epc": {
+    "standard": "GS1 EPC SGTIN-96 Tag Data Standard v2.0 (96-bit binary RFID encoding)",
+    "reference": "https://www.gs1.org/standards/epc-rfid/tds",
+    "rule": "96-bit (24 hex chars): byte[0]=0x30 (SGTIN-96 header); bits 8-10=filter(3), bits 11-13=partition(0-6), then company+item+serial fields",
+    "valid_hex96": [
+      "302D2DBD0B4A5B0000001A85",
+      "3034257BF6B7200000BC614E"
+    ],
+    "invalid_hex96": ["A02D2DBD0B4A5B0000001A85", "102D2DBD0B4A5B0000001A85"],
+    "notes": "Header 0x30=SGTIN-96; invalid header 0xA0 and 0x10 rejected; bits 8-10 filter, bits 11-13 partition"
+  },
+  "rfid_uid": {
+    "standard": "ISO/IEC 14443-3A RFID UID — 7-byte format (Type A Anticollision)",
+    "reference": "https://www.iso.org/standard/73596.html",
+    "rule": "7 bytes (14 hex chars): byte[0] = manufacturer byte (0x04=NXP MIFARE, 0x08=Infineon, 0x02=STM); bytes 1-6 = CSPRNG serial",
+    "valid_uids": ["04A1B2C3D4E5F6", "04123456789ABC", "08AABBCCDDEEFF"],
+    "invalid_uids": ["04A1B2C3D4E5", "04A1B2C3D4E5F6GH"],
+    "notes": "14443-3A 7-byte UID: manufacturer byte 0x04=NXP is most common; 4-byte UIDs (8 hex) also valid per standard but generator uses 7-byte"
+  },
+  "nfc_uid": {
+    "standard": "NFC Forum Digital Protocol — Tag Type 2 UID (ISO 14443-3A 7-byte)",
+    "reference": "https://nfc-forum.org/our-work/specification-releases/",
+    "rule": "7 bytes (14 hex chars): same format as rfid_uid; NFC Forum uses ISO 14443-3A UIDs for Type 2 tags",
+    "valid_uids": ["04B3C4D5E6F7A8", "04FFEEDDCCBBAA"],
+    "invalid_uids": ["04B3C4D5E6F7", "04B3C4D5E6F7A8B9C0"],
+    "notes": "NFC Type 2 (MIFARE Ultralight, NTAG) uses 7-byte ISO 14443-3A UIDs; same validation as rfid_uid"
+  },
+  "track1_data": {
+    "standard": "ISO/IEC 7813 Financial Transaction Cards — Track 1 magnetic stripe data",
+    "reference": "https://www.iso.org/standard/43317.html",
+    "rule": "Format: %B{PAN}^{NAME}^{YYMM}{SC}{DD}{DISC}? ; max 79 chars total; starts with %B, name separator ^, expiry YYMM, service code 3 digits",
+    "valid_examples": [
+      "%B4111111111111111^MOCKJ/TESTCARD^25121011234500000?",
+      "%B5425233430109903^MOCKJUTSU/HOLDER^26091011000000000?"
+    ],
+    "invalid_examples": ["%A4111111111111111^MOCKJ/TEST^25121011234500000?"],
+    "notes": "Starts with %B (format code B); fields separated by ^; trailing ?"
+  },
+  "track2_data": {
+    "standard": "ISO/IEC 7813 Financial Transaction Cards — Track 2 magnetic stripe data",
+    "reference": "https://www.iso.org/standard/43317.html",
+    "rule": "Format: ;{PAN}={YYMM}{SC}{DD}? ; starts with ;, field separator =, expiry YYMM, service code 3 digits, trailing ?",
+    "valid_examples": [
+      ";4111111111111111=25121011234500000?",
+      ";5425233430109903=26091011000000000?"
+    ],
+    "invalid_examples": [":4111111111111111=25121011234500000?"],
+    "notes": "Starts with ; (sentinel); field separator = (not ^); max 40 chars total"
+  },
+  "chip_data": {
+    "standard": "EMVCo Book 3 Application Specification — EMV TLV (Tag-Length-Value) data objects",
+    "reference": "https://www.emvco.com/emv-technologies/contact/",
+    "rule": "TLV encoding: Tag 9F02 (Amount Authorized 6 bytes), 9F03 (Cashback 6 bytes), 95 (TVR 5 bytes), 5F2A (Currency 2 bytes), 9A (Date 3 bytes), 9C (Type 1 byte)",
+    "known_tags": {
+      "9F02": {"name": "Amount Authorized", "length": 6, "example_hex": "000000001000"},
+      "9F03": {"name": "Amount Other", "length": 6, "example_hex": "000000000000"},
+      "95": {"name": "Terminal Verification Results", "length": 5, "example_hex": "0000000000"},
+      "5F2A": {"name": "Transaction Currency Code", "length": 2, "example_hex": "0949"},
+      "9A": {"name": "Transaction Date", "length": 3, "example_hex": "250617"},
+      "9C": {"name": "Transaction Type", "length": 1, "example_hex": "00"}
+    },
+    "valid_tlv_partial": "9F02060000000010009F0306000000000000950500000000005F2A020949",
+    "notes": "Currency 0x0949=TRY, 0x0978=EUR, 0x0826=GBP, 0x0840=USD; TVR all zeros = no issues detected"
+  },
+  "dicom_uid": {
+    "standard": "DICOM PS 3.5 — Unique Identifiers (UID) using 2.25 UUID-derived root",
+    "reference": "https://www.dicomstandard.org/",
+    "rule": "Format: 2.25.<decimal_uuid_integer>; max 64 chars; only digits and dots; each component non-empty; no leading zeros in components (except 2 and 25)",
+    "valid_uids": [
+      "2.25.329800735698586629295641978511506172918",
+      "2.25.12345678901234567890"
+    ],
+    "invalid_uids": ["2.25.", "1.2.840.10008.", "2.25.abc"],
+    "notes": "Root 2.25 = DICOM-assigned for UUID-derived UIDs; decimal integer after 2.25 represents UUID as big integer"
+  },
+  "sepa_ref": {
+    "standard": "ISO 20022 Payment Reference — SEPA Credit Transfer End-to-End Identification",
+    "reference": "https://www.swift.com/standards/iso-20022",
+    "rule": "1-35 uppercase alphanumeric characters [A-Z0-9]; no spaces; SEPA core constraint: only A-Z, 0-9, space, +, -, ?, :, (, ), ., , (no lowercase)",
+    "valid_refs": ["SEPA202502031234567890", "MOCKJUTSU20250203XREF001", "REF0000000000000000001"],
+    "invalid_refs": ["", "sepa20250203ref", "THIS_REF_HAS_AN_UNDERSCORE_WHICH_IS_INVALID"],
+    "notes": "SEPA End-to-End reference used in pain.001 and pacs.008; max 35 chars; uppercase only"
+  },
+  "totp_code": {
+    "standard": "RFC 6238 TOTP (Time-Based One-Time Password) — 6-digit numeric output",
+    "reference": "https://www.rfc-editor.org/rfc/rfc6238",
+    "rule": "6 decimal digits [0-9]{6}; range 000000-999999; output is HOTP(K, T) truncated to 6 digits mod 10^6",
+    "valid_codes": ["287082", "081804", "050471", "000000", "999999"],
+    "invalid_codes": ["28708", "2870820", "28708A", "ABCDEF"],
+    "notes": "RFC 6238 Appendix B test vectors (SHA1, secret=12345678901234567890): T=1 → 287082, T=35 → 081804"
+  },
+  "webhook_signature": {
+    "standard": "HMAC-SHA256 Webhook Signature (GitHub, Stripe, Shopify pattern)",
+    "reference": "https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries",
+    "rule": "Format: sha256=<64 lowercase hex chars>; total 71 chars; hex digest is HMAC-SHA256 of payload with secret",
+    "valid_sigs": [
+      "sha256=a7b4c8d2e1f0395726384950a1b2c3d4e5f67890abcdef1234567890abcdef12",
+      "sha256=0000000000000000000000000000000000000000000000000000000000000000"
+    ],
+    "invalid_sigs": ["sha1=a7b4c8d2e1f0395726384950", "sha256=ABCDEF", "sha256=tooshort"],
+    "notes": "Prefix 'sha256=' + 64 lowercase hex chars = 71 total chars; produced by HMAC-SHA256(secret, payload)"
+  },
+  "swift_mt103": {
+    "standard": "SWIFT MT103 Single Customer Credit Transfer",
+    "reference": "https://www.swift.com/swift-resource/210476/download",
+    "rule": "Block structure: {1:F01...}{2:I103...}{4:\\n:20:\\n:23B:\\n:32A:\\n:50K:\\n:59:\\n:71A:\\n-}; Block 4 fields must include :20: :23B: :32A: :50K: :59:",
+    "required_fields": [":20:", ":23B:", ":32A:", ":50K:", ":59:"],
+    "valid_field_values": {
+      "23B": "CRED",
+      "71A_options": ["OUR", "SHA", "BEN"],
+      "32A_format": "YYMMDD + ISO4217(3) + amount (decimal comma)"
+    },
+    "notes": "Block 1: basic header; Block 2: application header I=input; Block 4: text block with field tags; :23B: always CRED for standard payment"
+  },
+  "emv_arqc": {
+    "standard": "EMVCo Book 3 — Application Cryptogram (ARQC) EMV Tag 9F26",
+    "reference": "https://www.emvco.com/emv-technologies/contact/",
+    "rule": "8 bytes (16 hex chars); pseudorandom but cryptographically derived from ICC Dynamic Number + UN + transaction data using 3DES",
+    "valid_format": {"length_bytes": 8, "encoding": "hex", "tag": "9F26", "example": "A1B2C3D4E5F6A7B8"},
+    "format_checks": {
+      "hex_length": 16,
+      "chars": "0-9A-F"
+    },
+    "notes": "ARQC is 8 bytes (64-bit 3DES MAC); in practice any 16 uppercase hex chars is structurally valid for testing"
+  },
+  "emv_atc": {
+    "standard": "EMVCo Book 3 — Application Transaction Counter (ATC) EMV Tag 9F36",
+    "reference": "https://www.emvco.com/emv-technologies/contact/",
+    "rule": "2 bytes (4 hex chars); 16-bit big-endian counter; range 0001-9999 for active cards; 0000 = not started",
+    "valid_atcs": ["0001", "0100", "270F", "9999"],
+    "invalid_atcs": ["00", "000000", "GGGG"],
+    "notes": "ATC increments on every transaction; 4 hex chars (0000-FFFF); in practice 0001-270F (1-9999) for real cards"
+  },
+  "emv_iad": {
+    "standard": "EMVCo Issuer Application Data (IAD) EMV Tag 9F10 — Visa CVN format",
+    "reference": "https://www.emvco.com/emv-technologies/contact/",
+    "rule": "11 bytes (22 hex chars); format 0A + DKI(1B) + CVN(1B) + CVR(2B) + ADD(4B) + PAD(2B); starts with 0A",
+    "valid_iads": ["0A01059000000000000000", "0A020A0000000000000000"],
+    "invalid_iads": ["0B01059000000000000000", "0A010590000000000000"],
+    "notes": "IAD starts with 0A (length byte=10); DKI=derived key index; CVN=cryptogram version number; all zeros in ADD/PAD is valid for testing"
+  },
+  "iso8583_auth_request": {
+    "standard": "ISO 8583:1987 Financial Transaction Message — MTI 0100 Authorization Request",
+    "reference": "https://www.iso.org/standard/14572.html",
+    "rule": "4-digit MTI: '0100'; bitmap (64-bit primary as 16 hex chars) encodes present data elements; DE2=PAN, DE3=proc code, DE4=amount, DE11=STAN, DE49=currency",
+    "valid_mtis": ["0100", "0110", "0400"],
+    "bitmap_rule": "bit N set in 64-bit bitmap → Data Element N is present; primary bitmap DE1-64, secondary DE65-128 if bit 1 set",
+    "notes": "MTI 0100=auth request, 0110=auth response, 0400=reversal request; bitmap is big-endian 64-bit; DE49 is n3 (3-digit numeric)"
+  },
+  "fedwire": {
+    "standard": "Fedwire Funds Service — Tag-Value message format",
+    "reference": "https://www.frbservices.org/resources/financial-services/wires/wire-format-guidelines.pdf",
+    "rule": "Tags: {1500}=Type, {2000}=Amount, {3100}=Sender DI, {3400}=Receiver DI, {1510}=Business Function; {2000} format: 12 digits (leading zeros), amount in cents",
+    "required_tags": ["{1500}", "{2000}", "{3100}", "{3400}"],
+    "valid_tag_formats": {
+      "1500": "3-char type code (e.g. 10 = credit)",
+      "2000": "12-digit zero-padded amount in cents",
+      "3100": "9-digit ABA routing + name",
+      "3400": "9-digit ABA routing + name"
+    },
+    "notes": "Fedwire uses {} tag delimiters; {2000}000000001000 = $10.00; amount in cents, 12 digits"
+  },
+  "edifact_orders": {
+    "standard": "UN/EDIFACT D96A ORDERS message — UNH/UNT segment count validation",
+    "reference": "https://www.unece.org/trade/untdid/d96a/trsd/trsddocumentation.htm",
+    "rule": "UNT segment: first DE = segment count (including UNH and UNT); second DE = message reference matching UNH second DE; UNH+all_middle+UNT counted",
+    "valid_structure": {
+      "UNH": "UNH+1+ORDERS:D:96A:UN'",
+      "UNT_format": "UNT+{count}+{ref}' where count includes UNH and UNT themselves"
+    },
+    "example_counts": [
+      {"segments": ["UNH+1+ORDERS:D:96A:UN", "BGM+220+PO12345+9", "DTM+137:20250203:102", "UNT+4+1"], "unt_count": 4}
+    ],
+    "notes": "If message has 4 segments (UNH, BGM, DTM, UNT), UNT first DE must be 4; reference in UNT must match UNH"
   }
 }
