@@ -26,6 +26,15 @@ sys.path.insert(0, os.path.join(BASE_DIR, "src"))
 from mockjutsu.cli import _REFERENCE
 
 CONTENT_DIR = os.path.join(BASE_DIR, "HOW-TO", "content")
+
+
+def _read_test_count() -> int:
+    stats_path = os.path.join(BASE_DIR, "compliance", "test_stats.json")
+    try:
+        with open(stats_path, encoding="utf-8-sig") as f:
+            return json.load(f).get("passed", 0)
+    except (OSError, KeyError, json.JSONDecodeError):
+        return 0
 OUT_DIR     = os.path.join(BASE_DIR, "HOW-TO")
 GITHUB_BASE = "https://altansayan.github.io/mock-jutsu-api/HOW-TO"
 
@@ -978,7 +987,7 @@ def build_listing_page(lang: str) -> str:
         f'  <div class="lhdr-engine">{HEADER_ENGINE[lang]}</div>\n'
         '  <div class="lhdr-stats">\n'
         f'    <span>6 locale</span> &bull; <span>{total_fn} types</span>'
-        ' &bull; <span>4008 tests</span>\n'
+        f' &bull; <span>{_read_test_count()} tests</span>\n'
         '  </div>\n'
         '  <div class="header-links">\n'
         '    <a href="https://github.com/altansayan/mock-jutsu-api"'
@@ -1372,6 +1381,12 @@ def update_readme(readme_path: str, total: int, cat_counts: dict) -> None:
     with open(readme_path, "r", encoding="utf-8") as f:
         text = f.read()
 
+    # Test badge: tests-4008%20passed-
+    passed = _read_test_count()
+    if passed:
+        text = re.sub(r'tests-\d+%20passed-', f'tests-{passed}%20passed-', text)
+        text = re.sub(r'\d+ Automated Tests', f'{passed} Automated Tests', text)
+
     # Badge: Data%20Types-236-
     text = re.sub(r'Data%20Types-\d+-', f'Data%20Types-{total}-', text)
 
@@ -1400,7 +1415,7 @@ def update_readme(readme_path: str, total: int, cat_counts: dict) -> None:
     with open(readme_path, "w", encoding="utf-8") as f:
         f.write(text)
 
-    print(f"README:  {total} total types, group counts updated")
+    print(f"README:  {total} total types, {passed} passed tests — badge updated")
 
 
 def update_index(index_path: str, total: int) -> None:

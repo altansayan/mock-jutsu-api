@@ -7,7 +7,7 @@
 
 **Stop mocking with random strings. Start generating cryptographically valid test data.**
 
-[![Tests](https://img.shields.io/badge/tests-4008%20passed-22c55e?style=for-the-badge&logo=pytest)](./tests)
+[![Tests](https://img.shields.io/badge/tests-4252%20passed-22c55e?style=for-the-badge&logo=pytest)](./tests)
 [![Python](https://img.shields.io/badge/python-3.9%2B-3b82f6?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Data Types](https://img.shields.io/badge/Data%20Types-251-a855f7?style=for-the-badge)](https://altansayan.github.io/mock-jutsu-api/)
 [![Locales](https://img.shields.io/badge/Locales-6-ec4899?style=for-the-badge)](#-6-locales-100-real-algorithms)
@@ -28,7 +28,7 @@ QA engineers, Data Scientists, and Fintech developers are tired of test data fai
 
 ### 🔥 Features That Will Blow Your Mind
 - **Zero External Dependencies**: The core data engine uses pure Python standard library for maximum speed, security, and zero bloat.
-- **4008 Automated Tests**: We don't guess. We verify. Every single format and locale is rigorously tested against real-world algorithmic specifications.
+- **4252 Automated Tests**: We don't guess. We verify. Every single format and locale is rigorously tested against real-world algorithmic specifications.
 - **Multi-Interface**: Use it as a rich Python SDK, a blazing-fast CLI, or a FastAPI REST endpoint.
 - **Export Anywhere**: Directly export structured records as JSON, CSV, or SQL `INSERT` statements with thousands of rows in milliseconds.
 - **Context-Aware Profiles**: Generate a person, and their email, phone, national ID, and IBAN will inherently match their locale and name.

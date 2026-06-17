@@ -4,10 +4,26 @@ Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
 import io
+import json
+import os
 import sys
 
 import click
 from mockjutsu.core import jutsu
+
+
+def _read_test_count() -> int:
+    here = os.path.dirname(os.path.abspath(__file__))
+    for _ in range(6):
+        candidate = os.path.join(here, "compliance", "test_stats.json")
+        if os.path.exists(candidate):
+            try:
+                with open(candidate, encoding="utf-8-sig") as f:
+                    return json.load(f).get("passed", 0)
+            except Exception:
+                return 0
+        here = os.path.dirname(here)
+    return 0
 
 
 def _fix_utf8_streams() -> None:
@@ -51,7 +67,8 @@ def _print_banner() -> None:
     body.append("  |  ", style="dim white")
     body.append("6 Locales", style="cyan")
     body.append("  |  ", style="dim white")
-    body.append("4008 Tests\n", style="cyan")
+    test_count = _read_test_count()
+    body.append(f"{test_count} Tests\n" if test_count else "Tests\n", style="cyan")
     body.append("\n")
     body.append("Developed by: Altan Sezer Ayan (A.S.A)\n", style="dim white")
     body.append("https://github.com/altansayan\n",           style="dim blue")
