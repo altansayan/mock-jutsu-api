@@ -56,4 +56,4 @@ jobs:
 
     - name: Run external validator tests
       run: |
-        python -m pytest tests/test_external_validators.py -v
+        python -m pytest tests/test_external_validators.py -v --override-ini="addopts="
