@@ -101,19 +101,7 @@ def run_checks():
         json.dump(counts, f, indent=2)
     print(f"\n  Test stats saved: {counts['passed']} passed, "
           f"{counts['skipped']} skipped, {counts['failed']} failed")
-
-    # Step 3: Regenerate HOW-TO docs + README badge
-    print("\nStep 3: Regenerating HOW-TO docs and README badge...")
-    doc_script = os.path.join(BASE_DIR, "generate_full_docs.py")
-    result = subprocess.run(
-        [sys.executable, doc_script], cwd=BASE_DIR, env=env,
-        capture_output=True, text=True,
-    )
-    if result.returncode != 0:
-        print("  WARNING: HOW-TO generation failed (non-blocking):")
-        print(result.stderr[:500] or result.stdout[:500])
-    else:
-        print("  HOW-TO docs and README badge updated.")
+    print("  Run 'python generate_full_docs.py' to update HOW-TO + README badge.")
 
     print("\nALL CHECKS PASSED. Ready for push.")
     return 0
