@@ -145,7 +145,7 @@ class FinancialGenerator:
         if dt == 'balance':
             mn = float(kwargs.get('min', 10))
             mx = float(kwargs.get('max', 50000))
-            return round(mn + (mx - mn) * random.randrange(10 ** 8) / 10 ** 8, 2)
+            return f"{mn + (mx - mn) * random.randrange(10 ** 8) / 10 ** 8:.2f}"
 
         if dt == 'credit_score':
             return random.randrange(551) + 300  # FICO: 300–850

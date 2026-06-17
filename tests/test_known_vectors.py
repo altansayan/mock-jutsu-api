@@ -12,12 +12,12 @@ _ROOT = os.path.join(os.path.dirname(__file__), "..", "compliance")
 
 
 def _load_vectors():
-    with open(os.path.join(_ROOT, "algorithm_vectors.json")) as f:
+    with open(os.path.join(_ROOT, "algorithm_vectors.json"), encoding="utf-8") as f:
         return json.load(f)
 
 
 def _load_contracts():
-    with open(os.path.join(_ROOT, "format_contracts.json")) as f:
+    with open(os.path.join(_ROOT, "format_contracts.json"), encoding="utf-8") as f:
         return json.load(f)
 
 
