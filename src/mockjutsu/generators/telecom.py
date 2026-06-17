@@ -65,16 +65,37 @@ _ICCID_ISSUERS: dict[str, tuple[str, ...]] = {
 
 # ──────────────────────────────────────────────────────────────────────────────
 # MSISDN / E.164 locale configuration
-# (country_code_str, fixed_prefix, random_digit_count)
-# total subscriber digits = len(fixed_prefix) + random_digit_count
+# (country_code_str, valid_subscriber_prefixes, trailing_random_digits)
+# Prefixes sourced from ITU-T E.164 national numbering plans.
 # ──────────────────────────────────────────────────────────────────────────────
-_MSISDN_FORMAT: dict[str, tuple[str, str, int]] = {
-    "TR": ("+90", "5",  9),   # +90 5XX XXX XXXX  (10 subscriber digits)
-    "US": ("+1",  "",  10),   # +1  XXXXXXXXXX     (10 digits, NANP)
-    "UK": ("+44", "7",  9),   # +44 7XXX XXXXXX   (10 subscriber digits)
-    "DE": ("+49", "1",  9),   # +49 1XX XXXXXXX   (10 subscriber digits)
-    "FR": ("+33", "6",  8),   # +33 6XX XXX XXX   (9 subscriber digits)
-    "RU": ("+7",  "9",  9),   # +7  9XX XXX XXXX  (10 subscriber digits)
+_MSISDN_FORMAT: dict[str, tuple[str, list, int]] = {
+    "TR": ("+90", [
+        "505","506","507","508","509",
+        "530","531","532","533","534","535","537","538","539",
+        "540","541","542","543","544","545","546","547","548","549",
+        "551","552","553","554","555","556","559","562",
+    ], 7),  # +90 5XX-XXX-XXXX (10 subscriber digits)
+    "US": ("+1", [
+        "201","202","203","212","213","310","312","404","407",
+        "408","415","425","469","512","617","646","650","702",
+        "714","718","773","818","917","949",
+    ], 7),  # +1 NXX-NXX-XXXX; exchange first digit enforced to 2-9 in generator
+    "UK": ("+44", [
+        "7300","7400","7500","7600","7800","7900",
+    ], 6),  # +44 7XXX-XXXXXX (10 subscriber digits); 7700 omitted (reserved ranges)
+    "DE": ("+49", [
+        "160","162","163",
+        "170","171","172","173","174","175","176","177","178","179",
+    ], 7),  # +49 1XX-XXXXXXX; 15x omitted (not in phonenumbers number plan)
+    "FR": ("+33", [
+        "601","602","603","610","611","612","613","614","615",
+        "616","617","618","619","620","621","622","623","624","625",
+    ], 6),  # +33 6XX-XXX-XXX (9 subscriber digits)
+    "RU": ("+7", [
+        "901","902","903","904","905","906","907","908","909",
+        "910","911","912","913","914","915","916","917","918","919",
+        "920","921","922","923","924","925","926","927","928","929",
+    ], 7),  # +7 9XX-XXX-XXXX (10 subscriber digits)
 }
 
 
@@ -152,10 +173,19 @@ class TelecomGenerator:
         """
         MSISDN in E.164 format: +CC subscriber_number (max 15 digits after +).
         ITU-T E.164 §6 / 3GPP TS 23.003 §3.3.
+        Prefixes from national numbering plans — all generated numbers are valid E.164.
+        US/NANP: exchange first digit enforced to 2-9 (NANP rule N11/N0X reserved).
         """
-        cc, fixed_prefix, rand_len = _MSISDN_FORMAT.get(locale.upper(), _MSISDN_FORMAT["TR"])
-        subscriber = fixed_prefix + "".join(str(random.randrange(10)) for _ in range(rand_len))
-        return cc + subscriber
+        cc, prefixes, rand_len = _MSISDN_FORMAT.get(locale.upper(), _MSISDN_FORMAT["TR"])
+        prefix = random.choice(prefixes)
+        if locale.upper() == "US":
+            # NANP: exchange (first 3 of rand_len=7) first digit must be 2-9
+            exchange = str(random.randint(2, 9)) + "".join(str(random.randrange(10)) for _ in range(2))
+            line = "".join(str(random.randrange(10)) for _ in range(4))
+            digits = exchange + line
+        else:
+            digits = "".join(str(random.randrange(10)) for _ in range(rand_len))
+        return cc + prefix + digits
 
     def generate(self, data_type: str, locale: str = "TR", **_) -> str:
         dt = data_type.lower().replace("_", "")

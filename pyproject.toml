@@ -62,6 +62,7 @@ validation = [
     "icd10-cm>=0.0.5",
     "cbor2>=5.0",
     "fido2>=1.1",
+    "phonenumbers>=8.13",
 ]
 
 [project.urls]

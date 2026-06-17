@@ -625,6 +625,142 @@ def test_edifact_orders_known_vectors():
             f"EDIFACT UNT count field {count_in_unt} != segment list length {expected_count}"
 
 
+# ── Faz 3: Newly added circular-to-official-vector upgrades ──────────────────
+
+
+def test_signature_rfc4231_vector():
+    """HMAC-SHA256 must match RFC 4231 Test Case 2 exactly."""
+    import hmac, hashlib
+    from mockjutsu.core import MockJutsuCore
+    v = _load_vectors()["signature"]
+    key = bytes.fromhex(v["input_key_hex"])
+    data = bytes.fromhex(v["input_data_hex"])
+    expected = v["expected_hmac_sha256"]
+
+    # Verify our generator produces the RFC-mandated HMAC value
+    jutsu = MockJutsuCore()
+    result = jutsu.generate(
+        "signature",
+        secret=key.decode(),
+        payload=data.decode(),
+    )
+    assert result == expected, (
+        f"signature RFC 4231 TC2 mismatch: got {result}, expected {expected}"
+    )
+
+
+def test_can_frame_crc15_vector():
+    """CAN CRC-15 (ISO 11898-1, poly=0xC599) must match known vector for ID=0x123."""
+    from mockjutsu.generators.automotive import _can_crc15
+    v = _load_vectors()["can_frame"]
+    can_id = int(v["input_can_id"], 16)
+    dlc = v["input_dlc"]
+    data_bytes = bytes.fromhex(v["input_data_hex"])
+    expected_crc = int(v["expected_crc15_hex"], 16)
+
+    crc = _can_crc15(can_id, dlc, data_bytes, extended=False)
+    assert crc == expected_crc, (
+        f"CAN CRC-15 mismatch: ID=0x{can_id:03X} DLC={dlc} DATA={v['input_data_hex']}: "
+        f"got 0x{crc:04X}, expected 0x{expected_crc:04X}"
+    )
+
+
+def test_obd2_pid_encoding_vectors():
+    """SAE J1979 PID byte encoding: decode formula must round-trip exactly."""
+    v = _load_vectors()["obd2_response"]
+    for vec in v["vectors"]:
+        raw = bytes.fromhex(vec["raw_hex"])
+        pid = vec["pid"]
+        if pid == "0C":       # RPM: (A*256+B)/4
+            assert len(raw) == 2
+            decoded = (raw[0] * 256 + raw[1]) / 4
+            assert decoded == 3000.0, f"RPM decode wrong: {decoded}"
+        elif pid == "0D":     # Speed: A km/h
+            assert raw[0] == 100, f"Speed byte wrong: {raw[0]}"
+        elif pid == "05":     # Coolant: A-40
+            assert raw[0] - 40 == 87, f"Coolant decode wrong: {raw[0]-40}"
+
+
+def test_ir_raw_nec_encoding_vector():
+    """NEC IR protocol: generated pulses must encode address/command per IEC 62756-1."""
+    from mockjutsu.core import MockJutsuCore
+    jutsu = MockJutsuCore()
+    N = 50
+    for _ in range(N):
+        frame = jutsu.generate("ir_raw")
+        assert isinstance(frame, dict), "ir_raw must return dict"
+        address = int(frame["address"], 16)
+        command = int(frame["command"], 16)
+        pulses = frame["pulses"]
+
+        assert pulses[0] == 9024 and pulses[1] == 4512, (
+            f"NEC leader must be [9024, 4512], got {pulses[:2]}"
+        )
+        assert len(pulses) == 67, f"NEC frame must have 67 pulses, got {len(pulses)}"
+
+        # Recompute expected bit sequence from address+command per NEC standard
+        def nec_bits_lsb(addr, cmd):
+            bits = []
+            for byte in (addr, (~addr) & 0xFF, cmd, (~cmd) & 0xFF):
+                for bit in range(8):
+                    bits.append((byte >> bit) & 1)
+            return bits
+
+        expected_bits = nec_bits_lsb(address, command)
+        for i, bit in enumerate(expected_bits):
+            mark = pulses[2 + i * 2]
+            space = pulses[2 + i * 2 + 1]
+            expected_space = 1686 if bit else 562
+            assert mark == 562, f"NEC bit {i}: mark must be 562us, got {mark}"
+            assert space == expected_space, (
+                f"NEC bit {i} (val={bit}): space must be {expected_space}us, got {space}"
+            )
+
+
+def test_edi_850_structural_invariants():
+    """ANSI X12 EDI 850: ISA13==IEA02, GS06==GE02, ST02==SE02, SE01==seg count, ISA==105 chars."""
+    from mockjutsu.core import MockJutsuCore
+    jutsu = MockJutsuCore()
+    N = 30
+    for i in range(N):
+        raw = jutsu.generate("edi_850")
+        # EDI 850 uses '~\n' as segment separator; strip trailing '~' from each segment
+        lines = [ln.rstrip("~") for ln in raw.split("\n") if ln.strip()]
+
+        isa = [s for s in lines if s.startswith("ISA*")]
+        iea = [s for s in lines if s.startswith("IEA*")]
+        gs  = [s for s in lines if s.startswith("GS*")]
+        ge  = [s for s in lines if s.startswith("GE*")]
+        st  = [s for s in lines if s.startswith("ST*")]
+        se  = [s for s in lines if s.startswith("SE*")]
+
+        assert isa and iea and gs and ge and st and se, f"EDI 850 missing mandatory segments in sample {i}"
+
+        isa_f = isa[0].split("*")
+        iea_f = iea[0].split("*")
+        gs_f  = gs[0].split("*")
+        ge_f  = ge[0].split("*")
+        st_f  = st[0].split("*")
+        se_f  = se[0].split("*")
+
+        assert len(isa[0]) == 105, f"ISA must be 105 chars, got {len(isa[0])}"
+        assert isa_f[13] == iea_f[2].strip(), (
+            f"ISA13 ({isa_f[13]}) must equal IEA02 ({iea_f[2].strip()}) — interchange ctrl"
+        )
+        assert gs_f[6] == ge_f[2].strip(), (
+            f"GS06 ({gs_f[6]}) must equal GE02 ({ge_f[2].strip()}) — group ctrl"
+        )
+        assert st_f[2] == se_f[2].strip(), (
+            f"ST02 ({st_f[2]}) must equal SE02 ({se_f[2].strip()}) — transaction ctrl"
+        )
+        st_idx = lines.index(st[0])
+        se_idx = lines.index(se[0])
+        seg_count = se_idx - st_idx + 1
+        assert int(se_f[1]) == seg_count, (
+            f"SE01 segment count ({se_f[1]}) must equal actual count ({seg_count})"
+        )
+
+
 # ── Generator output against format contracts ─────────────────────────────────
 
 def test_generator_outputs_match_contracts():

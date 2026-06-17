@@ -1055,3 +1055,23 @@ class TestXmlDsig:
             except Exception:
                 results.append(False)
         _assert_all("xmldsig", results)
+
+
+# ─── MSISDN (phonenumbers — Google libphonenumber) ───────────────────────────
+
+
+class TestMsisdn:
+
+    def test_msisdn_valid_e164(self):
+        """MSISDN must be a valid E.164 phone number per ITU-T E.164 (phonenumbers lib)."""
+        phonenumbers = pytest.importorskip("phonenumbers")
+        locales = ["TR", "US", "UK", "DE", "FR", "RU"]
+        results = []
+        for locale in locales:
+            for v in _gen("msisdn", locale=locale):
+                try:
+                    parsed = phonenumbers.parse(str(v))
+                    results.append(phonenumbers.is_valid_number(parsed))
+                except Exception:
+                    results.append(False)
+        _assert_all("msisdn", results)
