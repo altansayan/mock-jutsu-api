@@ -2,14 +2,15 @@
   "_comment": "Validation Matrix — Faz 1 sınıflandırması. Her tipin mevcut test kalitesi ve hedef doğrulama yöntemi. Bkz. project_mockjutsu_validation_roadmap.md (memory).",
   "_version": "1.0",
   "_summary": {
-    "total": 254,
+    "total": 251,
     "matematiksel_garanti": 75,
-    "algoritmik_dogrulandi": 40,
-    "yapisal_gecerlilik": 139,
+    "algoritmik_dogrulandi": 41,
+    "yapisal_gecerlilik": 135,
     "phase_1_already_done": 9,
     "phase_2_external_lib": 66,
-    "phase_3_vector_extension": 40,
-    "phase_4_manual_spec": 139
+    "phase_3_vector_extension": 41,
+    "phase_4_manual_spec": 135,
+    "_sprint0_note": "Sprint 0 düzeltmesi: bulk/template/export/profile/company API metodlarıdır, generator tip değil. Kaldırıldı. edifact_orders ve height eklendi."
   },
   "types": [
     {
@@ -96,7 +97,7 @@
       "validation_category": "yapisal_gecerlilik",
       "badge_target": "📐",
       "phase": 4,
-      "current_test_quality": "smoke_only",
+      "current_test_quality": "non_circular_structural",
       "target_validator": "format_contracts.json + spec belge okuma",
       "test_vector_source": "manual standards review"
     },
@@ -107,7 +108,7 @@
       "validation_category": "yapisal_gecerlilik",
       "badge_target": "📐",
       "phase": 4,
-      "current_test_quality": "smoke_only",
+      "current_test_quality": "non_circular_structural",
       "target_validator": "format_contracts.json + spec belge okuma",
       "test_vector_source": "manual standards review"
     },
@@ -140,7 +141,7 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
+      "current_test_quality": "non_circular_structural",
       "target_validator": "python-stdnum: stdnum.gb.nino.validate",
       "test_vector_source": "python-stdnum parse roundtrip"
     },
@@ -283,7 +284,7 @@
       "validation_category": "matematiksel_garanti",
       "badge_target": "✅",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
+      "current_test_quality": "non_circular_structural",
       "target_validator": "python-stdnum: stdnum.ru.snils.validate",
       "test_vector_source": "python-stdnum parse roundtrip"
     },
@@ -291,10 +292,10 @@
       "type": "kpp",
       "category_legacy": "Identity",
       "locale_aware": false,
-      "validation_category": "matematiksel_garanti",
-      "badge_target": "✅",
+      "validation_category": "yapisal_gecerlilik",
+      "badge_target": "📐",
       "phase": 2,
-      "current_test_quality": "circular_or_smoke",
+      "current_test_quality": "non_circular_structural",
       "target_validator": "python-stdnum: stdnum.ru.kpp.validate",
       "test_vector_source": "python-stdnum parse roundtrip"
     },
@@ -646,7 +647,7 @@
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
       "phase": 3,
-      "current_test_quality": "circular",
+      "current_test_quality": "non_circular_structural",
       "target_validator": "spec PDF + hardcoded official vectors",
       "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
     },
@@ -657,7 +658,7 @@
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
       "phase": 3,
-      "current_test_quality": "circular",
+      "current_test_quality": "non_circular_structural",
       "target_validator": "spec PDF + hardcoded official vectors",
       "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
     },
@@ -668,7 +669,7 @@
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
       "phase": 3,
-      "current_test_quality": "circular",
+      "current_test_quality": "non_circular_structural",
       "target_validator": "spec PDF + hardcoded official vectors",
       "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
     },
@@ -679,7 +680,7 @@
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
       "phase": 3,
-      "current_test_quality": "circular",
+      "current_test_quality": "non_circular_structural",
       "target_validator": "spec PDF + hardcoded official vectors",
       "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
     },
@@ -690,7 +691,7 @@
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
       "phase": 3,
-      "current_test_quality": "circular",
+      "current_test_quality": "non_circular_structural",
       "target_validator": "spec PDF + hardcoded official vectors",
       "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
     },
@@ -2752,58 +2753,25 @@
       "test_vector_source": "manual standards review"
     },
     {
-      "type": "bulk",
-      "category_legacy": "Commands",
-      "locale_aware": true,
-      "validation_category": "yapisal_gecerlilik",
-      "badge_target": "📐",
-      "phase": 4,
+      "type": "edifact_orders",
+      "category_legacy": "EDI",
+      "locale_aware": false,
+      "validation_category": "algoritmik_dogrulandi",
+      "badge_target": "⚙️",
+      "phase": 3,
       "current_test_quality": "smoke_only",
-      "target_validator": "format_contracts.json + spec belge okuma",
-      "test_vector_source": "manual standards review"
+      "target_validator": "UN/EDIFACT D96A: UNH/UNT segment count kontrolü (UNT segment sayısı = mesaj segment sayısı)",
+      "test_vector_source": "manual standards review — Sprint 6"
     },
     {
-      "type": "template",
-      "category_legacy": "Commands",
+      "type": "height",
+      "category_legacy": "Personal",
       "locale_aware": true,
       "validation_category": "yapisal_gecerlilik",
       "badge_target": "📐",
       "phase": 4,
       "current_test_quality": "smoke_only",
-      "target_validator": "format_contracts.json + spec belge okuma",
-      "test_vector_source": "manual standards review"
-    },
-    {
-      "type": "export",
-      "category_legacy": "Commands",
-      "locale_aware": true,
-      "validation_category": "yapisal_gecerlilik",
-      "badge_target": "📐",
-      "phase": 4,
-      "current_test_quality": "smoke_only",
-      "target_validator": "format_contracts.json + spec belge okuma",
-      "test_vector_source": "manual standards review"
-    },
-    {
-      "type": "profile",
-      "category_legacy": "Commands",
-      "locale_aware": true,
-      "validation_category": "yapisal_gecerlilik",
-      "badge_target": "📐",
-      "phase": 4,
-      "current_test_quality": "smoke_only",
-      "target_validator": "format_contracts.json + spec belge okuma",
-      "test_vector_source": "manual standards review"
-    },
-    {
-      "type": "company",
-      "category_legacy": "Commands",
-      "locale_aware": true,
-      "validation_category": "yapisal_gecerlilik",
-      "badge_target": "📐",
-      "phase": 4,
-      "current_test_quality": "smoke_only",
-      "target_validator": "format_contracts.json + spec belge okuma",
+      "target_validator": "format_contracts.json — cm (100-220) veya ft'in (4'0\"-7'0\") formatı",
       "test_vector_source": "manual standards review"
     }
   ]
