@@ -309,5 +309,944 @@
   "cardnetwork": {
     "pattern": "^(VISA|MC|AMEX|TROY|JCB|DISCOVER|UNIONPAY|MIR|MAESTRO)$",
     "example": "VISA"
+  },
+  "ykn": {
+    "pattern": "^\\d{11}$",
+    "note": "Yabanci Kimlik No: 11 digits",
+    "example": "99779377797"
+  },
+  "nationalid": {
+    "pattern": "^\\d{11,}$",
+    "note": "National ID — locale-aware (TR: 11d)",
+    "example": "54760509556"
+  },
+  "vkn": {
+    "pattern": "^\\d{10}$",
+    "note": "Vergi Kimlik No: 10 digits",
+    "example": "5219658429"
+  },
+  "taxid": {
+    "pattern": "^\\d{8,15}$",
+    "note": "Tax ID — locale-aware (TR: 10d)",
+    "example": "2880884754"
+  },
+  "employer_id": {
+    "pattern": "^\\d{10,16}$",
+    "note": "Employer ID — locale-aware",
+    "example": "3870607425084757"
+  },
+  "insurance_id": {
+    "pattern": "^\\d{11}$",
+    "note": "Insurance ID: 11 digits",
+    "example": "61998357682"
+  },
+  "sgk": {
+    "pattern": "^\\d{2}-\\d{7}-\\d\\.\\d{2}-\\d{2}$",
+    "note": "TR SGK number format",
+    "example": "10-0663416-7.14-70"
+  },
+  "mersis": {
+    "pattern": "^\\d{16}$",
+    "note": "TR MERSIS: 16 digits",
+    "example": "8134487134074141"
+  },
+  "ein": {
+    "pattern": "^\\d{2}-\\d{7}$",
+    "note": "US EIN: NN-NNNNNNN",
+    "example": "50-9294691"
+  },
+  "nin": {
+    "pattern": "^[A-Z]{2} \\d{2} \\d{2} \\d{2} [A-Z]$",
+    "note": "UK National Insurance Number",
+    "example": "SA 77 27 35 A"
+  },
+  "utr": {
+    "pattern": "^\\d{10}$",
+    "note": "UK UTR: 10 digits",
+    "example": "5419839402"
+  },
+  "crn": {
+    "pattern": "^(SC|NI|\\d{2})\\d{6}$",
+    "note": "UK Company Registration Number: 8 chars (digits or SC/NI prefix + 6 digits)",
+    "example": "54567716"
+  },
+  "paye": {
+    "pattern": "^\\d{3}/[A-Z0-9]{6}$",
+    "note": "UK PAYE reference: NNN/CCCCCC",
+    "example": "627/WK3OGZ"
+  },
+  "ust_id": {
+    "pattern": "^DE\\d{9}$",
+    "note": "DE USt-IdNr: DE + 9 digits",
+    "example": "DE986389506"
+  },
+  "ustid": {
+    "pattern": "^DE\\d{9}$",
+    "note": "DE USt-IdNr (alias): DE + 9 digits",
+    "example": "DE382151345"
+  },
+  "hrb": {
+    "pattern": "^HR[AB] \\d{4,6}$",
+    "note": "DE Handelsregisternummer: HRA/HRB + number",
+    "example": "HRA 84845"
+  },
+  "rvn": {
+    "pattern": "^\\d{2} \\d{6} [A-Z] \\d{4}$",
+    "note": "RU vehicle registration number",
+    "example": "17 280748 A 7568"
+  },
+  "siren": {
+    "pattern": "^\\d{9}$",
+    "note": "FR SIREN: 9 digits",
+    "example": "394718266"
+  },
+  "siret": {
+    "pattern": "^\\d{14}$",
+    "note": "FR SIRET: 14 digits",
+    "example": "65779575364642"
+  },
+  "tva": {
+    "pattern": "^FR[0-9A-Z]{2}\\d{9}$",
+    "note": "FR TVA: FR + 2 chars + 9 digits",
+    "example": "FR64840669691"
+  },
+  "inn": {
+    "pattern": "^\\d{10}$",
+    "note": "RU INN (legal entity): 10 digits",
+    "example": "3670627434"
+  },
+  "inn_individual": {
+    "pattern": "^\\d{12}$",
+    "note": "RU INN (individual): 12 digits",
+    "example": "004260505307"
+  },
+  "snils": {
+    "pattern": "^\\d{3}-\\d{3}-\\d{3} \\d{2}$",
+    "note": "RU SNILS: NNN-NNN-NNN NN",
+    "example": "981-702-628 30"
+  },
+  "kpp": {
+    "pattern": "^\\d{9}$",
+    "note": "RU KPP: 9 digits",
+    "example": "811941727"
+  },
+  "ogrn": {
+    "pattern": "^\\d{13}$",
+    "note": "RU OGRN: 13 digits",
+    "example": "1100113992318"
+  },
+  "patronymic": {
+    "pattern": "^.*$",
+    "note": "Patronymic — empty for non-RU locales, Cyrillic for RU",
+    "example": ""
+  },
+  "passport": {
+    "pattern": "^[A-Z0-9]{7,9}$",
+    "note": "Passport number — locale-aware format",
+    "example": "C09722114"
+  },
+  "license": {
+    "pattern": "^[A-Z0-9]{6,17}$",
+    "note": "Driver license — locale-aware format",
+    "example": "AP997126"
+  },
+  "age": {
+    "pattern": "^\\d{1,3}$",
+    "note": "Age in years: 1-3 digit integer",
+    "example": "71"
+  },
+  "gender": {
+    "pattern": "^(Male|Female)$",
+    "example": "Male"
+  },
+  "birthdate": {
+    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+    "note": "ISO 8601 date: YYYY-MM-DD",
+    "example": "1960-05-17"
+  },
+  "nationality": {
+    "pattern": "^[A-Za-z ]+$",
+    "note": "Nationality adjective in English",
+    "example": "French"
+  },
+  "height": {
+    "pattern": "^\\d{2,3} cm$",
+    "note": "Height in centimeters",
+    "example": "170 cm"
+  },
+  "weight": {
+    "pattern": "^\\d{2,3} kg$",
+    "note": "Weight in kilograms",
+    "example": "79 kg"
+  },
+  "bmi": {
+    "pattern": "^\\d{2}\\.\\d{1,2}$",
+    "note": "Body Mass Index: XX.X format",
+    "example": "25.8"
+  },
+  "bloodtype": {
+    "pattern": "^(A|B|AB|O)[+-]$",
+    "example": "O+"
+  },
+  "blood_type": {
+    "pattern": "^(A|B|AB|O)[+-]$",
+    "example": "AB-"
+  },
+  "nhsnumber": {
+    "pattern": "^\\d{3} \\d{3} \\d{4}$",
+    "note": "UK NHS Number: NNN NNN NNNN",
+    "example": "053 942 7713"
+  },
+  "icd10": {
+    "pattern": "^[A-Z]\\d{2}(\\.\\d{1,3})?$",
+    "note": "ICD-10 code: letter + 2 digits + optional .1-3 decimal (e.g. J45.909)",
+    "example": "J20.9"
+  },
+  "job_title": {
+    "pattern": "^.{2,100}$",
+    "note": "Job title — locale-aware text",
+    "example": "Operations Manager"
+  },
+  "jobtitle": {
+    "pattern": "^.{2,100}$",
+    "note": "Job title alias — locale-aware text",
+    "example": "Sales Manager"
+  },
+  "occupation": {
+    "pattern": "^.{2,100}$",
+    "note": "Occupation — locale-aware text",
+    "example": "HR Specialist"
+  },
+  "cardowner": {
+    "pattern": "^[\\wÀ-ɏЀ-ӿ]+([ -][\\wÀ-ɏЀ-ӿ]+)+$",
+    "note": "Card emboss name: Unicode uppercase letters, space-separated",
+    "example": "FERAT AKSU"
+  },
+  "issuer": {
+    "pattern": "^.{3,100}$",
+    "note": "Bank/issuer name — locale-aware",
+    "example": "BosphorusBank A.S."
+  },
+  "track1_data": {
+    "pattern": "^%B\\d{13,19}\\^MOCKJ[A-Z]+/MOCKJ[A-Z]+\\^\\d{7,12}\\?$",
+    "note": "ISO 7813 Track 1 — MOCKJ name fields",
+    "example": "%B4841389202874899^MOCKJRAY/MOCKJJOHN^3101106792?"
+  },
+  "track2_data": {
+    "pattern": "^;\\d{13,19}=\\d{8,}\\?$",
+    "note": "ISO 7813 Track 2: ;PAN=expiry+service+discretionary? (8+ digits after =)",
+    "example": ";4320750997413609=300820118972?"
+  },
+  "chip_data": {
+    "pattern": "^[0-9A-F]+$",
+    "note": "EMV chip data: concatenated TLV hex string",
+    "example": "9F02060421745636099F0306090767735468950501104553B3"
+  },
+  "pin_block": {
+    "pattern": "^[0-9A-F]{16}$",
+    "note": "PIN block ISO 9564 Format 0: 16 hex chars",
+    "example": "0563486FFFFFFFFF"
+  },
+  "pin_block_fmt3": {
+    "pattern": "^[0-9A-F]{16}$",
+    "note": "PIN block ISO 9564 Format 3: 16 hex chars",
+    "example": "3477858634381938"
+  },
+  "emv_arqc": {
+    "pattern": "^[0-9A-F]{16}$",
+    "note": "EMV ARQC (tag 9F26): 8-byte = 16 hex chars",
+    "example": "258B264D72E0D9E7"
+  },
+  "emv_atc": {
+    "pattern": "^[0-9A-F]{4}$",
+    "note": "EMV ATC (tag 9F36): 2-byte = 4 hex chars",
+    "example": "0A92"
+  },
+  "emv_iad": {
+    "pattern": "^[0-9A-F]{14,22}$",
+    "note": "EMV IAD (tag 9F10): 7-11 bytes = 14-22 hex chars",
+    "example": "0A02107951E560B4CAADC4"
+  },
+  "creditor_ref": {
+    "pattern": "^RF\\d{2}[A-Z0-9]{4,28}$",
+    "note": "ISO 11649 Creditor Reference: RF + check + ref",
+    "example": "RF74MOCKJQHE0HS3FK"
+  },
+  "vat_number": {
+    "pattern": "^[A-Z]{2}\\d{8,12}$",
+    "note": "VAT number — locale-aware: CC + digits",
+    "example": "TR2502458531"
+  },
+  "currency": {
+    "pattern": "^[A-Z]{3}$",
+    "note": "ISO 4217 currency code",
+    "example": "TRY"
+  },
+  "tax_rate": {
+    "pattern": "^\\d+$",
+    "note": "Tax rate percent as integer string",
+    "example": "20"
+  },
+  "taxrate": {
+    "pattern": "^\\d+$",
+    "note": "Tax rate percent alias",
+    "example": "20"
+  },
+  "invoice_number": {
+    "pattern": "^INV-\\d{4}-\\d+$",
+    "note": "Invoice number: INV-YYYY-NNNNN",
+    "example": "INV-2026-626611"
+  },
+  "invoicenumber": {
+    "pattern": "^INV-\\d{4}-\\d+$",
+    "note": "Invoice number alias",
+    "example": "INV-2026-273415"
+  },
+  "sepa_ref": {
+    "pattern": "^MOCKJ-E2E-[A-Z0-9]{8,25}$",
+    "note": "SEPA end-to-end reference with MOCKJ prefix",
+    "example": "MOCKJ-E2E-MZ7T5CVV8N"
+  },
+  "transaction": {
+    "pattern": "^\\{.+\\}$",
+    "note": "Transaction dict: ref (MOCKJ-TRN prefix), IBANs, amount, status",
+    "example": "{'ref': 'MOCKJ-TRN20260618-51980', 'status': 'COMPLETED'}"
+  },
+  "transaction_id": {
+    "pattern": "^TXN[A-Z0-9]+$",
+    "note": "Transaction ID: TXN + hex",
+    "example": "TXN554AC29E88975C22"
+  },
+  "bank_name": {
+    "pattern": "^.{3,100}$",
+    "note": "Bank name — locale-aware",
+    "example": "BosphorusBank A.S."
+  },
+  "swift_mt103": {
+    "pattern": "^\\{1:F01[A-Z0-9]+\\}",
+    "note": "SWIFT MT103: starts with {1:F01...} block",
+    "example": "{1:F01MOCKGB02AXXX0000000000}{2:I103...}"
+  },
+  "pain001": {
+    "pattern": "^<\\?xml",
+    "note": "ISO 20022 pain.001 Customer Credit Transfer Initiation XML",
+    "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+  },
+  "nacha_ach": {
+    "pattern": "^1",
+    "note": "NACHA ACH file: record type 1 (File Header) first, 94-char fixed-width lines",
+    "example": "101 69427225717439394992606181309..."
+  },
+  "sepa_mandate": {
+    "pattern": "^<\\?xml",
+    "note": "ISO 20022 pain.008 SEPA Direct Debit Mandate XML",
+    "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+  },
+  "fedwire": {
+    "pattern": "^\\{1500\\}MOCKJ-",
+    "note": "Fedwire Funds Transfer: starts with {1500} tag + MOCKJ ref",
+    "example": "{1500}MOCKJ-BWXFPCCW"
+  },
+  "mt940": {
+    "pattern": "^:20:",
+    "note": "SWIFT MT940 Bank Statement: starts with :20: reference tag",
+    "example": ":20:ZPO4GK0SEB"
+  },
+  "camt053": {
+    "pattern": "^<\\?xml",
+    "note": "ISO 20022 camt.053 Bank-to-Customer Statement XML",
+    "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+  },
+  "iso8583_auth_request": {
+    "pattern": "^MTI:0100\\n",
+    "note": "ISO 8583 Authorization Request: MTI 0100",
+    "example": "MTI:0100\nBITMAP:723C448008C08000\nDE002:..."
+  },
+  "iata_ticket": {
+    "pattern": "^\\d{13}$",
+    "note": "IATA 001 airline ticket number: 13 digits",
+    "example": "1471684645546"
+  },
+  "imo_number": {
+    "pattern": "^IMO \\d{7}$",
+    "note": "IMO ship number: IMO + 7 digits",
+    "example": "IMO 3407510"
+  },
+  "pnr_code": {
+    "pattern": "^[A-Z0-9]{6}$",
+    "note": "Airline PNR record locator: 6 uppercase alphanumeric",
+    "example": "4H7X7G"
+  },
+  "tracking_number": {
+    "pattern": "^\\d{20,22}$",
+    "note": "Shipping tracking number: 20-22 digits",
+    "example": "9523832367399617817356"
+  },
+  "dhl_tracking": {
+    "pattern": "^JD\\d{9}$",
+    "note": "DHL tracking number: JD + 9 digits",
+    "example": "JD947546537"
+  },
+  "order_id": {
+    "pattern": "^ORD-[A-Z0-9]{8,14}$",
+    "note": "Order ID: ORD- + random alphanumeric",
+    "example": "ORD-QD3H1WB8B"
+  },
+  "btc_address": {
+    "pattern": "^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$|^bc1[a-z0-9]{39,59}$",
+    "note": "Bitcoin address (legacy P2PKH or bech32)",
+    "example": "1L9Siypjq4XnvS1pJucnPsU9U5M8KrhFqy"
+  },
+  "eth_address": {
+    "pattern": "^0x[0-9a-fA-F]{40}$",
+    "note": "Ethereum checksummed address: 0x + 40 hex",
+    "example": "0x1610580CEB946109521fD7749f92e39d682c25B8"
+  },
+  "crypto_address": {
+    "pattern": "^[a-zA-Z0-9]{25,62}$",
+    "note": "Generic crypto address (BTC-like base58)",
+    "example": "129fLHGHRJnDb9nsxemQ6bNi53nqjQ17a7"
+  },
+  "tx_hash": {
+    "pattern": "^[0-9a-f]{64}$",
+    "note": "Transaction hash: 256-bit hex (SHA-256)",
+    "example": "f14b05743de1dede1c4b76c9fee61ab636e7666bab08cc5aede20755a556fe7e"
+  },
+  "block_hash": {
+    "pattern": "^[0-9a-f]{64}$",
+    "note": "Block hash: 256-bit hex",
+    "example": "84b3d6a4900567c4c365ecc82e78ebb20287395d96465151b832ae4b56f62cd1"
+  },
+  "mnemonic": {
+    "pattern": "^[a-z]+( [a-z]+){11,23}$",
+    "note": "BIP-39 mnemonic: 12-24 lowercase words separated by spaces",
+    "example": "sphere sense kiss fiction recall almost season purity object fame enforce sibling"
+  },
+  "eth_wallet": {
+    "pattern": "^\\{.+\\}$",
+    "note": "Ethereum wallet dict: private_key, public_key, address",
+    "example": "{'private_key': '...', 'address': '0x...'}"
+  },
+  "btc_wallet": {
+    "pattern": "^\\{.+\\}$",
+    "note": "Bitcoin wallet dict: private_key, wif, public_key, address",
+    "example": "{'private_key': '...', 'wif': '...', 'address': '1...'}"
+  },
+  "sol_wallet": {
+    "pattern": "^\\{.+\\}$",
+    "note": "Solana wallet dict: private_key, public_key, address, keypair",
+    "example": "{'private_key': '...', 'address': '...'}"
+  },
+  "api_key": {
+    "pattern": "^mjk-[A-Za-z0-9]{40,}$",
+    "note": "mock-jutsu API key: mjk- prefix + 40+ random chars",
+    "example": "mjk-CS4njD8te9TKBVsVFVTs1g5d4ZejPKs7s2LgMG6iNUT0SSld"
+  },
+  "totp_code": {
+    "pattern": "^\\d{6}$",
+    "note": "TOTP (RFC 6238): 6-digit time-based OTP",
+    "example": "203675"
+  },
+  "webhook_signature": {
+    "pattern": "^sha256=[0-9a-f]{64}$",
+    "note": "HMAC-SHA256 webhook signature: sha256= + 64 hex",
+    "example": "sha256=70ffdd791e728e416a8d1528c7fc24d321c0abb3a4ad6d4034a60906cf9bdb96"
+  },
+  "jwt": {
+    "pattern": "^[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+$",
+    "note": "JWT: 3 base64url parts separated by dots",
+    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.payload.sig"
+  },
+  "bearertoken": {
+    "pattern": "^Bearer [A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+$",
+    "note": "Bearer JWT token with Bearer prefix",
+    "example": "Bearer eyJhbGciOiJIUzI1NiJ9.payload.sig"
+  },
+  "hash": {
+    "pattern": "^[0-9a-f]{64}$",
+    "note": "SHA-256 hash: 64 lowercase hex chars",
+    "example": "ddc8e80962305d3b119e2e67148433cdbd8bc98fe8a755de1de06769e9f489b2"
+  },
+  "signature": {
+    "pattern": "^[0-9a-f]{64}$",
+    "note": "ECDSA/HMAC signature hex: 64 hex chars",
+    "example": "077ab64869cb4b9e6fef5f3f0b364f5238a68051ea46f4e83e4b8d7e3b9d5f1e"
+  },
+  "apppassword": {
+    "pattern": "^\\d{6}$",
+    "note": "App password / 2FA backup code: 6 digits",
+    "example": "326980"
+  },
+  "oidc_token": {
+    "pattern": "^[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+$",
+    "note": "OIDC ID token: JWT 3-part format",
+    "example": "eyJhbGciOiJIUzI1NiJ9.payload.sig"
+  },
+  "oidc_token_set": {
+    "pattern": "^\\{\"token\":",
+    "note": "OIDC token set JSON: access_token + id_token + refresh_token",
+    "example": "{\"token\":\"eyJ...\"}"
+  },
+  "jwks": {
+    "pattern": "^\\{\"keys\":\\[",
+    "note": "JSON Web Key Set (RFC 7517): {\"keys\":[...]}",
+    "example": "{\"keys\":[{\"kty\":\"EC\",\"crv\":\"P-256\",...}]}"
+  },
+  "webauthn_credential": {
+    "pattern": "^\\{\"id\":",
+    "note": "WebAuthn registration response JSON (FIDO2)",
+    "example": "{\"id\":\"...\",\"type\":\"public-key\",\"response\":{...}}"
+  },
+  "fido2_assertion": {
+    "pattern": "^\\{\"id\":",
+    "note": "FIDO2 authentication assertion JSON",
+    "example": "{\"id\":\"...\",\"type\":\"public-key\",\"response\":{...}}"
+  },
+  "jwt_attack": {
+    "pattern": "^\\{\"token\":",
+    "note": "JWT attack/fuzz payload with manipulated claims",
+    "example": "{\"token\":\"eyJ...\",\"attack_type\":\"alg_none\"}"
+  },
+  "asn1_fuzz": {
+    "pattern": "^\\{\"hex\":",
+    "note": "ASN.1 fuzz test case: DER hex + fuzz type",
+    "example": "{\"hex\":\"0500\",\"fuzz_type\":\"zero_length\",\"tag_byte\":\"0x5\"}"
+  },
+  "public_ip": {
+    "pattern": "^((25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d\\d?)$",
+    "note": "Public IPv4 address",
+    "example": "185.25.161.8"
+  },
+  "private_ip": {
+    "pattern": "^(10|172|192)\\.\\d+\\.\\d+\\.\\d+$",
+    "note": "RFC 1918 private IPv4 — simple prefix check",
+    "example": "172.24.178.29"
+  },
+  "mac_address": {
+    "pattern": "^([0-9A-F]{2}:){5}[0-9A-F]{2}$",
+    "note": "MAC address: colon-separated uppercase hex",
+    "example": "2C:F0:5D:8C:9F:4C"
+  },
+  "deviceid": {
+    "pattern": "^[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}$",
+    "note": "Device ID: uppercase UUID format",
+    "example": "15B32421-2249-4481-B5E0-30E7EB2A820C"
+  },
+  "requestid": {
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+    "note": "Request ID: lowercase UUID v4",
+    "example": "24b19e07-8ed3-435f-824b-379c040b3592"
+  },
+  "correlationid": {
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+    "note": "Correlation ID: lowercase UUID v4",
+    "example": "efb0afae-e463-4765-bd43-c5aa2ef02c22"
+  },
+  "sessionid": {
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+    "note": "Session ID: lowercase UUID v4",
+    "example": "cffd77e5-31ad-490a-bf17-5b7d27e85c5e"
+  },
+  "idempotencykey": {
+    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+    "note": "Idempotency key: lowercase UUID v4",
+    "example": "f4915eb5-4e66-42aa-8f1b-4033d746443a"
+  },
+  "timestamp_iso": {
+    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}",
+    "note": "ISO 8601 datetime with microseconds",
+    "example": "2026-06-18T16:09:47.882893"
+  },
+  "clientversion": {
+    "pattern": "^\\d+\\.\\d+[\\d.]+$",
+    "note": "Client/app version string: semver-like",
+    "example": "1.0.6"
+  },
+  "msisdn": {
+    "pattern": "^\\+\\d{8,15}$",
+    "note": "MSISDN (E.164 mobile number): + followed by 8-15 digits",
+    "example": "+905446565302"
+  },
+  "bik_code": {
+    "pattern": "^\\d{9}$",
+    "note": "RU BIK (bank identifier code): 9 digits",
+    "example": "044585326"
+  },
+  "browser_name": {
+    "pattern": "^(Chrome|Firefox|Safari|Edge|Opera)$",
+    "example": "Safari"
+  },
+  "browser_version": {
+    "pattern": "^\\d+\\.\\d+[\\d.]+$",
+    "example": "121.0.9444.90"
+  },
+  "browser_engine": {
+    "pattern": "^(Blink|Gecko|WebKit)$",
+    "example": "WebKit"
+  },
+  "useragent": {
+    "pattern": "^Mozilla/5\\.0 .+$",
+    "note": "User-Agent string starting with Mozilla/5.0",
+    "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/560.4 (KHTML, like Gecko) Chrome/124.0.4516.10 Safari/560.4"
+  },
+  "address_city": {
+    "pattern": "^.{2,60}$",
+    "note": "City name — locale-aware",
+    "example": "Bursa"
+  },
+  "address_street": {
+    "pattern": "^.{5,200}$",
+    "note": "Street address — locale-aware",
+    "example": "Sair Nefi Sokak"
+  },
+  "address_full": {
+    "pattern": "^.{5,300}$",
+    "note": "Full address with city and street — locale-aware",
+    "example": "Gaziantep, Halaskargazi Caddesi No:50"
+  },
+  "postalcode": {
+    "pattern": "^\\d{4,10}$",
+    "note": "Postal/ZIP code — locale-aware digit string",
+    "example": "41163"
+  },
+  "latitude": {
+    "pattern": "^-?\\d{1,3}\\.\\d+$",
+    "note": "WGS-84 latitude: decimal degrees",
+    "example": "41.816057"
+  },
+  "longitude": {
+    "pattern": "^-?\\d{1,3}\\.\\d+$",
+    "note": "WGS-84 longitude: decimal degrees",
+    "example": "27.379892"
+  },
+  "timezone": {
+    "pattern": "^[A-Za-z_]+/[A-Za-z_/]+$",
+    "note": "IANA timezone identifier",
+    "example": "Europe/Istanbul"
+  },
+  "coordinates": {
+    "pattern": "^-?\\d+\\.\\d+,-?\\d+\\.\\d+$",
+    "note": "Lat,Lon decimal pair",
+    "example": "39.879725,29.576755"
+  },
+  "plate": {
+    "pattern": "^[A-Z0-9 ]{5,20}$",
+    "note": "Vehicle license plate — locale-aware",
+    "example": "26 Z 5748"
+  },
+  "username": {
+    "pattern": "^[a-z][a-z0-9_]{2,19}$",
+    "note": "Username: lowercase, starts with letter, 3-20 chars",
+    "example": "swiftdev15"
+  },
+  "handle": {
+    "pattern": "^@[a-z][a-z0-9_]*$",
+    "note": "Social handle: @ prefix + lowercase alphanumeric",
+    "example": "@realwolf"
+  },
+  "hashtag": {
+    "pattern": "^#[A-Za-z][A-Za-z0-9]*$",
+    "note": "Hashtag: # prefix + alphanumeric",
+    "example": "#Product"
+  },
+  "bio": {
+    "pattern": "^.{10,300}$",
+    "note": "Profile bio text",
+    "example": "Developer, maker, and coffee enthusiast."
+  },
+  "follower_count": {
+    "pattern": "^\\d+$",
+    "note": "Follower count as integer string",
+    "example": "532"
+  },
+  "product_name": {
+    "pattern": "^.{3,100}$",
+    "note": "Product name",
+    "example": "Wireless Headphones"
+  },
+  "sku": {
+    "pattern": "^[A-Z]{2,4}-\\d{4,8}$",
+    "note": "Stock Keeping Unit: 2-4 letters + hyphen + 4-8 digits",
+    "example": "GUYU-61997408"
+  },
+  "category": {
+    "pattern": "^[A-Za-z &]+$",
+    "note": "Product category name (may contain & for combined categories)",
+    "example": "Photography"
+  },
+  "rating": {
+    "pattern": "^\\d\\.\\d$",
+    "note": "Rating: X.X format (0.0-5.0)",
+    "example": "4.0"
+  },
+  "hl7_message": {
+    "pattern": "^MSH\\|",
+    "note": "HL7 v2.x message starting with MSH segment",
+    "example": "MSH|^~\\&|EMR_SYS|ST_JOHNS|..."
+  },
+  "fhir_patient": {
+    "pattern": "^\\{\"resourceType\": \"Patient\"",
+    "note": "FHIR R4 Patient resource JSON",
+    "example": "{\"resourceType\": \"Patient\", \"id\": \"...\"}"
+  },
+  "dicom_uid": {
+    "pattern": "^2\\.25\\.\\d+$",
+    "note": "DICOM UID: 2.25. + large decimal integer",
+    "example": "2.25.104209663847100636834694177987317672909"
+  },
+  "rfid_uid": {
+    "pattern": "^([0-9A-F]{2}:){3,6}[0-9A-F]{2}$",
+    "note": "RFID UID: 4 or 7 bytes colon-separated uppercase hex",
+    "example": "07:F2:F6:76"
+  },
+  "epc": {
+    "pattern": "^[0-9A-F]{24}$",
+    "note": "EPC Gen2 SGTIN-96: 24 uppercase hex chars (96 bits)",
+    "example": "300F8AE89D0C49D7B01B3120"
+  },
+  "rfid_tag": {
+    "pattern": "^\\{.+\\}$",
+    "note": "RFID tag dict: uid, standard, frequency_mhz, memory_bytes, epc",
+    "example": "{'uid': 'DE:C9:64:2F', 'standard': 'ISO 18000-6C'}"
+  },
+  "nfc_uid": {
+    "pattern": "^([0-9A-F]{2}:){3,7}[0-9A-F]{2}$",
+    "note": "NFC UID: 4-7 byte colon-separated uppercase hex",
+    "example": "E0:B4:27:23:20:55:24"
+  },
+  "nfc_atqa": {
+    "pattern": "^[0-9A-F]{2}:[0-9A-F]{2}$",
+    "note": "NFC ATQA: 2-byte answer to request type A",
+    "example": "00:44"
+  },
+  "nfc_sak": {
+    "pattern": "^[0-9A-F]{2}$",
+    "note": "NFC SAK: 1-byte select acknowledge",
+    "example": "08"
+  },
+  "ndef_uri": {
+    "pattern": "^\\{.+\\}$",
+    "note": "NDEF URI record dict: raw_hex, decoded URL, tnf, type, prefix_code",
+    "example": "{'raw_hex': 'D101...', 'decoded': 'http://...'}"
+  },
+  "ndef_text": {
+    "pattern": "^\\{.+\\}$",
+    "note": "NDEF Text record dict: raw_hex, decoded text, lang, tnf",
+    "example": "{'raw_hex': 'D101...', 'decoded': 'text', 'lang': 'tr'}"
+  },
+  "apdu": {
+    "pattern": "^\\{.+\\}$",
+    "note": "ISO 7816-4 APDU command dict: cla, ins, p1, p2, data, hex, description",
+    "example": "{'cla': '00', 'ins': 'B0', 'hex': '00 B0 00 00 84'}"
+  },
+  "nfc_tag": {
+    "pattern": "^\\{.+\\}$",
+    "note": "NFC tag dict: uid, atqa, sak, type, capacity_bytes, ndef_message",
+    "example": "{'uid': '16:17:BD:44:0C:65:39', 'type': 'NTAG215'}"
+  },
+  "ir_nec": {
+    "pattern": "^\\{.+\\}$",
+    "note": "IR NEC protocol dict: address, command, inv_address, inv_command, hex",
+    "example": "{'address': '0x2B', 'command': '0xE4', 'protocol': 'NEC'}"
+  },
+  "ir_rc5": {
+    "pattern": "^\\{.+\\}$",
+    "note": "IR RC-5 protocol dict: system, command, toggle, frame_bits, carrier_hz",
+    "example": "{'system': 3, 'command': 79, 'protocol': 'RC-5'}"
+  },
+  "ir_raw": {
+    "pattern": "^\\{.+\\}$",
+    "note": "IR raw NEC pulse dict: carrier_hz, address, command, pulses list (67 pulses)",
+    "example": "{'carrier_hz': 38000, 'pulses': [9024, 4512, ...]}"
+  },
+  "mqtt_payload": {
+    "pattern": "^\\{\"device_id\":",
+    "note": "MQTT sensor payload JSON: device_id, timestamp, sensor_type, readings, rssi",
+    "example": "{\"device_id\":\"7c90948b-...\",\"sensor_type\":\"motion\"}"
+  },
+  "lora_packet": {
+    "pattern": "^[0-9a-f]{2}( [0-9a-f]{2})+$",
+    "note": "LoRaWAN packet: space-separated lowercase hex byte pairs",
+    "example": "40 17 2d c4 76 00 67 67 06 cf"
+  },
+  "gs1_128": {
+    "pattern": "^\\(01\\)\\d{14}\\(17\\)\\d{6}\\(10\\)[A-Z0-9]{6}$",
+    "note": "GS1-128: (01)GTIN-14 + (17)YYMMDD expiry + (10)batch",
+    "example": "(01)19923560913512(17)280206(10)7AM3XY"
+  },
+  "imei2": {
+    "pattern": "^\\d{2}-\\d{6}-\\d{6}-\\d$",
+    "note": "IMEI in AA-BBBBBB-CCCCCC-D split format (16-digit)",
+    "example": "20-711746-622065-7"
+  },
+  "phone_country": {
+    "pattern": "^\\+\\d{1,3}$",
+    "note": "ITU-T E.164 country calling code: + followed by 1-3 digits",
+    "example": "+90"
+  },
+  "phone_area": {
+    "pattern": "^\\d{2,4}$",
+    "note": "Area/city code: 2-4 digits",
+    "example": "542"
+  },
+  "phone_local": {
+    "pattern": "^\\d{5,8}$",
+    "note": "Local subscriber number: 5-8 digits",
+    "example": "0741828"
+  },
+  "edi_850": {
+    "pattern": "^ISA\\*",
+    "note": "ANSI X12 EDI 850 Purchase Order: starts with ISA* interchange header",
+    "example": "ISA*00*          *00*          *ZZ*..."
+  },
+  "edifact_orders": {
+    "pattern": "^UNB\\+",
+    "note": "UN/EDIFACT ORDERS message: starts with UNB+ interchange envelope",
+    "example": "UNB+UNOC:3+..."
+  },
+  "fix_message": {
+    "pattern": "^8=FIX\\.",
+    "note": "FIX protocol: starts with 8=FIX. (BeginString tag)",
+    "example": "8=FIX.4.4\u00019=147\u000135=D..."
+  },
+  "ubl_invoice": {
+    "pattern": "^\\{\"xml\":",
+    "note": "UBL Invoice XML wrapped in JSON {\"xml\": \"...\"} dict",
+    "example": "{\"xml\": \"<?xml version=\\\"1.0\\\"...\"}"
+  },
+  "xmldsig": {
+    "pattern": "^\\{\"xml\":",
+    "note": "XML Digital Signature (W3C XMLDSig) wrapped in JSON dict",
+    "example": "{\"xml\": \"<ds:Signature xmlns:ds=\\\"http://www.w3.org/2000/09/xmldsig#\\\"...\"}"
+  },
+  "ai_embedding": {
+    "pattern": "^\\[.+\\]$",
+    "note": "AI embedding vector: JSON array of floats (may use scientific notation)",
+    "example": "[-0.0132, 0.0056, ...]"
+  },
+  "ai_vector": {
+    "pattern": "^\\[.+\\]$",
+    "note": "AI dense vector: JSON array of floats",
+    "example": "[0.0225, -0.0395, ...]"
+  },
+  "ai_sparse_vector": {
+    "pattern": "^\\{\"indices\":\\[",
+    "note": "AI sparse vector JSON: {indices:[...], values:[...]}",
+    "example": "{\"indices\":[4,32,99,...],\"values\":[0.85,...]}"
+  },
+  "market_tick": {
+    "pattern": "^\\{\"symbol\":",
+    "note": "Market tick JSON: symbol, timestamp, price, bid, ask, side, seq",
+    "example": "{\"symbol\": \"AAPL\", \"price\": 1048.66}"
+  },
+  "ohlcv_candles": {
+    "pattern": "^\\{\"symbol\":",
+    "note": "OHLCV candlestick JSON: symbol, interval, candles array",
+    "example": "{\"symbol\": \"CVX\", \"interval\": \"1m\", \"candles\": [...]}"
+  },
+  "mrz_td3": {
+    "pattern": "^\\{\"mrz_type\": \"TD3\"",
+    "note": "MRZ TD3 passport dict: mrz_type, lines (2x44), surname, given_names",
+    "example": "{\"mrz_type\": \"TD3\", \"lines\": [\"P<TUR...\"]}"
+  },
+  "mrz_td1": {
+    "pattern": "^\\{\"mrz_type\": \"TD1\"",
+    "note": "MRZ TD1 ID card dict: mrz_type, lines (3x30), surname, given_names",
+    "example": "{\"mrz_type\": \"TD1\", \"lines\": [\"I<TUR...\"]}"
+  },
+  "tle_satellite": {
+    "pattern": "^\\{\"name\":",
+    "note": "Two-Line Element set JSON: name, line1, line2, norad_id",
+    "example": "{\"name\": \"MOCKSAT-828\", \"line1\": \"1 76377S...\"}"
+  },
+  "can_frame": {
+    "pattern": "^\\{\"frame_type\":",
+    "note": "CAN bus frame dict: frame_type, can_id, dlc, data, crc15, socketcan",
+    "example": "{\"frame_type\": \"standard\", \"can_id\": \"0x25C\", \"dlc\": 1}"
+  },
+  "obd2_response": {
+    "pattern": "^\\{\"ecu_id\":",
+    "note": "OBD-II ECU response dict: ecu_id, mode, pids with values and units",
+    "example": "{\"ecu_id\": \"7E8\", \"mode\": \"01\", \"pids\": [...]}"
+  },
+  "drone_telemetry": {
+    "pattern": "^\\{\"drone_id\":",
+    "note": "Drone telemetry JSON: drone_id, mission_id, GPS/altitude samples",
+    "example": "{\"drone_id\": \"DJI-MINI-7410\", \"samples\": [...]}"
+  },
+  "fdr_record": {
+    "pattern": "^\\{\"flight_id\":",
+    "note": "Flight Data Recorder JSON: flight_id, aircraft, pitch/roll/yaw samples",
+    "example": "{\"flight_id\": \"d12ab6f5-...\", \"aircraft\": \"B737\"}"
+  },
+  "quaternion": {
+    "pattern": "^\\{\"x\":",
+    "note": "Quaternion dict: x, y, z, w (unit quaternion, magnitude ~1.0), euler_degrees",
+    "example": "{\"x\": 0.1648, \"y\": 0.5417, \"z\": -0.8167, \"w\": 0.1115}"
+  },
+  "navmesh_path": {
+    "pattern": "^\\{\"start\":",
+    "note": "Navigation mesh path dict: start, end, waypoints list (3D coords)",
+    "example": "{\"start\": {\"x\": 76.8, \"y\": -0.6, \"z\": -122.3}, \"waypoints\": [...]}"
+  },
+  "nmea_gpgga": {
+    "pattern": "^\\{\"sentence\":",
+    "note": "NMEA GPGGA sentence dict: sentence string + parsed lat/lon/quality",
+    "example": "{\"sentence\": \"$GPGGA,130930.00,...*5A\", \"type\": \"GPGGA\"}"
+  },
+  "nmea_gprmc": {
+    "pattern": "^\\{\"sentence\":",
+    "note": "NMEA GPRMC sentence dict: sentence string + parsed position/speed",
+    "example": "{\"sentence\": \"$GPRMC,130930.00,...*2A\", \"type\": \"GPRMC\"}"
+  },
+  "prometheus_metrics": {
+    "pattern": "^\\{\"exposition\":",
+    "note": "Prometheus text exposition format wrapped in JSON dict",
+    "example": "{\"exposition\": \"# HELP process_cpu_seconds_total ...\\n# TYPE ...\"}"
+  },
+  "openmetrics_snapshot": {
+    "pattern": "^\\{\"exposition\":",
+    "note": "OpenMetrics snapshot (Prometheus superset) wrapped in JSON dict",
+    "example": "{\"exposition\": \"# HELP process_cpu_seconds_total ...\\n# TYPE ...\"}"
+  },
+  "cef_log": {
+    "pattern": "^CEF:0\\|",
+    "note": "ArcSight Common Event Format: CEF:0|vendor|product|version|id|name|severity|extensions",
+    "example": "CEF:0|Palo Alto Networks|PAN-OS|10.2|100002|Connection Blocked|5|src=..."
+  },
+  "event_stream": {
+    "pattern": "^\\[\\{\"event_id\":",
+    "note": "Event sourcing stream: JSON array of domain events with UUIDs",
+    "example": "[{\"event_id\": \"39e3a774-...\", \"aggregate_type\": \"User\"}]"
+  },
+  "cdc_event": {
+    "pattern": "^\\{\"op\":",
+    "note": "Debezium CDC event: op (c/u/d), ts_ms, source, before, after",
+    "example": "{\"op\": \"u\", \"source\": {\"db\": \"mockdb\", \"table\": \"payments\"}}"
+  },
+  "pcap_hex": {
+    "pattern": "^[0-9a-f]{2} [0-9a-f]{2}",
+    "note": "PCAP packet capture: space-separated lowercase hex byte pairs (multi-line)",
+    "example": "d4 c3 b2 a1 02 00 04 00 ..."
+  },
+  "x509_cert": {
+    "pattern": "^\\{\"version\":",
+    "note": "X.509 certificate dict: version, serial, algorithm, subject, issuer, SANs, fingerprint",
+    "example": "{\"version\": 3, \"serial\": \"3d0f23...\", \"algorithm\": \"sha256WithRSAEncryption\"}"
+  },
+  "regex_string": {
+    "pattern": "^.{1,50}$",
+    "note": "Regex-matched test string: printable characters up to 50 chars",
+    "example": "HO6Y-VA17"
+  },
+  "vehicle": {
+    "pattern": "^\\{.+\\}$",
+    "note": "Vehicle dict: make, model, year, vin, color, fuel",
+    "example": "{'make': 'Honda', 'model': 'Civic', 'year': 2018, 'vin': 'NMTX3N621WE320144', 'color': 'Bej', 'fuel': 'LPG'}"
+  },
+  "color": {
+    "pattern": "^#[0-9A-F]{6}$",
+    "note": "CSS hex color: # + 6 uppercase hex chars",
+    "example": "#FF7F50"
   }
 }
