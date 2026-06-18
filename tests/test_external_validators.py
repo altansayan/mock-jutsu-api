@@ -14,11 +14,14 @@ from __future__ import annotations
 
 import ipaddress
 import json
+import pathlib
 import uuid as _uuid_mod
 
 import pytest
 
 from mockjutsu.core import MockJutsuCore
+
+_XSD_DIR = pathlib.Path(__file__).parent.parent / "compliance" / "xsd"
 
 jutsu = MockJutsuCore()
 N = 100  # samples per type
@@ -588,6 +591,15 @@ class TestMrz:
 # ─── lxml ─────────────────────────────────────────────────────────────────────
 
 
+def _load_xsd(filename: str):
+    """Load an ISO 20022 XSD schema from compliance/xsd/. Skip if not found."""
+    from lxml import etree
+    xsd_path = _XSD_DIR / filename
+    if not xsd_path.exists():
+        pytest.skip(f"XSD not found: {xsd_path}")
+    return etree.XMLSchema(etree.parse(str(xsd_path)))
+
+
 class TestLxml:
 
     def test_ubl_invoice_wellformed(self):
@@ -626,6 +638,77 @@ class TestLxml:
             except Exception:
                 results.append(False)
         _assert_all("pain001", results)
+
+
+# ─── ISO 20022 XSD Schema Validation ─────────────────────────────────────────
+
+
+class TestIso20022XsdValidation:
+
+    def test_pain001_xsd_valid(self):
+        """pain001 must validate against ISO 20022 pain.001.001.09 XSD schema."""
+        pytest.importorskip("lxml")
+        from lxml import etree
+        schema = _load_xsd("pain.001.001.09.xsd")
+        results = []
+        for v in _gen("pain001"):
+            try:
+                doc = etree.fromstring(v.encode("utf-8"))
+                schema.assertValid(doc)
+                results.append(True)
+            except etree.DocumentInvalid as exc:
+                results.append(False)
+            except Exception:
+                results.append(False)
+        _assert_all("pain001 XSD schema validation", results)
+
+    def test_sepa_mandate_xsd_valid(self):
+        """sepa_mandate must validate against ISO 20022 pain.008.001.08 XSD schema."""
+        pytest.importorskip("lxml")
+        from lxml import etree
+        schema = _load_xsd("pain.008.001.08.xsd")
+        results = []
+        for v in _gen("sepa_mandate"):
+            try:
+                doc = etree.fromstring(v.encode("utf-8"))
+                schema.assertValid(doc)
+                results.append(True)
+            except etree.DocumentInvalid:
+                results.append(False)
+            except Exception:
+                results.append(False)
+        _assert_all("sepa_mandate XSD schema validation", results)
+
+    def test_camt053_xsd_valid(self):
+        """camt053 must validate against ISO 20022 camt.053.001.02 XSD schema."""
+        pytest.importorskip("lxml")
+        from lxml import etree
+        schema = _load_xsd("camt.053.001.02.xsd")
+        results = []
+        for v in _gen("camt053"):
+            try:
+                doc = etree.fromstring(v.encode("utf-8"))
+                schema.assertValid(doc)
+                results.append(True)
+            except etree.DocumentInvalid:
+                results.append(False)
+            except Exception:
+                results.append(False)
+        _assert_all("camt053 XSD schema validation", results)
+
+    def test_pain001_xsd_catches_invalid(self):
+        """XSD validator must reject a pain001 with missing MsgId."""
+        pytest.importorskip("lxml")
+        from lxml import etree
+        schema = _load_xsd("pain.001.001.09.xsd")
+        # Remove MsgId from a valid pain001 to produce an invalid document
+        valid_xml = jutsu.generate("pain001")
+        broken_xml = valid_xml.replace(
+            valid_xml[valid_xml.find("<MsgId>"):valid_xml.find("</MsgId>") + 8], ""
+        )
+        doc = etree.fromstring(broken_xml.encode("utf-8"))
+        is_invalid = not schema.validate(doc)
+        assert is_invalid, "XSD validator should reject a document missing <MsgId>"
 
 
 # ─── mt940 ───────────────────────────────────────────────────────────────────
@@ -1243,3 +1326,86 @@ class TestFintechCritical:
             except Exception:
                 results.append(False)
         _assert_all("psd2_consent MOCKJ marker", results)
+
+
+# ─── SWIFT MT103 ─────────────────────────────────────────────────────────────
+
+
+class TestSwiftMt103:
+
+    def test_swift_mt103_blocks_present(self):
+        """MT103 must have all four SWIFT blocks: {1:F01...}{2:I103...}{4:...}{5:{CHK:...}}"""
+        import re
+        results = []
+        for v in _gen("swift_mt103"):
+            try:
+                has_b1 = bool(re.search(r'\{1:F01', v))
+                has_b2 = bool(re.search(r'\{2:I103', v))
+                has_b4 = bool(re.search(r'\{4:\n', v))
+                has_b5 = bool(re.search(r'\{5:\{CHK:[0-9A-F]{12}\}\}', v))
+                results.append(has_b1 and has_b2 and has_b4 and has_b5)
+            except Exception:
+                results.append(False)
+        _assert_all("swift_mt103 block structure", results)
+
+    def test_swift_mt103_mandatory_tags(self):
+        """MT103 must contain all 6 mandatory field tags per SWIFT Field Standards."""
+        import re
+        results = []
+        for v in _gen("swift_mt103"):
+            try:
+                has_20  = bool(re.search(r':20:[^\n]{1,16}', v))
+                has_23b = bool(re.search(r':23B:(CRED|CRTS|SPAY|SPRI|SSTD)', v))
+                has_32a = bool(re.search(r':32A:\d{6}[A-Z]{3}[\d,]+', v))
+                has_50  = bool(re.search(r':50[AK]:', v))
+                has_59  = bool(re.search(r':59A?:', v))
+                has_71a = bool(re.search(r':71A:(OUR|SHA|BEN)', v))
+                results.append(has_20 and has_23b and has_32a and has_50 and has_59 and has_71a)
+            except Exception:
+                results.append(False)
+        _assert_all("swift_mt103 mandatory tags", results)
+
+    def test_swift_mt103_mockj_marker(self):
+        """MT103 :20: sender reference must contain MOCKJ marker and be ≤16 chars."""
+        import re
+        results = []
+        for v in _gen("swift_mt103"):
+            try:
+                m = re.search(r':20:([^\n]{1,16})', v)
+                if m:
+                    ref = m.group(1)
+                    results.append("MOCKJ" in ref and len(ref) <= 16)
+                else:
+                    results.append(False)
+            except Exception:
+                results.append(False)
+        _assert_all("swift_mt103 MOCKJ in :20:", results)
+
+    def test_swift_mt103_32a_format(self):
+        """MT103 :32A: must be YYMMDD + 3-letter ISO currency + decimal amount (ISO 15022)."""
+        import re
+        results = []
+        for v in _gen("swift_mt103"):
+            try:
+                m = re.search(r':32A:(\d{6})([A-Z]{3})(\d+,\d{2})', v)
+                results.append(m is not None)
+            except Exception:
+                results.append(False)
+        _assert_all("swift_mt103 :32A: YYMMDD+CCY+amount", results)
+
+    def test_swift_mt103_locale_currency(self):
+        """MT103 :32A: currency must match locale (TR→TRY, US→USD, UK→GBP, DE/FR→EUR, RU→RUB)."""
+        import re
+        _expected_ccy = {
+            "TR": "TRY", "US": "USD", "UK": "GBP",
+            "DE": "EUR", "FR": "EUR", "RU": "RUB",
+        }
+        results = []
+        for locale, expected in _expected_ccy.items():
+            for v in [jutsu.generate("swift_mt103", locale=locale) for _ in range(20)]:
+                try:
+                    m = re.search(r':32A:\d{6}([A-Z]{3})', v)
+                    results.append(m is not None and m.group(1) == expected)
+                except Exception:
+                    results.append(False)
+        _assert_all("swift_mt103 :32A: locale→currency mapping", results)

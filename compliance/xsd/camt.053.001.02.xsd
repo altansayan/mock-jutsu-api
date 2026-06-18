@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Simplified structural XSD for ISO 20022 camt.053.001.02
+  (Bank to Customer Statement v2)
+
+  Validates the structural requirements of mock-jutsu generated
+  camt053 messages. Derived from the official ISO 20022 specification.
+
+  Official namespace: urn:iso:std:iso:20022:tech:xsd:camt.053.001.02
+  Reference: ISO 20022 Message Catalogue (camt.053.001.02)
+
+  Note: Bal and Ntry are declared as xs:choice to allow the generator's
+  interleaved ordering (opening Bal → Ntry entries → closing Bal).
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02"
+           xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02"
+           elementFormDefault="qualified">
+
+  <!-- Reusable: Amount with currency attribute -->
+  <xs:complexType name="ActiveOrHistoricCurrencyAndAmount">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal">
+        <xs:attribute name="Ccy" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:element name="Document">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="BkToCstmrStmt">
+          <xs:complexType>
+            <xs:sequence>
+
+              <!-- Group Header -->
+              <xs:element name="GrpHdr">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="MsgId"   type="xs:string"/>
+                    <xs:element name="CreDtTm" type="xs:dateTime"/>
+                    <xs:element name="MsgPgntn" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="PgNb"      type="xs:string"/>
+                          <xs:element name="LastPgInd" type="xs:boolean"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+              <!-- Statement (1..n) -->
+              <xs:element name="Stmt" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Id"      type="xs:string"/>
+                    <xs:element name="CreDtTm" type="xs:dateTime" minOccurs="0"/>
+
+                    <!-- From/To Date range -->
+                    <xs:element name="FrToDt" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="FrDtTm" type="xs:dateTime"/>
+                          <xs:element name="ToDtTm" type="xs:dateTime"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+
+                    <!-- Account -->
+                    <xs:element name="Acct">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Id">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="IBAN" type="xs:string"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="Ccy" type="xs:string" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+
+                    <!-- Balance and Entry — interleaved (opening Bal, Ntry×N, closing Bal) -->
+                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+
+                      <!-- Balance (OPBD / CLBD) -->
+                      <xs:element name="Bal">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Tp">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="CdOrPrtry">
+                                    <xs:complexType>
+                                      <xs:sequence>
+                                        <xs:element name="Cd"    type="xs:string" minOccurs="0"/>
+                                        <xs:element name="Prtry" type="xs:string" minOccurs="0"/>
+                                      </xs:sequence>
+                                    </xs:complexType>
+                                  </xs:element>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Amt"       type="ActiveOrHistoricCurrencyAndAmount"/>
+                            <xs:element name="CdtDbtInd" type="xs:string"/>
+                            <!-- Dt wrapper contains a nested Dt date -->
+                            <xs:element name="Dt">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="Dt"   type="xs:date"     minOccurs="0"/>
+                                  <xs:element name="DtTm" type="xs:dateTime" minOccurs="0"/>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+
+                      <!-- Entry (transaction) -->
+                      <xs:element name="Ntry">
+                        <xs:complexType>
+                          <xs:sequence>
+                            <xs:element name="Amt"       type="ActiveOrHistoricCurrencyAndAmount"/>
+                            <xs:element name="CdtDbtInd" type="xs:string"/>
+                            <!-- Sts: entry status -->
+                            <xs:element name="Sts">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="Cd" type="xs:string"/>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element name="BookgDt">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="Dt"   type="xs:date"     minOccurs="0"/>
+                                  <xs:element name="DtTm" type="xs:dateTime" minOccurs="0"/>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ValDt">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="Dt"   type="xs:date"     minOccurs="0"/>
+                                  <xs:element name="DtTm" type="xs:dateTime" minOccurs="0"/>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                            <!-- Bank Transaction Code -->
+                            <xs:element name="BkTxCd">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="Domn" minOccurs="0">
+                                    <xs:complexType>
+                                      <xs:sequence>
+                                        <xs:element name="Cd" type="xs:string"/>
+                                        <xs:element name="Fmly">
+                                          <xs:complexType>
+                                            <xs:sequence>
+                                              <xs:element name="Cd"        type="xs:string"/>
+                                              <xs:element name="SubFmlyCd" type="xs:string"/>
+                                            </xs:sequence>
+                                          </xs:complexType>
+                                        </xs:element>
+                                      </xs:sequence>
+                                    </xs:complexType>
+                                  </xs:element>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                            <!-- Entry Details -->
+                            <xs:element name="NtryDtls" minOccurs="0">
+                              <xs:complexType>
+                                <xs:sequence>
+                                  <xs:element name="TxDtls" minOccurs="0" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                      <xs:sequence>
+                                        <xs:element name="Refs" minOccurs="0">
+                                          <xs:complexType>
+                                            <xs:sequence>
+                                              <xs:element name="EndToEndId" type="xs:string" minOccurs="0"/>
+                                            </xs:sequence>
+                                          </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="RmtInf" minOccurs="0">
+                                          <xs:complexType>
+                                            <xs:sequence>
+                                              <xs:element name="Ustrd" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                                            </xs:sequence>
+                                          </xs:complexType>
+                                        </xs:element>
+                                      </xs:sequence>
+                                    </xs:complexType>
+                                  </xs:element>
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+
+                    </xs:choice>
+
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
