@@ -825,21 +825,21 @@ def test_weight_locale_units():
 # ---------------------------------------------------------------------------
 
 def test_currency_structure():
-    """currency must return a dict with code, symbol, name, decimals."""
+    """currency must return the ISO 4217 code string (e.g. 'TRY', 'USD')."""
     expected = {'TR': 'TRY', 'US': 'USD', 'UK': 'GBP', 'DE': 'EUR', 'FR': 'EUR', 'RU': 'RUB'}
     for locale, code in expected.items():
         c = jutsu.generate('currency', locale=locale)
-        assert isinstance(c, dict), f"currency must return dict for {locale}"
-        assert c['code'] == code, f"Wrong currency code for {locale}: {c['code']}"
-        assert 'symbol' in c and 'name' in c
+        assert isinstance(c, str), f"currency must return str for {locale}, got {type(c)}"
+        assert c == code, f"Wrong currency code for {locale}: {c!r}"
+        assert re.match(r'^[A-Z]{3}$', c), f"currency not ISO 4217 format: {c!r}"
 
 
 def test_tax_rate_structure():
-    """tax_rate must return a dict with at least name and standard fields."""
+    """tax_rate must return a percentage string (e.g. '20', '19', '7.5')."""
     for locale in LOCALES:
         t = jutsu.generate('tax_rate', locale=locale)
-        assert isinstance(t, dict), f"tax_rate must return dict for {locale}"
-        assert 'name' in t, f"tax_rate missing name for {locale}"
+        assert isinstance(t, str), f"tax_rate must return str for {locale}, got {type(t)}"
+        assert 0.0 <= float(t) <= 100.0, f"tax_rate out of range for {locale}: {t!r}"
 
 
 def test_invoice_number_non_empty():
@@ -2468,12 +2468,14 @@ def test_ssn_masked_format():
             f"ssn_masked format wrong: {val} (expected ***-**-####)"
 
 
-def test_nationality_alpha3():
-    """nationality must be exactly 3 uppercase ASCII letters (ISO 3166-1 alpha-3)."""
+def test_nationality_adjective():
+    """nationality must be a non-empty adjective string (e.g. 'Turkish', 'French')."""
     for _ in range(100):
         val = str(jutsu.generate('nationality'))
-        assert re.match(r'^[A-Z]{3}$', val), \
-            f"nationality must be 3 uppercase letters: {val}"
+        assert len(val) >= 4, f"nationality too short: {val!r}"
+        assert not re.match(r'^[A-Z]{3}$', val), \
+            f"nationality must be adjective, not ISO-3 code: {val!r}"
+        assert val[0].isupper(), f"nationality should be capitalized: {val!r}"
 
 
 # ---------------------------------------------------------------------------

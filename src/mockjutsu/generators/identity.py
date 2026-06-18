@@ -12,10 +12,13 @@ from mockjutsu.generators.name_data import NAME_POOLS
 
 # ISO 3166-1 alpha-3 nationality codes (common pool)
 _NATIONALITIES = [
-    'TUR', 'USA', 'GBR', 'DEU', 'FRA', 'RUS', 'CHN', 'IND', 'BRA', 'JPN',
-    'KOR', 'ITA', 'ESP', 'NLD', 'POL', 'SWE', 'NOR', 'DNK', 'FIN', 'AUS',
-    'CAN', 'MEX', 'ARG', 'ZAF', 'EGY', 'NGA', 'SAU', 'ARE', 'IRN', 'PAK',
-    'UKR', 'BEL', 'CHE', 'AUT', 'PRT', 'GRC', 'HUN', 'CZE', 'ROU', 'BGR',
+    'Turkish', 'American', 'British', 'German', 'French', 'Russian',
+    'Chinese', 'Indian', 'Brazilian', 'Japanese', 'Korean', 'Italian',
+    'Spanish', 'Dutch', 'Polish', 'Swedish', 'Norwegian', 'Danish',
+    'Finnish', 'Australian', 'Canadian', 'Mexican', 'Argentine',
+    'South African', 'Egyptian', 'Nigerian', 'Saudi', 'Emirati',
+    'Iranian', 'Pakistani', 'Ukrainian', 'Belgian', 'Swiss', 'Austrian',
+    'Portuguese', 'Greek', 'Hungarian', 'Czech', 'Romanian', 'Bulgarian',
 ]
 
 

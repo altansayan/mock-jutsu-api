@@ -316,9 +316,9 @@ class TestGenerateIdentity:
         val = _gen(runner, 'ssn_masked')
         assert re.match(r'^\*{3}-\*{2}-\d{4}$', val), f"ssn_masked: {val}"
 
-    def test_nationality_alpha3(self, runner):
+    def test_nationality_adjective(self, runner):
         val = _gen(runner, 'nationality')
-        assert re.match(r'^[A-Z]{3}$', val), f"nationality: {val}"
+        assert len(val) >= 4 and val[0].isupper(), f"nationality must be adjective: {val}"
 
     def test_employer_id_all_locales(self, runner):
         for locale in ['TR', 'US', 'UK', 'DE', 'FR', 'RU']:
@@ -728,22 +728,20 @@ class TestGenerateHealth:
 class TestGenerateCommerce:
 
     def test_currency_tr_structure(self, runner):
-        val = _parse(_gen(runner, 'currency', '--locale', 'TR'))
-        assert val['code'] == 'TRY'
-        assert val['decimals'] == 2
+        val = _gen(runner, 'currency', '--locale', 'TR')
+        assert val == 'TRY', f"Expected TRY, got {val!r}"
 
     def test_currency_de_eur(self, runner):
-        val = _parse(_gen(runner, 'currency', '--locale', 'DE'))
-        assert val['code'] == 'EUR'
+        val = _gen(runner, 'currency', '--locale', 'DE')
+        assert val == 'EUR', f"Expected EUR, got {val!r}"
 
     def test_tax_rate_tr_kdv(self, runner):
-        val = _parse(_gen(runner, 'tax_rate', '--locale', 'TR'))
-        assert val['name'] == 'KDV'
-        assert val['standard'] == 20
+        val = _gen(runner, 'tax_rate', '--locale', 'TR')
+        assert val == '20', f"Expected '20', got {val!r}"
 
     def test_taxrate_alias(self, runner):
-        val = _parse(_gen(runner, 'taxrate', '--locale', 'TR'))
-        assert 'name' in val
+        val = _gen(runner, 'taxrate', '--locale', 'TR')
+        assert float(val) >= 0, f"taxrate must be numeric string, got {val!r}"
 
     def test_invoice_number_tr_format(self, runner):
         val = _gen(runner, 'invoice_number', '--locale', 'TR')
@@ -1894,24 +1892,24 @@ class TestGenerateCommerceExtra:
         assert val[:3] in FR_WMI, f"VIN FR WMI: {val}"
 
     def test_currency_us_usd(self, runner):
-        val = _parse(_gen(runner, 'currency', '--locale', 'US'))
-        assert val['code'] == 'USD'
+        val = _gen(runner, 'currency', '--locale', 'US')
+        assert val == 'USD', f"Expected USD, got {val!r}"
 
     def test_currency_uk_gbp(self, runner):
-        val = _parse(_gen(runner, 'currency', '--locale', 'UK'))
-        assert val['code'] == 'GBP'
+        val = _gen(runner, 'currency', '--locale', 'UK')
+        assert val == 'GBP', f"Expected GBP, got {val!r}"
 
     def test_currency_fr_eur(self, runner):
-        val = _parse(_gen(runner, 'currency', '--locale', 'FR'))
-        assert val['code'] == 'EUR'
+        val = _gen(runner, 'currency', '--locale', 'FR')
+        assert val == 'EUR', f"Expected EUR, got {val!r}"
 
     def test_tax_rate_de_mwst(self, runner):
-        val = _parse(_gen(runner, 'tax_rate', '--locale', 'DE'))
-        assert val['name'] in ('MwSt', 'USt')
+        val = _gen(runner, 'tax_rate', '--locale', 'DE')
+        assert val == '19', f"Expected '19' (MwSt standard), got {val!r}"
 
     def test_tax_rate_us_sales_tax(self, runner):
-        val = _parse(_gen(runner, 'tax_rate', '--locale', 'US'))
-        assert val['name'] == 'Sales Tax'
+        val = _gen(runner, 'tax_rate', '--locale', 'US')
+        assert 0.0 <= float(val) <= 10.25, f"US tax rate out of range: {val!r}"
 
 
 # ===========================================================================

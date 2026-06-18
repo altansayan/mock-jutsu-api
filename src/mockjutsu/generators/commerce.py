@@ -157,11 +157,21 @@ class CommerceGenerator:
 
     @staticmethod
     def generate_currency(locale="TR"):
-        return CURRENCIES.get(locale.upper(), CURRENCIES["TR"])
+        """ISO 4217 currency code string (e.g. 'TRY', 'USD', 'EUR')."""
+        return CURRENCIES.get(locale.upper(), CURRENCIES["TR"])["code"]
 
     @staticmethod
     def generate_tax_rate(locale="TR"):
-        return TAX_RATES.get(locale.upper(), TAX_RATES["TR"])
+        """Standard tax rate as a percentage string (e.g. '20', '19').
+        US returns a random state sales-tax rate (0.0–10.25) since there is no federal rate.
+        """
+        l = locale.upper()
+        data = TAX_RATES.get(l, TAX_RATES["TR"])
+        rate = data.get("standard")
+        if rate is None:
+            # US: state-based, range 0–10.25%
+            rate = round(random.uniform(0, 10.25), 2)
+        return str(rate)
 
     @staticmethod
     def generate_invoice_number(locale="TR"):
