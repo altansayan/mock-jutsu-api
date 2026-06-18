@@ -388,9 +388,22 @@ class TestGenerateDocumentDemographic:
         val = _gen(runner, 'passport', '--locale', locale)
         assert re.match(pattern, val), f"passport[{locale}] format: {val}"
 
-    def test_license_6digits(self, runner):
+    def test_license_format(self, runner):
+        # Default locale TR: 2 uppercase letters + 6 digits
         val = _gen(runner, 'license')
-        assert re.match(r'^\d{6}$', val)
+        assert re.match(r'^[A-Z]{2}\d{6}$', val), f"license TR format: {val}"
+
+    @pytest.mark.parametrize("locale,pattern", [
+        ("TR", r'^[A-Z]{2}\d{6}$'),
+        ("US", r'^[A-Z]\d{7}$'),
+        ("UK", r'^[A-Z]{5}\d{6}[05][A-Z]\d{3}[A-Z0-9]$'),
+        ("DE", r'^(B|BY|BW|HH|HB|HE|MV|NI|NW|RP|SL|SN|ST|SH|TH)[A-Z]\d{4,7}$'),
+        ("FR", r'^\d{12}$'),
+        ("RU", r'^[ABCEHKMOPTXY]{2}\d{6}$'),
+    ])
+    def test_license_locale(self, runner, locale, pattern):
+        val = _gen(runner, 'license', '--locale', locale)
+        assert re.match(pattern, val), f"license[{locale}] format: {val}"
 
     def test_age_range(self, runner):
         val = int(_gen(runner, 'age'))

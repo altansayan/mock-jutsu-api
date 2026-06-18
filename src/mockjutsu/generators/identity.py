@@ -461,6 +461,60 @@ class IdentityGenerator:
         letter = random.choice(IdentityGenerator._TR_PASSPORT_LETTERS)
         return letter + "".join(str(random.randrange(10)) for _ in range(8))
 
+    _UK_LICENSE_SURNAME  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    _DE_LICENSE_STATES   = ["B", "BY", "BW", "HH", "HB", "HE", "MV", "NI", "NW", "RP", "SL", "SN", "ST", "SH", "TH"]
+    _RU_LICENSE_SERIES   = "ABCEHKMOPTXY"  # Cyrillic look-alikes (Latin subset used in RU DL)
+
+    @staticmethod
+    def _generate_license(locale: str) -> str:
+        """Locale-aware driving license number.
+
+        TR: 2 uppercase letters + 6 digits (Emniyet Trafik format)
+        US: 1 letter + 7 digits (common multi-state pattern)
+        UK: DVLA — SSSSS DDMMYY G INNN C (16 alnum, no spaces)
+        DE: state-code + 1 letter + 4-7 digits (abbreviated representative)
+        FR: 12 digits (CERT format)
+        RU: 2 letters (Latin subset) + 6 digits
+        """
+        l = locale.upper()
+        if l == 'TR':
+            letters = "".join(random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ") for _ in range(2))
+            digits  = "".join(str(random.randrange(10)) for _ in range(6))
+            return f"{letters}{digits}"
+        if l == 'US':
+            letter = random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+            digits = "".join(str(random.randrange(10)) for _ in range(7))
+            return f"{letter}{digits}"
+        if l == 'UK':
+            # DVLA: SSSSS = 5-char block (first 5 of surname padded with 9)
+            # DDMMYY: DoB | G: gender digit | I: initial | NNN: serial | C: check
+            surname_chars = "".join(random.choice(IdentityGenerator._UK_LICENSE_SURNAME) for _ in range(5))
+            day   = random.randrange(28) + 1
+            month = random.randrange(12) + 1
+            year  = random.randrange(60) + 40
+            gender_d = random.choice(["0", "5"])   # 0=male, 5=female (adds 50 to month)
+            m_enc = month if gender_d == "0" else month + 50
+            initial = random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+            serial  = random.randrange(999) + 1
+            check   = random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+            return f"{surname_chars}{day:02d}{m_enc:02d}{year:02d}{gender_d}{initial}{serial:03d}{check}"
+        if l == 'DE':
+            state = random.choice(IdentityGenerator._DE_LICENSE_STATES)
+            letter = random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+            digits = "".join(str(random.randrange(10)) for _ in range(random.randrange(4) + 4))
+            return f"{state}{letter}{digits}"
+        if l == 'FR':
+            return "".join(str(random.randrange(10)) for _ in range(12))
+        if l == 'RU':
+            s1 = random.choice(IdentityGenerator._RU_LICENSE_SERIES)
+            s2 = random.choice(IdentityGenerator._RU_LICENSE_SERIES)
+            digits = "".join(str(random.randrange(10)) for _ in range(6))
+            return f"{s1}{s2}{digits}"
+        # fallback → TR
+        letters = "".join(random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ") for _ in range(2))
+        digits  = "".join(str(random.randrange(10)) for _ in range(6))
+        return f"{letters}{digits}"
+
     # ────────────────────────────────────────────────────────────────────────────
 
     def generate(self, data_type, locale="TR", **kwargs):
@@ -586,7 +640,7 @@ class IdentityGenerator:
             return self._generate_passport(l)
 
         if dt == 'license':
-            return f"{random.randrange(900000) + 100000}"
+            return self._generate_license(l)
 
         # --- Demographics ---
         if dt == 'age':

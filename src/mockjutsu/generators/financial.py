@@ -41,11 +41,14 @@ ISSUERS = {
     "RU": ["Народный Банк", "Столичный Банк", "Восточный Кредит", "Русфинанс", "МоскваБанк"],
 }
 
+# bban_fmt: list of ('alpha'|'digit'|'alnum', length) segments (BBAN without check digits)
 BANK_FORMATS = {
-    "TR": {"type": "IBAN", "prefix": "TR", "len": 26},
-    "UK": {"type": "IBAN", "prefix": "GB", "len": 22},
-    "DE": {"type": "IBAN", "prefix": "DE", "len": 22},
-    "FR": {"type": "IBAN", "prefix": "FR", "len": 27},
+    "TR": {"type": "IBAN", "prefix": "TR", "len": 26, "bban_fmt": [("digit", 22)]},
+    # UK/GB: 4-letter bank code + 6-digit sort code + 8-digit account = 18 chars
+    "UK": {"type": "IBAN", "prefix": "GB", "len": 22, "bban_fmt": [("alpha", 4), ("digit", 14)]},
+    "DE": {"type": "IBAN", "prefix": "DE", "len": 22, "bban_fmt": [("digit", 18)]},
+    # FR: 5-digit bank + 5-digit branch + 11-alnum account + 2-digit RIB key = 23 chars
+    "FR": {"type": "IBAN", "prefix": "FR", "len": 27, "bban_fmt": [("digit", 10), ("alnum", 11), ("digit", 2)]},
     "US": {"type": "ROUTING", "len": 9},
     "RU": {"type": "BIK", "len": 9},
 }
@@ -81,12 +84,21 @@ class FinancialGenerator:
         prefix = [int(d) for d in random.choice(cfg["prefixes"])]
         return self._luhn_complete(prefix, cfg["length"])
 
+    _IBAN_ALNUM = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
     def generate_bank_account(self, locale="TR"):
         l = locale.upper()
         fmt = BANK_FORMATS.get(l, BANK_FORMATS["TR"])
         if fmt["type"] == "IBAN":
-            body_len = fmt["len"] - len(fmt["prefix"]) - 2
-            body = "".join(str(random.randrange(10)) for _ in range(body_len))
+            body_parts = []
+            for kind, length in fmt.get("bban_fmt", [("digit", fmt["len"] - len(fmt["prefix"]) - 2)]):
+                if kind == "digit":
+                    body_parts.append("".join(str(random.randrange(10)) for _ in range(length)))
+                elif kind == "alpha":
+                    body_parts.append("".join(random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ") for _ in range(length)))
+                else:
+                    body_parts.append("".join(random.choice(self._IBAN_ALNUM) for _ in range(length)))
+            body  = "".join(body_parts)
             check = _iban_check_digits(fmt["prefix"], body)
             return f"{fmt['prefix']}{check}{body}"
         if fmt["type"] == "ROUTING":

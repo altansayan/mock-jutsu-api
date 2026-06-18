@@ -377,6 +377,19 @@ def test_iban_us_routing_format():
         assert str(val).startswith('RT:'), f"US bank must start with RT:: {val}"
 
 
+@pytest.mark.parametrize("locale,pattern", [
+    ("TR", r'^TR\d{24}$'),
+    ("UK", r'^GB\d{2}[A-Z]{4}\d{14}$'),  # GB + 2check + 4-letter bank code + 14 digits
+    ("DE", r'^DE\d{20}$'),
+    ("FR", r'^FR\d{2}\d{10}[A-Z0-9]{11}\d{2}$'),  # FR + 2check + 10d bank+branch + 11alnum + 2d key
+])
+def test_iban_bban_structure(locale, pattern):
+    """IBAN BBAN must match locale-specific structural format (not just length)."""
+    for _ in range(30):
+        val = str(jutsu.generate('iban', locale=locale))
+        assert re.match(pattern, val), f"IBAN[{locale}] BBAN structure wrong: {val}"
+
+
 def test_iban_ru_bik_format():
     """RU bank format must use BIK: prefix (not IBAN)."""
     for _ in range(20):
@@ -2615,18 +2628,19 @@ def test_lastname_is_string():
 # Sprint 6C — Document: license
 # ---------------------------------------------------------------------------
 
-def test_license_format():
-    """license must be exactly 6 digits (100000–999999)."""
-    for _ in range(100):
-        val = str(jutsu.generate('license'))
-        assert re.match(r'^\d{6}$', val), f"license format wrong: {val}"
-
-
-def test_license_range():
-    """license must be in range 100000–999999."""
-    for _ in range(100):
-        val = int(jutsu.generate('license'))
-        assert 100000 <= val <= 999999, f"license out of range: {val}"
+@pytest.mark.parametrize("locale,pattern", [
+    ("TR", r'^[A-Z]{2}\d{6}$'),
+    ("US", r'^[A-Z]\d{7}$'),
+    ("UK", r'^[A-Z]{5}\d{6}[05][A-Z]\d{3}[A-Z0-9]$'),
+    ("DE", r'^(B|BY|BW|HH|HB|HE|MV|NI|NW|RP|SL|SN|ST|SH|TH)[A-Z]\d{4,7}$'),
+    ("FR", r'^\d{12}$'),
+    ("RU", r'^[ABCEHKMOPTXY]{2}\d{6}$'),
+])
+def test_license_format(locale, pattern):
+    """Driving license must match locale-specific format (was plain 6-digit for all)."""
+    for _ in range(30):
+        val = str(jutsu.generate('license', locale=locale))
+        assert re.match(pattern, val), f"license[{locale}] format wrong: {val}"
 
 
 # ---------------------------------------------------------------------------
