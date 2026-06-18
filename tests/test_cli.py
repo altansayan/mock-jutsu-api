@@ -372,8 +372,21 @@ class TestGenerateName:
 class TestGenerateDocumentDemographic:
 
     def test_passport_format(self, runner):
+        # Default locale is TR: 1 letter (TR set) + 8 digits = 9 chars
         val = _gen(runner, 'passport')
-        assert re.match(r'^P\d{7}$', val), f"passport format: {val}"
+        assert re.match(r'^[ABCDEFGHJKLMNPRSTUVYZ]\d{8}$', val), f"passport TR format: {val}"
+
+    @pytest.mark.parametrize("locale,pattern", [
+        ("TR", r'^[ABCDEFGHJKLMNPRSTUVYZ]\d{8}$'),
+        ("US", r'^[A-Z]\d{8}$'),
+        ("UK", r'^\d{9}$'),
+        ("DE", r'^[CFGHJKLMNPRTVWXYZ][A-Z0-9]{8}$'),
+        ("FR", r'^\d{2}[A-Z]{2}\d{5}$'),
+        ("RU", r'^\d{9}$'),
+    ])
+    def test_passport_locale(self, runner, locale, pattern):
+        val = _gen(runner, 'passport', '--locale', locale)
+        assert re.match(pattern, val), f"passport[{locale}] format: {val}"
 
     def test_license_6digits(self, runner):
         val = _gen(runner, 'license')

@@ -418,6 +418,49 @@ class IdentityGenerator:
         seq    = random.randrange(999) + 1
         return f"{region:02d}{ifns:02d}{reason:02d}{seq:03d}"
 
+    # ── Passport ──────────────────────────────────────────────────────────────
+
+    _TR_PASSPORT_LETTERS = "ABCDEFGHJKLMNPRSTUVYZ"   # Turkish uppercase, I/Q excluded
+    _DE_PASSPORT_LETTERS = "CFGHJKLMNPRTVWXYZ"        # German Reisepass series letters
+    _FR_PASSPORT_ALPHA   = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    @staticmethod
+    def _generate_passport(locale: str) -> str:
+        """Locale-aware passport number.
+
+        TR: 1 letter + 8 digits (e.g. U12345678)  — ICAO MRTD, 9 chars
+        US: 1 letter + 8 digits (e.g. A12345678)  — US NPPD format, 9 chars
+        UK: 9 digits (no letter prefix, post-2006) — HMPO, 9 chars
+        DE: 1 letter (German series) + 8 alphanumeric — Bundesdruckerei, 9 chars
+        FR: 2 digits + 2 uppercase letters + 5 digits — ANTS format, 9 chars
+        RU: 2-digit series + 7-digit number — zagranpassport, 9 chars
+        """
+        l = locale.upper()
+        if l == 'TR':
+            letter = random.choice(IdentityGenerator._TR_PASSPORT_LETTERS)
+            return letter + "".join(str(random.randrange(10)) for _ in range(8))
+        if l == 'US':
+            letter = random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+            return letter + "".join(str(random.randrange(10)) for _ in range(8))
+        if l == 'UK':
+            return "".join(str(random.randrange(10)) for _ in range(9))
+        if l == 'DE':
+            letter = random.choice(IdentityGenerator._DE_PASSPORT_LETTERS)
+            alnum = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            return letter + "".join(random.choice(alnum) for _ in range(8))
+        if l == 'FR':
+            d1 = f"{random.randrange(99) + 1:02d}"
+            letters = "".join(random.choice(IdentityGenerator._FR_PASSPORT_ALPHA) for _ in range(2))
+            digits = f"{random.randrange(99999) + 1:05d}"
+            return f"{d1}{letters}{digits}"
+        if l == 'RU':
+            series = f"{random.randrange(90) + 10:02d}"
+            number = f"{random.randrange(9000000) + 1000000:07d}"
+            return f"{series}{number}"
+        # fallback → TR format
+        letter = random.choice(IdentityGenerator._TR_PASSPORT_LETTERS)
+        return letter + "".join(str(random.randrange(10)) for _ in range(8))
+
     # ────────────────────────────────────────────────────────────────────────────
 
     def generate(self, data_type, locale="TR", **kwargs):
@@ -540,7 +583,7 @@ class IdentityGenerator:
 
         # --- Documents ---
         if dt == 'passport':
-            return f"P{random.randrange(9000000) + 1000000}"
+            return self._generate_passport(l)
 
         if dt == 'license':
             return f"{random.randrange(900000) + 100000}"

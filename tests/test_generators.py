@@ -207,11 +207,19 @@ def test_birthdate_format():
         assert re.match(r'^\d{4}-\d{2}-\d{2}$', str(val)), f"Birthdate format wrong: {val}"
 
 
-def test_passport_format():
-    """passport must match P + exactly 7 digits."""
-    for _ in range(50):
-        val = jutsu.generate('passport')
-        assert re.match(r'^P\d{7}$', str(val)), f"Passport format wrong: {val}"
+@pytest.mark.parametrize("locale,pattern", [
+    ("TR", r'^[ABCDEFGHJKLMNPRSTUVYZ]\d{8}$'),
+    ("US", r'^[A-Z]\d{8}$'),
+    ("UK", r'^\d{9}$'),
+    ("DE", r'^[CFGHJKLMNPRTVWXYZ][A-Z0-9]{8}$'),
+    ("FR", r'^\d{2}[A-Z]{2}\d{5}$'),
+    ("RU", r'^\d{9}$'),
+])
+def test_passport_format(locale, pattern):
+    """Passport must match locale-specific real-world format (9 chars, no longer P+7)."""
+    for _ in range(30):
+        val = jutsu.generate('passport', locale=locale)
+        assert re.match(pattern, str(val)), f"Passport[{locale}] format wrong: {val}"
 
 
 def test_de_steuer_id_checksum():
