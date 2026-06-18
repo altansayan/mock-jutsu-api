@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>se_personnummer</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>The se_personnummer function is a specialised tool within the mock-jutsu library designed to generate realistic Swedish personal identity numbers. For developers and QA engineers building software for the Nordic market, generating accurate test data is essential for validating systems that handle sensitive identification. This function produces strings in the standard twelve-digit format, typically structured as YYYYMMDD-NNNN, ensuring that every piece of mock data adheres to the rigorous formatting expectations of Swedish administrative systems and financial institutions.</p>
+
+<p>The primary technical challenge when generating a Swedish Personnummer is the checksum validation. The se_personnummer function automatically implements the Luhn algorithm, also known as the modulus 10 algorithm, on the final digits of the sequence. This ensures that the generated test data passes through strict validation logic in frontend forms or backend API endpoints without being rejected as invalid. By using mock-jutsu, developers can bypass the manual creation of these complex strings, gaining access to a steady stream of valid identifiers that represent various birth dates and gender-specific sequences, as traditionally defined by the penultimate digit of the four-digit suffix.</p>
+
+<p>Integrating se_personnummer into your testing workflow is seamless, whether you are working in a Python environment, using the command-line interface, or conducting performance tests in JMeter. This versatility makes it an invaluable asset for Know Your Customer (KYC) simulations, database migrations, and UI testing where precise input masks are required. Using high-quality mock data instead of real personal information is not only a best practice for data privacy and GDPR compliance but also prevents the risk of exposing actual citizen records during the software development lifecycle.</p>
+
+<p>With mock-jutsu, you can generate these identifiers via a simple Python call or through the CLI for rapid batch processing. This automation significantly reduces the overhead associated with manual data entry and minimises the risk of testing bottlenecks. By providing reliable, algorithmically correct test data, the se_personnummer function allows engineering teams to focus on building robust features while ensuring that their validation logic is thoroughly battle-tested against realistic Swedish identity formats.</p></div>
 
   <div class="terminals">
     <div class="term">

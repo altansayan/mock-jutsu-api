@@ -186,7 +186,15 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>jp_in</strong>
   </nav>
 
-  <div class="article"><p>Inhalt noch nicht generiert. generate_ai_content.py ausführen.</p></div>
+  <div class="article"><p>In der modernen Softwareentwicklung ist die Qualität der verwendeten Mock-Daten entscheidend für den Erfolg von Integrationstests, insbesondere wenn es um länderspezifische Identifikationsnummern geht. Für Entwickler, die Anwendungen für den japanischen Markt lokalisieren, bietet die Bibliothek mock-jutsu mit der Funktion jp_in ein spezialisiertes Werkzeug zur Erzeugung der japanischen Individual Number, auch bekannt als My Number. Diese zwölfstellige Identifikationsnummer ist ein zentrales Element im japanischen Verwaltungs- und Sozialversicherungssystem und stellt hohe Anforderungen an die syntaktische Korrektheit der Testdaten.</p>
+
+<p>Die Funktion jp_in generiert nicht einfach nur eine zufällige Folge von Ziffern, sondern folgt strikt den offiziellen Spezifikationen. Jede erzeugte Nummer besteht aus genau zwölf Stellen und nutzt den MOD-11-Algorithmus zur Berechnung der Prüfziffer. Durch diese mathematische Validierung wird sichergestellt, dass die von mock-jutsu bereitgestellten Daten von internen Validierungslogiken in Datenbanken oder Frontend-Formularen als gültig erkannt werden. Dies erspart Teams das manuelle Erstellen komplexer Testdatensätze und minimiert potenzielle Fehlerquellen während der sensiblen Phase der Qualitätssicherung.</p>
+
+<p>Die Integration von jp_in in den bestehenden Entwicklungs-Workflow ist denkbar einfach und flexibel gestaltet. Innerhalb einer Python-Umgebung lässt sich die Nummer über den einfachen Aufruf jutsu.generate('jp_in') erzeugen, während DevOps-Engineers die Funktionalität für automatisierte Skripte direkt über das Terminal mittels mockjutsu generate jp_in nutzen können. Besonders hervorzuheben ist die nahtlose Einbindung in Lasttests über JMeter mit dem Ausdruck ${__mockjutsu(jp_in,)}, was die Erzeugung massenhafter, valider Testdaten für Performance-Analysen ohne Performance-Einbußen ermöglicht.</p>
+
+<p>Ein wesentlicher Vorteil beim Einsatz von mock-jutsu liegt in der Einhaltung von strengen Datenschutzbestimmungen. Da die Funktion jp_in rein synthetische, aber strukturell absolut korrekte Testdaten liefert, besteht keine Gefahr, versehentlich echte personenbezogene Daten in unsicheren Testumgebungen zu verwenden. Dies ist besonders kritisch bei der Entwicklung von Finanz-, Steuer- oder Personalsoftware. Entwickler profitieren so von einer beschleunigten Deployment-Pipeline, da realistische Szenarien – vom einfachen Formular-Check bis hin zu komplexen Datenbank-Migrationen – ohne manuellen Aufwand und rechtliche Risiken abgebildet werden können.</p>
+
+<p>Zusammenfassend lässt sich sagen, dass die Funktion jp_in innerhalb des mock-jutsu Frameworks eine unverzichtbare Komponente für das internationale Software-Testing darstellt. Sie kombiniert technische Präzision durch den MOD-11-Check mit einer intuitiven Handhabung über verschiedene Schnittstellen hinweg. Wer professionelle Mock-Daten für japanische Identitätssysteme benötigt, findet in dieser Lösung ein effizientes Werkzeug, um die Robustheit und Konformität seiner globalen Anwendungen sicherzustellen.</p></div>
 
   <div class="terminals">
     <div class="term">

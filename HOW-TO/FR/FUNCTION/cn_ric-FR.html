@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>cn_ric</strong>
   </nav>
 
-  <div class="article"><p>Contenu non encore généré. Exécutez generate_ai_content.py.</p></div>
+  <div class="article"><p>La bibliothèque mock-jutsu s'impose comme un outil indispensable pour les développeurs et testeurs cherchant à simuler des environnements complexes avec des données réalistes. Au sein de sa catégorie dédiée aux identifiants internationaux, la fonction cn_ric occupe une place stratégique. Elle permet de générer des numéros de carte d'identité de résident chinois (Resident Identity Card) conformes aux standards officiels. L'intégration de telles données fictives est essentielle pour garantir que les systèmes d'information traitant des profils d'utilisateurs internationaux fonctionnent sans erreur de validation de format.</p>
+
+<p>Le fonctionnement de cn_ric repose sur une structure rigoureuse de 18 caractères, respectant scrupuleusement la norme nationale chinoise GB11643-1999. Chaque identifiant produit par mock-jutsu se décompose en quatre segments distincts : un code de zone géographique sur six chiffres, une date de naissance sur huit chiffres, un code de séquence sur trois chiffres (déterminant également le sexe de l'individu fictif) et enfin un caractère de contrôle. Ce dernier est le fruit d'un algorithme complexe de somme de contrôle (checksum), assurant que chaque donnée de test générée est syntaxiquement valide et capable de franchir les filtres de vérification les plus stricts lors des phases de développement.</p>
+
+<p>L'accessibilité est l'un des points forts de mock-jutsu. Pour un développeur Python, l'appel à la fonction se fait via jutsu.generate('cn_ric'), facilitant le peuplement de bases de données ou la création de scripts de tests unitaires. Les ingénieurs QA peuvent également utiliser l'interface en ligne de commande avec mockjutsu generate cn_ric pour des besoins ponctuels. Enfin, pour les tests de charge et de performance, l'intégration native avec JMeter via la syntaxe ${__mockjutsu(cn_ric,)} permet de simuler des flux massifs d'utilisateurs sans jamais risquer de manipuler des données personnelles réelles (PII), respectant ainsi les principes de protection de la vie privée.</p>
+
+<p>En utilisant cn_ric, les équipes techniques bénéficient d'un gain de temps considérable. Plus besoin de concevoir manuellement des algorithmes de validation complexes ou de chercher des exemples valides sur le web. La fonction offre une source inépuisable de données fictives de haute qualité, idéales pour tester la robustesse des formulaires d'inscription, les processus de KYC (Know Your Customer) ou la cohérence des bases de données internationales. Avec mock-jutsu, la conformité technique et la sécurité des données deviennent des standards accessibles en une seule ligne de code.</p></div>
 
   <div class="terminals">
     <div class="term">

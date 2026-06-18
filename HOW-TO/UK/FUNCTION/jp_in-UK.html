@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>jp_in</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>The jp_in function is a specialised component of the mock-jutsu library, designed to generate high-fidelity mock data for developers building applications for the Japanese market. This function specifically produces a synthetic Japanese Individual Number, more commonly referred to as "My Number." As a 12-digit identifier used extensively across Japan for social security, taxation, and disaster response, having access to realistic test data is essential for ensuring that software systems can handle these sensitive identifiers correctly and securely without ever touching real personal information.</p>
+
+<p>Technically, the jp_in generator adheres to the official standards by implementing a rigorous MOD-11 check digit algorithm. This mathematical validation ensures that every identifier produced by mock-jutsu is structurally sound, allowing developers to verify their internal validation logic, database constraints, and user interface masks. By mimicking the exact weighting and modulus operations used by the Japanese government, the function provides a level of authenticity that goes far beyond simple random number generation, making it a critical tool for quality assurance and robust system testing.</p>
+
+<p>Integration is seamless across various development environments, reflecting the versatility of the mock-jutsu library. Developers can generate a single identifier via the command-line interface using the "mockjutsu generate jp_in" command, or integrate it directly into their Python scripts using the "jutsu.generate('jp_in')" method. Furthermore, for those conducting performance or stress tests, the function is available as a JMeter variable through the syntax "${__mockjutsu(jp_in,)}". This multi-platform support ensures that consistent, valid test data is available at every stage of the software development lifecycle, from initial prototyping to automated load testing.</p>
+
+<p>The primary benefit of using the jp_in function lies in its ability to facilitate complex testing scenarios, such as Know Your Customer (KYC) workflows, financial auditing, and government-facing portal development. By using synthetic identifiers, teams can bypass the legal and ethical complexities associated with handling real PII (Personally Identifiable Information), ensuring compliance with privacy regulations like the APPI. Ultimately, mock-jutsu empowers engineering teams to build more reliable and compliant software by providing a safe, repeatable, and scalable source of accurate Japanese Individual Numbers.</p></div>
 
   <div class="terminals">
     <div class="term">

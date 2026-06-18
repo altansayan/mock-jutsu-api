@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>br_cpf</strong>
   </nav>
 
-  <div class="article"><p>İçerik henüz üretilmedi. generate_ai_content.py çalıştırın.</p></div>
+  <div class="article"><p>Yazılım geliştirme süreçlerinde, özellikle uluslararası pazarlara hitap eden uygulamalar için yerelleştirilmiş test verisi kullanımı kritik bir öneme sahiptir. Brezilya pazarına yönelik bir uygulama geliştiriyorsanız, kullanıcı kimlik doğrulama süreçlerini ve kayıt formlarını test etmek için gerçekçi verilere ihtiyaç duyarsınız. İşte tam bu noktada, mock-jutsu kütüphanesinin sunduğu br_cpf fonksiyonu devreye giriyor. Bu fonksiyon, Brezilya'nın resmi bireysel kimlik numarası olan Cadastro de Pessoas Físicas (CPF) formatına tam uyumlu, yüksek doğrulukta mock data üretmenize olanak tanır.</p>
+
+<p>Teknik açıdan br_cpf fonksiyonu tarafından üretilen her test verisi, standart 11 haneli yapıya ve Brezilya otoriteleri tarafından belirlenen MOD-11 algoritmasına göre kurgulanmıştır. Fonksiyon, sadece rastgele sayılar dizmek yerine, son iki kontrol hanesini (check digits) matematiksel olarak hesaplayarak geçerli bir CPF yapısı oluşturur. Örneğin "123.456.789-09" çıktısında olduğu gibi, hem noktalama işaretlerini içeren formatlı yapıyı korur hem de sistemlerin validasyon mantığını test edebileceğiniz tutarlı sonuçlar üretir. Bu özellik, veri tabanı kısıtlamalarını veya katı form doğrulama kurallarını aşmak için manuel veri oluşturma zahmetini ortadan kaldırır.</p>
+
+<p>Geliştiriciler için bu fonksiyonun kullanım alanları oldukça geniştir. Özellikle e-ticaret platformları, finansal teknoloji (FinTech) çözümleri ve kullanıcı profili yönetimi içeren sistemlerde, gerçek kullanıcı verilerini riske atmadan test senaryoları kurgulamak hayati önem taşır. mock-jutsu ile üretilen bu veriler, KVKK veya GDPR gibi kişisel verilerin korunması kanunlarına tam uyumlu bir test ortamı sağlar. Otomasyon testlerinde, yük testlerinde veya sadece arayüz geliştirme aşamasında, gerçekçi ama anonim bir veri setiyle çalışmak hata payını minimize eder.</p>
+
+<p>Kütüphanenin esnek yapısı sayesinde br_cpf fonksiyonuna erişim oldukça basittir. Python projelerinizde jutsu.generate('br_cpf') komutuyla saniyeler içinde veri üretebilir, terminal üzerinden CLI aracılığıyla hızlıca çıktı alabilir veya JMeter gibi performans testi araçlarında doğrudan entegrasyon sağlayabilirsiniz. Bu çok yönlülük, geliştirme döngüsünü hızlandırırken Brezilya merkezli sistem entegrasyonlarınızı çok daha güvenli, hızlı ve profesyonel bir zemine oturtmanıza yardımcı olur.</p></div>
 
   <div class="terminals">
     <div class="term">

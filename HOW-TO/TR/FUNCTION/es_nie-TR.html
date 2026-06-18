@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>es_nie</strong>
   </nav>
 
-  <div class="article"><p>İçerik henüz üretilmedi. generate_ai_content.py çalıştırın.</p></div>
+  <div class="article"><p>Yazılım geliştirme süreçlerinde, özellikle uluslararası pazarlara hitap eden uygulamalar için gerçekçi ve standartlara uygun test verisi üretmek büyük bir zorluk teşkil edebilir. mock-jutsu kütüphanesinin IntlIDs kategorisinde yer alan es_nie fonksiyonu, İspanya'da ikamet eden yabancı uyruklu kişilere verilen NIE (Número de Identidad de Extranjero) numaralarını hızlı ve güvenilir bir şekilde simüle etmek için tasarlanmıştır. Bu fonksiyon sayesinde, İspanyol kimlik doğrulama sistemleriyle entegre çalışan uygulamalarınızın mantıksal doğruluğunu, gerçek kullanıcı verilerini riske atmadan test edebilirsiniz.</p>
+
+<p>Teknik açıdan es_nie fonksiyonu, İspanya resmi makamlarının belirlediği algoritmayı harfiyen takip eder. Üretilen her mock data, X, Y veya Z harflerinden biriyle başlar; ardından yedi haneli benzersiz bir sayı dizisi gelir ve sistemin en kritik parçası olan MOD-23 kontrol harfi ile tamamlanır. Bu kontrol harfi, baştaki harfin sayısal karşılığı ve takip eden rakamların matematiksel bir kombinasyonu üzerinden hesaplanır. Dolayısıyla es_nie tarafından üretilen her test verisi, sadece rastgele bir karakter dizisi değil, aynı zamanda form doğrulama (validation) algoritmalarından başarıyla geçebilecek geçerli bir yapıya sahiptir.</p>
+
+<p>Bu fonksiyonun kullanım alanları oldukça geniştir. Özellikle KYC (Müşterini Tanı) süreçleri, finansal teknoloji uygulamaları, e-ticaret ödeme sistemleri ve göçmenlik kayıt formları gibi alanlarda es_nie vazgeçilmez bir araçtır. Geliştiriciler, manuel olarak geçerli bir NIE numarası uydurmaya çalışmak yerine, mock-jutsu kullanarak saniyeler içinde binlerce farklı ve geçerli kombinasyon üretebilirler. Bu durum, hem birim testlerinin (unit tests) kapsamını genişletir hem de uçtan uca test senaryolarında veri çeşitliliğini artırarak hata payını minimize eder.</p>
+
+<p>Erişilebilirlik ve entegrasyon konusunda mock-jutsu büyük bir esneklik sunar. Python projelerinizde doğrudan jutsu.generate('es_nie') komutuyla bu veriyi çağırabilir veya komut satırı arayüzü (CLI) üzerinden mockjutsu generate es_nie komutunu kullanarak hızlı sonuçlar alabilirsiniz. Ayrıca, performans testleri için JMeter kullanan mühendisler, ${__mockjutsu(es_nie,)} ifadesiyle dinamik veri üretimini test senaryolarına kolayca dahil edebilirler. Bu çok yönlü yapı, geliştirici ekiplerin iş akışını hızlandırırken, test süreçlerinin kalitesini de en üst düzeye çıkarır.</p></div>
 
   <div class="terminals">
     <div class="term">

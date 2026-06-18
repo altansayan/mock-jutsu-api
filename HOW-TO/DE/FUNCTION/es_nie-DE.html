@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>es_nie</strong>
   </nav>
 
-  <div class="article"><p>Inhalt noch nicht generiert. generate_ai_content.py ausführen.</p></div>
+  <div class="article"><p>In der modernen Softwareentwicklung ist die Qualität der verwendeten Testdaten entscheidend für den Erfolg eines Projekts. Besonders bei der Arbeit mit internationalen Identifikationsnummern stoßen Entwickler oft auf die Herausforderung, syntaktisch korrekte Daten zu generieren, die komplexe Validierungsalgorithmen bestehen. Die Python-Bibliothek mock-jutsu bietet hierfür eine elegante Lösung. Mit der Funktion es_nie aus der Kategorie IntlIDs lassen sich spanische NIE-Nummern (Número de Identidad de Extranjero) im Handumdrehen erzeugen, die exakt den offiziellen regulatorischen Anforderungen entsprechen.</p>
+
+<p>Die Funktion es_nie generiert Mock-Daten, die dem standardisierten spanischen Format folgen: Einem führenden Buchstaben (X, Y oder Z), gefolgt von einer siebenstelligen Ziffernfolge und einem abschließenden Prüfbuchstaben. Der Clou liegt in der mathematischen Korrektheit: mock-jutsu implementiert den offiziellen MOD-23-Algorithmus zur Berechnung des Kontrollbuchstabens. Dabei werden die Präfixe X, Y und Z als numerische Werte (0, 1 oder 2) behandelt, um die Prüfziffer exakt so zu bestimmen, wie es staatliche Behörden oder Bankensysteme in Spanien tun würden. Ein generiertes Beispiel wie X1234567L ist somit nicht nur ein zufälliger String, sondern ein valider Datensatz für Ihre Testumgebung.</p>
+
+<p>Die Einbindung in den Workflow ist denkbar einfach und flexibel gestaltet. Python-Entwickler können die Funktion direkt über jutsu.generate('es_nie') in ihre Unit-Tests oder Data-Pipelines integrieren. Werden Testdaten ad hoc für die Shell oder zur Dokumentation benötigt, liefert das CLI-Tool mit dem Befehl mockjutsu generate es_nie sofortige Ergebnisse. Für professionelle Last- und Performance-Tests unterstützt mock-jutsu zudem JMeter. Durch den Ausdruck ${__mockjutsu(es_nie,)} lassen sich tausende individuelle Testdaten dynamisch in Testpläne einbetten, um Datenbanken unter realistischen Bedingungen zu prüfen.</p>
+
+<p>Der Einsatz von es_nie bietet Entwicklern enorme Vorteile hinsichtlich Effizienz und Datenschutz. Anstatt echte, sensible Identitätsdaten zu verwenden, was oft gegen die DSGVO verstößt, ermöglicht mock-jutsu die Arbeit mit anonymen, aber strukturell identischen Mock-Daten. Dies ist besonders kritisch bei der Entwicklung von Fintech-Apps, Registrierungsformularen oder CRM-Systemen für den spanischen Markt. Durch die Automatisierung der Datenerzeugung werden menschliche Fehler eliminiert und die Testabdeckung signifikant erhöht, da auch Randfälle und verschiedene Präfix-Kombinationen systematisch abgedeckt werden können.</p></div>
 
   <div class="terminals">
     <div class="term">

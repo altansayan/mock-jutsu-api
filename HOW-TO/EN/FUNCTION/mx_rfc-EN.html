@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>mx_rfc</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>Generating realistic test data for international markets requires precision, especially when dealing with unique tax identifiers like the Mexican Registro Federal de Contribuyentes. The mx_rfc function within the mock-jutsu library is a specialized tool designed to produce high-fidelity mock data for developers and QA engineers working on localized software for the Mexican market. By simulating the exact structure of an RFC, this utility ensures that your applications can handle complex validation logic and database constraints without relying on sensitive real-world information.</p>
+
+<p>The mx_rfc function adheres to the standards established by the Mexican Tax Administration Service (SAT). It intelligently generates both 12-character strings for legal entities (companies) and 13-character strings for natural persons. The algorithm follows the specific pattern required for these identifiers: for individuals, it combines the first two letters of the paternal surname, the first letter of the maternal surname, the first letter of the given name, and the date of birth in YYMMDD format. For companies, it uses the initials of the entity and the date of incorporation. Both types conclude with a three-character alphanumeric "homoclave," which mock-jutsu generates to ensure the output looks authentic for any testing scenario.</p>
+
+<p>Utilizing mx_rfc is essential for testing financial systems, e-commerce platforms, and HR software that require Mexican tax IDs for invoicing, tax reporting, or payroll. Developers benefit from having a reliable source of test data that bypasses the need for manual data entry or scraping. Since mock-jutsu integrates seamlessly via a CLI, a Python API, or even JMeter plugins, it fits perfectly into modern CI/CD pipelines. Whether you are performing high-concurrency load testing with ${__mockjutsu(mx_rfc,)} or writing unit tests with jutsu.generate('mx_rfc'), the function provides consistent, valid-format strings that prevent "invalid input" errors during the development lifecycle.</p>
+
+<p>Ultimately, the mx_rfc function empowers teams to build robust global applications with confidence. By automating the creation of these specialized identifiers, mock-jutsu reduces the risk of data leaks and speeds up the debugging process for edge cases involving tax ID validation. This tool is an indispensable asset for any developer looking to streamline their workflow while maintaining the highest standards of data integrity and regional compliance in their testing environments.</p></div>
 
   <div class="terminals">
     <div class="term">

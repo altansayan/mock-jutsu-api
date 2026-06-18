@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>cl_rut</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>The cl_rut function is a specialized utility within the mock-jutsu library designed to generate realistic Chilean Rol Único Tributario (RUT) identifiers. As a critical component of the IntlIDs category, this function allows developers and QA engineers to produce high-quality mock data for applications targeting the Chilean market. Whether you are building a localized customer relationship management system or a regional payment gateway, having access to validly formatted identification numbers is essential for maintaining data integrity and ensuring that your application logic behaves as expected during the development lifecycle.</p>
+
+<p>Every identifier produced by the cl_rut function adheres strictly to official Chilean standards. The underlying algorithm generates a sequence of seven to eight digits followed by a verification digit, which is calculated using the Modulo 11 (MOD-11) check system. This check digit can be a numerical value from zero to nine or the uppercase letter "K." To ensure the test data looks authentic and matches real-world usage, mock-jutsu automatically formats the output with the characteristic periods and hyphen, such as 12.345.678-9. This precision makes the generated strings immediately compatible with front-end input masks and backend database validation constraints.</p>
+
+<p>Utilizing cl_rut is particularly beneficial for testing scenarios involving complex form validations and backend verification logic. In performance testing environments like JMeter, the ${__mockjutsu(cl_rut,)} syntax enables the injection of unique, valid IDs into high-load traffic simulations. Similarly, Python developers can integrate jutsu.generate('cl_rut') directly into their unit tests or seeding scripts to ensure that their logic correctly handles the "K" check digit, which is a frequent source of edge-case bugs in poorly implemented validation scripts. This level of detail helps teams catch errors long before they reach a production environment.</p>
+
+<p>Beyond simple generation, the primary benefit of using mock-jutsu lies in its cross-platform versatility. Developers can quickly verify data structures via the CLI using the mockjutsu generate cl_rut command without writing a single line of code. By automating the creation of these identifiers, software teams can avoid the legal and ethical risks associated with using real PII (Personally Identifiable Information) while ensuring their test suites remain robust. This streamlined approach to generating Chilean test data saves significant engineering hours and improves the overall reliability of internationalized software solutions.</p></div>
 
   <div class="terminals">
     <div class="term">

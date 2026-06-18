@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>dk_cpr</strong>
   </nav>
 
-  <div class="article"><p>İçerik henüz üretilmedi. generate_ai_content.py çalıştırın.</p></div>
+  <div class="article"><p>Yazılım geliştirme süreçlerinde, özellikle uluslararası kimlik doğrulama ve kayıt sistemleri üzerine çalışırken gerçekçi verilere duyulan ihtiyaç kritik bir öneme sahiptir. Mock-jutsu kütüphanesinin sunduğu dk_cpr fonksiyonu, Danimarka'nın ulusal kimlik numarası olan CPR (Central Person Register) formatında hızlı ve güvenilir mock data üretmenize olanak tanır. Bu araç sayesinde, gerçek kullanıcı verilerini riske atmadan Danimarka pazarına yönelik uygulamalarınızın veri giriş, işleme ve depolama süreçlerini güvenle simüle edebilirsiniz.</p>
+
+<p>Teknik açıdan dk_cpr fonksiyonu, standart "DDMMYY-SSSS" formatında çıktılar üretmektedir. Bu dizilimde ilk altı hane kişinin doğum tarihini (gün-ay-yıl) temsil ederken, kısa çizgiden sonra gelen son dört hane ise bireyi tanımlayan benzersiz bir seri numarasını ifade eder. Önemli bir teknik detay olarak, mock-jutsu tarafından üretilen bu veriler, Danimarka'da 2007 yılından itibaren uygulanmaya başlanan ve katı bir sağlama toplamı (checksum) zorunluluğu barındırmayan modern standartları takip eder. Bu sayede, test verisi oluştururken eski algoritma kısıtlamalarına takılmadan, geniş bir yelpazede geçerli görünümlü kimlik numaraları elde ederek test kapsamınızı genişletebilirsiniz.</p>
+
+<p>Bu fonksiyonun kullanım alanları oldukça çeşitlidir; özellikle Danimarka merkezli finans, sağlık, sigortacılık veya e-ticaret projelerinde çalışan geliştiriciler için vazgeçilmez bir yardımcıdır. Kullanıcı kayıt formlarının doğrulanması, veritabanı şemalarının anlamlı verilerle doldurulması veya kullanıcı arayüzü prototiplerinin gerçekçi görünmesi aşamalarında dk_cpr işlevi büyük kolaylık sağlar. Mock data kullanımı, KVKK ve GDPR gibi veri koruma regülasyonlarına tam uyum sağlarken, geliştirme ve test ortamlarında gerçek kişisel verilerin kazara sızma riskini de tamamen ortadan kaldırır.</p>
+
+<p>Mock-jutsu, dk_cpr fonksiyonuna erişimi farklı iş akışlarına uyum sağlayacak şekilde esnek tutar. Python projelerinizde sadece bir satırlık kodla entegrasyon sağlayabilir, terminal üzerinden CLI komutlarıyla anlık veriler üretebilir veya JMeter gibi performans testi araçlarında yük senaryolarınızı zenginleştirmek için doğrudan kullanabilirsiniz. Geliştirici dostu bu yaklaşım, test verisi üretimini bir yük olmaktan çıkarıp yazılım yaşam döngüsünün doğal ve akıcı bir parçası haline getirir. Hem birim testlerinde hem de karmaşık uçtan uca entegrasyon senaryolarında tutarlı ve standartlara uygun sonuçlar almanız için optimize edilmiştir.</p></div>
 
   <div class="terminals">
     <div class="term">

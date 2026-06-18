@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>kr_rrn</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>The kr_rrn function is a specialised tool within the mock-jutsu library designed for developers who need to generate realistic South Korean Resident Registration Numbers. As an essential component of the IntlIDs category, this function provides high-quality mock data that adheres strictly to the national numbering standards of South Korea. Whether you are building a global user database or a localised financial application, having access to validly formatted test data is crucial for ensuring your validation logic functions correctly without compromising real personal information or violating privacy protocols.</p>
+
+<p>Each identifier produced by the kr_rrn generator consists of thirteen digits, typically presented in a six-dash-seven format. The first six digits represent the individual's birth date in the YYMMDD format, followed by a seventh digit indicating the century of birth and the gender of the individual. The remaining digits include a local office code and a serial number, concluding with a checksum digit. By using mock-jutsu, developers can ensure that every generated string passes rigorous front-end and back-end validation checks, as the library meticulously calculates the check digit to mirror real-world registration patterns and verification algorithms.</p>
+
+<p>Testing scenarios for this function are diverse, ranging from age-restricted content verification to gender-based UI customisation. For instance, QA engineers can use the kr_rrn function to simulate different age demographics or to test edge cases involving leap years and century transitions. Because the data is synthetically generated, it eliminates the legal and ethical risks associated with using actual PII (Personally Identifiable Information) during the software development lifecycle. This makes mock-jutsu an indispensable asset for teams adhering to strict data privacy regulations such as GDPR or local South Korean data protection laws.</p>
+
+<p>Integration is seamless across various environments, offering flexibility for modern DevOps workflows. Developers can invoke the function directly in Python scripts using the jutsu.generate('kr_rrn') method, execute quick tests via the command-line interface, or incorporate it into performance testing suites through the JMeter plugin using the ${__mockjutsu(kr_rrn,)} syntax. This versatility ensures that regardless of the testing phase—be it unit testing, integration testing, or load testing—reliable South Korean test data is always available. By automating the creation of these complex identifiers, mock-jutsu allows engineering teams to focus on core logic rather than manual data preparation.</p></div>
 
   <div class="terminals">
     <div class="term">

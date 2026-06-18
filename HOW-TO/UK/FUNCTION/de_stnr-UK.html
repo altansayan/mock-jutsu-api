@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>de_stnr</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>The de_stnr function is a specialised utility within the mock-jutsu library designed to produce realistic German Steuernummer identifiers for software development and quality assurance. As developers increasingly build international financial systems, the requirement for accurate, non-sensitive test data becomes paramount. This function generates tax numbers following the ELSTER unified 13-digit format, ensuring that your application’s validation logic is tested against syntactically correct strings without compromising actual personal identifiable information (PII).</p>
+
+<p>Under the hood, mock-jutsu adheres to the specific structuring rules mandated by the German tax authorities. The de_stnr output typically represents the unified federal format, which includes a two-digit state code (Bundesland), a three-digit district office code, and a sequential number, concluding with a check digit. While the standard display format often includes forward slashes and spaces—such as 21/815/08150 5—the underlying algorithm ensures that the generated mock data mirrors the complexity and checksum requirements of real-world identifiers. This precision is vital for integration testing where backend systems expect a specific mathematical consistency to accept a record.</p>
+
+<p>Utilising de_stnr is particularly beneficial for engineers working on ERP software, e-commerce platforms, or FinTech applications targeting the DACH region. By integrating this function into your test suites, you can simulate bulk user registrations or automated tax filing processes. Whether you are using the Python API with jutsu.generate('de_stnr') or performing high-concurrency load testing in JMeter via the ${__mockjutsu(de_stnr,)} syntax, the library provides consistent, high-quality test data that prevents upstream failures caused by invalid identifier formats.</p>
+
+<p>Beyond simple string generation, mock-jutsu streamlines the development lifecycle by offering multiple entry points for different workflows. Developers can quickly verify database schemas using the CLI command "mockjutsu generate de_stnr" or automate complex data seeding scripts within a CI/CD pipeline. By replacing hardcoded values with dynamic, algorithmically sound mock data, teams reduce the risk of data leakage and ensure compliance with GDPR. Ultimately, the de_stnr function empowers developers to build robust, tax-compliant systems with the confidence that their validation layers have been thoroughly vetted against realistic inputs.</p></div>
 
   <div class="terminals">
     <div class="term">

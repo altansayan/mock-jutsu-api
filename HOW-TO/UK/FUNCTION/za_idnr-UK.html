@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>za_idnr</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>The za_idnr function within the mock-jutsu library is a specialised tool designed for developers needing to generate realistic South African National Identity numbers. This 13-digit identifier is the standard for citizens and permanent residents in South Africa, and generating accurate mock data for this field is essential for maintaining data integrity during the development lifecycle. Each generated string adheres strictly to the official format, ensuring that your test environment mirrors real-world production data without compromising sensitive personal information or falling foul of privacy regulations.</p>
+
+<p>The sophistication of the za_idnr generator lies in its adherence to the specific structural requirements mandated by the South African Department of Home Affairs. The first six digits represent the individual's birth date in the YYMMDD format, followed by four digits indicating gender, a single digit denoting citizenship status, and a final checksum digit. Crucially, mock-jutsu implements the Luhn algorithm to calculate this final digit, ensuring that every piece of test data passes standard validation checks. This level of precision is vital for testing systems that perform deep packet inspection or database-level validation on identity fields.</p>
+
+<p>One of the primary benefits for developers using mock-jutsu is the versatility of integration across different environments. Whether you are working directly in a Python script using the jutsu.generate('za_idnr') method, executing quick checks via the command-line interface, or performing high-volume load testing in Apache JMeter, the library provides a consistent and reliable experience. By automating the creation of these identifiers, engineering teams can significantly reduce the time spent manually crafting data sets. This automation is particularly useful when populating large-scale staging databases or simulating user registrations where unique, valid IDs are mandatory.</p>
+
+<p>In terms of practical testing scenarios, za_idnr is indispensable for verifying age-restricted logic, gender-based UI components, or financial compliance workflows. Since the ID contains embedded metadata, quality assurance engineers can use this mock data to ensure that their applications correctly parse birth dates for KYC (Know Your Customer) processes. Furthermore, using a reliable generator like mock-jutsu helps prevent the accidental use of real identity numbers in non-production environments, thereby bolstering security and ensuring your organisation remains compliant with global data protection standards.</p></div>
 
   <div class="terminals">
     <div class="term">

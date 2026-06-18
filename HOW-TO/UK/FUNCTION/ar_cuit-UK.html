@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>ar_cuit</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>When developing software for the Argentinian market, generating realistic test data is a critical requirement for ensuring system reliability and regulatory compliance. The ar_cuit function within the mock-jutsu library provides a streamlined way to produce valid Clave Única de Identificación Tributaria (CUIT) numbers. This identifier is essential for tax and commercial operations in Argentina, making it a cornerstone for any application handling financial or legal records in the region. By using mock-jutsu, developers can avoid the risks associated with using real personal information while maintaining the structural integrity needed for robust automated testing.</p>
+
+<p>The ar_cuit generator produces an 11-digit string that strictly adheres to official Argentinian standards. Each generated value includes a two-digit prefix indicating the entity type, followed by an eight-digit document number, and concludes with a crucial MOD-11 check digit. This mathematical validation ensures that the mock data passes through front-end masks and back-end validation logic just like a genuine identifier. Whether you need the standard formatted version with hyphens, such as 20-12345678-9, or a raw numeric string, this function ensures your test data remains compliant with the complex algorithms used by local tax authorities.</p>
+
+<p>For Quality Assurance engineers and developers, the ar_cuit function is invaluable across various testing scenarios. It is particularly useful for verifying database constraints, testing API endpoints that require tax identifiers, and ensuring that financial reporting modules process IDs correctly. By incorporating this into your automated test suites, you can simulate bulk data imports or stress-test search algorithms with high-fidelity information. The ability to generate thousands of unique, valid identifiers on the fly significantly reduces the manual overhead typically associated with preparing complex datasets for regional software deployments.</p>
+
+<p>Integration is designed to be seamless across multiple environments within the mock-jutsu ecosystem. Python developers can quickly invoke the generator using jutsu.generate('ar_cuit'), while those working with performance testing tools can utilise the JMeter syntax ${__mockjutsu(ar_cuit,)}. Furthermore, the command-line interface allows for rapid generation via "mockjutsu generate ar_cuit" for quick prototyping or shell script workflows. This versatility ensures that regardless of your specific tech stack, access to high-quality mock data is always available, accelerating the development lifecycle and improving overall code quality.</p></div>
 
   <div class="terminals">
     <div class="term">

@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>no_fodselsnummer</strong>
   </nav>
 
-  <div class="article"><p>Contenu non encore généré. Exécutez generate_ai_content.py.</p></div>
+  <div class="article"><p>Dans le cadre du développement logiciel moderne, la manipulation de données sensibles nécessite une approche rigoureuse, notamment lorsqu'il s'agit d'identifiants nationaux officiels. La bibliothèque mock-jutsu répond précisément à ce besoin de conformité en proposant la fonction no_fodselsnummer, spécialement conçue pour générer des numéros d'identification norvégiens réalistes. Ce type de données fictives est essentiel pour les développeurs et testeurs travaillant sur des applications destinées au marché scandinave, garantissant que les systèmes de validation acceptent les entrées sans jamais compromettre la confidentialité des citoyens réels.</p>
+
+<p>Le Fødselsnummer norvégien repose sur une structure complexe composée de 11 chiffres. La fonction no_fodselsnummer respecte scrupuleusement la norme officielle en vigueur en Norvège. Chaque identifiant généré inclut la date de naissance (les six premiers chiffres), suivie d'un numéro individuel et, surtout, de deux chiffres de contrôle rigoureusement calculés via l'algorithme MOD-11. Cette précision technique permet d'utiliser ces données de test dans des environnements où les algorithmes de vérification sont déjà implémentés, évitant ainsi les erreurs de formatage qui pourraient bloquer les pipelines d'intégration continue ou les tests unitaires critiques.</p>
+
+<p>L'intégration de cette fonctionnalité au sein de votre flux de travail est simplifiée par la polyvalence de mock-jutsu. Pour une génération rapide, la CLI permet de lancer la commande "mockjutsu generate no_fodselsnummer". Les développeurs backend peuvent l'incorporer directement dans leurs scripts Python via l'appel "jutsu.generate('no_fodselsnummer')". Enfin, pour les ingénieurs QA, l'outil s'intègre parfaitement à JMeter avec la syntaxe "${__mockjutsu(no_fodselsnummer,)}". Cette flexibilité permet de peupler instantanément des bases de données de pré-production avec des volumes massifs d'identifiants structurellement corrects.</p>
+
+<p>Les scénarios de test pour la fonction no_fodselsnummer sont vastes, allant de la validation de formulaires d'inscription à la simulation de systèmes bancaires, d'assurances ou de services publics norvégiens. En utilisant des données fictives de haute qualité, les équipes peuvent tester les cas limites liés aux dates de naissance ou au genre sans manipuler d'informations personnelles identifiables (PII). En fin de compte, mock-jutsu offre un gain de temps considérable et une sécurité renforcée, permettant aux experts techniques de se concentrer sur la robustesse de leur logique métier plutôt que sur la création manuelle de jeux de données complexes et fastidieux.</p></div>
 
   <div class="terminals">
     <div class="term">

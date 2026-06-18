@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>in_gstin</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>The in_gstin function within the mock-jutsu library provides developers with a robust solution for generating realistic Indian Goods and Services Tax Identification Numbers. As a cornerstone of the IntlIDs category, this tool is essential for teams building financial, e-commerce, or ERP software tailored for the Indian market. By using mock-jutsu, engineers can produce high-quality test data that adheres strictly to the official 15-character format required by the Indian government, ensuring that application logic is tested against valid syntactic structures without compromising sensitive real-world information.</p>
+
+<p>Structurally, each string produced by in_gstin follows the precise alphanumeric composition mandated by tax authorities. It begins with a two-digit state code, followed by a ten-digit Permanent Account Number (PAN). The sequence concludes with a single-character entity code, the fixed character 'Z', and a final checksum digit calculated using the Luhn mod 36 algorithm. This meticulous attention to detail ensures that the mock data will pass through standardised validation filters, allowing developers to test complex workflows such as tax invoice generation, GST filing simulations, and vendor onboarding processes with complete confidence in the data's integrity.</p>
+
+<p>Beyond simple generation, the utility of in_gstin extends to various testing scenarios. For instance, QA professionals can use this test data to verify front-end input masks, database schema constraints, and backend API validation routines. Because the function is accessible via the Python API using jutsu.generate('in_gstin'), a dedicated CLI command, and even a JMeter plugin via the ${__mockjutsu(in_gstin,)} syntax, it integrates seamlessly into diverse DevOps pipelines. Whether you are performing high-volume load testing or scripting granular unit tests, the library ensures consistency across the entire development lifecycle.</p>
+
+<p>Ultimately, the primary benefit of incorporating mock-jutsu into a software project is the significant reduction in manual data preparation time. Instead of manually crafting strings or scraping potentially non-compliant data, developers can automate the creation of thousands of unique identifiers. This not only accelerates the testing phase but also helps in maintaining data privacy standards by avoiding the use of actual taxpayer identification numbers in non-production environments. By leveraging the in_gstin function, development teams can focus on building core features while the library handles the complexities of regional data formatting.</p></div>
 
   <div class="terminals">
     <div class="term">

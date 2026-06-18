@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>fi_hetu</strong>
   </nav>
 
-  <div class="article"><p>İçerik henüz üretilmedi. generate_ai_content.py çalıştırın.</p></div>
+  <div class="article"><p>Yazılım geliştirme süreçlerinde gerçekçi veri setleriyle çalışmak, uygulamanın uçtan uca doğruluğunu ölçmek adına hayati bir önem taşır. mock-jutsu kütüphanesinin IntlIDs kategorisinde yer alan fi_hetu fonksiyonu, Finlandiya vatandaşlarına özgü olan "Henkilötunnus" yani kişisel kimlik numarasını simüle etmek için profesyonelce tasarlanmıştır. Bu fonksiyon, test süreçlerinizde ihtiyaç duyduğunuz geçerli ve standartlara uygun Fin kimlik numaralarını saniyeler içinde üreterek, manuel veri hazırlama zahmetini ortadan kaldırır ve veri giriş süreçlerini otomatize etmenize olanak tanır.</p>
+
+<p>fi_hetu tarafından üretilen mock data örnekleri, sadece rastgele rakamlardan oluşmaz; Finlandiya'nın resmi standartlarına tam uyum sağlar. Üretilen her veri, DDMMYY formatındaki doğum tarihi, yüzyılı temsil eden özel bir belirteç (+, - veya A) ve üç haneli bir seri numarasının ardından gelen MOD-31 algoritmasıyla hesaplanmış bir kontrol karakterinden oluşur. Örneğin, "010170-123A" gibi bir çıktı, hem tarihsel tutarlılığı hem de matematiksel geçerliliği bünyesinde barındırır. Bu titiz yapı, özellikle kimlik numarası doğrulama algoritmalarını test eden veya veri tabanı kısıtlamalarını kontrol eden geliştiriciler için fi_hetu fonksiyonunu vazgeçilmez bir test verisi aracı haline getirir.</p>
+
+<p>Özellikle uluslararası pazara hitap eden finans, sigorta veya kamu hizmeti yazılımları geliştiren ekipler için bu tür spesifik yerel kimlik formatları büyük bir gereksinimdir. mock-jutsu kullanarak oluşturulan bu veriler, kullanıcı kayıt formlarının validasyon testlerinde, API entegrasyon denemelerinde veya büyük ölçekli veri anonimleştirme projelerinde güvenle kullanılabilir. Manuel olarak geçerli bir HETU numarası türetmeye çalışmak hata payını artırırken, kütüphanenin sunduğu bu otomatize çözüm sayesinde geliştirme hızı ve test kapsamı önemli ölçüde iyileştirilir.</p>
+
+<p>mock-jutsu kütüphanesi, geliştiricilere esnek kullanım imkanları sunarak farklı iş akışlarına kolayca entegre olur. Komut satırı (CLI) üzerinden "mockjutsu generate fi_hetu" komutuyla hızlıca anlık çıktılar alabilir, Python projelerinizde "jutsu.generate('fi_hetu')" metodunu çağırarak dinamik test verisi üretebilirsiniz. Ayrıca performans ve yük testleri için JMeter kullanıyorsanız, "${__mockjutsu(fi_hetu,)}" ifadesiyle test senaryolarınızı gerçekçi Finlandiya kimlik numaralarıyla zenginleştirebilirsiniz. Bu çok yönlü yapı, projenizin her aşamasında yüksek kaliteli veri ihtiyacınızı eksiksiz karşılar.</p></div>
 
   <div class="terminals">
     <div class="term">

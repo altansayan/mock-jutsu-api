@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>ro_cui</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>The ro_cui function is a specialised tool within the mock-jutsu library designed to generate authentic Romanian company identifiers, known as the Cod Unic de Înregistrare. For developers building financial software, ERP systems, or e-commerce platforms targeting the Romanian market, having access to realistic test data is essential. This function ensures that every generated identifier adheres to the official standards, providing a seamless way to populate databases and stress-test validation logic without relying on sensitive, real-world information.</p>
+
+<p>Each identifier produced by ro_cui follows the specific structural requirements mandated by Romanian authorities. The format typically consists of a numeric sequence that can be optionally prefixed with the "RO" country code, depending on the registration status of the entity. Most importantly, mock-jutsu implements the rigorous MOD-11 checksum algorithm to calculate the final control digit. This mathematical verification ensures that the generated mock data will pass through any internal validation filters or third-party API checks that verify the integrity of a CUI, making it an invaluable asset for end-to-end integration testing.</p>
+
+<p>Integrating ro_cui into your development workflow is straightforward, regardless of your preferred environment. Python developers can invoke the generator using the simple jutsu.generate('ro_cui') syntax, while those working with performance testing tools can utilise the JMeter expression ${__mockjutsu(ro_cui,)}. For quick data generation via the terminal, the CLI command mockjutsu generate ro_cui provides instant results. This multi-platform support allows teams to maintain consistency across their unit tests, load tests, and manual QA processes, ensuring that the test data remains robust and reliable throughout the software development lifecycle.</p>
+
+<p>Beyond simple data entry, the ro_cui function is vital for testing complex business logic, such as VAT calculation, B2B invoicing workflows, and KYC compliance modules. By using high-fidelity test data, developers can identify edge cases in their code where invalid or improperly formatted identifiers might cause system failures. Ultimately, mock-jutsu empowers engineering teams to build more resilient applications by providing the precise tools needed to simulate real-world Romanian business entities with total accuracy, high performance, and zero privacy risk.</p></div>
 
   <div class="terminals">
     <div class="term">

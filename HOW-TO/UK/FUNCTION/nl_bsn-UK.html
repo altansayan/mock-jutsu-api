@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>nl_bsn</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>The nl_bsn function within the mock-jutsu library is an essential tool for developers and QA engineers building software for the Dutch market. A Burgerservicenummer (BSN) is a unique personal identification number used in the Netherlands for interacting with government agencies, healthcare providers, and financial institutions. By using the nl_bsn generator, teams can produce high-quality mock data that mimics real-world identifiers, ensuring that application logic remains robust without the security risks associated with handling actual sensitive personal information or PII.</p>
+
+<p>Technically, the nl_bsn generator produces a nine-digit string that strictly adheres to the MOD-11 weighted check digit algorithm. This specific validation method is a hallmark of the Dutch BSN; it involves multiplying each of the first eight digits by a descending weight from nine to two, while the final digit is multiplied by negative one. For the number to be valid, the sum of these products must be exactly divisible by eleven. Because mock-jutsu generates test data that passes these specific mathematical constraints, developers can confidently test form validation logic, database constraints, and API integration points that require authentic BSN inputs.</p>
+
+<p>Integrating nl_bsn into your development workflow is seamless across various environments. For Python-based automation or backend scripting, a simple call to jutsu.generate('nl_bsn') provides immediate results. Command-line users can quickly seed local databases or generate flat files for batch processing using mockjutsu generate nl_bsn. Furthermore, the library offers native support for performance testing tools like Apache JMeter through the ${__mockjutsu(nl_bsn,)} syntax. This versatility makes mock-jutsu an indispensable asset for creating comprehensive test suites that require realistic international identifiers at scale.</p>
+
+<p>Beyond simple validation, using nl_bsn for mock data generation helps organisations remain compliant with strict GDPR regulations. Using real citizen data in staging or development environments is a significant security liability. By leveraging mock-jutsu, developers can simulate complex user profiles and edge cases—such as bulk data migrations or high-concurrency registration flows—while maintaining total data privacy. This focus on accuracy and security ensures that your software is production-ready, reliable, and fully compliant with Dutch administrative standards.</p></div>
 
   <div class="terminals">
     <div class="term">

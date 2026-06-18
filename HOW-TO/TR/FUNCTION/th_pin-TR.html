@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>th_pin</strong>
   </nav>
 
-  <div class="article"><p>İçerik henüz üretilmedi. generate_ai_content.py çalıştırın.</p></div>
+  <div class="article"><p>Modern yazılım geliştirme süreçlerinde, özellikle uluslararası pazarlara hitap eden projelerde yerel kimlik doğrulama sistemlerini test etmek büyük bir titizlik gerektirir. Tayland pazarını hedefleyen uygulamalar için Tayland Kimlik Numarası (Thai Personal ID) üretmek, bu sürecin en kritik aşamalarından biridir. mock-jutsu kütüphanesi tarafından sunulan th_pin fonksiyonu, geliştiricilerin gerçek kullanıcı verilerine ihtiyaç duymadan, Tayland resmi standartlarına tam uyumlu test verisi oluşturmasına olanak tanır. Bu sayede veri gizliliği protokollerini ihlal etmeden, yazılımınızın kimlik doğrulama mantığını güvenli bir sandbox ortamında test edebilirsiniz.</p>
+
+<p>Teknik açıdan th_pin fonksiyonu, Tayland'ın resmi 13 haneli kimlik numarası yapısını birebir simüle eder. Üretilen her mock data, sistemin son hanesinde bulunan ve karmaşık bir matematiksel hesaplama olan MOD-11 algoritmasına dayalı kontrol basamağını (checksum) başarıyla geçer. Bu teknik detay, basit bir rastgele sayı dizisinden farklı olarak, geçerli ve doğrulanabilir bir test verisi elde etmenizi sağlar. Algoritma, ilk 12 haneyi belirli ağırlık katsayılarıyla çarparak son kontrol hanesini hesaplar; böylece uygulamanızın backend doğrulama (validation) katmanları herhangi bir "geçersiz format" hatası vermeden gerçek senaryoları işleyebilir.</p>
+
+<p>Kullanım esnekliği açısından mock-jutsu kütüphanesi geliştiricilere üç farklı kulvar sunar. Python projelerinizde doğrudan entegrasyon için jutsu.generate('th_pin') metodunu kullanabilir, terminal üzerinden hızlıca veri üretmek için mockjutsu generate th_pin CLI komutunu çalıştırabilirsiniz. Ayrıca, yük ve performans testleri için popüler bir araç olan JMeter içerisinde ${__mockjutsu(th_pin,)} ifadesini kullanarak binlerce farklı ve geçerli kimlik numarasını dinamik olarak test senaryolarınıza dahil edebilirsiniz. Bu çok yönlülük, th_pin fonksiyonunu hem birim testlerde hem de uçtan uca otomasyon süreçlerinde vazgeçilmez bir araç haline getirir.</p>
+
+<p>Özellikle FinTech, e-ticaret ve KYC (Müşterini Tanı) süreçleri üzerine çalışan ekipler için bu fonksiyonun sağladığı avantajlar yadsınamaz. Taylandlı kullanıcıların kayıt olduğu bir platformun kayıt formlarını, veritabanı şemalarını ve entegrasyon noktalarını test ederken th_pin ile üretilen sentetik veriler, hata payını minimize eder. mock-jutsu sayesinde uluslararası kimlik formatlarını yönetmek, karmaşık bir mühendislik problemi olmaktan çıkıp standart ve hızlı bir geliştirme pratiğine dönüşerek yazılım yaşam döngüsünü hızlandırır.</p></div>
 
   <div class="terminals">
     <div class="term">

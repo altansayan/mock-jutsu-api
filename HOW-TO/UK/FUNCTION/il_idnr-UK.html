@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>il_idnr</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>The il_idnr function is a specialised tool within the mock-jutsu library designed to generate authentic Israeli Identity Numbers, commonly known as Mispar Zehut. For developers and QA engineers building applications for the Israeli market, having access to high-quality mock data is essential for validating input fields and maintaining database integrity. This function ensures that every generated ID follows the strict nine-digit format required by official systems, providing a seamless way to populate environments with reliable test data without relying on sensitive real-world information.</p>
+
+<p>At the heart of the il_idnr generator is the Luhn algorithm, a checksum formula used to validate a variety of identification numbers across the globe. Each Israeli ID consists of eight base digits followed by a ninth check digit, which is mathematically calculated to ensure the string's validity. By incorporating this logic, mock-jutsu enables teams to bypass the "invalid ID" errors often encountered during automated testing. Whether you are performing unit tests in Python with jutsu.generate('il_idnr') or executing high-volume performance tests in JMeter using the ${__mockjutsu(il_idnr,)} syntax, the output remains consistent and verifiable against standard validation scripts.</p>
+
+<p>The versatility of il_idnr makes it indispensable for various testing scenarios, particularly in Fintech, government services, and e-commerce platforms. Developers can use this function to test Know Your Customer (KYC) workflows, user registration forms, and administrative dashboards where an Israeli ID is a mandatory field. By using the mock-jutsu CLI command, mockjutsu generate il_idnr, engineers can quickly produce large datasets for stress testing or local development. This approach significantly reduces the risk of data breaches associated with using actual PII, as the generated values are synthetically produced yet structurally perfect.</p>
+
+<p>Beyond simple validation, using il_idnr enhances the overall developer experience by automating a repetitive and error-prone task. Instead of manually calculating check digits or maintaining a static list of IDs, teams can integrate mock-jutsu directly into their CI/CD pipelines. This ensures that the test data remains dynamic and comprehensive, covering edge cases and ensuring that the software can handle a wide range of inputs. Ultimately, this function empowers teams to deliver robust, localised software solutions with greater speed and confidence, maintaining high standards of data privacy and technical accuracy throughout the development lifecycle.</p></div>
 
   <div class="terminals">
     <div class="term">

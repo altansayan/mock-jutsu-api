@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>in_pan</strong>
   </nav>
 
-  <div class="article"><p>İçerik henüz üretilmedi. generate_ai_content.py çalıştırın.</p></div>
+  <div class="article"><p>Modern yazılım geliştirme süreçlerinde, özellikle finansal teknolojiler ve uluslararası ödeme sistemleri üzerinde çalışırken, gerçeğe uygun ancak anonim verilerle çalışmak kritik bir önem taşır. Geliştiricilerin iş akışını hızlandırmak için tasarlanan mock-jutsu kütüphanesi, bu noktada büyük bir kolaylık sağlayarak farklı ülkelerin resmi kimlik formatlarına uygun mock data üretme imkanı tanır. Hindistan pazarını hedefleyen uygulamalar veya küresel finans projeleri için vazgeçilmez olan in_pan fonksiyonu, Hindistan Gelir Vergisi Departmanı tarafından kullanılan Kalıcı Hesap Numarası (Permanent Account Number) standartlarına tam uyumlu test verisi oluşturur.</p>
+
+<p>Bir PAN kartı numarası, belirli bir matematiksel ve alfabetik dizilime sahip olan 10 karakterli benzersiz bir tanımlayıcıdır. in_pan fonksiyonu, bu karmaşık yapıyı aslına uygun şekilde taklit ederek; ilk 5 karakteri büyük harf, sonraki 4 karakteri rakam ve son karakteri yine bir harf olacak şekilde (örneğin: ABCDE1234F) diziler üretir. mock-jutsu aracılığıyla üretilen bu veriler, gerçek kişilere ait hassas bilgileri riske atmadan, sistemin mantıksal akışını, veri tabanı şema doğrulamalarını ve ön yüzdeki girdi maskeleme (input masking) bileşenlerini kapsamlı bir şekilde test etmenize olanak tanır.</p>
+
+<p>Geliştiriciler için kullanım esnekliği kütüphanenin en güçlü yanlarından biridir. Eğer Python tabanlı bir backend projesinde çalışıyorsanız, jutsu.generate('in_pan') komutuyla saniyeler içinde geçerli formatta veri çekebilirsiniz. Komut satırı üzerinden hızlıca veri üretmek isteyenler için mockjutsu generate in_pan CLI aracı hazır beklerken, yük ve performans testleri için JMeter kullanan QA uzmanları ${__mockjutsu(in_pan,)} söz dizimi ile dinamik değişkenler oluşturabilirler. Bu çok yönlülük, in_pan fonksiyonunu sadece bir veri üretici değil, aynı zamanda CI/CD süreçlerinin ve otomatik test senaryolarının ayrılmaz bir parçası haline getirir.</p>
+
+<p>KYC (Müşterini Tanı) süreçlerinin simülasyonunda, bankacılık yazılımlarının entegrasyon testlerinde veya büyük ölçekli veri göçü projelerinde güvenilir test verisi ihtiyacı her geçen gün artmaktadır. mock-jutsu kütüphanesinin sunduğu bu fonksiyon, manuel veri girişiyle vakit kaybetmek yerine, binlerce kaydı tutarlı bir şekilde üretmenizi sağlar. Böylece yazılım ekipleri, veri gizliliği yasalarına ve uluslararası uyumluluk standartlarına sadık kalarak, güvenli bir geliştirme ortamında sadece kod kalitesine ve kullanıcı deneyimine odaklanabilirler.</p></div>
 
   <div class="terminals">
     <div class="term">

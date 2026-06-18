@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>in_gstin</strong>
   </nav>
 
-  <div class="article"><p>Contenu non encore généré. Exécutez generate_ai_content.py.</p></div>
+  <div class="article"><p>Le développement d'applications internationales exige souvent la manipulation d'identifiants fiscaux complexes et spécifiques à chaque région géographique. Pour répondre aux besoins des développeurs travaillant avec l'écosystème financier indien, la bibliothèque mock-jutsu propose la fonction in_gstin. Cet outil permet de générer des données fictives parfaitement conformes à la structure officielle du GSTIN (Goods and Services Tax Identification Number), facilitant ainsi l'intégration et la validation des systèmes de facturation, de comptabilité et de conformité fiscale sans compromettre la sécurité des données réelles.</p>
+
+<p>La fonction in_gstin génère une chaîne de 15 caractères alphanumériques respectant scrupuleusement la norme gouvernementale indienne. Chaque identifiant produit par mock-jutsu suit une architecture rigoureuse : les deux premiers chiffres représentent le code de l'État, suivis des dix caractères du PAN (Permanent Account Number), d'un caractère indiquant le nombre d'enregistrements de l'entité au sein d'un même État, du caractère fixe « Z » et enfin d'une clé de contrôle sophistiquée basée sur l'algorithme Luhn mod 36. Cette précision garantit que chaque donnée de test produite est structurellement valide, ce qui est crucial pour franchir les étapes de validation syntaxique des API et des bases de données modernes.</p>
+
+<p>L'intégration de cette fonction dans un flux de travail technique est particulièrement flexible et intuitive. Que vous soyez un développeur Python utilisant la commande jutsu.generate('in_gstin') pour peupler des objets de test, ou un ingénieur QA automatisant des tests de charge avec JMeter via la syntaxe ${__mockjutsu(in_gstin,)}, l'outil s'adapte à tous les environnements. La possibilité de générer ces identifiants via l'interface en ligne de commande (CLI) avec mockjutsu generate in_gstin permet également d'alimenter rapidement des scripts shell ou des fichiers de configuration avec des données de test réalistes et cohérentes.</p>
+
+<p>Les scénarios d'utilisation de in_gstin sont nombreux, allant du test unitaire de formulaires de saisie à la simulation de transactions massives dans un ERP globalisé. En utilisant ces données fictives, les équipes techniques peuvent s'assurer que leurs algorithmes de calcul de taxe et leurs filtres de conformité fonctionnent de manière optimale avant le déploiement en production. Au-delà de l'efficacité technique, le recours à mock-jutsu permet de respecter les meilleures pratiques de protection de la vie privée en évitant l'usage de véritables identifiants fiscaux durant les phases de développement et d'assurance qualité.</p></div>
 
   <div class="terminals">
     <div class="term">

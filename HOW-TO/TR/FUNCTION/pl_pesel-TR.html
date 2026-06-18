@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>pl_pesel</strong>
   </nav>
 
-  <div class="article"><p>İçerik henüz üretilmedi. generate_ai_content.py çalıştırın.</p></div>
+  <div class="article"><p>Yazılım geliştirme süreçlerinde, özellikle uluslararası pazarlara hitap eden uygulamalar için gerçekçi ve doğrulanabilir verilerle çalışmak hayati önem taşır. Polonya pazarını hedefleyen finansal sistemler, e-ticaret platformları veya sağlık uygulamaları geliştirirken, Polonya'nın ulusal kimlik numarası olan PESEL formatına uygun veriler üretmek zorlayıcı olabilir. İşte bu noktada mock-jutsu kütüphanesinin IntlIDs kategorisi altında sunduğu pl_pesel fonksiyonu, geliştiricilerin imdadına yetişerek standartlara tam uyumlu mock data üretilmesini sağlar.</p>
+
+<p>Teknik açıdan pl_pesel fonksiyonu, rastgele rakamlar üretmek yerine Polonya otoritelerinin belirlediği karmaşık algoritmayı takip eder. Üretilen 11 haneli numara, kişinin doğum tarihini (yıl, ay, gün) kodlanmış bir biçimde içerir. Fonksiyonun en kritik özelliği ise MOD-10 (Luhn benzeri bir ağırlıklı toplama algoritması) kontrol mekanizmasını kullanmasıdır. Bu sayede üretilen her test verisi, gerçek sistemlerdeki doğrulama algoritmalarından başarıyla geçer. Özellikle 1900'lerden 2200'lere kadar olan farklı yüzyıllardaki doğum tarihlerinin ay hanesine yansıyan özel kodlama kuralları, mock-jutsu tarafından otomatik olarak hesaplanır.</p>
+
+<p>Kullanım kolaylığı açısından pl_pesel fonksiyonu oldukça esnektir. Python tabanlı projelerinizde jutsu.generate('pl_pesel') komutuyla hızlıca entegrasyon sağlayabilir, komut satırı üzerinden mockjutsu generate pl_pesel yazarak anlık sonuçlar alabilir veya JMeter performans testlerinizde ${__mockjutsu(pl_pesel,)} ifadesini kullanarak yük testlerinizi gerçekçi kimlik numaralarıyla zenginleştirebilirsiniz. Bu çok kanallı erişim, hem birim testlerinde hem de geniş kapsamlı sistem entegrasyon testlerinde büyük bir zaman tasarrufu sağlar.</p>
+
+<p>Güvenlik ve gizlilik standartları (GDPR gibi) gereği, test süreçlerinde gerçek kullanıcı verilerinin kullanılması ciddi riskler barındırır. pl_pesel fonksiyonu ile üretilen mock data, gerçek bir kişiye ait olmayan ancak yapısal olarak tamamen geçerli kimlik numaraları sunarak bu riskleri ortadan kaldırır. Geliştiriciler, veritabanı şemalarını test ederken, form doğrulama mantıklarını kurgularken veya API uç noktalarını simüle ederken mock-jutsu kütüphanesinin sunduğu bu profesyonel çözüm sayesinde hata payını minimize eder ve geliştirme döngüsünü hızlandırır.</p></div>
 
   <div class="terminals">
     <div class="term">

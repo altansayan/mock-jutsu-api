@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>mx_curp</strong>
   </nav>
 
-  <div class="article"><p>İçerik henüz üretilmedi. generate_ai_content.py çalıştırın.</p></div>
+  <div class="article"><p>Yazılım geliştirme süreçlerinde, özellikle Meksika pazarına yönelik finansal veya resmi uygulamalar tasarlanırken gerçekçi kimlik bilgilerine duyulan ihtiyaç kaçınılmazdır. mock-jutsu kütüphanesinin sunduğu mx_curp fonksiyonu, Meksika'nın resmi kimlik numarası sistemi olan CURP (Clave Única de Registro de Población) verilerini sentetik ancak yapısal olarak tamamen doğru bir biçimde üretmek için geliştirilmiştir. Bu fonksiyon, geliştiricilerin gerçek kullanıcıların hassas kişisel verilerini riske atmadan, sistemlerini tam uyumlu ve geçerli formatta test verisi ile beslemelerine olanak tanır.</p>
+
+<p>Teknik açıdan mx_curp tarafından üretilen 18 karakterli diziler, yalnızca rastgele karakterlerden oluşmaz. Fonksiyon, Meksika hükümetinin belirlediği resmi CURP alfabesini ve kontrol basamağı (check digit) algoritmasını titizlikle takip eder. Üretilen her çıktı; ad, soyad, doğum tarihi, cinsiyet ve doğum yeri gibi parametrelerin belirli bir dizilimle kodlandığı standartlara sadık kalır. Bu sayede, uygulamanızın giriş doğrulama (validation) mantığını test ederken veya veri tabanı şemalarınızı yapılandırırken hata payını minimize eder ve yüksek veri tutarlılığı sağlarsınız. Özellikle karmaşık regex kontrolleri içeren formlarda, bu fonksiyonun sunduğu mock data örnekleri hata ayıklama sürecini büyük ölçüde kolaylaştırır.</p>
+
+<p>Kullanım senaryoları açısından bakıldığında mx_curp, özellikle KYC (Müşterini Tanı) süreçleri, sigortacılık sistemleri ve kamu hizmeti portalları için kritik bir test verisi kaynağıdır. Geliştiriciler, mock-jutsu kullanarak binlerce benzersiz kimlik numarasını saniyeler içinde oluşturabilirler. Bu durum, yük testlerinde (load testing) veya büyük veri setleri gerektiren stres testlerinde manuel veri girişi zahmetini ortadan kaldırarak ciddi bir zaman tasarrufu sağlar. Ayrıca, veri gizliliği standartlarına uyum sağlamak amacıyla gerçek kişilerin bilgilerini kullanmak yerine bu tür sentetik verileri tercih etmek, projelerinizin siber güvenlik duruşunu güçlendirir.</p>
+
+<p>Entegrasyon kolaylığı, mock-jutsu kütüphanesinin en dikkat çekici özelliklerinden biridir. Python projelerinizde tek bir metot çağrısıyla, terminal üzerinden doğrudan CLI komutuyla veya performans testlerinizde JMeter eklentisi aracılığıyla mx_curp fonksiyonuna erişebilirsiniz. İster bir birim testi (unit test) yazıyor olun ister karmaşık bir mikro hizmet mimarisini simüle ediyor olun, bu araç size her ortamda esneklik sunar. Geliştirici dostu yapısı sayesinde, karmaşık kimlik algoritmalarına kafa yormadan saniyeler içinde standartlara uygun veriler üreterek projenizin geliştirme döngüsünü kesintisiz bir şekilde hızlandırabilirsiniz.</p></div>
 
   <div class="terminals">
     <div class="term">

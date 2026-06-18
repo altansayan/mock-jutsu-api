@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>dk_cpr</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>The dk_cpr function is a specialized tool within the mock-jutsu library designed to generate realistic Danish Personal Identification numbers, commonly known as CPR numbers. These identifiers are essential for any application targeting the Danish market, as they are used across healthcare, banking, and government services. By using mock-jutsu, developers can instantly produce strings in the standard DDMMYY-SSSS format, such as 010170-1234, ensuring that their systems handle local identity formats correctly during the early stages of development without requiring access to sensitive production databases.</p>
+
+<p>From a technical perspective, the dk_cpr generator adheres to contemporary Danish standards. While older CPR numbers utilized a complex "Modulus 11" checksum to validate the sequence, the Danish Civil Registration System transitioned in 2007 to allow numbers that do not necessarily satisfy this mathematical validation due to a shortage of available sequences. The mock data produced by this function reflects this modern reality, providing synthetically valid identifiers that bypass legacy constraints while maintaining the structural integrity required for modern database schema validation and front-end input masking.</p>
+
+<p>This function is particularly beneficial for quality assurance engineers performing integration testing or load testing. When simulating a large user base for a Danish fintech application, generating unique test data with dk_cpr prevents collisions and ensures that data processing pipelines remain robust. Whether you are validating a registration form or testing a backend API's ability to parse Nordic identity strings, having a reliable source of mock data is critical for achieving high test coverage and identifying edge cases related to date-of-birth logic and century-specific suffixes.</p>
+
+<p>Integration is seamless across various environments, making mock-jutsu a versatile choice for modern DevOps workflows. Developers can generate values directly in their Python code using jutsu.generate('dk_cpr'), while performance testers can leverage the JMeter plugin with the ${__mockjutsu(dk_cpr,)} syntax. For quick one-off needs, the command-line interface provides immediate results via mockjutsu generate dk_cpr. By automating the creation of these identifiers, teams can maintain strict data privacy compliance, avoiding the risks associated with using real personal information in non-production environments.</p></div>
 
   <div class="terminals">
     <div class="term">
