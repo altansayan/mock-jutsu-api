@@ -46,6 +46,7 @@ from .generators.tle               import TleGenerator
 from .generators.payments          import PaymentsGenerator
 from .generators.cardphysics       import CardPhysicsGenerator
 from .generators.communication     import EMAIL_DOMAINS
+from .generators.intl_ids          import IntlIdsGenerator
 
 _IDENTITY_TYPES = {
     'tckn', 'ykn', 'taxid', 'vkn', 'nationalid', 'ssn', 'nin',
@@ -235,6 +236,43 @@ _PAYMENTS_TYPES = {
     'swift_mt103', 'pain001', 'nacha_ach', 'sepa_mandate', 'fedwire',
 }
 
+_INTL_IDS_TYPES = {
+    'br_cpf', 'br_cnpj',
+    'in_pan', 'in_aadhaar', 'in_gstin', 'in_epic',
+    'cn_ric',
+    'mx_curp', 'mx_rfc',
+    'it_codicefiscale',
+    'es_dni', 'es_nie', 'es_ccc',
+    'de_idnr', 'de_stnr',
+    'pk_cnic',
+    'jp_cn', 'jp_in',
+    'kr_rrn', 'kr_brn',
+    'nl_bsn',
+    'pl_pesel',
+    'se_personnummer',
+    'dk_cpr',
+    'fi_hetu',
+    'no_fodselsnummer',
+    'au_abn', 'au_tfn', 'au_acn',
+    'my_nric',
+    'th_pin', 'th_tin',
+    'sg_uen',
+    'za_idnr',
+    'ca_bn',
+    'nz_ird',
+    'ar_cuit', 'ar_dni',
+    'cl_rut',
+    'co_nit',
+    'il_idnr',
+    'ro_cnp', 'ro_cui',
+    'hr_oib',
+    'bg_egn',
+    'lt_asmens',
+    'ee_ik',
+    'pt_cc',
+    'eg_tn',
+}
+
 
 class MockJutsuCore:
     """Master orchestrator — 6 locales, 182 data types."""
@@ -280,6 +318,7 @@ class MockJutsuCore:
         self.tle            = TleGenerator()
         self.payments       = PaymentsGenerator()
         self.cardphysics    = CardPhysicsGenerator()
+        self.intl_ids       = IntlIdsGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -373,6 +412,8 @@ class MockJutsuCore:
             result = self.payments.generate(dt, locale=locale, **kwargs)
         elif dt in _CARDPHYSICS_TYPES:
             result = self.cardphysics.generate(dt, locale=locale, **kwargs)
+        elif dt in _INTL_IDS_TYPES:
+            result = self.intl_ids.generate(dt, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 

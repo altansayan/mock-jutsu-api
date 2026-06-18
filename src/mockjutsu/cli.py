@@ -366,6 +366,90 @@ _REFERENCE = [
     ('emv_iad'       , 'CardPhysics', False, '0A02102B0F12ABCD1234', 'generate emv_iad'             , 'EMV Issuer Application Data (tag 9F10) — 11 bytes / 22 hex. Format: 0A+DKI+CVN+CVR+ADD+PAD.', '-'),
     ('atm_session'   , 'CardPhysics', True , '{"session_id":"MOCKJ-ATM-...","masked_pan":"4532 **** **** 9012",...}', 'generate atm_session --locale TR', 'ATM session JSON record — session_id, terminal, masked PAN, ARQC, ATC, response code.', '--locale'),
     ('pos_receipt'   , 'CardPhysics', True , 'MOCKJ MERCHANT SERVICES\nCard: **** **** **** 9012\nAuth: MOCKJ1', 'generate pos_receipt --locale TR', 'POS receipt formatted text (40-char wide) — MOCKJ merchant, masked PAN, auth code, TEST disclaimer.', '--locale'),
+    ('--IntlIDs--'       , ''        , False, '', '', '', ''),
+    # ── Brazil
+    ('br_cpf'            , 'IntlIDs' , False, '123.456.789-09' , 'generate br_cpf'             , 'Brazilian CPF — 11 digits, MOD-11 two check digits.', '-'),
+    ('br_cnpj'           , 'IntlIDs' , False, '11.222.333/0001-81', 'generate br_cnpj'          , 'Brazilian CNPJ — 14 digits, MOD-11 two check digits.', '-'),
+    # ── India
+    ('in_pan'            , 'IntlIDs' , False, 'ABCDE1234F'     , 'generate in_pan'             , 'Indian PAN — 5 letters + 4 digits + 1 letter.', '-'),
+    ('in_aadhaar'        , 'IntlIDs' , False, '2341 2341 2346' , 'generate in_aadhaar'         , 'Indian Aadhaar — 12 digits, Verhoeff check digit.', '-'),
+    ('in_gstin'          , 'IntlIDs' , False, '29ABCDE1234F1Z5', 'generate in_gstin'           , 'Indian GSTIN — 15 chars: state + PAN + entity + Z + Luhn-36 check.', '-'),
+    ('in_epic'           , 'IntlIDs' , False, 'ABC1234567'     , 'generate in_epic'            , 'Indian Voter ID (EPIC) — 3 uppercase letters + 7 digits.', '-'),
+    # ── China
+    ('cn_ric'            , 'IntlIDs' , False, '110000198001011234', 'generate cn_ric'           , 'Chinese Resident ID — 18 chars: area + date + seq + check.', '-'),
+    # ── Mexico
+    ('mx_curp'           , 'IntlIDs' , False, 'BOXW310820HNERXN09', 'generate mx_curp'         , 'Mexican CURP — 18 chars, check digit via CURP alphabet.', '-'),
+    ('mx_rfc'            , 'IntlIDs' , False, 'ABCD820101ABC'  , 'generate mx_rfc'             , 'Mexican RFC — 13 chars (person) or 12 chars (company).', '-'),
+    # ── Italy
+    ('it_codicefiscale'  , 'IntlIDs' , False, 'RSSMRA80A01H501U', 'generate it_codicefiscale'  , 'Italian Codice Fiscale — 16 chars, official MOD-26 check digit.', '-'),
+    # ── Spain
+    ('es_dni'            , 'IntlIDs' , False, '12345678Z'      , 'generate es_dni'             , 'Spanish DNI — 8 digits + MOD-23 check letter.', '-'),
+    ('es_nie'            , 'IntlIDs' , False, 'X1234567L'      , 'generate es_nie'             , 'Spanish NIE — X/Y/Z prefix + 7 digits + MOD-23 check letter.', '-'),
+    ('es_ccc'            , 'IntlIDs' , False, '2100-0418-42-0200051332', 'generate es_ccc'      , 'Spanish CCC bank account — 4+4+2+10 digits, MOD-11 check digits.', '-'),
+    # ── Germany
+    ('de_idnr'           , 'IntlIDs' , False, '02476291358'    , 'generate de_idnr'            , 'German personal tax ID (IdNr) — 11 digits, ISO 7064 MOD 11,10.', '-'),
+    ('de_stnr'           , 'IntlIDs' , False, '21/815/08150 5' , 'generate de_stnr'            , 'German Steuernummer — ELSTER unified 13-digit format.', '-'),
+    # ── Pakistan
+    ('pk_cnic'           , 'IntlIDs' , False, '35202-1234567-1', 'generate pk_cnic'            , 'Pakistani CNIC — 13 digits (NNNNN-NNNNNNN-N).', '-'),
+    # ── Japan
+    ('jp_cn'             , 'IntlIDs' , False, '1234567890123'  , 'generate jp_cn'              , 'Japanese Corporate Number — 13 digits, MOD-9 check.', '-'),
+    ('jp_in'             , 'IntlIDs' , False, '123456789012'   , 'generate jp_in'              , 'Japanese Individual Number (My Number) — 12 digits, MOD-11 check.', '-'),
+    # ── South Korea
+    ('kr_rrn'            , 'IntlIDs' , False, '700101-1280009' , 'generate kr_rrn'             , 'South Korean RRN — 13 digits with birth date, gender, and check.', '-'),
+    ('kr_brn'            , 'IntlIDs' , False, '123-45-67890'   , 'generate kr_brn'             , 'South Korean Business Registration Number — NNN-NN-NNNNN.', '-'),
+    # ── Netherlands
+    ('nl_bsn'            , 'IntlIDs' , False, '123456782'      , 'generate nl_bsn'             , 'Dutch BSN — 9 digits, MOD-11 weighted check.', '-'),
+    # ── Poland
+    ('pl_pesel'          , 'IntlIDs' , False, '70010112345'    , 'generate pl_pesel'           , 'Polish PESEL — 11 digits with encoded birth date and MOD-10 check.', '-'),
+    # ── Sweden
+    ('se_personnummer'   , 'IntlIDs' , False, '19700101-1234'  , 'generate se_personnummer'    , 'Swedish Personnummer — YYYYMMDD-NNNN with Luhn check.', '-'),
+    # ── Denmark
+    ('dk_cpr'            , 'IntlIDs' , False, '010170-1234'    , 'generate dk_cpr'             , 'Danish CPR — DDMMYY-SSSS (no checksum since 2007).', '-'),
+    # ── Finland
+    ('fi_hetu'           , 'IntlIDs' , False, '010170-123A'    , 'generate fi_hetu'            , 'Finnish HETU — DDMMYY+/-NNNC with MOD-31 check.', '-'),
+    # ── Norway
+    ('no_fodselsnummer'  , 'IntlIDs' , False, '01017012345'    , 'generate no_fodselsnummer'   , 'Norwegian Fødselsnummer — 11 digits, two MOD-11 check digits.', '-'),
+    # ── Australia
+    ('au_abn'            , 'IntlIDs' , False, '51824753556'    , 'generate au_abn'             , 'Australian ABN — 11 digits, first 2 are MOD-89 check.', '-'),
+    ('au_tfn'            , 'IntlIDs' , False, '123456782'      , 'generate au_tfn'             , 'Australian TFN — 9 digits, MOD-11 weighted check.', '-'),
+    ('au_acn'            , 'IntlIDs' , False, '004085616'      , 'generate au_acn'             , 'Australian ACN — 9 digits, MOD-10 weighted check.', '-'),
+    # ── Malaysia
+    ('my_nric'           , 'IntlIDs' , False, '701231-08-5678' , 'generate my_nric'            , 'Malaysian NRIC — YYMMDD-PB-NNNN (12 digits with valid birth place code).', '-'),
+    # ── Thailand
+    ('th_pin'            , 'IntlIDs' , False, '1234567891234'  , 'generate th_pin'             , 'Thai personal ID — 13 digits, MOD-11 check.', '-'),
+    ('th_tin'            , 'IntlIDs' , False, '1234567891234'  , 'generate th_tin'             , 'Thai TIN (business) — 13 digits, same format as PIN.', '-'),
+    # ── Singapore
+    ('sg_uen'            , 'IntlIDs' , False, '12345678X'      , 'generate sg_uen'             , 'Singapore UEN — 8 digits + check letter (MOD-11).', '-'),
+    # ── South Africa
+    ('za_idnr'           , 'IntlIDs' , False, '7001011234081'  , 'generate za_idnr'            , 'South African ID — 13 digits with birth date, gender, and Luhn check.', '-'),
+    # ── Canada
+    ('ca_bn'             , 'IntlIDs' , False, '123456782'      , 'generate ca_bn'              , 'Canadian Business Number — 9 digits with Luhn check digit.', '-'),
+    # ── New Zealand
+    ('nz_ird'            , 'IntlIDs' , False, '490119268'      , 'generate nz_ird'             , 'New Zealand IRD — 8-9 digits, range 10M-150M, MOD-11 check.', '-'),
+    # ── Argentina
+    ('ar_cuit'           , 'IntlIDs' , False, '20-12345678-9'  , 'generate ar_cuit'            , 'Argentinian CUIT — 11 digits, MOD-11 check digit.', '-'),
+    ('ar_dni'            , 'IntlIDs' , False, '12345678'       , 'generate ar_dni'             , 'Argentinian DNI — 7 or 8 digits.', '-'),
+    # ── Chile
+    ('cl_rut'            , 'IntlIDs' , False, '12.345.678-9'   , 'generate cl_rut'             , 'Chilean RUT — 7-8 digits + MOD-11 check (digit or K).', '-'),
+    # ── Colombia
+    ('co_nit'            , 'IntlIDs' , False, '8001234565'     , 'generate co_nit'             , 'Colombian NIT — 9 digits + check digit.', '-'),
+    # ── Israel
+    ('il_idnr'           , 'IntlIDs' , False, '123456782'      , 'generate il_idnr'            , 'Israeli ID — 9 digits, Luhn check.', '-'),
+    # ── Romania
+    ('ro_cnp'            , 'IntlIDs' , False, '1700101123456'  , 'generate ro_cnp'             , 'Romanian CNP — 13 digits, MOD-11 check digit.', '-'),
+    ('ro_cui'            , 'IntlIDs' , False, 'RO123456785'    , 'generate ro_cui'             , 'Romanian CUI — company identifier with MOD-11 check.', '-'),
+    # ── Croatia
+    ('hr_oib'            , 'IntlIDs' , False, '12345678901'    , 'generate hr_oib'             , 'Croatian OIB — 11 digits, ISO 7064 MOD 11,10 check.', '-'),
+    # ── Bulgaria
+    ('bg_egn'            , 'IntlIDs' , False, '7001011234'     , 'generate bg_egn'             , 'Bulgarian EGN — 10 digits with birth date and MOD-11 check.', '-'),
+    # ── Lithuania
+    ('lt_asmens'         , 'IntlIDs' , False, '38001011234'    , 'generate lt_asmens'          , 'Lithuanian personal code — 11 digits, same algorithm as EE IK.', '-'),
+    # ── Estonia
+    ('ee_ik'             , 'IntlIDs' , False, '38001011234'    , 'generate ee_ik'              , 'Estonian Isikukood — 11 digits with gender/century prefix, MOD-11 check.', '-'),
+    # ── Portugal
+    ('pt_cc'             , 'IntlIDs' , False, '12345678 0 AB4' , 'generate pt_cc'              , 'Portuguese Citizen Card — 8 digits + 2 letters + check digit.', '-'),
+    # ── Egypt
+    ('eg_tn'             , 'IntlIDs' , False, '123456789'      , 'generate eg_tn'              , 'Egyptian Tax Registration Number — 9 digits.', '-'),
     ('--Commands--'  , ''             , False, ''                          , ''                           , '', ''),
     ('bulk'           , 'Commands'     , True , '["45678901234","98701234567",...]', 'bulk tckn --count 10 --locale TR', 'Generate N values of any single type. Supports all --generate flags (--network, --currency, --locale, etc.).', '--count (int)'),
     ('template'       , 'Commands'     , True , '{"fullname":"Emre Kaya","tckn":"45678901234","phone":"+905321234567"}', 'template fullname tckn phone --locale TR', 'Combine multiple data types into one structured record. Output as JSON, CSV or SQL INSERT.', '--count (int), --format (json|csv|sql), --table (string)'),
@@ -382,6 +466,7 @@ _CAT_ORDER = [
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
     "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless", "WebAuthn", "Wallet",
     "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing", "Telemetry", "OHLCV", "TLE", "Automotive", "EInvoice", "GameDev", "Prometheus", "NMEA", "MRZ", "PenTest",
+    "IntlIDs",
     "Commands",
 ]
 
@@ -430,6 +515,7 @@ _CAT_COLORS = {
     "NMEA":          "bright_yellow",
     "MRZ":           "bright_blue",
     "PenTest":       "bright_red",
+    "IntlIDs":       "bright_blue",
     "Commands":      "bright_cyan",
 }
 

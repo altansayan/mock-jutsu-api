@@ -173,7 +173,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   <h1>Mock Jutsu &mdash; Guide FR</h1>
   <div class="lhdr-engine">Le Moteur de Données Fictives Algorithmiques</div>
   <div class="lhdr-stats">
-    <span>6 locale</span> &bull; <span>251 types</span> &bull; <span>4323 tests</span>
+    <span>6 locale</span> &bull; <span>300 types</span> &bull; <span>4323 tests</span>
   </div>
   <div class="header-links">
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="hlink"><svg height="18" viewBox="0 0 16 16" width="18" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.46-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg> GitHub</a>
@@ -199,7 +199,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 <div class="list-controls">
   <div class="search-wrap">
     <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="text" id="fn-search" placeholder="Search 251 functions&hellip;" autocomplete="off" spellcheck="false">
+    <input type="text" id="fn-search" placeholder="Search 300 functions&hellip;" autocomplete="off" spellcheck="false">
     <span id="search-count" style="display:none"></span>
   </div>
   <div class="cat-filters" id="cat-filters"><button class="cat-btn active" data-catid="all">All</button>
@@ -247,6 +247,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 <button class="cat-btn" data-catid="41">NMEA</button>
 <button class="cat-btn" data-catid="42">MRZ</button>
 <button class="cat-btn" data-catid="43">PenTest</button>
+<button class="cat-btn" data-catid="44">IntlIDs</button>
 </div>
 </div>
 <div id="no-results" style="display:none;text-align:center;padding:3rem;color:#64748b;font-size:.95rem">No functions found. Try a different search term.</div>
@@ -1690,6 +1691,255 @@ UNH+..." data-cli="generate edifact_orders">
 <a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/asn1_fuzz-FR.html" class="fn-card" data-fn="asn1_fuzz" data-catid="43" data-cat="pentest" data-desc="ASN.1/DER malformed payloads: truncated, overflow_length (long-form 0x82), wrong_tag, nested_mismatch, zero_length, rand" data-example="{&quot;hex&quot;:&quot;3008...&quot;,&quot;fuzz_type&quot;:&quot;truncated&quot;,&quot;length&quot;:10}" data-cli="generate asn1_fuzz">
   <div class="fn-name">asn1_fuzz</div>
   <div class="fn-desc">ASN.1/DER malformed payloads: truncated, overflow_length (long-form 0x82), wrong_tag, nest…</div>
+  <div class="fn-locale"></div>
+</a>
+</div>
+</div>
+<div class="cat-section" id="cat-44" data-catid="44" data-cattotal="49">
+  <div class="cat-header">IntlIDs <small style="font-weight:400;color:#64748b">(<span class="cat-count">49</span>)</small></div>
+  <div class="fn-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/br_cpf-FR.html" class="fn-card" data-fn="br_cpf" data-catid="44" data-cat="intlids" data-desc="Brazilian CPF — 11 digits, MOD-11 two check digits." data-example="123.456.789-09" data-cli="generate br_cpf">
+  <div class="fn-name">br_cpf</div>
+  <div class="fn-desc">Brazilian CPF — 11 digits, MOD-11 two check digits.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/br_cnpj-FR.html" class="fn-card" data-fn="br_cnpj" data-catid="44" data-cat="intlids" data-desc="Brazilian CNPJ — 14 digits, MOD-11 two check digits." data-example="11.222.333/0001-81" data-cli="generate br_cnpj">
+  <div class="fn-name">br_cnpj</div>
+  <div class="fn-desc">Brazilian CNPJ — 14 digits, MOD-11 two check digits.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/in_pan-FR.html" class="fn-card" data-fn="in_pan" data-catid="44" data-cat="intlids" data-desc="Indian PAN — 5 letters + 4 digits + 1 letter." data-example="ABCDE1234F" data-cli="generate in_pan">
+  <div class="fn-name">in_pan</div>
+  <div class="fn-desc">Indian PAN — 5 letters + 4 digits + 1 letter.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/in_aadhaar-FR.html" class="fn-card" data-fn="in_aadhaar" data-catid="44" data-cat="intlids" data-desc="Indian Aadhaar — 12 digits, Verhoeff check digit." data-example="2341 2341 2346" data-cli="generate in_aadhaar">
+  <div class="fn-name">in_aadhaar</div>
+  <div class="fn-desc">Indian Aadhaar — 12 digits, Verhoeff check digit.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/in_gstin-FR.html" class="fn-card" data-fn="in_gstin" data-catid="44" data-cat="intlids" data-desc="Indian GSTIN — 15 chars: state + PAN + entity + Z + Luhn-36 check." data-example="29ABCDE1234F1Z5" data-cli="generate in_gstin">
+  <div class="fn-name">in_gstin</div>
+  <div class="fn-desc">Indian GSTIN — 15 chars: state + PAN + entity + Z + Luhn-36 check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/in_epic-FR.html" class="fn-card" data-fn="in_epic" data-catid="44" data-cat="intlids" data-desc="Indian Voter ID (EPIC) — 3 uppercase letters + 7 digits." data-example="ABC1234567" data-cli="generate in_epic">
+  <div class="fn-name">in_epic</div>
+  <div class="fn-desc">Indian Voter ID (EPIC) — 3 uppercase letters + 7 digits.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/cn_ric-FR.html" class="fn-card" data-fn="cn_ric" data-catid="44" data-cat="intlids" data-desc="Chinese Resident ID — 18 chars: area + date + seq + check." data-example="110000198001011234" data-cli="generate cn_ric">
+  <div class="fn-name">cn_ric</div>
+  <div class="fn-desc">Chinese Resident ID — 18 chars: area + date + seq + check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/mx_curp-FR.html" class="fn-card" data-fn="mx_curp" data-catid="44" data-cat="intlids" data-desc="Mexican CURP — 18 chars, check digit via CURP alphabet." data-example="BOXW310820HNERXN09" data-cli="generate mx_curp">
+  <div class="fn-name">mx_curp</div>
+  <div class="fn-desc">Mexican CURP — 18 chars, check digit via CURP alphabet.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/mx_rfc-FR.html" class="fn-card" data-fn="mx_rfc" data-catid="44" data-cat="intlids" data-desc="Mexican RFC — 13 chars (person) or 12 chars (company)." data-example="ABCD820101ABC" data-cli="generate mx_rfc">
+  <div class="fn-name">mx_rfc</div>
+  <div class="fn-desc">Mexican RFC — 13 chars (person) or 12 chars (company).</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/it_codicefiscale-FR.html" class="fn-card" data-fn="it_codicefiscale" data-catid="44" data-cat="intlids" data-desc="Italian Codice Fiscale — 16 chars, official MOD-26 check digit." data-example="RSSMRA80A01H501U" data-cli="generate it_codicefiscale">
+  <div class="fn-name">it_codicefiscale</div>
+  <div class="fn-desc">Italian Codice Fiscale — 16 chars, official MOD-26 check digit.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/es_dni-FR.html" class="fn-card" data-fn="es_dni" data-catid="44" data-cat="intlids" data-desc="Spanish DNI — 8 digits + MOD-23 check letter." data-example="12345678Z" data-cli="generate es_dni">
+  <div class="fn-name">es_dni</div>
+  <div class="fn-desc">Spanish DNI — 8 digits + MOD-23 check letter.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/es_nie-FR.html" class="fn-card" data-fn="es_nie" data-catid="44" data-cat="intlids" data-desc="Spanish NIE — X/Y/Z prefix + 7 digits + MOD-23 check letter." data-example="X1234567L" data-cli="generate es_nie">
+  <div class="fn-name">es_nie</div>
+  <div class="fn-desc">Spanish NIE — X/Y/Z prefix + 7 digits + MOD-23 check letter.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/es_ccc-FR.html" class="fn-card" data-fn="es_ccc" data-catid="44" data-cat="intlids" data-desc="Spanish CCC bank account — 4+4+2+10 digits, MOD-11 check digits." data-example="2100-0418-42-0200051332" data-cli="generate es_ccc">
+  <div class="fn-name">es_ccc</div>
+  <div class="fn-desc">Spanish CCC bank account — 4+4+2+10 digits, MOD-11 check digits.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/de_idnr-FR.html" class="fn-card" data-fn="de_idnr" data-catid="44" data-cat="intlids" data-desc="German personal tax ID (IdNr) — 11 digits, ISO 7064 MOD 11,10." data-example="02476291358" data-cli="generate de_idnr">
+  <div class="fn-name">de_idnr</div>
+  <div class="fn-desc">German personal tax ID (IdNr) — 11 digits, ISO 7064 MOD 11,10.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/de_stnr-FR.html" class="fn-card" data-fn="de_stnr" data-catid="44" data-cat="intlids" data-desc="German Steuernummer — ELSTER unified 13-digit format." data-example="21/815/08150 5" data-cli="generate de_stnr">
+  <div class="fn-name">de_stnr</div>
+  <div class="fn-desc">German Steuernummer — ELSTER unified 13-digit format.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/pk_cnic-FR.html" class="fn-card" data-fn="pk_cnic" data-catid="44" data-cat="intlids" data-desc="Pakistani CNIC — 13 digits (NNNNN-NNNNNNN-N)." data-example="35202-1234567-1" data-cli="generate pk_cnic">
+  <div class="fn-name">pk_cnic</div>
+  <div class="fn-desc">Pakistani CNIC — 13 digits (NNNNN-NNNNNNN-N).</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/jp_cn-FR.html" class="fn-card" data-fn="jp_cn" data-catid="44" data-cat="intlids" data-desc="Japanese Corporate Number — 13 digits, MOD-9 check." data-example="1234567890123" data-cli="generate jp_cn">
+  <div class="fn-name">jp_cn</div>
+  <div class="fn-desc">Japanese Corporate Number — 13 digits, MOD-9 check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/jp_in-FR.html" class="fn-card" data-fn="jp_in" data-catid="44" data-cat="intlids" data-desc="Japanese Individual Number (My Number) — 12 digits, MOD-11 check." data-example="123456789012" data-cli="generate jp_in">
+  <div class="fn-name">jp_in</div>
+  <div class="fn-desc">Japanese Individual Number (My Number) — 12 digits, MOD-11 check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/kr_rrn-FR.html" class="fn-card" data-fn="kr_rrn" data-catid="44" data-cat="intlids" data-desc="South Korean RRN — 13 digits with birth date, gender, and check." data-example="700101-1280009" data-cli="generate kr_rrn">
+  <div class="fn-name">kr_rrn</div>
+  <div class="fn-desc">South Korean RRN — 13 digits with birth date, gender, and check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/kr_brn-FR.html" class="fn-card" data-fn="kr_brn" data-catid="44" data-cat="intlids" data-desc="South Korean Business Registration Number — NNN-NN-NNNNN." data-example="123-45-67890" data-cli="generate kr_brn">
+  <div class="fn-name">kr_brn</div>
+  <div class="fn-desc">South Korean Business Registration Number — NNN-NN-NNNNN.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/nl_bsn-FR.html" class="fn-card" data-fn="nl_bsn" data-catid="44" data-cat="intlids" data-desc="Dutch BSN — 9 digits, MOD-11 weighted check." data-example="123456782" data-cli="generate nl_bsn">
+  <div class="fn-name">nl_bsn</div>
+  <div class="fn-desc">Dutch BSN — 9 digits, MOD-11 weighted check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/pl_pesel-FR.html" class="fn-card" data-fn="pl_pesel" data-catid="44" data-cat="intlids" data-desc="Polish PESEL — 11 digits with encoded birth date and MOD-10 check." data-example="70010112345" data-cli="generate pl_pesel">
+  <div class="fn-name">pl_pesel</div>
+  <div class="fn-desc">Polish PESEL — 11 digits with encoded birth date and MOD-10 check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/se_personnummer-FR.html" class="fn-card" data-fn="se_personnummer" data-catid="44" data-cat="intlids" data-desc="Swedish Personnummer — YYYYMMDD-NNNN with Luhn check." data-example="19700101-1234" data-cli="generate se_personnummer">
+  <div class="fn-name">se_personnummer</div>
+  <div class="fn-desc">Swedish Personnummer — YYYYMMDD-NNNN with Luhn check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/dk_cpr-FR.html" class="fn-card" data-fn="dk_cpr" data-catid="44" data-cat="intlids" data-desc="Danish CPR — DDMMYY-SSSS (no checksum since 2007)." data-example="010170-1234" data-cli="generate dk_cpr">
+  <div class="fn-name">dk_cpr</div>
+  <div class="fn-desc">Danish CPR — DDMMYY-SSSS (no checksum since 2007).</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/fi_hetu-FR.html" class="fn-card" data-fn="fi_hetu" data-catid="44" data-cat="intlids" data-desc="Finnish HETU — DDMMYY+/-NNNC with MOD-31 check." data-example="010170-123A" data-cli="generate fi_hetu">
+  <div class="fn-name">fi_hetu</div>
+  <div class="fn-desc">Finnish HETU — DDMMYY+/-NNNC with MOD-31 check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/no_fodselsnummer-FR.html" class="fn-card" data-fn="no_fodselsnummer" data-catid="44" data-cat="intlids" data-desc="Norwegian Fødselsnummer — 11 digits, two MOD-11 check digits." data-example="01017012345" data-cli="generate no_fodselsnummer">
+  <div class="fn-name">no_fodselsnummer</div>
+  <div class="fn-desc">Norwegian Fødselsnummer — 11 digits, two MOD-11 check digits.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/au_abn-FR.html" class="fn-card" data-fn="au_abn" data-catid="44" data-cat="intlids" data-desc="Australian ABN — 11 digits, first 2 are MOD-89 check." data-example="51824753556" data-cli="generate au_abn">
+  <div class="fn-name">au_abn</div>
+  <div class="fn-desc">Australian ABN — 11 digits, first 2 are MOD-89 check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/au_tfn-FR.html" class="fn-card" data-fn="au_tfn" data-catid="44" data-cat="intlids" data-desc="Australian TFN — 9 digits, MOD-11 weighted check." data-example="123456782" data-cli="generate au_tfn">
+  <div class="fn-name">au_tfn</div>
+  <div class="fn-desc">Australian TFN — 9 digits, MOD-11 weighted check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/au_acn-FR.html" class="fn-card" data-fn="au_acn" data-catid="44" data-cat="intlids" data-desc="Australian ACN — 9 digits, MOD-10 weighted check." data-example="004085616" data-cli="generate au_acn">
+  <div class="fn-name">au_acn</div>
+  <div class="fn-desc">Australian ACN — 9 digits, MOD-10 weighted check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/my_nric-FR.html" class="fn-card" data-fn="my_nric" data-catid="44" data-cat="intlids" data-desc="Malaysian NRIC — YYMMDD-PB-NNNN (12 digits with valid birth place code)." data-example="701231-08-5678" data-cli="generate my_nric">
+  <div class="fn-name">my_nric</div>
+  <div class="fn-desc">Malaysian NRIC — YYMMDD-PB-NNNN (12 digits with valid birth place code).</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/th_pin-FR.html" class="fn-card" data-fn="th_pin" data-catid="44" data-cat="intlids" data-desc="Thai personal ID — 13 digits, MOD-11 check." data-example="1234567891234" data-cli="generate th_pin">
+  <div class="fn-name">th_pin</div>
+  <div class="fn-desc">Thai personal ID — 13 digits, MOD-11 check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/th_tin-FR.html" class="fn-card" data-fn="th_tin" data-catid="44" data-cat="intlids" data-desc="Thai TIN (business) — 13 digits, same format as PIN." data-example="1234567891234" data-cli="generate th_tin">
+  <div class="fn-name">th_tin</div>
+  <div class="fn-desc">Thai TIN (business) — 13 digits, same format as PIN.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/sg_uen-FR.html" class="fn-card" data-fn="sg_uen" data-catid="44" data-cat="intlids" data-desc="Singapore UEN — 8 digits + check letter (MOD-11)." data-example="12345678X" data-cli="generate sg_uen">
+  <div class="fn-name">sg_uen</div>
+  <div class="fn-desc">Singapore UEN — 8 digits + check letter (MOD-11).</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/za_idnr-FR.html" class="fn-card" data-fn="za_idnr" data-catid="44" data-cat="intlids" data-desc="South African ID — 13 digits with birth date, gender, and Luhn check." data-example="7001011234081" data-cli="generate za_idnr">
+  <div class="fn-name">za_idnr</div>
+  <div class="fn-desc">South African ID — 13 digits with birth date, gender, and Luhn check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/ca_bn-FR.html" class="fn-card" data-fn="ca_bn" data-catid="44" data-cat="intlids" data-desc="Canadian Business Number — 9 digits with Luhn check digit." data-example="123456782" data-cli="generate ca_bn">
+  <div class="fn-name">ca_bn</div>
+  <div class="fn-desc">Canadian Business Number — 9 digits with Luhn check digit.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/nz_ird-FR.html" class="fn-card" data-fn="nz_ird" data-catid="44" data-cat="intlids" data-desc="New Zealand IRD — 8-9 digits, range 10M-150M, MOD-11 check." data-example="490119268" data-cli="generate nz_ird">
+  <div class="fn-name">nz_ird</div>
+  <div class="fn-desc">New Zealand IRD — 8-9 digits, range 10M-150M, MOD-11 check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/ar_cuit-FR.html" class="fn-card" data-fn="ar_cuit" data-catid="44" data-cat="intlids" data-desc="Argentinian CUIT — 11 digits, MOD-11 check digit." data-example="20-12345678-9" data-cli="generate ar_cuit">
+  <div class="fn-name">ar_cuit</div>
+  <div class="fn-desc">Argentinian CUIT — 11 digits, MOD-11 check digit.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/ar_dni-FR.html" class="fn-card" data-fn="ar_dni" data-catid="44" data-cat="intlids" data-desc="Argentinian DNI — 7 or 8 digits." data-example="12345678" data-cli="generate ar_dni">
+  <div class="fn-name">ar_dni</div>
+  <div class="fn-desc">Argentinian DNI — 7 or 8 digits.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/cl_rut-FR.html" class="fn-card" data-fn="cl_rut" data-catid="44" data-cat="intlids" data-desc="Chilean RUT — 7-8 digits + MOD-11 check (digit or K)." data-example="12.345.678-9" data-cli="generate cl_rut">
+  <div class="fn-name">cl_rut</div>
+  <div class="fn-desc">Chilean RUT — 7-8 digits + MOD-11 check (digit or K).</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/co_nit-FR.html" class="fn-card" data-fn="co_nit" data-catid="44" data-cat="intlids" data-desc="Colombian NIT — 9 digits + check digit." data-example="8001234565" data-cli="generate co_nit">
+  <div class="fn-name">co_nit</div>
+  <div class="fn-desc">Colombian NIT — 9 digits + check digit.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/il_idnr-FR.html" class="fn-card" data-fn="il_idnr" data-catid="44" data-cat="intlids" data-desc="Israeli ID — 9 digits, Luhn check." data-example="123456782" data-cli="generate il_idnr">
+  <div class="fn-name">il_idnr</div>
+  <div class="fn-desc">Israeli ID — 9 digits, Luhn check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/ro_cnp-FR.html" class="fn-card" data-fn="ro_cnp" data-catid="44" data-cat="intlids" data-desc="Romanian CNP — 13 digits, MOD-11 check digit." data-example="1700101123456" data-cli="generate ro_cnp">
+  <div class="fn-name">ro_cnp</div>
+  <div class="fn-desc">Romanian CNP — 13 digits, MOD-11 check digit.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/ro_cui-FR.html" class="fn-card" data-fn="ro_cui" data-catid="44" data-cat="intlids" data-desc="Romanian CUI — company identifier with MOD-11 check." data-example="RO123456785" data-cli="generate ro_cui">
+  <div class="fn-name">ro_cui</div>
+  <div class="fn-desc">Romanian CUI — company identifier with MOD-11 check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/hr_oib-FR.html" class="fn-card" data-fn="hr_oib" data-catid="44" data-cat="intlids" data-desc="Croatian OIB — 11 digits, ISO 7064 MOD 11,10 check." data-example="12345678901" data-cli="generate hr_oib">
+  <div class="fn-name">hr_oib</div>
+  <div class="fn-desc">Croatian OIB — 11 digits, ISO 7064 MOD 11,10 check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/bg_egn-FR.html" class="fn-card" data-fn="bg_egn" data-catid="44" data-cat="intlids" data-desc="Bulgarian EGN — 10 digits with birth date and MOD-11 check." data-example="7001011234" data-cli="generate bg_egn">
+  <div class="fn-name">bg_egn</div>
+  <div class="fn-desc">Bulgarian EGN — 10 digits with birth date and MOD-11 check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/lt_asmens-FR.html" class="fn-card" data-fn="lt_asmens" data-catid="44" data-cat="intlids" data-desc="Lithuanian personal code — 11 digits, same algorithm as EE IK." data-example="38001011234" data-cli="generate lt_asmens">
+  <div class="fn-name">lt_asmens</div>
+  <div class="fn-desc">Lithuanian personal code — 11 digits, same algorithm as EE IK.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/ee_ik-FR.html" class="fn-card" data-fn="ee_ik" data-catid="44" data-cat="intlids" data-desc="Estonian Isikukood — 11 digits with gender/century prefix, MOD-11 check." data-example="38001011234" data-cli="generate ee_ik">
+  <div class="fn-name">ee_ik</div>
+  <div class="fn-desc">Estonian Isikukood — 11 digits with gender/century prefix, MOD-11 check.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/pt_cc-FR.html" class="fn-card" data-fn="pt_cc" data-catid="44" data-cat="intlids" data-desc="Portuguese Citizen Card — 8 digits + 2 letters + check digit." data-example="12345678 0 AB4" data-cli="generate pt_cc">
+  <div class="fn-name">pt_cc</div>
+  <div class="fn-desc">Portuguese Citizen Card — 8 digits + 2 letters + check digit.</div>
+  <div class="fn-locale"></div>
+</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/eg_tn-FR.html" class="fn-card" data-fn="eg_tn" data-catid="44" data-cat="intlids" data-desc="Egyptian Tax Registration Number — 9 digits." data-example="123456789" data-cli="generate eg_tn">
+  <div class="fn-name">eg_tn</div>
+  <div class="fn-desc">Egyptian Tax Registration Number — 9 digits.</div>
   <div class="fn-locale"></div>
 </a>
 </div>
