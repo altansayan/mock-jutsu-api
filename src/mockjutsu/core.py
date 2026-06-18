@@ -354,7 +354,7 @@ class MockJutsuCore:
         elif dt in _CRYPTO_FUZZ_TYPES:
             result = self.crypto_fuzz.generate(dt, **kwargs)
         elif dt in _MRZ_TYPES:
-            result = self.mrz.generate(dt, **kwargs)
+            result = self.mrz.generate(dt, locale=locale, **kwargs)
         elif dt in _OHLCV_TYPES:
             result = self.ohlcv.generate(dt, **kwargs)
         elif dt in _NMEA_TYPES:
