@@ -84,7 +84,7 @@ def test_psd2_parts_are_base64url():
 
 def test_psd2_header_alg():
     header, _, _ = _parse_jws(jutsu.generate('psd2_consent'))
-    assert header.get('alg') == 'HS256', f"Expected alg=HS256, got {header.get('alg')}"
+    assert header.get('alg') == 'PS256', f"Expected alg=PS256 (OB UK v3.1 §6.3), got {header.get('alg')}"
 
 
 def test_psd2_header_kid_present():
@@ -151,7 +151,7 @@ def test_psd2_payload_has_risk():
 def test_psd2_payload_consent_id():
     _, payload, _ = _parse_jws(jutsu.generate('psd2_consent'))
     consent_id = payload['Data'].get('ConsentId', '')
-    assert consent_id.startswith('aac-'), f"ConsentId must start with 'aac-', got: {consent_id}"
+    assert consent_id.startswith('MOCKJ-aac-'), f"ConsentId must start with 'MOCKJ-aac-', got: {consent_id}"
 
 
 def test_psd2_payload_initiation_present():

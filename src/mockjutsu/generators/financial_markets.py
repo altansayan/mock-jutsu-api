@@ -299,7 +299,9 @@ class FinancialMarketsGenerator:
         header_dict = {
             'alg': 'PS256',  # UK OB Security Profile v3.1 §6.3 requires PS256
             'kid': kid,
+            'b64': False,    # OB UK §8.3: payload is not base64url-encoded (detached JWS)
             'crit': [
+                'b64',
                 'http://openbanking.org.uk/iat',
                 'http://openbanking.org.uk/iss',
                 'http://openbanking.org.uk/tan',

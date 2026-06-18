@@ -44,6 +44,17 @@ _COUNTRIES = [
     'AUT', 'POL', 'CZE', 'HUN', 'PRT', 'GRC', 'FIN', 'DNK', 'UKR', 'IRN',
 ]  # Germany uses ICAO code 'D' (padded 'D<<'), not ISO 3166-1 alpha-3 'DEU'
 
+# ICAO 9303 country codes for mock-jutsu locales.
+# DE → 'D<<' (ICAO exception), UK → 'GBR' (ISO 3166-1 alpha-3 for United Kingdom)
+_LOCALE_COUNTRY = {
+    'TR': 'TUR',
+    'US': 'USA',
+    'UK': 'GBR',
+    'DE': 'D<<',
+    'FR': 'FRA',
+    'RU': 'RUS',
+}
+
 _SURNAMES = [
     'SMITH', 'JOHNSON', 'WILLIAMS', 'BROWN', 'JONES', 'GARCIA', 'MILLER',
     'DAVIS', 'WILSON', 'TAYLOR', 'YILMAZ', 'DEMIR', 'KAYA', 'SAHIN', 'CELIK',
@@ -108,7 +119,7 @@ def _random_personal_number() -> str:
 
 # ── TD3 Passport (2 × 44) ─────────────────────────────────────────────────────
 
-def generate_mrz_td3() -> str:
+def generate_mrz_td3(locale: str = 'TR') -> str:
     """
     ICAO 9303 Part 3 — Passport TD3 MRZ, 2 lines × 44 characters.
 
@@ -118,7 +129,7 @@ def generate_mrz_td3() -> str:
     """
     surname     = random.choice(_SURNAMES)
     given       = random.choice(_GIVEN_NAMES)
-    country     = random.choice(_COUNTRIES)
+    country     = _LOCALE_COUNTRY.get(locale.upper(), random.choice(_COUNTRIES))
     nationality = country
 
     # ── Line 1 ──────────────────────────────────────────────
@@ -175,7 +186,7 @@ def generate_mrz_td3() -> str:
 
 # ── TD1 ID Card (3 × 30) ──────────────────────────────────────────────────────
 
-def generate_mrz_td1() -> str:
+def generate_mrz_td1(locale: str = 'TR') -> str:
     """
     ICAO 9303 Part 5 — ID Card TD1 MRZ, 3 lines × 30 characters.
 
@@ -185,7 +196,7 @@ def generate_mrz_td1() -> str:
     """
     surname     = random.choice(_SURNAMES)
     given       = random.choice(_GIVEN_NAMES)
-    country     = random.choice(_COUNTRIES)
+    country     = _LOCALE_COUNTRY.get(locale.upper(), random.choice(_COUNTRIES))
     nationality = country
 
     doc_type_char = random.choice(['I', 'A', 'C'])
@@ -251,8 +262,9 @@ class MrzGenerator:
     """ICAO 9303 Machine Readable Zone generator (TD3 Passport + TD1 ID Card)."""
 
     def generate(self, data_type: str, **kwargs) -> str:
+        locale = str(kwargs.get('locale', 'TR')).upper()
         if data_type == 'mrz_td3':
-            return generate_mrz_td3()
+            return generate_mrz_td3(locale)
         if data_type == 'mrz_td1':
-            return generate_mrz_td1()
+            return generate_mrz_td1(locale)
         return f"ERROR: Unknown type '{data_type}'"

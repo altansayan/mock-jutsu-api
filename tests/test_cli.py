@@ -932,8 +932,8 @@ class TestGenerateSecurity:
 
     def test_api_key_format(self, runner):
         val = _gen(runner, 'api_key')
-        assert val.startswith('sk-')
-        assert len(val) == 51
+        assert val.startswith('mjk-')
+        assert len(val) == 52
 
     def test_totp_code_6digits(self, runner):
         val = _gen(runner, 'totp_code')

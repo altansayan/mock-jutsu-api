@@ -383,11 +383,13 @@ def test_balance_range_adjustment():
 
 
 def test_balance_is_numeric():
-    """balance must be a numeric value."""
+    """balance must be a string representation of a non-negative number with 2 decimal places."""
     for _ in range(50):
         val = jutsu.generate('balance')
-        assert isinstance(val, (int, float)), f"Balance must be numeric: {val}"
-        assert val >= 0, f"Balance must not be negative: {val}"
+        assert isinstance(val, str), f"Balance must be a string: {val!r}"
+        f = float(val)
+        assert f >= 0, f"Balance must not be negative: {val}"
+        assert re.match(r'^\d+\.\d{2}$', val), f"Balance must have exactly 2 decimal places: {val}"
 
 
 def test_3ds_cavv_format():
@@ -652,9 +654,12 @@ def test_employer_id_locale_aware():
 
 def test_insurance_id_locale_aware():
     """insurance_id must return locale-appropriate format for all 6 locales."""
-    assert re.match(r'^\d{2}-\d{7}-\d\.\d{2}-\d{2}$', str(jutsu.generate('insurance_id', locale='TR')))
+    # TR: TCKN-style 11-digit individual insurance ID (MOD-11 checksum)
+    assert re.match(r'^\d{11}$',                        str(jutsu.generate('insurance_id', locale='TR')))
+    # US: SSN format
     assert re.match(r'^\d{3}-\d{2}-\d{4}$',            str(jutsu.generate('insurance_id', locale='US')))
-    assert re.match(r'^\d{3}/[A-Z0-9]{6}$',            str(jutsu.generate('insurance_id', locale='UK')))
+    # UK: NHS Number (xxx xxx xxxx with spaces)
+    assert re.match(r'^\d{3} \d{3} \d{4}$',            str(jutsu.generate('insurance_id', locale='UK')))
     assert re.match(r'^\d{2} \d{6} [A-Z] \d{4}$',      str(jutsu.generate('insurance_id', locale='DE')))
     assert re.match(r'^\d{3}-\d{3}-\d{3} \d{2}$',      str(jutsu.generate('insurance_id', locale='RU')))
 
@@ -2294,11 +2299,11 @@ def test_inn_corporate_stays_10_digits():
 # ---------------------------------------------------------------------------
 
 def test_api_key_format():
-    """api_key must be 'sk-' prefix + exactly 48 alphanumeric chars."""
+    """api_key must be 'mjk-' prefix + exactly 48 alphanumeric chars (sk- avoided — secret scanner risk)."""
     for _ in range(100):
         val = str(jutsu.generate('api_key'))
-        assert val.startswith('sk-'), f"api_key must start with sk-: {val}"
-        suffix = val[3:]
+        assert val.startswith('mjk-'), f"api_key must start with mjk-: {val}"
+        suffix = val[4:]
         assert len(suffix) == 48, f"api_key suffix must be 48 chars: {val}"
         assert re.match(r'^[A-Za-z0-9]+$', suffix), f"api_key suffix not alphanumeric: {val}"
 
