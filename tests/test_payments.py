@@ -203,16 +203,16 @@ class TestSepaMandate:
         assert cid, f"No Creditor ID found in: {val}"
 
     def test_creditor_id_check_digits(self):
-        # Check digits: same MOD-97 as IBAN
+        # Check digits: same MOD-97 as IBAN.
+        # Extract from CdtrSchmeId/Othr/Id element to avoid matching hex tokens.
         val = jutsu.generate("sepa_mandate")
-        cid = re.search(r"([A-Z]{2})(\d{2})([A-Z]{3}[A-Z0-9]+)", val).group(0)
-        country = cid[:2]
-        check = int(cid[2:4])
-        rest = cid[4:]
+        m = re.search(r"<Othr><Id>([^<]+)</Id>", val)
+        assert m, f"No Creditor ID found in: {val[:200]}"
+        cid = m.group(1)
         # Rearrange: rest + country + check digits → numeric → MOD 97 = 1
-        rearranged = rest + country + cid[2:4]
+        rearranged = cid[4:] + cid[:2] + cid[2:4]
         numeric = "".join(str(ord(c) - 55) if c.isalpha() else c for c in rearranged)
-        assert int(numeric) % 97 == 1
+        assert int(numeric) % 97 == 1, f"MOD-97 failed for Creditor ID: {cid}"
 
     def test_debtor_iban_present(self):
         val = jutsu.generate("sepa_mandate")
