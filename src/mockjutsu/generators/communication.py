@@ -33,9 +33,13 @@ STREETS = {
 PHONE_DATA = {
     "TR": {"prefix": "+90", "carriers": ["532", "533", "542", "544", "505", "506"]},
     "US": {"prefix": "+1",  "carriers": ["555", "212", "310", "415", "718", "312"]},
-    "UK": {"prefix": "+44", "carriers": ["7911", "7700", "7800", "7712", "7490"]},
+    # UK: 4-digit prefix → 6 trailing digits → 10 subscriber digits total after +44
+    # 7700 omitted (reserved sub-ranges per Ofcom)
+    "UK": {"prefix": "+44", "carriers": ["7911", "7800", "7712", "7490"]},
     "DE": {"prefix": "+49", "carriers": ["151", "160", "170", "171", "176"]},
-    "FR": {"prefix": "+33", "carriers": ["06", "07"]},
+    # FR: E.164 drops the trunk prefix 0, so "06"→"6", "07"→"7" (1 digit)
+    # 1-digit prefix + 8 trailing digits = 9 subscriber digits after +33
+    "FR": {"prefix": "+33", "carriers": ["6", "7"]},
     "RU": {"prefix": "+7",  "carriers": ["916", "999", "903", "917", "926"]},
 }
 
@@ -97,7 +101,10 @@ class CommunicationGenerator:
         data = PHONE_DATA.get(l, PHONE_DATA["TR"])
         prefix  = data["prefix"]
         carrier = random.choice(data["carriers"])
-        local_len = 8 if l == "FR" else 7
+        # Trailing digit count per locale so that total subscriber digits are E.164-correct:
+        # UK: 4-digit carrier + 6 = 10 | FR: 1-digit carrier + 8 = 9 | others: 3-digit + 7 = 10
+        _local_len = {"UK": 6, "FR": 8}
+        local_len = _local_len.get(l, 7)
         local   = "".join(str(random.randrange(10)) for _ in range(local_len))
 
         if atomic in ('country', 'country_code'):

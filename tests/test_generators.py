@@ -2716,12 +2716,15 @@ def test_phone_locale_prefix():
 
 
 def test_phone_area_nonempty():
-    """phone_area must return a non-empty digit string (carrier/area code)."""
+    """phone_area must return a non-empty digit string (carrier/area code).
+    FR uses single-digit mobile prefix (6/7) per E.164 — min length is 1 for FR, 2 for others.
+    """
     for locale in LOCALES:
         for _ in range(10):
             val = str(jutsu.generate('phone_area', locale=locale))
             assert val.isdigit(), f"phone_area must be digits for {locale}: {val}"
-            assert len(val) >= 2, f"phone_area too short for {locale}: {val}"
+            min_len = 1 if locale == "FR" else 2
+            assert len(val) >= min_len, f"phone_area too short for {locale}: {val}"
 
 
 def test_phone_local_nonempty():
