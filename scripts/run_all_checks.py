@@ -101,7 +101,44 @@ def run_checks():
         json.dump(counts, f, indent=2)
     print(f"\n  Test stats saved: {counts['passed']} passed, "
           f"{counts['skipped']} skipped, {counts['failed']} failed")
-    print("  Run 'python generate_full_docs.py' to update HOW-TO + README badge.")
+
+    # Step 3: Auto-update README badge and HOW-TO pages
+    print("\nStep 3: Updating README badge and HOW-TO pages...")
+    docs_script = os.path.join(BASE_DIR, "generate_full_docs.py")
+    docs_result = subprocess.run(
+        [sys.executable, docs_script], cwd=BASE_DIR, env=env,
+        capture_output=True, text=True,
+    )
+    if docs_result.returncode != 0:
+        print("generate_full_docs.py FAILED:")
+        print(docs_result.stdout[-2000:])
+        return 1
+    print(f"  {docs_result.stdout.strip().splitlines()[-1]}")
+
+    # Check if README or HOW-TO changed
+    diff_result = subprocess.run(
+        ["git", "diff", "--name-only", "README.md", "HOW-TO/", "index.html"],
+        cwd=BASE_DIR, capture_output=True, text=True,
+    )
+    changed = [f for f in diff_result.stdout.strip().splitlines() if f]
+    if changed:
+        print(f"\n  Badge updated — auto-committing: {', '.join(changed)}")
+        subprocess.run(["git", "add", "README.md", "HOW-TO/", "index.html"],
+                       cwd=BASE_DIR)
+        commit_result = subprocess.run(
+            ["git", "commit",
+             "-m", f"chore(docs): auto-update badge to {counts['passed']} passed [skip ci]",
+             "--no-verify"],
+            cwd=BASE_DIR, capture_output=True, text=True,
+        )
+        if commit_result.returncode != 0:
+            print("  Auto-commit failed (nothing to commit or git error).")
+            print(commit_result.stderr)
+        else:
+            print("  Auto-commit created. Re-run git push to include it.")
+            return 1  # abort current push so new commit is included next push
+    else:
+        print("  Badge already up to date — no commit needed.")
 
     print("\nALL CHECKS PASSED. Ready for push.")
     return 0
