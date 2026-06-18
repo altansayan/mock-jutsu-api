@@ -180,10 +180,10 @@ class CommerceGenerator:
         today = date.today()
         prefix = INVOICE_PREFIXES.get(l, "INV")
         fmt = INVOICE_FORMATS.get(l, "{p}-{y}-{n:06d}")
-        return fmt.format(
-            p=prefix, y=today.year, m=today.month,
-            d=today.day, n=random.randrange(999999) + 1
-        )
+        # Serial range matches format width: 04d→max 9999, 05d→max 99999, 06d→max 999999
+        _serial_max = {"US": 9999, "DE": 99999}
+        n = random.randrange(_serial_max.get(l, 999999)) + 1
+        return fmt.format(p=prefix, y=today.year, m=today.month, d=today.day, n=n)
 
     @staticmethod
     def generate_vin(locale="TR"):
