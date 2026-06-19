@@ -43,3 +43,8 @@ HOW-TO-BACKUP/
 
 # Generated test stats (written by run_all_checks.py, not source code)
 compliance/test_stats.json
+
+# Local scratch / temp files
+scratch/
+tmp_*.py
+parity_results*.json
