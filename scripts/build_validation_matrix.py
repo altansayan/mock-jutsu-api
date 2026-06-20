@@ -126,6 +126,61 @@ EXTERNAL_VALIDATORS: dict[str, tuple[str, str]] = {
     # SWIFT MT940
     "mt940":           ("mt-940", "mt940.models.Transactions"),
     # FedWire — not standard library; manual contract
+    # ── Sprint 4-7 Uluslararası Kimlik Tipleri ──────────────────────────────
+    # Güney Amerika
+    "br_cpf":           ("python-stdnum", "stdnum.br.cpf.validate"),
+    "br_cnpj":          ("python-stdnum", "stdnum.br.cnpj.validate"),
+    "ar_cuit":          ("python-stdnum", "stdnum.ar.cuit.validate"),
+    "ar_dni":           ("python-stdnum", "stdnum.ar.dni.validate"),
+    "mx_rfc":           ("python-stdnum", "stdnum.mx.rfc.validate"),
+    "mx_curp":          ("python-stdnum", "stdnum.mx.curp.validate"),
+    "cl_rut":           ("python-stdnum", "stdnum.cl.rut.validate"),
+    "co_nit":           ("python-stdnum", "stdnum.co.nit.validate"),
+    # Asya-Pasifik
+    "in_aadhaar":       ("python-stdnum", "stdnum.in_.aadhaar.validate"),
+    "in_pan":           ("python-stdnum", "stdnum.in_.pan.validate"),
+    "in_gstin":         ("python-stdnum", "stdnum.in_.gstin.validate"),
+    "in_epic":          ("python-stdnum", "stdnum.in_.epic.validate"),
+    "au_abn":           ("python-stdnum", "stdnum.au.abn.validate"),
+    "au_acn":           ("python-stdnum", "stdnum.au.acn.validate"),
+    "au_tfn":           ("python-stdnum", "stdnum.au.tfn.validate"),
+    "nz_ird":           ("python-stdnum", "stdnum.nz.ird.validate"),
+    "sg_uen":           ("python-stdnum", "stdnum.sg.uen.validate"),
+    "kr_brn":           ("python-stdnum", "stdnum.kr.brn.validate"),
+    "kr_rrn":           ("python-stdnum", "stdnum.kr.rrn.validate"),
+    "jp_cn":            ("python-stdnum", "stdnum.jp.cn.validate"),
+    "jp_in":            ("python-stdnum", "stdnum.jp.in_.validate"),
+    "cn_ric":           ("python-stdnum", "stdnum.cn.ric.validate"),
+    "th_pin":           ("python-stdnum", "stdnum.th.pin.validate"),
+    "th_tin":           ("python-stdnum", "stdnum.th.tin.validate"),
+    "pk_cnic":          ("python-stdnum", "stdnum.pk.cnic.validate"),
+    # Avrupa (ek ülkeler)
+    "fi_hetu":          ("python-stdnum", "stdnum.fi.hetu.validate"),
+    "no_fodselsnummer": ("python-stdnum", "stdnum.no.fodselsnummer.validate"),
+    "se_personnummer":  ("python-stdnum", "stdnum.se.personnummer.validate"),
+    "dk_cpr":           ("python-stdnum", "stdnum.dk.cpr.validate"),
+    "it_codicefiscale": ("python-stdnum", "stdnum.it.codicefiscale.validate"),
+    "nl_bsn":           ("python-stdnum", "stdnum.nl.bsn.validate"),
+    "pl_pesel":         ("python-stdnum", "stdnum.pl.pesel.validate"),
+    "es_dni":           ("python-stdnum", "stdnum.es.dni.validate"),
+    "es_nie":           ("python-stdnum", "stdnum.es.nie.validate"),
+    "es_ccc":           ("python-stdnum", "stdnum.es.ccc.validate"),
+    "de_idnr":          ("python-stdnum", "stdnum.de.idnr.validate"),
+    "de_stnr":          ("python-stdnum", "stdnum.de.stnr.validate"),
+    "hr_oib":           ("python-stdnum", "stdnum.hr.oib.validate"),
+    "bg_egn":           ("python-stdnum", "stdnum.bg.egn.validate"),
+    "ee_ik":            ("python-stdnum", "stdnum.ee.ik.validate"),
+    "lt_asmens":        ("python-stdnum", "stdnum.lt.asmens.validate"),
+    "ro_cnp":           ("python-stdnum", "stdnum.ro.cnp.validate"),
+    "ro_cui":           ("python-stdnum", "stdnum.ro.cui.validate"),
+    "pt_cc":            ("python-stdnum", "stdnum.pt.cc.validate"),
+    # Afrika / Orta Doğu
+    "za_idnr":          ("python-stdnum", "stdnum.za.idnr.validate"),
+    "eg_tn":            ("python-stdnum", "stdnum.eg.tn.validate"),
+    "il_idnr":          ("python-stdnum", "stdnum.il.idnr.validate"),
+    # Kuzey Amerika
+    "ca_bn":            ("python-stdnum", "stdnum.ca.bn.validate"),
+    "wire_routing_number": ("python-stdnum", "stdnum.us.rtn.validate"),
 }
 
 
@@ -173,6 +228,12 @@ NEEDS_VECTOR_EXTENSION: set[str] = {
     "totp_code",          # RFC 6238 (kütüphane var → matematiksel'e taşınabilir)
     "webhook_signature",  # HMAC-SHA256 RFC 2104
     "signature",          # HMAC test vektörleri (RFC 4231)
+    # Sprint 4-7 yeni tipler — checksum algoritması var
+    "figi",               # CUSIP-style per-character digit-sum (BBG000B9XRY4 doğrulandı)
+    "nsin",               # CUSIP (US/CA) veya SEDOL (UK) checksum, locale-aware
+    "ifsc_code",          # RBI IFSC format: 4-char bank + 0 + 6-char branch
+    "bsb_code",           # AU BSB: bank-branch format, APCA directory
+    "mic",                # ISO 10383 — 4-char exchange identifier
 }
 
 
