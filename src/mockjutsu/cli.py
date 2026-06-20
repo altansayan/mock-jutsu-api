@@ -159,7 +159,43 @@ _REFERENCE = [
     ('cef_log'        , 'Security'     , False, 'CEF:0|Cisco|ASA|9.16|...', 'generate cef_log'           , 'ArcSight CEF log line — vendor, product, severity 0-10, src/dst IPs.', '-'),
     ('x509_cert'      , 'Security'     , False, '{"subject":"CN=api...",...}', 'generate x509_cert'      , 'X.509 certificate fields (JSON): subject, issuer, serial, validity, fingerprint, SANs.', '-'),
     ('pcap_hex'       , 'Security'     , False, 'ff ff 08 00 45 00 ...' , 'generate pcap_hex'             , 'Wireshark-style pcap hex dump of a mock Ethernet+IPv4+TCP frame.', '-'),
+    ('password'       , 'Security'     , False, 'T@x9#mPqLz3!'          , 'generate password'             , 'Strong random password (12–20 chars): uppercase, lowercase, digit, special.', '-'),
+    ('password_hash'  , 'Security'     , False, '$2b$12$...(60 chars)'  , 'generate password_hash'        , 'bcrypt-format password hash: $2b$<cost>$<22-char salt><31-char hash>.', '-'),
+    ('cve_id'         , 'Security'     , False, 'CVE-2024-44487'         , 'generate cve_id'               , 'MITRE CVE identifier: CVE-YYYY-NNNNN (year 2000–2025).', '-'),
     ('creditor_ref'   , 'Banking'      , False, 'RF18539007547034'      , 'generate creditor_ref'         , 'ISO 11649 Creditor Reference: RF + 2-digit MOD-97 check + 3-21 alphanumeric chars.', '-'),
+    ('account_type'   , 'Banking'      , False, 'Checking'               , 'generate account_type'         , 'Bank account type: Checking, Savings, Current, Business, Money Market, CD, Investment.', '-'),
+    ('transaction_type', 'Banking'     , False, 'CREDIT'                 , 'generate transaction_type'     , 'Transaction type code: CREDIT, DEBIT, TRANSFER, REFUND, REVERSAL, CHARGEBACK, FEE, INTEREST.', '-'),
+    ('transaction_description', 'Banking', True, 'FAST transferi'        , 'generate transaction_description --locale TR', 'Locale-aware payment/transfer description.', '-'),
+    ('ifsc_code'      , 'Banking'      , False, 'SBIN0001234'            , 'generate ifsc_code'            , 'Indian IFSC code: 4-letter bank code + 0 + 6 alphanumeric branch chars.', '-'),
+    ('bsb_code'       , 'Banking'      , False, '063-000'                , 'generate bsb_code'             , 'Australian BSB code: NNN-NNN (bank/state prefix + branch number).', '-'),
+    ('check_number'   , 'Banking'      , False, '1042'                   , 'generate check_number'         , 'US check sequence number: 4-digit zero-padded integer.', '-'),
+    ('micr_line'      , 'Banking'      , False, '|021000021| |12345678| 1042', 'generate micr_line'        , 'US MICR line: |ABA routing| |account| check_number.', '-'),
+    ('payment_reference', 'Banking'    , False, 'PAYREF-20241201-54321'  , 'generate payment_reference'    , 'Generic payment reference: PAYREF-YYYYMMDD-NNNNN.', '-'),
+    ('wire_routing_number', 'Banking'  , False, '021000021'              , 'generate wire_routing_number'  , '9-digit ABA/Fedwire routing number with MOD-10 checksum.', '-'),
+    ('account_number' , 'Banking'      , False, '1234567890'             , 'generate account_number'       , 'Bank account number: 8–12 digit numeric string.', '-'),
+    ('--MaskedBanking--', ''           , False, ''                       , ''                              , '', ''),
+    ('account_number_masked'       , 'Banking', False, '****1234'                   , 'generate account_number_masked'       , 'Masked account number — last 4 digits visible (PCI-DSS v4.0 §3.3).', '-'),
+    ('micr_line_masked'            , 'Banking', False, '|021000021| |****| 1042'    , 'generate micr_line_masked'            , 'MICR line with account segment masked — routing number remains visible (public ABA directory).', '-'),
+    ('transaction_description_masked', 'Banking', True, 'Market all***'             , 'generate transaction_description_masked --locale TR', 'Locale-aware payment description truncated to 10 chars + *** (GDPR Art. 5(1)(c) data minimisation).', '-'),
+    ('check_number_masked'         , 'Banking', False, '**42'                       , 'generate check_number_masked'         , 'Check sequence number with first 2 digits masked — last 2 visible.', '-'),
+    ('payment_reference_masked'    , 'Banking', False, 'PAYREF-20241201-*****'      , 'generate payment_reference_masked'    , 'Payment reference with sequence masked — date segment visible (GLBA best practice).', '-'),
+    ('--FinancialExt--', ''           , False, ''                       , ''                              , '', ''),
+    ('credit_score_model',  'FinancialExt', False, 'FICO'               , 'generate credit_score_model'   , 'Credit scoring model name: FICO, VantageScore, TransUnion, Equifax, Experian.', '-'),
+    ('credit_score_tier',   'FinancialExt', False, 'Good'               , 'generate credit_score_tier'    , 'Credit score tier label: Exceptional, Very Good, Good, Fair, Poor.', '-'),
+    ('credit_limit',        'FinancialExt', False, '15000.00'           , 'generate credit_limit'         , 'Credit card/loan limit: tiered distribution from $500 to $100,000.', '-'),
+    ('credit_utilization',  'FinancialExt', False, '34.50'              , 'generate credit_utilization'   , 'Credit utilization ratio as percentage string (0.00–100.00).', '-'),
+    ('credit_card_issuer_name', 'FinancialExt', True, 'Pacific Trust',    'generate credit_card_issuer_name --locale US', 'Locale-aware fictional bank/issuer name for the credit card.', '-'),
+    ('apr',                 'FinancialExt', False, '19.99'              , 'generate apr'                  , 'Annual Percentage Rate: realistic consumer credit APR (3.99–29.99%).', '-'),
+    ('loan_type',           'FinancialExt', False, 'Mortgage'           , 'generate loan_type'            , 'Loan product type: Personal, Mortgage, Auto, Student, Business, Home Equity, Payday.', '-'),
+    ('mortgage_rate',       'FinancialExt', False, '6.75'               , 'generate mortgage_rate'        , 'Mortgage interest rate as percentage string (1.50–12.00%).', '-'),
+    ('mortgage_term',       'FinancialExt', False, '30'                 , 'generate mortgage_term'        , 'Mortgage loan term in years: 10, 15, 20, 25, or 30.', '-'),
+    ('premium_amount',      'FinancialExt', False, '125.50'             , 'generate premium_amount'       , 'Insurance premium amount: $25.00–$2,500.00 (monthly).', '-'),
+    ('deductible',          'FinancialExt', False, '1000.00'            , 'generate deductible'           , 'Insurance deductible amount: standard steps $100–$10,000.', '-'),
+    ('coverage_limit',      'FinancialExt', False, '250000.00'          , 'generate coverage_limit'       , 'Insurance coverage limit: tiered from $10,000 to $5,000,000.', '-'),
+    ('claim_status',        'FinancialExt', False, 'Under Review'       , 'generate claim_status'         , 'Insurance claim status: Submitted, Under Review, Approved, Denied, Paid, Closed, Appealed.', '-'),
+    ('credit_limit_masked',    'FinancialExt', False, '$**,***'          , 'generate credit_limit_masked'     , 'Masked credit limit — order of magnitude hidden (GLBA §501 NPI).', '-'),
+    ('mortgage_rate_masked',   'FinancialExt', False, '**.**%'           , 'generate mortgage_rate_masked'    , 'Masked mortgage rate — exact rate hidden (GLBA §501 NPI).', '-'),
+    ('premium_amount_masked',  'FinancialExt', False, '$*,***'           , 'generate premium_amount_masked'   , 'Masked insurance premium — exact amount hidden (GLBA §501 NPI).', '-'),
     ('vat_number'     , 'Identity'     , True , 'TR1234567890'          , 'generate vat_number --locale TR', 'EU/Global VIES VAT number with country prefix (TR/DE/FR/UK/US/RU).', '-'),
     ('--Aviation--'   , ''             , False, ''                      , ''                              , '', ''),
     ('iata_ticket'    , 'Aviation'     , False, '0012345678902'         , 'generate iata_ticket'          , 'IATA Electronic Ticket Number (ETN): 3-digit airline code + 9-digit serial + MOD-7 check digit.', '-'),
@@ -313,12 +349,56 @@ _REFERENCE = [
     ('lei'            , 'CapMarkets(Trading)'   , False, '529900T8BM49AURSDO55'  , 'generate lei'                  , 'Legal Entity Identifier (ISO 17442).', '-'),
     ('fix_message'    , 'CapMarkets(Trading)'   , False, '8=FIX.4.4|9=...|35=D|...|10=NNN|', 'generate fix_message'          , 'FIX Protocol 4.4 New Order Single (MsgType=D) with valid BodyLength and CheckSum.', '-'),
     ('psd2_consent'   , 'CapMarkets(Trading)'   , True , 'eyJhbGci...<JWS>'               , 'generate psd2_consent --locale UK --amount 250.00', 'PSD2 / UK Open Banking v3.1 Payment Consent — compact JWS (HMAC-SHA256).', '--amount (float)'),
+    ('stock_ticker'   , 'CapMarkets(Trading)'   , False, 'NVDA'                           , 'generate stock_ticker'         , 'Stock ticker symbol: 1–5 uppercase letters (equity identifiers).', '-'),
+    ('figi'           , 'CapMarkets(Trading)'   , False, 'BBG000BLNNH1'                   , 'generate figi'                 , 'Financial Instrument Global Identifier (OpenFIGI): 2-letter + G + 8 NSIN + 1 Luhn check.', '-'),
+    ('forex_pair'     , 'CapMarkets(Trading)'   , False, 'EUR/USD'                        , 'generate forex_pair'           , 'Foreign exchange currency pair: BASE/QUOTE using ISO 4217 codes.', '-'),
+    ('forex_rate'     , 'CapMarkets(Trading)'   , False, '1.0875'                         , 'generate forex_rate'           , 'Realistic FX exchange rate (4 decimal places) for major currency pairs.', '--pair (e.g. EUR/USD)'),
+    ('ric'            , 'CapMarkets(Trading)'   , True , 'AAPL.O'                         , 'generate ric --locale US'      , 'Reuters Instrument Code: TICKER.EXCHANGE suffix per locale.', '-'),
+    ('mic'            , 'CapMarkets(Trading)'   , True , 'XNAS'                           , 'generate mic --locale US'      , 'ISO 10383 Market Identifier Code: 4-letter exchange identifier.', '-'),
+    ('stock_exchange' , 'CapMarkets(Trading)'   , True , 'NASDAQ'                         , 'generate stock_exchange --locale US', 'Stock exchange full name (locale-aware).', '-'),
+    ('option_contract', 'CapMarkets(Trading)'   , False, 'AAPL240315C00150000'            , 'generate option_contract'      , 'OCC option contract symbol: TICKER + YYMMDD + C/P + 8-digit strike (cents).', '-'),
+    ('bond_yield'     , 'CapMarkets(Trading)'   , False, '4.25'                           , 'generate bond_yield'           , 'Bond yield as percentage string (0.01–15.00%).', '-'),
+    ('coupon_rate'    , 'CapMarkets(Trading)'   , False, '5.00'                           , 'generate coupon_rate'          , 'Bond coupon rate as percentage string (0.00–12.00%).', '-'),
+    ('settlement_date', 'CapMarkets(Trading)'   , False, '2024-12-05'                     , 'generate settlement_date'      , 'Trade settlement date: T+1 to T+5 business days from today (YYYY-MM-DD).', '-'),
+    ('portfolio_id'   , 'CapMarkets(Trading)'   , False, 'PRTF-A1B2C3D4'                 , 'generate portfolio_id'         , 'Portfolio identifier: PRTF-/PORT- prefix + 8-char alphanumeric suffix.', '-'),
+    ('portfolio_id_masked', 'CapMarkets(Trading)', False, 'PRTF-****B2C3'               , 'generate portfolio_id_masked'  , 'Masked portfolio ID — last 4 chars of suffix visible (MiFID II Art. 25 internal reference).', '-'),
+    ('nsin'           , 'CapMarkets(Trading)'   , True , 'US37833100'                     , 'generate nsin --locale US'     , 'National Securities Identifying Number: CUSIP (US), SEDOL (UK), or 9-char alphanumeric.', '-'),
+    ('--Compliance--'   , ''             , False, ''                      , ''                              , '', ''),
+    ('policy_number'  , 'Compliance'   , False, 'POL-20241201-54321'    , 'generate policy_number'        , 'Insurance/financial policy number: POL-YYYYMMDD-NNNNN.', '-'),
+    ('claim_number'   , 'Compliance'   , False, 'CLM-20241201-54321'    , 'generate claim_number'         , 'Insurance claim number: CLM-YYYYMMDD-NNNNN.', '-'),
+    ('pep_status'     , 'Compliance'   , False, 'Not PEP'               , 'generate pep_status'           , 'Politically Exposed Person status: Not PEP, PEP, RCA, Former PEP, Unknown.', '-'),
+    ('aml_risk_rating', 'Compliance'   , False, 'Low'                   , 'generate aml_risk_rating'      , 'Anti-Money Laundering risk rating: Low, Medium, High, Critical.', '-'),
+    ('cdd_level'      , 'Compliance'   , False, 'Standard'              , 'generate cdd_level'            , 'Customer Due Diligence level: Standard, Enhanced, Simplified.', '-'),
+    ('sar_number'     , 'Compliance'   , False, 'SAR-20241201-5432'     , 'generate sar_number'           , 'Suspicious Activity Report number: SAR-YYYYMMDD-NNNNN.', '-'),
+    ('ubo_ownership_percentage', 'Compliance', False, '35.50'           , 'generate ubo_ownership_percentage', 'Ultimate Beneficial Owner ownership percentage (0.01–100.00).', '-'),
+    ('kyc_document_type', 'Compliance' , False, 'Passport'              , 'generate kyc_document_type'    , 'KYC accepted document type: Passport, National ID, Drivers License, etc.', '-'),
+    ('consent_id'     , 'Compliance'   , False, 'CONSENT-A1B2C3D4E5F6'  , 'generate consent_id'           , 'Regulatory consent identifier: UUID v4 or CONSENT- prefixed string.', '-'),
+    ('tpp_id'         , 'Compliance'   , False, 'PSP-AB12CD34EF56'      , 'generate tpp_id'               , 'Third-Party Provider identifier (PSD2): PSP-/TPP- prefix + 10-char alphanumeric.', '-'),
+    ('onboarding_method', 'Compliance' , False, 'eKYC'                  , 'generate onboarding_method'    , 'Customer onboarding method: eKYC, Video KYC, In-Branch, Document Upload, Biometric, Agent.', '-'),
+    ('sanctions_hit'  , 'Compliance'   , False, 'False'                 , 'generate sanctions_hit'        , 'OFAC/UN/EU sanctions screening result: True (5% rate) or False (95% rate).', '-'),
+    ('--MaskedCompliance--', ''        , False, ''                      , ''                              , '', ''),
+    ('sar_number_masked',  'Compliance', False, '****-****-****'        , 'generate sar_number_masked'    , 'Fully masked SAR number — disclosure prohibited (BSA §5318(g)(2) tipping-off rule).', '-'),
+    ('policy_number_masked', 'Compliance', False, 'POL-****-54321'      , 'generate policy_number_masked' , 'Masked policy number — sequence visible for support reference (GLBA §501 NPI).', '-'),
+    ('claim_number_masked',  'Compliance', False, 'CLM-****-54321'      , 'generate claim_number_masked'  , 'Masked claim number — sequence visible for support reference (GLBA §501 NPI).', '-'),
+    ('ubo_ownership_percentage_masked', 'Compliance', False, '**%'      , 'generate ubo_ownership_percentage_masked', 'Masked UBO ownership percentage — exact stake hidden (EU 4AMLD/5AMLD Art. 30).', '-'),
+    ('consent_id_masked',    'Compliance', False, '****-****-****-****-a1b2c3d4', 'generate consent_id_masked', 'Masked consent ID — last 8 hex chars visible for audit trail (GDPR Art. 7 + ePrivacy).', '-'),
     ('btc_address'    , 'Crypto'       , False, '1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf', 'generate btc_address'          , 'Bitcoin wallet address (P2PKH, P2SH, Bech32).', '-'),
     ('eth_address'    , 'Crypto'       , False, '0x5aAeb6053F3E94C9b9A0...', 'generate eth_address'          , 'Ethereum/EVM compatible wallet address.', '-'),
     ('crypto_address' , 'Crypto'       , False, '(btc or eth)'          , 'generate crypto_address --currency eth', 'Generic crypto address for specified currency.', '--currency (btc, eth)'),
     ('tx_hash'        , 'Crypto'       , False, 'a1b2c3...64hex'        , 'generate tx_hash --currency btc', 'Blockchain transaction hash (SHA-256/Keccak-256).', '--currency (btc, eth)'),
     ('block_hash'     , 'Crypto'       , False, '0x+64hex (eth)'        , 'generate block_hash --currency eth', 'Blockchain block hash identifier.', '--currency (btc, eth)'),
     ('mnemonic'       , 'Crypto'       , False, 'abandon ability able...', 'generate mnemonic --words 12' , 'BIP-39 mnemonic recovery phrase (seed phrase).', '--words (12, 15, 18, 21, 24)'),
+    ('--DeFi--'       , 'Crypto'       , False, ''                      , ''                              , '', ''),
+    ('nft_token_id'   , 'Crypto'       , False, '4219'                  , 'generate nft_token_id'         , 'ERC-721 NFT token ID — sequential (0-9999, 60%) or large random (40%).', '-'),
+    ('gas_price'      , 'Crypto'       , False, '25'                    , 'generate gas_price'            , 'Ethereum gas price in Gwei — tiered: low (1-30), moderate (30-200), peak (200-5000).', '-'),
+    ('gas_limit'      , 'Crypto'       , False, '65000'                 , 'generate gas_limit'            , 'Ethereum transaction gas limit — standard values (21000–1M).', '-'),
+    ('defi_protocol_name', 'Crypto'    , False, 'Uniswap'               , 'generate defi_protocol_name'   , 'DeFi protocol name: Uniswap, Aave, Compound, Curve Finance, etc.', '-'),
+    ('blockchain_network', 'Crypto'    , False, 'Arbitrum'              , 'generate blockchain_network'   , 'Blockchain/L2 network name: Ethereum, Polygon, Arbitrum, Optimism, Base, etc.', '-'),
+    ('wallet_label'   , 'Crypto'       , False, 'DeFi Wallet'           , 'generate wallet_label'         , 'Crypto wallet label: Hot Wallet, Cold Storage, Multi-sig Vault, Treasury, etc.', '-'),
+    ('defi_position_type', 'Crypto'    , False, 'Yield Farming'         , 'generate defi_position_type'   , 'DeFi position type: Liquidity Provider, Lending, Borrowing, Staking, Perpetual, etc.', '-'),
+    ('cryptocurrency_name', 'Crypto'   , False, 'Ethereum'              , 'generate cryptocurrency_name'  , 'Cryptocurrency name: Bitcoin, Ethereum, Solana, USDC, Cardano, etc.', '-'),
+    ('liquidity_pool_id', 'Crypto'     , False, '0x1aB2C3...EIP55'      , 'generate liquidity_pool_id'    , 'DeFi liquidity pool ID — EIP-55 checksummed Ethereum contract address.', '-'),
+    ('liquidity_pool_id_masked', 'Crypto', False, '0x1a2b...cd3e'       , 'generate liquidity_pool_id_masked', 'Masked pool address — first 4 + last 4 hex chars visible (FATF Rec. 16 Travel Rule).', '-'),
     ('product_name'   , 'E-Commerce'   , False, 'Wireless Headphones'   , 'generate product_name'         , 'Randomized e-commerce product names.', '-'),
     ('sku'            , 'E-Commerce'   , False, 'AB-123456'             , 'generate sku'                  , 'Stock Keeping Unit (SKU) identifiers.', '-'),
     ('order_id'       , 'E-Commerce'   , False, 'ORD-A1B2C3D4E5F6'      , 'generate order_id'             , 'Unique e-commerce order identifiers.', '-'),
@@ -342,6 +422,23 @@ _REFERENCE = [
     ('transaction_id' , 'Security'     , False, 'TXN1A2B3C4D5E6F7G8'    , 'generate transaction_id'       , 'Unique secure transaction identifier.', '-'),
     ('public_ip'      , 'Security'     , False, '185.46.212.33'         , 'generate public_ip'            , 'Public-facing IPv4 address.', '-'),
     ('private_ip'     , 'Security'     , False, '192.168.1.42'          , 'generate private_ip'           , 'Internal/Private IPv4 address.', '-'),
+    ('--Datetime--'   , ''             , False, ''                       , ''                              , '', ''),
+    ('past_date'      , 'Datetime'     , False, '2021-03-15'             , 'generate past_date'            , 'Random date in the past (up to 5 years ago), YYYY-MM-DD.', '-'),
+    ('future_date'    , 'Datetime'     , False, '2027-11-20'             , 'generate future_date'          , 'Random date in the future (up to 5 years ahead), YYYY-MM-DD.', '-'),
+    ('date_between'   , 'Datetime'     , False, '2022-06-12'             , 'generate date_between'         , 'Random date between two dates (default: past 5 years to today).', '--start YYYY-MM-DD, --end YYYY-MM-DD'),
+    ('date_this_year' , 'Datetime'     , False, '2026-04-23'             , 'generate date_this_year'       , 'Random date within the current calendar year.', '-'),
+    ('date_this_month', 'Datetime'     , False, '2026-06-07'             , 'generate date_this_month'      , 'Random date within the current calendar month.', '-'),
+    ('time_only'      , 'Datetime'     , False, '14:32:07'               , 'generate time_only'            , '24-hour time string HH:MM:SS.', '-'),
+    ('past_datetime'  , 'Datetime'     , False, '2023-11-02T08:15:42'    , 'generate past_datetime'        , 'Random ISO 8601 datetime in the past (up to 5 years ago).', '-'),
+    ('future_datetime', 'Datetime'     , False, '2028-01-19T22:04:11'    , 'generate future_datetime'      , 'Random ISO 8601 datetime in the future (up to 5 years ahead).', '-'),
+    ('--Web--'        , ''             , False, ''                       , ''                              , '', ''),
+    ('slug'           , 'Web'          , False, 'api-payment-v2'         , 'generate slug'                 , 'URL-friendly slug (lowercase, hyphen-separated words).', '-'),
+    ('http_method'    , 'Web'          , False, 'POST'                   , 'generate http_method'          , 'Standard HTTP verb (GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS).', '-'),
+    ('http_status_code', 'Web'         , False, '200'                    , 'generate http_status_code'     , 'Common HTTP status code (2xx/3xx/4xx/5xx).', '-'),
+    ('port_number'    , 'Web'          , False, '8443'                   , 'generate port_number'          , 'Valid TCP/UDP port number (1–65535, weighted to common ports).', '-'),
+    ('hostname'       , 'Web'          , False, 'api-03'                 , 'generate hostname'             , 'Lowercase server hostname (alphanumeric with optional hyphen-number suffix).', '-'),
+    ('tld'            , 'Web'          , False, '.io'                    , 'generate tld'                  , 'Top-level domain extension (.com, .net, .io, .dev, etc.).', '-'),
+    ('uri_path'       , 'Web'          , False, '/api/v1/users'          , 'generate uri_path'             , 'API URI path string (starts with /).', '-'),
     ('tckn_masked'    , 'Identity'     , False, '***123456**'           , 'generate tckn_masked'          , 'Masked Turkish ID for privacy compliance.', '-'),
     ('ssn_masked'     , 'Identity'     , False, '***-**-6789'           , 'generate ssn_masked'           , 'Masked US SSN for privacy compliance.', '-'),
     ('nationality'    , 'Identity'     , False, 'TUR'                   , 'generate nationality'          , 'ISO 3166-1 alpha-3 nationality codes.', '-'),
@@ -461,12 +558,13 @@ _REFERENCE = [
 # Category display order
 _CAT_ORDER = [
     "Identity", "Name", "Document", "Demographic",
-    "Financial", "Contact", "Banking", "Payments", "CardPhysics", "Corporate",
+    "Financial", "FinancialExt", "Contact", "Banking", "Payments", "CardPhysics", "Corporate", "Compliance",
     "Health", "Commerce", "Meta", "Security", "RFID", "NFC", "IR",
     "Barcode", "Telecom", "CapMarkets(Trading)", "Crypto",
     "E-Commerce", "Location", "Social", "Hardware", "Aviation", "Wireless", "WebAuthn", "Wallet",
     "AI Vector", "OIDC", "BankStatement", "EDI", "EventSourcing", "Telemetry", "OHLCV", "TLE", "Automotive", "EInvoice", "GameDev", "Prometheus", "NMEA", "MRZ", "PenTest",
     "IntlIDs",
+    "Datetime", "Web",
     "Commands",
 ]
 
@@ -475,14 +573,18 @@ _CAT_COLORS = {
     "Name":        "green",
     "Document":    "cyan",
     "Demographic": "magenta",
-    "Financial":   "bright_blue",
-    "Contact":     "green",
+    "Financial":      "bright_blue",
+    "FinancialExt":   "bright_yellow",
+    "Contact":        "green",
     "Banking":     "cyan",
     "Corporate":   "yellow",
+    "Compliance":  "bright_red",
     "Health":      "green",
     "Commerce":    "magenta",
     "Meta":        "yellow",
     "Security":    "bright_red",
+    "Datetime":    "bright_cyan",
+    "Web":         "bright_green",
     "RFID":        "cyan",
     "NFC":         "bright_blue",
     "IR":          "red",
@@ -552,7 +654,10 @@ def main(ctx):
 @click.option('--payload',  default=None,     help='Message to sign for signature type (default: mock)')
 @click.option('--format',   'color_format',   default=None, help='Color output format: hex rgb hsl name')
 @click.option('--mask',     is_flag=True,     default=False, help='Mask PII/sensitive fields per applicable regulation (PCI DSS, KVKK, GDPR, etc.)')
-def generate(data_type, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, merchant, city, words, pattern, dims, nnz, secret, payload, color_format, mask):
+@click.option('--start',    default=None,     help='Start date YYYY-MM-DD for date_between type')
+@click.option('--end',      default=None,     help='End date YYYY-MM-DD for date_between type')
+@click.option('--pair',     default=None,     help='Currency pair for forex_rate (e.g. EUR/USD)')
+def generate(data_type, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, merchant, city, words, pattern, dims, nnz, secret, payload, color_format, mask, start, end, pair):
     """Generate mock data.  Example: mockjutsu generate tckn --locale TR"""
     if not data_type:
         click.echo("Error: specify a type. Run 'mockjutsu list' to see all types.")
@@ -574,6 +679,9 @@ def generate(data_type, locale, network, currency, carrier, algorithm, prefix, g
         'secret': secret,
         'payload': payload,
         'format': color_format,
+        'start': start,
+        'end': end,
+        'pair': pair,
     }
     kwargs = {k: v for k, v in raw_kwargs.items() if v is not None and v != ''}
 
@@ -795,13 +903,12 @@ def template(types, count, locale, fmt, table, mask):
 @click.option('--mask',   is_flag=True, default=False, help='Mask PII/sensitive fields per applicable regulation')
 def export_cmd(types, count, locale, fmt, table, mask):
     """Export records as JSON/CSV/SQL.  Example: mockjutsu export fullname tckn phone --count 5"""
-    import json
     schema = {t: t for t in types}
-    if mask and fmt == 'json':
-        records = jutsu.template(schema, count=count, locale=locale)
+    if mask:
         from mockjutsu.masker import apply_mask
+        records = jutsu.template(schema, count=count, locale=locale)
         records = [{k: apply_mask(k, str(v)) for k, v in rec.items()} for rec in records]
-        click.echo(json.dumps(records, ensure_ascii=False, indent=2))
+        click.echo(jutsu.export(schema, format=fmt, locale=locale, table=table, records=records))
     else:
         click.echo(jutsu.export(schema, count=count, format=fmt, locale=locale, table=table))
 

@@ -10,10 +10,11 @@ import zlib
 import hashlib
 import base64
 import colorsys
+import calendar
 import random
 import secrets
 import string
-from datetime import datetime
+from datetime import datetime, date, timedelta
 
 
 def _crc16_ccitt(data: bytes) -> int:
@@ -100,6 +101,48 @@ COLOR_NAMES = [
 ]
 
 _API_KEY_CHARS = string.ascii_letters + string.digits
+
+# ── Wave C — Web constants ────────────────────────────────────────────────────
+
+_SLUG_WORDS = [
+    'api', 'user', 'account', 'payment', 'order', 'product', 'invoice',
+    'customer', 'transaction', 'report', 'dashboard', 'settings', 'profile',
+    'upload', 'download', 'search', 'filter', 'export', 'import', 'webhook',
+    'session', 'auth', 'token', 'refresh', 'verify', 'confirm', 'reset',
+    'admin', 'public', 'private', 'internal', 'external',
+]
+
+_HTTP_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS']
+
+_HTTP_STATUS_CODES = [
+    200, 201, 204,
+    301, 302, 304,
+    400, 401, 403, 404, 405, 409, 410, 422, 429,
+    500, 502, 503, 504,
+]
+
+_TLD_LIST = ['.com', '.net', '.org', '.io', '.co', '.dev', '.app', '.ai', '.tech', '.cloud']
+
+_HOSTNAME_WORDS = [
+    'api', 'data', 'auth', 'gateway', 'proxy', 'cache', 'cdn', 'static',
+    'media', 'stream', 'metrics', 'monitor', 'log', 'trace', 'event',
+    'broker', 'queue', 'worker', 'scheduler', 'webhook', 'notify',
+]
+
+_URI_PATHS = [
+    '/api/v1/users', '/api/v1/accounts', '/api/v2/payments',
+    '/api/v1/orders', '/api/v1/products', '/api/v1/invoices',
+    '/api/v2/reports', '/api/v1/customers', '/api/v1/transactions',
+    '/api/v1/settings', '/api/v1/sessions', '/api/v1/webhooks',
+    '/admin/users', '/admin/reports', '/admin/audit-logs',
+    '/public/assets', '/static/files', '/data/exports',
+    '/api/v1/search', '/api/v1/notifications', '/api/v1/analytics',
+]
+
+_COMMON_PORTS = [
+    80, 443, 8080, 8443, 3000, 3306, 5432, 6379, 9200, 27017,
+    22, 25, 53, 110, 143, 993, 995, 8000, 8888, 9000,
+]
 
 # Reserved IPv4 ranges to exclude from public IPs
 _RESERVED_FIRST_OCTETS = {
@@ -356,5 +399,77 @@ class MetaGenerator:
 
         if dt == 'transaction_id':
             return f"TXN{secrets.token_hex(8).upper()}"
+
+        # ── Wave B — Datetime ─────────────────────────────────────────────────
+
+        if dt == 'past_date':
+            days_back = random.randint(1, 365 * 5)
+            return (date.today() - timedelta(days=days_back)).strftime('%Y-%m-%d')
+
+        if dt == 'future_date':
+            days_fwd = random.randint(1, 365 * 5)
+            return (date.today() + timedelta(days=days_fwd)).strftime('%Y-%m-%d')
+
+        if dt == 'date_between':
+            start_raw = kwargs.get('start')
+            end_raw   = kwargs.get('end')
+            start = date.fromisoformat(str(start_raw)) if start_raw else date.today() - timedelta(days=365 * 5)
+            end   = date.fromisoformat(str(end_raw))   if end_raw   else date.today()
+            delta = (end - start).days
+            if delta <= 0:
+                return start.strftime('%Y-%m-%d')
+            return (start + timedelta(days=random.randint(0, delta))).strftime('%Y-%m-%d')
+
+        if dt == 'date_this_year':
+            today = date.today()
+            start = date(today.year, 1, 1)
+            delta = (date(today.year, 12, 31) - start).days
+            return (start + timedelta(days=random.randint(0, delta))).strftime('%Y-%m-%d')
+
+        if dt == 'date_this_month':
+            today = date.today()
+            last_day = calendar.monthrange(today.year, today.month)[1]
+            return date(today.year, today.month, random.randint(1, last_day)).strftime('%Y-%m-%d')
+
+        if dt == 'time_only':
+            return f"{random.randint(0, 23):02d}:{random.randint(0, 59):02d}:{random.randint(0, 59):02d}"
+
+        if dt == 'past_datetime':
+            secs_back = random.randint(60, 86400 * 365 * 5)
+            return (datetime.now() - timedelta(seconds=secs_back)).strftime('%Y-%m-%dT%H:%M:%S')
+
+        if dt == 'future_datetime':
+            secs_fwd = random.randint(60, 86400 * 365 * 5)
+            return (datetime.now() + timedelta(seconds=secs_fwd)).strftime('%Y-%m-%dT%H:%M:%S')
+
+        # ── Wave C — Web ──────────────────────────────────────────────────────
+
+        if dt == 'slug':
+            parts = random.sample(_SLUG_WORDS, random.randint(2, 3))
+            if random.random() < 0.3:
+                parts.append(str(random.randint(2020, 2026)))
+            return '-'.join(parts)
+
+        if dt == 'http_method':
+            return random.choice(_HTTP_METHODS)
+
+        if dt == 'http_status_code':
+            return str(random.choice(_HTTP_STATUS_CODES))
+
+        if dt == 'port_number':
+            if random.random() < 0.4:
+                return str(random.choice(_COMMON_PORTS))
+            return str(random.randint(1024, 65535))
+
+        if dt == 'hostname':
+            prefix = random.choice(_HOSTNAME_WORDS)
+            suffix = f"-{random.randint(1, 99):02d}" if random.random() < 0.5 else ''
+            return f"{prefix}{suffix}"
+
+        if dt == 'tld':
+            return random.choice(_TLD_LIST)
+
+        if dt == 'uri_path':
+            return random.choice(_URI_PATHS)
 
         return None

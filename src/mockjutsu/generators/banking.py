@@ -4,6 +4,7 @@ Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
 import random
+import string
 import secrets
 from datetime import datetime, timezone, timedelta
 
@@ -86,6 +87,27 @@ CURRENCIES = {
 
 # SEPA reference alphanumeric charset (ISO 20022)
 _SEPA_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+_ACCOUNT_TYPES = [
+    'Checking', 'Savings', 'Current', 'Business Checking',
+    'Money Market', 'CD', 'Investment',
+]
+
+_TRANSACTION_TYPES = [
+    'CREDIT', 'DEBIT', 'TRANSFER', 'REFUND',
+    'REVERSAL', 'CHARGEBACK', 'FEE', 'INTEREST',
+]
+
+_IFSC_BANK_CODES = [
+    'SBIN', 'HDFC', 'ICIC', 'AXIS', 'KKBK', 'UTIB', 'PUNB',
+    'CNRB', 'BARB', 'UBIN', 'IOBA', 'CBIN', 'BKID', 'VIJB',
+]
+
+_BSB_BANK_CODES = {
+    '01': 'ANZ',    '03': 'Westpac',
+    '06': 'CommBank', '08': 'NAB',
+    '73': 'CBA',    '76': 'Bendigo',
+}
 
 
 def _iban_check_digits(prefix: str, body: str) -> str:
@@ -200,6 +222,74 @@ class BankingGenerator:
             "status":        _wc(["COMPLETED", "PENDING", "FAILED"], [80, 15, 5]),
         }
 
+    @staticmethod
+    def generate_ifsc_code() -> str:
+        bank = random.choice(_IFSC_BANK_CODES)
+        branch = ''.join(random.choice(string.digits + string.ascii_uppercase) for _ in range(6))
+        return f"{bank}0{branch}"
+
+    @staticmethod
+    def generate_bsb_code() -> str:
+        bank_prefix = random.choice(list(_BSB_BANK_CODES.keys()))
+        branch = random.randint(0, 999)
+        return f"{bank_prefix}{random.randint(0, 9)}-{branch:03d}"
+
+    @staticmethod
+    def generate_check_number() -> str:
+        return f"{random.randint(1, 9999):04d}"
+
+    @staticmethod
+    def generate_micr_line() -> str:
+        routing = BankingGenerator.generate_routing_number()
+        acct = ''.join(str(random.randint(0, 9)) for _ in range(random.randint(8, 12)))
+        check = BankingGenerator.generate_check_number()
+        return f"|{routing}| |{acct}| {check}"
+
+    @staticmethod
+    def generate_payment_reference() -> str:
+        date_part = datetime.now().strftime('%Y%m%d')
+        seq = random.randint(10000, 99999)
+        return f"PAYREF-{date_part}-{seq}"
+
+    @staticmethod
+    def generate_account_number() -> str:
+        length = random.randint(8, 12)
+        return ''.join(str(random.randint(0, 9)) for _ in range(length))
+
+    @staticmethod
+    def generate_account_number_masked() -> str:
+        """PCI-DSS v4.0 §3.3: only last 4 digits of account number may be displayed."""
+        last4 = ''.join(str(random.randint(0, 9)) for _ in range(4))
+        return f"****{last4}"
+
+    @staticmethod
+    def generate_micr_line_masked() -> str:
+        """PCI-DSS §3.3: routing number is public (ABA directory), account segment masked."""
+        routing = BankingGenerator.generate_routing_number()
+        check = BankingGenerator.generate_check_number()
+        return f"|{routing}| |****| {check}"
+
+    @staticmethod
+    def generate_transaction_description_masked(locale: str = "TR") -> str:
+        """GDPR Art. 5(1)(c) data minimisation: truncate free-text description to 10 chars."""
+        desc = random.choice(TRANSACTION_DESCRIPTIONS.get(locale.upper(), TRANSACTION_DESCRIPTIONS["TR"]))
+        if len(desc) > 10:
+            return desc[:10] + "***"
+        return desc + "***"
+
+    @staticmethod
+    def generate_check_number_masked() -> str:
+        """Mask check sequence number — last 2 digits visible (internal identifier, not PAN)."""
+        n = random.randint(1, 9999)
+        last2 = f"{n:04d}"[-2:]
+        return f"**{last2}"
+
+    @staticmethod
+    def generate_payment_reference_masked() -> str:
+        """Mask payment reference sequence; date segment not sensitive (GLBA best practice)."""
+        date_part = datetime.now().strftime('%Y%m%d')
+        return f"PAYREF-{date_part}-*****"
+
     def generate(self, data_type, locale="TR", **kwargs):
         l = locale.upper()
         dt = data_type.lower()
@@ -208,7 +298,7 @@ class BankingGenerator:
             return self.generate_swift(l)
         if dt == "sort_code":
             return self.generate_sort_code()
-        if dt == "routing_number":
+        if dt in ("routing_number", "wire_routing_number"):
             return self.generate_routing_number()
         if dt == "bik_code":
             return self.generate_bik()
@@ -220,4 +310,32 @@ class BankingGenerator:
             return self.generate_sepa_ref()
         if dt == "creditor_ref":
             return self.generate_creditor_ref()
+        if dt == "account_type":
+            return random.choice(_ACCOUNT_TYPES)
+        if dt == "transaction_type":
+            return random.choice(_TRANSACTION_TYPES)
+        if dt == "transaction_description":
+            return random.choice(TRANSACTION_DESCRIPTIONS.get(l, TRANSACTION_DESCRIPTIONS["TR"]))
+        if dt == "ifsc_code":
+            return self.generate_ifsc_code()
+        if dt == "bsb_code":
+            return self.generate_bsb_code()
+        if dt == "check_number":
+            return self.generate_check_number()
+        if dt == "micr_line":
+            return self.generate_micr_line()
+        if dt == "payment_reference":
+            return self.generate_payment_reference()
+        if dt == "account_number":
+            return self.generate_account_number()
+        if dt == "account_number_masked":
+            return self.generate_account_number_masked()
+        if dt == "micr_line_masked":
+            return self.generate_micr_line_masked()
+        if dt == "transaction_description_masked":
+            return self.generate_transaction_description_masked(l)
+        if dt == "check_number_masked":
+            return self.generate_check_number_masked()
+        if dt == "payment_reference_masked":
+            return self.generate_payment_reference_masked()
         return None

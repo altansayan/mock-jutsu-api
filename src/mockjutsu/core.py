@@ -47,6 +47,7 @@ from .generators.payments          import PaymentsGenerator
 from .generators.cardphysics       import CardPhysicsGenerator
 from .generators.communication     import EMAIL_DOMAINS
 from .generators.intl_ids          import IntlIdsGenerator
+from .generators.compliance        import ComplianceGenerator
 
 _IDENTITY_TYPES = {
     'tckn', 'ykn', 'taxid', 'vkn', 'nationalid', 'ssn', 'nin',
@@ -69,6 +70,12 @@ _FINANCIAL_TYPES = {
     'issuer', 'expiry', 'expirymonth', 'expiryyear', 'pin', 'balance',
     'iban', 'cardcategory', 'credit_score', 'sepa_qr', 'emv_qr_p2p',
     'emv_qr_atm', 'emv_qr_pos', '3ds_cavv', '3ds_eci',
+    # Sprint 4 — Financial Extended
+    'credit_score_model', 'credit_score_tier', 'credit_limit', 'credit_utilization',
+    'credit_card_issuer_name', 'apr', 'loan_type', 'mortgage_rate', 'mortgage_term',
+    'premium_amount', 'deductible', 'coverage_limit', 'claim_status',
+    # Masked variants (GLBA §501 NPI protection)
+    'credit_limit_masked', 'mortgage_rate_masked', 'premium_amount_masked',
 }
 
 _COMM_TYPES = {
@@ -85,6 +92,11 @@ _META_TYPES = {
     'jwt', 'hash', 'mac_address', 'domain', 'url', 'color',
     'api_key', 'totp_code', 'webhook_signature', 'transaction_id',
     'public_ip', 'private_ip',
+    # Wave B — Datetime
+    'past_date', 'future_date', 'date_between', 'date_this_year', 'date_this_month',
+    'time_only', 'past_datetime', 'future_datetime',
+    # Wave C — Web
+    'slug', 'http_method', 'http_status_code', 'port_number', 'hostname', 'tld', 'uri_path',
 }
 
 _REVERSE_REGEX_TYPES = {'regex_string'}
@@ -92,6 +104,12 @@ _REVERSE_REGEX_TYPES = {'regex_string'}
 _BANKING_TYPES = {
     'swift', 'bic', 'sort_code', 'routing_number', 'bik_code',
     'transaction', 'bank_name', 'sepa_ref', 'creditor_ref',
+    'account_type', 'transaction_type', 'transaction_description',
+    'ifsc_code', 'bsb_code', 'check_number', 'micr_line',
+    'payment_reference', 'wire_routing_number', 'account_number',
+    # Masked variants (PCI-DSS v4.0 §3.3 + GLBA §501)
+    'account_number_masked', 'micr_line_masked', 'transaction_description_masked',
+    'check_number_masked', 'payment_reference_masked',
 }
 
 _CORPORATE_TYPES = {
@@ -126,11 +144,32 @@ _TELECOM_TYPES = {
 
 _SECURITIES_TYPES = {
     'isin', 'cusip', 'sedol', 'lei', 'fix_message', 'psd2_consent',
+    # Sprint 5 — Financial Markets Extended
+    'stock_ticker', 'figi', 'forex_pair', 'forex_rate', 'ric', 'mic',
+    'stock_exchange', 'option_contract', 'bond_yield', 'coupon_rate',
+    'settlement_date', 'portfolio_id', 'nsin',
+    # Masked variant (MiFID II Art. 25)
+    'portfolio_id_masked',
 }
 
 _CRYPTO_TYPES = {
     'btc_address', 'eth_address', 'crypto_address', 'tx_hash', 'block_hash',
     'mnemonic',
+    # Sprint 7 — DeFi / Crypto Extended
+    'nft_token_id', 'gas_price', 'gas_limit', 'defi_protocol_name',
+    'blockchain_network', 'wallet_label', 'defi_position_type',
+    'cryptocurrency_name', 'liquidity_pool_id',
+    # Masked variant (FATF Recommendation 16 — Travel Rule)
+    'liquidity_pool_id_masked',
+}
+
+_COMPLIANCE_TYPES = {
+    'policy_number', 'claim_number', 'pep_status', 'aml_risk_rating', 'cdd_level',
+    'sar_number', 'ubo_ownership_percentage', 'kyc_document_type',
+    'consent_id', 'tpp_id', 'onboarding_method', 'sanctions_hit',
+    # Masked variants (BSA §5318(g)(2), GLBA §501, EU 4AMLD/5AMLD, GDPR Art. 7)
+    'sar_number_masked', 'policy_number_masked', 'claim_number_masked',
+    'ubo_ownership_percentage_masked', 'consent_id_masked',
 }
 
 _ECOMMERCE_TYPES = {
@@ -158,6 +197,7 @@ _CARDPHYSICS_TYPES = {
 
 _CYBERSEC_TYPES = {
     'cef_log', 'x509_cert', 'pcap_hex',
+    'password', 'password_hash', 'cve_id',
 }
 
 _AVIATION_TYPES = {
@@ -319,6 +359,7 @@ class MockJutsuCore:
         self.payments       = PaymentsGenerator()
         self.cardphysics    = CardPhysicsGenerator()
         self.intl_ids       = IntlIdsGenerator()
+        self.compliance     = ComplianceGenerator()
 
     # ── Single value ────────────────────────────────────────────────────────────
 
@@ -414,6 +455,8 @@ class MockJutsuCore:
             result = self.cardphysics.generate(dt, locale=locale, **kwargs)
         elif dt in _INTL_IDS_TYPES:
             result = self.intl_ids.generate(dt, **kwargs)
+        elif dt in _COMPLIANCE_TYPES:
+            result = self.compliance.generate(dt, locale=locale, **kwargs)
         else:
             return f"ERROR: Unknown DataType '{dt}'"
 
@@ -498,10 +541,11 @@ class MockJutsuCore:
 
     # ── Export ──────────────────────────────────────────────────────────────────
 
-    def export(self, schema: dict, count=10, format='json', locale='TR', table='records'):
+    def export(self, schema: dict, count=10, format='json', locale='TR', table='records', records=None):
         """Export generated records as JSON, CSV, or SQL INSERT statements."""
         import json
-        records = self.template(schema, count=count, locale=locale)
+        if records is None:
+            records = self.template(schema, count=count, locale=locale)
 
         if format == 'json':
             return json.dumps(records, ensure_ascii=False, indent=2)

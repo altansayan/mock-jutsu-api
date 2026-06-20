@@ -73,6 +73,45 @@ TYPES = [
     'tckn_masked', 'ssn_masked', 'nationality', 'inn_individual',
     # E-Commerce extra — Sprint 5 (1)
     'dhl_tracking',
+    # Sprint 1 — Wave B: Datetime (8)
+    'past_date', 'future_date', 'date_between', 'date_this_year', 'date_this_month',
+    'time_only', 'past_datetime', 'future_datetime',
+    # Sprint 1 — Wave C: Web (7)
+    'slug', 'http_method', 'http_status_code', 'port_number', 'hostname', 'tld', 'uri_path',
+    # Sprint 2 — Security (3)
+    'password', 'password_hash', 'cve_id',
+    # Sprint 3 — Banking (10)
+    'account_type', 'transaction_type', 'transaction_description',
+    'ifsc_code', 'bsb_code', 'check_number', 'micr_line',
+    'payment_reference', 'wire_routing_number', 'account_number',
+    # Sprint 4 — Financial Extended (13)
+    'credit_score_model', 'credit_score_tier', 'credit_limit', 'credit_utilization',
+    'credit_card_issuer_name', 'apr', 'loan_type', 'mortgage_rate', 'mortgage_term',
+    'premium_amount', 'deductible', 'coverage_limit', 'claim_status',
+    # Sprint 5 — Financial Markets Extended (13)
+    'stock_ticker', 'figi', 'forex_pair', 'forex_rate', 'ric', 'mic',
+    'stock_exchange', 'option_contract', 'bond_yield', 'coupon_rate',
+    'settlement_date', 'portfolio_id', 'nsin',
+    # Sprint 6 — Compliance / KYC (12)
+    'policy_number', 'claim_number', 'pep_status', 'aml_risk_rating', 'cdd_level',
+    'sar_number', 'ubo_ownership_percentage', 'kyc_document_type',
+    'consent_id', 'tpp_id', 'onboarding_method', 'sanctions_hit',
+    # Sprint 7 — DeFi / Crypto Extended (9)
+    'nft_token_id', 'gas_price', 'gas_limit', 'defi_protocol_name',
+    'blockchain_network', 'wallet_label', 'defi_position_type',
+    'cryptocurrency_name', 'liquidity_pool_id',
+    # Masked variants — Banking (5) · PCI-DSS v4.0 §3.3 + GLBA §501
+    'account_number_masked', 'micr_line_masked', 'transaction_description_masked',
+    'check_number_masked', 'payment_reference_masked',
+    # Masked variants — Financial Extended (3) · GLBA §501 NPI
+    'credit_limit_masked', 'mortgage_rate_masked', 'premium_amount_masked',
+    # Masked variant — Capital Markets (1) · MiFID II Art. 25
+    'portfolio_id_masked',
+    # Masked variants — Compliance (5) · BSA §5318(g)(2), GLBA §501, EU 4AMLD, GDPR Art. 7
+    'sar_number_masked', 'policy_number_masked', 'claim_number_masked',
+    'ubo_ownership_percentage_masked', 'consent_id_masked',
+    # Masked variant — Crypto (1) · FATF Rec. 16 Travel Rule
+    'liquidity_pool_id_masked',
 ]
 
 # ---------------------------------------------------------------------------
@@ -1594,6 +1633,30 @@ def _lei_check_valid(lei: str) -> bool:
     return int(numeric) % 97 == 1
 
 
+def _figi_check_valid(figi: str) -> bool:
+    """Verify FIGI check digit.
+
+    Algorithm: left-to-right per-char (A=10..Z=35); 1-indexed even positions ×2;
+    digit-sum each result; check = (10 - sum%10) % 10.
+    This is the CUSIP-style algorithm, NOT the concatenated ISIN Luhn.
+
+    Manual verification:
+      Apple  BBG000B9XRY4:
+        B=11(×1)→2, B=11(×2)→4, G=16(×1)→7, 0→0, 0→0, 0→0,
+        B=11(×1)→2, 9(×2)=18→9, X=33(×1)→6, R=27(×2)=54→9, Y=34(×1)→7
+        sum=46 → check=(10-6)%10=4 ✓
+    """
+    if len(figi) != 12 or not re.match(r'^[A-Z]{2}G[B-DF-HJ-NP-TV-Z0-9]{8}[0-9]$', figi):
+        return False
+    total = 0
+    for i, c in enumerate(figi[:11]):
+        v = ord(c) - 55 if c.isalpha() else int(c)
+        if i % 2 == 1:  # 0-indexed odd = 1-indexed even → doubled
+            v *= 2
+        total += v // 10 + v % 10
+    return (10 - total % 10) % 10 == int(figi[11])
+
+
 # ── ISIN ──────────────────────────────────────────────────────────────────
 
 def test_isin_format():
@@ -2474,11 +2537,11 @@ def test_credit_score_range():
 # ---------------------------------------------------------------------------
 
 def test_tckn_masked_format():
-    """tckn_masked must be '***' + 6 digits + '**' = 11 chars total."""
+    """tckn_masked: KVKK Rehber — first 2 + last 2 visible, middle 7 masked."""
     for _ in range(100):
         val = str(jutsu.generate('tckn_masked'))
-        assert re.match(r'^\*{3}\d{6}\*{2}$', val), \
-            f"tckn_masked format wrong: {val} (expected ***######**)"
+        assert re.match(r'^[1-9]\d\*{7}\d{2}$', val), \
+            f"tckn_masked format wrong: {val} (expected XX*******XX)"
 
 
 def test_ssn_masked_format():
@@ -3176,3 +3239,915 @@ def test_template_list_all_locales_no_errors():
             for key, val in rec.items():
                 assert 'ERROR' not in str(val), \
                     f"template ERROR for {key} in locale {locale}: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 1 — Wave B: Datetime Types
+# ---------------------------------------------------------------------------
+
+def test_past_date_format():
+    """past_date must be YYYY-MM-DD and strictly before today."""
+    import datetime as dt_mod
+    today = dt_mod.date.today().isoformat()
+    for _ in range(100):
+        val = str(jutsu.generate('past_date'))
+        assert re.match(r'^\d{4}-\d{2}-\d{2}$', val), f"past_date format wrong: {val}"
+        assert val < today, f"past_date must be before today: {val}"
+
+
+def test_future_date_format():
+    """future_date must be YYYY-MM-DD and strictly after today."""
+    import datetime as dt_mod
+    today = dt_mod.date.today().isoformat()
+    for _ in range(100):
+        val = str(jutsu.generate('future_date'))
+        assert re.match(r'^\d{4}-\d{2}-\d{2}$', val), f"future_date format wrong: {val}"
+        assert val > today, f"future_date must be after today: {val}"
+
+
+def test_date_between_format():
+    """date_between must return a YYYY-MM-DD date within the specified range."""
+    for _ in range(100):
+        val = str(jutsu.generate('date_between', start='2020-01-01', end='2023-12-31'))
+        assert re.match(r'^\d{4}-\d{2}-\d{2}$', val), f"date_between format wrong: {val}"
+        assert '2020-01-01' <= val <= '2023-12-31', f"date_between out of range: {val}"
+
+
+def test_date_between_no_kwargs():
+    """date_between without kwargs must return a valid date."""
+    for _ in range(50):
+        val = str(jutsu.generate('date_between'))
+        assert re.match(r'^\d{4}-\d{2}-\d{2}$', val), f"date_between (no args) format wrong: {val}"
+
+
+def test_date_this_year_format():
+    """date_this_year must be YYYY-MM-DD within the current calendar year."""
+    import datetime as dt_mod
+    year = str(dt_mod.date.today().year)
+    for _ in range(100):
+        val = str(jutsu.generate('date_this_year'))
+        assert re.match(r'^\d{4}-\d{2}-\d{2}$', val), f"date_this_year format wrong: {val}"
+        assert val.startswith(year), f"date_this_year must start with {year}: {val}"
+
+
+def test_date_this_month_format():
+    """date_this_month must be YYYY-MM-DD within the current month."""
+    import datetime as dt_mod
+    today = dt_mod.date.today()
+    prefix = today.strftime('%Y-%m-')
+    for _ in range(100):
+        val = str(jutsu.generate('date_this_month'))
+        assert re.match(r'^\d{4}-\d{2}-\d{2}$', val), f"date_this_month format wrong: {val}"
+        assert val.startswith(prefix), f"date_this_month must be in current month: {val}"
+
+
+def test_time_only_format():
+    """time_only must match HH:MM:SS (24-hour, zero-padded)."""
+    for _ in range(100):
+        val = str(jutsu.generate('time_only'))
+        assert re.match(r'^([01]\d|2[0-3]):[0-5]\d:[0-5]\d$', val), \
+            f"time_only format wrong: {val}"
+
+
+def test_past_datetime_format():
+    """past_datetime must match ISO 8601 YYYY-MM-DDTHH:MM:SS and be in the past."""
+    import datetime as dt_mod
+    now = dt_mod.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+    for _ in range(100):
+        val = str(jutsu.generate('past_datetime'))
+        assert re.match(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$', val), \
+            f"past_datetime format wrong: {val}"
+        assert val < now, f"past_datetime must be before now: {val}"
+
+
+def test_future_datetime_format():
+    """future_datetime must match ISO 8601 YYYY-MM-DDTHH:MM:SS and be in the future."""
+    import datetime as dt_mod
+    now = dt_mod.datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+    for _ in range(100):
+        val = str(jutsu.generate('future_datetime'))
+        assert re.match(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$', val), \
+            f"future_datetime format wrong: {val}"
+        assert val > now, f"future_datetime must be after now: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 1 — Wave C: Web Types
+# ---------------------------------------------------------------------------
+
+def test_slug_format():
+    """slug must be lowercase words joined by hyphens (no spaces, no uppercase)."""
+    for _ in range(100):
+        val = str(jutsu.generate('slug'))
+        assert re.match(r'^[a-z0-9]+(-[a-z0-9]+)+$', val), f"slug format wrong: {val}"
+        assert len(val) >= 5, f"slug too short: {val}"
+
+
+def test_http_method_valid():
+    """http_method must be one of the standard HTTP verbs."""
+    valid = {'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'}
+    for _ in range(200):
+        val = str(jutsu.generate('http_method'))
+        assert val in valid, f"http_method unknown: {val}"
+
+
+def test_http_status_code_valid():
+    """http_status_code must be a known 3-digit HTTP status code."""
+    valid = {200, 201, 204, 301, 302, 304, 400, 401, 403, 404, 405, 409,
+             410, 422, 429, 500, 502, 503, 504}
+    for _ in range(200):
+        val = str(jutsu.generate('http_status_code'))
+        assert re.match(r'^\d{3}$', val), f"http_status_code must be 3 digits: {val}"
+        assert int(val) in valid, f"http_status_code unknown code: {val}"
+
+
+def test_port_number_range():
+    """port_number must be an integer between 1 and 65535."""
+    for _ in range(200):
+        val = str(jutsu.generate('port_number'))
+        assert val.isdigit(), f"port_number must be digits: {val}"
+        assert 1 <= int(val) <= 65535, f"port_number out of range: {val}"
+
+
+def test_hostname_format():
+    """hostname must be lowercase alphanumeric (with optional hyphens), no spaces."""
+    for _ in range(100):
+        val = str(jutsu.generate('hostname'))
+        assert re.match(r'^[a-z][a-z0-9-]*$', val), f"hostname format wrong: {val}"
+        assert len(val) >= 2, f"hostname too short: {val}"
+
+
+def test_tld_format():
+    """tld must start with a dot and be lowercase."""
+    for _ in range(100):
+        val = str(jutsu.generate('tld'))
+        assert val.startswith('.'), f"tld must start with dot: {val}"
+        assert val == val.lower(), f"tld must be lowercase: {val}"
+        assert len(val) >= 3, f"tld too short: {val}"
+
+
+def test_uri_path_format():
+    """uri_path must start with '/' and contain no spaces."""
+    for _ in range(100):
+        val = str(jutsu.generate('uri_path'))
+        assert val.startswith('/'), f"uri_path must start with /: {val}"
+        assert ' ' not in val, f"uri_path must not have spaces: {val}"
+        assert len(val) >= 2, f"uri_path too short: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 2 — Security Types
+# ---------------------------------------------------------------------------
+
+def test_password_length():
+    """password must be between 12 and 20 characters."""
+    for _ in range(200):
+        val = str(jutsu.generate('password'))
+        assert 12 <= len(val) <= 20, f"password length out of range: {len(val)}: {val}"
+
+
+def test_password_complexity():
+    """password must contain uppercase, lowercase, digit, and special char."""
+    import string as _str
+    special = set('!@#$%^&*()-_=+[]{}|;:,.<>?')
+    for _ in range(100):
+        val = str(jutsu.generate('password'))
+        assert any(c.isupper() for c in val), f"password missing uppercase: {val}"
+        assert any(c.islower() for c in val), f"password missing lowercase: {val}"
+        assert any(c.isdigit() for c in val), f"password missing digit: {val}"
+        assert any(c in special for c in val), f"password missing special char: {val}"
+
+
+def test_password_high_entropy():
+    """password must not repeat across 200 calls."""
+    passwords = {str(jutsu.generate('password')) for _ in range(200)}
+    assert len(passwords) >= 195, f"password entropy too low: {len(passwords)} unique in 200"
+
+
+def test_password_hash_format():
+    """password_hash must be a bcrypt-format string starting with $2b$."""
+    for _ in range(100):
+        val = str(jutsu.generate('password_hash'))
+        assert val.startswith('$2b$'), f"password_hash must start with $2b$: {val}"
+        parts = val.split('$')
+        assert len(parts) == 4, f"password_hash bcrypt format wrong (expected 4 $-parts): {val}"
+        assert parts[2].isdigit() and 10 <= int(parts[2]) <= 14, \
+            f"bcrypt cost factor out of range: {val}"
+        assert len(parts[3]) == 53, f"bcrypt hash body must be 53 chars: {val}"
+
+
+def test_cve_id_format():
+    """cve_id must match CVE-YYYY-NNNNN (year 2000–2025, number 4–5 digits)."""
+    for _ in range(200):
+        val = str(jutsu.generate('cve_id'))
+        m = re.match(r'^CVE-(\d{4})-(\d+)$', val)
+        assert m, f"cve_id format wrong: {val}"
+        year = int(m.group(1))
+        num  = int(m.group(2))
+        assert 2000 <= year <= 2025, f"cve_id year out of range: {val}"
+        assert 1000 <= num <= 99999, f"cve_id number out of range: {val}"
+
+
+def test_cve_id_high_entropy():
+    """cve_id must not repeat across 200 calls."""
+    ids = {str(jutsu.generate('cve_id')) for _ in range(200)}
+    assert len(ids) >= 150, f"cve_id entropy too low: {len(ids)} unique in 200"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 3 — Banking Types
+# ---------------------------------------------------------------------------
+
+def test_account_type_valid():
+    """account_type must be one of the known account type strings."""
+    valid = {'Checking', 'Savings', 'Current', 'Business Checking', 'Money Market', 'CD', 'Investment'}
+    for _ in range(200):
+        val = str(jutsu.generate('account_type'))
+        assert val in valid, f"account_type unknown: {val}"
+
+
+def test_transaction_type_valid():
+    """transaction_type must be one of the standard transaction type codes."""
+    valid = {'CREDIT', 'DEBIT', 'TRANSFER', 'REFUND', 'REVERSAL', 'CHARGEBACK', 'FEE', 'INTEREST'}
+    for _ in range(200):
+        val = str(jutsu.generate('transaction_type'))
+        assert val in valid, f"transaction_type unknown: {val}"
+
+
+def test_transaction_description_nonempty():
+    """transaction_description must return a non-empty locale-appropriate string."""
+    for locale in LOCALES:
+        for _ in range(10):
+            val = str(jutsu.generate('transaction_description', locale=locale))
+            assert len(val) >= 3, f"transaction_description too short for {locale}: {val}"
+            assert 'ERROR' not in val, f"transaction_description ERROR for {locale}: {val}"
+
+
+def test_ifsc_code_format():
+    """ifsc_code must match AAAA0NNNNNN (4 uppercase letters + 0 + 6 alphanumeric)."""
+    for _ in range(100):
+        val = str(jutsu.generate('ifsc_code'))
+        assert re.match(r'^[A-Z]{4}0[A-Z0-9]{6}$', val), f"ifsc_code format wrong: {val}"
+        assert val[4] == '0', f"ifsc_code 5th char must be 0: {val}"
+
+
+def test_bsb_code_format():
+    """bsb_code must match NNN-NNN (3 digits, hyphen, 3 digits)."""
+    for _ in range(100):
+        val = str(jutsu.generate('bsb_code'))
+        assert re.match(r'^\d{3}-\d{3}$', val), f"bsb_code format wrong: {val}"
+
+
+def test_check_number_format():
+    """check_number must be a 4-digit zero-padded numeric string."""
+    for _ in range(100):
+        val = str(jutsu.generate('check_number'))
+        assert re.match(r'^\d{4}$', val), f"check_number must be 4 digits: {val}"
+
+
+def test_micr_line_format():
+    """micr_line must contain routing number (9 digits) and account number segments."""
+    for _ in range(50):
+        val = str(jutsu.generate('micr_line'))
+        assert len(val) >= 20, f"micr_line too short: {val}"
+        assert '|' in val or ':' in val or val[0].isdigit(), f"micr_line unexpected format: {val}"
+
+
+def test_payment_reference_format():
+    """payment_reference must start with PAYREF- and have no spaces."""
+    for _ in range(100):
+        val = str(jutsu.generate('payment_reference'))
+        assert val.startswith('PAYREF-'), f"payment_reference must start with PAYREF-: {val}"
+        assert ' ' not in val, f"payment_reference must not have spaces: {val}"
+        assert len(val) >= 12, f"payment_reference too short: {val}"
+
+
+def test_wire_routing_number_aba():
+    """wire_routing_number must be a valid 9-digit ABA routing number."""
+    def _aba_valid(s):
+        if len(s) != 9 or not s.isdigit():
+            return False
+        d = [int(c) for c in s]
+        return (3 * (d[0] + d[3] + d[6]) + 7 * (d[1] + d[4] + d[7]) + (d[2] + d[5] + d[8])) % 10 == 0
+
+    for _ in range(100):
+        val = str(jutsu.generate('wire_routing_number'))
+        assert re.match(r'^\d{9}$', val), f"wire_routing_number must be 9 digits: {val}"
+        assert _aba_valid(val), f"wire_routing_number ABA checksum failed: {val}"
+
+
+def test_account_number_format():
+    """account_number must be an 8–12 digit string."""
+    for _ in range(100):
+        val = str(jutsu.generate('account_number'))
+        assert re.match(r'^\d{8,12}$', val), f"account_number must be 8-12 digits: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 4 — Financial Extended Types
+# ---------------------------------------------------------------------------
+
+def test_credit_score_model_valid():
+    """credit_score_model must be one of the known scoring model names."""
+    valid = {'FICO', 'VantageScore', 'TransUnion', 'Equifax', 'Experian'}
+    for _ in range(200):
+        val = str(jutsu.generate('credit_score_model'))
+        assert val in valid, f"credit_score_model unknown: {val}"
+
+
+def test_credit_score_tier_valid():
+    """credit_score_tier must be one of the standard credit tier labels."""
+    valid = {'Exceptional', 'Very Good', 'Good', 'Fair', 'Poor'}
+    for _ in range(200):
+        val = str(jutsu.generate('credit_score_tier'))
+        assert val in valid, f"credit_score_tier unknown: {val}"
+
+
+def test_credit_limit_format():
+    """credit_limit must be a positive float string with 2 decimal places."""
+    for _ in range(200):
+        val = str(jutsu.generate('credit_limit'))
+        assert re.match(r'^\d+\.\d{2}$', val), f"credit_limit format wrong: {val}"
+        assert float(val) > 0, f"credit_limit must be positive: {val}"
+        assert float(val) <= 100000.00, f"credit_limit unrealistically high: {val}"
+
+
+def test_credit_utilization_format():
+    """credit_utilization must be a percentage string between 0.0 and 100.0."""
+    for _ in range(200):
+        val = str(jutsu.generate('credit_utilization'))
+        assert re.match(r'^\d+\.\d{1,2}$', val), f"credit_utilization format wrong: {val}"
+        assert 0.0 <= float(val) <= 100.0, f"credit_utilization out of range: {val}"
+
+
+def test_credit_card_issuer_name_nonempty():
+    """credit_card_issuer_name must return a non-empty locale-appropriate string."""
+    for locale in LOCALES:
+        for _ in range(10):
+            val = str(jutsu.generate('credit_card_issuer_name', locale=locale))
+            assert len(val) >= 3, f"credit_card_issuer_name too short for {locale}: {val}"
+            assert 'ERROR' not in val, f"credit_card_issuer_name ERROR for {locale}"
+
+
+def test_apr_format():
+    """apr (Annual Percentage Rate) must be a percentage string in range 0.1–35.0."""
+    for _ in range(200):
+        val = str(jutsu.generate('apr'))
+        assert re.match(r'^\d+\.\d{1,2}$', val), f"apr format wrong: {val}"
+        assert 0.1 <= float(val) <= 35.0, f"apr out of range: {val}"
+
+
+def test_loan_type_valid():
+    """loan_type must be one of the standard loan category strings."""
+    valid = {'Personal', 'Mortgage', 'Auto', 'Student', 'Business', 'Home Equity', 'Payday'}
+    for _ in range(200):
+        val = str(jutsu.generate('loan_type'))
+        assert val in valid, f"loan_type unknown: {val}"
+
+
+def test_mortgage_rate_format():
+    """mortgage_rate must be a percentage string in realistic mortgage range 1.0–12.0."""
+    for _ in range(200):
+        val = str(jutsu.generate('mortgage_rate'))
+        assert re.match(r'^\d+\.\d{2}$', val), f"mortgage_rate format wrong: {val}"
+        assert 1.0 <= float(val) <= 12.0, f"mortgage_rate out of range: {val}"
+
+
+def test_mortgage_term_valid():
+    """mortgage_term must be one of standard term durations (years)."""
+    valid = {'10', '15', '20', '25', '30'}
+    for _ in range(200):
+        val = str(jutsu.generate('mortgage_term'))
+        assert val in valid, f"mortgage_term unknown: {val}"
+
+
+def test_premium_amount_format():
+    """premium_amount must be a positive float string with 2 decimal places."""
+    for _ in range(200):
+        val = str(jutsu.generate('premium_amount'))
+        assert re.match(r'^\d+\.\d{2}$', val), f"premium_amount format wrong: {val}"
+        assert float(val) > 0, f"premium_amount must be positive: {val}"
+        assert float(val) <= 10000.00, f"premium_amount unrealistically high: {val}"
+
+
+def test_deductible_format():
+    """deductible must be a positive float string with 2 decimal places."""
+    for _ in range(200):
+        val = str(jutsu.generate('deductible'))
+        assert re.match(r'^\d+\.\d{2}$', val), f"deductible format wrong: {val}"
+        assert float(val) > 0, f"deductible must be positive: {val}"
+        assert float(val) <= 50000.00, f"deductible unrealistically high: {val}"
+
+
+def test_coverage_limit_format():
+    """coverage_limit must be a positive float with 2 decimal places."""
+    for _ in range(200):
+        val = str(jutsu.generate('coverage_limit'))
+        assert re.match(r'^\d+\.\d{2}$', val), f"coverage_limit format wrong: {val}"
+        assert float(val) >= 1000.00, f"coverage_limit unrealistically low: {val}"
+        assert float(val) <= 10000000.00, f"coverage_limit unrealistically high: {val}"
+
+
+def test_claim_status_valid():
+    """claim_status must be one of the standard insurance claim status values."""
+    valid = {'Submitted', 'Under Review', 'Approved', 'Denied', 'Paid', 'Closed', 'Appealed'}
+    for _ in range(200):
+        val = str(jutsu.generate('claim_status'))
+        assert val in valid, f"claim_status unknown: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 5 — Financial Markets Extended Types
+# ---------------------------------------------------------------------------
+
+def test_stock_ticker_format():
+    """stock_ticker must be 1–5 uppercase ASCII letters."""
+    for _ in range(200):
+        val = str(jutsu.generate('stock_ticker'))
+        assert re.match(r'^[A-Z]{1,5}$', val), f"stock_ticker format wrong: {val}"
+
+
+def test_figi_format():
+    """FIGI must be 12 chars: 2-letter prefix + G + 8 consonant/digit body + 1 check digit.
+    Body chars must not contain vowels (per FIGI spec).
+    """
+    for _ in range(100):
+        val = str(jutsu.generate('figi'))
+        assert len(val) == 12, f"FIGI must be 12 chars: {val}"
+        assert re.match(r'^[A-Z]{2}G[B-DF-HJ-NP-TV-Z0-9]{8}[0-9]$', val), \
+            f"FIGI format wrong (vowel or bad char in body): {val}"
+
+
+def test_figi_checksum():
+    """FIGI check digit must pass the CUSIP-style left-to-right digit-sum algorithm."""
+    for _ in range(200):
+        val = str(jutsu.generate('figi'))
+        assert _figi_check_valid(val), f"FIGI checksum failed: {val}"
+
+
+def test_figi_known_vectors():
+    """Known real FIGIs must pass the validator (verifies our algorithm against OpenFIGI data)."""
+    known = [
+        'BBG000B9XRY4',  # Apple Inc. (AAPL US Equity)
+    ]
+    for figi in known:
+        assert _figi_check_valid(figi), f"Known valid FIGI failed: {figi}"
+
+
+def test_forex_pair_format():
+    """forex_pair must be 'AAA/BBB' (two distinct 3-letter ISO currency codes)."""
+    for _ in range(200):
+        val = str(jutsu.generate('forex_pair'))
+        assert re.match(r'^[A-Z]{3}/[A-Z]{3}$', val), f"forex_pair format wrong: {val}"
+        base, quote = val.split('/')
+        assert base != quote, f"forex_pair must have distinct currencies: {val}"
+
+
+def test_forex_rate_format():
+    """forex_rate must be a positive float string with 4 decimal places."""
+    for _ in range(200):
+        val = str(jutsu.generate('forex_rate'))
+        assert re.match(r'^\d+\.\d{4}$', val), f"forex_rate format wrong: {val}"
+        assert float(val) > 0, f"forex_rate must be positive: {val}"
+
+
+def test_forex_rate_known_pair_bounds():
+    """forex_rate for a known pair must stay within realistic market bounds.
+
+    Bounds mirror the _FOREX_RATES dict in financial_markets.py.
+    Ensures the --pair flag routing and range lookup work correctly.
+    """
+    known_bounds = {
+        'EUR/USD': (1.0200, 1.1200),
+        'GBP/USD': (1.2000, 1.3200),
+        'USD/JPY': (130.0,  155.0),
+        'USD/CHF': (0.8500, 0.9600),
+        'AUD/USD': (0.6200, 0.7200),
+        'USD/CAD': (1.2500, 1.4000),
+        'EUR/GBP': (0.8400, 0.9200),
+        'USD/TRY': (28.0,   35.0),
+        'USD/RUB': (75.0,   95.0),
+        'EUR/JPY': (140.0,  165.0),
+    }
+    for pair_str, (lo, hi) in known_bounds.items():
+        for _ in range(50):
+            val = float(jutsu.generate('forex_rate', pair=pair_str))
+            assert lo <= val <= hi, \
+                f"forex_rate for {pair_str} out of bounds [{lo}, {hi}]: {val}"
+
+
+def test_ric_format():
+    """RIC (Reuters Instrument Code) must be TICKER.EXCHANGE format."""
+    for _ in range(100):
+        val = str(jutsu.generate('ric'))
+        assert '.' in val, f"RIC must contain a dot separator: {val}"
+        parts = val.split('.')
+        assert len(parts) == 2, f"RIC must have exactly 2 parts: {val}"
+        ticker, exchange = parts
+        assert re.match(r'^[A-Z]{1,5}$', ticker), f"RIC ticker part invalid: {val}"
+        assert len(exchange) >= 1, f"RIC exchange part empty: {val}"
+
+
+def test_mic_format():
+    """MIC (ISO 10383 Market Identifier Code) must be exactly 4 uppercase letters."""
+    for _ in range(100):
+        val = str(jutsu.generate('mic'))
+        assert re.match(r'^[A-Z]{4}$', val), f"MIC format wrong: {val}"
+
+
+def test_stock_exchange_nonempty():
+    """stock_exchange must return a known exchange name string."""
+    for _ in range(100):
+        val = str(jutsu.generate('stock_exchange'))
+        assert len(val) >= 3, f"stock_exchange too short: {val}"
+        assert 'ERROR' not in val, f"stock_exchange ERROR: {val}"
+
+
+def test_option_contract_format():
+    """option_contract must match OCC format: TICKER + YYMMDD + C/P + 8-digit strike."""
+    for _ in range(100):
+        val = str(jutsu.generate('option_contract'))
+        assert re.match(r'^[A-Z]{1,5}\d{6}[CP]\d{8}$', val), \
+            f"option_contract OCC format wrong: {val}"
+        call_put = val[-9]
+        assert call_put in ('C', 'P'), f"option_contract C/P char wrong: {val}"
+
+
+def test_option_contract_strike_range():
+    """option_contract strike price must be $50–$5000 (OCC 8-digit field, 3 implied decimals).
+
+    OCC encodes strike as integer × 1000: field '00100000' = $100.000.
+    Realistic equity option strikes fall in the $50–$5000 range.
+    """
+    for _ in range(200):
+        val = str(jutsu.generate('option_contract'))
+        strike_dollars = int(val[-8:]) / 1000  # last 8 chars are strike; 3 decimal places
+        assert 50.0 <= strike_dollars <= 5000.0, \
+            f"option_contract strike ${strike_dollars:.3f} out of $50–$5000 range: {val}"
+
+
+def test_bond_yield_format():
+    """bond_yield must be a percentage string with 2 decimal places (0.01–15.00)."""
+    for _ in range(200):
+        val = str(jutsu.generate('bond_yield'))
+        assert re.match(r'^\d+\.\d{2}$', val), f"bond_yield format wrong: {val}"
+        assert 0.01 <= float(val) <= 15.0, f"bond_yield out of range: {val}"
+
+
+def test_coupon_rate_format():
+    """coupon_rate must be a percentage string with 2 decimal places (0.00–12.00)."""
+    for _ in range(200):
+        val = str(jutsu.generate('coupon_rate'))
+        assert re.match(r'^\d+\.\d{2}$', val), f"coupon_rate format wrong: {val}"
+        assert 0.0 <= float(val) <= 12.0, f"coupon_rate out of range: {val}"
+
+
+def test_settlement_date_format():
+    """settlement_date must be YYYY-MM-DD, after today, and always a weekday (T+1/T+2/T+3).
+    Weekends are never valid settlement days — standard market convention.
+    """
+    import datetime as dt_mod
+    today = dt_mod.date.today().isoformat()
+    for _ in range(200):
+        val = str(jutsu.generate('settlement_date'))
+        assert re.match(r'^\d{4}-\d{2}-\d{2}$', val), f"settlement_date format wrong: {val}"
+        assert val > today, f"settlement_date must be after today: {val}"
+        d = dt_mod.date.fromisoformat(val)
+        assert d.weekday() < 5, \
+            f"settlement_date must be Mon-Fri, got {d.strftime('%A')}: {val}"
+
+
+def test_portfolio_id_format():
+    """portfolio_id must match PRTF- or PORT- prefix with alphanumeric suffix."""
+    for _ in range(100):
+        val = str(jutsu.generate('portfolio_id'))
+        assert re.match(r'^(PRTF|PORT)-[A-Z0-9-]+$', val), \
+            f"portfolio_id format wrong: {val}"
+        assert len(val) >= 10, f"portfolio_id too short: {val}"
+
+
+def test_nsin_nonempty():
+    """nsin must return a non-empty alphanumeric string for all locales."""
+    for locale in LOCALES:
+        for _ in range(20):
+            val = str(jutsu.generate('nsin', locale=locale))
+            assert len(val) >= 7, f"nsin too short for {locale}: {val}"
+            assert re.match(r'^[A-Z0-9]+$', val), f"nsin invalid charset for {locale}: {val}"
+
+
+def test_nsin_us_checksum():
+    """nsin for US locale must be a valid 9-char CUSIP (ABA check digit)."""
+    for _ in range(100):
+        val = str(jutsu.generate('nsin', locale='US'))
+        assert len(val) == 9, f"US nsin (CUSIP) must be 9 chars: {val}"
+        assert _cusip_check_valid(val), f"US nsin CUSIP checksum failed: {val}"
+
+
+def test_nsin_uk_checksum():
+    """nsin for UK locale must be a valid 7-char SEDOL (LSE weighted check digit)."""
+    for _ in range(100):
+        val = str(jutsu.generate('nsin', locale='UK'))
+        assert len(val) == 7, f"UK nsin (SEDOL) must be 7 chars: {val}"
+        assert _sedol_check_valid(val), f"UK nsin SEDOL checksum failed: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 6 — Compliance / KYC Types
+# ---------------------------------------------------------------------------
+
+def test_policy_number_format():
+    """policy_number must match POL- prefix + alphanumeric suffix (no spaces)."""
+    for _ in range(100):
+        val = str(jutsu.generate('policy_number'))
+        assert val.startswith('POL-'), f"policy_number must start with POL-: {val}"
+        assert ' ' not in val, f"policy_number must not have spaces: {val}"
+        assert len(val) >= 10, f"policy_number too short: {val}"
+
+
+def test_claim_number_format():
+    """claim_number must match CLM- prefix + alphanumeric suffix."""
+    for _ in range(100):
+        val = str(jutsu.generate('claim_number'))
+        assert val.startswith('CLM-'), f"claim_number must start with CLM-: {val}"
+        assert ' ' not in val, f"claim_number must not have spaces: {val}"
+        assert len(val) >= 10, f"claim_number too short: {val}"
+
+
+def test_pep_status_valid():
+    """pep_status must be one of the standard PEP classification labels."""
+    valid = {'Not PEP', 'PEP', 'RCA', 'Former PEP', 'Unknown'}
+    for _ in range(200):
+        val = str(jutsu.generate('pep_status'))
+        assert val in valid, f"pep_status unknown: {val}"
+
+
+def test_aml_risk_rating_valid():
+    """aml_risk_rating must be one of Low / Medium / High / Critical."""
+    valid = {'Low', 'Medium', 'High', 'Critical'}
+    for _ in range(200):
+        val = str(jutsu.generate('aml_risk_rating'))
+        assert val in valid, f"aml_risk_rating unknown: {val}"
+
+
+def test_cdd_level_valid():
+    """cdd_level must be Standard, Enhanced, or Simplified."""
+    valid = {'Standard', 'Enhanced', 'Simplified'}
+    for _ in range(200):
+        val = str(jutsu.generate('cdd_level'))
+        assert val in valid, f"cdd_level unknown: {val}"
+
+
+def test_sar_number_format():
+    """sar_number must match SAR- prefix + date + seq (no spaces)."""
+    for _ in range(100):
+        val = str(jutsu.generate('sar_number'))
+        assert val.startswith('SAR-'), f"sar_number must start with SAR-: {val}"
+        assert ' ' not in val, f"sar_number must not have spaces: {val}"
+        assert re.match(r'^SAR-\d{8}-\d{4,6}$', val), f"sar_number format wrong: {val}"
+
+
+def test_ubo_ownership_percentage_range():
+    """ubo_ownership_percentage must be a float in range 0.01–100.00."""
+    for _ in range(200):
+        val = str(jutsu.generate('ubo_ownership_percentage'))
+        assert re.match(r'^\d+\.\d{2}$', val), f"ubo_ownership_percentage format wrong: {val}"
+        assert 0.01 <= float(val) <= 100.00, f"ubo_ownership_percentage out of range: {val}"
+
+
+def test_kyc_document_type_valid():
+    """kyc_document_type must be a known identity document type."""
+    valid = {'Passport', 'National ID', "Driver's License", 'Residence Permit',
+             'Tax ID', 'Utility Bill', 'Bank Statement', 'Birth Certificate'}
+    for _ in range(200):
+        val = str(jutsu.generate('kyc_document_type'))
+        assert val in valid, f"kyc_document_type unknown: {val}"
+
+
+def test_consent_id_format():
+    """consent_id must be a UUID v4 or CONSENT- prefixed identifier."""
+    for _ in range(100):
+        val = str(jutsu.generate('consent_id'))
+        uuid4_re = re.compile(r'^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$')
+        prefix_re = re.compile(r'^CONSENT-[A-Za-z0-9-]{8,}$')
+        assert uuid4_re.match(val) or prefix_re.match(val), \
+            f"consent_id format wrong: {val}"
+
+
+def test_tpp_id_format():
+    """tpp_id must match PSP- or TPP- prefix + alphanumeric suffix."""
+    for _ in range(100):
+        val = str(jutsu.generate('tpp_id'))
+        assert re.match(r'^(PSP|TPP)-[A-Z0-9-]+$', val), f"tpp_id format wrong: {val}"
+        assert len(val) >= 10, f"tpp_id too short: {val}"
+
+
+def test_onboarding_method_valid():
+    """onboarding_method must be one of the standard digital onboarding methods."""
+    valid = {'eKYC', 'Video KYC', 'In-Branch', 'Document Upload', 'Biometric', 'Agent'}
+    for _ in range(200):
+        val = str(jutsu.generate('onboarding_method'))
+        assert val in valid, f"onboarding_method unknown: {val}"
+
+
+def test_sanctions_hit_valid():
+    """sanctions_hit must be True or False (bool) or string 'true'/'false'."""
+    for _ in range(200):
+        val = jutsu.generate('sanctions_hit')
+        assert isinstance(val, bool) or str(val).lower() in ('true', 'false'), \
+            f"sanctions_hit must be bool-like: {val!r}"
+
+
+# ---------------------------------------------------------------------------
+# Sprint 7 — DeFi / Crypto Extended Types
+# ---------------------------------------------------------------------------
+
+def test_nft_token_id_format():
+    """nft_token_id must be a non-negative integer string."""
+    for _ in range(200):
+        val = str(jutsu.generate('nft_token_id'))
+        assert val.isdigit(), f"nft_token_id must be all digits: {val}"
+        assert int(val) >= 0, f"nft_token_id must be non-negative: {val}"
+        assert int(val) <= 10 ** 18, f"nft_token_id unrealistically large: {val}"
+
+
+def test_gas_price_format():
+    """gas_price must be a positive integer string (Gwei units)."""
+    for _ in range(200):
+        val = str(jutsu.generate('gas_price'))
+        assert val.isdigit(), f"gas_price must be all digits: {val}"
+        assert 1 <= int(val) <= 5000, f"gas_price out of realistic Gwei range: {val}"
+
+
+def test_gas_limit_valid():
+    """gas_limit must be a standard Ethereum gas limit (21000–10,000,000)."""
+    for _ in range(200):
+        val = str(jutsu.generate('gas_limit'))
+        assert val.isdigit(), f"gas_limit must be all digits: {val}"
+        assert 21000 <= int(val) <= 10_000_000, f"gas_limit out of range: {val}"
+
+
+def test_defi_protocol_name_nonempty():
+    """defi_protocol_name must return a known DeFi protocol name."""
+    for _ in range(100):
+        val = str(jutsu.generate('defi_protocol_name'))
+        assert len(val) >= 2, f"defi_protocol_name too short: {val}"
+        assert 'ERROR' not in val, f"defi_protocol_name ERROR: {val}"
+
+
+def test_blockchain_network_valid():
+    """blockchain_network must be a known layer-1 or layer-2 network name."""
+    known = {'Ethereum', 'Polygon', 'Arbitrum', 'Optimism', 'Base', 'Avalanche',
+             'BNB Chain', 'Solana', 'Bitcoin', 'Fantom', 'Cronos', 'zkSync Era'}
+    for _ in range(200):
+        val = str(jutsu.generate('blockchain_network'))
+        assert val in known, f"blockchain_network unknown: {val}"
+
+
+def test_wallet_label_nonempty():
+    """wallet_label must return a non-empty label string."""
+    for _ in range(100):
+        val = str(jutsu.generate('wallet_label'))
+        assert len(val) >= 2, f"wallet_label too short: {val}"
+        assert 'ERROR' not in val, f"wallet_label ERROR: {val}"
+
+
+def test_defi_position_type_valid():
+    """defi_position_type must be one of the standard DeFi position categories."""
+    valid = {'Liquidity Provider', 'Lending', 'Borrowing', 'Staking',
+             'Yield Farming', 'Perpetual', 'Options', 'Vaulted'}
+    for _ in range(200):
+        val = str(jutsu.generate('defi_position_type'))
+        assert val in valid, f"defi_position_type unknown: {val}"
+
+
+def test_cryptocurrency_name_nonempty():
+    """cryptocurrency_name must return a known cryptocurrency name."""
+    for _ in range(100):
+        val = str(jutsu.generate('cryptocurrency_name'))
+        assert len(val) >= 2, f"cryptocurrency_name too short: {val}"
+        assert 'ERROR' not in val, f"cryptocurrency_name ERROR: {val}"
+
+
+def test_liquidity_pool_id_format():
+    """liquidity_pool_id must be a '0x' prefixed 40-char hex address (pool contract)."""
+    for _ in range(100):
+        val = str(jutsu.generate('liquidity_pool_id'))
+        assert re.match(r'^0x[0-9a-fA-F]{40}$', val), \
+            f"liquidity_pool_id format wrong: {val}"
+
+
+# ---------------------------------------------------------------------------
+# Masked Variant Tests (Banking · Financial · CapMarkets · Compliance · Crypto)
+# ---------------------------------------------------------------------------
+
+def test_account_number_masked_format():
+    """PCI-DSS v4.0 §3.3: masked account number must show exactly 4 trailing digits."""
+    for _ in range(200):
+        val = str(jutsu.generate('account_number_masked'))
+        assert re.match(r'^\*{4}\d{4}$', val), f"account_number_masked format wrong: {val}"
+
+
+def test_micr_line_masked_format():
+    """Masked MICR line: routing visible (public), account segment replaced with ****."""
+    for _ in range(100):
+        val = str(jutsu.generate('micr_line_masked'))
+        # |9-digit routing| |****| 4-digit check
+        assert re.match(r'^\|\d{9}\| \|\*{4}\| \d{4}$', val), \
+            f"micr_line_masked format wrong: {val}"
+
+
+def test_transaction_description_masked_truncation():
+    """GDPR data minimisation: description must end with *** and be at most 13 chars before ***."""
+    for _ in range(200):
+        val = str(jutsu.generate('transaction_description_masked', locale='US'))
+        assert val.endswith('***'), f"transaction_description_masked must end with ***: {val}"
+        prefix = val[:-3]
+        assert len(prefix) <= 13, f"Prefix too long ({len(prefix)}): {val}"
+
+
+def test_check_number_masked_format():
+    """check_number_masked: first 2 digits masked, last 2 visible."""
+    for _ in range(200):
+        val = str(jutsu.generate('check_number_masked'))
+        assert re.match(r'^\*{2}\d{2}$', val), f"check_number_masked format wrong: {val}"
+
+
+def test_payment_reference_masked_format():
+    """payment_reference_masked: date segment visible, 5-digit sequence masked."""
+    for _ in range(200):
+        val = str(jutsu.generate('payment_reference_masked'))
+        assert re.match(r'^PAYREF-\d{8}-\*{5}$', val), \
+            f"payment_reference_masked format wrong: {val}"
+
+
+def test_credit_limit_masked_constant():
+    """credit_limit_masked: always returns the GLBA NPI masking placeholder."""
+    for _ in range(50):
+        val = str(jutsu.generate('credit_limit_masked'))
+        assert val == '$**,***', f"credit_limit_masked unexpected value: {val}"
+
+
+def test_mortgage_rate_masked_constant():
+    """mortgage_rate_masked: always returns the GLBA NPI masking placeholder."""
+    for _ in range(50):
+        val = str(jutsu.generate('mortgage_rate_masked'))
+        assert val == '**.**%', f"mortgage_rate_masked unexpected value: {val}"
+
+
+def test_premium_amount_masked_constant():
+    """premium_amount_masked: always returns the GLBA NPI masking placeholder."""
+    for _ in range(50):
+        val = str(jutsu.generate('premium_amount_masked'))
+        assert val == '$*,***', f"premium_amount_masked unexpected value: {val}"
+
+
+def test_portfolio_id_masked_format():
+    """MiFID II Art. 25: masked portfolio ID exposes last 4 chars of suffix only."""
+    for _ in range(200):
+        val = str(jutsu.generate('portfolio_id_masked'))
+        assert re.match(r'^(PRTF|PORT)-\*{4}[A-Z0-9]{4}$', val), \
+            f"portfolio_id_masked format wrong: {val}"
+
+
+def test_sar_number_masked_constant():
+    """BSA §5318(g)(2) tipping-off: SAR number must be fully masked, always same pattern."""
+    for _ in range(50):
+        val = str(jutsu.generate('sar_number_masked'))
+        assert val == '****-****-****', f"sar_number_masked must be fully masked: {val}"
+
+
+def test_policy_number_masked_format():
+    """GLBA §501: masked policy number keeps sequence (last 5) visible for support reference."""
+    for _ in range(200):
+        val = str(jutsu.generate('policy_number_masked'))
+        assert re.match(r'^POL-\*{4}-\d{5}$', val), f"policy_number_masked format wrong: {val}"
+
+
+def test_claim_number_masked_format():
+    """GLBA §501: masked claim number keeps sequence (last 5) visible for support reference."""
+    for _ in range(200):
+        val = str(jutsu.generate('claim_number_masked'))
+        assert re.match(r'^CLM-\*{4}-\d{5}$', val), f"claim_number_masked format wrong: {val}"
+
+
+def test_ubo_ownership_percentage_masked_constant():
+    """EU 4AMLD/5AMLD Art. 30: exact UBO stake must be masked, always same pattern."""
+    for _ in range(50):
+        val = str(jutsu.generate('ubo_ownership_percentage_masked'))
+        assert val == '**%', f"ubo_ownership_percentage_masked must be fully masked: {val}"
+
+
+def test_consent_id_masked_format():
+    """GDPR Art. 7: masked consent ID exposes last 8 hex chars for audit trail."""
+    for _ in range(200):
+        val = str(jutsu.generate('consent_id_masked'))
+        assert re.match(r'^\*{4}-\*{4}-\*{4}-\*{4}-[0-9a-f]{8}$', val), \
+            f"consent_id_masked format wrong: {val}"
+
+
+def test_liquidity_pool_id_masked_format():
+    """FATF Rec. 16 Travel Rule: pool address shows first 4 + last 4 hex chars."""
+    for _ in range(200):
+        val = str(jutsu.generate('liquidity_pool_id_masked'))
+        assert re.match(r'^0x[0-9a-f]{4}\.\.\.[0-9a-f]{4}$', val), \
+            f"liquidity_pool_id_masked format wrong: {val}"

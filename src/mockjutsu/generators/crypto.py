@@ -12,6 +12,7 @@ Standards:
 import hashlib
 import random
 import secrets
+import string
 
 # ── Keccak-256 (pure Python — no external deps) ──────────────────────────────
 
@@ -80,6 +81,34 @@ def _keccak256(data: bytes) -> bytes:
     return b''.join(s.to_bytes(8, 'little') for s in state[:4])
 
 
+# ── Sprint 7 — DeFi / Crypto Extended constants ──────────────────────────────
+
+_DEFI_PROTOCOLS = [
+    'Uniswap', 'Aave', 'Compound', 'Curve Finance', 'MakerDAO', 'Lido',
+    'Convex Finance', 'Balancer', 'dYdX', 'GMX', 'Synthetix', 'Yearn Finance',
+    '1inch', 'Sushiswap', 'Pancakeswap', 'Velodrome', 'Camelot', 'Stargate',
+    'Pendle', 'Morpho', 'Euler Finance', 'Radiant Capital', 'Beefy Finance',
+]
+_BLOCKCHAIN_NETWORKS = [
+    'Ethereum', 'Polygon', 'Arbitrum', 'Optimism', 'Base', 'Avalanche',
+    'BNB Chain', 'Solana', 'Bitcoin', 'Fantom', 'Cronos', 'zkSync Era',
+]
+_WALLET_LABELS = [
+    'Hot Wallet', 'Cold Storage', 'Trading Wallet', 'DeFi Wallet',
+    'Hardware Wallet', 'Custodial Wallet', 'Multi-sig Vault', 'Treasury',
+    'Yield Farm', 'Staking Wallet', 'Airdrop Wallet', 'Development Wallet',
+]
+_DEFI_POSITION_TYPES = [
+    'Liquidity Provider', 'Lending', 'Borrowing', 'Staking',
+    'Yield Farming', 'Perpetual', 'Options', 'Vaulted',
+]
+_CRYPTO_NAMES = [
+    'Bitcoin', 'Ethereum', 'Tether', 'BNB', 'Solana', 'USDC', 'XRP',
+    'Cardano', 'Avalanche', 'Polkadot', 'Dogecoin', 'Shiba Inu', 'Polygon',
+    'Chainlink', 'Litecoin', 'Cosmos', 'Uniswap', 'Aave', 'Arbitrum', 'Optimism',
+]
+_GAS_LIMITS = [21000, 45000, 65000, 100000, 150000, 200000, 300000, 500000, 1_000_000]
+
 # ── Base58 (Bitcoin alphabet) ─────────────────────────────────────────────────
 
 _B58_ALPHABET = b'123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
@@ -122,6 +151,58 @@ class CryptoGenerator:
             return self._block_hash(currency)
         if dt == 'mnemonic':
             return self._mnemonic(words)
+
+        if dt == 'nft_token_id':
+            # Most ERC-721 tokens use sequential IDs (0–9999) or large random IDs
+            if random.random() < 0.6:
+                return str(random.randint(0, 9999))
+            return str(random.randint(10000, 10 ** 18))
+
+        if dt == 'gas_price':
+            # Realistic ETH gas prices in Gwei: 1–500 (peak up to 5000)
+            tier = random.randrange(10)
+            if tier <= 5:
+                return str(random.randint(1, 30))     # low/normal
+            elif tier <= 8:
+                return str(random.randint(30, 200))   # moderate
+            else:
+                return str(random.randint(200, 5000)) # high/peak
+
+        if dt == 'gas_limit':
+            return str(random.choice(_GAS_LIMITS))
+
+        if dt == 'defi_protocol_name':
+            return random.choice(_DEFI_PROTOCOLS)
+
+        if dt == 'blockchain_network':
+            return random.choice(_BLOCKCHAIN_NETWORKS)
+
+        if dt == 'wallet_label':
+            return random.choice(_WALLET_LABELS)
+
+        if dt == 'defi_position_type':
+            return random.choice(_DEFI_POSITION_TYPES)
+
+        if dt == 'cryptocurrency_name':
+            return random.choice(_CRYPTO_NAMES)
+
+        if dt == 'liquidity_pool_id':
+            # Pool addresses are standard EIP-55 ETH addresses (contract address)
+            raw = secrets.token_bytes(20)
+            hex_lower = raw.hex()
+            keccak_hex = _keccak256(hex_lower.encode('ascii')).hex()
+            checksummed = ''.join(
+                c.upper() if int(keccak_hex[i], 16) >= 8 else c.lower()
+                for i, c in enumerate(hex_lower)
+            )
+            return '0x' + checksummed
+
+        if dt == 'liquidity_pool_id_masked':
+            # FATF Recommendation 16 (Travel Rule): show first 6 + last 4 chars of address
+            # 0x + 40 hex chars → show 0x + first 4 hex + ... + last 4 hex
+            raw = secrets.token_bytes(20)
+            hex_lower = raw.hex()
+            return f"0x{hex_lower[:4]}...{hex_lower[-4:]}"
 
         return f"ERROR: Unknown DataType '{dt}'"
 

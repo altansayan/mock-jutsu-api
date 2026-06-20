@@ -21,11 +21,50 @@ import secrets
 import string
 import time
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta, date
 
 # ── Constants ────────────────────────────────────────────────────────────────
 
 _SEDOL_CHARS = '0123456789BCDFGHJKLMNPQRSTVWXYZ'  # digits + consonants, no vowels
+
+# Sprint 5 — Financial Markets Extended
+_STOCK_TICKERS = [
+    'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA', 'NVDA', 'META', 'JPM', 'V', 'MA',
+    'UNH', 'JNJ', 'PG', 'HD', 'MRK', 'ABBV', 'CVX', 'PEP', 'KO', 'COST',
+    'WMT', 'BAC', 'TMO', 'AVGO', 'NEE', 'QCOM', 'TXN', 'CMCSA', 'LIN', 'DHR',
+    'ACN', 'VZ', 'ADBE', 'PM', 'RTX', 'HON', 'INTC', 'T', 'ORCL', 'AMD',
+    'CRM', 'SBUX', 'IBM', 'GS', 'BLK', 'AXP', 'NFLX', 'SPGI', 'CAT', 'MU',
+    'XOM', 'BKNG', 'DE', 'ZTS', 'CI', 'CB', 'SO', 'GE', 'MMM', 'MDT',
+]
+_FIGI_NSIN_CHARS = '0123456789BCDFGHJKLMNPQRSTVWXYZ'  # no vowels, as per FIGI spec
+_FIGI_PREFIXES = ['BB', 'BL', 'BM', 'BN', 'BP', 'BQ', 'BR', 'BS', 'BT', 'BV']
+_FOREX_MAJORS = ['EUR', 'USD', 'GBP', 'JPY', 'AUD', 'CAD', 'CHF', 'NZD', 'SEK', 'NOK',
+                 'DKK', 'SGD', 'HKD', 'MXN', 'ZAR', 'TRY', 'RUB', 'CNY', 'INR', 'BRL']
+_FOREX_RATES = {
+    ('EUR', 'USD'): (1.0200, 1.1200), ('GBP', 'USD'): (1.2000, 1.3200),
+    ('USD', 'JPY'): (130.0, 155.0),   ('USD', 'CHF'): (0.8500, 0.9600),
+    ('AUD', 'USD'): (0.6200, 0.7200), ('USD', 'CAD'): (1.2500, 1.4000),
+    ('EUR', 'GBP'): (0.8400, 0.9200), ('USD', 'TRY'): (28.0,  35.0),
+    ('USD', 'RUB'): (75.0,  95.0),    ('EUR', 'JPY'): (140.0, 165.0),
+}
+_RIC_EXCHANGES = {
+    'TR': ['IS', 'ISTE'],  'US': ['O', 'N', 'A', 'OQ'],
+    'UK': ['L', 'LN'],     'DE': ['DE', 'F', 'XETR'],
+    'FR': ['PA', 'P'],     'RU': ['MM', 'RTS'],
+}
+_MIC_CODES = {
+    'TR': ['XIST', 'XETK'], 'US': ['XNYS', 'XNAS', 'XASE', 'ARCX', 'BATS'],
+    'UK': ['XLON', 'XAIM'], 'DE': ['XETR', 'XFRA', 'XBER'],
+    'FR': ['XPAR', 'XEUR'], 'RU': ['MISX', 'RTSX'],
+}
+_STOCK_EXCHANGES = {
+    'TR': ['Borsa İstanbul'],
+    'US': ['NYSE', 'NASDAQ', 'NYSE American', 'CBOE', 'IEX'],
+    'UK': ['London Stock Exchange', 'AIM'],
+    'DE': ['Xetra', 'Frankfurt Stock Exchange', 'Berlin Stock Exchange'],
+    'FR': ['Euronext Paris', 'Euronext Growth Paris'],
+    'RU': ['Moscow Exchange', 'RTS Stock Exchange'],
+}
 
 _LOU_PREFIXES = [
     '5299000', '2138000', '7LTWFH', '3H2OSJ', 'XKZZ2J',
@@ -155,6 +194,65 @@ class FinancialMarketsGenerator:
         if dt == 'psd2_consent':
             amount = kwargs.get('amount')
             return self._psd2_consent(loc, amount=float(amount) if amount else None)
+
+        if dt == 'stock_ticker':
+            return random.choice(_STOCK_TICKERS)
+
+        if dt == 'figi':
+            return self._figi()
+
+        if dt == 'forex_pair':
+            return self._forex_pair()
+
+        if dt == 'forex_rate':
+            pair_str = str(kwargs.get('pair', ''))
+            return self._forex_rate(pair_str)
+
+        if dt == 'ric':
+            return self._ric(loc)
+
+        if dt == 'mic':
+            return random.choice(_MIC_CODES.get(loc, _MIC_CODES['US']))
+
+        if dt == 'stock_exchange':
+            return random.choice(_STOCK_EXCHANGES.get(loc, _STOCK_EXCHANGES['US']))
+
+        if dt == 'option_contract':
+            return self._option_contract()
+
+        if dt == 'bond_yield':
+            v = round(0.01 + random.randrange(1500) / 100, 2)
+            return f"{v:.2f}"
+
+        if dt == 'coupon_rate':
+            v = round(random.randrange(1201) / 100, 2)
+            return f"{v:.2f}"
+
+        if dt == 'settlement_date':
+            # T+2 standard (equities); T+1/T+3 minor variants; weekends always skipped.
+            # No holiday calendar (zero-dep constraint) — weekday-only guarantee.
+            settle_t = random.choices([1, 2, 3], weights=[20, 60, 20])[0]
+            target = date.today()
+            bdays = 0
+            while bdays < settle_t:
+                target += timedelta(days=1)
+                if target.weekday() < 5:  # 0=Mon … 4=Fri
+                    bdays += 1
+            return target.strftime('%Y-%m-%d')
+
+        if dt == 'portfolio_id':
+            prefix = random.choice(['PRTF', 'PORT'])
+            suffix = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
+            return f"{prefix}-{suffix}"
+
+        if dt == 'portfolio_id_masked':
+            # MiFID II Art. 25: portfolio ID is internal — last 4 chars of suffix visible
+            prefix = random.choice(['PRTF', 'PORT'])
+            last4 = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(4))
+            return f"{prefix}-****{last4}"
+
+        if dt == 'nsin':
+            return self._nsin(loc)
 
         return f"ERROR: Unknown DataType '{dt}'"
 
@@ -374,3 +472,94 @@ class FinancialMarketsGenerator:
         return prefix + f'{random.randint(10, 99)}' + ''.join(
             str(random.randint(0, 9)) for _ in range(16)
         )
+
+    # ── Sprint 5 helpers ──────────────────────────────────────────────────────
+
+    @staticmethod
+    def _figi() -> str:
+        """FIGI (Financial Instrument Global Identifier) — 12 chars.
+
+        Format: 2-letter provider prefix + 'G' + 8 consonant/digit body + 1 check digit.
+        Check: left-to-right, per-char (A=10..Z=35), 1-indexed even positions ×2,
+        digit-sum each result — identical to the CUSIP algorithm, NOT the ISIN Luhn.
+        Verified against BBG000B9XRY4 (Apple Inc. US Equity): sum=46 → check=4 ✓
+        """
+        prefix = random.choice(_FIGI_PREFIXES)
+        body = ''.join(random.choice(_FIGI_NSIN_CHARS) for _ in range(8))
+        payload = prefix + 'G' + body  # 11 chars
+        total = 0
+        for i, c in enumerate(payload):
+            v = ord(c) - 55 if c.isalpha() else int(c)
+            if i % 2 == 1:  # 0-indexed odd = 1-indexed even position → doubled
+                v *= 2
+            total += v // 10 + v % 10
+        check = (10 - total % 10) % 10
+        return payload + str(check)
+
+    @staticmethod
+    def _forex_pair() -> str:
+        """Generate a major or cross forex pair like EUR/USD."""
+        base  = random.choice(_FOREX_MAJORS)
+        quote = random.choice(_FOREX_MAJORS)
+        while quote == base:
+            quote = random.choice(_FOREX_MAJORS)
+        return f"{base}/{quote}"
+
+    @staticmethod
+    def _forex_rate(pair_str: str) -> str:
+        """Return a realistic exchange rate for a known pair, or random 0.5–150."""
+        if '/' in pair_str:
+            parts = pair_str.upper().split('/')
+            if len(parts) == 2:
+                key = (parts[0], parts[1])
+                if key in _FOREX_RATES:
+                    lo, hi = _FOREX_RATES[key]
+                    v = round(lo + (hi - lo) * random.random(), 4)
+                    return f"{v:.4f}"
+        # Fallback: plausible random rate
+        v = round(0.5 + random.random() * 149.5, 4)
+        return f"{v:.4f}"
+
+    @staticmethod
+    def _ric(locale: str) -> str:
+        """Reuters Instrument Code: TICKER.EXCHANGE."""
+        ticker   = random.choice(_STOCK_TICKERS)
+        exchange = random.choice(_RIC_EXCHANGES.get(locale, _RIC_EXCHANGES['US']))
+        return f"{ticker}.{exchange}"
+
+    @staticmethod
+    def _option_contract() -> str:
+        """OCC option contract symbol: TICKER + YYMMDD + C/P + 8-digit strike (cents)."""
+        ticker  = random.choice(_STOCK_TICKERS)
+        expiry  = (date.today() + timedelta(days=random.randint(7, 365))).strftime('%y%m%d')
+        cp      = random.choice('CP')
+        strike  = random.randint(500, 50000) * 100  # in cents, rounded to dollar
+        return f"{ticker}{expiry}{cp}{strike:08d}"
+
+    @staticmethod
+    def _nsin(locale: str) -> str:
+        """National Securities Identifying Number (locale-appropriate 9-char NSIN)."""
+        if locale == 'US':
+            # US NSIN = CUSIP (9 chars)
+            chars = string.digits + 'ABCDEFGHJKLMNPQRSTUVWXYZ'
+            payload = ''.join(random.choice(chars) for _ in range(8))
+            total = 0
+            for i, c in enumerate(payload):
+                v = int(c) if c.isdigit() else ord(c) - 55
+                if i % 2 == 1:
+                    v *= 2
+                total += v // 10 + v % 10
+            check = (10 - total % 10) % 10
+            return payload + str(check)
+        if locale == 'UK':
+            # UK NSIN is a 7-char SEDOL (no vowels + digits)
+            payload = ''.join(random.choice(_SEDOL_CHARS) for _ in range(6))
+            weights = [1, 3, 1, 7, 3, 9]
+            total = sum(
+                (int(c) if c.isdigit() else ord(c) - 55) * w
+                for c, w in zip(payload, weights)
+            )
+            check = (10 - total % 10) % 10
+            return payload + str(check)
+        # Generic: 9-char uppercase alphanumeric for DE/FR/TR/RU
+        return ''.join(random.choice(string.digits + string.ascii_uppercase) for _ in range(9))

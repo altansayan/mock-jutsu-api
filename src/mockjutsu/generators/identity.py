@@ -659,8 +659,13 @@ class IdentityGenerator:
 
         # --- Masked Types ---
         if dt == 'tckn_masked':
-            mid = "".join(str(random.randrange(10)) for _ in range(6))
-            return f"***{mid}**"
+            # KVKK Rehber: first 2 + last 2 digits visible, middle 7 masked
+            # First digit of TCKN cannot be 0
+            d1  = str(random.randrange(1, 10))
+            d2  = str(random.randrange(10))
+            d10 = str(random.randrange(10))
+            d11 = str(random.randrange(10))
+            return f"{d1}{d2}*******{d10}{d11}"
 
         if dt == 'ssn_masked':
             last4 = "".join(str(random.randrange(10)) for _ in range(4))

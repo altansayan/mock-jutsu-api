@@ -329,10 +329,10 @@ def _mask_session_id(v: str) -> str:
 
 
 def _mask_ip(v: str) -> str:
-    # 192.168.1.42 → 192.168.***.***
+    # 192.168.1.42 → 192.168.*.*  (GDPR: last 2 octets masked)
     parts = v.split(".")
     if len(parts) == 4:
-        return f"{parts[0]}.{parts[1]}.***.*.*"
+        return f"{parts[0]}.{parts[1]}.*.*"
     return v
 
 
@@ -390,6 +390,8 @@ _MASKERS = {
     "pin_block":     _mask_pci_sad,
     "pin_block_fmt3": _mask_pci_sad,
     "3ds_cavv":      _mask_pci_sad,
+    "password":      _mask_pci_sad,
+    "password_hash": _mask_pci_sad,
 
     # ── Payment cards ──────────────────────────────────────────────────────
     "cardnum":       _mask_cardnum,
@@ -424,7 +426,7 @@ _MASKERS = {
     "crn":           lambda v: _mask_generic_id(v, 2, 2),
     "nhs_number":    _mask_nhs,
     "nhsnumber":     _mask_nhs,
-    "sort_code":     lambda v: re.sub(r"\d{2}-\d{2}", lambda m: "**-**", v),
+    "sort_code":     lambda v: re.sub(r"\d{2}", "**", v),
 
     # ── German IDs ─────────────────────────────────────────────────────────
     "rvn":           lambda v: _mask_alphanum(v, 4, 4),

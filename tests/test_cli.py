@@ -310,7 +310,7 @@ class TestGenerateIdentity:
 
     def test_tckn_masked_format(self, runner):
         val = _gen(runner, 'tckn_masked')
-        assert re.match(r'^\*{3}\d{6}\*{2}$', val), f"tckn_masked: {val}"
+        assert re.match(r'^[1-9]\d\*{7}\d{2}$', val), f"tckn_masked: {val}"
 
     def test_ssn_masked_format(self, runner):
         val = _gen(runner, 'ssn_masked')
@@ -2681,6 +2681,9 @@ _FLAG_DEFAULTS: dict[str, str] = {
     '--format':    'json',
     '--count':     '3',
     '--table':     'mock_data',
+    '--start':     '2020-01-01',
+    '--end':       '2023-12-31',
+    '--pair':      'EUR/USD',
 }
 
 

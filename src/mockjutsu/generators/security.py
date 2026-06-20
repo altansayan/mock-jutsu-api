@@ -9,7 +9,11 @@ All output is algorithmically generated — not cryptographically valid.
 import json
 import random
 import secrets
+import string
 from datetime import datetime, timezone, timedelta
+
+_PWD_SPECIAL = '!@#$%^&*()-_=+[]{}|;:,.<>?'
+_BCRYPT_ALPHABET = './ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
 
 _CEF_DEVICES = [
@@ -186,6 +190,37 @@ def generate_pcap_hex():
     return '\n'.join(lines)
 
 
+def generate_password() -> str:
+    """Strong random password with guaranteed complexity requirements."""
+    length = random.randint(12, 20)
+    # Guarantee at least one of each required character class
+    mandatory = [
+        secrets.choice(string.ascii_uppercase),
+        secrets.choice(string.ascii_lowercase),
+        secrets.choice(string.digits),
+        secrets.choice(_PWD_SPECIAL),
+    ]
+    pool = string.ascii_letters + string.digits + _PWD_SPECIAL
+    rest = [secrets.choice(pool) for _ in range(length - 4)]
+    chars = mandatory + rest
+    random.shuffle(chars)
+    return ''.join(chars)
+
+
+def generate_password_hash() -> str:
+    """bcrypt-format password hash: $2b$<cost>$<22-char salt><31-char hash>."""
+    cost = random.randint(10, 14)
+    body = ''.join(secrets.choice(_BCRYPT_ALPHABET) for _ in range(53))
+    return f"$2b${cost:02d}${body}"
+
+
+def generate_cve_id() -> str:
+    """CVE identifier: CVE-YYYY-NNNNN (year 2000–2025, number 1000–99999)."""
+    year = random.randint(2000, 2025)
+    num  = random.randint(1000, 99999)
+    return f"CVE-{year}-{num}"
+
+
 class SecurityGenerator:
     def generate(self, data_type, **_kwargs):
         if data_type == 'cef_log':
@@ -194,4 +229,10 @@ class SecurityGenerator:
             return generate_x509_cert()
         if data_type == 'pcap_hex':
             return generate_pcap_hex()
+        if data_type == 'password':
+            return generate_password()
+        if data_type == 'password_hash':
+            return generate_password_hash()
+        if data_type == 'cve_id':
+            return generate_cve_id()
         return f"ERROR: Unknown security type '{data_type}'"

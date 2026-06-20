@@ -41,6 +41,12 @@ ISSUERS = {
     "RU": ["Народный Банк", "Столичный Банк", "Восточный Кредит", "Русфинанс", "МоскваБанк"],
 }
 
+_CREDIT_SCORE_MODELS = ['FICO', 'VantageScore', 'TransUnion', 'Equifax', 'Experian']
+_CREDIT_SCORE_TIERS  = ['Exceptional', 'Very Good', 'Good', 'Fair', 'Poor']
+_LOAN_TYPES          = ['Personal', 'Mortgage', 'Auto', 'Student', 'Business', 'Home Equity', 'Payday']
+_CLAIM_STATUSES      = ['Submitted', 'Under Review', 'Approved', 'Denied', 'Paid', 'Closed', 'Appealed']
+_MORTGAGE_TERMS      = [10, 15, 20, 25, 30]
+
 # bban_fmt: list of ('alpha'|'digit'|'alnum', length) segments (BBAN without check digits)
 BANK_FORMATS = {
     "TR": {"type": "IBAN", "prefix": "TR", "len": 26, "bban_fmt": [("digit", 22)]},
@@ -182,6 +188,79 @@ class FinancialGenerator:
 
         if dt == '3ds_eci':
             return self.generate_3ds_eci(network)
+
+        if dt == 'credit_score_model':
+            return random.choice(_CREDIT_SCORE_MODELS)
+
+        if dt == 'credit_score_tier':
+            return random.choice(_CREDIT_SCORE_TIERS)
+
+        if dt == 'credit_limit':
+            # Tier distribution: low 500–5k, normal 5k–30k, high 30k–100k
+            tier = random.randrange(10)
+            if tier <= 3:
+                v = 500 + random.randrange(4501)
+            elif tier <= 8:
+                v = 5000 + random.randrange(25001)
+            else:
+                v = 30000 + random.randrange(70001)
+            return f"{v:.2f}"
+
+        if dt == 'credit_utilization':
+            # Weighted toward realistic 0–80% range
+            v = round(random.randrange(10001) / 100, 2)  # 0.00–100.00
+            return f"{v:.2f}"
+
+        if dt == 'credit_card_issuer_name':
+            return random.choice(ISSUERS.get(l, ISSUERS['TR']))
+
+        if dt == 'apr':
+            # Realistic APR: 3.99–29.99% for consumer credit
+            v = round(3.99 + random.randrange(2601) / 100, 2)
+            return f"{v:.2f}"
+
+        if dt == 'loan_type':
+            return random.choice(_LOAN_TYPES)
+
+        if dt == 'mortgage_rate':
+            # Realistic mortgage rate: 1.50–12.00%
+            v = round(1.50 + random.randrange(1051) / 100, 2)
+            return f"{v:.2f}"
+
+        if dt == 'mortgage_term':
+            return str(random.choice(_MORTGAGE_TERMS))
+
+        if dt == 'premium_amount':
+            # Monthly insurance premium: $25–$2,500
+            v = round(25 + random.randrange(247601) / 100, 2)
+            return f"{v:.2f}"
+
+        if dt == 'deductible':
+            # Insurance deductible: $100–$10,000 in round steps
+            steps = [100, 250, 500, 750, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000]
+            v = random.choice(steps)
+            return f"{v:.2f}"
+
+        if dt == 'coverage_limit':
+            # Coverage limits: $10k–$5M in realistic tiers
+            tiers = [10000, 25000, 50000, 100000, 250000, 500000, 1000000, 2000000, 5000000]
+            v = random.choice(tiers)
+            return f"{v:.2f}"
+
+        if dt == 'claim_status':
+            return random.choice(_CLAIM_STATUSES)
+
+        if dt == 'credit_limit_masked':
+            # GLBA §501: exact credit limit is NPI — show order of magnitude only
+            return '$**,***'
+
+        if dt == 'mortgage_rate_masked':
+            # GLBA §501: exact mortgage rate is NPI — mask both integer and decimal parts
+            return '**.**%'
+
+        if dt == 'premium_amount_masked':
+            # GLBA §501: exact premium is NPI — show currency symbol only
+            return '$*,***'
 
         return "FINANCIAL_DATA"
 
