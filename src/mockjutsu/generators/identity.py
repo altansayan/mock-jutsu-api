@@ -311,8 +311,31 @@ class IdentityGenerator:
 
     @staticmethod
     def generate_de_hrb():
-        """German Commercial Register Number — HRB/HRA XXXXXX."""
-        return f"{random.choice(['HRB', 'HRA'])} {random.randrange(999999) + 1}"
+        """German Commercial Register Number — Court HRB/HRA XXXXXX (stdnum ASCII courts)."""
+        _HRB_COURTS = [
+            'Aachen', 'Altenburg', 'Amberg', 'Ansbach', 'Arnsberg', 'Arnstadt',
+            'Aschaffenburg', 'Augsburg', 'Aurich', 'Bad Hersfeld', 'Bad Homburg v.d.H.',
+            'Bad Kreuznach', 'Bad Oeynhausen', 'Bad Salzungen', 'Bamberg', 'Bayreuth',
+            'Berlin (Charlottenburg)', 'Bielefeld', 'Bochum', 'Bonn', 'Braunschweig',
+            'Bremen', 'Chemnitz', 'Coburg', 'Cottbus', 'Darmstadt',
+            'Deggendorf', 'Dortmund', 'Dresden', 'Duisburg', 'Erfurt', 'Essen',
+            'Frankfurt am Main', 'Frankfurt (Oder)', 'Friedberg', 'Fulda',
+            'Gelsenkirchen', 'Gera', 'Gotha', 'Hagen',
+            'Hamburg', 'Hamm', 'Hanau', 'Hannover',
+            'Hildburghausen', 'Ingolstadt', 'Iserlohn', 'Jena', 'Kaiserslautern',
+            'Kassel', 'Kempten (Allgau)', 'Kiel', 'Kleve', 'Landshut', 'Leipzig',
+            'Limburg', 'Mainz', 'Mannheim',
+            'Marburg', 'Meiningen', 'Memmingen', 'Nordhausen',
+            'Offenbach am Main', 'Oldenburg (Oldenburg)', 'Paderborn',
+            'Passau', 'Potsdam', 'Regensburg', 'Rostock', 'Rudolstadt',
+            'Schwerin', 'Siegen', 'Stadthagen', 'Stendal', 'Stralsund', 'Stuttgart',
+            'Suhl', 'Tostedt', 'Traunstein', 'Ulm', 'Weiden i. d. OPf.', 'Weimar',
+            'Wiesbaden', 'Wittlich', 'Wuppertal', 'Wurzburg',
+        ]
+        court = random.choice(_HRB_COURTS)
+        registry = random.choice(['HRB', 'HRA'])
+        number = random.randint(1, 999999)
+        return f"{court} {registry} {number}"
 
     @staticmethod
     def generate_de_rvn():

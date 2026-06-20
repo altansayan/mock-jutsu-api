@@ -1409,3 +1409,230 @@ class TestSwiftMt103:
                 except Exception:
                     results.append(False)
         _assert_all("swift_mt103 :32A: locale→currency mapping", results)
+
+
+# ─── Doğrulama Yol Haritası Faz 2 — 51 Uluslararası Kimlik Tipi ─────────────
+
+
+class TestIntlIdsSouthAmerica:
+    """Güney Amerika kimlik numaraları — python-stdnum roundtrip."""
+
+    def test_br_cpf(self):
+        import stdnum.br.cpf as m
+        _assert_all("br_cpf", [m.is_valid(str(v)) for v in _gen("br_cpf")])
+
+    def test_br_cnpj(self):
+        import stdnum.br.cnpj as m
+        _assert_all("br_cnpj", [m.is_valid(str(v)) for v in _gen("br_cnpj")])
+
+    def test_ar_cuit(self):
+        import stdnum.ar.cuit as m
+        _assert_all("ar_cuit", [m.is_valid(str(v)) for v in _gen("ar_cuit")])
+
+    def test_ar_dni(self):
+        import stdnum.ar.dni as m
+        _assert_all("ar_dni", [m.is_valid(str(v)) for v in _gen("ar_dni")])
+
+    def test_mx_rfc(self):
+        import stdnum.mx.rfc as m
+        _assert_all("mx_rfc", [m.is_valid(str(v)) for v in _gen("mx_rfc")])
+
+    def test_mx_curp(self):
+        import stdnum.mx.curp as m
+        _assert_all("mx_curp", [m.is_valid(str(v)) for v in _gen("mx_curp")])
+
+    def test_cl_rut(self):
+        import stdnum.cl.rut as m
+        _assert_all("cl_rut", [m.is_valid(str(v)) for v in _gen("cl_rut")])
+
+    def test_co_nit(self):
+        import stdnum.co.nit as m
+        _assert_all("co_nit", [m.is_valid(str(v)) for v in _gen("co_nit")])
+
+
+class TestIntlIdsAsiaPacific:
+    """Asya-Pasifik kimlik numaraları — python-stdnum roundtrip."""
+
+    def test_in_aadhaar(self):
+        import stdnum.in_.aadhaar as m
+        _assert_all("in_aadhaar", [m.is_valid(str(v)) for v in _gen("in_aadhaar")])
+
+    def test_in_pan(self):
+        import stdnum.in_.pan as m
+        _assert_all("in_pan", [m.is_valid(str(v)) for v in _gen("in_pan")])
+
+    def test_in_gstin(self):
+        import stdnum.in_.gstin as m
+        _assert_all("in_gstin", [m.is_valid(str(v)) for v in _gen("in_gstin")])
+
+    def test_in_epic(self):
+        import stdnum.in_.epic as m
+        _assert_all("in_epic", [m.is_valid(str(v)) for v in _gen("in_epic")])
+
+    def test_au_abn(self):
+        import stdnum.au.abn as m
+        _assert_all("au_abn", [m.is_valid(str(v)) for v in _gen("au_abn")])
+
+    def test_au_acn(self):
+        import stdnum.au.acn as m
+        _assert_all("au_acn", [m.is_valid(str(v)) for v in _gen("au_acn")])
+
+    def test_au_tfn(self):
+        import stdnum.au.tfn as m
+        _assert_all("au_tfn", [m.is_valid(str(v)) for v in _gen("au_tfn")])
+
+    def test_nz_ird(self):
+        import stdnum.nz.ird as m
+        _assert_all("nz_ird", [m.is_valid(str(v)) for v in _gen("nz_ird")])
+
+    def test_sg_uen(self):
+        import stdnum.sg.uen as m
+        _assert_all("sg_uen", [m.is_valid(str(v)) for v in _gen("sg_uen")])
+
+    def test_kr_brn(self):
+        import stdnum.kr.brn as m
+        _assert_all("kr_brn", [m.is_valid(str(v)) for v in _gen("kr_brn")])
+
+    def test_kr_rrn(self):
+        import stdnum.kr.rrn as m
+        _assert_all("kr_rrn", [m.is_valid(str(v)) for v in _gen("kr_rrn")])
+
+    def test_jp_cn(self):
+        import stdnum.jp.cn as m
+        _assert_all("jp_cn", [m.is_valid(str(v)) for v in _gen("jp_cn")])
+
+    def test_jp_in(self):
+        import stdnum.jp.in_ as m
+        _assert_all("jp_in", [m.is_valid(str(v)) for v in _gen("jp_in")])
+
+    def test_cn_ric(self):
+        import stdnum.cn.ric as m
+        _assert_all("cn_ric", [m.is_valid(str(v)) for v in _gen("cn_ric")])
+
+    def test_th_pin(self):
+        import stdnum.th.pin as m
+        _assert_all("th_pin", [m.is_valid(str(v)) for v in _gen("th_pin")])
+
+    def test_th_tin(self):
+        import stdnum.th.tin as m
+        _assert_all("th_tin", [m.is_valid(str(v)) for v in _gen("th_tin")])
+
+    def test_pk_cnic(self):
+        import stdnum.pk.cnic as m
+        _assert_all("pk_cnic", [m.is_valid(str(v)) for v in _gen("pk_cnic")])
+
+    def test_my_nric(self):
+        import stdnum.my.nric as m
+        _assert_all("my_nric", [m.is_valid(str(v)) for v in _gen("my_nric")])
+
+
+class TestIntlIdsEurope:
+    """Avrupa ek ülke kimlik numaraları — python-stdnum roundtrip."""
+
+    def test_fi_hetu(self):
+        import stdnum.fi.hetu as m
+        _assert_all("fi_hetu", [m.is_valid(str(v)) for v in _gen("fi_hetu")])
+
+    def test_no_fodselsnummer(self):
+        import stdnum.no.fodselsnummer as m
+        _assert_all("no_fodselsnummer", [m.is_valid(str(v)) for v in _gen("no_fodselsnummer")])
+
+    def test_se_personnummer(self):
+        import stdnum.se.personnummer as m
+        _assert_all("se_personnummer", [m.is_valid(str(v)) for v in _gen("se_personnummer")])
+
+    def test_dk_cpr(self):
+        import stdnum.dk.cpr as m
+        _assert_all("dk_cpr", [m.is_valid(str(v)) for v in _gen("dk_cpr")])
+
+    def test_it_codicefiscale(self):
+        import stdnum.it.codicefiscale as m
+        _assert_all("it_codicefiscale", [m.is_valid(str(v)) for v in _gen("it_codicefiscale")])
+
+    def test_nl_bsn(self):
+        import stdnum.nl.bsn as m
+        _assert_all("nl_bsn", [m.is_valid(str(v)) for v in _gen("nl_bsn")])
+
+    def test_pl_pesel(self):
+        import stdnum.pl.pesel as m
+        _assert_all("pl_pesel", [m.is_valid(str(v)) for v in _gen("pl_pesel")])
+
+    def test_es_dni(self):
+        import stdnum.es.dni as m
+        _assert_all("es_dni", [m.is_valid(str(v)) for v in _gen("es_dni")])
+
+    def test_es_nie(self):
+        import stdnum.es.nie as m
+        _assert_all("es_nie", [m.is_valid(str(v)) for v in _gen("es_nie")])
+
+    def test_es_ccc(self):
+        import stdnum.es.ccc as m
+        _assert_all("es_ccc", [m.is_valid(str(v)) for v in _gen("es_ccc")])
+
+    def test_de_idnr(self):
+        import stdnum.de.idnr as m
+        _assert_all("de_idnr", [m.is_valid(str(v)) for v in _gen("de_idnr")])
+
+    def test_de_stnr(self):
+        import stdnum.de.stnr as m
+        _assert_all("de_stnr", [m.is_valid(str(v)) for v in _gen("de_stnr")])
+
+    def test_hr_oib(self):
+        import stdnum.hr.oib as m
+        _assert_all("hr_oib", [m.is_valid(str(v)) for v in _gen("hr_oib")])
+
+    def test_bg_egn(self):
+        import stdnum.bg.egn as m
+        _assert_all("bg_egn", [m.is_valid(str(v)) for v in _gen("bg_egn")])
+
+    def test_ee_ik(self):
+        import stdnum.ee.ik as m
+        _assert_all("ee_ik", [m.is_valid(str(v)) for v in _gen("ee_ik")])
+
+    def test_lt_asmens(self):
+        import stdnum.lt.asmens as m
+        _assert_all("lt_asmens", [m.is_valid(str(v)) for v in _gen("lt_asmens")])
+
+    def test_ro_cnp(self):
+        import stdnum.ro.cnp as m
+        _assert_all("ro_cnp", [m.is_valid(str(v)) for v in _gen("ro_cnp")])
+
+    def test_ro_cui(self):
+        import stdnum.ro.cui as m
+        _assert_all("ro_cui", [m.is_valid(str(v)) for v in _gen("ro_cui")])
+
+    def test_pt_cc(self):
+        import stdnum.pt.cc as m
+        _assert_all("pt_cc", [m.is_valid(str(v)) for v in _gen("pt_cc")])
+
+    def test_hrb(self):
+        import stdnum.de.handelsregisternummer as m
+        _assert_all("hrb", [m.is_valid(str(v)) for v in _gen("hrb")])
+
+
+class TestIntlIdsAfricaME:
+    """Afrika ve Orta Doğu kimlik numaraları — python-stdnum roundtrip."""
+
+    def test_za_idnr(self):
+        import stdnum.za.idnr as m
+        _assert_all("za_idnr", [m.is_valid(str(v)) for v in _gen("za_idnr")])
+
+    def test_eg_tn(self):
+        import stdnum.eg.tn as m
+        _assert_all("eg_tn", [m.is_valid(str(v)) for v in _gen("eg_tn")])
+
+    def test_il_idnr(self):
+        import stdnum.il.idnr as m
+        _assert_all("il_idnr", [m.is_valid(str(v)) for v in _gen("il_idnr")])
+
+
+class TestIntlIdsNorthAmericaExt:
+    """Kuzey Amerika ek tipler — python-stdnum roundtrip."""
+
+    def test_ca_bn(self):
+        import stdnum.ca.bn as m
+        _assert_all("ca_bn", [m.is_valid(str(v)) for v in _gen("ca_bn")])
+
+    def test_wire_routing_number(self):
+        import stdnum.us.rtn as m
+        _assert_all("wire_routing_number", [m.is_valid(str(v)) for v in _gen("wire_routing_number")])

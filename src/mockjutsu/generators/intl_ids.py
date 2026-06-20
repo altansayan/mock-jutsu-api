@@ -178,10 +178,18 @@ class IntlIdsGenerator:
 
     @staticmethod
     def gen_in_epic():
-        """Indian Voter ID (EPIC) — 3 uppercase letters + 7 digits."""
+        """Indian Voter ID (EPIC) — 3 uppercase letters + 6 digits + Luhn check digit."""
         prefix = ''.join(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(3))
-        suffix = ''.join(str(random.randint(0, 9)) for _ in range(7))
-        return f"{prefix}{suffix}"
+        digits = [random.randint(0, 9) for _ in range(6)]
+        total = 0
+        for i, d in enumerate(reversed(digits)):
+            if i % 2 == 0:
+                d = d * 2
+                if d > 9:
+                    d -= 9
+            total += d
+        check = (10 - total % 10) % 10
+        return f"{prefix}{''.join(map(str, digits))}{check}"
 
     # ── China ────────────────────────────────────────────────────────────────
 

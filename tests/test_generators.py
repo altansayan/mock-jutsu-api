@@ -650,10 +650,10 @@ def test_de_ust_id_checksum():
 
 
 def test_de_hrb_format():
-    """DE HRB/HRA must start with HRB or HRA followed by a number."""
+    """DE HRB/HRA must include court name + HR[AB] + number (stdnum-compatible)."""
     for _ in range(50):
         val = str(jutsu.generate('hrb'))
-        assert re.match(r'^HR[AB] \d+$', val), f"DE HRB format wrong: {val}"
+        assert re.match(r'^.+ HR[AB] \d+$', val), f"DE HRB format wrong: {val}"
 
 
 def test_de_rvn_format():
@@ -707,7 +707,7 @@ def test_employer_id_locale_aware():
     assert re.match(r'^\d{16}$',              str(jutsu.generate('employer_id', locale='TR')))
     assert re.match(r'^\d{2}-\d{7}$',         str(jutsu.generate('employer_id', locale='US')))
     assert re.match(r'^(\d{8}|SC\d{6}|NI\d{6})$', str(jutsu.generate('employer_id', locale='UK')))
-    assert re.match(r'^HR[AB] \d+$',           str(jutsu.generate('employer_id', locale='DE')))
+    assert re.match(r'^.+ HR[AB] \d+$',        str(jutsu.generate('employer_id', locale='DE')))
     assert re.match(r'^\d{14}$',               str(jutsu.generate('employer_id', locale='FR')))
     assert re.match(r'^\d{13}$',               str(jutsu.generate('employer_id', locale='RU')))
 
