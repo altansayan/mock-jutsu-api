@@ -551,7 +551,8 @@ def main(ctx):
 @click.option('--secret',   default=None,     help='HMAC signing key for signature type (default: ninja)')
 @click.option('--payload',  default=None,     help='Message to sign for signature type (default: mock)')
 @click.option('--format',   'color_format',   default=None, help='Color output format: hex rgb hsl name')
-def generate(data_type, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, merchant, city, words, pattern, dims, nnz, secret, payload, color_format):
+@click.option('--mask',     is_flag=True,     default=False, help='Mask PII/sensitive fields per applicable regulation (PCI DSS, KVKK, GDPR, etc.)')
+def generate(data_type, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, merchant, city, words, pattern, dims, nnz, secret, payload, color_format, mask):
     """Generate mock data.  Example: mockjutsu generate tckn --locale TR"""
     if not data_type:
         click.echo("Error: specify a type. Run 'mockjutsu list' to see all types.")
@@ -578,6 +579,9 @@ def generate(data_type, locale, network, currency, carrier, algorithm, prefix, g
 
     result = jutsu.generate(data_type, locale=locale, network=network,
                             currency=currency, carrier=carrier, algorithm=algorithm, **kwargs)
+    if mask and "ERROR" not in str(result):
+        from mockjutsu.masker import apply_mask
+        result = apply_mask(data_type, result)
     color  = 'red' if "ERROR" in str(result) else 'green'
     click.echo(click.style(str(result), fg=color, bold=True))
 
@@ -733,7 +737,8 @@ def company(locale, count):
 @click.option('--max',       default=None,     help='Maximum value', type=float)
 @click.option('--amount',    default=None,     help='Amount', type=float)
 @click.option('--words',     default=None,     help='Word count', type=int)
-def bulk(data_type, count, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, words):
+@click.option('--mask',      is_flag=True,     default=False, help='Mask PII/sensitive fields per applicable regulation')
+def bulk(data_type, count, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, words, mask):
     """Generate multiple values of the same type.  Example: mockjutsu bulk tckn --count 5"""
     import json
     raw_kwargs = {
@@ -750,6 +755,9 @@ def bulk(data_type, count, locale, network, currency, carrier, algorithm, prefix
     }
     kwargs = {k: v for k, v in raw_kwargs.items() if v is not None and v != ''}
     results = jutsu.bulk(data_type, count=count, locale=locale, **kwargs)
+    if mask:
+        from mockjutsu.masker import apply_mask
+        results = [apply_mask(data_type, r) for r in results]
     click.echo(json.dumps(results, ensure_ascii=False, indent=2))
 
 
@@ -759,7 +767,8 @@ def bulk(data_type, count, locale, network, currency, carrier, algorithm, prefix
 @click.option('--locale', default='TR', help='Locale: TR UK US DE FR RU')
 @click.option('--format', 'fmt', default='json', help='Output format: json csv sql')
 @click.option('--table',  default='records', help='Table name (SQL only)')
-def template(types, count, locale, fmt, table):
+@click.option('--mask',   is_flag=True, default=False, help='Mask PII/sensitive fields per applicable regulation')
+def template(types, count, locale, fmt, table, mask):
     """Combine multiple types into one record.  Example: mockjutsu template nin snils cardtype"""
     import json
     if not types:
@@ -770,6 +779,9 @@ def template(types, count, locale, fmt, table):
         click.echo(jutsu.export(schema, count=count, format=fmt, locale=locale, table=table))
     else:
         records = jutsu.template(schema, count=count, locale=locale)
+        if mask:
+            from mockjutsu.masker import apply_mask
+            records = [{k: apply_mask(k, str(v)) for k, v in rec.items()} for rec in records]
         output  = records[0] if count == 1 else records
         click.echo(json.dumps(output, ensure_ascii=False, indent=2))
 
@@ -780,10 +792,18 @@ def template(types, count, locale, fmt, table):
 @click.option('--locale', default='TR',  help='Locale: TR UK US DE FR RU')
 @click.option('--format', 'fmt', default='json', help='Output format: json csv sql')
 @click.option('--table',  default='records', help='Table name (SQL only)')
-def export_cmd(types, count, locale, fmt, table):
+@click.option('--mask',   is_flag=True, default=False, help='Mask PII/sensitive fields per applicable regulation')
+def export_cmd(types, count, locale, fmt, table, mask):
     """Export records as JSON/CSV/SQL.  Example: mockjutsu export fullname tckn phone --count 5"""
+    import json
     schema = {t: t for t in types}
-    click.echo(jutsu.export(schema, count=count, format=fmt, locale=locale, table=table))
+    if mask and fmt == 'json':
+        records = jutsu.template(schema, count=count, locale=locale)
+        from mockjutsu.masker import apply_mask
+        records = [{k: apply_mask(k, str(v)) for k, v in rec.items()} for rec in records]
+        click.echo(json.dumps(records, ensure_ascii=False, indent=2))
+    else:
+        click.echo(jutsu.export(schema, count=count, format=fmt, locale=locale, table=table))
 
 
 @main.command(name='start-api')

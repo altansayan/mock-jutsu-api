@@ -146,7 +146,8 @@ def test_cli_options_documented_in_reference():
     #   the actual documented flag is '--format' (see cli.py --format/'color_format')
     # --merchant, --city: legacy options kept for backward compatibility, not documented
     _GLOBAL_OPTIONS = {'--locale', '--data-type', '--help',
-                       '--color-format', '--merchant', '--city'}
+                       '--color-format', '--merchant', '--city',
+                       '--mask'}  # universal privacy flag — applies to every type
     custom_options = cli_options - _GLOBAL_OPTIONS
 
     # Flags documented in _REFERENCE extra_params
