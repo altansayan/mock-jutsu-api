@@ -1,0 +1,7 @@
+<p>The <strong>settlement_date</strong> function in mock-jutsu generates trade settlement date: t+1 to t+5 business days from today (yyyy-mm-dd). This generator belongs to the <em>CapMarkets(Trading)</em> category and produces realistic mock dani for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('settlement_date')</code> in Python or <code>mockjutsu generate settlement_date</code> from the CLI to get settlement date mock dani. Rozrobnyky working with CapMarkets(Trading) systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>2026-06-22</code>. The mock-jutsu settlement_date generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic testovi dani as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(settlement_date,)}</code> to generate realistic settlement date values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

@@ -1,0 +1,7 @@
+<p>The <strong>stock_ticker</strong> function in mock-jutsu generates stock ticker symbol: 1–5 uppercase letters (equity identifiers). This generator belongs to the <em>CapMarkets(Trading)</em> category and produces realistic mock veri for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('stock_ticker')</code> in Python or <code>mockjutsu generate stock_ticker</code> from the CLI to get stock ticker mock veri. Geliştiriciler working with CapMarkets(Trading) systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>DHR</code>. The mock-jutsu stock_ticker generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic test verisi as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(stock_ticker,)}</code> to generate realistic stock ticker values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

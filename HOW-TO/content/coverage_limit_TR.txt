@@ -1,0 +1,7 @@
+<p>The <strong>coverage_limit</strong> function in mock-jutsu generates insurance coverage limit: tiered from $10,000 to $5,000,000. This generator belongs to the <em>FinancialExt</em> category and produces realistic mock veri for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('coverage_limit')</code> in Python or <code>mockjutsu generate coverage_limit</code> from the CLI to get coverage limit mock veri. Geliştiriciler working with FinancialExt systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>2000000.00</code>. The mock-jutsu coverage_limit generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic test verisi as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(coverage_limit,)}</code> to generate realistic coverage limit values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

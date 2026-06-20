@@ -1,0 +1,7 @@
+<p>The <strong>payment_reference</strong> function in mock-jutsu generates generic payment reference: payref-yyyymmdd-nnnnn. This generator belongs to the <em>Banking</em> category and produces realistic données mock for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('payment_reference')</code> in Python or <code>mockjutsu generate payment_reference</code> from the CLI to get payment reference données mock. Développeurs working with Banking systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>PAYREF-20260620-79847</code>. The mock-jutsu payment_reference generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic données de test as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(payment_reference,)}</code> to generate realistic payment reference values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

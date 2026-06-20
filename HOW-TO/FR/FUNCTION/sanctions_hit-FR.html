@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>sanctions_hit</strong>
   </nav>
 
-  <div class="article"><p>Contenu non encore généré. Exécutez generate_ai_content.py.</p></div>
+  <div class="article"><p>The <strong>sanctions_hit</strong> function in mock-jutsu generates ofac/un/eu sanctions screening result: true (5% rate) or false (95% rate). This generator belongs to the <em>Compliance</em> category and produces realistic données mock for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('sanctions_hit')</code> in Python or <code>mockjutsu generate sanctions_hit</code> from the CLI to get sanctions hit données mock. Développeurs working with Compliance systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>False</code>. The mock-jutsu sanctions_hit generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic données de test as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(sanctions_hit,)}</code> to generate realistic sanctions hit values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

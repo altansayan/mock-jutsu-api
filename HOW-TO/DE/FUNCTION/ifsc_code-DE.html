@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>ifsc_code</strong>
   </nav>
 
-  <div class="article"><p>Inhalt noch nicht generiert. generate_ai_content.py ausführen.</p></div>
+  <div class="article"><p>The <strong>ifsc_code</strong> function in mock-jutsu generates indian ifsc code: 4-letter bank code + 0 + 6 alphanumeric branch chars. This generator belongs to the <em>Banking</em> category and produces realistic Mock-Daten for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('ifsc_code')</code> in Python or <code>mockjutsu generate ifsc_code</code> from the CLI to get ifsc code Mock-Daten. Entwickler working with Banking systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>BKID0ROZMY5</code>. The mock-jutsu ifsc_code generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic Testdaten as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(ifsc_code,)}</code> to generate realistic ifsc code values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

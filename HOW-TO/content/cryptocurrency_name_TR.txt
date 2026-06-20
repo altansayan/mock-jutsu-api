@@ -1,0 +1,7 @@
+<p>The <strong>cryptocurrency_name</strong> function in mock-jutsu generates cryptocurrency name: bitcoin, ethereum, solana, usdc, cardano, etc. This generator belongs to the <em>Crypto</em> category and produces realistic mock veri for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('cryptocurrency_name')</code> in Python or <code>mockjutsu generate cryptocurrency_name</code> from the CLI to get cryptocurrency name mock veri. Geliştiriciler working with Crypto systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>Tether</code>. The mock-jutsu cryptocurrency_name generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic test verisi as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(cryptocurrency_name,)}</code> to generate realistic cryptocurrency name values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

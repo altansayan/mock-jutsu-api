@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>nsin</strong>
   </nav>
 
-  <div class="article"><p>Контент ещё не сгенерирован. Запустите generate_ai_content.py.</p></div>
+  <div class="article"><p>The <strong>nsin</strong> function in mock-jutsu generates national securities identifying number: cusip (us), sedol (uk), or 9-char alphanumeric. This generator belongs to the <em>CapMarkets(Trading)</em> category and produces realistic mock-данные for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('nsin')</code> in Python or <code>mockjutsu generate nsin --locale US</code> from the CLI to get nsin mock-данные. Разработчики working with CapMarkets(Trading) systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>LFUN8NQBP</code>. The mock-jutsu nsin generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic тестовые данные as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(nsin,)}</code> to generate realistic nsin values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

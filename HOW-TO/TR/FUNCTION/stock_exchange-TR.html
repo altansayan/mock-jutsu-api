@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>stock_exchange</strong>
   </nav>
 
-  <div class="article"><p>İçerik henüz üretilmedi. generate_ai_content.py çalıştırın.</p></div>
+  <div class="article"><p>The <strong>stock_exchange</strong> function in mock-jutsu generates stock exchange full name (locale-aware). This generator belongs to the <em>CapMarkets(Trading)</em> category and produces realistic mock veri for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('stock_exchange')</code> in Python or <code>mockjutsu generate stock_exchange --locale US</code> from the CLI to get stock exchange mock veri. Geliştiriciler working with CapMarkets(Trading) systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>Borsa İstanbul</code>. The mock-jutsu stock_exchange generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic test verisi as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(stock_exchange,)}</code> to generate realistic stock exchange values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

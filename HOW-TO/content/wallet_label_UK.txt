@@ -1,0 +1,7 @@
+<p>The <strong>wallet_label</strong> function in mock-jutsu generates crypto wallet label: hot wallet, cold storage, multi-sig vault, treasury, etc. This generator belongs to the <em>Crypto</em> category and produces realistic mock dani for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('wallet_label')</code> in Python or <code>mockjutsu generate wallet_label</code> from the CLI to get wallet label mock dani. Rozrobnyky working with Crypto systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>Yield Farm</code>. The mock-jutsu wallet_label generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic testovi dani as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(wallet_label,)}</code> to generate realistic wallet label values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

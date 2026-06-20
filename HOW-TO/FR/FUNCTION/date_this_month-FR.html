@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>date_this_month</strong>
   </nav>
 
-  <div class="article"><p>Contenu non encore généré. Exécutez generate_ai_content.py.</p></div>
+  <div class="article"><p>The <strong>date_this_month</strong> function in mock-jutsu generates random date within the current calendar month. This generator belongs to the <em>Datetime</em> category and produces realistic données mock for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('date_this_month')</code> in Python or <code>mockjutsu generate date_this_month</code> from the CLI to get date this month données mock. Développeurs working with Datetime systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>2026-06-17</code>. The mock-jutsu date_this_month generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic données de test as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(date_this_month,)}</code> to generate realistic date this month values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

@@ -1,0 +1,7 @@
+<p>The <strong>uri_path</strong> function in mock-jutsu generates api uri path string (starts with /). This generator belongs to the <em>Web</em> category and produces realistic données mock for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('uri_path')</code> in Python or <code>mockjutsu generate uri_path</code> from the CLI to get uri path données mock. Développeurs working with Web systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>/admin/audit-logs</code>. The mock-jutsu uri_path generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic données de test as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(uri_path,)}</code> to generate realistic uri path values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

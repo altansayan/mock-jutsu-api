@@ -1,0 +1,7 @@
+<p>The <strong>credit_score_model</strong> function in mock-jutsu generates credit scoring model name: fico, vantagescore, transunion, equifax, experian. This generator belongs to the <em>FinancialExt</em> category and produces realistic mock veri for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('credit_score_model')</code> in Python or <code>mockjutsu generate credit_score_model</code> from the CLI to get credit score model mock veri. Geliştiriciler working with FinancialExt systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>TransUnion</code>. The mock-jutsu credit_score_model generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic test verisi as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(credit_score_model,)}</code> to generate realistic credit score model values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

@@ -1,0 +1,7 @@
+<p>The <strong>sar_number_masked</strong> function in mock-jutsu generates fully masked sar number — disclosure prohibited (bsa §5318(g)(2) tipping-off rule). This generator belongs to the <em>Compliance</em> category and produces realistic mock data for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('sar_number_masked')</code> in Python or <code>mockjutsu generate sar_number_masked</code> from the CLI to get sar number masked mock data. Developers working with Compliance systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>****-****-****</code>. The mock-jutsu sar_number_masked generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic test data as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(sar_number_masked,)}</code> to generate realistic sar number masked values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

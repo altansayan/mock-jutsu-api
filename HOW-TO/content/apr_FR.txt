@@ -1,0 +1,7 @@
+<p>The <strong>apr</strong> function in mock-jutsu generates annual percentage rate: realistic consumer credit apr (3.99–29.99%). This generator belongs to the <em>FinancialExt</em> category and produces realistic données mock for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('apr')</code> in Python or <code>mockjutsu generate apr</code> from the CLI to get apr données mock. Développeurs working with FinancialExt systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>15.49</code>. The mock-jutsu apr generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic données de test as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(apr,)}</code> to generate realistic apr values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

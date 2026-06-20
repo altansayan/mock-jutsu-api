@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>consent_id</strong>
   </nav>
 
-  <div class="article"><p>İçerik henüz üretilmedi. generate_ai_content.py çalıştırın.</p></div>
+  <div class="article"><p>The <strong>consent_id</strong> function in mock-jutsu generates regulatory consent identifier: uuid v4 or consent- prefixed string. This generator belongs to the <em>Compliance</em> category and produces realistic mock veri for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('consent_id')</code> in Python or <code>mockjutsu generate consent_id</code> from the CLI to get consent id mock veri. Geliştiriciler working with Compliance systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>8c495cfb-d9f2-47d4-919f-68dfa2a1e1f4</code>. The mock-jutsu consent_id generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic test verisi as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(consent_id,)}</code> to generate realistic consent id values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

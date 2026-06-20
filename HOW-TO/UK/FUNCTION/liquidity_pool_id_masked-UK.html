@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>liquidity_pool_id_masked</strong>
   </nav>
 
-  <div class="article"><p>Content not yet generated. Run generate_ai_content.py first.</p></div>
+  <div class="article"><p>The <strong>liquidity_pool_id_masked</strong> function in mock-jutsu generates masked pool address — first 4 + last 4 hex chars visible (fatf rec. 16 travel rule). This generator belongs to the <em>Crypto</em> category and produces realistic mock dani for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('liquidity_pool_id_masked')</code> in Python or <code>mockjutsu generate liquidity_pool_id_masked</code> from the CLI to get liquidity pool id masked mock dani. Rozrobnyky working with Crypto systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>0xea79...2d3b</code>. The mock-jutsu liquidity_pool_id_masked generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic testovi dani as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(liquidity_pool_id_masked,)}</code> to generate realistic liquidity pool id masked values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

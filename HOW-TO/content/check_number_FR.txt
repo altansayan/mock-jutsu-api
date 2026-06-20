@@ -1,0 +1,7 @@
+<p>The <strong>check_number</strong> function in mock-jutsu generates us check sequence number: 4-digit zero-padded integer. This generator belongs to the <em>Banking</em> category and produces realistic données mock for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('check_number')</code> in Python or <code>mockjutsu generate check_number</code> from the CLI to get check number données mock. Développeurs working with Banking systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>9699</code>. The mock-jutsu check_number generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic données de test as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(check_number,)}</code> to generate realistic check number values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

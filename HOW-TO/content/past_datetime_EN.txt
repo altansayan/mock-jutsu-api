@@ -1,0 +1,7 @@
+<p>The <strong>past_datetime</strong> function in mock-jutsu generates random iso 8601 datetime in the past (up to 5 years ago). This generator belongs to the <em>Datetime</em> category and produces realistic mock data for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('past_datetime')</code> in Python or <code>mockjutsu generate past_datetime</code> from the CLI to get past datetime mock data. Developers working with Datetime systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>2026-04-01T13:30:27</code>. The mock-jutsu past_datetime generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic test data as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(past_datetime,)}</code> to generate realistic past datetime values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

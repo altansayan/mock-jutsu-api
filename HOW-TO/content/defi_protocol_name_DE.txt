@@ -1,0 +1,7 @@
+<p>The <strong>defi_protocol_name</strong> function in mock-jutsu generates defi protocol name: uniswap, aave, compound, curve finance, etc. This generator belongs to the <em>Crypto</em> category and produces realistic Mock-Daten for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('defi_protocol_name')</code> in Python or <code>mockjutsu generate defi_protocol_name</code> from the CLI to get defi protocol name Mock-Daten. Entwickler working with Crypto systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>Balancer</code>. The mock-jutsu defi_protocol_name generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic Testdaten as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(defi_protocol_name,)}</code> to generate realistic defi protocol name values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

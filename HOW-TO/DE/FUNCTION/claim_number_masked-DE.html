@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>claim_number_masked</strong>
   </nav>
 
-  <div class="article"><p>Inhalt noch nicht generiert. generate_ai_content.py ausführen.</p></div>
+  <div class="article"><p>The <strong>claim_number_masked</strong> function in mock-jutsu generates masked claim number — sequence visible for support reference (glba §501 npi). This generator belongs to the <em>Compliance</em> category and produces realistic Mock-Daten for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('claim_number_masked')</code> in Python or <code>mockjutsu generate claim_number_masked</code> from the CLI to get claim number masked Mock-Daten. Entwickler working with Compliance systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>CLM-****-90941</code>. The mock-jutsu claim_number_masked generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic Testdaten as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(claim_number_masked,)}</code> to generate realistic claim number masked values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

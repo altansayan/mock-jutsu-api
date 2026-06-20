@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>premium_amount</strong>
   </nav>
 
-  <div class="article"><p>İçerik henüz üretilmedi. generate_ai_content.py çalıştırın.</p></div>
+  <div class="article"><p>The <strong>premium_amount</strong> function in mock-jutsu generates insurance premium amount: $25.00–$2,500.00 (monthly). This generator belongs to the <em>FinancialExt</em> category and produces realistic mock veri for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('premium_amount')</code> in Python or <code>mockjutsu generate premium_amount</code> from the CLI to get premium amount mock veri. Geliştiriciler working with FinancialExt systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>2126.05</code>. The mock-jutsu premium_amount generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic test verisi as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(premium_amount,)}</code> to generate realistic premium amount values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

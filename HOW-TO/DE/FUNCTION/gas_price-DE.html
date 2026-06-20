@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>gas_price</strong>
   </nav>
 
-  <div class="article"><p>Inhalt noch nicht generiert. generate_ai_content.py ausführen.</p></div>
+  <div class="article"><p>The <strong>gas_price</strong> function in mock-jutsu generates ethereum gas price in gwei — tiered: low (1-30), moderate (30-200), peak (200-5000). This generator belongs to the <em>Crypto</em> category and produces realistic Mock-Daten for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('gas_price')</code> in Python or <code>mockjutsu generate gas_price</code> from the CLI to get gas price Mock-Daten. Entwickler working with Crypto systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>22</code>. The mock-jutsu gas_price generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic Testdaten as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(gas_price,)}</code> to generate realistic gas price values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

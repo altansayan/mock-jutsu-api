@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>forex_pair</strong>
   </nav>
 
-  <div class="article"><p>Inhalt noch nicht generiert. generate_ai_content.py ausführen.</p></div>
+  <div class="article"><p>The <strong>forex_pair</strong> function in mock-jutsu generates foreign exchange currency pair: base/quote using iso 4217 codes. This generator belongs to the <em>CapMarkets(Trading)</em> category and produces realistic Mock-Daten for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('forex_pair')</code> in Python or <code>mockjutsu generate forex_pair</code> from the CLI to get forex pair Mock-Daten. Entwickler working with CapMarkets(Trading) systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>TRY/EUR</code>. The mock-jutsu forex_pair generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic Testdaten as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(forex_pair,)}</code> to generate realistic forex pair values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

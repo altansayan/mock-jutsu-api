@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>figi</strong>
   </nav>
 
-  <div class="article"><p>Contenu non encore généré. Exécutez generate_ai_content.py.</p></div>
+  <div class="article"><p>The <strong>figi</strong> function in mock-jutsu generates financial instrument global identifier (openfigi): 2-letter + g + 8 nsin + 1 luhn check. This generator belongs to the <em>CapMarkets(Trading)</em> category and produces realistic données mock for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('figi')</code> in Python or <code>mockjutsu generate figi</code> from the CLI to get figi données mock. Développeurs working with CapMarkets(Trading) systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>BMGP932Z3KD3</code>. The mock-jutsu figi generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic données de test as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(figi,)}</code> to generate realistic figi values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

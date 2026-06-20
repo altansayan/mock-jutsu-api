@@ -1,0 +1,7 @@
+<p>The <strong>time_only</strong> function in mock-jutsu generates 24-hour time string hh:mm:ss. This generator belongs to the <em>Datetime</em> category and produces realistic données mock for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('time_only')</code> in Python or <code>mockjutsu generate time_only</code> from the CLI to get time only données mock. Développeurs working with Datetime systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>10:54:20</code>. The mock-jutsu time_only generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic données de test as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(time_only,)}</code> to generate realistic time only values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>transaction_description</strong>
   </nav>
 
-  <div class="article"><p>Contenu non encore généré. Exécutez generate_ai_content.py.</p></div>
+  <div class="article"><p>The <strong>transaction_description</strong> function in mock-jutsu generates locale-aware payment/transfer description. This generator belongs to the <em>Banking</em> category and produces realistic données mock for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('transaction_description')</code> in Python or <code>mockjutsu generate transaction_description --locale TR</code> from the CLI to get transaction description données mock. Développeurs working with Banking systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>FAST transferi</code>. The mock-jutsu transaction_description generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic données de test as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(transaction_description,)}</code> to generate realistic transaction description values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

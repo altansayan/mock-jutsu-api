@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>blockchain_network</strong>
   </nav>
 
-  <div class="article"><p>Контент ещё не сгенерирован. Запустите generate_ai_content.py.</p></div>
+  <div class="article"><p>The <strong>blockchain_network</strong> function in mock-jutsu generates blockchain/l2 network name: ethereum, polygon, arbitrum, optimism, base, etc. This generator belongs to the <em>Crypto</em> category and produces realistic mock-данные for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('blockchain_network')</code> in Python or <code>mockjutsu generate blockchain_network</code> from the CLI to get blockchain network mock-данные. Разработчики working with Crypto systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>Cronos</code>. The mock-jutsu blockchain_network generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic тестовые данные as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(blockchain_network,)}</code> to generate realistic blockchain network values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

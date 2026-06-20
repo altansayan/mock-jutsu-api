@@ -186,7 +186,13 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <strong>aml_risk_rating</strong>
   </nav>
 
-  <div class="article"><p>Контент ещё не сгенерирован. Запустите generate_ai_content.py.</p></div>
+  <div class="article"><p>The <strong>aml_risk_rating</strong> function in mock-jutsu generates anti-money laundering risk rating: low, medium, high, critical. This generator belongs to the <em>Compliance</em> category and produces realistic mock-данные for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('aml_risk_rating')</code> in Python or <code>mockjutsu generate aml_risk_rating</code> from the CLI to get aml risk rating mock-данные. Разработчики working with Compliance systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>High</code>. The mock-jutsu aml_risk_rating generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic тестовые данные as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(aml_risk_rating,)}</code> to generate realistic aml risk rating values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p></div>
 
   <div class="terminals">
     <div class="term">

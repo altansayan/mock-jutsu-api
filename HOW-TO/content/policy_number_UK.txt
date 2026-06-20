@@ -1,0 +1,7 @@
+<p>The <strong>policy_number</strong> function in mock-jutsu generates insurance/financial policy number: pol-yyyymmdd-nnnnn. This generator belongs to the <em>Compliance</em> category and produces realistic mock dani for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('policy_number')</code> in Python or <code>mockjutsu generate policy_number</code> from the CLI to get policy number mock dani. Rozrobnyky working with Compliance systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>POL-20260620-41957</code>. The mock-jutsu policy_number generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic testovi dani as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(policy_number,)}</code> to generate realistic policy number values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

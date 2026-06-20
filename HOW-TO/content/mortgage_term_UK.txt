@@ -1,0 +1,7 @@
+<p>The <strong>mortgage_term</strong> function in mock-jutsu generates mortgage loan term in years: 10, 15, 20, 25, or 30. This generator belongs to the <em>FinancialExt</em> category and produces realistic mock dani for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('mortgage_term')</code> in Python or <code>mockjutsu generate mortgage_term</code> from the CLI to get mortgage term mock dani. Rozrobnyky working with FinancialExt systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>30</code>. The mock-jutsu mortgage_term generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic testovi dani as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(mortgage_term,)}</code> to generate realistic mortgage term values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>

@@ -1,0 +1,7 @@
+<p>The <strong>mic</strong> function in mock-jutsu generates iso 10383 market identifier code: 4-letter exchange identifier. This generator belongs to the <em>CapMarkets(Trading)</em> category and produces realistic données mock for testing purposes without touching production systems.</p>
+
+<p>Use <code>jutsu.generate('mic')</code> in Python or <code>mockjutsu generate mic --locale US</code> from the CLI to get mic données mock. Développeurs working with CapMarkets(Trading) systems benefit from this mock generator in unit tests, integration tests, and CI pipelines.</p>
+
+<p>Sample output: <code>XETK</code>. The mock-jutsu mic generator follows real-world format specifications, ensuring that validation logic and downstream parsers behave identically with synthetic données de test as they would with real data.</p>
+
+<p>For JMeter performance tests use <code>${__mockjutsu(mic,)}</code> to generate realistic mic values at scale. mock-jutsu has zero runtime dependencies — all generation happens locally in pure Python, making it safe and fast for any CI environment.</p>
