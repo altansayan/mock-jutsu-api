@@ -266,7 +266,7 @@ class TestGenerateIdentity:
 
     def test_hrb_format(self, runner):
         val = _gen(runner, 'hrb')
-        assert re.match(r'^HR[AB] \d+$', val), f"HRB format: {val}"
+        assert re.match(r'^.+ HR[AB] \d+$', val), f"HRB format: {val}"
 
     def test_rvn_format(self, runner):
         val = _gen(runner, 'rvn')

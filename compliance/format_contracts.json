@@ -386,9 +386,9 @@
     "example": "DE382151345"
   },
   "hrb": {
-    "pattern": "^HR[AB] \\d{4,6}$",
-    "note": "DE Handelsregisternummer: HRA/HRB + number",
-    "example": "HRA 84845"
+    "pattern": "^.+ HR[AB] \\d+$",
+    "note": "DE Handelsregisternummer: court name + HRA/HRB + number (stdnum-compatible)",
+    "example": "Augsburg HRB 12345"
   },
   "rvn": {
     "pattern": "^\\d{2} \\d{6} [A-Z] \\d{4}$",
