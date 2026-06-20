@@ -181,6 +181,80 @@ EXTERNAL_VALIDATORS: dict[str, tuple[str, str]] = {
     # Kuzey Amerika
     "ca_bn":            ("python-stdnum", "stdnum.ca.bn.validate"),
     "wire_routing_number": ("python-stdnum", "stdnum.us.rtn.validate"),
+    # Avrupa (stdnum'da bulunan, önceden atlanmış)
+    "hrb":              ("python-stdnum", "stdnum.de.handelsregisternummer.validate"),
+    # Güneydoğu Asya
+    "my_nric":          ("python-stdnum", "stdnum.my.nric.validate"),
+    # ── Python stdlib doğrulanabilir tipler ──────────────────────────────────
+    # Tarih / Saat
+    "timestamp":        ("Python stdlib", "datetime.datetime.fromtimestamp"),
+    "timestamp_iso":    ("Python stdlib", "datetime.datetime.fromisoformat"),
+    "time_only":        ("Python stdlib", "datetime.time.fromisoformat"),
+    "future_date":      ("Python stdlib", "datetime.date.fromisoformat + > today"),
+    "future_datetime":  ("Python stdlib", "datetime.datetime.fromisoformat + > now"),
+    "past_date":        ("Python stdlib", "datetime.date.fromisoformat + < today"),
+    "past_datetime":    ("Python stdlib", "datetime.datetime.fromisoformat + < now"),
+    "date_between":     ("Python stdlib", "datetime.date.fromisoformat"),
+    "date_this_month":  ("Python stdlib", "datetime.date.fromisoformat + same month"),
+    "date_this_year":   ("Python stdlib", "datetime.date.fromisoformat + same year"),
+    "settlement_date":  ("Python stdlib", "datetime.date.fromisoformat + Mon-Fri weekday"),
+    "timezone":         ("Python stdlib", "zoneinfo.ZoneInfo(tz) no-throw"),
+    # Ağ / URL
+    "url":              ("Python stdlib", "urllib.parse.urlparse scheme+netloc"),
+    "uri_path":         ("Python stdlib", "urllib.parse.urlparse path"),
+    "hostname":         ("Python stdlib", "re.match RFC 1123 label format"),
+    "domain":           ("Python stdlib", "re.match + known TLD"),
+    "slug":             ("Python stdlib", "re.match ^[a-z0-9-]+$"),
+    "tld":              ("Python stdlib", "str alpha-only len 2-6"),
+    "port_number":      ("Python stdlib", "int 0-65535 range"),
+    # Coğrafya
+    "latitude":         ("Python stdlib", "float -90.0 to 90.0"),
+    "longitude":        ("Python stdlib", "float -180.0 to 180.0"),
+    "coordinates":      ("Python stdlib", "lat float -90/90, lon float -180/180"),
+    "country_code":     ("Python stdlib", "ISO 3166-1 alpha-2 set (249 codes)"),
+    # Demografik / Sağlık
+    "blood_type":       ("Python stdlib", "enum {A+,A-,B+,B-,AB+,AB-,O+,O-}"),
+    "bloodtype":        ("Python stdlib", "enum {A+,A-,B+,B-,AB+,AB-,O+,O-}"),
+    "gender":           ("Python stdlib", "enum {M,F,Male,Female,Other,...}"),
+    "age":              ("Python stdlib", "int 0-120 range"),
+    "bmi":              ("Python stdlib", "float 10.0-60.0 range"),
+    "credit_score":     ("Python stdlib", "int 300-850 FICO range"),
+    # Kart / Ödeme
+    "cvv3":             ("Python stdlib", "re.match ^[0-9]{3}$"),
+    "cvv4":             ("Python stdlib", "re.match ^[0-9]{4}$"),
+    "expiry":           ("Python stdlib", "re.match MM/YY + future date"),
+    "expirymonth":      ("Python stdlib", "int or str 01-12"),
+    "expiryyear":       ("Python stdlib", "int >= current year"),
+    "3ds_cavv":         ("Python stdlib", "base64.b64decode + assert len==20"),
+    "3ds_eci":          ("Python stdlib", "enum {00,01,02,05,06,07}"),
+    # Kripto / Blockchain
+    "tx_hash":          ("Python stdlib", "re.match (0x)?[0-9a-fA-F]{64}"),
+    "block_hash":       ("Python stdlib", "re.match (0x)?[0-9a-fA-F]{64}"),
+    "gas_limit":        ("Python stdlib", "int > 21000"),
+    "gas_price":        ("Python stdlib", "int > 0"),
+    "nft_token_id":     ("Python stdlib", "int 0 to 2**256-1"),
+    "quaternion":       ("Python stdlib", "math.isclose(x²+y²+z²+w², 1.0, rel_tol=1e-6)"),
+    # Hash / Güvenlik
+    "hash":             ("Python stdlib", "re.match per algorithm: md5=32, sha256=64, sha512=128 hex"),
+    "api_key":          ("Python stdlib", "re.match ^sk-[A-Za-z0-9]{48}$"),
+    "pin":              ("Python stdlib", "re.match ^[0-9]{4,6}$"),
+    # Türk özel tipleri (kendi Luhn/VKN impl.)
+    "ykn":              ("Python stdlib", "Luhn MOD-10 check (kendi impl., 11-digit 99-prefix)"),
+    "mersis":           ("Python stdlib", "VKN 10-digit checksum (kendi impl.) + 6-digit suffix = 16"),
+    # Gözlemlenebilirlik (format spec, stdlib string check)
+    "prometheus_metrics":    ("Python stdlib", "lines: # HELP, # TYPE, metric value; no trailing space"),
+    "openmetrics_snapshot":  ("Python stdlib", "Prometheus format + mandatory # EOF last line"),
+    "cef_log":               ("Python stdlib", "re.match ^CEF:0\\\\| + 7 pipe-delimited fields"),
+    "mqtt_payload":          ("Python stdlib", "json.loads roundtrip"),
+    # Renk
+    "color":            ("Python stdlib", "re.match hex (#[0-9a-fA-F]{6}) or rgb/hsl/name"),
+    # HTTP
+    "http_status_code": ("Python stdlib", "int in http.HTTPStatus or known set"),
+    "http_method":      ("Python stdlib", "enum {GET,POST,PUT,DELETE,PATCH,HEAD,OPTIONS,TRACE}"),
+    # JWT (PyJWT zaten yüklü — oidc_token testleri var)
+    "jwt":              ("PyJWT", "jwt.decode(token, options={'verify_signature':False})"),
+    "bearertoken":      ("PyJWT", "jwt.decode(token, options={'verify_signature':False})"),
+    "psd2_consent":     ("PyJWT", "jwt.decode(token, options={'verify_signature':False})"),
 }
 
 
@@ -234,6 +308,14 @@ NEEDS_VECTOR_EXTENSION: set[str] = {
     "ifsc_code",          # RBI IFSC format: 4-char bank + 0 + 6-char branch
     "bsb_code",           # AU BSB: bank-branch format, APCA directory
     "mic",                # ISO 10383 — 4-char exchange identifier
+    # Phase 4'ten yükseltilen algoritmik tipler
+    "emv_qr_p2p",         # EMVCo QR QRCPS: CRC-16/EMVCo (poly=0x1021, init=0xFFFF)
+    "emv_qr_atm",         # EMVCo QR ATM: CRC-16/EMVCo checksum
+    "emv_qr_pos",         # EMVCo QR POS: CRC-16/EMVCo checksum
+    "sepa_qr",            # EPC QR: BCD header "BCD\n003\n1\nSCT" zorunlu
+    "ohlcv_candles",      # OHLCV: H>=max(O,C), L<=min(O,C), Open[i]=Close[i-1]
+    "rvn",                # DE Rentenversicherungsnummer: proprietary weighted checksum
+    "sort_code",          # UK sort code: 6-digit NNN-NNN, Pay.UK Vocalink directory format
 }
 
 
