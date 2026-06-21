@@ -1,12 +1,12 @@
-﻿"""
-Mock Jutsu â€” HOW-TO 2.0 Static Site Generator
+"""
+Mock Jutsu — HOW-TO 2.0 Static Site Generator
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 
 Reads cached AI content from HOW-TO/content/{fn}_{lang}.txt
 and generates a full static site:
 
-  HOW-TO/{LANG}/HOW-TO-MockJutsu-{LANG}.html   â† listing page  (6 files)
-  HOW-TO/{LANG}/FUNCTION/{fn}-{LANG}.html        â† detail page (1 per fnÃ—lang)
+  HOW-TO/{LANG}/HOW-TO-MockJutsu-{LANG}.html   ← listing page  (6 files)
+  HOW-TO/{LANG}/FUNCTION/{fn}-{LANG}.html        ← detail page (1 per fn×lang)
 
 Usage:
   python generate_full_docs.py           (all languages)
@@ -31,7 +31,7 @@ _MASKED_TYPES: frozenset[str] = frozenset(_maskers_dict.keys())
 
 CONTENT_DIR = os.path.join(BASE_DIR, "HOW-TO", "content")
 
-# â”€â”€ JMeter category â†’ function key mapping â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── JMeter category → function key mapping ────────────────────────────────────
 _JMETER_FN_MAP = {
     "Identity":          "__mockjutsu_identity",
     "Name":              "__mockjutsu_identity",
@@ -87,7 +87,7 @@ _JMETER_FN_MAP = {
 }
 
 # Types that accept a :qualifier in JMeter syntax: type:qualifier
-# Each entry: fn â†’ (example_qualifier, qualifier_description)
+# Each entry: fn → (example_qualifier, qualifier_description)
 _JMETER_QUALIFIER_MAP: dict[str, tuple[str, str]] = {
     # Financial
     "cardnum":          ("visa",                  "visa|mc|amex|troy|mir|jcb|discover|unionpay|maestro"),
@@ -141,39 +141,39 @@ GITHUB_BASE = "https://altansayan.github.io/mock-jutsu-api/HOW-TO"
 
 LANGS = ["TR", "EN", "UK", "DE", "FR", "RU"]
 
-# â”€â”€ Language UI strings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Language UI strings ────────────────────────────────────────────────────────
 UI = {
     "TR": {
         "lang_attr":    "tr",
-        "flag":         "ğŸ‡¹ğŸ‡·",
+        "flag":         "🇹🇷",
         "title_prefix": "Mock Jutsu",
-        "listing_title":"Mock Jutsu HOW-TO â€” TR Rehberi",
-        "listing_desc": "mock-jutsu ile TÃ¼rkÃ§e mock veri Ã¼retimi. TCKN, IBAN, Kredi KartÄ± ve 230+ tip iÃ§in kapsamlÄ± rehber.",
-        "back_link":    "â† TÃ¼m Fonksiyonlar",
-        "section_cli":  "CLI KullanÄ±mÄ±",
+        "listing_title":"Mock Jutsu HOW-TO — TR Rehberi",
+        "listing_desc": "mock-jutsu ile Türkçe mock veri üretimi. TCKN, IBAN, Kredi Kartı ve 230+ tip için kapsamlı rehber.",
+        "back_link":    "← Tüm Fonksiyonlar",
+        "section_cli":  "CLI Kullanımı",
         "section_py":   "Python API",
         "section_jmeter":"JMeter",
         "section_api":  "REST API",
         "section_params":"Parametreler",
-        "section_related":"Ä°lgili Fonksiyonlar",
+        "section_related":"İlgili Fonksiyonlar",
         "param_name":   "Parametre",
-        "param_values": "DeÄŸerler",
-        "param_desc":   "AÃ§Ä±klama",
+        "param_values": "Değerler",
+        "param_desc":   "Açıklama",
         "badge_locale": "Locale Destekli",
-        "copy_hint":    "Kopyalamak iÃ§in tÄ±kla",
+        "copy_hint":    "Kopyalamak için tıkla",
         "cat_label":    "Kategori",
         "breadcrumb_home": "Mock Jutsu HOW-TO",
-        "no_content":   "Ä°Ã§erik henÃ¼z Ã¼retilmedi. generate_ai_content.py Ã§alÄ±ÅŸtÄ±rÄ±n.",
-        "lang_switch":  "DiÄŸer Diller",
-        "listing_subtitle": "TÃ¼m Fonksiyonlar",
+        "no_content":   "İçerik henüz üretilmedi. generate_ai_content.py çalıştırın.",
+        "lang_switch":  "Diğer Diller",
+        "listing_subtitle": "Tüm Fonksiyonlar",
     },
     "EN": {
         "lang_attr":    "en",
-        "flag":         "ğŸ‡ºğŸ‡¸",
+        "flag":         "🇺🇸",
         "title_prefix": "Mock Jutsu",
-        "listing_title":"Mock Jutsu HOW-TO â€” EN Guide",
+        "listing_title":"Mock Jutsu HOW-TO — EN Guide",
         "listing_desc": "Complete guide to generating mock data with mock-jutsu. SSN, IBAN, Credit Cards and 230+ types.",
-        "back_link":    "â† All Functions",
+        "back_link":    "← All Functions",
         "section_cli":  "CLI Usage",
         "section_py":   "Python API",
         "section_jmeter":"JMeter",
@@ -193,11 +193,11 @@ UI = {
     },
     "UK": {
         "lang_attr":    "en-GB",
-        "flag":         "ğŸ‡¬ğŸ‡§",
+        "flag":         "🇬🇧",
         "title_prefix": "Mock Jutsu",
-        "listing_title":"Mock Jutsu HOW-TO â€” UK Guide",
+        "listing_title":"Mock Jutsu HOW-TO — UK Guide",
         "listing_desc": "Complete guide to generating mock data with mock-jutsu. NIN, IBAN, Credit Cards and 230+ types.",
-        "back_link":    "â† All Functions",
+        "back_link":    "← All Functions",
         "section_cli":  "CLI Usage",
         "section_py":   "Python API",
         "section_jmeter":"JMeter",
@@ -217,11 +217,11 @@ UI = {
     },
     "DE": {
         "lang_attr":    "de",
-        "flag":         "ğŸ‡©ğŸ‡ª",
+        "flag":         "🇩🇪",
         "title_prefix": "Mock Jutsu",
-        "listing_title":"Mock Jutsu HOW-TO â€” DE Handbuch",
-        "listing_desc": "VollstÃ¤ndiges Handbuch zur Mock-Daten-Generierung mit mock-jutsu. IBAN, Steuernummern und 230+ Typen.",
-        "back_link":    "â† Alle Funktionen",
+        "listing_title":"Mock Jutsu HOW-TO — DE Handbuch",
+        "listing_desc": "Vollständiges Handbuch zur Mock-Daten-Generierung mit mock-jutsu. IBAN, Steuernummern und 230+ Typen.",
+        "back_link":    "← Alle Funktionen",
         "section_cli":  "CLI-Verwendung",
         "section_py":   "Python API",
         "section_jmeter":"JMeter",
@@ -231,67 +231,67 @@ UI = {
         "param_name":   "Parameter",
         "param_values": "Werte",
         "param_desc":   "Beschreibung",
-        "badge_locale": "Locale-fÃ¤hig",
+        "badge_locale": "Locale-fähig",
         "copy_hint":    "Zum Kopieren klicken",
         "cat_label":    "Kategorie",
         "breadcrumb_home": "Mock Jutsu HOW-TO",
-        "no_content":   "Inhalt noch nicht generiert. generate_ai_content.py ausfÃ¼hren.",
+        "no_content":   "Inhalt noch nicht generiert. generate_ai_content.py ausführen.",
         "lang_switch":  "Andere Sprachen",
         "listing_subtitle": "Alle Funktionen",
     },
     "FR": {
         "lang_attr":    "fr",
-        "flag":         "ğŸ‡«ğŸ‡·",
+        "flag":         "🇫🇷",
         "title_prefix": "Mock Jutsu",
-        "listing_title":"Mock Jutsu HOW-TO â€” Guide FR",
-        "listing_desc": "Guide complet pour gÃ©nÃ©rer des donnÃ©es fictives avec mock-jutsu. IBAN, numÃ©ros fiscaux et 230+ types.",
-        "back_link":    "â† Toutes les fonctions",
+        "listing_title":"Mock Jutsu HOW-TO — Guide FR",
+        "listing_desc": "Guide complet pour générer des données fictives avec mock-jutsu. IBAN, numéros fiscaux et 230+ types.",
+        "back_link":    "← Toutes les fonctions",
         "section_cli":  "Utilisation CLI",
         "section_py":   "API Python",
         "section_jmeter":"JMeter",
         "section_api":  "REST API",
-        "section_params":"ParamÃ¨tres",
-        "section_related":"Fonctions associÃ©es",
-        "param_name":   "ParamÃ¨tre",
+        "section_params":"Paramètres",
+        "section_related":"Fonctions associées",
+        "param_name":   "Paramètre",
         "param_values": "Valeurs",
         "param_desc":   "Description",
-        "badge_locale": "Locale supportÃ©",
+        "badge_locale": "Locale supporté",
         "copy_hint":    "Cliquer pour copier",
-        "cat_label":    "CatÃ©gorie",
+        "cat_label":    "Catégorie",
         "breadcrumb_home": "Mock Jutsu HOW-TO",
-        "no_content":   "Contenu non encore gÃ©nÃ©rÃ©. ExÃ©cutez generate_ai_content.py.",
+        "no_content":   "Contenu non encore généré. Exécutez generate_ai_content.py.",
         "lang_switch":  "Autres langues",
         "listing_subtitle": "Toutes les fonctions",
     },
     "RU": {
         "lang_attr":    "ru",
-        "flag":         "ğŸ‡·ğŸ‡º",
+        "flag":         "🇷🇺",
         "title_prefix": "Mock Jutsu",
-        "listing_title":"Mock Jutsu HOW-TO â€” Ğ ÑƒĞºĞ¾Ğ²Ğ¾Ğ´ÑÑ‚Ğ²Ğ¾ RU",
-        "listing_desc": "ĞŸĞ¾Ğ»Ğ½Ğ¾Ğµ Ñ€ÑƒĞºĞ¾Ğ²Ğ¾Ğ´ÑÑ‚Ğ²Ğ¾ Ğ¿Ğ¾ Ğ³ĞµĞ½ĞµÑ€Ğ°Ñ†Ğ¸Ğ¸ Ñ„Ğ¸ĞºÑ‚Ğ¸Ğ²Ğ½Ñ‹Ñ… Ğ´Ğ°Ğ½Ğ½Ñ‹Ñ… Ñ mock-jutsu. Ğ˜ĞĞ, IBAN, Ğ±Ğ°Ğ½ĞºĞ¾Ğ²ÑĞºĞ¸Ğµ ĞºĞ°Ñ€Ñ‚Ñ‹ Ğ¸ 230+ Ñ‚Ğ¸Ğ¿Ğ¾Ğ².",
-        "back_link":    "â† Ğ’ÑĞµ Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ğ¸",
-        "section_cli":  "Ğ˜ÑĞ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ CLI",
+        "listing_title":"Mock Jutsu HOW-TO — Руководство RU",
+        "listing_desc": "Полное руководство по генерации фиктивных данных с mock-jutsu. ИНН, IBAN, банковские карты и 230+ типов.",
+        "back_link":    "← Все функции",
+        "section_cli":  "Использование CLI",
         "section_py":   "Python API",
         "section_jmeter":"JMeter",
         "section_api":  "REST API",
-        "section_params":"ĞŸĞ°Ñ€Ğ°Ğ¼ĞµÑ‚Ñ€Ñ‹",
-        "section_related":"ĞŸĞ¾Ñ…Ğ¾Ğ¶Ğ¸Ğµ Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ğ¸",
-        "param_name":   "ĞŸĞ°Ñ€Ğ°Ğ¼ĞµÑ‚Ñ€",
-        "param_values": "Ğ—Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ñ",
-        "param_desc":   "ĞĞ¿Ğ¸ÑĞ°Ğ½Ğ¸Ğµ",
-        "badge_locale": "ĞŸĞ¾Ğ´Ğ´ĞµÑ€Ğ¶ĞºĞ° Locale",
-        "copy_hint":    "ĞĞ°Ğ¶Ğ¼Ğ¸Ñ‚Ğµ Ğ´Ğ»Ñ ĞºĞ¾Ğ¿Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ¸Ñ",
-        "cat_label":    "ĞšĞ°Ñ‚ĞµĞ³Ğ¾Ñ€Ğ¸Ñ",
+        "section_params":"Параметры",
+        "section_related":"Похожие функции",
+        "param_name":   "Параметр",
+        "param_values": "Значения",
+        "param_desc":   "Описание",
+        "badge_locale": "Поддержка Locale",
+        "copy_hint":    "Нажмите для копирования",
+        "cat_label":    "Категория",
         "breadcrumb_home": "Mock Jutsu HOW-TO",
-        "no_content":   "ĞšĞ¾Ğ½Ñ‚ĞµĞ½Ñ‚ ĞµÑ‰Ñ‘ Ğ½Ğµ ÑĞ³ĞµĞ½ĞµÑ€Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½. Ğ—Ğ°Ğ¿ÑƒÑÑ‚Ğ¸Ñ‚Ğµ generate_ai_content.py.",
-        "lang_switch":  "Ğ”Ñ€ÑƒĞ³Ğ¸Ğµ ÑĞ·Ñ‹ĞºĞ¸",
-        "listing_subtitle": "Ğ’ÑĞµ Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ğ¸",
+        "no_content":   "Контент ещё не сгенерирован. Запустите generate_ai_content.py.",
+        "lang_switch":  "Другие языки",
+        "listing_subtitle": "Все функции",
     },
 }
 
 LANG_LABELS = {"TR": "TR", "EN": "EN", "UK": "UK", "DE": "DE", "FR": "FR", "RU": "RU"}
 
-# â”€â”€ Parameter descriptions (locale-agnostic â€” values vary per lang if needed) â”€
+# ── Parameter descriptions (locale-agnostic — values vary per lang if needed) ─
 PARAM_INFO = {
     "--locale":    ("TR|UK|US|DE|FR|RU",  "Region / locale for locale-aware output"),
     "--gender":    ("male|female",          "Filter output by gender"),
@@ -315,396 +315,396 @@ PARAM_INFO = {
     "--end":       ("YYYY-MM-DD",          "End date for date_between"),
     "--count":     ("int",                 "Number of records to generate (default: 10)"),
     "--table":     ("string",              "SQL table name for INSERT statements (default: records)"),
-    "--mask":      ("true | false",        "Return a regulation-compliant masked value (PCI DSS, GDPR, KVKKâ€¦)"),
+    "--mask":      ("true | false",        "Return a regulation-compliant masked value (PCI DSS, GDPR, KVKK…)"),
 }
 
-# â”€â”€ Listing-page extras â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Listing-page extras ────────────────────────────────────────────────────────
 
 TAB_LABELS = {
-    "TR": ("Tam Referans", "HÄ±zlÄ± BaÅŸlangÄ±Ã§", "GÃ¼Ã§lÃ¼ Ã–zellikler", "REST API", "Maskeleme"),
+    "TR": ("Tam Referans", "Hızlı Başlangıç", "Güçlü Özellikler", "REST API", "Maskeleme"),
     "EN": ("Full Reference", "Quick Start",    "Power Features",   "REST API", "Data Masking"),
     "UK": ("Full Reference", "Quick Start",    "Power Features",   "REST API", "Data Masking"),
-    "DE": ("VollstÃ¤ndige Referenz", "Schnellstart", "Leistungsfunktionen", "REST API", "Datenmaskierung"),
-    "FR": ("RÃ©fÃ©rence complÃ¨te", "DÃ©marrage rapide", "FonctionnalitÃ©s", "REST API", "Masquage"),
-    "RU": ("ĞŸĞ¾Ğ»Ğ½Ñ‹Ğ¹ ÑĞ¿Ñ€Ğ°Ğ²Ğ¾Ñ‡Ğ½Ğ¸Ğº", "Ğ‘Ñ‹ÑÑ‚Ñ€Ñ‹Ğ¹ ÑÑ‚Ğ°Ñ€Ñ‚", "Ğ¤ÑƒĞ½ĞºÑ†Ğ¸Ğ¸", "REST API", "ĞœĞ°ÑĞºĞ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ"),
+    "DE": ("Vollständige Referenz", "Schnellstart", "Leistungsfunktionen", "REST API", "Datenmaskierung"),
+    "FR": ("Référence complète", "Démarrage rapide", "Fonctionnalités", "REST API", "Masquage"),
+    "RU": ("Полный справочник", "Быстрый старт", "Функции", "REST API", "Маскирование"),
 }
 
-# â”€â”€ Masking table data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Masking table data ─────────────────────────────────────────────────────────
 # Each entry: (regulation, types_list, masking_rule_TR, masking_rule_EN)
 MASK_TABLE_ROWS: list[tuple[str, str, str, str]] = [
     # PCI DSS
-    ("PCI DSS v4.0 Â§3.4.1 (PAN)",
+    ("PCI DSS v4.0 §3.4.1 (PAN)",
      "cardnum",
-     "BIN(6) + **** + son4  â†’  4155 56** **** 3399",
-     "BIN(6) + **** + last4  â†’  4155 56** **** 3399"),
+     "BIN(6) + **** + son4  →  4155 56** **** 3399",
+     "BIN(6) + **** + last4  →  4155 56** **** 3399"),
     ("PCI DSS SAD (saklanamaz)",
      "cvv3, cvv4, pin, track1_data, track2_data, chip_data, pin_block, pin_block_fmt3, 3ds_cavv, password, password_hash, emv_arqc",
-     "TÃ¼m karakterler â†’ ***",
-     "All characters â†’ ***"),
+     "Tüm karakterler → ***",
+     "All characters → ***"),
     ("PCI DSS (kart meta)",
      "expiry, expirymonth, expiryyear",
-     "expiry â†’ **/**  |  ay/yÄ±l â†’ **",
-     "expiry â†’ **/**  |  month/year â†’ **"),
+     "expiry → **/**  |  ay/yıl → **",
+     "expiry → **/**  |  month/year → **"),
     ("PCI DSS (kart sahibi)",
      "cardowner",
-     "Her kelime: ilk harf + ***  â†’  E*** K***",
-     "Each word: first char + ***  â†’  E*** K***"),
+     "Her kelime: ilk harf + ***  →  E*** K***",
+     "Each word: first char + ***  →  E*** K***"),
     # EMV / ISO 8583
     ("EMV / ISO 8583",
      "emv_atc, emv_iad, iso8583_auth_request, iso8583_auth_response, iso8583_reversal",
-     "EMV atc â†’ **XX  |  iad â†’ ilk4+****+son4  |  ISO DE002 PAN alanÄ± maskelenir",
-     "EMV atc â†’ **XX  |  iad â†’ first4+****+last4  |  ISO DE002 PAN field masked"),
+     "EMV atc → **XX  |  iad → ilk4+****+son4  |  ISO DE002 PAN alanı maskelenir",
+     "EMV atc → **XX  |  iad → first4+****+last4  |  ISO DE002 PAN field masked"),
     # KVKK
     ("KVKK Rehber 2.4 (T.C. Kimlik)",
      "tckn, ykn",
-     "Ä°lk 2 + ******* + son 2  â†’  25*******10",
-     "First 2 + ******* + last 2  â†’  25*******10"),
+     "İlk 2 + ******* + son 2  →  25*******10",
+     "First 2 + ******* + last 2  →  25*******10"),
     ("KVKK (Vergi / SGK)",
      "vkn, taxid, sgk, mersis, insurance_id",
-     "vkn â†’ ilk3+****+son3  |  sgk â†’ orta blok maskelenir  |  mersis â†’ ilk4+****+son4",
-     "vkn â†’ first3+****+last3  |  sgk â†’ middle block masked  |  mersis â†’ first4+****+last4"),
+     "vkn → ilk3+****+son3  |  sgk → orta blok maskelenir  |  mersis → ilk4+****+son4",
+     "vkn → first3+****+last3  |  sgk → middle block masked  |  mersis → first4+****+last4"),
     # GDPR
     ("GDPR Art.5 (e-posta)",
      "email",
-     "Yerel bÃ¶lÃ¼mÃ¼n ilk 2 karakteri + *** @ domain  â†’  al***@mail.com",
-     "First 2 chars of local part + *** @ domain  â†’  al***@mail.com"),
-    ("GDPR Art.5 (doÄŸum tarihi)",
+     "Yerel bölümün ilk 2 karakteri + *** @ domain  →  al***@mail.com",
+     "First 2 chars of local part + *** @ domain  →  al***@mail.com"),
+    ("GDPR Art.5 (doğum tarihi)",
      "birthdate",
-     "YÄ±l gÃ¶rÃ¼nÃ¼r, ay/gÃ¼n gizli  â†’  1990-**-**",
-     "Year visible, month/day hidden  â†’  1990-**-**"),
+     "Yıl görünür, ay/gün gizli  →  1990-**-**",
+     "Year visible, month/day hidden  →  1990-**-**"),
     ("GDPR Art.5 (isim)",
      "firstname, lastname, fullname, patronymic",
-     "Her kelime: ilk harf + ***  â†’  E*** K***",
-     "Each word: first char + ***  â†’  E*** K***"),
-    ("GDPR Art.5 (yaÅŸ)",
+     "Her kelime: ilk harf + ***  →  E*** K***",
+     "Each word: first char + ***  →  E*** K***"),
+    ("GDPR Art.5 (yaş)",
      "age",
-     "TÃ¼m rakamlar â†’ **",
-     "All digits â†’ **"),
+     "Tüm rakamlar → **",
+     "All digits → **"),
     ("GDPR Art.5 (pasaport / ehliyet)",
      "passport, license, mrz_td3, mrz_td1",
-     "Ä°lk 2 + **** + son 2  â†’  P1****67  |  MRZ â†’ orta blok maskelenir",
-     "First 2 + **** + last 2  â†’  P1****67  |  MRZ â†’ middle block masked"),
+     "İlk 2 + **** + son 2  →  P1****67  |  MRZ → orta blok maskelenir",
+     "First 2 + **** + last 2  →  P1****67  |  MRZ → middle block masked"),
     # Phone
     ("E.164 / GDPR (telefon)",
      "phone, msisdn",
-     "Ãœlke kodu + *** *** ** + son2  â†’  +90 *** *** ** 34",
-     "Country code + *** *** ** + last2  â†’  +90 *** *** ** 34"),
+     "Ülke kodu + *** *** ** + son2  →  +90 *** *** ** 34",
+     "Country code + *** *** ** + last2  →  +90 *** *** ** 34"),
     ("GDPR (yerel telefon)",
      "phone_local",
-     "*** + son 2 hane  â†’  ***34",
-     "*** + last 2 digits  â†’  ***34"),
+     "*** + son 2 hane  →  ***34",
+     "*** + last 2 digits  →  ***34"),
     # SEPA/PSD2
     ("SEPA / PSD2 (IBAN)",
      "iban",
-     "Ãœlke(2) + kontrol(2) + **** + son4  â†’  TR12 **** **** **** **** **34",
-     "Country(2) + check(2) + **** + last4  â†’  TR12 **** **** **** **** **34"),
+     "Ülke(2) + kontrol(2) + **** + son4  →  TR12 **** **** **** **** **34",
+     "Country(2) + check(2) + **** + last4  →  TR12 **** **** **** **** **34"),
     # US
     ("US GLBA / IRS (SSN)",
      "ssn, ssn_masked",
-     "***-**-son4  â†’  ***-**-5678",
-     "***-**-last4  â†’  ***-**-5678"),
+     "***-**-son4  →  ***-**-5678",
+     "***-**-last4  →  ***-**-5678"),
     ("US GLBA / IRS (EIN)",
      "ein",
      "**-*****son4",
      "**-*****last4"),
     ("HIPAA (NPI)",
      "npi",
-     "Ä°lk 5 + **** + son 4",
+     "İlk 5 + **** + son 4",
      "First 5 + **** + last 4"),
     # UK
     ("UK HMRC (NIN)",
      "nin",
-     "AB ** ** ** C  â†’  AB 12 34 56 â†’ AB ** ** ** C",
-     "AB ** ** ** C  â†’  AB ** ** ** C"),
+     "AB ** ** ** C  →  AB 12 34 56 → AB ** ** ** C",
+     "AB ** ** ** C  →  AB ** ** ** C"),
     ("UK HMRC (UTR)",
      "utr",
-     "Ä°lk 5 gÃ¶rÃ¼nÃ¼r + *****  â†’  12345*****",
-     "First 5 visible + *****  â†’  12345*****"),
+     "İlk 5 görünür + *****  →  12345*****",
+     "First 5 visible + *****  →  12345*****"),
     ("UK NHS",
      "nhs_number, nhsnumber",
-     "Ä°lk 3 + *** + ***son1  â†’  943 *** ***9",
-     "First 3 + *** + ***last1  â†’  943 *** ***9"),
+     "İlk 3 + *** + ***son1  →  943 *** ***9",
+     "First 3 + *** + ***last1  →  943 *** ***9"),
     ("UK (CRN / PAYE)",
      "crn, paye, sort_code",
-     "crn â†’ ilk2+****+son2  |  paye â†’ ilk4+***+son3  |  sort_code â†’ **-**-**",
-     "crn â†’ first2+****+last2  |  paye â†’ first4+***+last3  |  sort_code â†’ **-**-**"),
+     "crn → ilk2+****+son2  |  paye → ilk4+***+son3  |  sort_code → **-**-**",
+     "crn → first2+****+last2  |  paye → first4+***+last3  |  sort_code → **-**-**"),
     # DE / RU
     ("Almanya (Kimlik / Vergi)",
      "de_idnr, de_stnr, rvn",
-     "Ä°lk 3-4 + **** + son 2-4",
+     "İlk 3-4 + **** + son 2-4",
      "First 3-4 + **** + last 2-4"),
     ("Rusya (INN / SNILS)",
      "inn, inn_individual, snils",
-     "Ä°lk 3 + **** + son 3",
+     "İlk 3 + **** + son 3",
      "First 3 + **** + last 3"),
     # HIPAA health
-    ("HIPAA (saÄŸlÄ±k verisi)",
+    ("HIPAA (sağlık verisi)",
      "icd10, bmi, height, weight, hl7_message, fhir_patient, dicom_uid",
-     "icd10 â†’ rakamlar maskelenir  |  bmi/height/weight â†’ *.* birimleri korunur  |  HL7 alan iÃ§erikleri â†’ ****  |  FHIR isim alanlarÄ± â†’ ***  |  DICOM â†’ ilk3+.*****",
-     "icd10 â†’ digits masked  |  bmi/height/weight â†’ *.* units preserved  |  HL7 field values â†’ ****  |  FHIR name fields â†’ ***  |  DICOM â†’ first3+.*****"),
+     "icd10 → rakamlar maskelenir  |  bmi/height/weight → *.* birimleri korunur  |  HL7 alan içerikleri → ****  |  FHIR isim alanları → ***  |  DICOM → ilk3+.*****",
+     "icd10 → digits masked  |  bmi/height/weight → *.* units preserved  |  HL7 field values → ****  |  FHIR name fields → ***  |  DICOM → first3+.*****"),
     # Telecom
     ("3GPP / GSMA (Telecom)",
      "imei, imei2, iccid, imsi",
-     "IMEI â†’ TAC(8)+****+son2  |  ICCID â†’ IIN(6)+****+son4  |  IMSI â†’ MCC+MNC(5)+****+son4",
-     "IMEI â†’ TAC(8)+****+last2  |  ICCID â†’ IIN(6)+****+last4  |  IMSI â†’ MCC+MNC(5)+****+last4"),
+     "IMEI → TAC(8)+****+son2  |  ICCID → IIN(6)+****+son4  |  IMSI → MCC+MNC(5)+****+son4",
+     "IMEI → TAC(8)+****+last2  |  ICCID → IIN(6)+****+last4  |  IMSI → MCC+MNC(5)+****+last4"),
     # Network
     ("GDPR / RFC 6890 (IP / MAC)",
      "ipv4, public_ip, mac_address",
-     "IPv4 â†’ ilk2 oktet.*.*  â†’  192.168.*.*  |  MAC â†’ ilk3 grup:**:**:**",
-     "IPv4 â†’ first 2 octets.*.*  â†’  192.168.*.*  |  MAC â†’ first 3 groups:**:**:**"),
+     "IPv4 → ilk2 oktet.*.*  →  192.168.*.*  |  MAC → ilk3 grup:**:**:**",
+     "IPv4 → first 2 octets.*.*  →  192.168.*.*  |  MAC → first 3 groups:**:**:**"),
     # Location
     ("GDPR (konum)",
      "latitude, longitude, coordinates",
-     "2 ondalÄ±k basamak gÃ¶rÃ¼nÃ¼r + *****  â†’  41.01*****",
-     "2 decimal places visible + *****  â†’  41.01*****"),
+     "2 ondalık basamak görünür + *****  →  41.01*****",
+     "2 decimal places visible + *****  →  41.01*****"),
     # Commerce / Vehicle
-    ("VIN / AraÃ§ (NHTSA)",
+    ("VIN / Araç (NHTSA)",
      "vin, vehicle",
-     "WMI+VDS(9) + **** + son4  â†’  WBA3A5C5X****3456",
-     "WMI+VDS(9) + **** + last4  â†’  WBA3A5C5X****3456"),
+     "WMI+VDS(9) + **** + son4  →  WBA3A5C5X****3456",
+     "WMI+VDS(9) + **** + last4  →  WBA3A5C5X****3456"),
     ("Plaka (KVKK)",
      "plate",
-     "Åehir kodu + harf[0]+*** + seri  â†’  34 A** 123",
-     "City code + letter[0]+*** + serial  â†’  34 A** 123"),
+     "Şehir kodu + harf[0]+*** + seri  →  34 A** 123",
+     "City code + letter[0]+*** + serial  →  34 A** 123"),
     # Aviation
-    ("IATA (HavacÄ±lÄ±k)",
+    ("IATA (Havacılık)",
      "pnr_code, iata_ticket",
-     "PNR â†’ ilk2+****  |  Bilet â†’ ilk3+****+son3",
-     "PNR â†’ first2+****  |  Ticket â†’ first3+****+last3"),
+     "PNR → ilk2+****  |  Bilet → ilk3+****+son3",
+     "PNR → first2+****  |  Ticket → first3+****+last3"),
     # Financial misc
     ("KVKK / GDPR (finansal)",
      "balance, credit_score",
-     "balance â†’ ****+son2 tam hane+ondalÄ±k  |  credit_score â†’ ilk rakam+**",
-     "balance â†’ ****+last2 integer digits+decimal  |  credit_score â†’ first digit+**"),
+     "balance → ****+son2 tam hane+ondalık  |  credit_score → ilk rakam+**",
+     "balance → ****+last2 integer digits+decimal  |  credit_score → first digit+**"),
     # Auth / Session
-    ("OWASP (oturum / kimlik doÄŸrulama)",
+    ("OWASP (oturum / kimlik doğrulama)",
      "sessionid, deviceid, username, handle",
-     "sessionid/deviceid â†’ ilk8-****-****-****-son12  |  username â†’ ilk2+***+son2  |  handle â†’ @ilk2+***",
-     "sessionid/deviceid â†’ first8-****-****-****-last12  |  username â†’ first2+***+last2  |  handle â†’ @first2+***"),
+     "sessionid/deviceid → ilk8-****-****-****-son12  |  username → ilk2+***+son2  |  handle → @ilk2+***",
+     "sessionid/deviceid → first8-****-****-****-last12  |  username → first2+***+last2  |  handle → @first2+***"),
     # E-Commerce
-    ("Ticaret (sipariÅŸ / kargo)",
+    ("Ticaret (sipariş / kargo)",
      "order_id, tracking_number",
-     "order_id â†’ ilk6+****+son4  |  tracking â†’ ilk4+****+son4",
-     "order_id â†’ first6+****+last4  |  tracking â†’ first4+****+last4"),
+     "order_id → ilk6+****+son4  |  tracking → ilk4+****+son4",
+     "order_id → first6+****+last4  |  tracking → first4+****+last4"),
     # OIDC
     ("OIDC / OAuth 2.0 (token)",
      "oidc_token, oidc_token_set",
-     "token â†’ ilk10+***.son4  |  token_set â†’ token alanlarÄ± maskelenir",
-     "token â†’ first10+***.last4  |  token_set â†’ token fields masked"),
+     "token → ilk10+***.son4  |  token_set → token alanları maskelenir",
+     "token → first10+***.last4  |  token_set → token fields masked"),
     # Crypto
-    ("BIP39 (anÄ±msatÄ±cÄ±)",
+    ("BIP39 (anımsatıcı)",
      "mnemonic",
-     "Ä°lk kelime gÃ¶rÃ¼nÃ¼r + *** *** ... ***",
+     "İlk kelime görünür + *** *** ... ***",
      "First word visible + *** *** ... ***"),
     # PSD2
     ("PSD2 / Open Banking",
      "psd2_consent",
-     "Ä°lk 12 karakter + ***",
+     "İlk 12 karakter + ***",
      "First 12 characters + ***"),
     # SWIFT
     ("SWIFT / ISO 20022",
      "swift_mt103",
-     "IBAN/BIC/ACC alanlarÄ± â†’ CC+****  â†’  IBAN: TR****",
-     "IBAN/BIC/ACC fields â†’ CC+****  â†’  IBAN: TR****"),
+     "IBAN/BIC/ACC alanları → CC+****  →  IBAN: TR****",
+     "IBAN/BIC/ACC fields → CC+****  →  IBAN: TR****"),
     # IntlIDs
     ("Brezilya (CPF / CNPJ)",
      "br_cpf, br_cnpj",
-     "CPF â†’ ilk3+***+***+son2  |  CNPJ â†’ ilk4+****+son4",
-     "CPF â†’ first3+***+***+last2  |  CNPJ â†’ first4+****+last4"),
+     "CPF → ilk3+***+***+son2  |  CNPJ → ilk4+****+son4",
+     "CPF → first3+***+***+last2  |  CNPJ → first4+****+last4"),
     ("Hindistan (PAN / Aadhaar / GSTIN / EPIC)",
      "in_pan, in_aadhaar, in_gstin, in_epic",
-     "PAN â†’ ilk5+****+son1  |  Aadhaar â†’ XXXX XXXX son4  |  GSTIN â†’ eyalet+PAN+****+son2  |  EPIC â†’ ilk3+****+son2",
-     "PAN â†’ first5+****+last1  |  Aadhaar â†’ XXXX XXXX last4  |  GSTIN â†’ state+PAN+****+last2  |  EPIC â†’ first3+****+last2"),
-    ("Ã‡in (RIC)",
+     "PAN → ilk5+****+son1  |  Aadhaar → XXXX XXXX son4  |  GSTIN → eyalet+PAN+****+son2  |  EPIC → ilk3+****+son2",
+     "PAN → first5+****+last1  |  Aadhaar → XXXX XXXX last4  |  GSTIN → state+PAN+****+last2  |  EPIC → first3+****+last2"),
+    ("Çin (RIC)",
      "cn_ric",
-     "BÃ¶lge+yÄ±l (ilk6) + **** + son4",
+     "Bölge+yıl (ilk6) + **** + son4",
      "Area+year (first6) + **** + last4"),
     ("Meksika (CURP / RFC)",
      "mx_curp, mx_rfc",
-     "Ä°lk 4 + orta maskelenir + son 2",
+     "İlk 4 + orta maskelenir + son 2",
      "First 4 + middle masked + last 2"),
-    ("Ä°talya (Codice Fiscale)",
+    ("İtalya (Codice Fiscale)",
      "it_codicefiscale",
-     "Soyad(4) + ** + doÄŸum ay (2) + **** + kontrol",
+     "Soyad(4) + ** + doğum ay (2) + **** + kontrol",
      "Surname(4) + ** + birth month(2) + **** + check"),
-    ("Ä°spanya (DNI / NIE / CCC)",
+    ("İspanya (DNI / NIE / CCC)",
      "es_dni, es_nie, es_ccc",
-     "DNI/NIE â†’ ilk2+****+son2  |  CCC â†’ ilk4+****+son4",
-     "DNI/NIE â†’ first2+****+last2  |  CCC â†’ first4+****+last4"),
-    ("GÃ¼ney Kore (RRN / BRN)",
+     "DNI/NIE → ilk2+****+son2  |  CCC → ilk4+****+son4",
+     "DNI/NIE → first2+****+last2  |  CCC → first4+****+last4"),
+    ("Güney Kore (RRN / BRN)",
      "kr_rrn, kr_brn",
-     "RRN â†’ doÄŸum tarihi(6)-cinsiyet+*****  |  BRN â†’ ilk3+****+son3",
-     "RRN â†’ birthdate(6)-gender+*****  |  BRN â†’ first3+****+last3"),
+     "RRN → doğum tarihi(6)-cinsiyet+*****  |  BRN → ilk3+****+son3",
+     "RRN → birthdate(6)-gender+*****  |  BRN → first3+****+last3"),
     ("Hollanda (BSN)",
      "nl_bsn",
-     "Ä°lk 3 + **** + son 2",
+     "İlk 3 + **** + son 2",
      "First 3 + **** + last 2"),
     ("Polonya (PESEL)",
      "pl_pesel",
-     "Ä°lk 6 (doÄŸum tarihi) + ** + son 2",
+     "İlk 6 (doğum tarihi) + ** + son 2",
      "First 6 (birthdate) + ** + last 2"),
-    ("Ä°sveÃ§ (Personnummer)",
+    ("İsveç (Personnummer)",
      "se_personnummer",
-     "DoÄŸum tarihi(8) + -****",
+     "Doğum tarihi(8) + -****",
      "Birthdate(8) + -****"),
     ("Danimarka (CPR)",
      "dk_cpr",
-     "DoÄŸum tarihi(6) + -****",
+     "Doğum tarihi(6) + -****",
      "Birthdate(6) + -****"),
     ("Finlandiya (HETU)",
      "fi_hetu",
-     "DoÄŸum tarihi(6) + -****",
+     "Doğum tarihi(6) + -****",
      "Birthdate(6) + -****"),
-    ("NorveÃ§ (FÃ¸dselsnummer)",
+    ("Norveç (Fødselsnummer)",
      "no_fodselsnummer",
-     "Ä°lk 6 (doÄŸum tarihi) + ** + son 2",
+     "İlk 6 (doğum tarihi) + ** + son 2",
      "First 6 (birthdate) + ** + last 2"),
     ("Avustralya (ABN / TFN / ACN)",
      "au_abn, au_tfn, au_acn",
-     "Ä°lk 3 + **** + son 2-3",
+     "İlk 3 + **** + son 2-3",
      "First 3 + **** + last 2-3"),
     ("Malezya (NRIC)",
      "my_nric",
-     "Ä°lk 6 (doÄŸum tarihi+bÃ¶lge) + **** + son 4",
+     "İlk 6 (doğum tarihi+bölge) + **** + son 4",
      "First 6 (birthdate+state) + **** + last 4"),
     ("Pakistan (CNIC)",
      "pk_cnic",
-     "Ä°lk 5 + **** + son 2",
+     "İlk 5 + **** + son 2",
      "First 5 + **** + last 2"),
     ("Japonya (CN / IN)",
      "jp_cn, jp_in",
-     "Ä°lk 4 + **** + son 4",
+     "İlk 4 + **** + son 4",
      "First 4 + **** + last 4"),
     ("Singapur (UEN)",
      "sg_uen",
-     "Ä°lk 4 + orta maskelenir + son 2",
+     "İlk 4 + orta maskelenir + son 2",
      "First 4 + middle masked + last 2"),
     ("Tayland (PIN / TIN)",
      "th_pin, th_tin",
-     "Ä°lk 4 + **** + son 4",
+     "İlk 4 + **** + son 4",
      "First 4 + **** + last 4"),
-    ("GÃ¼ney Afrika (IDNR)",
+    ("Güney Afrika (IDNR)",
      "za_idnr",
-     "Ä°lk 6 (doÄŸum tarihi) + *** + son 3",
+     "İlk 6 (doğum tarihi) + *** + son 3",
      "First 6 (birthdate) + *** + last 3"),
     ("Kanada (BN)",
      "ca_bn",
-     "Ä°lk 3 + **** + son 2",
+     "İlk 3 + **** + son 2",
      "First 3 + **** + last 2"),
     ("Yeni Zelanda (IRD)",
      "nz_ird",
-     "Ä°lk 3 + **** + son 2",
+     "İlk 3 + **** + son 2",
      "First 3 + **** + last 2"),
     ("Arjantin (CUIT / DNI)",
      "ar_cuit, ar_dni",
-     "Ä°lk 2-4 + orta maskelenir + son 2",
+     "İlk 2-4 + orta maskelenir + son 2",
      "First 2-4 + middle masked + last 2"),
-    ("Åili (RUT)",
+    ("Şili (RUT)",
      "cl_rut",
-     "Ä°lk 3 + **** + son 2",
+     "İlk 3 + **** + son 2",
      "First 3 + **** + last 2"),
     ("Kolombiya (NIT)",
      "co_nit",
-     "Ä°lk 3 + **** + son 3",
+     "İlk 3 + **** + son 3",
      "First 3 + **** + last 3"),
-    ("Ä°srail (IDNR)",
+    ("İsrail (IDNR)",
      "il_idnr",
-     "Ä°lk 3 + **** + son 2",
+     "İlk 3 + **** + son 2",
      "First 3 + **** + last 2"),
     ("Romanya (CNP / CUI)",
      "ro_cnp, ro_cui",
-     "CNP â†’ ilk4+****+son3  |  CUI â†’ ilk4+****+son3",
-     "CNP â†’ first4+****+last3  |  CUI â†’ first4+****+last3"),
-    ("HÄ±rvatistan (OIB)",
+     "CNP → ilk4+****+son3  |  CUI → ilk4+****+son3",
+     "CNP → first4+****+last3  |  CUI → first4+****+last3"),
+    ("Hırvatistan (OIB)",
      "hr_oib",
-     "Ä°lk 4 + **** + son 3",
+     "İlk 4 + **** + son 3",
      "First 4 + **** + last 3"),
     ("Bulgaristan (EGN)",
      "bg_egn",
-     "DoÄŸum tarihi(6) + ** + son 2",
+     "Doğum tarihi(6) + ** + son 2",
      "Birthdate(6) + ** + last 2"),
     ("Litvanya (Asmens kodas)",
      "lt_asmens",
-     "Ä°lk 5 + **** + son 2",
+     "İlk 5 + **** + son 2",
      "First 5 + **** + last 2"),
     ("Estonya (IK)",
      "ee_ik",
-     "Ä°lk 5 + **** + son 2",
+     "İlk 5 + **** + son 2",
      "First 5 + **** + last 2"),
     ("Portekiz (CC)",
      "pt_cc",
-     "Ä°lk 4 + **** + son 3",
+     "İlk 4 + **** + son 3",
      "First 4 + **** + last 3"),
-    ("MÄ±sÄ±r (TIN)",
+    ("Mısır (TIN)",
      "eg_tn",
-     "Ä°lk 3 + **** + son 2",
+     "İlk 3 + **** + son 2",
      "First 3 + **** + last 2"),
     # Pre-masked types
-    ("Ã–n-maskeli tipler (_masked varyantlar)",
+    ("Ön-maskeli tipler (_masked varyantlar)",
      "tckn_masked, ssn_masked, account_number_masked, micr_line_masked, transaction_description_masked, check_number_masked, payment_reference_masked, credit_limit_masked, mortgage_rate_masked, premium_amount_masked, portfolio_id_masked, sar_number_masked, policy_number_masked, claim_number_masked, ubo_ownership_percentage_masked, consent_id_masked, liquidity_pool_id_masked",
-     "Zaten maskeli Ã¼retilir â€” --mask bayraÄŸÄ± etkisizdir",
-     "Generated pre-masked â€” --mask flag has no additional effect"),
+     "Zaten maskeli üretilir — --mask bayrağı etkisizdir",
+     "Generated pre-masked — --mask flag has no additional effect"),
 ]
 
 MASK_TAB_TITLE = {
-    "TR": "Maskeleme StandartlarÄ±",
+    "TR": "Maskeleme Standartları",
     "EN": "Data Masking Standards",
     "UK": "Data Masking Standards",
     "DE": "Datenmaskierungsstandards",
     "FR": "Standards de masquage",
-    "RU": "Ğ¡Ñ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ñ‹ Ğ¼Ğ°ÑĞºĞ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ¸Ñ",
+    "RU": "Стандарты маскирования",
 }
 MASK_TAB_INTRO = {
     "TR": (
-        "<p>Mock Jutsu'nun <code>--mask</code> bayraÄŸÄ±, Ã¼retilen deÄŸerleri regÃ¼lasyon uyumlu biÃ§imde maskeler. "
-        "AÅŸaÄŸÄ±daki tablo, hangi fonksiyonun hangi regÃ¼lasyona gÃ¶re nasÄ±l maskelendiÄŸini gÃ¶sterir.</p>"
-        "<p><strong>KullanÄ±m:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;Â·&nbsp; "
-        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;Â·&nbsp; "
+        "<p>Mock Jutsu'nun <code>--mask</code> bayrağı, üretilen değerleri regülasyon uyumlu biçimde maskeler. "
+        "Aşağıdaki tablo, hangi fonksiyonun hangi regülasyona göre nasıl maskelendiğini gösterir.</p>"
+        "<p><strong>Kullanım:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;·&nbsp; "
+        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;·&nbsp; "
         "<code>GET /generate/cardnum?mask=true</code></p>"
     ),
     "EN": (
         "<p>Mock Jutsu's <code>--mask</code> flag returns regulation-compliant masked values. "
         "The table below shows which function is masked according to which regulation and how.</p>"
-        "<p><strong>Usage:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;Â·&nbsp; "
-        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;Â·&nbsp; "
+        "<p><strong>Usage:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;·&nbsp; "
+        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;·&nbsp; "
         "<code>GET /generate/cardnum?mask=true</code></p>"
     ),
     "UK": (
         "<p>Mock Jutsu's <code>--mask</code> flag returns regulation-compliant masked values. "
         "The table below shows which function is masked according to which regulation and how.</p>"
-        "<p><strong>Usage:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;Â·&nbsp; "
-        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;Â·&nbsp; "
+        "<p><strong>Usage:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;·&nbsp; "
+        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;·&nbsp; "
         "<code>GET /generate/cardnum?mask=true</code></p>"
     ),
     "DE": (
-        "<p>Das <code>--mask</code>-Flag von Mock Jutsu gibt regulierungskonforme maskierte Werte zurÃ¼ck. "
-        "Die folgende Tabelle zeigt, welche Funktion gemÃ¤ÃŸ welcher Regulierung wie maskiert wird.</p>"
-        "<p><strong>Verwendung:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;Â·&nbsp; "
-        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;Â·&nbsp; "
+        "<p>Das <code>--mask</code>-Flag von Mock Jutsu gibt regulierungskonforme maskierte Werte zurück. "
+        "Die folgende Tabelle zeigt, welche Funktion gemäß welcher Regulierung wie maskiert wird.</p>"
+        "<p><strong>Verwendung:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;·&nbsp; "
+        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;·&nbsp; "
         "<code>GET /generate/cardnum?mask=true</code></p>"
     ),
     "FR": (
-        "<p>Le flag <code>--mask</code> de Mock Jutsu retourne des valeurs masquÃ©es conformes aux rÃ©glementations. "
-        "Le tableau ci-dessous montre quelle fonction est masquÃ©e selon quelle rÃ©glementation et comment.</p>"
-        "<p><strong>Utilisation&nbsp;:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;Â·&nbsp; "
-        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;Â·&nbsp; "
+        "<p>Le flag <code>--mask</code> de Mock Jutsu retourne des valeurs masquées conformes aux réglementations. "
+        "Le tableau ci-dessous montre quelle fonction est masquée selon quelle réglementation et comment.</p>"
+        "<p><strong>Utilisation&nbsp;:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;·&nbsp; "
+        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;·&nbsp; "
         "<code>GET /generate/cardnum?mask=true</code></p>"
     ),
     "RU": (
-        "<p>Ğ¤Ğ»Ğ°Ğ³ <code>--mask</code> Ğ² Mock Jutsu Ğ²Ğ¾Ğ·Ğ²Ñ€Ğ°Ñ‰Ğ°ĞµÑ‚ Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ñ, Ğ·Ğ°Ğ¼Ğ°ÑĞºĞ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ½Ñ‹Ğµ Ğ² ÑĞ¾Ğ¾Ñ‚Ğ²ĞµÑ‚ÑÑ‚Ğ²Ğ¸Ğ¸ Ñ Ñ€ĞµĞ³ÑƒĞ»ÑÑ†Ğ¸ÑĞ¼Ğ¸. "
-        "Ğ’ Ñ‚Ğ°Ğ±Ğ»Ğ¸Ñ†Ğµ Ğ½Ğ¸Ğ¶Ğµ Ğ¿Ğ¾ĞºĞ°Ğ·Ğ°Ğ½Ğ¾, ĞºĞ°ĞºĞ°Ñ Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ñ Ğ¼Ğ°ÑĞºĞ¸Ñ€ÑƒĞµÑ‚ÑÑ, Ğ¿Ğ¾ ĞºĞ°ĞºĞ¾Ğ¹ Ñ€ĞµĞ³ÑƒĞ»ÑÑ†Ğ¸Ğ¸ Ğ¸ ĞºĞ°Ğº.</p>"
-        "<p><strong>Ğ˜ÑĞ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;Â·&nbsp; "
-        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;Â·&nbsp; "
+        "<p>Флаг <code>--mask</code> в Mock Jutsu возвращает значения, замаскированные в соответствии с регуляциями. "
+        "В таблице ниже показано, какая функция маскируется, по какой регуляции и как.</p>"
+        "<p><strong>Использование:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;·&nbsp; "
+        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;·&nbsp; "
         "<code>GET /generate/cardnum?mask=true</code></p>"
     ),
 }
 MASK_COL_HEADERS = {
-    "TR": ("RegÃ¼lasyon", "Tipler", "Maskeleme KuralÄ±"),
+    "TR": ("Regülasyon", "Tipler", "Maskeleme Kuralı"),
     "EN": ("Regulation", "Types", "Masking Rule"),
     "UK": ("Regulation", "Types", "Masking Rule"),
     "DE": ("Regulierung", "Typen", "Maskierungsregel"),
-    "FR": ("RÃ©glementation", "Types", "RÃ¨gle de masquage"),
-    "RU": ("Ğ ĞµĞ³ÑƒĞ»ÑÑ†Ğ¸Ñ", "Ğ¢Ğ¸Ğ¿Ñ‹", "ĞŸÑ€Ğ°Ğ²Ğ¸Ğ»Ğ¾ Ğ¼Ğ°ÑĞºĞ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ¸Ñ"),
+    "FR": ("Réglementation", "Types", "Règle de masquage"),
+    "RU": ("Регуляция", "Типы", "Правило маскирования"),
 }
 
 HEADER_ENGINE = {
@@ -712,8 +712,8 @@ HEADER_ENGINE = {
     "EN": "The Ultimate Algorithmic Mock Data Engine",
     "UK": "The Ultimate Algorithmic Mock Data Engine",
     "DE": "Die Ultimative Mock-Daten-Engine",
-    "FR": "Le Moteur de DonnÃ©es Fictives Algorithmiques",
-    "RU": "ĞœĞ°ĞºÑĞ¸Ğ¼Ğ°Ğ»ÑŒĞ½Ñ‹Ğ¹ Ğ”Ğ²Ğ¸Ğ¶Ğ¾Ğº ĞœĞ¾Ğº-Ğ”Ğ°Ğ½Ğ½Ñ‹Ñ…",
+    "FR": "Le Moteur de Données Fictives Algorithmiques",
+    "RU": "Максимальный Движок Мок-Данных",
 }
 
 HEADER_LISTING_TITLE = {
@@ -722,14 +722,14 @@ HEADER_LISTING_TITLE = {
     "UK": "Mock Jutsu &mdash; UK Guide",
     "DE": "Mock Jutsu &mdash; DE Handbuch",
     "FR": "Mock Jutsu &mdash; Guide FR",
-    "RU": "Mock Jutsu &mdash; Ğ ÑƒĞºĞ¾Ğ²Ğ¾Ğ´ÑÑ‚Ğ²Ğ¾ RU",
+    "RU": "Mock Jutsu &mdash; Руководство RU",
 }
 
 QS_LOCALE_INFO = {
     "TR": {
         "locale": "TR", "card_net": "troy",
         "profile_title": "TR Kimlik Profili",
-        "fintech_title": "TR Fintech Ã–rneÄŸi",
+        "fintech_title": "TR Fintech Örneği",
         "profile_code": (
             "p = jutsu.profile(locale='TR')\n"
             "# tckn, firstname, lastname,\n"
@@ -791,7 +791,7 @@ QS_LOCALE_INFO = {
     },
     "DE": {
         "locale": "DE", "card_net": "visa",
-        "profile_title": "DE IdentitÃ¤tsprofil",
+        "profile_title": "DE Identitätsprofil",
         "fintech_title": "DE Fintech-Beispiel",
         "profile_code": (
             "p = jutsu.profile(locale='DE')\n"
@@ -812,7 +812,7 @@ QS_LOCALE_INFO = {
     },
     "FR": {
         "locale": "FR", "card_net": "visa",
-        "profile_title": "Profil identitÃ© FR",
+        "profile_title": "Profil identité FR",
         "fintech_title": "Exemple Fintech FR",
         "profile_code": (
             "p = jutsu.profile(locale='FR')\n"
@@ -832,8 +832,8 @@ QS_LOCALE_INFO = {
     },
     "RU": {
         "locale": "RU", "card_net": "mir",
-        "profile_title": "ĞŸÑ€Ğ¾Ñ„Ğ¸Ğ»ÑŒ Ğ¸Ğ´ĞµĞ½Ñ‚Ğ¸Ñ„Ğ¸ĞºĞ°Ñ†Ğ¸Ğ¸ RU",
-        "fintech_title": "ĞŸÑ€Ğ¸Ğ¼ĞµÑ€ Fintech RU",
+        "profile_title": "Профиль идентификации RU",
+        "fintech_title": "Пример Fintech RU",
         "profile_code": (
             "p = jutsu.profile(locale='RU')\n"
             "# inn, firstname, lastname,\n"
@@ -854,22 +854,22 @@ QS_LOCALE_INFO = {
 }
 
 QS_INSTALL_LABELS = {
-    "TR": ("Kurulum",         "GeliÅŸtirici Kurulumu"),
+    "TR": ("Kurulum",         "Geliştirici Kurulumu"),
     "EN": ("Install",         "Developer Setup"),
     "UK": ("Install",         "Developer Setup"),
     "DE": ("Installation",    "Entwickler-Setup"),
-    "FR": ("Installation",    "Configuration dÃ©veloppeur"),
-    "RU": ("Ğ£ÑÑ‚Ğ°Ğ½Ğ¾Ğ²ĞºĞ°",       "ĞĞ°ÑÑ‚Ñ€Ğ¾Ğ¹ĞºĞ° Ñ€Ğ°Ğ·Ñ€Ğ°Ğ±Ğ¾Ñ‚Ñ‡Ğ¸ĞºĞ°"),
+    "FR": ("Installation",    "Configuration développeur"),
+    "RU": ("Установка",       "Настройка разработчика"),
 }
 
 LISTING_EXTRA_CSS = """
-/* â”€â”€ Listing header extras â”€â”€ */
+/* ── Listing header extras ── */
 .lhdr-engine{font-size:1.1rem;color:#cbd5e1;font-weight:500;margin-bottom:.75rem}
 .lhdr-stats{font-size:.95rem;color:#94a3b8;display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;margin:.25rem 0 1.25rem}
 .lhdr-devinfo{font-size:.85rem;color:#64748b;margin-top:1.25rem}
 .linkedin-link{display:flex;align-items:center;gap:.5rem;color:#f8fafc;text-decoration:none;font-weight:600;background:rgba(255,255,255,.05);padding:.55rem 1.1rem;border-radius:99px;transition:all .2s;border:1px solid rgba(255,255,255,.1);font-size:.9rem}
 .linkedin-link:hover{background:rgba(10,102,194,.25);transform:translateY(-2px);border-color:rgba(10,102,194,.4)}
-/* â”€â”€ Tabs â”€â”€ */
+/* ── Tabs ── */
 .tabs{display:flex;justify-content:center;background:#fff;border-bottom:1px solid #e2e8f0;padding:0 1rem;gap:1.25rem;position:sticky;top:0;z-index:100;box-shadow:0 4px 6px -1px rgba(0,0,0,.05);flex-wrap:wrap}
 .tab{padding:1rem .9rem;cursor:pointer;font-weight:600;color:#64748b;border-bottom:3px solid transparent;transition:all .2s;font-size:.92rem;white-space:nowrap}
 .tab:hover{color:#3b82f6}
@@ -877,7 +877,7 @@ LISTING_EXTRA_CSS = """
 .tab-section{display:none}
 .tab-section.active{display:block;animation:fadeIn .35s ease-out}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-/* â”€â”€ QS / Power cards â”€â”€ */
+/* ── QS / Power cards ── */
 .stitle{font-size:1.4rem;font-weight:700;margin-bottom:2rem;color:#0f172a;padding-left:14px;border-left:5px solid #3b82f6;letter-spacing:-.02em}
 .qs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.75rem;margin-bottom:2rem}
 .qs-card{background:#fff;border-radius:12px;padding:1.75rem;box-shadow:0 1px 3px rgba(0,0,0,.05);border:1px solid #e2e8f0;transition:transform .2s,box-shadow .2s}
@@ -887,7 +887,7 @@ LISTING_EXTRA_CSS = """
 .qs-card pre{background:#0f172a;color:#f8fafc;padding:.9rem 1rem;border-radius:6px;font-size:.81rem;overflow-x:auto;line-height:1.65;white-space:pre-wrap;font-family:'JetBrains Mono',monospace;margin:0}
 """
 
-# â”€â”€ Related functions by category â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Related functions by category ─────────────────────────────────────────────
 def build_related_map():
     cat_map: dict[str, list[str]] = {}
     for r in _REFERENCE:
@@ -901,7 +901,7 @@ def build_related_map():
 CAT_RELATED = build_related_map()
 
 
-# â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Helpers ───────────────────────────────────────────────────────────────────
 def get_functions():
     return [r for r in _REFERENCE if r[0].strip() and not r[0].strip().startswith("--")]
 
@@ -916,9 +916,9 @@ def read_content(fn: str, lang: str) -> str:
 
 def parse_extra_params(extra: str) -> list[tuple[str, str | None]]:
     """Returns [(flag, inline_values_or_None), ...]
-    e.g. '--format (json|csv|sql)' â†’ [('--format', 'json|csv|sql')]
-         '--count (int)'           â†’ [('--count',  'int')]
-         '--locale'                â†’ [('--locale',  None)]
+    e.g. '--format (json|csv|sql)' → [('--format', 'json|csv|sql')]
+         '--count (int)'           → [('--count',  'int')]
+         '--locale'                → [('--locale',  None)]
     """
     if not extra or extra == "-":
         return []
@@ -948,13 +948,13 @@ def listing_rel_path(lang: str) -> str:
     return os.path.join(OUT_DIR, lang, f"HOW-TO-MockJutsu-{lang}.html")
 
 
-# â”€â”€ CSS (shared across all pages) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── CSS (shared across all pages) ─────────────────────────────────────────────
 BASE_CSS = """
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e293b;line-height:1.6;-webkit-font-smoothing:antialiased}
 
-/* â”€â”€ Header â”€â”€ */
+/* ── Header ── */
 .header{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#fff;padding:3.5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
 .header::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#3b82f6,#8b5cf6,#ec4899)}
 .header h1{font-size:2.2rem;font-weight:800;letter-spacing:-0.025em;background:linear-gradient(to right,#fff,#cbd5e1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem}
@@ -965,21 +965,21 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .badge-cat{display:inline-block;padding:.25rem .75rem;border-radius:6px;font-size:.75rem;font-weight:700;background:#1e40af;color:#bfdbfe;margin-left:.5rem;vertical-align:middle}
 .badge-locale{display:inline-block;padding:.2rem .6rem;border-radius:6px;font-size:.72rem;font-weight:700;background:#065f46;color:#a7f3d0;margin-left:.4rem;vertical-align:middle}
 
-/* â”€â”€ Layout â”€â”€ */
+/* ── Layout ── */
 .container{max-width:960px;margin:0 auto;padding:2rem 1.5rem}
 
-/* â”€â”€ Breadcrumb â”€â”€ */
+/* ── Breadcrumb ── */
 .breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.75rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
 .breadcrumb a{color:#3b82f6;text-decoration:none}
 .breadcrumb a:hover{text-decoration:underline}
 .breadcrumb span{color:#94a3b8}
 
-/* â”€â”€ Article â”€â”€ */
+/* ── Article ── */
 .article{background:#fff;border-radius:12px;padding:2rem;border:1px solid #e2e8f0;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .article p{margin-bottom:1rem;color:#334155;line-height:1.75;font-size:.97rem}
 .article p:last-child{margin-bottom:0}
 
-/* â”€â”€ Terminal windows â”€â”€ */
+/* ── Terminal windows ── */
 .terminals{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:1.25rem;margin-bottom:2rem}
 .term{border-radius:12px;overflow:hidden;border:1px solid #30363d;box-shadow:0 4px 12px rgba(0,0,0,.15);display:flex;flex-direction:column;background:#0d1117}
 .term-header{background:#161b22;padding:.65rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid #30363d;flex-shrink:0}
@@ -996,7 +996,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .py{color:#e6edf3}.py::before{content:">>> ";color:#79c0ff}
 .kw{color:#ff7b72}.st{color:#a5d6ff}.fn{color:#d2a8ff}.nb{color:#ffa657}
 
-/* â”€â”€ Params table â”€â”€ */
+/* ── Params table ── */
 .params-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;margin-bottom:2rem;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .params-section h2{font-size:1rem;font-weight:700;color:#0f172a;padding:1rem 1.5rem;border-bottom:1px solid #f1f5f9;background:#f8fafc}
 .params-section table{width:100%;border-collapse:collapse}
@@ -1006,14 +1006,14 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .param-flag{font-family:'JetBrains Mono',monospace;color:#0ea5e9;font-size:.8rem}
 .param-vals{font-family:'JetBrains Mono',monospace;color:#7c3aed;font-size:.78rem}
 
-/* â”€â”€ Related â”€â”€ */
+/* ── Related ── */
 .related{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .related h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
 .related-grid{display:flex;flex-wrap:wrap;gap:.5rem}
 .rel-link{display:inline-block;padding:.3rem .75rem;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#0f172a;text-decoration:none;transition:all .15s}
 .rel-link:hover{background:#dbeafe;border-color:#93c5fd;color:#1d4ed8}
 
-/* â”€â”€ Language switcher â”€â”€ */
+/* ── Language switcher ── */
 .lang-switch{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .lang-switch h3{font-size:.85rem;font-weight:600;color:#64748b;margin-bottom:.65rem}
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
@@ -1021,7 +1021,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
-/* â”€â”€ Listing page â”€â”€ */
+/* ── Listing page ── */
 .cat-section{margin-bottom:2.5rem}
 .cat-header{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem;padding-left:12px;border-left:4px solid #3b82f6}
 .fn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem}
@@ -1031,14 +1031,14 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .fn-card .fn-desc{font-size:.78rem;color:#64748b;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .fn-card .fn-locale{margin-top:.4rem}
 
-/* â”€â”€ Footer â”€â”€ */
+/* ── Footer ── */
 .footer{text-align:center;padding:2rem;color:#94a3b8;font-size:.82rem;margin-top:1rem}
 .footer a{color:#6366f1;text-decoration:none}
 .footer a:hover{text-decoration:underline}
 """
 
 
-# â”€â”€ SEO helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── SEO helpers ───────────────────────────────────────────────────────────────
 def hreflang_tags(fn: str | None = None) -> str:
     tags = []
     for lang in LANGS:
@@ -1057,7 +1057,7 @@ def json_ld_detail(fn: str, cat: str, desc: str, lang: str, ui: dict) -> str:
         "@graph": [
             {
                 "@type": "TechArticle",
-                "headline": f"Mock Jutsu â€” {fn} â€” {lang}",
+                "headline": f"Mock Jutsu — {fn} — {lang}",
                 "description": desc[:160],
                 "url": page_url,
                 "inLanguage": ui["lang_attr"],
@@ -1103,7 +1103,7 @@ def json_ld_listing(lang: str, ui: dict) -> str:
     return json.dumps(schema, ensure_ascii=False, indent=2)
 
 
-# â”€â”€ Head template â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Head template ─────────────────────────────────────────────────────────────
 def html_head(title: str, desc: str, canonical: str, lang: str, ui: dict,
               fn: str | None, extra_ld: str) -> str:
     og_img = "https://altansayan.github.io/mock-jutsu-api/assets/banner.png"
@@ -1134,7 +1134,7 @@ def html_head(title: str, desc: str, canonical: str, lang: str, ui: dict,
 </head>"""
 
 
-# â”€â”€ Header block â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Header block ──────────────────────────────────────────────────────────────
 def html_header(h1: str, subtitle: str, back_url: str, back_label: str) -> str:
     gh_svg = '<svg height="18" viewBox="0 0 16 16" width="18" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.46-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>'
     return f"""<div class="header">
@@ -1147,7 +1147,7 @@ def html_header(h1: str, subtitle: str, back_url: str, back_label: str) -> str:
 </div>"""
 
 
-# â”€â”€ Terminal window â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Terminal window ───────────────────────────────────────────────────────────
 def terminal_window(title: str, content_html: str, window_id: str) -> str:
     return f"""<div class="term">
   <div class="term-header">
@@ -1163,7 +1163,7 @@ def code(line: str, cls: str = "p") -> str:
     return f'<code class="{cls}">{line}</code>'
 
 
-# â”€â”€ Detail page builder â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Detail page builder ───────────────────────────────────────────────────────
 def build_detail_page(r: tuple, lang: str) -> str:
     fn, cat, locale_aware, example, cli_cmd, desc = r[0], r[1], r[2], r[3], r[4], r[5]
     extra_params = r[6] if len(r) > 6 else "-"
@@ -1175,7 +1175,7 @@ def build_detail_page(r: tuple, lang: str) -> str:
         article_html = f"<p>{ui['no_content']}</p>"
 
     # Title & meta
-    page_title = f"Mock Jutsu â€” {fn} | {lang}"
+    page_title = f"Mock Jutsu — {fn} | {lang}"
     meta_desc  = desc[:155] if len(desc) > 155 else desc
     canonical  = detail_url(fn, lang)
 
@@ -1271,7 +1271,7 @@ def build_detail_page(r: tuple, lang: str) -> str:
     locale_qs = "?locale=TR" if has_locale else ""
     qs_sep     = "&" if locale_qs else "?"
     api_content  = code(f"GET /generate/{fn}{locale_qs}")
-    api_content  += code(f'# â†’ {{"type":"{fn}","result":"...","status":"ok"}}', "c")
+    api_content  += code(f'# → {{"type":"{fn}","result":"...","status":"ok"}}', "c")
     api_content  += code("")
     api_content  += code(f"GET /bulk/{fn}?count=10{('&locale=TR' if has_locale else '')}")
     locale_part  = ',"locale":"TR"' if has_locale else ""
@@ -1355,9 +1355,9 @@ def build_detail_page(r: tuple, lang: str) -> str:
 <div class="container">
   <nav class="breadcrumb">
     <a href="{listing_back}">{ui['breadcrumb_home']}</a>
-    <span>â€º</span>
+    <span>›</span>
     <a href="{listing_back}#{cat}">{cat}</a>
-    <span>â€º</span>
+    <span>›</span>
     <strong>{fn}</strong>
   </nav>
 
@@ -1400,7 +1400,7 @@ function copyTerm(id) {{
 </html>"""
 
 
-# â”€â”€ Listing page builder â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Listing page builder ──────────────────────────────────────────────────────
 def build_listing_page(lang: str) -> str:
     ui    = UI[lang]
     funcs = get_functions()
@@ -1439,7 +1439,7 @@ def build_listing_page(lang: str) -> str:
             example       = r[3].replace('"', "&quot;")
             cli_cmd       = r[4].replace('"', "&quot;")
             desc          = r[5]
-            short_desc    = desc[:90] + "â€¦" if len(desc) > 90 else desc
+            short_desc    = desc[:90] + "…" if len(desc) > 90 else desc
             safe_desc     = desc[:120].replace('"', "&quot;")
             locale_badge  = (
                 f'<span class="badge-locale" style="font-size:.65rem">{ui["badge_locale"]}</span>'
@@ -1501,7 +1501,7 @@ def build_listing_page(lang: str) -> str:
         ' 7 2.476v6.759z"/></svg>'
     )
 
-    # â”€â”€ Custom listing header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ── Custom listing header ─────────────────────────────────────────────────
     listing_header = (
         '<div class="header">\n'
         f'  <h1>{HEADER_LISTING_TITLE[lang]}</h1>\n'
@@ -1520,7 +1520,7 @@ def build_listing_page(lang: str) -> str:
         '</div>\n'
     )
 
-    # â”€â”€ Tab navigation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ── Tab navigation ────────────────────────────────────────────────────────
     tab_nav = (
         '<div class="tabs">\n'
         f'  <div class="tab active" onclick="showTab(\'ref\', this)">{t_ref}</div>\n'
@@ -1531,7 +1531,7 @@ def build_listing_page(lang: str) -> str:
         '</div>\n'
     )
 
-    # â”€â”€ Reference tab content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ── Reference tab content ─────────────────────────────────────────────────
     ref_section = (
         '<div class="tab-section active" id="tab-ref">\n'
         '<div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">\n'
@@ -1556,7 +1556,7 @@ def build_listing_page(lang: str) -> str:
         '</div></div>\n'
     )
 
-    # â”€â”€ Pre-build QS/Power/API content blocks (avoids f-string { } escaping) â”€â”€
+    # ── Pre-build QS/Power/API content blocks (avoids f-string { } escaping) ──
     install_user_title, install_dev_title = QS_INSTALL_LABELS[lang]
     qs_install_user = (
         "pip install mock-jutsu\n\n"
@@ -1686,7 +1686,7 @@ def build_listing_page(lang: str) -> str:
             '</div>\n'
         )
 
-    # â”€â”€ Quick Start tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ── Quick Start tab ───────────────────────────────────────────────────────
     qs_section = (
         '<div class="tab-section" id="tab-qs">\n'
         '<div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">\n'
@@ -1701,7 +1701,7 @@ def build_listing_page(lang: str) -> str:
         + '</div></div></div>\n'
     )
 
-    # â”€â”€ Power Features tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ── Power Features tab ────────────────────────────────────────────────────
     power_section = (
         '<div class="tab-section" id="tab-power">\n'
         '<div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">\n'
@@ -1716,7 +1716,7 @@ def build_listing_page(lang: str) -> str:
         + '</div></div></div>\n'
     )
 
-    # â”€â”€ REST API tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ── REST API tab ──────────────────────────────────────────────────────────
     api_section = (
         '<div class="tab-section" id="tab-api">\n'
         '<div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">\n'
@@ -1731,9 +1731,9 @@ def build_listing_page(lang: str) -> str:
         + '</div></div></div>\n'
     )
 
-    # â”€â”€ Maskeleme tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # ── Maskeleme tab ─────────────────────────────────────────────────────────
     _col_reg, _col_typ, _col_rule = MASK_COL_HEADERS[lang]
-    _rule_idx = 3 if lang == "TR" else 4  # TR â†’ index 2 (rule_TR), others â†’ index 3 (rule_EN)
+    _rule_idx = 3 if lang == "TR" else 4  # TR → index 2 (rule_TR), others → index 3 (rule_EN)
     _use_tr_rule = lang == "TR"
     mask_rows_html = ""
     for row in MASK_TABLE_ROWS:
@@ -1898,7 +1898,7 @@ function copyTerm(id) {
     )
 
 
-# â”€â”€ Sitemap â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Sitemap ───────────────────────────────────────────────────────────────────
 def _sitemap_entry(loc: str, priority: str, changefreq: str) -> str:
     import datetime
     today = datetime.date.today().isoformat()
@@ -1939,8 +1939,8 @@ def build_sitemap(funcs: list) -> str:
     return "\n".join(lines)
 
 
-# â”€â”€ Main â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-# â”€â”€ README auto-update â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Main ──────────────────────────────────────────────────────────────────────
+# ── README auto-update ────────────────────────────────────────────────────────
 
 _README_GROUPS = {
     "Identity & Demographic": ["Identity", "Demographic", "Name", "Document", "MRZ"],
@@ -1970,8 +1970,8 @@ def update_readme(readme_path: str, total: int, cat_counts: dict) -> None:
     # Section anchor in nav: #-NNN-supported-data-types
     text = re.sub(r'#-\d+-supported-data-types', f'#{total}-supported-data-types', text)
 
-    # Section title: ## ğŸ“¦ 236 Supported Data Types
-    text = re.sub(r'(## ğŸ“¦ )\d+( Supported Data Types)', rf'\g<1>{total}\g<2>', text)
+    # Section title: ## 📦 236 Supported Data Types
+    text = re.sub(r'(## 📦 )\d+( Supported Data Types)', rf'\g<1>{total}\g<2>', text)
 
     # Footer note: full list of 236 types:
     text = re.sub(r'full list of \d+ types:', f'full list of {total} types:', text)
@@ -1989,13 +1989,13 @@ def update_readme(readme_path: str, total: int, cat_counts: dict) -> None:
     with open(readme_path, "w", encoding="utf-8") as f:
         f.write(text)
 
-    print(f"README:  {total} total types, {passed} passed tests â€” badge updated")
+    print(f"README:  {total} total types, {passed} passed tests — badge updated")
 
 
 def update_index(index_path: str, total: int) -> None:
     with open(index_path, "r", encoding="utf-8") as f:
         text = f.read()
-    # "N+ Types." / "N+ Types," / "N+ Data Types." â€” replace only the number
+    # "N+ Types." / "N+ Types," / "N+ Data Types." — replace only the number
     text = re.sub(r'\d+(\+ (?:Data )?Types[.,])', rf'{total}\1', text)
     with open(index_path, "w", encoding="utf-8") as f:
         f.write(text)
@@ -2014,7 +2014,7 @@ def main():
         funcs = [r for r in funcs if r[0].strip() == args.fn.strip()]
 
     total_pages = len(langs) + len(langs) * len(funcs)
-    print(f"Generating HOW-TO 2.0 â€” {len(funcs)} functions Ã— {len(langs)} languages")
+    print(f"Generating HOW-TO 2.0 — {len(funcs)} functions × {len(langs)} languages")
     print(f"Total HTML pages: {total_pages}")
     print()
 
@@ -2041,7 +2041,7 @@ def main():
             if done % 50 == 0:
                 print(f"[{done:>4}/{total_pages}] {lang}/FUNCTION/{fn}-{lang}.html")
 
-    # Sitemap â€” write to both root and HOW-TO/
+    # Sitemap — write to both root and HOW-TO/
     sitemap_xml = build_sitemap(funcs)
     for sm_path in [
         os.path.join(BASE_DIR, "sitemap.xml"),
@@ -2052,10 +2052,10 @@ def main():
         print(f"Sitemap: {os.path.relpath(sm_path, BASE_DIR)}")
 
     total_urls = 1 + len(langs) + len(funcs) * len(langs)
-    print(f"\nDone â€” {done} pages + {total_urls} sitemap URLs generated.")
+    print(f"\nDone — {done} pages + {total_urls} sitemap URLs generated.")
     print("Open:  HOW-TO/TR/HOW-TO-MockJutsu-TR.html")
 
-    # README â€” only update when generating all languages (not --lang single pass)
+    # README — only update when generating all languages (not --lang single pass)
     if not args.lang:
         data_funcs = [r for r in funcs if r[1] != "Commands"]
         cat_counts: dict = {}
@@ -2074,4 +2074,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

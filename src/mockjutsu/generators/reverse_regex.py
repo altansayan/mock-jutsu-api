@@ -1,22 +1,22 @@
-﻿"""
-mock-jutsu â€” Reverse Regex Generator
+"""
+mock-jutsu — Reverse Regex Generator
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 
 Parses a regex pattern into an AST via Python stdlib sre_parse and generates
-a random string that matches the pattern â€” 100% match guaranteed.
+a random string that matches the pattern — 100% match guaranteed.
 
 Zero external dependencies: uses only sre_parse / sre_constants (stdlib).
 
 Supported constructs:
-  Literals          â€” 'abc', 'A'
-  ANY (dot)         â€” '.' â†’ random printable ASCII (no newline)
-  IN (char class)   â€” '[a-z]', '[A-F0-9]', '[^abc]'
-  Shorthand classes â€” \\d \\D \\w \\W \\s \\S
-  MAX_REPEAT        â€” '+', '*', '?', '{n}', '{n,m}' (unbounded capped at _MAX_UNBOUNDED)
-  SUBPATTERN        â€” '(abc)', '(?:abc)' (capturing & non-capturing groups)
-  BRANCH            â€” 'a|b|c'
-  AT anchors        â€” '^', '$' (produce no characters)
-  NOT_LITERAL       â€” '[^x]' single-char negation
+  Literals          — 'abc', 'A'
+  ANY (dot)         — '.' → random printable ASCII (no newline)
+  IN (char class)   — '[a-z]', '[A-F0-9]', '[^abc]'
+  Shorthand classes — \\d \\D \\w \\W \\s \\S
+  MAX_REPEAT        — '+', '*', '?', '{n}', '{n,m}' (unbounded capped at _MAX_UNBOUNDED)
+  SUBPATTERN        — '(abc)', '(?:abc)' (capturing & non-capturing groups)
+  BRANCH            — 'a|b|c'
+  AT anchors        — '^', '$' (produce no characters)
+  NOT_LITERAL       — '[^x]' single-char negation
 """
 
 try:
@@ -28,9 +28,9 @@ except (ImportError, AttributeError):
 import random
 import string
 
-# â”€â”€ Character pools â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Character pools ───────────────────────────────────────────────────────────
 
-_PRINTABLE = [chr(i) for i in range(33, 127)]   # 33â€“126: visible ASCII (no space, no DEL)
+_PRINTABLE = [chr(i) for i in range(33, 127)]   # 33–126: visible ASCII (no space, no DEL)
 _PRINTABLE_SPACE = [chr(i) for i in range(32, 127)]  # includes space
 _DIGITS = list(string.digits)
 _UPPER = list(string.ascii_uppercase)
@@ -43,7 +43,7 @@ _NON_SPACE = [c for c in _PRINTABLE if True]  # printable non-space chars
 
 _MAX_UNBOUNDED = 8  # cap for *, +, {n,} quantifiers with no upper bound
 
-# â”€â”€ Preset patterns used when no pattern is supplied â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Preset patterns used when no pattern is supplied ─────────────────────────
 
 _PRESETS = [
     (r'\d{3}-\d{4}',          r'\d{3}-\d{4}'),
@@ -59,7 +59,7 @@ _PRESETS = [
 ]
 
 
-# â”€â”€ Core generation functions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Core generation functions ─────────────────────────────────────────────────
 
 def _gen_sequence(nodes) -> str:
     return ''.join(_gen_node(n) for n in nodes)
@@ -98,16 +98,16 @@ def _gen_node(node) -> str:
         return _gen_sequence(random.choice(alts))
 
     if op == SC.AT:
-        return ''  # ^ or $ anchor â€” produces no characters
+        return ''  # ^ or $ anchor — produces no characters
 
     if op == SC.ASSERT:
-        return ''  # lookahead â€” produces no characters
+        return ''  # lookahead — produces no characters
 
     if op == SC.ASSERT_NOT:
-        return ''  # negative lookahead â€” produces no characters
+        return ''  # negative lookahead — produces no characters
 
     if op == SC.GROUPREF:
-        return ''  # backreference â€” skip (complex stateful; out of scope)
+        return ''  # backreference — skip (complex stateful; out of scope)
 
     return ''
 
@@ -168,7 +168,7 @@ def generate_reverse_regex(pattern: str | None = None) -> str:
         return f"ERROR: Invalid pattern '{pattern}'"
 
 
-# â”€â”€ Generator class â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Generator class ───────────────────────────────────────────────────────────
 
 class ReverseRegexGenerator:
     """Generates strings that match a given regular expression pattern."""
@@ -178,4 +178,3 @@ class ReverseRegexGenerator:
             pattern = kwargs.get('pattern', None)
             return generate_reverse_regex(pattern)
         return f"ERROR: Unknown type '{data_type}'"
-

@@ -1,5 +1,5 @@
-﻿"""
-Tests for God Mode #11 â€” Reverse Regex Generator
+"""
+Tests for God Mode #11 — Reverse Regex Generator
 Type: reverse_regex
 
 Core invariant: every generated value MUST match the input pattern.
@@ -13,7 +13,7 @@ from mockjutsu.core import MockJutsuCore
 jutsu = MockJutsuCore()
 
 
-# â”€â”€ Core invariant: generated value matches the pattern â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Core invariant: generated value matches the pattern ───────────────────────
 
 _PATTERNS = [
     r'\d{5}',
@@ -36,7 +36,7 @@ _PATTERNS = [
 
 @pytest.mark.parametrize("pattern", _PATTERNS)
 def test_generated_matches_pattern(pattern):
-    """Generated value must match the input pattern â€” tested 10 times per pattern."""
+    """Generated value must match the input pattern — tested 10 times per pattern."""
     full_pattern = re.compile(f'^(?:{pattern})$')
     for _ in range(10):
         val = jutsu.generate('reverse_regex', pattern=pattern)
@@ -45,7 +45,7 @@ def test_generated_matches_pattern(pattern):
         )
 
 
-# â”€â”€ Default (no pattern) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Default (no pattern) ──────────────────────────────────────────────────────
 
 class TestRegexStringDefault:
     def test_default_returns_string(self):
@@ -67,7 +67,7 @@ class TestRegexStringDefault:
             assert isinstance(val, str) and len(val) > 0
 
 
-# â”€â”€ Specific construct tests â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ── Specific construct tests ──────────────────────────────────────────────────
 
 class TestRegexConstructs:
     def _match(self, pattern, val):
@@ -120,4 +120,3 @@ class TestRegexConstructs:
         for _ in range(20):
             val = jutsu.generate('reverse_regex', pattern=r'^\d{4}$')
             assert re.match(r'^\d{4}$', val), f"Failed: {val!r}"
-

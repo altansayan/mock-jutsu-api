@@ -1,4 +1,4 @@
-﻿"""
+"""
 Mock Jutsu - CLI
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
@@ -28,7 +28,7 @@ def _read_test_count() -> int:
 
 def _fix_utf8_streams() -> None:
     # Force UTF-8 on Windows terminals that default to cp1254/cp1252.
-    # Called only at CLI entry â€” never at import time so pytest capture stays intact.
+    # Called only at CLI entry — never at import time so pytest capture stays intact.
     if hasattr(sys.stdout, "buffer"):
         sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     if hasattr(sys.stderr, "buffer"):
@@ -52,9 +52,9 @@ def _print_banner() -> None:
     body = Text(justify="center")
     for i, line in enumerate(art_lines):
         if i == mid:
-            body.append("âš”  ", style="bold yellow")
+            body.append("⚔  ", style="bold yellow")
             body.append(line, style="bold bright_green")
-            body.append("  âœ¦\n", style="bold yellow")
+            body.append("  ✦\n", style="bold yellow")
         else:
             body.append(line + "\n", style="bold bright_green")
 
@@ -153,15 +153,15 @@ _REFERENCE = [
     ('track1_data'    , 'Hardware'     , False, '%B4532...^MOCKJDOE/MOCKJJOHN^28120...?', 'generate track1_data'  , 'ISO/IEC 7813 Track 1 magnetic stripe (PAN^Name^YYMM+SC). MOCKJ marker in name.', '-'),
     ('track2_data'    , 'Hardware'     , False, ';4532...=2812201...?'  , 'generate track2_data'          , 'ISO/IEC 7813 Track 2 magnetic stripe (PAN=Expiry+ServiceCode+DD).', '-'),
     ('chip_data'      , 'Hardware'     , True , '9F0206000000001000...' , 'generate chip_data --locale TR' , 'Simulated EMV chip (ICC) TLV data. Currency (5F2A) is locale-aware.', '--locale'),
-    ('pin_block'      , 'Hardware'     , False, '041234FFFFFFFFFF'      , 'generate pin_block'            , 'ISO 9564-1 Format 0 PIN block â€” format nibble 0, PIN digits, 0xF fill.', '-'),
-    ('pin_block_fmt3' , 'Hardware'     , False, '3412347293819283'      , 'generate pin_block_fmt3'       , 'ISO 9564-1 Format 3 PIN block â€” format nibble 3, PIN digits, random fill.', '-'),
+    ('pin_block'      , 'Hardware'     , False, '041234FFFFFFFFFF'      , 'generate pin_block'            , 'ISO 9564-1 Format 0 PIN block — format nibble 0, PIN digits, 0xF fill.', '-'),
+    ('pin_block_fmt3' , 'Hardware'     , False, '3412347293819283'      , 'generate pin_block_fmt3'       , 'ISO 9564-1 Format 3 PIN block — format nibble 3, PIN digits, random fill.', '-'),
     ('--Security--'   , ''             , False, ''                      , ''                              , '', ''),
-    ('cef_log'        , 'Security'     , False, 'CEF:0|Cisco|ASA|9.16|...', 'generate cef_log'           , 'ArcSight CEF log line â€” vendor, product, severity 0-10, src/dst IPs.', '-'),
+    ('cef_log'        , 'Security'     , False, 'CEF:0|Cisco|ASA|9.16|...', 'generate cef_log'           , 'ArcSight CEF log line — vendor, product, severity 0-10, src/dst IPs.', '-'),
     ('x509_cert'      , 'Security'     , False, '{"subject":"CN=api...",...}', 'generate x509_cert'      , 'X.509 certificate fields (JSON): subject, issuer, serial, validity, fingerprint, SANs.', '-'),
     ('pcap_hex'       , 'Security'     , False, 'ff ff 08 00 45 00 ...' , 'generate pcap_hex'             , 'Wireshark-style pcap hex dump of a mock Ethernet+IPv4+TCP frame.', '-'),
-    ('password'       , 'Security'     , False, 'T@x9#mPqLz3!'          , 'generate password'             , 'Strong random password (12â€“20 chars): uppercase, lowercase, digit, special.', '-'),
+    ('password'       , 'Security'     , False, 'T@x9#mPqLz3!'          , 'generate password'             , 'Strong random password (12–20 chars): uppercase, lowercase, digit, special.', '-'),
     ('password_hash'  , 'Security'     , False, '$2b$12$...(60 chars)'  , 'generate password_hash'        , 'bcrypt-format password hash: $2b$<cost>$<22-char salt><31-char hash>.', '-'),
-    ('cve_id'         , 'Security'     , False, 'CVE-2024-44487'         , 'generate cve_id'               , 'MITRE CVE identifier: CVE-YYYY-NNNNN (year 2000â€“2025).', '-'),
+    ('cve_id'         , 'Security'     , False, 'CVE-2024-44487'         , 'generate cve_id'               , 'MITRE CVE identifier: CVE-YYYY-NNNNN (year 2000–2025).', '-'),
     ('creditor_ref'   , 'Banking'      , False, 'RF18539007547034'      , 'generate creditor_ref'         , 'ISO 11649 Creditor Reference: RF + 2-digit MOD-97 check + 3-21 alphanumeric chars.', '-'),
     ('account_type'   , 'Banking'      , False, 'Checking'               , 'generate account_type'         , 'Bank account type: Checking, Savings, Current, Business, Money Market, CD, Investment.', '-'),
     ('transaction_type', 'Banking'     , False, 'CREDIT'                 , 'generate transaction_type'     , 'Transaction type code: CREDIT, DEBIT, TRANSFER, REFUND, REVERSAL, CHARGEBACK, FEE, INTEREST.', '-'),
@@ -172,30 +172,30 @@ _REFERENCE = [
     ('micr_line'      , 'Banking'      , False, '|021000021| |12345678| 1042', 'generate micr_line'        , 'US MICR line: |ABA routing| |account| check_number.', '-'),
     ('payment_reference', 'Banking'    , False, 'PAYREF-20241201-54321'  , 'generate payment_reference'    , 'Generic payment reference: PAYREF-YYYYMMDD-NNNNN.', '-'),
     ('wire_routing_number', 'Banking'  , False, '021000021'              , 'generate wire_routing_number'  , '9-digit ABA/Fedwire routing number with MOD-10 checksum.', '-'),
-    ('account_number' , 'Banking'      , False, '1234567890'             , 'generate account_number'       , 'Bank account number: 8â€“12 digit numeric string.', '-'),
+    ('account_number' , 'Banking'      , False, '1234567890'             , 'generate account_number'       , 'Bank account number: 8–12 digit numeric string.', '-'),
     ('--MaskedBanking--', ''           , False, ''                       , ''                              , '', ''),
-    ('account_number_masked'       , 'Banking', False, '****1234'                   , 'generate account_number_masked'       , 'Masked account number â€” last 4 digits visible (PCI-DSS v4.0 Â§3.3).', '-'),
-    ('micr_line_masked'            , 'Banking', False, '|021000021| |****| 1042'    , 'generate micr_line_masked'            , 'MICR line with account segment masked â€” routing number remains visible (public ABA directory).', '-'),
+    ('account_number_masked'       , 'Banking', False, '****1234'                   , 'generate account_number_masked'       , 'Masked account number — last 4 digits visible (PCI-DSS v4.0 §3.3).', '-'),
+    ('micr_line_masked'            , 'Banking', False, '|021000021| |****| 1042'    , 'generate micr_line_masked'            , 'MICR line with account segment masked — routing number remains visible (public ABA directory).', '-'),
     ('transaction_description_masked', 'Banking', True, 'Market all***'             , 'generate transaction_description_masked --locale TR', 'Locale-aware payment description truncated to 10 chars + *** (GDPR Art. 5(1)(c) data minimisation).', '-'),
-    ('check_number_masked'         , 'Banking', False, '**42'                       , 'generate check_number_masked'         , 'Check sequence number with first 2 digits masked â€” last 2 visible.', '-'),
-    ('payment_reference_masked'    , 'Banking', False, 'PAYREF-20241201-*****'      , 'generate payment_reference_masked'    , 'Payment reference with sequence masked â€” date segment visible (GLBA best practice).', '-'),
+    ('check_number_masked'         , 'Banking', False, '**42'                       , 'generate check_number_masked'         , 'Check sequence number with first 2 digits masked — last 2 visible.', '-'),
+    ('payment_reference_masked'    , 'Banking', False, 'PAYREF-20241201-*****'      , 'generate payment_reference_masked'    , 'Payment reference with sequence masked — date segment visible (GLBA best practice).', '-'),
     ('--FinancialExt--', ''           , False, ''                       , ''                              , '', ''),
     ('credit_score_model',  'FinancialExt', False, 'FICO'               , 'generate credit_score_model'   , 'Credit scoring model name: FICO, VantageScore, TransUnion, Equifax, Experian.', '-'),
     ('credit_score_tier',   'FinancialExt', False, 'Good'               , 'generate credit_score_tier'    , 'Credit score tier label: Exceptional, Very Good, Good, Fair, Poor.', '-'),
     ('credit_limit',        'FinancialExt', False, '15000.00'           , 'generate credit_limit'         , 'Credit card/loan limit: tiered distribution from $500 to $100,000.', '-'),
-    ('credit_utilization',  'FinancialExt', False, '34.50'              , 'generate credit_utilization'   , 'Credit utilization ratio as percentage string (0.00â€“100.00).', '-'),
+    ('credit_utilization',  'FinancialExt', False, '34.50'              , 'generate credit_utilization'   , 'Credit utilization ratio as percentage string (0.00–100.00).', '-'),
     ('credit_card_issuer_name', 'FinancialExt', True, 'Pacific Trust',    'generate credit_card_issuer_name --locale US', 'Locale-aware fictional bank/issuer name for the credit card.', '-'),
-    ('apr',                 'FinancialExt', False, '19.99'              , 'generate apr'                  , 'Annual Percentage Rate: realistic consumer credit APR (3.99â€“29.99%).', '-'),
+    ('apr',                 'FinancialExt', False, '19.99'              , 'generate apr'                  , 'Annual Percentage Rate: realistic consumer credit APR (3.99–29.99%).', '-'),
     ('loan_type',           'FinancialExt', False, 'Mortgage'           , 'generate loan_type'            , 'Loan product type: Personal, Mortgage, Auto, Student, Business, Home Equity, Payday.', '-'),
-    ('mortgage_rate',       'FinancialExt', False, '6.75'               , 'generate mortgage_rate'        , 'Mortgage interest rate as percentage string (1.50â€“12.00%).', '-'),
+    ('mortgage_rate',       'FinancialExt', False, '6.75'               , 'generate mortgage_rate'        , 'Mortgage interest rate as percentage string (1.50–12.00%).', '-'),
     ('mortgage_term',       'FinancialExt', False, '30'                 , 'generate mortgage_term'        , 'Mortgage loan term in years: 10, 15, 20, 25, or 30.', '-'),
-    ('premium_amount',      'FinancialExt', False, '125.50'             , 'generate premium_amount'       , 'Insurance premium amount: $25.00â€“$2,500.00 (monthly).', '-'),
-    ('deductible',          'FinancialExt', False, '1000.00'            , 'generate deductible'           , 'Insurance deductible amount: standard steps $100â€“$10,000.', '-'),
+    ('premium_amount',      'FinancialExt', False, '125.50'             , 'generate premium_amount'       , 'Insurance premium amount: $25.00–$2,500.00 (monthly).', '-'),
+    ('deductible',          'FinancialExt', False, '1000.00'            , 'generate deductible'           , 'Insurance deductible amount: standard steps $100–$10,000.', '-'),
     ('coverage_limit',      'FinancialExt', False, '250000.00'          , 'generate coverage_limit'       , 'Insurance coverage limit: tiered from $10,000 to $5,000,000.', '-'),
     ('claim_status',        'FinancialExt', False, 'Under Review'       , 'generate claim_status'         , 'Insurance claim status: Submitted, Under Review, Approved, Denied, Paid, Closed, Appealed.', '-'),
-    ('credit_limit_masked',    'FinancialExt', False, '$**,***'          , 'generate credit_limit_masked'     , 'Masked credit limit â€” order of magnitude hidden (GLBA Â§501 NPI).', '-'),
-    ('mortgage_rate_masked',   'FinancialExt', False, '**.**%'           , 'generate mortgage_rate_masked'    , 'Masked mortgage rate â€” exact rate hidden (GLBA Â§501 NPI).', '-'),
-    ('premium_amount_masked',  'FinancialExt', False, '$*,***'           , 'generate premium_amount_masked'   , 'Masked insurance premium â€” exact amount hidden (GLBA Â§501 NPI).', '-'),
+    ('credit_limit_masked',    'FinancialExt', False, '$**,***'          , 'generate credit_limit_masked'     , 'Masked credit limit — order of magnitude hidden (GLBA §501 NPI).', '-'),
+    ('mortgage_rate_masked',   'FinancialExt', False, '**.**%'           , 'generate mortgage_rate_masked'    , 'Masked mortgage rate — exact rate hidden (GLBA §501 NPI).', '-'),
+    ('premium_amount_masked',  'FinancialExt', False, '$*,***'           , 'generate premium_amount_masked'   , 'Masked insurance premium — exact amount hidden (GLBA §501 NPI).', '-'),
     ('vat_number'     , 'Identity'     , True , 'TR1234567890'          , 'generate vat_number --locale TR', 'EU/Global VIES VAT number with country prefix (TR/DE/FR/UK/US/RU).', '-'),
     ('--Aviation--'   , ''             , False, ''                      , ''                              , '', ''),
     ('iata_ticket'    , 'Aviation'     , False, '0012345678902'         , 'generate iata_ticket'          , 'IATA Electronic Ticket Number (ETN): 3-digit airline code + 9-digit serial + MOD-7 check digit.', '-'),
@@ -205,17 +205,17 @@ _REFERENCE = [
     ('webauthn_credential', 'WebAuthn' , False, '{"id":"aB3x...","type":"public-key",...}', 'generate webauthn_credential', 'FIDO2/WebAuthn registration response: CBOR attestationObject + clientDataJSON (webauthn.create), all fields base64url encoded.', '-'),
     ('fido2_assertion', 'WebAuthn'     , False, '{"id":"kR7m...","type":"public-key",...}', 'generate fido2_assertion'    , 'FIDO2/WebAuthn authentication response: 37-byte authenticatorData + DER ECDSA signature + userHandle, base64url encoded.', '-'),
     ('--Wallet--'     , ''             , False, ''                       , ''                              , '', ''),
-    ('eth_wallet'     , 'Wallet'       , False, '{"private_key":"a1b2...","address":"0xAb...",...}', 'generate eth_wallet', 'Full ETH wallet: secp256k1 scalar mult â†’ Keccak-256 â†’ EIP-55 checksummed address. JSON with private_key, public_key, address.', '-'),
-    ('btc_wallet'     , 'Wallet'       , False, '{"private_key":"c3d4...","wif":"K2...","address":"1A...",...}', 'generate btc_wallet', 'Full BTC wallet: secp256k1 â†’ SHA256+RIPEMD160 â†’ P2PKH Base58Check + compressed WIF. JSON with private_key, wif, public_key, address.', '-'),
-    ('sol_wallet'     , 'Wallet'       , False, '{"private_key":"e5f6...","address":"4Aa...",...}', 'generate sol_wallet', 'Full Solana wallet: Ed25519 scalar mult â†’ base58 address. JSON with private_key, public_key, address, keypair (Phantom format).', '-'),
+    ('eth_wallet'     , 'Wallet'       , False, '{"private_key":"a1b2...","address":"0xAb...",...}', 'generate eth_wallet', 'Full ETH wallet: secp256k1 scalar mult → Keccak-256 → EIP-55 checksummed address. JSON with private_key, public_key, address.', '-'),
+    ('btc_wallet'     , 'Wallet'       , False, '{"private_key":"c3d4...","wif":"K2...","address":"1A...",...}', 'generate btc_wallet', 'Full BTC wallet: secp256k1 → SHA256+RIPEMD160 → P2PKH Base58Check + compressed WIF. JSON with private_key, wif, public_key, address.', '-'),
+    ('sol_wallet'     , 'Wallet'       , False, '{"private_key":"e5f6...","address":"4Aa...",...}', 'generate sol_wallet', 'Full Solana wallet: Ed25519 scalar mult → base58 address. JSON with private_key, public_key, address, keypair (Phantom format).', '-'),
     ('--AIVector--'  , ''             , False, ''                           , ''                              , '', ''),
-    ('ai_embedding'  , 'AI Vector'    , False, '[0.021,-0.184,...]'         , 'generate ai_embedding'         , '1536-dim L2-normalized float vector (OpenAI Ada-002 / Pinecone compatible). JSON array of floats with |v|â‚‚=1.', '--dims (int)'),
+    ('ai_embedding'  , 'AI Vector'    , False, '[0.021,-0.184,...]'         , 'generate ai_embedding'         , '1536-dim L2-normalized float vector (OpenAI Ada-002 / Pinecone compatible). JSON array of floats with |v|₂=1.', '--dims (int)'),
     ('ai_vector'     , 'AI Vector'    , False, '[0.089,-0.234,...]'         , 'generate ai_vector'            , 'N-dim L2-normalized unit vector for embedding models (default 384-dim). Configurable via --dims.', '--dims (int)'),
     ('ai_sparse_vector', 'AI Vector'  , False, '{"indices":[...],"values":[...]}', 'generate ai_sparse_vector', 'Sparse {indices, values} vector with L2-normalized positive weights for hybrid search (Pinecone/Qdrant). 128 non-zero entries in 10k-dim space.', '--dims (int), --nnz (int)'),
     ('--OIDC--'       , ''             , False, ''                           , ''                              , '', ''),
-    ('oidc_token_set' , 'OIDC'         , False, '{"token":"eyJ...","jwks":{...},"kid":"...","claims":{...}}', 'generate oidc_token_set', 'ES256 key pair (P-256) â†’ signed JWT + verifiable JWKS (kid linked). Full OIDC claims: iss, sub, aud, exp, iat, jti, email.', '-'),
-    ('jwks'           , 'OIDC'         , False, '{"keys":[{"kty":"EC","crv":"P-256",...}]}', 'generate jwks', 'Standalone JWK Set â€” fresh P-256 EC public key (kty=EC, crv=P-256, use=sig, alg=ES256). Mock /.well-known/jwks.json endpoint.', '-'),
-    ('oidc_token'     , 'OIDC'         , False, 'eyJhbGciOiJIUzI1NiJ9...'    , 'generate oidc_token'           , 'HS256 JWT with standard OIDC claims (iss, sub, aud, exp, iat, jti). Fast symmetric signing â€” no key pair needed.', '-'),
+    ('oidc_token_set' , 'OIDC'         , False, '{"token":"eyJ...","jwks":{...},"kid":"...","claims":{...}}', 'generate oidc_token_set', 'ES256 key pair (P-256) → signed JWT + verifiable JWKS (kid linked). Full OIDC claims: iss, sub, aud, exp, iat, jti, email.', '-'),
+    ('jwks'           , 'OIDC'         , False, '{"keys":[{"kty":"EC","crv":"P-256",...}]}', 'generate jwks', 'Standalone JWK Set — fresh P-256 EC public key (kty=EC, crv=P-256, use=sig, alg=ES256). Mock /.well-known/jwks.json endpoint.', '-'),
+    ('oidc_token'     , 'OIDC'         , False, 'eyJhbGciOiJIUzI1NiJ9...'    , 'generate oidc_token'           , 'HS256 JWT with standard OIDC claims (iss, sub, aud, exp, iat, jti). Fast symmetric signing — no key pair needed.', '-'),
     ('--BankStatement--', ''           , False, ''                           , ''                              , '', ''),
     ('mt940'          , 'BankStatement', True , ':20:REF...\n:60F:C...\n:62F:C...', 'generate mt940 --locale TR', 'SWIFT MT940 bank statement: :20: :25: :28C: :60F: :61: :86: :62F: fields. Comma decimal (500,00). 2-5 transactions.', '-'),
     ('camt053'        , 'BankStatement', True , '<?xml...camt.053...'        , 'generate camt053 --locale TR'  , 'ISO 20022 CAMT.053 XML bank statement: MsgId, IBAN, OPBD/CLBD balances, Ntry entries. Dot decimal (500.00).', '-'),
@@ -223,7 +223,7 @@ _REFERENCE = [
     ('edi_850'        , 'EDI'          , True , 'ISA*00*...*:~\nGS*PO*...'  , 'generate edi_850'              , 'ANSI X12 EDI 850 Purchase Order: ISA/GS/ST/BEG/N1/PO1/CTT/SE/GE/IEA. ISA13==IEA02, GS06==GE02, SE01==segment count.', '-'),
     ('edifact_orders' , 'EDI'          , True , "UNB+UNOC:3+...\nUNH+..."   , 'generate edifact_orders'       , "UN/EDIFACT ORDERS D96A: UNB/UNH/BGM/DTM/NAD/LIN/QTY/PRI/UNS/CNT/UNT/UNZ. UNT01==seg count, UNZ02==UNB ctrl ref.", '-'),
     ('--EventSourcing--', ''           , False, ''                           , ''                              , '', ''),
-    ('event_stream'   , 'EventSourcing', False, '[{"event_type":"login",...}]', 'generate event_stream'         , 'Markov Chain user-journey event sequence (Loginâ†’Browseâ†’Cartâ†’Checkoutâ†’Logout). JSON array with correlation_id, timestamps, payloads.', '-'),
+    ('event_stream'   , 'EventSourcing', False, '[{"event_type":"login",...}]', 'generate event_stream'         , 'Markov Chain user-journey event sequence (Login→Browse→Cart→Checkout→Logout). JSON array with correlation_id, timestamps, payloads.', '-'),
     ('cdc_event'      , 'EventSourcing', False, '{"op":"u","before":{...},"after":{...}}', 'generate cdc_event', 'Debezium-style CDC event (INSERT/UPDATE/DELETE). op c/u/d, ts_ms, source db+table, before/after payloads.', '-'),
     ('--Telemetry--'  , ''             , False, ''                           , ''                              , '', ''),
     ('fdr_record'     , 'Telemetry'    , False, '{"flight_id":...,"samples":[{"pitch":2.1,...}]}', 'generate fdr_record', 'Flight Data Recorder time-series: pitch/roll/yaw/altitude_ft/speed_kts/vspeed_fpm/g_force. Physics-constrained bounded random walk (10 Hz).', '-'),
@@ -232,8 +232,8 @@ _REFERENCE = [
     ('ohlcv_candles'  , 'OHLCV'        , False, '{"symbol":"AAPL","interval":"1h","candles":[{"t":"...","o":150.23,"h":151.45,"l":149.87,"c":150.89,"v":1234567}]}', 'generate ohlcv_candles', 'OHLCV candlestick series via Geometric Brownian Motion: H>=max(O,C), L<=min(O,C), Open[i]=Close[i-1]. 10-30 candles, intervals: 1m/5m/15m/1h/4h/1d.', '-'),
     ('market_tick'    , 'OHLCV'        , False, '{"symbol":"AAPL","price":150.23,"bid":150.20,"ask":150.25,"side":"buy","size":100}', 'generate market_tick', 'Individual exchange trade tick: bid < price <= ask, positive spread, Lee-Ready side (buy/sell), lot size, sequence number.', '-'),
     ('--MRZ--'        , ''             , False, ''                           , ''                              , '', ''),
-    ('mrz_td3'        , 'MRZ'          , False, '{"mrz_type":"TD3","lines":["P<TUR...","ABCD123456<..."]}', 'generate mrz_td3', 'ICAO 9303 Passport TD3 MRZ: 2 lines Ã— 44 chars. YYMMDD DOB/expiry, personal number, composite check digit (ICAO 9303 Part 3).', '-'),
-    ('mrz_td1'        , 'MRZ'          , False, '{"mrz_type":"TD1","lines":["I<TUR...","...","SMITH<<JOHN<"]}', 'generate mrz_td1', 'ICAO 9303 ID Card TD1 MRZ: 3 lines Ã— 30 chars. Doc number, DOB, expiry, composite check digit (ICAO 9303 Part 5).', '-'),
+    ('mrz_td3'        , 'MRZ'          , False, '{"mrz_type":"TD3","lines":["P<TUR...","ABCD123456<..."]}', 'generate mrz_td3', 'ICAO 9303 Passport TD3 MRZ: 2 lines × 44 chars. YYMMDD DOB/expiry, personal number, composite check digit (ICAO 9303 Part 3).', '-'),
+    ('mrz_td1'        , 'MRZ'          , False, '{"mrz_type":"TD1","lines":["I<TUR...","...","SMITH<<JOHN<"]}', 'generate mrz_td1', 'ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc number, DOB, expiry, composite check digit (ICAO 9303 Part 5).', '-'),
     ('--TLE--'         , ''             , False, ''                           , ''                              , '', ''),
     ('tle_satellite'   , 'TLE'          , False, 'name:MOCKSAT-42 | orbit:LEO | incl:51.6434 | raan:339.7939 | ecc:0.0001785 | mm:15.49320826 | line1:1 25544U... | line2:2 25544...', 'generate tle_satellite', 'Two-Line Element Set (TLE) per NORAD/USSPACECOM standard: LEO/MEO/GEO/SSO/HEO orbit types, physics-consistent parameters. NORAD Modulo-10 checksum verified on both 69-char lines.', '-'),
     ('--Automotive--'  , ''             , False, ''                           , ''                              , '', ''),
@@ -243,8 +243,8 @@ _REFERENCE = [
     ('ubl_invoice'     , 'EInvoice'     , False, 'invoice_id:INV-2026-00001 | uuid:UUID | currency:TRY | tax_rate:18 | net:1000.00 | gross:1180.00 | xml:<?xml...Invoice...', 'generate ubl_invoice', 'OASIS UBL 2.1 Invoice XML (Turkey GIB e-fatura): consistent amounts (net+tax=gross), 1-5 line items, INV-YYYY-NNNNN ID, uppercase UUID, TaxTotal, LegalMonetaryTotal.', '-'),
     ('xmldsig'         , 'EInvoice'     , False, 'sig_id:Signature-A1B2C3D4 | digest_value:44-char-base64 | signature_value:344-char-base64 | xml:<ds:Signature...', 'generate xmldsig', 'W3C XML Digital Signature (XMLDSig) enveloped: RSA-SHA256 signature, SHA-256 digest, C14N canonicalization. DigestValue=44 chars (32 bytes), SignatureValue=344 chars (256 bytes).', '-'),
     ('--GameDev--'     , ''             , False, ''                           , ''                              , '', ''),
-    ('quaternion'     , 'GameDev'      , False, '{"x":0.12345678,"y":0.45678901,"z":0.78901234,"w":0.34567890,"magnitude":1.0,"euler_degrees":{"pitch":12.3,"yaw":45.6,"roll":78.9}}', 'generate quaternion', 'L2-normalized unit quaternion (Gaussian sampling): sqrt(xÂ²+yÂ²+zÂ²+wÂ²)=1.0. Pre-computed Euler angles (ZYX, degrees). Unity/Unreal compatible.', '-'),
-    ('navmesh_path'   , 'GameDev'      , False, '{"start":{"x":10.5,"y":0.0,"z":20.3},"end":{...},"waypoints":[...],"total_distance":87.3,"waypoint_count":8}', 'generate navmesh_path', 'A*-compatible NavMesh waypoint path: 3-15 waypoints, random heading Â±60Â° turns, 5-25 unit steps, terrain height bounded Â±5. start=waypoints[0], end=waypoints[-1].', '-'),
+    ('quaternion'     , 'GameDev'      , False, '{"x":0.12345678,"y":0.45678901,"z":0.78901234,"w":0.34567890,"magnitude":1.0,"euler_degrees":{"pitch":12.3,"yaw":45.6,"roll":78.9}}', 'generate quaternion', 'L2-normalized unit quaternion (Gaussian sampling): sqrt(x²+y²+z²+w²)=1.0. Pre-computed Euler angles (ZYX, degrees). Unity/Unreal compatible.', '-'),
+    ('navmesh_path'   , 'GameDev'      , False, '{"start":{"x":10.5,"y":0.0,"z":20.3},"end":{...},"waypoints":[...],"total_distance":87.3,"waypoint_count":8}', 'generate navmesh_path', 'A*-compatible NavMesh waypoint path: 3-15 waypoints, random heading ±60° turns, 5-25 unit steps, terrain height bounded ±5. start=waypoints[0], end=waypoints[-1].', '-'),
     ('--Prometheus--'  , ''             , False, ''                           , ''                              , '', ''),
     ('prometheus_metrics'  , 'Prometheus', False, '{"exposition":"# HELP process_cpu_seconds_total...\\nhttp_requests_total{...} 1234\\n","format":"prometheus",...}', 'generate prometheus_metrics', 'Prometheus text exposition: process CPU/memory, HTTP counter (method/path/status), HTTP histogram (monotonic buckets, +Inf==count), Go runtime metrics.', '-'),
     ('openmetrics_snapshot', 'Prometheus', False, '{"exposition":"# HELP ...\\n# EOF\\n","format":"openmetrics",...}', 'generate openmetrics_snapshot', 'OpenMetrics exposition (Prometheus superset): same metric families, mandatory # EOF terminator. Compatible with OTLP/Grafana Mimir.', '-'),
@@ -348,8 +348,8 @@ _REFERENCE = [
     ('sedol'          , 'CapMarkets(Trading)'   , False, '0263494'               , 'generate sedol'                , 'Stock Exchange Daily Official List (UK).', '-'),
     ('lei'            , 'CapMarkets(Trading)'   , False, '529900T8BM49AURSDO55'  , 'generate lei'                  , 'Legal Entity Identifier (ISO 17442).', '-'),
     ('fix_message'    , 'CapMarkets(Trading)'   , False, '8=FIX.4.4|9=...|35=D|...|10=NNN|', 'generate fix_message'          , 'FIX Protocol 4.4 New Order Single (MsgType=D) with valid BodyLength and CheckSum.', '-'),
-    ('psd2_consent'   , 'CapMarkets(Trading)'   , True , 'eyJhbGci...<JWS>'               , 'generate psd2_consent --locale UK --amount 250.00', 'PSD2 / UK Open Banking v3.1 Payment Consent â€” compact JWS (HMAC-SHA256).', '--amount (float)'),
-    ('stock_ticker'   , 'CapMarkets(Trading)'   , False, 'NVDA'                           , 'generate stock_ticker'         , 'Stock ticker symbol: 1â€“5 uppercase letters (equity identifiers).', '-'),
+    ('psd2_consent'   , 'CapMarkets(Trading)'   , True , 'eyJhbGci...<JWS>'               , 'generate psd2_consent --locale UK --amount 250.00', 'PSD2 / UK Open Banking v3.1 Payment Consent — compact JWS (HMAC-SHA256).', '--amount (float)'),
+    ('stock_ticker'   , 'CapMarkets(Trading)'   , False, 'NVDA'                           , 'generate stock_ticker'         , 'Stock ticker symbol: 1–5 uppercase letters (equity identifiers).', '-'),
     ('figi'           , 'CapMarkets(Trading)'   , False, 'BBG000BLNNH1'                   , 'generate figi'                 , 'Financial Instrument Global Identifier (OpenFIGI): 2-letter + G + 8 NSIN + 1 Luhn check.', '-'),
     ('forex_pair'     , 'CapMarkets(Trading)'   , False, 'EUR/USD'                        , 'generate forex_pair'           , 'Foreign exchange currency pair: BASE/QUOTE using ISO 4217 codes.', '-'),
     ('forex_rate'     , 'CapMarkets(Trading)'   , False, '1.0875'                         , 'generate forex_rate'           , 'Realistic FX exchange rate (4 decimal places) for major currency pairs.', '--pair (EURUSD|USDTRY|GBPUSD|USDJPY|EURTRY|GBPTRY|AUDUSD|NZDUSD)'),
@@ -357,11 +357,11 @@ _REFERENCE = [
     ('mic'            , 'CapMarkets(Trading)'   , True , 'XNAS'                           , 'generate mic --locale US'      , 'ISO 10383 Market Identifier Code: 4-letter exchange identifier.', '-'),
     ('stock_exchange' , 'CapMarkets(Trading)'   , True , 'NASDAQ'                         , 'generate stock_exchange --locale US', 'Stock exchange full name (locale-aware).', '-'),
     ('option_contract', 'CapMarkets(Trading)'   , False, 'AAPL240315C00150000'            , 'generate option_contract'      , 'OCC option contract symbol: TICKER + YYMMDD + C/P + 8-digit strike (cents).', '-'),
-    ('bond_yield'     , 'CapMarkets(Trading)'   , False, '4.25'                           , 'generate bond_yield'           , 'Bond yield as percentage string (0.01â€“15.00%).', '-'),
-    ('coupon_rate'    , 'CapMarkets(Trading)'   , False, '5.00'                           , 'generate coupon_rate'          , 'Bond coupon rate as percentage string (0.00â€“12.00%).', '-'),
+    ('bond_yield'     , 'CapMarkets(Trading)'   , False, '4.25'                           , 'generate bond_yield'           , 'Bond yield as percentage string (0.01–15.00%).', '-'),
+    ('coupon_rate'    , 'CapMarkets(Trading)'   , False, '5.00'                           , 'generate coupon_rate'          , 'Bond coupon rate as percentage string (0.00–12.00%).', '-'),
     ('settlement_date', 'CapMarkets(Trading)'   , False, '2024-12-05'                     , 'generate settlement_date'      , 'Trade settlement date: T+1 to T+5 business days from today (YYYY-MM-DD).', '-'),
     ('portfolio_id'   , 'CapMarkets(Trading)'   , False, 'PRTF-A1B2C3D4'                 , 'generate portfolio_id'         , 'Portfolio identifier: PRTF-/PORT- prefix + 8-char alphanumeric suffix.', '-'),
-    ('portfolio_id_masked', 'CapMarkets(Trading)', False, 'PRTF-****B2C3'               , 'generate portfolio_id_masked'  , 'Masked portfolio ID â€” last 4 chars of suffix visible (MiFID II Art. 25 internal reference).', '-'),
+    ('portfolio_id_masked', 'CapMarkets(Trading)', False, 'PRTF-****B2C3'               , 'generate portfolio_id_masked'  , 'Masked portfolio ID — last 4 chars of suffix visible (MiFID II Art. 25 internal reference).', '-'),
     ('nsin'           , 'CapMarkets(Trading)'   , True , 'US37833100'                     , 'generate nsin --locale US'     , 'National Securities Identifying Number: CUSIP (US), SEDOL (UK), or 9-char alphanumeric.', '-'),
     ('--Compliance--'   , ''             , False, ''                      , ''                              , '', ''),
     ('policy_number'  , 'Compliance'   , False, 'POL-20241201-54321'    , 'generate policy_number'        , 'Insurance/financial policy number: POL-YYYYMMDD-NNNNN.', '-'),
@@ -370,18 +370,18 @@ _REFERENCE = [
     ('aml_risk_rating', 'Compliance'   , False, 'Low'                   , 'generate aml_risk_rating'      , 'Anti-Money Laundering risk rating: Low, Medium, High, Critical.', '-'),
     ('cdd_level'      , 'Compliance'   , False, 'Standard'              , 'generate cdd_level'            , 'Customer Due Diligence level: Standard, Enhanced, Simplified.', '-'),
     ('sar_number'     , 'Compliance'   , False, 'SAR-20241201-5432'     , 'generate sar_number'           , 'Suspicious Activity Report number: SAR-YYYYMMDD-NNNNN.', '-'),
-    ('ubo_ownership_percentage', 'Compliance', False, '35.50'           , 'generate ubo_ownership_percentage', 'Ultimate Beneficial Owner ownership percentage (0.01â€“100.00).', '-'),
+    ('ubo_ownership_percentage', 'Compliance', False, '35.50'           , 'generate ubo_ownership_percentage', 'Ultimate Beneficial Owner ownership percentage (0.01–100.00).', '-'),
     ('kyc_document_type', 'Compliance' , False, 'Passport'              , 'generate kyc_document_type'    , 'KYC accepted document type: Passport, National ID, Drivers License, etc.', '-'),
     ('consent_id'     , 'Compliance'   , False, 'CONSENT-A1B2C3D4E5F6'  , 'generate consent_id'           , 'Regulatory consent identifier: UUID v4 or CONSENT- prefixed string.', '-'),
     ('tpp_id'         , 'Compliance'   , False, 'PSP-AB12CD34EF56'      , 'generate tpp_id'               , 'Third-Party Provider identifier (PSD2): PSP-/TPP- prefix + 10-char alphanumeric.', '-'),
     ('onboarding_method', 'Compliance' , False, 'eKYC'                  , 'generate onboarding_method'    , 'Customer onboarding method: eKYC, Video KYC, In-Branch, Document Upload, Biometric, Agent.', '-'),
     ('sanctions_hit'  , 'Compliance'   , False, 'False'                 , 'generate sanctions_hit'        , 'OFAC/UN/EU sanctions screening result: True (5% rate) or False (95% rate).', '-'),
     ('--MaskedCompliance--', ''        , False, ''                      , ''                              , '', ''),
-    ('sar_number_masked',  'Compliance', False, '****-****-****'        , 'generate sar_number_masked'    , 'Fully masked SAR number â€” disclosure prohibited (BSA Â§5318(g)(2) tipping-off rule).', '-'),
-    ('policy_number_masked', 'Compliance', False, 'POL-****-54321'      , 'generate policy_number_masked' , 'Masked policy number â€” sequence visible for support reference (GLBA Â§501 NPI).', '-'),
-    ('claim_number_masked',  'Compliance', False, 'CLM-****-54321'      , 'generate claim_number_masked'  , 'Masked claim number â€” sequence visible for support reference (GLBA Â§501 NPI).', '-'),
-    ('ubo_ownership_percentage_masked', 'Compliance', False, '**%'      , 'generate ubo_ownership_percentage_masked', 'Masked UBO ownership percentage â€” exact stake hidden (EU 4AMLD/5AMLD Art. 30).', '-'),
-    ('consent_id_masked',    'Compliance', False, '****-****-****-****-a1b2c3d4', 'generate consent_id_masked', 'Masked consent ID â€” last 8 hex chars visible for audit trail (GDPR Art. 7 + ePrivacy).', '-'),
+    ('sar_number_masked',  'Compliance', False, '****-****-****'        , 'generate sar_number_masked'    , 'Fully masked SAR number — disclosure prohibited (BSA §5318(g)(2) tipping-off rule).', '-'),
+    ('policy_number_masked', 'Compliance', False, 'POL-****-54321'      , 'generate policy_number_masked' , 'Masked policy number — sequence visible for support reference (GLBA §501 NPI).', '-'),
+    ('claim_number_masked',  'Compliance', False, 'CLM-****-54321'      , 'generate claim_number_masked'  , 'Masked claim number — sequence visible for support reference (GLBA §501 NPI).', '-'),
+    ('ubo_ownership_percentage_masked', 'Compliance', False, '**%'      , 'generate ubo_ownership_percentage_masked', 'Masked UBO ownership percentage — exact stake hidden (EU 4AMLD/5AMLD Art. 30).', '-'),
+    ('consent_id_masked',    'Compliance', False, '****-****-****-****-a1b2c3d4', 'generate consent_id_masked', 'Masked consent ID — last 8 hex chars visible for audit trail (GDPR Art. 7 + ePrivacy).', '-'),
     ('btc_address'    , 'Crypto'       , False, '1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf', 'generate btc_address'          , 'Bitcoin wallet address (P2PKH, P2SH, Bech32).', '-'),
     ('eth_address'    , 'Crypto'       , False, '0x5aAeb6053F3E94C9b9A0...', 'generate eth_address'          , 'Ethereum/EVM compatible wallet address.', '-'),
     ('crypto_address' , 'Crypto'       , False, '(btc or eth)'          , 'generate crypto_address --currency eth', 'Generic crypto address for specified currency.', '--currency (btc, eth)'),
@@ -389,16 +389,16 @@ _REFERENCE = [
     ('block_hash'     , 'Crypto'       , False, '0x+64hex (eth)'        , 'generate block_hash --currency eth', 'Blockchain block hash identifier.', '--currency (btc, eth)'),
     ('mnemonic'       , 'Crypto'       , False, 'abandon ability able...', 'generate mnemonic --words 12' , 'BIP-39 mnemonic recovery phrase (seed phrase).', '--words (12, 15, 18, 21, 24)'),
     ('--DeFi--'       , 'Crypto'       , False, ''                      , ''                              , '', ''),
-    ('nft_token_id'   , 'Crypto'       , False, '4219'                  , 'generate nft_token_id'         , 'ERC-721 NFT token ID â€” sequential (0-9999, 60%) or large random (40%).', '-'),
-    ('gas_price'      , 'Crypto'       , False, '25'                    , 'generate gas_price'            , 'Ethereum gas price in Gwei â€” tiered: low (1-30), moderate (30-200), peak (200-5000).', '-'),
-    ('gas_limit'      , 'Crypto'       , False, '65000'                 , 'generate gas_limit'            , 'Ethereum transaction gas limit â€” standard values (21000â€“1M).', '-'),
+    ('nft_token_id'   , 'Crypto'       , False, '4219'                  , 'generate nft_token_id'         , 'ERC-721 NFT token ID — sequential (0-9999, 60%) or large random (40%).', '-'),
+    ('gas_price'      , 'Crypto'       , False, '25'                    , 'generate gas_price'            , 'Ethereum gas price in Gwei — tiered: low (1-30), moderate (30-200), peak (200-5000).', '-'),
+    ('gas_limit'      , 'Crypto'       , False, '65000'                 , 'generate gas_limit'            , 'Ethereum transaction gas limit — standard values (21000–1M).', '-'),
     ('defi_protocol_name', 'Crypto'    , False, 'Uniswap'               , 'generate defi_protocol_name'   , 'DeFi protocol name: Uniswap, Aave, Compound, Curve Finance, etc.', '-'),
     ('blockchain_network', 'Crypto'    , False, 'Arbitrum'              , 'generate blockchain_network'   , 'Blockchain/L2 network name: Ethereum, Polygon, Arbitrum, Optimism, Base, etc.', '-'),
     ('wallet_label'   , 'Crypto'       , False, 'DeFi Wallet'           , 'generate wallet_label'         , 'Crypto wallet label: Hot Wallet, Cold Storage, Multi-sig Vault, Treasury, etc.', '-'),
     ('defi_position_type', 'Crypto'    , False, 'Yield Farming'         , 'generate defi_position_type'   , 'DeFi position type: Liquidity Provider, Lending, Borrowing, Staking, Perpetual, etc.', '-'),
     ('cryptocurrency_name', 'Crypto'   , False, 'Ethereum'              , 'generate cryptocurrency_name'  , 'Cryptocurrency name: Bitcoin, Ethereum, Solana, USDC, Cardano, etc.', '-'),
-    ('liquidity_pool_id', 'Crypto'     , False, '0x1aB2C3...EIP55'      , 'generate liquidity_pool_id'    , 'DeFi liquidity pool ID â€” EIP-55 checksummed Ethereum contract address.', '-'),
-    ('liquidity_pool_id_masked', 'Crypto', False, '0x1a2b...cd3e'       , 'generate liquidity_pool_id_masked', 'Masked pool address â€” first 4 + last 4 hex chars visible (FATF Rec. 16 Travel Rule).', '-'),
+    ('liquidity_pool_id', 'Crypto'     , False, '0x1aB2C3...EIP55'      , 'generate liquidity_pool_id'    , 'DeFi liquidity pool ID — EIP-55 checksummed Ethereum contract address.', '-'),
+    ('liquidity_pool_id_masked', 'Crypto', False, '0x1a2b...cd3e'       , 'generate liquidity_pool_id_masked', 'Masked pool address — first 4 + last 4 hex chars visible (FATF Rec. 16 Travel Rule).', '-'),
     ('product_name'   , 'E-Commerce'   , False, 'Wireless Headphones'   , 'generate product_name'         , 'Randomized e-commerce product names.', '-'),
     ('sku'            , 'E-Commerce'   , False, 'AB-123456'             , 'generate sku'                  , 'Stock Keeping Unit (SKU) identifiers.', '-'),
     ('order_id'       , 'E-Commerce'   , False, 'ORD-A1B2C3D4E5F6'      , 'generate order_id'             , 'Unique e-commerce order identifiers.', '-'),
@@ -435,7 +435,7 @@ _REFERENCE = [
     ('slug'           , 'Web'          , False, 'api-payment-v2'         , 'generate slug'                 , 'URL-friendly slug (lowercase, hyphen-separated words).', '-'),
     ('http_method'    , 'Web'          , False, 'POST'                   , 'generate http_method'          , 'Standard HTTP verb (GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS).', '-'),
     ('http_status_code', 'Web'         , False, '200'                    , 'generate http_status_code'     , 'Common HTTP status code (2xx/3xx/4xx/5xx).', '-'),
-    ('port_number'    , 'Web'          , False, '8443'                   , 'generate port_number'          , 'Valid TCP/UDP port number (1â€“65535, weighted to common ports).', '-'),
+    ('port_number'    , 'Web'          , False, '8443'                   , 'generate port_number'          , 'Valid TCP/UDP port number (1–65535, weighted to common ports).', '-'),
     ('hostname'       , 'Web'          , False, 'api-03'                 , 'generate hostname'             , 'Lowercase server hostname (alphanumeric with optional hyphen-number suffix).', '-'),
     ('tld'            , 'Web'          , False, '.io'                    , 'generate tld'                  , 'Top-level domain extension (.com, .net, .io, .dev, etc.).', '-'),
     ('uri_path'       , 'Web'          , False, '/api/v1/users'          , 'generate uri_path'             , 'API URI path string (starts with /).', '-'),
@@ -447,7 +447,7 @@ _REFERENCE = [
     ('credit_score'   , 'Financial'    , False, '720'                   , 'generate credit_score'        , 'Simulated credit risk score (typically 300-850).', '-'),
     ('hl7_message'    , 'Health'       , False, 'MSH|[enc]|EMR_SYS|...|ADT^A01^ADT_A01|...|2.5', 'generate hl7_message'  , 'HL7 v2.5 ADT^A01 patient admission message (MSH/EVN/PID/PV1 segments).', '-'),
     ('fhir_patient'   , 'Health'       , True , '{"resourceType":"Patient","id":"..."}', 'generate fhir_patient --locale UK', 'FHIR R4 Patient resource (JSON) with UUID id, name, gender, birthDate, address.', '--locale'),
-    ('dicom_uid'      , 'Health'       , False, '2.25.329800735698586629...', 'generate dicom_uid'        , 'DICOM UID (ISO/IEC 9834-8 root 2.25) â€” digits and dots, max 64 chars.', '-'),
+    ('dicom_uid'      , 'Health'       , False, '2.25.329800735698586629...', 'generate dicom_uid'        , 'DICOM UID (ISO/IEC 9834-8 root 2.25) — digits and dots, max 64 chars.', '-'),
     ('--Payments--'   , ''             , False, ''                          , ''                           , '', ''),
     ('swift_mt103'   , 'Payments'     , True , ':20:REF{:23B:CRED}{:32A:261231TRY1234,56}', 'generate swift_mt103 --locale TR', 'SWIFT MT103 Single Customer Credit Transfer message fields.', '-'),
     ('pain001'       , 'Payments'     , False, '<?xml...pain.001.001.03...GrpHdr...PmtInf...>', 'generate pain001', 'ISO 20022 Pain.001 Credit Transfer Initiation XML.', '-'),
@@ -455,98 +455,98 @@ _REFERENCE = [
     ('sepa_mandate'  , 'Payments'     , False, 'MandateRef:...CreditorID:DE98ZZZ...SequenceType:RCUR', 'generate sepa_mandate', 'SEPA Direct Debit Mandate with Creditor ID MOD-97 check digits.', '-'),
     ('fedwire'       , 'Payments'     , False, '{1500}REF{2000}000000100000{3100}021000021', 'generate fedwire', 'Fedwire Funds Transfer message with {TAG}VALUE format.', '-'),
     ('--CardPhysics--', ''            , False, ''                          , ''                           , '', ''),
-    ('iso8583_auth_request' , 'CardPhysics', True , 'MTI:0100\nBITMAP:723C...\nDE002:4532...', 'generate iso8583_auth_request --locale TR', 'ISO 8583 v1987 Authorization Request (MTI 0100) â€” bitmap + DEs 2,3,4,7,11-14,18,22,25,37,41,42,49.', '--locale'),
-    ('iso8583_auth_response', 'CardPhysics', True , 'MTI:0110\nBITMAP:7238...\nDE039:00',     'generate iso8583_auth_response --locale TR', 'ISO 8583 v1987 Authorization Response (MTI 0110) â€” includes DE038 auth code, DE039 response code.', '--locale'),
-    ('iso8583_reversal'     , 'CardPhysics', True , 'MTI:0400\nBITMAP:7238...\nDE056:0100...', 'generate iso8583_reversal --locale TR', 'ISO 8583 v1987 Reversal Request (MTI 0400) â€” DE056 original data elements.', '--locale'),
-    ('emv_arqc'      , 'CardPhysics', False, 'A1B2C3D4E5F60718'     , 'generate emv_arqc'            , 'EMV Application Request Cryptogram (tag 9F26) â€” 8 bytes / 16 uppercase hex.', '-'),
-    ('emv_atc'       , 'CardPhysics', False, '00F3'                  , 'generate emv_atc'             , 'EMV Application Transaction Counter (tag 9F36) â€” 2 bytes / 4 uppercase hex.', '-'),
-    ('emv_iad'       , 'CardPhysics', False, '0A02102B0F12ABCD1234', 'generate emv_iad'             , 'EMV Issuer Application Data (tag 9F10) â€” 11 bytes / 22 hex. Format: 0A+DKI+CVN+CVR+ADD+PAD.', '-'),
-    ('atm_session'   , 'CardPhysics', True , '{"session_id":"MOCKJ-ATM-...","masked_pan":"4532 **** **** 9012",...}', 'generate atm_session --locale TR', 'ATM session JSON record â€” session_id, terminal, masked PAN, ARQC, ATC, response code.', '--locale'),
-    ('pos_receipt'   , 'CardPhysics', True , 'MOCKJ MERCHANT SERVICES\nCard: **** **** **** 9012\nAuth: MOCKJ1', 'generate pos_receipt --locale TR', 'POS receipt formatted text (40-char wide) â€” MOCKJ merchant, masked PAN, auth code, TEST disclaimer.', '--locale'),
+    ('iso8583_auth_request' , 'CardPhysics', True , 'MTI:0100\nBITMAP:723C...\nDE002:4532...', 'generate iso8583_auth_request --locale TR', 'ISO 8583 v1987 Authorization Request (MTI 0100) — bitmap + DEs 2,3,4,7,11-14,18,22,25,37,41,42,49.', '--locale'),
+    ('iso8583_auth_response', 'CardPhysics', True , 'MTI:0110\nBITMAP:7238...\nDE039:00',     'generate iso8583_auth_response --locale TR', 'ISO 8583 v1987 Authorization Response (MTI 0110) — includes DE038 auth code, DE039 response code.', '--locale'),
+    ('iso8583_reversal'     , 'CardPhysics', True , 'MTI:0400\nBITMAP:7238...\nDE056:0100...', 'generate iso8583_reversal --locale TR', 'ISO 8583 v1987 Reversal Request (MTI 0400) — DE056 original data elements.', '--locale'),
+    ('emv_arqc'      , 'CardPhysics', False, 'A1B2C3D4E5F60718'     , 'generate emv_arqc'            , 'EMV Application Request Cryptogram (tag 9F26) — 8 bytes / 16 uppercase hex.', '-'),
+    ('emv_atc'       , 'CardPhysics', False, '00F3'                  , 'generate emv_atc'             , 'EMV Application Transaction Counter (tag 9F36) — 2 bytes / 4 uppercase hex.', '-'),
+    ('emv_iad'       , 'CardPhysics', False, '0A02102B0F12ABCD1234', 'generate emv_iad'             , 'EMV Issuer Application Data (tag 9F10) — 11 bytes / 22 hex. Format: 0A+DKI+CVN+CVR+ADD+PAD.', '-'),
+    ('atm_session'   , 'CardPhysics', True , '{"session_id":"MOCKJ-ATM-...","masked_pan":"4532 **** **** 9012",...}', 'generate atm_session --locale TR', 'ATM session JSON record — session_id, terminal, masked PAN, ARQC, ATC, response code.', '--locale'),
+    ('pos_receipt'   , 'CardPhysics', True , 'MOCKJ MERCHANT SERVICES\nCard: **** **** **** 9012\nAuth: MOCKJ1', 'generate pos_receipt --locale TR', 'POS receipt formatted text (40-char wide) — MOCKJ merchant, masked PAN, auth code, TEST disclaimer.', '--locale'),
     ('--IntlIDs--'       , ''        , False, '', '', '', ''),
-    # â”€â”€ Brazil
-    ('br_cpf'            , 'IntlIDs' , False, '123.456.789-09' , 'generate br_cpf'             , 'Brazilian CPF â€” 11 digits, MOD-11 two check digits.', '-'),
-    ('br_cnpj'           , 'IntlIDs' , False, '11.222.333/0001-81', 'generate br_cnpj'          , 'Brazilian CNPJ â€” 14 digits, MOD-11 two check digits.', '-'),
-    # â”€â”€ India
-    ('in_pan'            , 'IntlIDs' , False, 'ABCDE1234F'     , 'generate in_pan'             , 'Indian PAN â€” 5 letters + 4 digits + 1 letter.', '-'),
-    ('in_aadhaar'        , 'IntlIDs' , False, '2341 2341 2346' , 'generate in_aadhaar'         , 'Indian Aadhaar â€” 12 digits, Verhoeff check digit.', '-'),
-    ('in_gstin'          , 'IntlIDs' , False, '29ABCDE1234F1Z5', 'generate in_gstin'           , 'Indian GSTIN â€” 15 chars: state + PAN + entity + Z + Luhn-36 check.', '-'),
-    ('in_epic'           , 'IntlIDs' , False, 'ABC1234567'     , 'generate in_epic'            , 'Indian Voter ID (EPIC) â€” 3 uppercase letters + 7 digits.', '-'),
-    # â”€â”€ China
-    ('cn_ric'            , 'IntlIDs' , False, '110000198001011234', 'generate cn_ric'           , 'Chinese Resident ID â€” 18 chars: area + date + seq + check.', '-'),
-    # â”€â”€ Mexico
-    ('mx_curp'           , 'IntlIDs' , False, 'BOXW310820HNERXN09', 'generate mx_curp'         , 'Mexican CURP â€” 18 chars, check digit via CURP alphabet.', '-'),
-    ('mx_rfc'            , 'IntlIDs' , False, 'ABCD820101ABC'  , 'generate mx_rfc'             , 'Mexican RFC â€” 13 chars (person) or 12 chars (company).', '-'),
-    # â”€â”€ Italy
-    ('it_codicefiscale'  , 'IntlIDs' , False, 'RSSMRA80A01H501U', 'generate it_codicefiscale'  , 'Italian Codice Fiscale â€” 16 chars, official MOD-26 check digit.', '-'),
-    # â”€â”€ Spain
-    ('es_dni'            , 'IntlIDs' , False, '12345678Z'      , 'generate es_dni'             , 'Spanish DNI â€” 8 digits + MOD-23 check letter.', '-'),
-    ('es_nie'            , 'IntlIDs' , False, 'X1234567L'      , 'generate es_nie'             , 'Spanish NIE â€” X/Y/Z prefix + 7 digits + MOD-23 check letter.', '-'),
-    ('es_ccc'            , 'IntlIDs' , False, '2100-0418-42-0200051332', 'generate es_ccc'      , 'Spanish CCC bank account â€” 4+4+2+10 digits, MOD-11 check digits.', '-'),
-    # â”€â”€ Germany
-    ('de_idnr'           , 'IntlIDs' , False, '02476291358'    , 'generate de_idnr'            , 'German personal tax ID (IdNr) â€” 11 digits, ISO 7064 MOD 11,10.', '-'),
-    ('de_stnr'           , 'IntlIDs' , False, '21/815/08150 5' , 'generate de_stnr'            , 'German Steuernummer â€” ELSTER unified 13-digit format.', '-'),
-    # â”€â”€ Pakistan
-    ('pk_cnic'           , 'IntlIDs' , False, '35202-1234567-1', 'generate pk_cnic'            , 'Pakistani CNIC â€” 13 digits (NNNNN-NNNNNNN-N).', '-'),
-    # â”€â”€ Japan
-    ('jp_cn'             , 'IntlIDs' , False, '1234567890123'  , 'generate jp_cn'              , 'Japanese Corporate Number â€” 13 digits, MOD-9 check.', '-'),
-    ('jp_in'             , 'IntlIDs' , False, '123456789012'   , 'generate jp_in'              , 'Japanese Individual Number (My Number) â€” 12 digits, MOD-11 check.', '-'),
-    # â”€â”€ South Korea
-    ('kr_rrn'            , 'IntlIDs' , False, '700101-1280009' , 'generate kr_rrn'             , 'South Korean RRN â€” 13 digits with birth date, gender, and check.', '-'),
-    ('kr_brn'            , 'IntlIDs' , False, '123-45-67890'   , 'generate kr_brn'             , 'South Korean Business Registration Number â€” NNN-NN-NNNNN.', '-'),
-    # â”€â”€ Netherlands
-    ('nl_bsn'            , 'IntlIDs' , False, '123456782'      , 'generate nl_bsn'             , 'Dutch BSN â€” 9 digits, MOD-11 weighted check.', '-'),
-    # â”€â”€ Poland
-    ('pl_pesel'          , 'IntlIDs' , False, '70010112345'    , 'generate pl_pesel'           , 'Polish PESEL â€” 11 digits with encoded birth date and MOD-10 check.', '-'),
-    # â”€â”€ Sweden
-    ('se_personnummer'   , 'IntlIDs' , False, '19700101-1234'  , 'generate se_personnummer'    , 'Swedish Personnummer â€” YYYYMMDD-NNNN with Luhn check.', '-'),
-    # â”€â”€ Denmark
-    ('dk_cpr'            , 'IntlIDs' , False, '010170-1234'    , 'generate dk_cpr'             , 'Danish CPR â€” DDMMYY-SSSS (no checksum since 2007).', '-'),
-    # â”€â”€ Finland
-    ('fi_hetu'           , 'IntlIDs' , False, '010170-123A'    , 'generate fi_hetu'            , 'Finnish HETU â€” DDMMYY+/-NNNC with MOD-31 check.', '-'),
-    # â”€â”€ Norway
-    ('no_fodselsnummer'  , 'IntlIDs' , False, '01017012345'    , 'generate no_fodselsnummer'   , 'Norwegian FÃ¸dselsnummer â€” 11 digits, two MOD-11 check digits.', '-'),
-    # â”€â”€ Australia
-    ('au_abn'            , 'IntlIDs' , False, '51824753556'    , 'generate au_abn'             , 'Australian ABN â€” 11 digits, first 2 are MOD-89 check.', '-'),
-    ('au_tfn'            , 'IntlIDs' , False, '123456782'      , 'generate au_tfn'             , 'Australian TFN â€” 9 digits, MOD-11 weighted check.', '-'),
-    ('au_acn'            , 'IntlIDs' , False, '004085616'      , 'generate au_acn'             , 'Australian ACN â€” 9 digits, MOD-10 weighted check.', '-'),
-    # â”€â”€ Malaysia
-    ('my_nric'           , 'IntlIDs' , False, '701231-08-5678' , 'generate my_nric'            , 'Malaysian NRIC â€” YYMMDD-PB-NNNN (12 digits with valid birth place code).', '-'),
-    # â”€â”€ Thailand
-    ('th_pin'            , 'IntlIDs' , False, '1234567891234'  , 'generate th_pin'             , 'Thai personal ID â€” 13 digits, MOD-11 check.', '-'),
-    ('th_tin'            , 'IntlIDs' , False, '1234567891234'  , 'generate th_tin'             , 'Thai TIN (business) â€” 13 digits, same format as PIN.', '-'),
-    # â”€â”€ Singapore
-    ('sg_uen'            , 'IntlIDs' , False, '12345678X'      , 'generate sg_uen'             , 'Singapore UEN â€” 8 digits + check letter (MOD-11).', '-'),
-    # â”€â”€ South Africa
-    ('za_idnr'           , 'IntlIDs' , False, '7001011234081'  , 'generate za_idnr'            , 'South African ID â€” 13 digits with birth date, gender, and Luhn check.', '-'),
-    # â”€â”€ Canada
-    ('ca_bn'             , 'IntlIDs' , False, '123456782'      , 'generate ca_bn'              , 'Canadian Business Number â€” 9 digits with Luhn check digit.', '-'),
-    # â”€â”€ New Zealand
-    ('nz_ird'            , 'IntlIDs' , False, '490119268'      , 'generate nz_ird'             , 'New Zealand IRD â€” 8-9 digits, range 10M-150M, MOD-11 check.', '-'),
-    # â”€â”€ Argentina
-    ('ar_cuit'           , 'IntlIDs' , False, '20-12345678-9'  , 'generate ar_cuit'            , 'Argentinian CUIT â€” 11 digits, MOD-11 check digit.', '-'),
-    ('ar_dni'            , 'IntlIDs' , False, '12345678'       , 'generate ar_dni'             , 'Argentinian DNI â€” 7 or 8 digits.', '-'),
-    # â”€â”€ Chile
-    ('cl_rut'            , 'IntlIDs' , False, '12.345.678-9'   , 'generate cl_rut'             , 'Chilean RUT â€” 7-8 digits + MOD-11 check (digit or K).', '-'),
-    # â”€â”€ Colombia
-    ('co_nit'            , 'IntlIDs' , False, '8001234565'     , 'generate co_nit'             , 'Colombian NIT â€” 9 digits + check digit.', '-'),
-    # â”€â”€ Israel
-    ('il_idnr'           , 'IntlIDs' , False, '123456782'      , 'generate il_idnr'            , 'Israeli ID â€” 9 digits, Luhn check.', '-'),
-    # â”€â”€ Romania
-    ('ro_cnp'            , 'IntlIDs' , False, '1700101123456'  , 'generate ro_cnp'             , 'Romanian CNP â€” 13 digits, MOD-11 check digit.', '-'),
-    ('ro_cui'            , 'IntlIDs' , False, 'RO123456785'    , 'generate ro_cui'             , 'Romanian CUI â€” company identifier with MOD-11 check.', '-'),
-    # â”€â”€ Croatia
-    ('hr_oib'            , 'IntlIDs' , False, '12345678901'    , 'generate hr_oib'             , 'Croatian OIB â€” 11 digits, ISO 7064 MOD 11,10 check.', '-'),
-    # â”€â”€ Bulgaria
-    ('bg_egn'            , 'IntlIDs' , False, '7001011234'     , 'generate bg_egn'             , 'Bulgarian EGN â€” 10 digits with birth date and MOD-11 check.', '-'),
-    # â”€â”€ Lithuania
-    ('lt_asmens'         , 'IntlIDs' , False, '38001011234'    , 'generate lt_asmens'          , 'Lithuanian personal code â€” 11 digits, same algorithm as EE IK.', '-'),
-    # â”€â”€ Estonia
-    ('ee_ik'             , 'IntlIDs' , False, '38001011234'    , 'generate ee_ik'              , 'Estonian Isikukood â€” 11 digits with gender/century prefix, MOD-11 check.', '-'),
-    # â”€â”€ Portugal
-    ('pt_cc'             , 'IntlIDs' , False, '12345678 0 AB4' , 'generate pt_cc'              , 'Portuguese Citizen Card â€” 8 digits + 2 letters + check digit.', '-'),
-    # â”€â”€ Egypt
-    ('eg_tn'             , 'IntlIDs' , False, '123456789'      , 'generate eg_tn'              , 'Egyptian Tax Registration Number â€” 9 digits.', '-'),
+    # ── Brazil
+    ('br_cpf'            , 'IntlIDs' , False, '123.456.789-09' , 'generate br_cpf'             , 'Brazilian CPF — 11 digits, MOD-11 two check digits.', '-'),
+    ('br_cnpj'           , 'IntlIDs' , False, '11.222.333/0001-81', 'generate br_cnpj'          , 'Brazilian CNPJ — 14 digits, MOD-11 two check digits.', '-'),
+    # ── India
+    ('in_pan'            , 'IntlIDs' , False, 'ABCDE1234F'     , 'generate in_pan'             , 'Indian PAN — 5 letters + 4 digits + 1 letter.', '-'),
+    ('in_aadhaar'        , 'IntlIDs' , False, '2341 2341 2346' , 'generate in_aadhaar'         , 'Indian Aadhaar — 12 digits, Verhoeff check digit.', '-'),
+    ('in_gstin'          , 'IntlIDs' , False, '29ABCDE1234F1Z5', 'generate in_gstin'           , 'Indian GSTIN — 15 chars: state + PAN + entity + Z + Luhn-36 check.', '-'),
+    ('in_epic'           , 'IntlIDs' , False, 'ABC1234567'     , 'generate in_epic'            , 'Indian Voter ID (EPIC) — 3 uppercase letters + 7 digits.', '-'),
+    # ── China
+    ('cn_ric'            , 'IntlIDs' , False, '110000198001011234', 'generate cn_ric'           , 'Chinese Resident ID — 18 chars: area + date + seq + check.', '-'),
+    # ── Mexico
+    ('mx_curp'           , 'IntlIDs' , False, 'BOXW310820HNERXN09', 'generate mx_curp'         , 'Mexican CURP — 18 chars, check digit via CURP alphabet.', '-'),
+    ('mx_rfc'            , 'IntlIDs' , False, 'ABCD820101ABC'  , 'generate mx_rfc'             , 'Mexican RFC — 13 chars (person) or 12 chars (company).', '-'),
+    # ── Italy
+    ('it_codicefiscale'  , 'IntlIDs' , False, 'RSSMRA80A01H501U', 'generate it_codicefiscale'  , 'Italian Codice Fiscale — 16 chars, official MOD-26 check digit.', '-'),
+    # ── Spain
+    ('es_dni'            , 'IntlIDs' , False, '12345678Z'      , 'generate es_dni'             , 'Spanish DNI — 8 digits + MOD-23 check letter.', '-'),
+    ('es_nie'            , 'IntlIDs' , False, 'X1234567L'      , 'generate es_nie'             , 'Spanish NIE — X/Y/Z prefix + 7 digits + MOD-23 check letter.', '-'),
+    ('es_ccc'            , 'IntlIDs' , False, '2100-0418-42-0200051332', 'generate es_ccc'      , 'Spanish CCC bank account — 4+4+2+10 digits, MOD-11 check digits.', '-'),
+    # ── Germany
+    ('de_idnr'           , 'IntlIDs' , False, '02476291358'    , 'generate de_idnr'            , 'German personal tax ID (IdNr) — 11 digits, ISO 7064 MOD 11,10.', '-'),
+    ('de_stnr'           , 'IntlIDs' , False, '21/815/08150 5' , 'generate de_stnr'            , 'German Steuernummer — ELSTER unified 13-digit format.', '-'),
+    # ── Pakistan
+    ('pk_cnic'           , 'IntlIDs' , False, '35202-1234567-1', 'generate pk_cnic'            , 'Pakistani CNIC — 13 digits (NNNNN-NNNNNNN-N).', '-'),
+    # ── Japan
+    ('jp_cn'             , 'IntlIDs' , False, '1234567890123'  , 'generate jp_cn'              , 'Japanese Corporate Number — 13 digits, MOD-9 check.', '-'),
+    ('jp_in'             , 'IntlIDs' , False, '123456789012'   , 'generate jp_in'              , 'Japanese Individual Number (My Number) — 12 digits, MOD-11 check.', '-'),
+    # ── South Korea
+    ('kr_rrn'            , 'IntlIDs' , False, '700101-1280009' , 'generate kr_rrn'             , 'South Korean RRN — 13 digits with birth date, gender, and check.', '-'),
+    ('kr_brn'            , 'IntlIDs' , False, '123-45-67890'   , 'generate kr_brn'             , 'South Korean Business Registration Number — NNN-NN-NNNNN.', '-'),
+    # ── Netherlands
+    ('nl_bsn'            , 'IntlIDs' , False, '123456782'      , 'generate nl_bsn'             , 'Dutch BSN — 9 digits, MOD-11 weighted check.', '-'),
+    # ── Poland
+    ('pl_pesel'          , 'IntlIDs' , False, '70010112345'    , 'generate pl_pesel'           , 'Polish PESEL — 11 digits with encoded birth date and MOD-10 check.', '-'),
+    # ── Sweden
+    ('se_personnummer'   , 'IntlIDs' , False, '19700101-1234'  , 'generate se_personnummer'    , 'Swedish Personnummer — YYYYMMDD-NNNN with Luhn check.', '-'),
+    # ── Denmark
+    ('dk_cpr'            , 'IntlIDs' , False, '010170-1234'    , 'generate dk_cpr'             , 'Danish CPR — DDMMYY-SSSS (no checksum since 2007).', '-'),
+    # ── Finland
+    ('fi_hetu'           , 'IntlIDs' , False, '010170-123A'    , 'generate fi_hetu'            , 'Finnish HETU — DDMMYY+/-NNNC with MOD-31 check.', '-'),
+    # ── Norway
+    ('no_fodselsnummer'  , 'IntlIDs' , False, '01017012345'    , 'generate no_fodselsnummer'   , 'Norwegian Fødselsnummer — 11 digits, two MOD-11 check digits.', '-'),
+    # ── Australia
+    ('au_abn'            , 'IntlIDs' , False, '51824753556'    , 'generate au_abn'             , 'Australian ABN — 11 digits, first 2 are MOD-89 check.', '-'),
+    ('au_tfn'            , 'IntlIDs' , False, '123456782'      , 'generate au_tfn'             , 'Australian TFN — 9 digits, MOD-11 weighted check.', '-'),
+    ('au_acn'            , 'IntlIDs' , False, '004085616'      , 'generate au_acn'             , 'Australian ACN — 9 digits, MOD-10 weighted check.', '-'),
+    # ── Malaysia
+    ('my_nric'           , 'IntlIDs' , False, '701231-08-5678' , 'generate my_nric'            , 'Malaysian NRIC — YYMMDD-PB-NNNN (12 digits with valid birth place code).', '-'),
+    # ── Thailand
+    ('th_pin'            , 'IntlIDs' , False, '1234567891234'  , 'generate th_pin'             , 'Thai personal ID — 13 digits, MOD-11 check.', '-'),
+    ('th_tin'            , 'IntlIDs' , False, '1234567891234'  , 'generate th_tin'             , 'Thai TIN (business) — 13 digits, same format as PIN.', '-'),
+    # ── Singapore
+    ('sg_uen'            , 'IntlIDs' , False, '12345678X'      , 'generate sg_uen'             , 'Singapore UEN — 8 digits + check letter (MOD-11).', '-'),
+    # ── South Africa
+    ('za_idnr'           , 'IntlIDs' , False, '7001011234081'  , 'generate za_idnr'            , 'South African ID — 13 digits with birth date, gender, and Luhn check.', '-'),
+    # ── Canada
+    ('ca_bn'             , 'IntlIDs' , False, '123456782'      , 'generate ca_bn'              , 'Canadian Business Number — 9 digits with Luhn check digit.', '-'),
+    # ── New Zealand
+    ('nz_ird'            , 'IntlIDs' , False, '490119268'      , 'generate nz_ird'             , 'New Zealand IRD — 8-9 digits, range 10M-150M, MOD-11 check.', '-'),
+    # ── Argentina
+    ('ar_cuit'           , 'IntlIDs' , False, '20-12345678-9'  , 'generate ar_cuit'            , 'Argentinian CUIT — 11 digits, MOD-11 check digit.', '-'),
+    ('ar_dni'            , 'IntlIDs' , False, '12345678'       , 'generate ar_dni'             , 'Argentinian DNI — 7 or 8 digits.', '-'),
+    # ── Chile
+    ('cl_rut'            , 'IntlIDs' , False, '12.345.678-9'   , 'generate cl_rut'             , 'Chilean RUT — 7-8 digits + MOD-11 check (digit or K).', '-'),
+    # ── Colombia
+    ('co_nit'            , 'IntlIDs' , False, '8001234565'     , 'generate co_nit'             , 'Colombian NIT — 9 digits + check digit.', '-'),
+    # ── Israel
+    ('il_idnr'           , 'IntlIDs' , False, '123456782'      , 'generate il_idnr'            , 'Israeli ID — 9 digits, Luhn check.', '-'),
+    # ── Romania
+    ('ro_cnp'            , 'IntlIDs' , False, '1700101123456'  , 'generate ro_cnp'             , 'Romanian CNP — 13 digits, MOD-11 check digit.', '-'),
+    ('ro_cui'            , 'IntlIDs' , False, 'RO123456785'    , 'generate ro_cui'             , 'Romanian CUI — company identifier with MOD-11 check.', '-'),
+    # ── Croatia
+    ('hr_oib'            , 'IntlIDs' , False, '12345678901'    , 'generate hr_oib'             , 'Croatian OIB — 11 digits, ISO 7064 MOD 11,10 check.', '-'),
+    # ── Bulgaria
+    ('bg_egn'            , 'IntlIDs' , False, '7001011234'     , 'generate bg_egn'             , 'Bulgarian EGN — 10 digits with birth date and MOD-11 check.', '-'),
+    # ── Lithuania
+    ('lt_asmens'         , 'IntlIDs' , False, '38001011234'    , 'generate lt_asmens'          , 'Lithuanian personal code — 11 digits, same algorithm as EE IK.', '-'),
+    # ── Estonia
+    ('ee_ik'             , 'IntlIDs' , False, '38001011234'    , 'generate ee_ik'              , 'Estonian Isikukood — 11 digits with gender/century prefix, MOD-11 check.', '-'),
+    # ── Portugal
+    ('pt_cc'             , 'IntlIDs' , False, '12345678 0 AB4' , 'generate pt_cc'              , 'Portuguese Citizen Card — 8 digits + 2 letters + check digit.', '-'),
+    # ── Egypt
+    ('eg_tn'             , 'IntlIDs' , False, '123456789'      , 'generate eg_tn'              , 'Egyptian Tax Registration Number — 9 digits.', '-'),
     ('--Commands--'  , ''             , False, ''                          , ''                           , '', ''),
     ('bulk'           , 'Commands'     , True , '["45678901234","98701234567",...]', 'bulk tckn --count 10 --locale TR', 'Generate N values of any single type. Supports all --generate flags (--network, --currency, --locale, etc.).', '--count (int)'),
     ('template'       , 'Commands'     , True , '{"fullname":"Emre Kaya","tckn":"45678901234","phone":"+905321234567"}', 'template fullname tckn phone --locale TR', 'Combine multiple data types into one structured record. Output as JSON, CSV or SQL INSERT.', '--count (int), --format (json|csv|sql), --table (string)'),
@@ -759,7 +759,7 @@ def list_types(cat):
             click.echo(f"{typ_s} {ex_s} {cli_s} {param_s} {loc_flag}")
             printed += 1
 
-    # Footer â€” types summary
+    # Footer — types summary
     click.echo()
     click.echo(sep)
     click.echo(click.style(
@@ -774,7 +774,7 @@ def list_types(cat):
     ))
     click.echo(sep)
 
-    # Footer â€” CLI commands reference
+    # Footer — CLI commands reference
     click.echo()
     click.echo(click.style("  >> CLI COMMANDS", fg='bright_white', bold=True))
     click.echo()
@@ -782,13 +782,13 @@ def list_types(cat):
     _COMMANDS = [
         ("generate  <type>",   "Single value",          "mockjutsu generate tckn --locale TR"),
         ("bulk      <type>",   "Multiple same type",    "mockjutsu bulk iban --count 10 --locale TR"),
-        ("template  <typesâ€¦>", "Multi-type record",     "mockjutsu template nin snils cardtype address_street"),
+        ("template  <types…>", "Multi-type record",     "mockjutsu template nin snils cardtype address_street"),
         ("",                   "",                      "mockjutsu template uuid phone iban --count 5"),
         ("",                   "",                      "mockjutsu template tckn iban --count 10 --format csv"),
         ("",                   "",                      "mockjutsu template firstname lastname --format sql --table users"),
         ("profile",            "Person profile",        "mockjutsu profile --locale DE --count 3"),
         ("company",            "Company profile",       "mockjutsu company --locale TR"),
-        ("export   <typesâ€¦>",  "Bulk multi-type",       "mockjutsu export fullname tckn phone --count 5 --format csv"),
+        ("export   <types…>",  "Bulk multi-type",       "mockjutsu export fullname tckn phone --count 5 --format csv"),
         ("list",               "Show all types",        "mockjutsu list  |  mockjutsu list --cat Financial"),
         ("start-api",          "Start REST API server", "mockjutsu start-api --port 8000"),
     ]
@@ -925,4 +925,3 @@ def start_api(port):
 
 if __name__ == "__main__":
     main()
-
