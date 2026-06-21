@@ -201,7 +201,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">CLI Usage</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-age')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-age"><code class="p">mockjutsu generate age</code><code class="p">mockjutsu bulk age --count 10</code><code class="o">mockjutsu export age --count 10 --format json</code><code class="o">mockjutsu export age --count 10 --format csv</code><code class="o">mockjutsu export age --count 10 --format sql</code><code class="p">mockjutsu generate age --min float</code></div>
+  <div class="term-body" id="term-cli-age"><code class="p">mockjutsu generate age</code><code class="p">mockjutsu bulk age --count 10</code><code class="o">mockjutsu export age --count 10 --format json</code><code class="o">mockjutsu export age --count 10 --format csv</code><code class="o">mockjutsu export age --count 10 --format sql</code><code class="p">mockjutsu generate age --min int</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-age')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-age"><code class="jm">${__mockjutsu(age)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu</code><code class="c"># Parameter 1: age</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+  <div class="term-body" id="term-jm-age"><code class="jm">${__mockjutsu_identity(age)}</code><code class="jm">${__mockjutsu_identity(age:18-35)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_identity</code><code class="c"># Parameter 1: age  OR  age:<qualifier></code><code class="c"># Qualifier values: min-max (int)</code><code class="c"># Parameter 2: (not required for this function)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -239,7 +239,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     </tr></thead>
     <tbody><tr>
               <td><span class="param-flag">--min</span></td>
-              <td><span class="param-vals">float</span></td>
+              <td><span class="param-vals">int</span></td>
               <td>Minimum numeric value</td>
             </tr><tr>
               <td><span class="param-flag">--max</span></td>

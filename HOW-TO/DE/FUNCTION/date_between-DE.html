@@ -201,7 +201,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">CLI-Verwendung</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-date_between')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-date_between"><code class="p">mockjutsu generate date_between</code><code class="p">mockjutsu bulk date_between --count 10</code><code class="o">mockjutsu export date_between --count 10 --format json</code><code class="o">mockjutsu export date_between --count 10 --format csv</code><code class="o">mockjutsu export date_between --count 10 --format sql</code><code class="p">mockjutsu generate date_between --start value</code></div>
+  <div class="term-body" id="term-cli-date_between"><code class="p">mockjutsu generate date_between</code><code class="p">mockjutsu bulk date_between --count 10</code><code class="o">mockjutsu export date_between --count 10 --format json</code><code class="o">mockjutsu export date_between --count 10 --format csv</code><code class="o">mockjutsu export date_between --count 10 --format sql</code><code class="p">mockjutsu generate date_between --start YYYY-MM-DD</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-date_between')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-date_between"><code class="jm">${__mockjutsu(date_between)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu</code><code class="c"># Parameter 1: date_between</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+  <div class="term-body" id="term-jm-date_between"><code class="jm">${__mockjutsu_datetime(date_between)}</code><code class="jm">${__mockjutsu_datetime(date_between:2020-01-01|2024-12-31)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_datetime</code><code class="c"># Parameter 1: date_between  OR  date_between:<qualifier></code><code class="c"># Qualifier values: start|end (YYYY-MM-DD)</code><code class="c"># Parameter 2: (not required for this function)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -239,12 +239,12 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     </tr></thead>
     <tbody><tr>
               <td><span class="param-flag">--start</span></td>
-              <td><span class="param-vals">value</span></td>
-              <td>start</td>
+              <td><span class="param-vals">YYYY-MM-DD</span></td>
+              <td>Start date for date_between</td>
             </tr><tr>
               <td><span class="param-flag">--end</span></td>
-              <td><span class="param-vals">value</span></td>
-              <td>end</td>
+              <td><span class="param-vals">YYYY-MM-DD</span></td>
+              <td>End date for date_between</td>
             </tr></tbody>
   </table>
 </div>

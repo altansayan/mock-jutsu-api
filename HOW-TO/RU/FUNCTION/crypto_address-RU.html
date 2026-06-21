@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-crypto_address')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-crypto_address"><code class="jm">${__mockjutsu(crypto_address)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu</code><code class="c"># Parameter 1: crypto_address</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+  <div class="term-body" id="term-jm-crypto_address"><code class="jm">${__mockjutsu_crypto(crypto_address)}</code><code class="jm">${__mockjutsu_crypto(crypto_address:btc)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_crypto</code><code class="c"># Parameter 1: crypto_address  OR  crypto_address:<qualifier></code><code class="c"># Qualifier values: btc|eth</code><code class="c"># Parameter 2: (not required for this function)</code></div>
 </div>
     <div class="term">
   <div class="term-header">

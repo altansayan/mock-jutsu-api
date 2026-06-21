@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-cardowner')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-cardowner"><code class="jm">${__mockjutsu(cardowner,TR)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu</code><code class="c"># Parameter 1: cardowner</code><code class="c"># Parameter 2: locale (TR/UK/US/DE/FR/RU)</code><code class="jm">${__mockjutsu(cardowner,DE)}</code></div>
+  <div class="term-body" id="term-jm-cardowner"><code class="jm">${__mockjutsu_financial(cardowner,TR)}</code><code class="jm">${__mockjutsu_financial(cardowner:male)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_financial</code><code class="c"># Parameter 1: cardowner  OR  cardowner:<qualifier></code><code class="c"># Qualifier values: male|female</code><code class="c"># Parameter 2: locale (TR/UK/US/DE/FR/RU)</code><code class="jm">${__mockjutsu_financial(cardowner,DE)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">

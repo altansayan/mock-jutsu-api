@@ -219,7 +219,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-hash')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-hash"><code class="jm">${__mockjutsu(hash)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu</code><code class="c"># Parameter 1: hash</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+  <div class="term-body" id="term-jm-hash"><code class="jm">${__mockjutsu_meta(hash)}</code><code class="jm">${__mockjutsu_meta(hash:sha256)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_meta</code><code class="c"># Parameter 1: hash  OR  hash:<qualifier></code><code class="c"># Qualifier values: md5|sha1|sha256|sha384|sha512|sha3-256|sha3-512|crc32|adler32|crc16</code><code class="c"># Parameter 2: (not required for this function)</code></div>
 </div>
     <div class="term">
   <div class="term-header">

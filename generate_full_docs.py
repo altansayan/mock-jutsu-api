@@ -27,6 +27,103 @@ from mockjutsu.cli import _REFERENCE
 
 CONTENT_DIR = os.path.join(BASE_DIR, "HOW-TO", "content")
 
+# ── JMeter category → function key mapping ────────────────────────────────────
+_JMETER_FN_MAP = {
+    "Identity":          "__mockjutsu_identity",
+    "Name":              "__mockjutsu_identity",
+    "Document":          "__mockjutsu_identity",
+    "Demographic":       "__mockjutsu_identity",
+    "Financial":         "__mockjutsu_financial",
+    "FinancialExt":      "__mockjutsu_financial_ext",
+    "Contact":           "__mockjutsu_comm",
+    "Banking":           "__mockjutsu_banking",
+    "Payments":          "__mockjutsu_payments",
+    "CardPhysics":       "__mockjutsu_cardphysics",
+    "Corporate":         "__mockjutsu_corporate",
+    "Compliance":        "__mockjutsu_compliance",
+    "Health":            "__mockjutsu_health",
+    "Commerce":          "__mockjutsu_commerce",
+    "Meta":              "__mockjutsu_meta",
+    "Security":          "__mockjutsu_security",
+    "Datetime":          "__mockjutsu_datetime",
+    "RFID":              "__mockjutsu_iot",
+    "NFC":               "__mockjutsu_iot",
+    "IR":                "__mockjutsu_iot",
+    "Wireless":          "__mockjutsu_iot",
+    "Barcode":           "__mockjutsu_barcode",
+    "Telecom":           "__mockjutsu_telecom",
+    "CapMarkets(Trading)": "__mockjutsu_markets",
+    "Crypto":            "__mockjutsu_crypto",
+    "E-Commerce":        "__mockjutsu_ecommerce",
+    "Location":          "__mockjutsu_location",
+    "Social":            "__mockjutsu_social",
+    "Hardware":          "__mockjutsu_hardware",
+    "Aviation":          "__mockjutsu_aviation",
+    "WebAuthn":          "__mockjutsu_fido2",
+    "Wallet":            "__mockjutsu_wallet",
+    "AI Vector":         "__mockjutsu_ai",
+    "OIDC":              "__mockjutsu_oidc",
+    "BankStatement":     "__mockjutsu_bank_statement",
+    "EDI":               "__mockjutsu_edi",
+    "EventSourcing":     "__mockjutsu_event_sourcing",
+    "Telemetry":         "__mockjutsu_telemetry",
+    "CryptoFuzz":        "__mockjutsu_crypto_fuzz",
+    "MRZ":               "__mockjutsu_mrz",
+    "OHLCV":             "__mockjutsu_ohlcv",
+    "NMEA":              "__mockjutsu_nmea",
+    "Prometheus":        "__mockjutsu_prometheus",
+    "GameDev":           "__mockjutsu_gamedev",
+    "UBL":               "__mockjutsu_ubl",
+    "EInvoice":          "__mockjutsu_ubl",
+    "Automotive":        "__mockjutsu_automotive",
+    "TLE":               "__mockjutsu_tle",
+    "PenTest":           "__mockjutsu_pentest",
+    "Web":               "__mockjutsu_web",
+    "IntlIDs":           "__mockjutsu_intl_ids",
+}
+
+# Types that accept a :qualifier in JMeter syntax: type:qualifier
+# Each entry: fn → (example_qualifier, qualifier_description)
+_JMETER_QUALIFIER_MAP: dict[str, tuple[str, str]] = {
+    # Financial
+    "cardnum":          ("visa",                  "visa|mc|amex|troy|mir|jcb|discover|unionpay|maestro"),
+    "balance":          ("100|5000",              "min|max (float)"),
+    "3ds_eci":          ("visa",                  "visa|mc|amex|jcb"),
+    # Identity
+    "tckn":             ("5",                     "prefix string"),
+    "firstname":        ("male",                  "male|female"),
+    "lastname":         ("male",                  "male|female"),
+    "fullname":         ("male",                  "male|female"),
+    "patronymic":       ("male",                  "male|female"),
+    "cardowner":        ("male",                  "male|female"),
+    "age":              ("18-35",                 "min-max (int)"),
+    # Meta
+    "hash":             ("sha256",                "md5|sha1|sha256|sha384|sha512|sha3-256|sha3-512|crc32|adler32|crc16"),
+    "color":            ("hex",                   "hex|rgb|hsl|name"),
+    "signature":        ("secret|mock",           "secret|payload"),
+    # CapMarkets
+    "forex_rate":       ("EURUSD",                "EURUSD|USDTRY|GBPUSD|USDJPY|EURTRY|GBPTRY|AUDUSD|NZDUSD"),
+    "psd2_consent":     ("500.00",                "amount (float)"),
+    # Crypto
+    "crypto_address":   ("btc",                   "btc|eth"),
+    "tx_hash":          ("eth",                   "btc|eth"),
+    "block_hash":       ("btc",                   "btc|eth"),
+    "mnemonic":         ("12",                    "12|15|18|21|24"),
+    # AiVector
+    "ai_embedding":     ("128",                   "dimensions (int)"),
+    "ai_vector":        ("64",                    "dimensions (int)"),
+    "ai_sparse_vector": ("64|16",                 "dims|nnz (int)"),
+    # E-Commerce
+    "tracking_number":  ("fedex",                 "fedex|ups|usps|dhl"),
+    # Datetime
+    "date_between":     ("2020-01-01|2024-12-31", "start|end (YYYY-MM-DD)"),
+    # ReverseRegex
+    "regex_string":     ("[A-Z]{3}\\d{4}",        "regex pattern"),
+}
+
+def _jmeter_fn_key(cat: str) -> str:
+    return _JMETER_FN_MAP.get(cat, "__mockjutsu")
+
 
 def _read_test_count() -> int:
     stats_path = os.path.join(BASE_DIR, "compliance", "test_stats.json")
@@ -209,6 +306,9 @@ PARAM_INFO = {
     "--format":    ("hex|rgb|hsl|name",    "Color output format (default: hex)"),
     "--secret":    ("string",              "HMAC signing key (default: ninja)"),
     "--payload":   ("string",              "Message to sign with HMAC (default: mock)"),
+    "--pair":      ("EURUSD|USDTRY|GBPUSD|USDJPY|EURTRY|GBPTRY|AUDUSD|NZDUSD", "FX currency pair (ISO 4217, no slash)"),
+    "--start":     ("YYYY-MM-DD",          "Start date for date_between"),
+    "--end":       ("YYYY-MM-DD",          "End date for date_between"),
     "--count":     ("int",                 "Number of records to generate (default: 10)"),
     "--table":     ("string",              "SQL table name for INSERT statements (default: records)"),
 }
@@ -737,18 +837,28 @@ def build_detail_page(r: tuple, lang: str) -> str:
     py_content += code(f"jutsu.template(['{fn}'], count=5{locale_arg})", "py")
 
     # JMeter terminal
+    jm_fn      = _jmeter_fn_key(cat)
+    qual_info  = _JMETER_QUALIFIER_MAP.get(fn)   # (example, description) or None
     if has_locale:
-        jm_basic  = f"${{__mockjutsu({fn},TR)}}"
-        jm_alt    = f"${{__mockjutsu({fn},DE)}}"
-        jm_p2     = "# Parameter 2: locale (TR/UK/US/DE/FR/RU)"
+        jm_basic = f"${{{jm_fn}({fn},TR)}}"
+        jm_alt   = f"${{{jm_fn}({fn},DE)}}"
+        jm_p2    = "# Parameter 2: locale (TR/UK/US/DE/FR/RU)"
     else:
-        jm_basic  = f"${{__mockjutsu({fn})}}"
-        jm_alt    = None
-        jm_p2     = "# Parameter 2: (not required for this function)"
+        jm_basic = f"${{{jm_fn}({fn})}}"
+        jm_alt   = None
+        jm_p2    = "# Parameter 2: (not required for this function)"
     jm_content  = code(jm_basic, "jm")
+    if qual_info:
+        ex_qual, qual_desc = qual_info
+        jm_content += code(f"${{{jm_fn}({fn}:{ex_qual})}}", "jm")
     jm_content += code("", "c")
-    jm_content += code(f"# JMeter Function: __mockjutsu", "c")
-    jm_content += code(f"# Parameter 1: {fn}", "c")
+    jm_content += code(f"# JMeter Function: {jm_fn}", "c")
+    if qual_info:
+        ex_qual, qual_desc = qual_info
+        jm_content += code(f"# Parameter 1: {fn}  OR  {fn}:<qualifier>", "c")
+        jm_content += code(f"# Qualifier values: {qual_desc}", "c")
+    else:
+        jm_content += code(f"# Parameter 1: {fn}", "c")
     jm_content += code(jm_p2, "c")
     if jm_alt:
         jm_content += code(jm_alt, "jm")
@@ -1431,10 +1541,13 @@ def update_index(index_path: str, total: int) -> None:
 def main():
     parser = argparse.ArgumentParser(description="Mock Jutsu HOW-TO 2.0 generator")
     parser.add_argument("--lang", default="", help="Only this language (TR/EN/UK/DE/FR/RU)")
+    parser.add_argument("--fn",   default="", help="Only this function type (e.g. cardnum)")
     args = parser.parse_args()
 
     langs = [args.lang.upper()] if args.lang else LANGS
     funcs = get_functions()
+    if args.fn:
+        funcs = [r for r in funcs if r[0].strip() == args.fn.strip()]
 
     total_pages = len(langs) + len(langs) * len(funcs)
     print(f"Generating HOW-TO 2.0 — {len(funcs)} functions × {len(langs)} languages")

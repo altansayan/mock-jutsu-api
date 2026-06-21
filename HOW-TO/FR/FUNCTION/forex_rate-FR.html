@@ -201,7 +201,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Utilisation CLI</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-forex_rate')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-forex_rate"><code class="p">mockjutsu generate forex_rate</code><code class="p">mockjutsu bulk forex_rate --count 10</code><code class="o">mockjutsu export forex_rate --count 10 --format json</code><code class="o">mockjutsu export forex_rate --count 10 --format csv</code><code class="o">mockjutsu export forex_rate --count 10 --format sql</code><code class="p">mockjutsu generate forex_rate --pair e.g. EUR/USD</code></div>
+  <div class="term-body" id="term-cli-forex_rate"><code class="p">mockjutsu generate forex_rate</code><code class="p">mockjutsu bulk forex_rate --count 10</code><code class="o">mockjutsu export forex_rate --count 10 --format json</code><code class="o">mockjutsu export forex_rate --count 10 --format csv</code><code class="o">mockjutsu export forex_rate --count 10 --format sql</code><code class="p">mockjutsu generate forex_rate --pair EURUSD</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-forex_rate')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-forex_rate"><code class="jm">${__mockjutsu(forex_rate)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu</code><code class="c"># Parameter 1: forex_rate</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+  <div class="term-body" id="term-jm-forex_rate"><code class="jm">${__mockjutsu_markets(forex_rate)}</code><code class="jm">${__mockjutsu_markets(forex_rate:EURUSD)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_markets</code><code class="c"># Parameter 1: forex_rate  OR  forex_rate:<qualifier></code><code class="c"># Qualifier values: EURUSD|USDTRY|GBPUSD|USDJPY|EURTRY|GBPTRY|AUDUSD|NZDUSD</code><code class="c"># Parameter 2: (not required for this function)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -239,8 +239,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     </tr></thead>
     <tbody><tr>
               <td><span class="param-flag">--pair</span></td>
-              <td><span class="param-vals">e.g. EUR/USD</span></td>
-              <td>pair</td>
+              <td><span class="param-vals">EURUSD|USDTRY|GBPUSD|USDJPY|EURTRY|GBPTRY|AUDUSD|NZDUSD</span></td>
+              <td>FX currency pair (ISO 4217, no slash)</td>
             </tr></tbody>
   </table>
 </div>
