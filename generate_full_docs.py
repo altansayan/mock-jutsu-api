@@ -1141,6 +1141,14 @@ def html_head(title: str, desc: str, canonical: str, lang: str, ui: dict,
 <meta name="twitter:description" content="{desc}">
 <meta name="twitter:image" content="{og_img}">
 <script type="application/ld+json">{extra_ld}</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XQ9PKE4ZGF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', 'G-XQ9PKE4ZGF');
+</script>
 <style>{BASE_CSS}</style>
 </head>"""
 
