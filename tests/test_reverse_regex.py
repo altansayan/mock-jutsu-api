@@ -1,6 +1,6 @@
-"""
-Tests for God Mode #11 — Reverse Regex Generator
-Type: regex_string
+﻿"""
+Tests for God Mode #11 â€” Reverse Regex Generator
+Type: reverse_regex
 
 Core invariant: every generated value MUST match the input pattern.
 Uses Python stdlib sre_parse (zero external dependencies).
@@ -13,7 +13,7 @@ from mockjutsu.core import MockJutsuCore
 jutsu = MockJutsuCore()
 
 
-# ── Core invariant: generated value matches the pattern ───────────────────────
+# â”€â”€ Core invariant: generated value matches the pattern â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 _PATTERNS = [
     r'\d{5}',
@@ -36,38 +36,38 @@ _PATTERNS = [
 
 @pytest.mark.parametrize("pattern", _PATTERNS)
 def test_generated_matches_pattern(pattern):
-    """Generated value must match the input pattern — tested 10 times per pattern."""
+    """Generated value must match the input pattern â€” tested 10 times per pattern."""
     full_pattern = re.compile(f'^(?:{pattern})$')
     for _ in range(10):
-        val = jutsu.generate('regex_string', pattern=pattern)
+        val = jutsu.generate('reverse_regex', pattern=pattern)
         assert full_pattern.match(val), (
             f"Pattern {pattern!r} not matched by generated value {val!r}"
         )
 
 
-# ── Default (no pattern) ──────────────────────────────────────────────────────
+# â”€â”€ Default (no pattern) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class TestRegexStringDefault:
     def test_default_returns_string(self):
-        val = jutsu.generate('regex_string')
+        val = jutsu.generate('reverse_regex')
         assert isinstance(val, str) and len(val) > 0
 
     def test_default_no_error_prefix(self):
-        val = jutsu.generate('regex_string')
+        val = jutsu.generate('reverse_regex')
         assert not val.startswith('ERROR')
 
     def test_default_bulk_unique(self):
-        results = jutsu.bulk('regex_string', 20)
+        results = jutsu.bulk('reverse_regex', 20)
         assert len(set(results)) > 1
 
     def test_default_matches_its_preset(self):
         """Default call: generated value must match at least one of the preset patterns."""
         for _ in range(20):
-            val = jutsu.generate('regex_string')
+            val = jutsu.generate('reverse_regex')
             assert isinstance(val, str) and len(val) > 0
 
 
-# ── Specific construct tests ──────────────────────────────────────────────────
+# â”€â”€ Specific construct tests â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class TestRegexConstructs:
     def _match(self, pattern, val):
@@ -75,48 +75,49 @@ class TestRegexConstructs:
 
     def test_digit_shorthand(self):
         for _ in range(20):
-            val = jutsu.generate('regex_string', pattern=r'\d{4}')
+            val = jutsu.generate('reverse_regex', pattern=r'\d{4}')
             assert self._match(r'\d{4}', val), f"Failed: {val!r}"
 
     def test_word_shorthand(self):
         for _ in range(20):
-            val = jutsu.generate('regex_string', pattern=r'\w{5}')
+            val = jutsu.generate('reverse_regex', pattern=r'\w{5}')
             assert self._match(r'\w{5}', val), f"Failed: {val!r}"
 
     def test_character_class_range(self):
         for _ in range(20):
-            val = jutsu.generate('regex_string', pattern=r'[A-F]{4}')
+            val = jutsu.generate('reverse_regex', pattern=r'[A-F]{4}')
             assert self._match(r'[A-F]{4}', val), f"Failed: {val!r}"
 
     def test_alternation(self):
         for _ in range(30):
-            val = jutsu.generate('regex_string', pattern=r'(alpha|beta|gamma)')
+            val = jutsu.generate('reverse_regex', pattern=r'(alpha|beta|gamma)')
             assert val in ('alpha', 'beta', 'gamma'), f"Unexpected value: {val!r}"
 
     def test_optional_quantifier(self):
         for _ in range(20):
-            val = jutsu.generate('regex_string', pattern=r'[A-Z]?\d{3}')
+            val = jutsu.generate('reverse_regex', pattern=r'[A-Z]?\d{3}')
             assert self._match(r'[A-Z]?\d{3}', val), f"Failed: {val!r}"
 
     def test_exact_repeat(self):
-        val = jutsu.generate('regex_string', pattern=r'[a-z]{7}')
+        val = jutsu.generate('reverse_regex', pattern=r'[a-z]{7}')
         assert len(val) == 7 and val.islower()
 
     def test_literal_string(self):
-        val = jutsu.generate('regex_string', pattern=r'MOCK')
+        val = jutsu.generate('reverse_regex', pattern=r'MOCK')
         assert val == 'MOCK'
 
     def test_mixed_literal_and_digit(self):
         for _ in range(20):
-            val = jutsu.generate('regex_string', pattern=r'ID-\d{6}')
+            val = jutsu.generate('reverse_regex', pattern=r'ID-\d{6}')
             assert self._match(r'ID-\d{6}', val), f"Failed: {val!r}"
 
     def test_dot_any(self):
         for _ in range(20):
-            val = jutsu.generate('regex_string', pattern=r'.{5}')
+            val = jutsu.generate('reverse_regex', pattern=r'.{5}')
             assert len(val) == 5, f"Expected length 5, got: {val!r}"
 
     def test_anchors_ignored(self):
         for _ in range(20):
-            val = jutsu.generate('regex_string', pattern=r'^\d{4}$')
+            val = jutsu.generate('reverse_regex', pattern=r'^\d{4}$')
             assert re.match(r'^\d{4}$', val), f"Failed: {val!r}"
+

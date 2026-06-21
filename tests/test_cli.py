@@ -1,9 +1,9 @@
-"""
-mock-jutsu — CLI Integration Tests (Comprehensive)
+﻿"""
+mock-jutsu â€” CLI Integration Tests (Comprehensive)
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 
 Covers every type in _REFERENCE via Click's CliRunner.
-Assertions verify the real generation algorithm — checksum, format, range.
+Assertions verify the real generation algorithm â€” checksum, format, range.
 """
 
 import ast
@@ -16,7 +16,7 @@ from mockjutsu.cli import main, _REFERENCE
 
 
 # ---------------------------------------------------------------------------
-# Helper — shared validation algorithms
+# Helper â€” shared validation algorithms
 # ---------------------------------------------------------------------------
 
 def _luhn_valid(s: str) -> bool:
@@ -32,7 +32,7 @@ def _luhn_valid(s: str) -> bool:
 
 
 def _tckn_valid(tc: str) -> bool:
-    """Turkish TCKN — 11-digit, official MOD-10 dual-check algorithm."""
+    """Turkish TCKN â€” 11-digit, official MOD-10 dual-check algorithm."""
     if len(tc) != 11 or not tc.isdigit() or tc[0] == '0':
         return False
     d = [int(c) for c in tc]
@@ -49,7 +49,7 @@ def _iban_mod97_valid(iban: str) -> bool:
 
 
 def _routing_valid(r: str) -> bool:
-    """ABA routing — 3*(d0+d3+d6) + 7*(d1+d4+d7) + (d2+d5+d8) ≡ 0 mod 10."""
+    """ABA routing â€” 3*(d0+d3+d6) + 7*(d1+d4+d7) + (d2+d5+d8) â‰¡ 0 mod 10."""
     if len(r) != 9 or not r.isdigit():
         return False
     d = [int(c) for c in r]
@@ -87,7 +87,7 @@ def _sedol_valid(sedol: str) -> bool:
 
 
 def _nhs_valid(nhs: str) -> bool:
-    """UK NHS number weighted checksum (weights 10→2)."""
+    """UK NHS number weighted checksum (weights 10â†’2)."""
     digits = re.sub(r'\s', '', nhs)
     if len(digits) != 10 or not digits.isdigit():
         return False
@@ -101,7 +101,7 @@ def _nhs_valid(nhs: str) -> bool:
 
 
 def _npi_valid(npi: str) -> bool:
-    """US NPI — 10 digits, CMS Luhn with '80840' prefix.
+    """US NPI â€” 10 digits, CMS Luhn with '80840' prefix.
 
     Algorithm: prepend '80840' to all 10 NPI digits (15 digits total).
     Apply Luhn to the first 14 digits; check digit added directly.
@@ -133,7 +133,7 @@ def _fedex_valid(tracking: str) -> bool:
 
 
 def _parse(runner_output: str):
-    """Parse CLI output — tries JSON first, falls back to ast.literal_eval."""
+    """Parse CLI output â€” tries JSON first, falls back to ast.literal_eval."""
     s = runner_output.strip()
     try:
         return json.loads(s)
@@ -158,7 +158,7 @@ def _gen(runner, *args):
 
 
 # ===========================================================================
-# generate — Identity
+# generate â€” Identity
 # ===========================================================================
 
 class TestGenerateIdentity:
@@ -332,7 +332,7 @@ class TestGenerateIdentity:
 
 
 # ===========================================================================
-# generate — Name
+# generate â€” Name
 # ===========================================================================
 
 class TestGenerateName:
@@ -366,7 +366,7 @@ class TestGenerateName:
 
 
 # ===========================================================================
-# generate — Document & Demographic
+# generate â€” Document & Demographic
 # ===========================================================================
 
 class TestGenerateDocumentDemographic:
@@ -421,7 +421,7 @@ class TestGenerateDocumentDemographic:
 
 
 # ===========================================================================
-# generate — Financial
+# generate â€” Financial
 # ===========================================================================
 
 class TestGenerateFinancial:
@@ -526,7 +526,7 @@ class TestGenerateFinancial:
 
 
 # ===========================================================================
-# generate — Contact
+# generate â€” Contact
 # ===========================================================================
 
 class TestGenerateContact:
@@ -565,7 +565,7 @@ class TestGenerateContact:
         assert val.endswith(('.us', '.net', '.org', '.io'))
 
     def test_address_city_tr(self, runner):
-        TR_CITIES = ['İstanbul', 'Ankara', 'İzmir', 'Bursa', 'Antalya',
+        TR_CITIES = ['Ä°stanbul', 'Ankara', 'Ä°zmir', 'Bursa', 'Antalya',
                      'Adana', 'Konya', 'Gaziantep']
         val = _gen(runner, 'address_city', '--locale', 'TR')
         assert val in TR_CITIES, f"address_city TR: {val}"
@@ -601,7 +601,7 @@ class TestGenerateContact:
 
 
 # ===========================================================================
-# generate — Banking
+# generate â€” Banking
 # ===========================================================================
 
 class TestGenerateBanking:
@@ -658,7 +658,7 @@ class TestGenerateBanking:
 
 
 # ===========================================================================
-# generate — Corporate
+# generate â€” Corporate
 # ===========================================================================
 
 class TestGenerateCorporate:
@@ -683,7 +683,7 @@ class TestGenerateCorporate:
 
 
 # ===========================================================================
-# generate — Health
+# generate â€” Health
 # ===========================================================================
 
 class TestGenerateHealth:
@@ -748,7 +748,7 @@ class TestGenerateHealth:
 
 
 # ===========================================================================
-# generate — Commerce
+# generate â€” Commerce
 # ===========================================================================
 
 class TestGenerateCommerce:
@@ -805,7 +805,7 @@ class TestGenerateCommerce:
 
 
 # ===========================================================================
-# generate — Meta
+# generate â€” Meta
 # ===========================================================================
 
 class TestGenerateMeta:
@@ -949,7 +949,7 @@ class TestGenerateMeta:
 
 
 # ===========================================================================
-# generate — Security
+# generate â€” Security
 # ===========================================================================
 
 class TestGenerateSecurity:
@@ -994,7 +994,7 @@ class TestGenerateSecurity:
 
 
 # ===========================================================================
-# generate — RFID
+# generate â€” RFID
 # ===========================================================================
 
 class TestGenerateRFID:
@@ -1017,7 +1017,7 @@ class TestGenerateRFID:
 
 
 # ===========================================================================
-# generate — NFC
+# generate â€” NFC
 # ===========================================================================
 
 class TestGenerateNFC:
@@ -1063,7 +1063,7 @@ class TestGenerateNFC:
 
 
 # ===========================================================================
-# generate — IR
+# generate â€” IR
 # ===========================================================================
 
 class TestGenerateIR:
@@ -1107,7 +1107,7 @@ class TestGenerateIR:
 
 
 # ===========================================================================
-# generate — Barcode
+# generate â€” Barcode
 # ===========================================================================
 
 class TestGenerateBarcode:
@@ -1157,7 +1157,7 @@ class TestGenerateBarcode:
 
 
 # ===========================================================================
-# generate — Telecom
+# generate â€” Telecom
 # ===========================================================================
 
 class TestGenerateTelecom:
@@ -1198,7 +1198,7 @@ class TestGenerateTelecom:
 
 
 # ===========================================================================
-# generate — Securities
+# generate â€” Securities
 # ===========================================================================
 
 class TestGenerateSecurities:
@@ -1230,7 +1230,7 @@ class TestGenerateSecurities:
 
 
 # ===========================================================================
-# generate — Crypto
+# generate â€” Crypto
 # ===========================================================================
 
 class TestGenerateCrypto:
@@ -1270,7 +1270,7 @@ class TestGenerateCrypto:
 
 
 # ===========================================================================
-# generate — E-Commerce
+# generate â€” E-Commerce
 # ===========================================================================
 
 class TestGenerateEcommerce:
@@ -1333,7 +1333,7 @@ class TestGenerateEcommerce:
 
 
 # ===========================================================================
-# generate — Location
+# generate â€” Location
 # ===========================================================================
 
 class TestGenerateLocation:
@@ -1380,7 +1380,7 @@ class TestGenerateLocation:
 
 
 # ===========================================================================
-# generate — Social
+# generate â€” Social
 # ===========================================================================
 
 class TestGenerateSocial:
@@ -1410,7 +1410,7 @@ class TestGenerateSocial:
 
 
 # ===========================================================================
-# generate — edge cases
+# generate â€” edge cases
 # ===========================================================================
 
 class TestGenerateEdgeCases:
@@ -1703,7 +1703,7 @@ class TestExport:
 
 
 # ===========================================================================
-# generate — Financial (issuer)
+# generate â€” Financial (issuer)
 # ===========================================================================
 
 class TestGenerateIssuer:
@@ -1721,7 +1721,7 @@ class TestGenerateIssuer:
 
 
 # ===========================================================================
-# generate — Meta (additional format options)
+# generate â€” Meta (additional format options)
 # ===========================================================================
 
 class TestGenerateMetaExtra:
@@ -1770,7 +1770,7 @@ class TestGenerateMetaExtra:
 
 
 # ===========================================================================
-# generate — Contact (additional locales)
+# generate â€” Contact (additional locales)
 # ===========================================================================
 
 class TestGenerateContactExtra:
@@ -1846,7 +1846,7 @@ class TestGenerateContactExtra:
 
 
 # ===========================================================================
-# generate — Banking (additional locales / fields)
+# generate â€” Banking (additional locales / fields)
 # ===========================================================================
 
 class TestGenerateBankingExtra:
@@ -1887,7 +1887,7 @@ class TestGenerateBankingExtra:
 
 
 # ===========================================================================
-# generate — Commerce (additional locales)
+# generate â€” Commerce (additional locales)
 # ===========================================================================
 
 class TestGenerateCommerceExtra:
@@ -1939,7 +1939,7 @@ class TestGenerateCommerceExtra:
 
 
 # ===========================================================================
-# generate — Telecom (additional locales)
+# generate â€” Telecom (additional locales)
 # ===========================================================================
 
 class TestGenerateTelecomExtra:
@@ -1986,7 +1986,7 @@ class TestGenerateTelecomExtra:
 
 
 # ===========================================================================
-# generate — Securities (additional locales)
+# generate â€” Securities (additional locales)
 # ===========================================================================
 
 class TestGenerateSecuritiesExtra:
@@ -2017,7 +2017,7 @@ class TestGenerateSecuritiesExtra:
 
 
 # ===========================================================================
-# generate — Crypto (additional checks)
+# generate â€” Crypto (additional checks)
 # ===========================================================================
 
 class TestGenerateCryptoExtra:
@@ -2049,7 +2049,7 @@ class TestGenerateCryptoExtra:
 
 
 # ===========================================================================
-# generate — Barcode (additional locales)
+# generate â€” Barcode (additional locales)
 # ===========================================================================
 
 class TestGenerateBarcodeExtra:
@@ -2092,7 +2092,7 @@ class TestGenerateBarcodeExtra:
 
 
 # ===========================================================================
-# generate — E-Commerce (additional carrier / details)
+# generate â€” E-Commerce (additional carrier / details)
 # ===========================================================================
 
 class TestGenerateEcommerceExtra:
@@ -2140,7 +2140,7 @@ class TestGenerateEcommerceExtra:
 
 
 # ===========================================================================
-# generate — Location (additional locales)
+# generate â€” Location (additional locales)
 # ===========================================================================
 
 class TestGenerateLocationExtra:
@@ -2183,7 +2183,7 @@ class TestGenerateLocationExtra:
 
 
 # ===========================================================================
-# generate — Social (additional checks)
+# generate â€” Social (additional checks)
 # ===========================================================================
 
 class TestGenerateSocialExtra:
@@ -2220,7 +2220,7 @@ class TestGenerateSocialExtra:
 
 
 # ===========================================================================
-# generate — Health (NPI repeated validation)
+# generate â€” Health (NPI repeated validation)
 # ===========================================================================
 
 class TestGenerateHealthExtra:
@@ -2251,7 +2251,7 @@ class TestGenerateHealthExtra:
 
 
 # ===========================================================================
-# generate — Identity (additional checks)
+# generate â€” Identity (additional checks)
 # ===========================================================================
 
 class TestGenerateIdentityExtra:
@@ -2305,7 +2305,7 @@ class TestGenerateIdentityExtra:
 
 
 # ===========================================================================
-# generate — Financial (additional checks)
+# generate â€” Financial (additional checks)
 # ===========================================================================
 
 class TestGenerateFinancialExtra:
@@ -2357,11 +2357,11 @@ class TestGenerateFinancialExtra:
 
 
 # ---------------------------------------------------------------------------
-# Sprint 7 — Template CLI command: combine multiple types into one record
+# Sprint 7 â€” Template CLI command: combine multiple types into one record
 # ---------------------------------------------------------------------------
 
 class TestTemplateCommand:
-    """mockjutsu template <types...> — generate one record with multiple fields."""
+    """mockjutsu template <types...> â€” generate one record with multiple fields."""
 
     def test_template_basic_single_record(self, runner):
         """template with two types returns a single JSON object (count=1 default)."""
@@ -2373,7 +2373,7 @@ class TestTemplateCommand:
         assert 'snils' in data
 
     def test_template_four_types(self, runner):
-        """template nin snils cardtype address_street → all 4 fields present."""
+        """template nin snils cardtype address_street â†’ all 4 fields present."""
         r = runner.invoke(main, ['template', 'nin', 'snils', 'cardtype', 'address_street'])
         assert r.exit_code == 0
         data = json.loads(r.output)
@@ -2400,7 +2400,7 @@ class TestTemplateCommand:
             assert 'timestamp' in rec
 
     def test_template_locale_phone_iban(self, runner):
-        """template phone iban --locale DE → German prefix."""
+        """template phone iban --locale DE â†’ German prefix."""
         r = runner.invoke(main, ['template', 'phone', 'iban', '--locale', 'DE'])
         assert r.exit_code == 0
         data = json.loads(r.output)
@@ -2408,7 +2408,7 @@ class TestTemplateCommand:
         assert data['iban'].startswith('DE'),   f"DE IBAN prefix wrong: {data['iban']}"
 
     def test_template_locale_tr(self, runner):
-        """template phone iban --locale TR → Turkish prefix."""
+        """template phone iban --locale TR â†’ Turkish prefix."""
         r = runner.invoke(main, ['template', 'phone', 'iban', '--locale', 'TR'])
         assert r.exit_code == 0
         data = json.loads(r.output)
@@ -2416,14 +2416,14 @@ class TestTemplateCommand:
         assert data['iban'].startswith('TR')
 
     def test_template_locale_us(self, runner):
-        """template phone --locale US → US prefix."""
+        """template phone --locale US â†’ US prefix."""
         r = runner.invoke(main, ['template', 'phone', '--locale', 'US'])
         assert r.exit_code == 0
         data = json.loads(r.output)
         assert data['phone'].startswith('+1')
 
     def test_template_locale_uk(self, runner):
-        """template phone iban --locale UK → UK prefix."""
+        """template phone iban --locale UK â†’ UK prefix."""
         r = runner.invoke(main, ['template', 'phone', 'iban', '--locale', 'UK'])
         assert r.exit_code == 0
         data = json.loads(r.output)
@@ -2583,7 +2583,7 @@ class TestTemplateCommand:
                 assert 'ERROR' not in str(val), f"ERROR for {key} in {locale}: {val}"
 
     def test_template_nin_format(self, runner):
-        """template nin → UK NIN format 'XX DD DD DD [ABCD]'."""
+        """template nin â†’ UK NIN format 'XX DD DD DD [ABCD]'."""
         r = runner.invoke(main, ['template', 'nin'])
         assert r.exit_code == 0
         data = json.loads(r.output)
@@ -2591,7 +2591,7 @@ class TestTemplateCommand:
             f"NIN format wrong: {data['nin']}"
 
     def test_template_snils_format(self, runner):
-        """template snils → SNILS format 'DDD-DDD-DDD DD'."""
+        """template snils â†’ SNILS format 'DDD-DDD-DDD DD'."""
         r = runner.invoke(main, ['template', 'snils'])
         assert r.exit_code == 0
         data = json.loads(r.output)
@@ -2599,21 +2599,21 @@ class TestTemplateCommand:
             f"SNILS format wrong: {data['snils']}"
 
     def test_template_cardtype_valid(self, runner):
-        """template cardtype → 'Credit' or 'Debit'."""
+        """template cardtype â†’ 'Credit' or 'Debit'."""
         r = runner.invoke(main, ['template', 'cardtype'])
         assert r.exit_code == 0
         data = json.loads(r.output)
         assert data['cardtype'] in ('Credit', 'Debit')
 
     def test_template_address_street_nonempty(self, runner):
-        """template address_street → non-empty string."""
+        """template address_street â†’ non-empty string."""
         r = runner.invoke(main, ['template', 'address_street', '--locale', 'TR'])
         assert r.exit_code == 0
         data = json.loads(r.output)
         assert len(data['address_street']) >= 2
 
     def test_template_uuid_v4_format(self, runner):
-        """template uuid → UUID v4 format."""
+        """template uuid â†’ UUID v4 format."""
         r = runner.invoke(main, ['template', 'uuid'])
         assert r.exit_code == 0
         data = json.loads(r.output)
@@ -2632,32 +2632,32 @@ class TestTemplateCommand:
 
 
 # ---------------------------------------------------------------------------
-# Structural guard — every _REFERENCE type must be CLI-invocable
+# Structural guard â€” every _REFERENCE type must be CLI-invocable
 #
 # HOW IT WORKS
-# ────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # _REFERENCE (in cli.py) is the single source of truth for the CLI contract.
 # Each row carries an extra_params column (index 6) that documents which flags
-# a type needs — e.g. '--pattern (regex)', '--words (int)'.
+# a type needs â€” e.g. '--pattern (regex)', '--words (int)'.
 #
 # This guard:
 #   1. Parses every '--flag' name from extra_params at import time.
 #   2. Looks it up in _FLAG_DEFAULTS to get a safe test value.
-#   3. Builds the exact 'generate <type> --flag value …' invocation.
+#   3. Builds the exact 'generate <type> --flag value â€¦' invocation.
 #   4. Asserts exit_code == 0 and no ERROR output.
 #
 # ADDING A NEW FLAG
-# ─────────────────
+# â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 # If you add a new flag (e.g. --format) to a type:
-#   Step 1  Add it to the 'generate' command in cli.py     → or test fails exit_code 2
-#   Step 2  Document it in extra_params in _REFERENCE      → required for guard to see it
-#   Step 3  Add a safe default to _FLAG_DEFAULTS below     → or test raises AssertionError
+#   Step 1  Add it to the 'generate' command in cli.py     â†’ or test fails exit_code 2
+#   Step 2  Document it in extra_params in _REFERENCE      â†’ required for guard to see it
+#   Step 3  Add a safe default to _FLAG_DEFAULTS below     â†’ or test raises AssertionError
 #
 # This three-step chain makes it impossible to forget any of the three changes.
 # ---------------------------------------------------------------------------
 
 # Safe default value for every known CLI flag.
-# If a flag appears in _REFERENCE extra_params but is missing here → AssertionError
+# If a flag appears in _REFERENCE extra_params but is missing here â†’ AssertionError
 # at parametrize time, before any test runs.
 _FLAG_DEFAULTS: dict[str, str] = {
     '--pattern':   '[A-Z]{3}',
@@ -2719,8 +2719,8 @@ _REFERENCE_INVOCATIONS: list[tuple[str, list[str]]] = [
 def test_every_reference_type_is_cli_invocable(data_type, args):
     """Every type in _REFERENCE must be invocable via CLI with exit_code 0 and no ERROR output.
 
-    Flags are derived from _REFERENCE extra_params — not hardcoded here.
-    To add a new flag: cli.py generate command → _REFERENCE extra_params → _FLAG_DEFAULTS.
+    Flags are derived from _REFERENCE extra_params â€” not hardcoded here.
+    To add a new flag: cli.py generate command â†’ _REFERENCE extra_params â†’ _FLAG_DEFAULTS.
     """
     runner = CliRunner()
     r = runner.invoke(main, args)
@@ -2732,14 +2732,14 @@ def test_every_reference_type_is_cli_invocable(data_type, args):
     assert not out.startswith('ERROR'), (
         f"Type '{data_type}' returned ERROR via CLI:\n{out}"
     )
-    # Note: patronymic legitimately returns empty string for non-RU locales — no len() check
+    # Note: patronymic legitimately returns empty string for non-RU locales â€” no len() check
 
 
 class TestRegexStringCLI:
-    """Dedicated CLI tests for regex_string — verifies --pattern flag works end-to-end."""
+    """Dedicated CLI tests for reverse_regex â€” verifies --pattern flag works end-to-end."""
 
     def _invoke(self, runner, *args):
-        return runner.invoke(main, ['generate', 'regex_string'] + list(args))
+        return runner.invoke(main, ['generate', 'reverse_regex'] + list(args))
 
     def test_pattern_hex8(self, runner):
         r = self._invoke(runner, '--pattern', '[A-Fa-f0-9]{8}')
@@ -2762,3 +2762,4 @@ class TestRegexStringCLI:
         assert r.exit_code == 0
         assert len(r.output.strip()) > 0
         assert not r.output.strip().startswith('ERROR')
+

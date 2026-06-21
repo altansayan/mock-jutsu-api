@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mock Jutsu â€” reverse_regex | RU</title>
+<meta name="description" content="Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).">
+<meta name="author" content="Altan Sezer Ayan (A.S.A)">
+<meta name="keywords" content="mock data, fake data, test data, mockjutsu, mock-jutsu, reverse_regex">
+<link rel="icon" type="image/png" href="https://altansayan.github.io/mock-jutsu-api/assets/favicon.png">
+<link rel="canonical" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/reverse_regex-RU.html">
+<link rel="alternate" hreflang="tr" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/FUNCTION/reverse_regex-TR.html">
+<link rel="alternate" hreflang="en" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/reverse_regex-EN.html">
+<link rel="alternate" hreflang="en-GB" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/reverse_regex-UK.html">
+<link rel="alternate" hreflang="de" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/reverse_regex-DE.html">
+<link rel="alternate" hreflang="fr" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/reverse_regex-FR.html">
+<link rel="alternate" hreflang="ru" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/reverse_regex-RU.html">
+<link rel="alternate" hreflang="x-default" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/reverse_regex-EN.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/reverse_regex-RU.html">
+<meta property="og:title" content="Mock Jutsu â€” reverse_regex | RU">
+<meta property="og:description" content="Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).">
+<meta property="og:image" content="https://altansayan.github.io/mock-jutsu-api/assets/banner.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/reverse_regex-RU.html">
+<meta name="twitter:title" content="Mock Jutsu â€” reverse_regex | RU">
+<meta name="twitter:description" content="Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).">
+<meta name="twitter:image" content="https://altansayan.github.io/mock-jutsu-api/assets/banner.png">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Mock Jutsu â€” reverse_regex â€” RU",
+      "description": "Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).",
+      "url": "https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/reverse_regex-RU.html",
+      "inLanguage": "ru",
+      "author": {
+        "@type": "Person",
+        "name": "Altan Sezer Ayan"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "mock-jutsu"
+      },
+      "keywords": "reverse_regex, mock data, test data, mock-jutsu, Meta"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Mock Jutsu HOW-TO",
+          "item": "https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "reverse_regex",
+          "item": "https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/reverse_regex-RU.html"
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to use reverse_regex in mock-jutsu",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Install",
+          "text": "pip install mock-jutsu"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Generate",
+          "text": "mockjutsu generate reverse_regex"
+        }
+      ]
+    }
+  ]
+}</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e293b;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* â”€â”€ Header â”€â”€ */
+.header{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#fff;padding:3.5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.header::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#3b82f6,#8b5cf6,#ec4899)}
+.header h1{font-size:2.2rem;font-weight:800;letter-spacing:-0.025em;background:linear-gradient(to right,#fff,#cbd5e1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem}
+.header .subtitle{font-size:1rem;color:#94a3b8;margin-bottom:1.2rem}
+.header-links{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;margin-top:1.2rem}
+.hlink{display:flex;align-items:center;gap:.4rem;color:#f8fafc;text-decoration:none;font-weight:600;background:rgba(255,255,255,.05);padding:.5rem 1rem;border-radius:99px;transition:all .2s;border:1px solid rgba(255,255,255,.1);font-size:.9rem}
+.hlink:hover{background:rgba(255,255,255,.15);transform:translateY(-2px)}
+.badge-cat{display:inline-block;padding:.25rem .75rem;border-radius:6px;font-size:.75rem;font-weight:700;background:#1e40af;color:#bfdbfe;margin-left:.5rem;vertical-align:middle}
+.badge-locale{display:inline-block;padding:.2rem .6rem;border-radius:6px;font-size:.72rem;font-weight:700;background:#065f46;color:#a7f3d0;margin-left:.4rem;vertical-align:middle}
+
+/* â”€â”€ Layout â”€â”€ */
+.container{max-width:960px;margin:0 auto;padding:2rem 1.5rem}
+
+/* â”€â”€ Breadcrumb â”€â”€ */
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1.75rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.breadcrumb a{color:#3b82f6;text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+.breadcrumb span{color:#94a3b8}
+
+/* â”€â”€ Article â”€â”€ */
+.article{background:#fff;border-radius:12px;padding:2rem;border:1px solid #e2e8f0;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.article p{margin-bottom:1rem;color:#334155;line-height:1.75;font-size:.97rem}
+.article p:last-child{margin-bottom:0}
+
+/* â”€â”€ Terminal windows â”€â”€ */
+.terminals{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:1.25rem;margin-bottom:2rem}
+.term{border-radius:12px;overflow:hidden;border:1px solid #30363d;box-shadow:0 4px 12px rgba(0,0,0,.15);display:flex;flex-direction:column;background:#0d1117}
+.term-header{background:#161b22;padding:.65rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid #30363d;flex-shrink:0}
+.dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.dot.r{background:#ff5f56}.dot.y{background:#ffbd2e}.dot.g{background:#27c93f}
+.term-title{color:#8b949e;font-size:.78rem;font-family:'JetBrains Mono',monospace;margin-left:.35rem;flex:1}
+.copy-btn{background:transparent;border:1px solid #30363d;color:#8b949e;font-size:.7rem;padding:.2rem .5rem;border-radius:4px;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all .15s}
+.copy-btn:hover{border-color:#3b82f6;color:#60a5fa}
+.term-body{background:#0d1117;padding:1.1rem 1.25rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.9;overflow-x:auto;flex:1}
+.term-body code{display:block;white-space:pre}
+.p{color:#e6edf3}.p::before{content:"$ ";color:#3fb950}
+.o{color:#7ee787;padding-left:1.4rem}.jm{color:#7ee787}
+.c{color:#8b949e}
+.py{color:#e6edf3}.py::before{content:">>> ";color:#79c0ff}
+.kw{color:#ff7b72}.st{color:#a5d6ff}.fn{color:#d2a8ff}.nb{color:#ffa657}
+
+/* â”€â”€ Params table â”€â”€ */
+.params-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;margin-bottom:2rem;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.params-section h2{font-size:1rem;font-weight:700;color:#0f172a;padding:1rem 1.5rem;border-bottom:1px solid #f1f5f9;background:#f8fafc}
+.params-section table{width:100%;border-collapse:collapse}
+.params-section th{background:#f8fafc;padding:.65rem 1.25rem;text-align:left;font-size:.75rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #f1f5f9}
+.params-section td{padding:.7rem 1.25rem;font-size:.875rem;border-bottom:1px solid #f8fafc;color:#334155}
+.params-section tr:last-child td{border-bottom:none}
+.param-flag{font-family:'JetBrains Mono',monospace;color:#0ea5e9;font-size:.8rem}
+.param-vals{font-family:'JetBrains Mono',monospace;color:#7c3aed;font-size:.78rem}
+
+/* â”€â”€ Related â”€â”€ */
+.related{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.related h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.related-grid{display:flex;flex-wrap:wrap;gap:.5rem}
+.rel-link{display:inline-block;padding:.3rem .75rem;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#0f172a;text-decoration:none;transition:all .15s}
+.rel-link:hover{background:#dbeafe;border-color:#93c5fd;color:#1d4ed8}
+
+/* â”€â”€ Language switcher â”€â”€ */
+.lang-switch{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.lang-switch h3{font-size:.85rem;font-weight:600;color:#64748b;margin-bottom:.65rem}
+.lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
+.lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
+.lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+.lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
+
+/* â”€â”€ Listing page â”€â”€ */
+.cat-section{margin-bottom:2.5rem}
+.cat-header{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem;padding-left:12px;border-left:4px solid #3b82f6}
+.fn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem}
+.fn-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:1rem 1.25rem;transition:all .2s;text-decoration:none;display:block;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.fn-card:hover{border-color:#3b82f6;box-shadow:0 4px 12px rgba(59,130,246,.12);transform:translateY(-2px)}
+.fn-card .fn-name{font-family:'JetBrains Mono',monospace;font-size:.88rem;font-weight:700;color:#0f172a;margin-bottom:.3rem}
+.fn-card .fn-desc{font-size:.78rem;color:#64748b;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fn-card .fn-locale{margin-top:.4rem}
+
+/* â”€â”€ Footer â”€â”€ */
+.footer{text-align:center;padding:2rem;color:#94a3b8;font-size:.82rem;margin-top:1rem}
+.footer a{color:#6366f1;text-decoration:none}
+.footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1><code style='font-size:1.6rem'>reverse_regex</code><span class="badge-cat">Meta</span></h1>
+  <div class="subtitle">Mock Jutsu HOW-TO | RU</div>
+  <div class="header-links">
+    <a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html" class="hlink">â† Ğ’ÑĞµ Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ğ¸</a>
+    <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="hlink"><svg height="18" viewBox="0 0 16 16" width="18" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.46-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg> GitHub</a>
+  </div>
+</div>
+<div class="container">
+  <nav class="breadcrumb">
+    <a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html">Mock Jutsu HOW-TO</a>
+    <span>â€º</span>
+    <a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html#Meta">Meta</a>
+    <span>â€º</span>
+    <strong>reverse_regex</strong>
+  </nav>
+
+  <div class="article">﻿<p>Ğ’ Ğ°Ñ€ÑĞµĞ½Ğ°Ğ»Ğµ ÑĞ¾Ğ²Ñ€ĞµĞ¼ĞµĞ½Ğ½Ğ¾Ğ³Ğ¾ Ñ€Ğ°Ğ·Ñ€Ğ°Ğ±Ğ¾Ñ‚Ñ‡Ğ¸ĞºĞ° Ğ¸ Ğ¸Ğ½Ğ¶ĞµĞ½ĞµÑ€Ğ° Ğ¿Ğ¾ ĞºĞ°Ñ‡ĞµÑÑ‚Ğ²Ñƒ Ğ±Ğ¸Ğ±Ğ»Ğ¸Ğ¾Ñ‚ĞµĞºĞ° mock-jutsu Ğ·Ğ°Ğ½Ğ¸Ğ¼Ğ°ĞµÑ‚ Ğ¾ÑĞ¾Ğ±Ğ¾Ğµ Ğ¼ĞµÑÑ‚Ğ¾ Ğ±Ğ»Ğ°Ğ³Ğ¾Ğ´Ğ°Ñ€Ñ ÑĞ²Ğ¾ĞµĞ¹ Ğ³Ğ¸Ğ±ĞºĞ¾ÑÑ‚Ğ¸, Ğ° Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ñ reverse_regex ÑĞ²Ğ»ÑĞµÑ‚ÑÑ Ğ¾Ğ´Ğ½Ğ¸Ğ¼ Ğ¸Ğ· ĞµÑ‘ ÑĞ°Ğ¼Ñ‹Ñ… Ğ¼Ğ¾Ñ‰Ğ½Ñ‹Ñ… Ğ¸Ğ½ÑÑ‚Ñ€ÑƒĞ¼ĞµĞ½Ñ‚Ğ¾Ğ² Ğ² ĞºĞ°Ñ‚ĞµĞ³Ğ¾Ñ€Ğ¸Ğ¸ Meta. Ğ’ Ğ¾Ñ‚Ğ»Ğ¸Ñ‡Ğ¸Ğµ Ğ¾Ñ‚ ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ñ‹Ñ… Ğ³ĞµĞ½ĞµÑ€Ğ°Ñ‚Ğ¾Ñ€Ğ¾Ğ², ÑĞ¾Ğ·Ğ´Ğ°ÑÑ‰Ğ¸Ñ… ÑĞ»ÑƒÑ‡Ğ°Ğ¹Ğ½Ñ‹Ğµ ÑĞ»Ğ¾Ğ²Ğ° Ğ¸Ğ»Ğ¸ Ñ‡Ğ¸ÑĞ»Ğ° Ğ¿Ğ¾ Ğ·Ğ°Ñ€Ğ°Ğ½ĞµĞµ Ğ¾Ğ¿Ñ€ĞµĞ´ĞµĞ»ĞµĞ½Ğ½Ñ‹Ğ¼ ÑĞ¿Ğ¸ÑĞºĞ°Ğ¼, reverse_regex Ğ¿Ñ€ĞµĞ´ÑÑ‚Ğ°Ğ²Ğ»ÑĞµÑ‚ ÑĞ¾Ğ±Ğ¾Ğ¹ Ğ¿Ğ¾Ğ»Ğ½Ğ¾Ñ†ĞµĞ½Ğ½Ñ‹Ğ¹ Ğ´Ğ²Ğ¸Ğ¶Ğ¾Ğº Ğ¾Ğ±Ñ€Ğ°Ñ‚Ğ½Ğ¾Ğ³Ğ¾ Ñ€ĞµĞ³ÑƒĞ»ÑÑ€Ğ½Ğ¾Ğ³Ğ¾ Ğ²Ñ‹Ñ€Ğ°Ğ¶ĞµĞ½Ğ¸Ñ. Ğ­Ñ‚Ğ¾ Ğ¾Ğ·Ğ½Ğ°Ñ‡Ğ°ĞµÑ‚, Ñ‡Ñ‚Ğ¾ Ğ²Ğ¼ĞµÑÑ‚Ğ¾ Ğ¿Ñ€Ğ¸Ğ²Ñ‹Ñ‡Ğ½Ğ¾Ğ¹ Ğ¿Ñ€Ğ¾Ğ²ĞµÑ€ĞºĞ¸ Ğ³Ğ¾Ñ‚Ğ¾Ğ²Ğ¾Ğ¹ ÑÑ‚Ñ€Ğ¾ĞºĞ¸ Ğ½Ğ° ÑĞ¾Ğ¾Ñ‚Ğ²ĞµÑ‚ÑÑ‚Ğ²Ğ¸Ğµ ÑˆĞ°Ğ±Ğ»Ğ¾Ğ½Ñƒ, Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ñ ÑĞ°Ğ¼Ğ° ĞºĞ¾Ğ½ÑÑ‚Ñ€ÑƒĞ¸Ñ€ÑƒĞµÑ‚ Ğ²Ğ°Ğ»Ğ¸Ğ´Ğ½Ñ‹Ğµ Ğ¼Ğ¾Ğº-Ğ´Ğ°Ğ½Ğ½Ñ‹Ğµ, ĞºĞ¾Ñ‚Ğ¾Ñ€Ñ‹Ğµ Ğ³Ğ°Ñ€Ğ°Ğ½Ñ‚Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ½Ğ¾ Ğ¿Ñ€Ğ¾Ñ…Ğ¾Ğ´ÑÑ‚ Ğ²Ğ°Ğ»Ğ¸Ğ´Ğ°Ñ†Ğ¸Ñ Ğ¿Ğ¾ Ğ·Ğ°Ğ´Ğ°Ğ½Ğ½Ğ¾Ğ¼Ñƒ Ñ€ĞµĞ³ÑƒĞ»ÑÑ€Ğ½Ğ¾Ğ¼Ñƒ Ğ²Ñ‹Ñ€Ğ°Ğ¶ĞµĞ½Ğ¸Ñ. Ğ¢Ğ°ĞºĞ¾Ğ¹ Ğ¿Ğ¾Ğ´Ñ…Ğ¾Ğ´ ĞºÑ€Ğ¸Ñ‚Ğ¸Ñ‡ĞµÑĞºĞ¸ Ğ²Ğ°Ğ¶ĞµĞ½ Ğ¿Ñ€Ğ¸ ÑĞ¾Ğ·Ğ´Ğ°Ğ½Ğ¸Ğ¸ ÑĞ»Ğ¾Ğ¶Ğ½Ñ‹Ñ… ÑĞ¸Ğ½Ñ‚ĞµÑ‚Ğ¸Ñ‡ĞµÑĞºĞ¸Ñ… Ğ½Ğ°Ğ±Ğ¾Ñ€Ğ¾Ğ² Ğ´Ğ°Ğ½Ğ½Ñ‹Ñ…, Ğ³Ğ´Ğµ Ñ‚Ğ¾Ñ‡Ğ½Ğ¾ÑÑ‚ÑŒ Ñ„Ğ¾Ñ€Ğ¼Ğ°Ñ‚Ğ° Ğ¸Ğ¼ĞµĞµÑ‚ Ñ€ĞµÑˆĞ°ÑÑ‰ĞµĞµ Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ğµ Ğ´Ğ»Ñ Ğ±Ğ¸Ğ·Ğ½ĞµÑ-Ğ»Ğ¾Ğ³Ğ¸ĞºĞ¸ Ğ¿Ñ€Ğ¸Ğ»Ğ¾Ğ¶ĞµĞ½Ğ¸Ñ.</p>
+
+<p>Ğ˜ÑĞ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ğ¸ reverse_regex Ğ²Ğ½ÑƒÑ‚Ñ€Ğ¸ ÑĞºĞ¾ÑĞ¸ÑÑ‚ĞµĞ¼Ñ‹ mock-jutsu Ğ¿Ğ¾Ğ·Ğ²Ğ¾Ğ»ÑĞµÑ‚ Ğ°Ğ²Ñ‚Ğ¾Ğ¼Ğ°Ñ‚Ğ¸Ğ·Ğ¸Ñ€Ğ¾Ğ²Ğ°Ñ‚ÑŒ ÑĞ¾Ğ·Ğ´Ğ°Ğ½Ğ¸Ğµ ÑÑ‚Ñ€Ğ¾Ğº Ğ¿Ñ€Ğ°ĞºÑ‚Ğ¸Ñ‡ĞµÑĞºĞ¸ Ğ»ÑĞ±Ğ¾Ğ¹ ÑĞ»Ğ¾Ğ¶Ğ½Ğ¾ÑÑ‚Ğ¸ â€” Ğ¾Ñ‚ Ğ¿Ñ€Ğ¾ÑÑ‚Ñ‹Ñ… Ğ±ÑƒĞºĞ²ĞµĞ½Ğ½Ğ¾-Ñ†Ğ¸Ñ„Ñ€Ğ¾Ğ²Ñ‹Ñ… Ğ¸Ğ´ĞµĞ½Ñ‚Ğ¸Ñ„Ğ¸ĞºĞ°Ñ‚Ğ¾Ñ€Ğ¾Ğ² Ğ´Ğ¾ ÑĞ¿ĞµÑ†Ğ¸Ñ„Ğ¸Ñ‡ĞµÑĞºĞ¸Ñ… ĞºĞ¾Ğ´Ğ¾Ğ² Ğ¿Ñ€Ğ¾Ğ´ÑƒĞºÑ‚Ğ¾Ğ², Ñ‚Ğ°ĞºĞ¸Ñ… ĞºĞ°Ğº Ğ¿Ñ€Ğ¸Ğ¼ĞµÑ€ A4F-2819. ĞĞ»Ğ³Ğ¾Ñ€Ğ¸Ñ‚Ğ¼ Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ğ¸ Ğ¸Ğ½Ñ‚ĞµÑ€Ğ¿Ñ€ĞµÑ‚Ğ¸Ñ€ÑƒĞµÑ‚ ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ½Ñ‹Ğµ ÑĞ¸Ğ½Ñ‚Ğ°ĞºÑĞ¸Ñ‡ĞµÑĞºĞ¸Ğµ ĞºĞ¾Ğ½ÑÑ‚Ñ€ÑƒĞºÑ†Ğ¸Ğ¸ Ñ€ĞµĞ³ÑƒĞ»ÑÑ€Ğ½Ñ‹Ñ… Ğ²Ñ‹Ñ€Ğ°Ğ¶ĞµĞ½Ğ¸Ğ¹, Ğ²ĞºĞ»ÑÑ‡Ğ°Ñ ĞºĞ²Ğ°Ğ½Ñ‚Ğ¸Ñ„Ğ¸ĞºĞ°Ñ‚Ğ¾Ñ€Ñ‹, ÑĞ¸Ğ¼Ğ²Ğ¾Ğ»ÑŒĞ½Ñ‹Ğµ ĞºĞ»Ğ°ÑÑÑ‹ Ğ¸ Ğ´Ğ¸Ğ°Ğ¿Ğ°Ğ·Ğ¾Ğ½Ñ‹, Ğ¿Ñ€ĞµĞ²Ñ€Ğ°Ñ‰Ğ°Ñ Ğ°Ğ±ÑÑ‚Ñ€Ğ°ĞºÑ‚Ğ½Ñ‹Ğ¹ Ğ¿Ğ°Ñ‚Ñ‚ĞµÑ€Ğ½ Ğ² Ñ€ĞµĞ°Ğ»ÑŒĞ½ÑƒÑ Ğ¿Ğ¾ÑĞ»ĞµĞ´Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»ÑŒĞ½Ğ¾ÑÑ‚ÑŒ ÑĞ¸Ğ¼Ğ²Ğ¾Ğ»Ğ¾Ğ². Ğ”Ğ»Ñ Ğ°ĞºÑ‚Ğ¸Ğ²Ğ°Ñ†Ğ¸Ğ¸ Ğ³ĞµĞ½ĞµÑ€Ğ°Ñ‚Ğ¾Ñ€Ğ° Ğ´Ğ¾ÑÑ‚Ğ°Ñ‚Ğ¾Ñ‡Ğ½Ğ¾ Ğ¿ĞµÑ€ĞµĞ´Ğ°Ñ‚ÑŒ Ğ¶ĞµĞ»Ğ°ĞµĞ¼Ñ‹Ğ¹ ÑˆĞ°Ğ±Ğ»Ğ¾Ğ½ Ñ‡ĞµÑ€ĞµĞ· Ñ„Ğ»Ğ°Ğ³ --pattern Ğ² CLI Ğ¸Ğ»Ğ¸ Ğ² ĞºĞ°Ñ‡ĞµÑÑ‚Ğ²Ğµ Ğ¸Ğ¼ĞµĞ½Ğ¾Ğ²Ğ°Ğ½Ğ½Ğ¾Ğ³Ğ¾ Ğ°Ñ€Ğ³ÑƒĞ¼ĞµĞ½Ñ‚Ğ° Ğ² Python-ĞºĞ¾Ğ´Ğµ. Ğ­Ñ‚Ğ¾ Ğ¿Ğ¾Ğ»Ğ½Ğ¾ÑÑ‚ÑŒÑ Ğ¸Ğ·Ğ±Ğ°Ğ²Ğ»ÑĞµÑ‚ ĞºĞ¾Ğ¼Ğ°Ğ½Ğ´Ñƒ Ğ¾Ñ‚ Ğ½ĞµĞ¾Ğ±Ñ…Ğ¾Ğ´Ğ¸Ğ¼Ğ¾ÑÑ‚Ğ¸ Ğ²Ñ€ÑƒÑ‡Ğ½ÑƒÑ Ğ¿Ñ€Ğ¾Ğ¿Ğ¸ÑÑ‹Ğ²Ğ°Ñ‚ÑŒ ÑĞ¾Ñ‚Ğ½Ğ¸ Ğ²Ğ°Ñ€Ğ¸Ğ°Ğ½Ñ‚Ğ¾Ğ² Ñ‚ĞµÑÑ‚Ğ¾Ğ²Ñ‹Ñ… Ğ´Ğ°Ğ½Ğ½Ñ‹Ñ…, Ğ¾Ğ±ĞµÑĞ¿ĞµÑ‡Ğ¸Ğ²Ğ°Ñ Ğ¿Ñ€Ğ¸ ÑÑ‚Ğ¾Ğ¼ ÑˆĞ¸Ñ€Ğ¾ĞºĞ¾Ğµ Ğ¿Ğ¾ĞºÑ€Ñ‹Ñ‚Ğ¸Ğµ Ğ³Ñ€Ğ°Ğ½Ğ¸Ñ‡Ğ½Ñ‹Ñ… ÑƒÑĞ»Ğ¾Ğ²Ğ¸Ğ¹ Ğ¸ Ñ„Ğ¾Ñ€Ğ¼Ğ°Ñ‚Ğ¾Ğ².</p>
+
+<p>Ğ¡Ñ†ĞµĞ½Ğ°Ñ€Ğ¸Ğ¸ Ğ¿Ñ€Ğ¸Ğ¼ĞµĞ½ĞµĞ½Ğ¸Ñ ÑÑ‚Ğ¾Ğ¹ Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ğ¸ Ğ¾Ñ…Ğ²Ğ°Ñ‚Ñ‹Ğ²Ğ°ÑÑ‚ Ğ²ÑĞµ ÑÑ‚Ğ°Ğ¿Ñ‹ Ğ¶Ğ¸Ğ·Ğ½ĞµĞ½Ğ½Ğ¾Ğ³Ğ¾ Ñ†Ğ¸ĞºĞ»Ğ° Ñ€Ğ°Ğ·Ñ€Ğ°Ğ±Ğ¾Ñ‚ĞºĞ¸ Ğ¿Ñ€Ğ¾Ğ³Ñ€Ğ°Ğ¼Ğ¼Ğ½Ğ¾Ğ³Ğ¾ Ğ¾Ğ±ĞµÑĞ¿ĞµÑ‡ĞµĞ½Ğ¸Ñ. ĞŸÑ€Ğ¸ Ñ‚ĞµÑÑ‚Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğ¸ API Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ñ reverse_regex Ğ½ĞµĞ·Ğ°Ğ¼ĞµĞ½Ğ¸Ğ¼Ğ° Ğ´Ğ»Ñ Ğ³ĞµĞ½ĞµÑ€Ğ°Ñ†Ğ¸Ğ¸ ÑƒĞ½Ğ¸ĞºĞ°Ğ»ÑŒĞ½Ñ‹Ñ… ĞºĞ»ÑÑ‡ĞµĞ¹ Ğ´Ğ¾ÑÑ‚ÑƒĞ¿Ğ°, Ñ‚Ğ¾ĞºĞµĞ½Ğ¾Ğ² Ğ¸Ğ»Ğ¸ Ğ°Ñ€Ñ‚Ğ¸ĞºÑƒĞ»Ğ¾Ğ², ĞºĞ¾Ñ‚Ğ¾Ñ€Ñ‹Ğµ Ğ´Ğ¾Ğ»Ğ¶Ğ½Ñ‹ ÑÑ‚Ñ€Ğ¾Ğ³Ğ¾ ÑĞ¾Ğ¾Ñ‚Ğ²ĞµÑ‚ÑÑ‚Ğ²Ğ¾Ğ²Ğ°Ñ‚ÑŒ Ğ²Ğ½ÑƒÑ‚Ñ€ĞµĞ½Ğ½Ğ¸Ğ¼ ÑÑ‚Ğ°Ğ½Ğ´Ğ°Ñ€Ñ‚Ğ°Ğ¼ Ğ±ĞµĞ·Ğ¾Ğ¿Ğ°ÑĞ½Ğ¾ÑÑ‚Ğ¸ Ğ¸Ğ»Ğ¸ Ğ¼Ğ°ÑĞºĞ°Ğ¼ Ğ² Ğ±Ğ°Ğ·Ğµ Ğ´Ğ°Ğ½Ğ½Ñ‹Ñ…. Ğ’ Ñ„Ñ€Ğ¾Ğ½Ñ‚ĞµĞ½Ğ´-Ñ€Ğ°Ğ·Ñ€Ğ°Ğ±Ğ¾Ñ‚ĞºĞµ Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ñ Ğ¿Ğ¾Ğ¼Ğ¾Ğ³Ğ°ĞµÑ‚ Ğ±Ñ‹ÑÑ‚Ñ€Ğ¾ Ğ½Ğ°Ğ¿Ğ¾Ğ»Ğ½Ğ¸Ñ‚ÑŒ Ğ¸Ğ½Ñ‚ĞµÑ€Ñ„ĞµĞ¹Ñ Ñ€ĞµĞ°Ğ»Ğ¸ÑÑ‚Ğ¸Ñ‡Ğ½Ñ‹Ğ¼Ğ¸ Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸ÑĞ¼Ğ¸ Ğ´Ğ»Ñ Ğ¿Ğ¾Ğ»ĞµĞ¹ Ğ²Ğ²Ğ¾Ğ´Ğ°, Ğ¸Ğ¼ĞµÑÑ‰Ğ¸Ñ… ÑÑ‚Ñ€Ğ¾Ğ³Ğ¸Ğµ Ğ¼Ğ°ÑĞºĞ¸, Ñ‚Ğ°ĞºĞ¸Ñ… ĞºĞ°Ğº ÑĞµÑ€Ğ¸Ğ¹Ğ½Ñ‹Ğµ Ğ½Ğ¾Ğ¼ĞµÑ€Ğ° Ğ¾Ğ±Ğ¾Ñ€ÑƒĞ´Ğ¾Ğ²Ğ°Ğ½Ğ¸Ñ Ğ¸Ğ»Ğ¸ ÑĞ¿ĞµÑ†Ğ¸Ñ„Ğ¸Ñ‡ĞµÑĞºĞ¸Ğµ Ğ¿Ğ¾Ñ‡Ñ‚Ğ¾Ğ²Ñ‹Ğµ Ğ¸Ğ½Ğ´ĞµĞºÑÑ‹. Ğ­Ñ‚Ğ¾ Ğ¿Ğ¾Ğ·Ğ²Ğ¾Ğ»ÑĞµÑ‚ Ğ²Ñ‹ÑĞ²Ğ»ÑÑ‚ÑŒ Ğ¾ÑˆĞ¸Ğ±ĞºĞ¸ Ğ¿Ğ°Ñ€ÑĞ¸Ğ½Ğ³Ğ° Ğ¸ Ğ¾Ğ±Ñ€Ğ°Ğ±Ğ¾Ñ‚ĞºĞ¸ Ğ´Ğ°Ğ½Ğ½Ñ‹Ñ… Ğ½Ğ° Ñ€Ğ°Ğ½Ğ½Ğ¸Ñ… ÑÑ‚Ğ°Ğ¿Ğ°Ñ…, ĞºĞ¾Ğ³Ğ´Ğ° ÑĞ¸ÑÑ‚ĞµĞ¼Ğ° ĞµÑ‰Ğµ Ğ½Ğµ ÑÑ‚Ğ¾Ğ»ĞºĞ½ÑƒĞ»Ğ°ÑÑŒ Ñ Ñ€ĞµĞ°Ğ»ÑŒĞ½Ñ‹Ğ¼ Ğ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»ÑŒÑĞºĞ¸Ğ¼ Ğ²Ğ²Ğ¾Ğ´Ğ¾Ğ¼.</p>
+
+<p>Ğ˜Ğ½Ñ‚ĞµĞ³Ñ€Ğ°Ñ†Ğ¸Ñ reverse_regex Ğ² Ñ€Ğ°Ğ±Ğ¾Ñ‡Ğ¸Ğ¹ Ğ¿Ñ€Ğ¾Ñ†ĞµÑÑ Ğ¼Ğ°ĞºÑĞ¸Ğ¼Ğ°Ğ»ÑŒĞ½Ğ¾ ÑƒĞ¿Ñ€Ğ¾Ñ‰ĞµĞ½Ğ° Ğ´Ğ»Ñ ÑĞ¿ĞµÑ†Ğ¸Ğ°Ğ»Ğ¸ÑÑ‚Ğ¾Ğ² Ñ€Ğ°Ğ·Ğ½Ğ¾Ğ³Ğ¾ Ğ¿Ñ€Ğ¾Ñ„Ğ¸Ğ»Ñ. Ğ Ğ°Ğ·Ñ€Ğ°Ğ±Ğ¾Ñ‚Ñ‡Ğ¸ĞºĞ¸ Ğ½Ğ° Python Ğ¼Ğ¾Ğ³ÑƒÑ‚ Ğ±ĞµÑÑˆĞ¾Ğ²Ğ½Ğ¾ Ğ²Ğ½ĞµĞ´Ñ€Ğ¸Ñ‚ÑŒ Ğ³ĞµĞ½ĞµÑ€Ğ°Ñ†Ğ¸Ñ Ğ² ÑĞ²Ğ¾Ğ¸ ÑĞ½Ğ¸Ñ‚-Ñ‚ĞµÑÑ‚Ñ‹ Ñ‡ĞµÑ€ĞµĞ· Ğ¼ĞµÑ‚Ğ¾Ğ´ jutsu.generate('reverse_regex'), Ğ° ÑĞ¸ÑÑ‚ĞµĞ¼Ğ½Ñ‹Ğµ Ğ°Ğ´Ğ¼Ğ¸Ğ½Ğ¸ÑÑ‚Ñ€Ğ°Ñ‚Ğ¾Ñ€Ñ‹ Ğ¸ DevOps-Ğ¸Ğ½Ğ¶ĞµĞ½ĞµÑ€Ñ‹ â€” Ğ¸ÑĞ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ÑŒ ĞºĞ¾Ğ¼Ğ°Ğ½Ğ´Ñƒ mockjutsu generate reverse_regex Ğ´Ğ»Ñ Ğ±Ñ‹ÑÑ‚Ñ€Ğ¾Ğ¹ Ğ¿Ğ¾Ğ´Ğ³Ğ¾Ñ‚Ğ¾Ğ²ĞºĞ¸ ĞºĞ¾Ğ½Ñ„Ğ¸Ğ³ÑƒÑ€Ğ°Ñ†Ğ¸Ğ¾Ğ½Ğ½Ñ‹Ñ… Ñ„Ğ°Ğ¹Ğ»Ğ¾Ğ² Ğ¸Ğ»Ğ¸ Ğ±Ğ°Ğ· Ğ´Ğ°Ğ½Ğ½Ñ‹Ñ… Ñ‡ĞµÑ€ĞµĞ· CLI. ĞÑĞ¾Ğ±Ğ¾Ğµ Ğ¿Ñ€ĞµĞ¸Ğ¼ÑƒÑ‰ĞµÑÑ‚Ğ²Ğ¾ Ğ±Ğ¸Ğ±Ğ»Ğ¸Ğ¾Ñ‚ĞµĞºĞ° Ğ¿Ñ€ĞµĞ´Ğ¾ÑÑ‚Ğ°Ğ²Ğ»ÑĞµÑ‚ Ğ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ñ‚ĞµĞ»ÑĞ¼ Ğ½Ğ°Ğ³Ñ€ÑƒĞ·Ğ¾Ñ‡Ğ½Ğ¾Ğ³Ğ¾ Ñ‚ĞµÑÑ‚Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ¸Ñ Ğ² JMeter Ñ‡ĞµÑ€ĞµĞ· ĞºĞ°ÑÑ‚Ğ¾Ğ¼Ğ½ÑƒÑ Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ñ ${__mockjutsu(reverse_regex,)}, Ñ‡Ñ‚Ğ¾ Ğ´ĞµĞ»Ğ°ĞµÑ‚ ÑĞ¸Ğ¼ÑƒĞ»ÑÑ†Ğ¸Ñ Ñ‚Ñ€Ğ°Ñ„Ğ¸ĞºĞ° Ğ±Ğ¾Ğ»ĞµĞµ Ğ´Ğ¾ÑÑ‚Ğ¾Ğ²ĞµÑ€Ğ½Ğ¾Ğ¹. Ğ’ ĞºĞ¾Ğ½ĞµÑ‡Ğ½Ğ¾Ğ¼ Ğ¸Ñ‚Ğ¾Ğ³Ğµ, Ğ¸ÑĞ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ mock-jutsu Ğ´Ğ»Ñ Ğ³ĞµĞ½ĞµÑ€Ğ°Ñ†Ğ¸Ğ¸ Ğ´Ğ°Ğ½Ğ½Ñ‹Ñ… Ğ½Ğ° Ğ¾ÑĞ½Ğ¾Ğ²Ğµ Ñ€ĞµĞ³ÑƒĞ»ÑÑ€Ğ½Ñ‹Ñ… Ğ²Ñ‹Ñ€Ğ°Ğ¶ĞµĞ½Ğ¸Ğ¹ Ğ·Ğ½Ğ°Ñ‡Ğ¸Ñ‚ĞµĞ»ÑŒĞ½Ğ¾ ÑĞ¾ĞºÑ€Ğ°Ñ‰Ğ°ĞµÑ‚ Ğ²Ñ€ĞµĞ¼Ñ Ğ½Ğ° Ğ¿Ğ¾Ğ´Ğ³Ğ¾Ñ‚Ğ¾Ğ²ĞºÑƒ Ğ¾ĞºÑ€ÑƒĞ¶ĞµĞ½Ğ¸Ñ, Ğ¿Ğ¾Ğ·Ğ²Ğ¾Ğ»ÑÑ ÑÑ„Ğ¾ĞºÑƒÑĞ¸Ñ€Ğ¾Ğ²Ğ°Ñ‚ÑŒÑÑ Ğ½Ğ° ĞºĞ°Ñ‡ĞµÑÑ‚Ğ²Ğµ Ğ¿Ñ€Ğ¾Ğ´ÑƒĞºÑ‚Ğ°.</p></div>
+
+  <div class="terminals">
+    <div class="term">
+  <div class="term-header">
+    <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="term-title">Ğ˜ÑĞ¿Ğ¾Ğ»ÑŒĞ·Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ CLI</span>
+    <button class="copy-btn" onclick="copyTerm('term-cli-reverse_regex')">copy</button>
+  </div>
+  <div class="term-body" id="term-cli-reverse_regex"><code class="p">mockjutsu generate reverse_regex</code><code class="p">mockjutsu bulk reverse_regex --count 10</code><code class="o">mockjutsu export reverse_regex --count 10 --format json</code><code class="o">mockjutsu export reverse_regex --count 10 --format csv</code><code class="o">mockjutsu export reverse_regex --count 10 --format sql</code><code class="p">mockjutsu generate reverse_regex --pattern regex</code></div>
+</div>
+    <div class="term">
+  <div class="term-header">
+    <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="term-title">Python API</span>
+    <button class="copy-btn" onclick="copyTerm('term-py-reverse_regex')">copy</button>
+  </div>
+  <div class="term-body" id="term-py-reverse_regex"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('reverse_regex')</code><code class="py">jutsu.bulk('reverse_regex', count=10)</code><code class="c"></code><code class="py">jutsu.template(['reverse_regex'], count=5)</code></div>
+</div>
+    <div class="term">
+  <div class="term-header">
+    <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="term-title">JMeter</span>
+    <button class="copy-btn" onclick="copyTerm('term-jm-reverse_regex')">copy</button>
+  </div>
+  <div class="term-body" id="term-jm-reverse_regex"><code class="jm">${__mockjutsu_meta(reverse_regex)}</code><code class="jm">${__mockjutsu_meta(reverse_regex:[A-Z]{3}\d{4})}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_meta</code><code class="c"># Parameter 1: reverse_regex  OR  reverse_regex:<qualifier></code><code class="c"># Qualifier values: regex pattern</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+</div>
+    <div class="term">
+  <div class="term-header">
+    <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="term-title">REST API</span>
+    <button class="copy-btn" onclick="copyTerm('term-api-reverse_regex')">copy</button>
+  </div>
+  <div class="term-body" id="term-api-reverse_regex"><code class="p">GET /generate/reverse_regex</code><code class="c"># â†’ {"type":"reverse_regex","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/reverse_regex?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["reverse_regex"],"count":1}</code></div>
+</div>
+  </div>
+
+  <div class="params-section">
+  <h2>ĞŸĞ°Ñ€Ğ°Ğ¼ĞµÑ‚Ñ€Ñ‹</h2>
+  <table>
+    <thead><tr>
+      <th>ĞŸĞ°Ñ€Ğ°Ğ¼ĞµÑ‚Ñ€</th>
+      <th>Ğ—Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ñ</th>
+      <th>ĞĞ¿Ğ¸ÑĞ°Ğ½Ğ¸Ğµ</th>
+    </tr></thead>
+    <tbody><tr>
+              <td><span class="param-flag">--pattern</span></td>
+              <td><span class="param-vals">regex</span></td>
+              <td>Regex pattern to generate</td>
+            </tr></tbody>
+  </table>
+</div>
+  <div class="related">
+  <h2>ĞŸĞ¾Ñ…Ğ¾Ğ¶Ğ¸Ğµ Ñ„ÑƒĞ½ĞºÑ†Ğ¸Ğ¸</h2>
+  <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/uuid-RU.html" class="rel-link"><code>uuid</code></a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/requestid-RU.html" class="rel-link"><code>requestid</code></a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/correlationid-RU.html" class="rel-link"><code>correlationid</code></a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/sessionid-RU.html" class="rel-link"><code>sessionid</code></a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/idempotencykey-RU.html" class="rel-link"><code>idempotencykey</code></a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/deviceid-RU.html" class="rel-link"><code>deviceid</code></a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/timestamp-RU.html" class="rel-link"><code>timestamp</code></a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/timestamp_iso-RU.html" class="rel-link"><code>timestamp_iso</code></a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/ipv4-RU.html" class="rel-link"><code>ipv4</code></a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/ipv6-RU.html" class="rel-link"><code>ipv6</code></a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/browser_name-RU.html" class="rel-link"><code>browser_name</code></a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/browser_version-RU.html" class="rel-link"><code>browser_version</code></a>
+</div>
+</div>
+
+  <div class="lang-switch">
+    <h3>Ğ”Ñ€ÑƒĞ³Ğ¸Ğµ ÑĞ·Ñ‹ĞºĞ¸</h3>
+    <div class="lang-pills"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/FUNCTION/reverse_regex-TR.html" class="lang-pill ">ğŸ‡¹ğŸ‡· TR</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/reverse_regex-EN.html" class="lang-pill ">ğŸ‡ºğŸ‡¸ EN</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/reverse_regex-UK.html" class="lang-pill ">ğŸ‡¬ğŸ‡§ UK</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/reverse_regex-DE.html" class="lang-pill ">ğŸ‡©ğŸ‡ª DE</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/reverse_regex-FR.html" class="lang-pill ">ğŸ‡«ğŸ‡· FR</a>
+<a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/reverse_regex-RU.html" class="lang-pill active">ğŸ‡·ğŸ‡º RU</a>
+</div>
+  </div>
+</div>
+
+<div class="footer">
+  mock-jutsu &mdash; Developed by <strong>Altan Sezer Ayan - A.S.A</strong>
+  &nbsp;&bull;&nbsp; <a href="https://github.com/altansayan/mock-jutsu-api">GitHub</a>
+  &nbsp;&bull;&nbsp; <a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html">Mock Jutsu HOW-TO</a>
+</div>
+
+<script>
+function copyTerm(id) {
+  const el = document.getElementById(id);
+  const txt = [...el.querySelectorAll('code')].map(c => c.textContent).join('
+');
+  navigator.clipboard.writeText(txt).then(() => {
+    const btn = el.previousElementSibling.querySelector('.copy-btn');
+    btn.textContent = 'copied!';
+    setTimeout(() => btn.textContent = 'copy', 1500);
+  });
+}
+</script>
+</body>
+</html>

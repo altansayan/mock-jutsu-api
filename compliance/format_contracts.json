@@ -1234,7 +1234,7 @@
     "note": "X.509 certificate dict: version, serial, algorithm, subject, issuer, SANs, fingerprint",
     "example": "{\"version\": 3, \"serial\": \"3d0f23...\", \"algorithm\": \"sha256WithRSAEncryption\"}"
   },
-  "regex_string": {
+  "reverse_regex": {
     "pattern": "^.{1,50}$",
     "note": "Regex-matched test string: printable characters up to 50 chars",
     "example": "HO6Y-VA17"

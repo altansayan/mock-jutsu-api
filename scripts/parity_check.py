@@ -1,4 +1,4 @@
-"""
+﻿"""
 Parity checker: Python generator vs Java (JMeter) generator.
 
 For every type, generates N samples from both sides and compares structure:
@@ -32,7 +32,7 @@ def _py_gen(type_: str, locale: str) -> str:
         return json.dumps(result, ensure_ascii=False)
     return str(result) if result is not None else "ERROR: None returned"
 
-# ── All 300 types ─────────────────────────────────────────────────────────────
+# â”€â”€ All 300 types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 ALL_TYPES = [
     "tckn","ykn","taxid","vkn","nationalid","ssn","nin","inn","inn_individual",
@@ -91,7 +91,7 @@ ALL_TYPES = [
     "can_frame","obd2_response",
     "tle_satellite",
     "swift_mt103","pain001","nacha_ach","sepa_mandate","fedwire",
-    "regex_string",
+    "reverse_regex",
     "br_cpf","br_cnpj",
     "in_pan","in_aadhaar","in_gstin","in_epic",
     "cn_ric","mx_curp","mx_rfc","it_codicefiscale",
@@ -103,7 +103,7 @@ ALL_TYPES = [
     "ro_cnp","ro_cui","hr_oib","bg_egn","lt_asmens","ee_ik","pt_cc","eg_tn",
 ]
 
-# ── Generators ────────────────────────────────────────────────────────────────
+# â”€â”€ Generators â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def run_python(types: list, locale: str, count: int) -> dict:
     result = {}
@@ -141,7 +141,7 @@ def run_java(locale: str, count: int) -> dict:
         result.setdefault(type_, []).append(val)
     return result
 
-# ── Structure extraction ──────────────────────────────────────────────────────
+# â”€â”€ Structure extraction â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def is_json(s: str) -> bool:
     s = s.strip()
@@ -170,7 +170,7 @@ def sig(samples: list) -> dict:
     lengths = [len(s) for s in valid]
     return {"kind": "str", "min": min(lengths), "max": max(lengths), "sample": first[:80]}
 
-# ── Comparison ────────────────────────────────────────────────────────────────
+# â”€â”€ Comparison â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 OK   = "OK  "
 DIFF = "DIFF"
@@ -216,7 +216,7 @@ def compare(t: str, py: list, java: list) -> dict:
 
     return {"status": OK}
 
-# ── Main ──────────────────────────────────────────────────────────────────────
+# â”€â”€ Main â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def main():
     ap = argparse.ArgumentParser()
@@ -244,7 +244,7 @@ def main():
         try:
             java_data = run_java(locale, count)
         except Exception as e:
-            print(f"  ⚠️  Java failed: {e}\n  Continuing in Python-only mode.")
+            print(f"  âš ï¸  Java failed: {e}\n  Continuing in Python-only mode.")
             args.no_java = True
 
     results = {}
@@ -309,3 +309,4 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+

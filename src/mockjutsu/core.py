@@ -1,5 +1,5 @@
-"""
-mock-jutsu — Core Orchestrator
+﻿"""
+mock-jutsu â€” Core Orchestrator
 Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 
@@ -71,11 +71,11 @@ _FINANCIAL_TYPES = {
     'issuer', 'expiry', 'expirymonth', 'expiryyear', 'pin', 'balance',
     'iban', 'cardcategory', 'credit_score', 'sepa_qr', 'emv_qr_p2p',
     'emv_qr_atm', 'emv_qr_pos', '3ds_cavv', '3ds_eci',
-    # Sprint 4 — Financial Extended
+    # Sprint 4 â€” Financial Extended
     'credit_score_model', 'credit_score_tier', 'credit_limit', 'credit_utilization',
     'credit_card_issuer_name', 'apr', 'loan_type', 'mortgage_rate', 'mortgage_term',
     'premium_amount', 'deductible', 'coverage_limit', 'claim_status',
-    # Masked variants (GLBA §501 NPI protection)
+    # Masked variants (GLBA Â§501 NPI protection)
     'credit_limit_masked', 'mortgage_rate_masked', 'premium_amount_masked',
 }
 
@@ -93,14 +93,14 @@ _META_TYPES = {
     'jwt', 'hash', 'mac_address', 'domain', 'url', 'color',
     'api_key', 'totp_code', 'webhook_signature', 'transaction_id',
     'public_ip', 'private_ip',
-    # Wave B — Datetime
+    # Wave B â€” Datetime
     'past_date', 'future_date', 'date_between', 'date_this_year', 'date_this_month',
     'time_only', 'past_datetime', 'future_datetime',
-    # Wave C — Web
+    # Wave C â€” Web
     'slug', 'http_method', 'http_status_code', 'port_number', 'hostname', 'tld', 'uri_path',
 }
 
-_REVERSE_REGEX_TYPES = {'regex_string'}
+_REVERSE_REGEX_TYPES = {'reverse_regex'}
 
 _BANKING_TYPES = {
     'swift', 'bic', 'sort_code', 'routing_number', 'bik_code',
@@ -108,7 +108,7 @@ _BANKING_TYPES = {
     'account_type', 'transaction_type', 'transaction_description',
     'ifsc_code', 'bsb_code', 'check_number', 'micr_line',
     'payment_reference', 'wire_routing_number', 'account_number',
-    # Masked variants (PCI-DSS v4.0 §3.3 + GLBA §501)
+    # Masked variants (PCI-DSS v4.0 Â§3.3 + GLBA Â§501)
     'account_number_masked', 'micr_line_masked', 'transaction_description_masked',
     'check_number_masked', 'payment_reference_masked',
 }
@@ -145,7 +145,7 @@ _TELECOM_TYPES = {
 
 _SECURITIES_TYPES = {
     'isin', 'cusip', 'sedol', 'lei', 'fix_message', 'psd2_consent',
-    # Sprint 5 — Financial Markets Extended
+    # Sprint 5 â€” Financial Markets Extended
     'stock_ticker', 'figi', 'forex_pair', 'forex_rate', 'ric', 'mic',
     'stock_exchange', 'option_contract', 'bond_yield', 'coupon_rate',
     'settlement_date', 'portfolio_id', 'nsin',
@@ -156,11 +156,11 @@ _SECURITIES_TYPES = {
 _CRYPTO_TYPES = {
     'btc_address', 'eth_address', 'crypto_address', 'tx_hash', 'block_hash',
     'mnemonic',
-    # Sprint 7 — DeFi / Crypto Extended
+    # Sprint 7 â€” DeFi / Crypto Extended
     'nft_token_id', 'gas_price', 'gas_limit', 'defi_protocol_name',
     'blockchain_network', 'wallet_label', 'defi_position_type',
     'cryptocurrency_name', 'liquidity_pool_id',
-    # Masked variant (FATF Recommendation 16 — Travel Rule)
+    # Masked variant (FATF Recommendation 16 â€” Travel Rule)
     'liquidity_pool_id_masked',
 }
 
@@ -168,7 +168,7 @@ _COMPLIANCE_TYPES = {
     'policy_number', 'claim_number', 'pep_status', 'aml_risk_rating', 'cdd_level',
     'sar_number', 'ubo_ownership_percentage', 'kyc_document_type',
     'consent_id', 'tpp_id', 'onboarding_method', 'sanctions_hit',
-    # Masked variants (BSA §5318(g)(2), GLBA §501, EU 4AMLD/5AMLD, GDPR Art. 7)
+    # Masked variants (BSA Â§5318(g)(2), GLBA Â§501, EU 4AMLD/5AMLD, GDPR Art. 7)
     'sar_number_masked', 'policy_number_masked', 'claim_number_masked',
     'ubo_ownership_percentage_masked', 'consent_id_masked',
 }
@@ -316,7 +316,7 @@ _INTL_IDS_TYPES = {
 
 
 class MockJutsuCore:
-    """Master orchestrator — 6 locales, 182 data types."""
+    """Master orchestrator â€” 6 locales, 182 data types."""
 
     def __init__(self, locale='TR'):
         self.locale     = str(locale).upper()
@@ -362,7 +362,7 @@ class MockJutsuCore:
         self.intl_ids       = IntlIdsGenerator()
         self.compliance     = ComplianceGenerator()
 
-    # ── Single value ────────────────────────────────────────────────────────────
+    # â”€â”€ Single value â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     def generate(self, data_type, **kwargs):
         if not data_type:
@@ -470,20 +470,20 @@ class MockJutsuCore:
 
         return result
 
-    # ── Bulk ────────────────────────────────────────────────────────────────────
+    # â”€â”€ Bulk â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     def bulk(self, data_type, count=10, **kwargs):
         """Generate a list of values for the same data type."""
         return [self.generate(data_type, **kwargs) for _ in range(count)]
 
-    # ── Template ────────────────────────────────────────────────────────────────
+    # â”€â”€ Template â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     def template(self, schema, count=10, locale='TR'):
         """Generate structured records from a schema.
 
         schema accepts:
-          - dict:        {field_name: data_type}  — custom field names
-          - list/tuple:  [data_type, ...]          — field name equals type name
+          - dict:        {field_name: data_type}  â€” custom field names
+          - list/tuple:  [data_type, ...]          â€” field name equals type name
         """
         loc = str(locale).upper()
         if isinstance(schema, (list, tuple)):
@@ -493,7 +493,7 @@ class MockJutsuCore:
             for _ in range(count)
         ]
 
-    # ── Profile ─────────────────────────────────────────────────────────────────
+    # â”€â”€ Profile â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     def profile(self, locale='TR'):
         """Generate a complete, consistent person profile for a given locale."""
@@ -529,7 +529,7 @@ class MockJutsuCore:
             "iban":       self.financial.generate('iban', locale=l),
         }
 
-    # ── Company ─────────────────────────────────────────────────────────────────
+    # â”€â”€ Company â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     def company(self, locale='TR'):
         """Generate a complete company profile for a given locale."""
@@ -545,7 +545,7 @@ class MockJutsuCore:
             "address":     self.comm.generate('address_full',      locale=l),
         }
 
-    # ── Export ──────────────────────────────────────────────────────────────────
+    # â”€â”€ Export â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     def export(self, schema: dict, count=10, format='json', locale='TR', table='records', records=None):
         """Export generated records as JSON, CSV, or SQL INSERT statements."""
@@ -587,7 +587,7 @@ class MockJutsuCore:
 
         return json.dumps(records, ensure_ascii=False, indent=2)
 
-    # ── Internal ─────────────────────────────────────────────────────────────────
+    # â”€â”€ Internal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     @staticmethod
     def _normalize_name(s):
@@ -598,3 +598,4 @@ class MockJutsuCore:
 
 
 jutsu = MockJutsuCore()
+
