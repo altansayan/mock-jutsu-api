@@ -316,12 +316,390 @@ PARAM_INFO = {
 # ── Listing-page extras ────────────────────────────────────────────────────────
 
 TAB_LABELS = {
-    "TR": ("Tam Referans", "Hızlı Başlangıç", "Güçlü Özellikler", "REST API"),
-    "EN": ("Full Reference", "Quick Start",    "Power Features",   "REST API"),
-    "UK": ("Full Reference", "Quick Start",    "Power Features",   "REST API"),
-    "DE": ("Vollständige Referenz", "Schnellstart", "Leistungsfunktionen", "REST API"),
-    "FR": ("Référence complète", "Démarrage rapide", "Fonctionnalités", "REST API"),
-    "RU": ("Полный справочник", "Быстрый старт", "Функции", "REST API"),
+    "TR": ("Tam Referans", "Hızlı Başlangıç", "Güçlü Özellikler", "REST API", "Maskeleme"),
+    "EN": ("Full Reference", "Quick Start",    "Power Features",   "REST API", "Data Masking"),
+    "UK": ("Full Reference", "Quick Start",    "Power Features",   "REST API", "Data Masking"),
+    "DE": ("Vollständige Referenz", "Schnellstart", "Leistungsfunktionen", "REST API", "Datenmaskierung"),
+    "FR": ("Référence complète", "Démarrage rapide", "Fonctionnalités", "REST API", "Masquage"),
+    "RU": ("Полный справочник", "Быстрый старт", "Функции", "REST API", "Маскирование"),
+}
+
+# ── Masking table data ─────────────────────────────────────────────────────────
+# Each entry: (regulation, types_list, masking_rule_TR, masking_rule_EN)
+MASK_TABLE_ROWS: list[tuple[str, str, str, str]] = [
+    # PCI DSS
+    ("PCI DSS v4.0 §3.4.1 (PAN)",
+     "cardnum",
+     "BIN(6) + **** + son4  →  4155 56** **** 3399",
+     "BIN(6) + **** + last4  →  4155 56** **** 3399"),
+    ("PCI DSS SAD (saklanamaz)",
+     "cvv3, cvv4, pin, track1_data, track2_data, chip_data, pin_block, pin_block_fmt3, 3ds_cavv, password, password_hash, emv_arqc",
+     "Tüm karakterler → ***",
+     "All characters → ***"),
+    ("PCI DSS (kart meta)",
+     "expiry, expirymonth, expiryyear",
+     "expiry → **/**  |  ay/yıl → **",
+     "expiry → **/**  |  month/year → **"),
+    ("PCI DSS (kart sahibi)",
+     "cardowner",
+     "Her kelime: ilk harf + ***  →  E*** K***",
+     "Each word: first char + ***  →  E*** K***"),
+    # EMV / ISO 8583
+    ("EMV / ISO 8583",
+     "emv_atc, emv_iad, iso8583_auth_request, iso8583_auth_response, iso8583_reversal",
+     "EMV atc → **XX  |  iad → ilk4+****+son4  |  ISO DE002 PAN alanı maskelenir",
+     "EMV atc → **XX  |  iad → first4+****+last4  |  ISO DE002 PAN field masked"),
+    # KVKK
+    ("KVKK Rehber 2.4 (T.C. Kimlik)",
+     "tckn, ykn",
+     "İlk 2 + ******* + son 2  →  25*******10",
+     "First 2 + ******* + last 2  →  25*******10"),
+    ("KVKK (Vergi / SGK)",
+     "vkn, taxid, sgk, mersis, insurance_id",
+     "vkn → ilk3+****+son3  |  sgk → orta blok maskelenir  |  mersis → ilk4+****+son4",
+     "vkn → first3+****+last3  |  sgk → middle block masked  |  mersis → first4+****+last4"),
+    # GDPR
+    ("GDPR Art.5 (e-posta)",
+     "email",
+     "Yerel bölümün ilk 2 karakteri + *** @ domain  →  al***@mail.com",
+     "First 2 chars of local part + *** @ domain  →  al***@mail.com"),
+    ("GDPR Art.5 (doğum tarihi)",
+     "birthdate",
+     "Yıl görünür, ay/gün gizli  →  1990-**-**",
+     "Year visible, month/day hidden  →  1990-**-**"),
+    ("GDPR Art.5 (isim)",
+     "firstname, lastname, fullname, patronymic",
+     "Her kelime: ilk harf + ***  →  E*** K***",
+     "Each word: first char + ***  →  E*** K***"),
+    ("GDPR Art.5 (yaş)",
+     "age",
+     "Tüm rakamlar → **",
+     "All digits → **"),
+    ("GDPR Art.5 (pasaport / ehliyet)",
+     "passport, license, mrz_td3, mrz_td1",
+     "İlk 2 + **** + son 2  →  P1****67  |  MRZ → orta blok maskelenir",
+     "First 2 + **** + last 2  →  P1****67  |  MRZ → middle block masked"),
+    # Phone
+    ("E.164 / GDPR (telefon)",
+     "phone, msisdn",
+     "Ülke kodu + *** *** ** + son2  →  +90 *** *** ** 34",
+     "Country code + *** *** ** + last2  →  +90 *** *** ** 34"),
+    ("GDPR (yerel telefon)",
+     "phone_local",
+     "*** + son 2 hane  →  ***34",
+     "*** + last 2 digits  →  ***34"),
+    # SEPA/PSD2
+    ("SEPA / PSD2 (IBAN)",
+     "iban",
+     "Ülke(2) + kontrol(2) + **** + son4  →  TR12 **** **** **** **** **34",
+     "Country(2) + check(2) + **** + last4  →  TR12 **** **** **** **** **34"),
+    # US
+    ("US GLBA / IRS (SSN)",
+     "ssn, ssn_masked",
+     "***-**-son4  →  ***-**-5678",
+     "***-**-last4  →  ***-**-5678"),
+    ("US GLBA / IRS (EIN)",
+     "ein",
+     "**-*****son4",
+     "**-*****last4"),
+    ("HIPAA (NPI)",
+     "npi",
+     "İlk 5 + **** + son 4",
+     "First 5 + **** + last 4"),
+    # UK
+    ("UK HMRC (NIN)",
+     "nin",
+     "AB ** ** ** C  →  AB 12 34 56 → AB ** ** ** C",
+     "AB ** ** ** C  →  AB ** ** ** C"),
+    ("UK HMRC (UTR)",
+     "utr",
+     "İlk 5 görünür + *****  →  12345*****",
+     "First 5 visible + *****  →  12345*****"),
+    ("UK NHS",
+     "nhs_number, nhsnumber",
+     "İlk 3 + *** + ***son1  →  943 *** ***9",
+     "First 3 + *** + ***last1  →  943 *** ***9"),
+    ("UK (CRN / PAYE)",
+     "crn, paye, sort_code",
+     "crn → ilk2+****+son2  |  paye → ilk4+***+son3  |  sort_code → **-**-**",
+     "crn → first2+****+last2  |  paye → first4+***+last3  |  sort_code → **-**-**"),
+    # DE / RU
+    ("Almanya (Kimlik / Vergi)",
+     "de_idnr, de_stnr, rvn",
+     "İlk 3-4 + **** + son 2-4",
+     "First 3-4 + **** + last 2-4"),
+    ("Rusya (INN / SNILS)",
+     "inn, inn_individual, snils",
+     "İlk 3 + **** + son 3",
+     "First 3 + **** + last 3"),
+    # HIPAA health
+    ("HIPAA (sağlık verisi)",
+     "icd10, bmi, height, weight, hl7_message, fhir_patient, dicom_uid",
+     "icd10 → rakamlar maskelenir  |  bmi/height/weight → *.* birimleri korunur  |  HL7 alan içerikleri → ****  |  FHIR isim alanları → ***  |  DICOM → ilk3+.*****",
+     "icd10 → digits masked  |  bmi/height/weight → *.* units preserved  |  HL7 field values → ****  |  FHIR name fields → ***  |  DICOM → first3+.*****"),
+    # Telecom
+    ("3GPP / GSMA (Telecom)",
+     "imei, imei2, iccid, imsi",
+     "IMEI → TAC(8)+****+son2  |  ICCID → IIN(6)+****+son4  |  IMSI → MCC+MNC(5)+****+son4",
+     "IMEI → TAC(8)+****+last2  |  ICCID → IIN(6)+****+last4  |  IMSI → MCC+MNC(5)+****+last4"),
+    # Network
+    ("GDPR / RFC 6890 (IP / MAC)",
+     "ipv4, public_ip, mac_address",
+     "IPv4 → ilk2 oktet.*.*  →  192.168.*.*  |  MAC → ilk3 grup:**:**:**",
+     "IPv4 → first 2 octets.*.*  →  192.168.*.*  |  MAC → first 3 groups:**:**:**"),
+    # Location
+    ("GDPR (konum)",
+     "latitude, longitude, coordinates",
+     "2 ondalık basamak görünür + *****  →  41.01*****",
+     "2 decimal places visible + *****  →  41.01*****"),
+    # Commerce / Vehicle
+    ("VIN / Araç (NHTSA)",
+     "vin, vehicle",
+     "WMI+VDS(9) + **** + son4  →  WBA3A5C5X****3456",
+     "WMI+VDS(9) + **** + last4  →  WBA3A5C5X****3456"),
+    ("Plaka (KVKK)",
+     "plate",
+     "Şehir kodu + harf[0]+*** + seri  →  34 A** 123",
+     "City code + letter[0]+*** + serial  →  34 A** 123"),
+    # Aviation
+    ("IATA (Havacılık)",
+     "pnr_code, iata_ticket",
+     "PNR → ilk2+****  |  Bilet → ilk3+****+son3",
+     "PNR → first2+****  |  Ticket → first3+****+last3"),
+    # Financial misc
+    ("KVKK / GDPR (finansal)",
+     "balance, credit_score",
+     "balance → ****+son2 tam hane+ondalık  |  credit_score → ilk rakam+**",
+     "balance → ****+last2 integer digits+decimal  |  credit_score → first digit+**"),
+    # Auth / Session
+    ("OWASP (oturum / kimlik doğrulama)",
+     "sessionid, deviceid, username, handle",
+     "sessionid/deviceid → ilk8-****-****-****-son12  |  username → ilk2+***+son2  |  handle → @ilk2+***",
+     "sessionid/deviceid → first8-****-****-****-last12  |  username → first2+***+last2  |  handle → @first2+***"),
+    # E-Commerce
+    ("Ticaret (sipariş / kargo)",
+     "order_id, tracking_number",
+     "order_id → ilk6+****+son4  |  tracking → ilk4+****+son4",
+     "order_id → first6+****+last4  |  tracking → first4+****+last4"),
+    # OIDC
+    ("OIDC / OAuth 2.0 (token)",
+     "oidc_token, oidc_token_set",
+     "token → ilk10+***.son4  |  token_set → token alanları maskelenir",
+     "token → first10+***.last4  |  token_set → token fields masked"),
+    # Crypto
+    ("BIP39 (anımsatıcı)",
+     "mnemonic",
+     "İlk kelime görünür + *** *** ... ***",
+     "First word visible + *** *** ... ***"),
+    # PSD2
+    ("PSD2 / Open Banking",
+     "psd2_consent",
+     "İlk 12 karakter + ***",
+     "First 12 characters + ***"),
+    # SWIFT
+    ("SWIFT / ISO 20022",
+     "swift_mt103",
+     "IBAN/BIC/ACC alanları → CC+****  →  IBAN: TR****",
+     "IBAN/BIC/ACC fields → CC+****  →  IBAN: TR****"),
+    # IntlIDs
+    ("Brezilya (CPF / CNPJ)",
+     "br_cpf, br_cnpj",
+     "CPF → ilk3+***+***+son2  |  CNPJ → ilk4+****+son4",
+     "CPF → first3+***+***+last2  |  CNPJ → first4+****+last4"),
+    ("Hindistan (PAN / Aadhaar / GSTIN / EPIC)",
+     "in_pan, in_aadhaar, in_gstin, in_epic",
+     "PAN → ilk5+****+son1  |  Aadhaar → XXXX XXXX son4  |  GSTIN → eyalet+PAN+****+son2  |  EPIC → ilk3+****+son2",
+     "PAN → first5+****+last1  |  Aadhaar → XXXX XXXX last4  |  GSTIN → state+PAN+****+last2  |  EPIC → first3+****+last2"),
+    ("Çin (RIC)",
+     "cn_ric",
+     "Bölge+yıl (ilk6) + **** + son4",
+     "Area+year (first6) + **** + last4"),
+    ("Meksika (CURP / RFC)",
+     "mx_curp, mx_rfc",
+     "İlk 4 + orta maskelenir + son 2",
+     "First 4 + middle masked + last 2"),
+    ("İtalya (Codice Fiscale)",
+     "it_codicefiscale",
+     "Soyad(4) + ** + doğum ay (2) + **** + kontrol",
+     "Surname(4) + ** + birth month(2) + **** + check"),
+    ("İspanya (DNI / NIE / CCC)",
+     "es_dni, es_nie, es_ccc",
+     "DNI/NIE → ilk2+****+son2  |  CCC → ilk4+****+son4",
+     "DNI/NIE → first2+****+last2  |  CCC → first4+****+last4"),
+    ("Güney Kore (RRN / BRN)",
+     "kr_rrn, kr_brn",
+     "RRN → doğum tarihi(6)-cinsiyet+*****  |  BRN → ilk3+****+son3",
+     "RRN → birthdate(6)-gender+*****  |  BRN → first3+****+last3"),
+    ("Hollanda (BSN)",
+     "nl_bsn",
+     "İlk 3 + **** + son 2",
+     "First 3 + **** + last 2"),
+    ("Polonya (PESEL)",
+     "pl_pesel",
+     "İlk 6 (doğum tarihi) + ** + son 2",
+     "First 6 (birthdate) + ** + last 2"),
+    ("İsveç (Personnummer)",
+     "se_personnummer",
+     "Doğum tarihi(8) + -****",
+     "Birthdate(8) + -****"),
+    ("Danimarka (CPR)",
+     "dk_cpr",
+     "Doğum tarihi(6) + -****",
+     "Birthdate(6) + -****"),
+    ("Finlandiya (HETU)",
+     "fi_hetu",
+     "Doğum tarihi(6) + -****",
+     "Birthdate(6) + -****"),
+    ("Norveç (Fødselsnummer)",
+     "no_fodselsnummer",
+     "İlk 6 (doğum tarihi) + ** + son 2",
+     "First 6 (birthdate) + ** + last 2"),
+    ("Avustralya (ABN / TFN / ACN)",
+     "au_abn, au_tfn, au_acn",
+     "İlk 3 + **** + son 2-3",
+     "First 3 + **** + last 2-3"),
+    ("Malezya (NRIC)",
+     "my_nric",
+     "İlk 6 (doğum tarihi+bölge) + **** + son 4",
+     "First 6 (birthdate+state) + **** + last 4"),
+    ("Pakistan (CNIC)",
+     "pk_cnic",
+     "İlk 5 + **** + son 2",
+     "First 5 + **** + last 2"),
+    ("Japonya (CN / IN)",
+     "jp_cn, jp_in",
+     "İlk 4 + **** + son 4",
+     "First 4 + **** + last 4"),
+    ("Singapur (UEN)",
+     "sg_uen",
+     "İlk 4 + orta maskelenir + son 2",
+     "First 4 + middle masked + last 2"),
+    ("Tayland (PIN / TIN)",
+     "th_pin, th_tin",
+     "İlk 4 + **** + son 4",
+     "First 4 + **** + last 4"),
+    ("Güney Afrika (IDNR)",
+     "za_idnr",
+     "İlk 6 (doğum tarihi) + *** + son 3",
+     "First 6 (birthdate) + *** + last 3"),
+    ("Kanada (BN)",
+     "ca_bn",
+     "İlk 3 + **** + son 2",
+     "First 3 + **** + last 2"),
+    ("Yeni Zelanda (IRD)",
+     "nz_ird",
+     "İlk 3 + **** + son 2",
+     "First 3 + **** + last 2"),
+    ("Arjantin (CUIT / DNI)",
+     "ar_cuit, ar_dni",
+     "İlk 2-4 + orta maskelenir + son 2",
+     "First 2-4 + middle masked + last 2"),
+    ("Şili (RUT)",
+     "cl_rut",
+     "İlk 3 + **** + son 2",
+     "First 3 + **** + last 2"),
+    ("Kolombiya (NIT)",
+     "co_nit",
+     "İlk 3 + **** + son 3",
+     "First 3 + **** + last 3"),
+    ("İsrail (IDNR)",
+     "il_idnr",
+     "İlk 3 + **** + son 2",
+     "First 3 + **** + last 2"),
+    ("Romanya (CNP / CUI)",
+     "ro_cnp, ro_cui",
+     "CNP → ilk4+****+son3  |  CUI → ilk4+****+son3",
+     "CNP → first4+****+last3  |  CUI → first4+****+last3"),
+    ("Hırvatistan (OIB)",
+     "hr_oib",
+     "İlk 4 + **** + son 3",
+     "First 4 + **** + last 3"),
+    ("Bulgaristan (EGN)",
+     "bg_egn",
+     "Doğum tarihi(6) + ** + son 2",
+     "Birthdate(6) + ** + last 2"),
+    ("Litvanya (Asmens kodas)",
+     "lt_asmens",
+     "İlk 5 + **** + son 2",
+     "First 5 + **** + last 2"),
+    ("Estonya (IK)",
+     "ee_ik",
+     "İlk 5 + **** + son 2",
+     "First 5 + **** + last 2"),
+    ("Portekiz (CC)",
+     "pt_cc",
+     "İlk 4 + **** + son 3",
+     "First 4 + **** + last 3"),
+    ("Mısır (TIN)",
+     "eg_tn",
+     "İlk 3 + **** + son 2",
+     "First 3 + **** + last 2"),
+    # Pre-masked types
+    ("Ön-maskeli tipler (_masked varyantlar)",
+     "tckn_masked, ssn_masked, account_number_masked, micr_line_masked, transaction_description_masked, check_number_masked, payment_reference_masked, credit_limit_masked, mortgage_rate_masked, premium_amount_masked, portfolio_id_masked, sar_number_masked, policy_number_masked, claim_number_masked, ubo_ownership_percentage_masked, consent_id_masked, liquidity_pool_id_masked",
+     "Zaten maskeli üretilir — --mask bayrağı etkisizdir",
+     "Generated pre-masked — --mask flag has no additional effect"),
+]
+
+MASK_TAB_TITLE = {
+    "TR": "Maskeleme Standartları",
+    "EN": "Data Masking Standards",
+    "UK": "Data Masking Standards",
+    "DE": "Datenmaskierungsstandards",
+    "FR": "Standards de masquage",
+    "RU": "Стандарты маскирования",
+}
+MASK_TAB_INTRO = {
+    "TR": (
+        "<p>Mock Jutsu'nun <code>--mask</code> bayrağı, üretilen değerleri regülasyon uyumlu biçimde maskeler. "
+        "Aşağıdaki tablo, hangi fonksiyonun hangi regülasyona göre nasıl maskelendiğini gösterir.</p>"
+        "<p><strong>Kullanım:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;·&nbsp; "
+        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;·&nbsp; "
+        "<code>GET /generate/cardnum?mask=true</code></p>"
+    ),
+    "EN": (
+        "<p>Mock Jutsu's <code>--mask</code> flag returns regulation-compliant masked values. "
+        "The table below shows which function is masked according to which regulation and how.</p>"
+        "<p><strong>Usage:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;·&nbsp; "
+        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;·&nbsp; "
+        "<code>GET /generate/cardnum?mask=true</code></p>"
+    ),
+    "UK": (
+        "<p>Mock Jutsu's <code>--mask</code> flag returns regulation-compliant masked values. "
+        "The table below shows which function is masked according to which regulation and how.</p>"
+        "<p><strong>Usage:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;·&nbsp; "
+        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;·&nbsp; "
+        "<code>GET /generate/cardnum?mask=true</code></p>"
+    ),
+    "DE": (
+        "<p>Das <code>--mask</code>-Flag von Mock Jutsu gibt regulierungskonforme maskierte Werte zurück. "
+        "Die folgende Tabelle zeigt, welche Funktion gemäß welcher Regulierung wie maskiert wird.</p>"
+        "<p><strong>Verwendung:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;·&nbsp; "
+        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;·&nbsp; "
+        "<code>GET /generate/cardnum?mask=true</code></p>"
+    ),
+    "FR": (
+        "<p>Le flag <code>--mask</code> de Mock Jutsu retourne des valeurs masquées conformes aux réglementations. "
+        "Le tableau ci-dessous montre quelle fonction est masquée selon quelle réglementation et comment.</p>"
+        "<p><strong>Utilisation&nbsp;:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;·&nbsp; "
+        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;·&nbsp; "
+        "<code>GET /generate/cardnum?mask=true</code></p>"
+    ),
+    "RU": (
+        "<p>Флаг <code>--mask</code> в Mock Jutsu возвращает значения, замаскированные в соответствии с регуляциями. "
+        "В таблице ниже показано, какая функция маскируется, по какой регуляции и как.</p>"
+        "<p><strong>Использование:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;·&nbsp; "
+        "<code>jutsu.generate('cardnum', mask=True)</code> &nbsp;·&nbsp; "
+        "<code>GET /generate/cardnum?mask=true</code></p>"
+    ),
+}
+MASK_COL_HEADERS = {
+    "TR": ("Regülasyon", "Tipler", "Maskeleme Kuralı"),
+    "EN": ("Regulation", "Types", "Masking Rule"),
+    "UK": ("Regulation", "Types", "Masking Rule"),
+    "DE": ("Regulierung", "Typen", "Maskierungsregel"),
+    "FR": ("Réglementation", "Types", "Règle de masquage"),
+    "RU": ("Регуляция", "Типы", "Правило маскирования"),
 }
 
 HEADER_ENGINE = {
@@ -996,7 +1374,7 @@ def build_listing_page(lang: str) -> str:
     qs    = QS_LOCALE_INFO[lang]
     loc   = qs["locale"]
     net   = qs["card_net"]
-    t_ref, t_qs, t_power, t_api = TAB_LABELS[lang]
+    t_ref, t_qs, t_power, t_api, t_mask = TAB_LABELS[lang]
 
     # Group by category (preserve _CAT_ORDER if available)
     try:
@@ -1116,6 +1494,7 @@ def build_listing_page(lang: str) -> str:
         f'  <div class="tab" onclick="showTab(\'qs\', this)">{t_qs}</div>\n'
         f'  <div class="tab" onclick="showTab(\'power\', this)">{t_power}</div>\n'
         f'  <div class="tab" onclick="showTab(\'api\', this)">{t_api}</div>\n'
+        f'  <div class="tab" onclick="showTab(\'mask\', this)">{t_mask}</div>\n'
         '</div>\n'
     )
 
@@ -1319,6 +1698,56 @@ def build_listing_page(lang: str) -> str:
         + '</div></div></div>\n'
     )
 
+    # ── Maskeleme tab ─────────────────────────────────────────────────────────
+    _col_reg, _col_typ, _col_rule = MASK_COL_HEADERS[lang]
+    _rule_idx = 3 if lang == "TR" else 4  # TR → index 2 (rule_TR), others → index 3 (rule_EN)
+    _use_tr_rule = lang == "TR"
+    mask_rows_html = ""
+    for row in MASK_TABLE_ROWS:
+        reg, types_str, rule_tr, rule_en = row
+        rule = rule_tr if _use_tr_rule else rule_en
+        types_html = "".join(
+            f'<code class="mask-type">{t.strip()}</code>' for t in types_str.split(",")
+        )
+        mask_rows_html += (
+            f'<tr>'
+            f'<td class="mask-reg">{reg}</td>'
+            f'<td class="mask-types">{types_html}</td>'
+            f'<td class="mask-rule">{rule}</td>'
+            f'</tr>\n'
+        )
+    mask_section = (
+        '<div class="tab-section" id="tab-mask">\n'
+        '<div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">\n'
+        f'<div class="stitle">{MASK_TAB_TITLE[lang]}</div>\n'
+        f'<div class="mask-intro">{MASK_TAB_INTRO[lang]}</div>\n'
+        '<div class="mask-table-wrap">\n'
+        '<table class="mask-table">\n'
+        '<thead><tr>'
+        f'<th>{_col_reg}</th><th>{_col_typ}</th><th>{_col_rule}</th>'
+        '</tr></thead>\n'
+        '<tbody>\n'
+        + mask_rows_html +
+        '</tbody></table></div>\n'
+        '</div></div>\n'
+    )
+
+    mask_css = """<style>
+.mask-intro{background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;font-size:.9rem;line-height:1.6;color:#0c4a6e}
+.mask-intro code{background:#e0f2fe;padding:.1rem .35rem;border-radius:4px;font-size:.85rem}
+.mask-table-wrap{overflow-x:auto}
+.mask-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.mask-table thead tr{background:#1e3a5f;color:#fff}
+.mask-table thead th{padding:.6rem .9rem;text-align:left;font-weight:600;white-space:nowrap}
+.mask-table tbody tr:nth-child(even){background:#f8fafc}
+.mask-table tbody tr:hover{background:#eff6ff}
+.mask-table td{padding:.55rem .9rem;border-bottom:1px solid #e2e8f0;vertical-align:top;line-height:1.5}
+.mask-reg{font-weight:600;color:#1e3a5f;min-width:200px;white-space:nowrap}
+.mask-types{min-width:220px}
+.mask-rule{color:#374151;min-width:280px}
+code.mask-type{background:#e0e7ff;color:#3730a3;padding:.1rem .35rem;border-radius:4px;font-size:.78rem;margin:.1rem .15rem .1rem 0;display:inline-block}
+</style>"""
+
     search_css = """<style>
 .list-controls{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.75rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .search-wrap{position:relative;margin-bottom:1rem}
@@ -1418,6 +1847,7 @@ function copyTerm(id) {
     return (
         head + '\n'
         '<style>' + LISTING_EXTRA_CSS + '</style>\n'
+        + mask_css + '\n'
         + search_css + '\n'
         '<body>\n'
         + listing_header
@@ -1426,6 +1856,7 @@ function copyTerm(id) {
         + qs_section
         + power_section
         + api_section
+        + mask_section
         + footer
         + tab_js + '\n'
         + search_js + '\n'

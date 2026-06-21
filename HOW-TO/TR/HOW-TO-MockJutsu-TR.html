@@ -157,6 +157,21 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .qs-card pre{background:#0f172a;color:#f8fafc;padding:.9rem 1rem;border-radius:6px;font-size:.81rem;overflow-x:auto;line-height:1.65;white-space:pre-wrap;font-family:'JetBrains Mono',monospace;margin:0}
 </style>
 <style>
+.mask-intro{background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;font-size:.9rem;line-height:1.6;color:#0c4a6e}
+.mask-intro code{background:#e0f2fe;padding:.1rem .35rem;border-radius:4px;font-size:.85rem}
+.mask-table-wrap{overflow-x:auto}
+.mask-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.mask-table thead tr{background:#1e3a5f;color:#fff}
+.mask-table thead th{padding:.6rem .9rem;text-align:left;font-weight:600;white-space:nowrap}
+.mask-table tbody tr:nth-child(even){background:#f8fafc}
+.mask-table tbody tr:hover{background:#eff6ff}
+.mask-table td{padding:.55rem .9rem;border-bottom:1px solid #e2e8f0;vertical-align:top;line-height:1.5}
+.mask-reg{font-weight:600;color:#1e3a5f;min-width:200px;white-space:nowrap}
+.mask-types{min-width:220px}
+.mask-rule{color:#374151;min-width:280px}
+code.mask-type{background:#e0e7ff;color:#3730a3;padding:.1rem .35rem;border-radius:4px;font-size:.78rem;margin:.1rem .15rem .1rem 0;display:inline-block}
+</style>
+<style>
 .list-controls{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.75rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .search-wrap{position:relative;margin-bottom:1rem}
 .search-icon{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#94a3b8;pointer-events:none}
@@ -186,6 +201,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   <div class="tab" onclick="showTab('qs', this)">Hızlı Başlangıç</div>
   <div class="tab" onclick="showTab('power', this)">Güçlü Özellikler</div>
   <div class="tab" onclick="showTab('api', this)">REST API</div>
+  <div class="tab" onclick="showTab('mask', this)">Maskeleme</div>
 </div>
 <div class="tab-section active" id="tab-ref">
 <div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">
@@ -2542,6 +2558,88 @@ GET /health  -> {"status":"ok"}
 # Swagger UI
 # http://localhost:8000/docs</pre></div>
 </div></div></div>
+<div class="tab-section" id="tab-mask">
+<div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">
+<div class="stitle">Maskeleme Standartları</div>
+<div class="mask-intro"><p>Mock Jutsu'nun <code>--mask</code> bayrağı, üretilen değerleri regülasyon uyumlu biçimde maskeler. Aşağıdaki tablo, hangi fonksiyonun hangi regülasyona göre nasıl maskelendiğini gösterir.</p><p><strong>Kullanım:</strong> <code>mockjutsu generate cardnum --mask</code> &nbsp;·&nbsp; <code>jutsu.generate('cardnum', mask=True)</code> &nbsp;·&nbsp; <code>GET /generate/cardnum?mask=true</code></p></div>
+<div class="mask-table-wrap">
+<table class="mask-table">
+<thead><tr><th>Regülasyon</th><th>Tipler</th><th>Maskeleme Kuralı</th></tr></thead>
+<tbody>
+<tr><td class="mask-reg">PCI DSS v4.0 §3.4.1 (PAN)</td><td class="mask-types"><code class="mask-type">cardnum</code></td><td class="mask-rule">BIN(6) + **** + son4  →  4155 56** **** 3399</td></tr>
+<tr><td class="mask-reg">PCI DSS SAD (saklanamaz)</td><td class="mask-types"><code class="mask-type">cvv3</code><code class="mask-type">cvv4</code><code class="mask-type">pin</code><code class="mask-type">track1_data</code><code class="mask-type">track2_data</code><code class="mask-type">chip_data</code><code class="mask-type">pin_block</code><code class="mask-type">pin_block_fmt3</code><code class="mask-type">3ds_cavv</code><code class="mask-type">password</code><code class="mask-type">password_hash</code><code class="mask-type">emv_arqc</code></td><td class="mask-rule">Tüm karakterler → ***</td></tr>
+<tr><td class="mask-reg">PCI DSS (kart meta)</td><td class="mask-types"><code class="mask-type">expiry</code><code class="mask-type">expirymonth</code><code class="mask-type">expiryyear</code></td><td class="mask-rule">expiry → **/**  |  ay/yıl → **</td></tr>
+<tr><td class="mask-reg">PCI DSS (kart sahibi)</td><td class="mask-types"><code class="mask-type">cardowner</code></td><td class="mask-rule">Her kelime: ilk harf + ***  →  E*** K***</td></tr>
+<tr><td class="mask-reg">EMV / ISO 8583</td><td class="mask-types"><code class="mask-type">emv_atc</code><code class="mask-type">emv_iad</code><code class="mask-type">iso8583_auth_request</code><code class="mask-type">iso8583_auth_response</code><code class="mask-type">iso8583_reversal</code></td><td class="mask-rule">EMV atc → **XX  |  iad → ilk4+****+son4  |  ISO DE002 PAN alanı maskelenir</td></tr>
+<tr><td class="mask-reg">KVKK Rehber 2.4 (T.C. Kimlik)</td><td class="mask-types"><code class="mask-type">tckn</code><code class="mask-type">ykn</code></td><td class="mask-rule">İlk 2 + ******* + son 2  →  25*******10</td></tr>
+<tr><td class="mask-reg">KVKK (Vergi / SGK)</td><td class="mask-types"><code class="mask-type">vkn</code><code class="mask-type">taxid</code><code class="mask-type">sgk</code><code class="mask-type">mersis</code><code class="mask-type">insurance_id</code></td><td class="mask-rule">vkn → ilk3+****+son3  |  sgk → orta blok maskelenir  |  mersis → ilk4+****+son4</td></tr>
+<tr><td class="mask-reg">GDPR Art.5 (e-posta)</td><td class="mask-types"><code class="mask-type">email</code></td><td class="mask-rule">Yerel bölümün ilk 2 karakteri + *** @ domain  →  al***@mail.com</td></tr>
+<tr><td class="mask-reg">GDPR Art.5 (doğum tarihi)</td><td class="mask-types"><code class="mask-type">birthdate</code></td><td class="mask-rule">Yıl görünür, ay/gün gizli  →  1990-**-**</td></tr>
+<tr><td class="mask-reg">GDPR Art.5 (isim)</td><td class="mask-types"><code class="mask-type">firstname</code><code class="mask-type">lastname</code><code class="mask-type">fullname</code><code class="mask-type">patronymic</code></td><td class="mask-rule">Her kelime: ilk harf + ***  →  E*** K***</td></tr>
+<tr><td class="mask-reg">GDPR Art.5 (yaş)</td><td class="mask-types"><code class="mask-type">age</code></td><td class="mask-rule">Tüm rakamlar → **</td></tr>
+<tr><td class="mask-reg">GDPR Art.5 (pasaport / ehliyet)</td><td class="mask-types"><code class="mask-type">passport</code><code class="mask-type">license</code><code class="mask-type">mrz_td3</code><code class="mask-type">mrz_td1</code></td><td class="mask-rule">İlk 2 + **** + son 2  →  P1****67  |  MRZ → orta blok maskelenir</td></tr>
+<tr><td class="mask-reg">E.164 / GDPR (telefon)</td><td class="mask-types"><code class="mask-type">phone</code><code class="mask-type">msisdn</code></td><td class="mask-rule">Ülke kodu + *** *** ** + son2  →  +90 *** *** ** 34</td></tr>
+<tr><td class="mask-reg">GDPR (yerel telefon)</td><td class="mask-types"><code class="mask-type">phone_local</code></td><td class="mask-rule">*** + son 2 hane  →  ***34</td></tr>
+<tr><td class="mask-reg">SEPA / PSD2 (IBAN)</td><td class="mask-types"><code class="mask-type">iban</code></td><td class="mask-rule">Ülke(2) + kontrol(2) + **** + son4  →  TR12 **** **** **** **** **34</td></tr>
+<tr><td class="mask-reg">US GLBA / IRS (SSN)</td><td class="mask-types"><code class="mask-type">ssn</code><code class="mask-type">ssn_masked</code></td><td class="mask-rule">***-**-son4  →  ***-**-5678</td></tr>
+<tr><td class="mask-reg">US GLBA / IRS (EIN)</td><td class="mask-types"><code class="mask-type">ein</code></td><td class="mask-rule">**-*****son4</td></tr>
+<tr><td class="mask-reg">HIPAA (NPI)</td><td class="mask-types"><code class="mask-type">npi</code></td><td class="mask-rule">İlk 5 + **** + son 4</td></tr>
+<tr><td class="mask-reg">UK HMRC (NIN)</td><td class="mask-types"><code class="mask-type">nin</code></td><td class="mask-rule">AB ** ** ** C  →  AB 12 34 56 → AB ** ** ** C</td></tr>
+<tr><td class="mask-reg">UK HMRC (UTR)</td><td class="mask-types"><code class="mask-type">utr</code></td><td class="mask-rule">İlk 5 görünür + *****  →  12345*****</td></tr>
+<tr><td class="mask-reg">UK NHS</td><td class="mask-types"><code class="mask-type">nhs_number</code><code class="mask-type">nhsnumber</code></td><td class="mask-rule">İlk 3 + *** + ***son1  →  943 *** ***9</td></tr>
+<tr><td class="mask-reg">UK (CRN / PAYE)</td><td class="mask-types"><code class="mask-type">crn</code><code class="mask-type">paye</code><code class="mask-type">sort_code</code></td><td class="mask-rule">crn → ilk2+****+son2  |  paye → ilk4+***+son3  |  sort_code → **-**-**</td></tr>
+<tr><td class="mask-reg">Almanya (Kimlik / Vergi)</td><td class="mask-types"><code class="mask-type">de_idnr</code><code class="mask-type">de_stnr</code><code class="mask-type">rvn</code></td><td class="mask-rule">İlk 3-4 + **** + son 2-4</td></tr>
+<tr><td class="mask-reg">Rusya (INN / SNILS)</td><td class="mask-types"><code class="mask-type">inn</code><code class="mask-type">inn_individual</code><code class="mask-type">snils</code></td><td class="mask-rule">İlk 3 + **** + son 3</td></tr>
+<tr><td class="mask-reg">HIPAA (sağlık verisi)</td><td class="mask-types"><code class="mask-type">icd10</code><code class="mask-type">bmi</code><code class="mask-type">height</code><code class="mask-type">weight</code><code class="mask-type">hl7_message</code><code class="mask-type">fhir_patient</code><code class="mask-type">dicom_uid</code></td><td class="mask-rule">icd10 → rakamlar maskelenir  |  bmi/height/weight → *.* birimleri korunur  |  HL7 alan içerikleri → ****  |  FHIR isim alanları → ***  |  DICOM → ilk3+.*****</td></tr>
+<tr><td class="mask-reg">3GPP / GSMA (Telecom)</td><td class="mask-types"><code class="mask-type">imei</code><code class="mask-type">imei2</code><code class="mask-type">iccid</code><code class="mask-type">imsi</code></td><td class="mask-rule">IMEI → TAC(8)+****+son2  |  ICCID → IIN(6)+****+son4  |  IMSI → MCC+MNC(5)+****+son4</td></tr>
+<tr><td class="mask-reg">GDPR / RFC 6890 (IP / MAC)</td><td class="mask-types"><code class="mask-type">ipv4</code><code class="mask-type">public_ip</code><code class="mask-type">mac_address</code></td><td class="mask-rule">IPv4 → ilk2 oktet.*.*  →  192.168.*.*  |  MAC → ilk3 grup:**:**:**</td></tr>
+<tr><td class="mask-reg">GDPR (konum)</td><td class="mask-types"><code class="mask-type">latitude</code><code class="mask-type">longitude</code><code class="mask-type">coordinates</code></td><td class="mask-rule">2 ondalık basamak görünür + *****  →  41.01*****</td></tr>
+<tr><td class="mask-reg">VIN / Araç (NHTSA)</td><td class="mask-types"><code class="mask-type">vin</code><code class="mask-type">vehicle</code></td><td class="mask-rule">WMI+VDS(9) + **** + son4  →  WBA3A5C5X****3456</td></tr>
+<tr><td class="mask-reg">Plaka (KVKK)</td><td class="mask-types"><code class="mask-type">plate</code></td><td class="mask-rule">Şehir kodu + harf[0]+*** + seri  →  34 A** 123</td></tr>
+<tr><td class="mask-reg">IATA (Havacılık)</td><td class="mask-types"><code class="mask-type">pnr_code</code><code class="mask-type">iata_ticket</code></td><td class="mask-rule">PNR → ilk2+****  |  Bilet → ilk3+****+son3</td></tr>
+<tr><td class="mask-reg">KVKK / GDPR (finansal)</td><td class="mask-types"><code class="mask-type">balance</code><code class="mask-type">credit_score</code></td><td class="mask-rule">balance → ****+son2 tam hane+ondalık  |  credit_score → ilk rakam+**</td></tr>
+<tr><td class="mask-reg">OWASP (oturum / kimlik doğrulama)</td><td class="mask-types"><code class="mask-type">sessionid</code><code class="mask-type">deviceid</code><code class="mask-type">username</code><code class="mask-type">handle</code></td><td class="mask-rule">sessionid/deviceid → ilk8-****-****-****-son12  |  username → ilk2+***+son2  |  handle → @ilk2+***</td></tr>
+<tr><td class="mask-reg">Ticaret (sipariş / kargo)</td><td class="mask-types"><code class="mask-type">order_id</code><code class="mask-type">tracking_number</code></td><td class="mask-rule">order_id → ilk6+****+son4  |  tracking → ilk4+****+son4</td></tr>
+<tr><td class="mask-reg">OIDC / OAuth 2.0 (token)</td><td class="mask-types"><code class="mask-type">oidc_token</code><code class="mask-type">oidc_token_set</code></td><td class="mask-rule">token → ilk10+***.son4  |  token_set → token alanları maskelenir</td></tr>
+<tr><td class="mask-reg">BIP39 (anımsatıcı)</td><td class="mask-types"><code class="mask-type">mnemonic</code></td><td class="mask-rule">İlk kelime görünür + *** *** ... ***</td></tr>
+<tr><td class="mask-reg">PSD2 / Open Banking</td><td class="mask-types"><code class="mask-type">psd2_consent</code></td><td class="mask-rule">İlk 12 karakter + ***</td></tr>
+<tr><td class="mask-reg">SWIFT / ISO 20022</td><td class="mask-types"><code class="mask-type">swift_mt103</code></td><td class="mask-rule">IBAN/BIC/ACC alanları → CC+****  →  IBAN: TR****</td></tr>
+<tr><td class="mask-reg">Brezilya (CPF / CNPJ)</td><td class="mask-types"><code class="mask-type">br_cpf</code><code class="mask-type">br_cnpj</code></td><td class="mask-rule">CPF → ilk3+***+***+son2  |  CNPJ → ilk4+****+son4</td></tr>
+<tr><td class="mask-reg">Hindistan (PAN / Aadhaar / GSTIN / EPIC)</td><td class="mask-types"><code class="mask-type">in_pan</code><code class="mask-type">in_aadhaar</code><code class="mask-type">in_gstin</code><code class="mask-type">in_epic</code></td><td class="mask-rule">PAN → ilk5+****+son1  |  Aadhaar → XXXX XXXX son4  |  GSTIN → eyalet+PAN+****+son2  |  EPIC → ilk3+****+son2</td></tr>
+<tr><td class="mask-reg">Çin (RIC)</td><td class="mask-types"><code class="mask-type">cn_ric</code></td><td class="mask-rule">Bölge+yıl (ilk6) + **** + son4</td></tr>
+<tr><td class="mask-reg">Meksika (CURP / RFC)</td><td class="mask-types"><code class="mask-type">mx_curp</code><code class="mask-type">mx_rfc</code></td><td class="mask-rule">İlk 4 + orta maskelenir + son 2</td></tr>
+<tr><td class="mask-reg">İtalya (Codice Fiscale)</td><td class="mask-types"><code class="mask-type">it_codicefiscale</code></td><td class="mask-rule">Soyad(4) + ** + doğum ay (2) + **** + kontrol</td></tr>
+<tr><td class="mask-reg">İspanya (DNI / NIE / CCC)</td><td class="mask-types"><code class="mask-type">es_dni</code><code class="mask-type">es_nie</code><code class="mask-type">es_ccc</code></td><td class="mask-rule">DNI/NIE → ilk2+****+son2  |  CCC → ilk4+****+son4</td></tr>
+<tr><td class="mask-reg">Güney Kore (RRN / BRN)</td><td class="mask-types"><code class="mask-type">kr_rrn</code><code class="mask-type">kr_brn</code></td><td class="mask-rule">RRN → doğum tarihi(6)-cinsiyet+*****  |  BRN → ilk3+****+son3</td></tr>
+<tr><td class="mask-reg">Hollanda (BSN)</td><td class="mask-types"><code class="mask-type">nl_bsn</code></td><td class="mask-rule">İlk 3 + **** + son 2</td></tr>
+<tr><td class="mask-reg">Polonya (PESEL)</td><td class="mask-types"><code class="mask-type">pl_pesel</code></td><td class="mask-rule">İlk 6 (doğum tarihi) + ** + son 2</td></tr>
+<tr><td class="mask-reg">İsveç (Personnummer)</td><td class="mask-types"><code class="mask-type">se_personnummer</code></td><td class="mask-rule">Doğum tarihi(8) + -****</td></tr>
+<tr><td class="mask-reg">Danimarka (CPR)</td><td class="mask-types"><code class="mask-type">dk_cpr</code></td><td class="mask-rule">Doğum tarihi(6) + -****</td></tr>
+<tr><td class="mask-reg">Finlandiya (HETU)</td><td class="mask-types"><code class="mask-type">fi_hetu</code></td><td class="mask-rule">Doğum tarihi(6) + -****</td></tr>
+<tr><td class="mask-reg">Norveç (Fødselsnummer)</td><td class="mask-types"><code class="mask-type">no_fodselsnummer</code></td><td class="mask-rule">İlk 6 (doğum tarihi) + ** + son 2</td></tr>
+<tr><td class="mask-reg">Avustralya (ABN / TFN / ACN)</td><td class="mask-types"><code class="mask-type">au_abn</code><code class="mask-type">au_tfn</code><code class="mask-type">au_acn</code></td><td class="mask-rule">İlk 3 + **** + son 2-3</td></tr>
+<tr><td class="mask-reg">Malezya (NRIC)</td><td class="mask-types"><code class="mask-type">my_nric</code></td><td class="mask-rule">İlk 6 (doğum tarihi+bölge) + **** + son 4</td></tr>
+<tr><td class="mask-reg">Pakistan (CNIC)</td><td class="mask-types"><code class="mask-type">pk_cnic</code></td><td class="mask-rule">İlk 5 + **** + son 2</td></tr>
+<tr><td class="mask-reg">Japonya (CN / IN)</td><td class="mask-types"><code class="mask-type">jp_cn</code><code class="mask-type">jp_in</code></td><td class="mask-rule">İlk 4 + **** + son 4</td></tr>
+<tr><td class="mask-reg">Singapur (UEN)</td><td class="mask-types"><code class="mask-type">sg_uen</code></td><td class="mask-rule">İlk 4 + orta maskelenir + son 2</td></tr>
+<tr><td class="mask-reg">Tayland (PIN / TIN)</td><td class="mask-types"><code class="mask-type">th_pin</code><code class="mask-type">th_tin</code></td><td class="mask-rule">İlk 4 + **** + son 4</td></tr>
+<tr><td class="mask-reg">Güney Afrika (IDNR)</td><td class="mask-types"><code class="mask-type">za_idnr</code></td><td class="mask-rule">İlk 6 (doğum tarihi) + *** + son 3</td></tr>
+<tr><td class="mask-reg">Kanada (BN)</td><td class="mask-types"><code class="mask-type">ca_bn</code></td><td class="mask-rule">İlk 3 + **** + son 2</td></tr>
+<tr><td class="mask-reg">Yeni Zelanda (IRD)</td><td class="mask-types"><code class="mask-type">nz_ird</code></td><td class="mask-rule">İlk 3 + **** + son 2</td></tr>
+<tr><td class="mask-reg">Arjantin (CUIT / DNI)</td><td class="mask-types"><code class="mask-type">ar_cuit</code><code class="mask-type">ar_dni</code></td><td class="mask-rule">İlk 2-4 + orta maskelenir + son 2</td></tr>
+<tr><td class="mask-reg">Şili (RUT)</td><td class="mask-types"><code class="mask-type">cl_rut</code></td><td class="mask-rule">İlk 3 + **** + son 2</td></tr>
+<tr><td class="mask-reg">Kolombiya (NIT)</td><td class="mask-types"><code class="mask-type">co_nit</code></td><td class="mask-rule">İlk 3 + **** + son 3</td></tr>
+<tr><td class="mask-reg">İsrail (IDNR)</td><td class="mask-types"><code class="mask-type">il_idnr</code></td><td class="mask-rule">İlk 3 + **** + son 2</td></tr>
+<tr><td class="mask-reg">Romanya (CNP / CUI)</td><td class="mask-types"><code class="mask-type">ro_cnp</code><code class="mask-type">ro_cui</code></td><td class="mask-rule">CNP → ilk4+****+son3  |  CUI → ilk4+****+son3</td></tr>
+<tr><td class="mask-reg">Hırvatistan (OIB)</td><td class="mask-types"><code class="mask-type">hr_oib</code></td><td class="mask-rule">İlk 4 + **** + son 3</td></tr>
+<tr><td class="mask-reg">Bulgaristan (EGN)</td><td class="mask-types"><code class="mask-type">bg_egn</code></td><td class="mask-rule">Doğum tarihi(6) + ** + son 2</td></tr>
+<tr><td class="mask-reg">Litvanya (Asmens kodas)</td><td class="mask-types"><code class="mask-type">lt_asmens</code></td><td class="mask-rule">İlk 5 + **** + son 2</td></tr>
+<tr><td class="mask-reg">Estonya (IK)</td><td class="mask-types"><code class="mask-type">ee_ik</code></td><td class="mask-rule">İlk 5 + **** + son 2</td></tr>
+<tr><td class="mask-reg">Portekiz (CC)</td><td class="mask-types"><code class="mask-type">pt_cc</code></td><td class="mask-rule">İlk 4 + **** + son 3</td></tr>
+<tr><td class="mask-reg">Mısır (TIN)</td><td class="mask-types"><code class="mask-type">eg_tn</code></td><td class="mask-rule">İlk 3 + **** + son 2</td></tr>
+<tr><td class="mask-reg">Ön-maskeli tipler (_masked varyantlar)</td><td class="mask-types"><code class="mask-type">tckn_masked</code><code class="mask-type">ssn_masked</code><code class="mask-type">account_number_masked</code><code class="mask-type">micr_line_masked</code><code class="mask-type">transaction_description_masked</code><code class="mask-type">check_number_masked</code><code class="mask-type">payment_reference_masked</code><code class="mask-type">credit_limit_masked</code><code class="mask-type">mortgage_rate_masked</code><code class="mask-type">premium_amount_masked</code><code class="mask-type">portfolio_id_masked</code><code class="mask-type">sar_number_masked</code><code class="mask-type">policy_number_masked</code><code class="mask-type">claim_number_masked</code><code class="mask-type">ubo_ownership_percentage_masked</code><code class="mask-type">consent_id_masked</code><code class="mask-type">liquidity_pool_id_masked</code></td><td class="mask-rule">Zaten maskeli üretilir — --mask bayrağı etkisizdir</td></tr>
+</tbody></table></div>
+</div></div>
 <div class="footer">
   mock-jutsu &mdash; Developed by <strong>Altan Sezer Ayan - A.S.A</strong>
   &nbsp;&bull;&nbsp; <a href="https://github.com/altansayan/mock-jutsu-api">GitHub</a>
