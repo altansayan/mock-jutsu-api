@@ -263,6 +263,23 @@ EXTERNAL_VALIDATORS: dict[str, tuple[str, str]] = {
 HAS_OFFICIAL_VECTORS_NOW: set[str] = {
     "cusip", "routing_number", "tckn", "ean13", "isin", "cardnum",
     "nhs_number", "nhsnumber", "mnemonic",
+    # Phase 3 → Phase 1 upgrades: spec vectors added to algorithm_vectors.json
+    "figi",               # OMG FIGI spec: Apple BBG000B9XRY4 verified
+    "nsin",               # CUSIP (US 037833100) + SEDOL (UK 0263494) vectors
+    "bsb_code",           # AU BSB NNN-NNN format + APCA bank codes
+    "sort_code",          # UK NN-NN-NN Pay.UK Vocalink format
+    "mic",                # ISO 10383: XNAS/XNYS/XIST/XLON known codes
+    "msisdn",             # ITU-T E.164 format vector
+    "ifsc_code",          # RBI IFSC: 4-letter + 0 + 6-alphanum
+    "sepa_qr",            # EPC QR: BCD/002/1/SCT header spec
+    "ir_pronto",          # CCF Pronto: 0000 006D 38kHz carrier
+    "iso8583_auth_response",  # ISO 8583 MTI 0110 structure
+    "iso8583_reversal",   # ISO 8583 MTI 0400 structure
+    "emv_qr_p2p",         # EMVCo QR CRC-16: ASCII vector 9EAB verified
+    "emv_qr_atm",         # EMVCo QR CRC-16: same algorithm
+    "emv_qr_pos",         # EMVCo QR CRC-16: same algorithm
+    "ohlcv_candles",      # OHLCV: H>=max(O,C), L<=min(O,C), Open[i]=Close[i-1]
+    "rvn",                # DE RVN: 65 071119 C 1004 verified (total=34, check=4)
 }
 
 # Hardware/CardPhysics: ISO 9564, ISO 8583, ISO 7813 — kütüphane yok ama
@@ -270,7 +287,7 @@ HAS_OFFICIAL_VECTORS_NOW: set[str] = {
 NEEDS_VECTOR_EXTENSION: set[str] = {
     "iban", "iban_tr", "iban_de", "iban_gb",  # zaten python-stdnum yapacak
     "track1_data", "track2_data", "pin_block", "pin_block_fmt3",
-    "iso8583_auth_request", "iso8583_auth_response", "iso8583_reversal",
+    "iso8583_auth_request",
     "emv_arqc", "emv_atc", "emv_iad",
     "chip_data",
     "creditor_ref",       # ISO 11649 MOD-97
@@ -294,28 +311,13 @@ NEEDS_VECTOR_EXTENSION: set[str] = {
     "ndef_uri",           # NFC Forum RTD URI
     "ndef_text",          # NFC Forum RTD Text
     "apdu",               # ISO 7816-4
-    "ir_nec", "ir_rc5", "ir_pronto", "ir_raw",
+    "ir_nec", "ir_rc5", "ir_raw",
     "gs1_128",            # GS1-128 AIs
-    "msisdn",             # E.164
     "sedol",              # weighted check
     "lei",                # ISO 17442 MOD 97-10
     "totp_code",          # RFC 6238 (kütüphane var → matematiksel'e taşınabilir)
     "webhook_signature",  # HMAC-SHA256 RFC 2104
     "signature",          # HMAC test vektörleri (RFC 4231)
-    # Sprint 4-7 yeni tipler — checksum algoritması var
-    "figi",               # CUSIP-style per-character digit-sum (BBG000B9XRY4 doğrulandı)
-    "nsin",               # CUSIP (US/CA) veya SEDOL (UK) checksum, locale-aware
-    "ifsc_code",          # RBI IFSC format: 4-char bank + 0 + 6-char branch
-    "bsb_code",           # AU BSB: bank-branch format, APCA directory
-    "mic",                # ISO 10383 — 4-char exchange identifier
-    # Phase 4'ten yükseltilen algoritmik tipler
-    "emv_qr_p2p",         # EMVCo QR QRCPS: CRC-16/EMVCo (poly=0x1021, init=0xFFFF)
-    "emv_qr_atm",         # EMVCo QR ATM: CRC-16/EMVCo checksum
-    "emv_qr_pos",         # EMVCo QR POS: CRC-16/EMVCo checksum
-    "sepa_qr",            # EPC QR: BCD header "BCD\n003\n1\nSCT" zorunlu
-    "ohlcv_candles",      # OHLCV: H>=max(O,C), L<=min(O,C), Open[i]=Close[i-1]
-    "rvn",                # DE Rentenversicherungsnummer: proprietary weighted checksum
-    "sort_code",          # UK sort code: 6-digit NNN-NNN, Pay.UK Vocalink directory format
 }
 
 

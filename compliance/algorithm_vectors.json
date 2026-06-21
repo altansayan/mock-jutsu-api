@@ -701,5 +701,197 @@
       "ST element 2 (transaction ctrl) == SE element 2",
       "SE element 1 (segment count) == count of segments from ST to SE inclusive"
     ]
+  },
+  "figi": {
+    "standard": "OMG Financial Instrument Global Identifier (FIGI) Specification v2.0",
+    "reference": "https://www.omg.org/spec/FIGI/1.0/",
+    "rule": "12 chars: BB[A-Z0-9]{10}[0-9]; check = CUSIP-style: double at ODD positions (i%2==1); digit-sum; (10-total%10)%10",
+    "valid_complete": [
+      "BBG000B9XRY4",
+      "BBG000BLNNH6"
+    ],
+    "notes": "BBG000B9XRY4=Apple Inc (Bloomberg verified); check digit=4; BB prefix always BBG for Bloomberg-assigned FIGIs"
+  },
+  "bsb_code": {
+    "standard": "Australian Bank-State-Branch (BSB) Number — AusPayNet (APCA) format",
+    "reference": "https://bsb.auspaynets.com.au/",
+    "rule": "NNN-NNN: 6 digits split 3-3 by hyphen; first 2 digits=bank code, 3rd=state digit, last 3=branch",
+    "valid_examples": [
+      "062-000",
+      "033-000",
+      "082-401"
+    ],
+    "invalid_examples": [
+      "62-000",
+      "0620001",
+      "ABC-123"
+    ],
+    "notes": "06=CBA, 03=Westpac, 08=NAB; state digit: 2=NSW, 3=VIC, 4=QLD; format is always NNN-NNN (7 chars total)"
+  },
+  "sort_code": {
+    "standard": "UK Sort Code — Pay.UK Vocalink Directory",
+    "reference": "https://www.vocalink.com/tools-and-info/sort-codes/",
+    "rule": "NN-NN-NN: 6 digits in 3 pairs of 2 separated by hyphens; e.g. 60-16-13 (NatWest)",
+    "valid_examples": [
+      "60-16-13",
+      "20-00-00",
+      "09-01-27"
+    ],
+    "invalid_examples": [
+      "6-16-13",
+      "600-16-13",
+      "AB-CD-EF"
+    ],
+    "notes": "60=NatWest, 20=Barclays, 09=Santander UK; always 6 digits, 2-2-2 format with hyphens; total 8 chars"
+  },
+  "mic": {
+    "standard": "ISO 10383:2012 Market Identifier Code",
+    "reference": "https://www.iso20022.org/market-identifier-codes",
+    "rule": "Exactly 4 uppercase letters [A-Z]{4}; prefix X = regulated market (e.g. XNAS, XNYS, XIST, XLON)",
+    "valid_examples": [
+      "XNAS",
+      "XNYS",
+      "XIST",
+      "XLON",
+      "XLME"
+    ],
+    "invalid_examples": [
+      "NAS",
+      "NASDAQ",
+      "xnas"
+    ],
+    "notes": "XNAS=NASDAQ, XNYS=NYSE, XIST=Borsa Istanbul, XLON=London Stock Exchange, XLME=LME; X-prefix = regulated exchange per ISO 10383 section 4"
+  },
+  "msisdn": {
+    "standard": "ITU-T E.164 International Telephone Numbering Plan",
+    "reference": "https://www.itu.int/rec/T-REC-E.164/en",
+    "rule": "+[country_code][subscriber]; total 7-15 digits after +; format: +[1-9]\\d{6,14}",
+    "valid_examples": [
+      "+905551234567",
+      "+12125551234",
+      "+447911123456"
+    ],
+    "invalid_examples": [
+      "905551234567",
+      "+0551234567",
+      "+1"
+    ],
+    "notes": "90=Turkey, 1=USA/Canada, 44=UK; E.164 max 15 digits total; always starts with +"
+  },
+  "ifsc_code": {
+    "standard": "Reserve Bank of India — Indian Financial System Code (IFSC)",
+    "reference": "https://www.rbi.org.in/scripts/ifscMaster.aspx",
+    "rule": "11 chars: [A-Z]{4} + '0' + [A-Z0-9]{6}; 4-letter bank code + literal '0' + 6-char branch code",
+    "valid_examples": [
+      "SBIN0001234",
+      "ICIC0001111",
+      "HDFC0001234"
+    ],
+    "invalid_examples": [
+      "SBIN1001234",
+      "SBI0001234",
+      "SBINX001234"
+    ],
+    "notes": "SBIN=State Bank of India, ICIC=ICICI Bank, HDFC=HDFC Bank; position 4 is always '0' (literal zero, not letter O)"
+  },
+  "sepa_qr": {
+    "standard": "European Payments Council EPC069-12 — EPC QR Code Guidelines v3.0",
+    "reference": "https://www.europeanpaymentscouncil.eu/what-we-do/epc-documents/quick-response-code-guidelines-enabling-data-capture-initiation",
+    "rule": "Line 1: 'BCD'; Line 2: version '001'-'003'; Line 3: encoding '1'(UTF-8); Line 4: function 'SCT'; Line 5: BIC; Line 6: beneficiary name; Line 7: IBAN; Line 8: amount 'EUR' + decimal",
+    "valid_header_lines": [
+      "BCD",
+      "002",
+      "1",
+      "SCT"
+    ],
+    "notes": "BCD=Business Contact Details prefix; 002=version 2; 1=UTF-8 encoding; SCT=SEPA Credit Transfer; BIC must be 8 or 11 chars; amount prefixed with currency code EUR"
+  },
+  "ir_pronto": {
+    "standard": "Global Cache CCF Pronto Hex Format — NEC 38kHz IR Protocol",
+    "reference": "https://www.globalcache.com/files/docs/API-GC-UnifiedTCP.pdf",
+    "rule": "Space-separated 4-hex-char words; word[0]='0000' (pulse type); word[1]='006D' (38kHz carrier: 1000000/(0x6D+1)=9090Hz≈38kHz); word[2]=burst1 pair count; word[3]=burst2 pair count",
+    "valid_prefix": "0000 006D",
+    "carrier_freq_hex": "006D",
+    "carrier_freq_calc": "1 / (0x6D × 0.241246µs) = 1 / (109 × 0.241246e-6) ≈ 38025Hz ≈ 38kHz; formula: freq_hz = 1000000 / (value × 0.241246)",
+    "notes": "First word 0000 = CCF pulse type; second word 006D encodes 38kHz carrier; NEC protocol leader burst is 9024us mark + 4512us space"
+  },
+  "iso8583_auth_response": {
+    "standard": "ISO 8583:1987 Financial Transaction Message — MTI 0110 Authorization Response",
+    "reference": "https://www.iso.org/standard/14572.html",
+    "rule": "Starts with 'MTI:0110'; bitmap (64-bit as 16 hex chars) encodes present data elements; DE39=response code (00=approved)",
+    "valid_mti": "0110",
+    "required_prefix": "MTI:0110",
+    "notes": "MTI 0110 is the authorization response to MTI 0100; DE39 response code: 00=approved, 05=do not honor, 51=insufficient funds; same bitmap format as 0100"
+  },
+  "iso8583_reversal": {
+    "standard": "ISO 8583:1987 Financial Transaction Message — MTI 0400 Reversal Request",
+    "reference": "https://www.iso.org/standard/14572.html",
+    "rule": "Starts with 'MTI:0400'; bitmap contains DE90 (original data elements) for the reversed transaction",
+    "valid_mti": "0400",
+    "required_prefix": "MTI:0400",
+    "notes": "MTI 0400 is the reversal/void of a prior authorization (0100); DE90 contains original MTI+STAN+date+acquiring institution; response is MTI 0410"
+  },
+  "emv_qr_p2p": {
+    "standard": "EMVCo QR Code Specification for Payment Systems Consumer Presented Mode (QRCPS) v1.1",
+    "reference": "https://www.emvco.com/emv-technologies/qrcodes/",
+    "rule": "TLV data object list; ID 63 (CRC) = last 8 chars '6304XXXX'; CRC-16/CCITT (poly=0x1021, init=0xFFFF) computed over all chars up to and including '6304'; check computed on Unicode code points (for ASCII data: identical to UTF-8 bytes)",
+    "known_vector": {
+      "payload": "000201010211520400005303949540510005802TR5910TEST MERCH6304",
+      "crc": "9EAB",
+      "full": "000201010211520400005303949540510005802TR5910TEST MERCH63049EAB"
+    },
+    "notes": "000201=payload format indicator 01; 010211=static QR; 5303949=TRY; 5802TR=Turkey; tag 63 len 04 + 4-char hex CRC at end; ASCII merchant names produce same CRC as UTF-8"
+  },
+  "emv_qr_atm": {
+    "standard": "EMVCo QR Code Specification for Payment Systems — ATM variant",
+    "reference": "https://www.emvco.com/emv-technologies/qrcodes/",
+    "rule": "Same CRC-16/CCITT as emv_qr_p2p; ATM variant has 010212 (dynamic QR, multi-use); ends with '6304XXXX'",
+    "notes": "010212=dynamic QR (ATM changes TID per session); CRC computed same way as emv_qr_p2p"
+  },
+  "emv_qr_pos": {
+    "standard": "EMVCo QR Code Specification for Payment Systems — POS merchant presented mode",
+    "reference": "https://www.emvco.com/emv-technologies/qrcodes/",
+    "rule": "Same CRC-16/CCITT as emv_qr_p2p; POS variant has 010211 (static) + MCC field (tag 52) + amount (tag 54); ends with '6304XXXX'",
+    "notes": "010211=static QR; tag 52=MCC (4 digits); tag 54=transaction amount; tag 60=additional customer data; CRC same algorithm as emv_qr_p2p"
+  },
+  "nsin": {
+    "standard": "ISO 6166 NSIN (National Securities Identifying Number) — locale-aware CUSIP/SEDOL",
+    "reference": "https://www.iso.org/standard/78502.html",
+    "rule": "US/CA: 9 chars, CUSIP-style check (double odd positions 0-indexed, digit-sum, (10-sum%10)%10); UK: 7 chars, SEDOL-style (weights [1,3,1,7,3,9], (10-sum%10)%10)",
+    "valid_us_cusip": [
+      "037833100"
+    ],
+    "valid_uk_sedol": [
+      "0263494"
+    ],
+    "notes": "037833100=Apple CUSIP (check=0, payload=03783310); 0263494=BT Group SEDOL (check=4, payload=026349); NSIN is the 9-char middle portion of a full ISIN"
+  },
+  "ohlcv_candles": {
+    "standard": "OHLCV Financial Market Data — standard candlestick structural invariants",
+    "reference": "https://www.investopedia.com/terms/o/ohlc.asp",
+    "rule": "For each candle: H >= max(O,C); L <= min(O,C); for consecutive candles: Open[i] == Close[i-1] (tick-by-tick continuity)",
+    "structural_invariants": [
+      "H >= max(O, C): high must be >= both open and close",
+      "L <= min(O, C): low must be <= both open and close",
+      "Open[i] == Close[i-1]: consecutive candle open equals previous close"
+    ],
+    "notes": "OHLCV = Open, High, Low, Close, Volume; these invariants are fundamental market data integrity rules used by data vendors (Bloomberg, Refinitiv)"
+  },
+  "rvn": {
+    "standard": "Deutsche Rentenversicherung — Rentenversicherungsnummer (RVN) weighted checksum",
+    "reference": "https://www.deutsche-rentenversicherung.de/",
+    "rule": "Format: 'BB TTMMJJ L SSSC'; BB=area(2d), TTMMJJ=DOB(6d), L=letter(A-Z), SSS=serial(3d), C=check(1d); expand letter as 2-digit ordinal (A=01..Z=26); weights alternate ×2(even)/×1(odd); digit-sum products; C=total%10",
+    "valid_examples": [
+      "65 071119 C 1004"
+    ],
+    "algorithm_trace": {
+      "input": "65071119C100",
+      "expanded": "6507111903100",
+      "weights_pattern": "even positions ×2, odd positions ×1",
+      "digit_sum_formula": "for n=digit×weight: n//10 + n%10",
+      "total": 34,
+      "check": 4
+    },
+    "notes": "Area 65=Baden-Württemberg/Bayern border; C=3rd letter → 03; expanded=13 chars; total=34; check=4; format output: '65 071119 C 1004'"
   }
 }

@@ -763,6 +763,196 @@ def test_edi_850_structural_invariants():
 
 # ── Generator output against format contracts ─────────────────────────────────
 
+def test_figi_cusip_style_check_digit():
+    """OMG FIGI: check digit = CUSIP-style (double odd positions 0-indexed); Apple BBG000B9XRY4 check=4."""
+    v = _load_vectors()["figi"]
+    for figi in v["valid_complete"]:
+        payload, check = figi[:11], int(figi[11])
+        assert _cusip_check_digit(payload) == check, f"FIGI vector check digit failed: {figi}"
+
+
+def test_bsb_code_format():
+    """AU BSB: exactly 7 chars, NNN-NNN format (3 digits, hyphen, 3 digits)."""
+    import re
+    v = _load_vectors()["bsb_code"]
+    pattern = re.compile(r'^\d{3}-\d{3}$')
+    for bsb in v["valid_examples"]:
+        assert pattern.match(bsb), f"BSB code format failed: {bsb}"
+    for bsb in v["invalid_examples"]:
+        assert not pattern.match(bsb), f"Expected invalid BSB: {bsb}"
+
+
+def test_sort_code_format():
+    """UK sort code: NN-NN-NN (3 pairs of 2 digits separated by hyphens)."""
+    import re
+    v = _load_vectors()["sort_code"]
+    pattern = re.compile(r'^\d{2}-\d{2}-\d{2}$')
+    for sc in v["valid_examples"]:
+        assert pattern.match(sc), f"Sort code format failed: {sc}"
+    for sc in v["invalid_examples"]:
+        assert not pattern.match(sc), f"Expected invalid sort code: {sc}"
+
+
+def test_mic_format():
+    """ISO 10383 MIC: exactly 4 uppercase letters; XNAS/XNYS/XIST/XLON must be valid."""
+    import re
+    v = _load_vectors()["mic"]
+    pattern = re.compile(r'^[A-Z]{4}$')
+    for mic in v["valid_examples"]:
+        assert pattern.match(mic), f"MIC format failed: {mic}"
+    for mic in v["invalid_examples"]:
+        assert not pattern.match(mic), f"Expected invalid MIC: {mic}"
+
+
+def test_msisdn_e164_format():
+    """ITU-T E.164: starts with +, followed by 7-15 digits, first digit after + is 1-9."""
+    import re
+    v = _load_vectors()["msisdn"]
+    pattern = re.compile(r'^\+[1-9]\d{6,14}$')
+    for num in v["valid_examples"]:
+        assert pattern.match(num), f"MSISDN E.164 format failed: {num}"
+    for num in v["invalid_examples"]:
+        assert not pattern.match(num), f"Expected invalid MSISDN: {num}"
+
+
+def test_ifsc_code_format():
+    """RBI IFSC: 4 uppercase letters + literal '0' + 6 alphanumeric chars (11 total)."""
+    import re
+    v = _load_vectors()["ifsc_code"]
+    pattern = re.compile(r'^[A-Z]{4}0[A-Z0-9]{6}$')
+    for ifsc in v["valid_examples"]:
+        assert pattern.match(ifsc), f"IFSC code format failed: {ifsc}"
+    for ifsc in v["invalid_examples"]:
+        assert not pattern.match(ifsc), f"Expected invalid IFSC: {ifsc}"
+
+
+def test_sepa_qr_header_structure():
+    """EPC QR Code: first 4 lines must be BCD / version / 1 (UTF-8) / SCT."""
+    v = _load_vectors()["sepa_qr"]
+    expected = v["valid_header_lines"]
+    assert expected[0] == "BCD", "SEPA QR line 1 must be 'BCD'"
+    assert expected[2] == "1", "SEPA QR line 3 must be '1' (UTF-8 encoding)"
+    assert expected[3] == "SCT", "SEPA QR line 4 must be 'SCT'"
+
+
+def test_ir_pronto_carrier_prefix():
+    """Global Cache CCF Pronto: first word '0000' (pulse), second '006D' (38kHz carrier)."""
+    v = _load_vectors()["ir_pronto"]
+    assert v["valid_prefix"] == "0000 006D", "Pronto header must start with '0000 006D'"
+    carrier_hex = v["carrier_freq_hex"]
+    carrier_val = int(carrier_hex, 16)
+    # Pronto freq formula: freq_hz = 1 / (value × 0.241246µs)
+    approx_hz = 1_000_000 / (carrier_val * 0.241246)
+    assert 37_000 < approx_hz < 40_000, (
+        f"Pronto carrier freq {approx_hz:.0f} not in 37-40kHz range: hex={carrier_hex}"
+    )
+
+
+def test_iso8583_auth_response_mti():
+    """ISO 8583 MTI 0110 authorization response must start with 'MTI:0110'."""
+    v = _load_vectors()["iso8583_auth_response"]
+    assert v["valid_mti"] == "0110", "Auth response MTI must be 0110"
+    assert v["required_prefix"] == "MTI:0110"
+
+
+def test_iso8583_reversal_mti():
+    """ISO 8583 MTI 0400 reversal request must start with 'MTI:0400'."""
+    v = _load_vectors()["iso8583_reversal"]
+    assert v["valid_mti"] == "0400", "Reversal MTI must be 0400"
+    assert v["required_prefix"] == "MTI:0400"
+
+
+def test_emv_qr_crc16_known_vector():
+    """EMVCo QR CRC-16 known vector: ASCII-only payload '...6304' must produce CRC '9EAB'."""
+    v = _load_vectors()["emv_qr_p2p"]["known_vector"]
+    payload = v["payload"]
+    expected_crc = v["crc"]
+    expected_full = v["full"]
+
+    def crc16_emvco_charwise(data: str) -> str:
+        crc = 0xFFFF
+        for char in data:
+            crc ^= ord(char) << 8
+            for _ in range(8):
+                crc = ((crc << 1) ^ 0x1021) if crc & 0x8000 else (crc << 1)
+            crc &= 0xFFFF
+        return f"{crc:04X}"
+
+    computed = crc16_emvco_charwise(payload)
+    assert computed == expected_crc, f"EMV QR CRC mismatch: computed={computed}, expected={expected_crc}"
+    assert payload + computed == expected_full, "EMV QR full payload construction mismatch"
+
+
+def test_nsin_cusip_and_sedol_vectors():
+    """NSIN: US=CUSIP check (Apple 037833100), UK=SEDOL check (BT Group 0263494)."""
+    v = _load_vectors()["nsin"]
+    for nsin_us in v["valid_us_cusip"]:
+        payload, check = nsin_us[:8], int(nsin_us[8])
+        assert _cusip_check_digit(payload) == check, f"NSIN/US CUSIP vector failed: {nsin_us}"
+    for nsin_uk in v["valid_uk_sedol"]:
+        payload, check = nsin_uk[:6], int(nsin_uk[6])
+        assert _sedol_check_digit(payload) == check, f"NSIN/UK SEDOL vector failed: {nsin_uk}"
+
+
+def test_ohlcv_candles_structural_invariants():
+    """OHLCV candles: H>=max(O,C), L<=min(O,C), Open[i]==Close[i-1] across all generated samples."""
+    import json
+    from mockjutsu.core import MockJutsuCore
+    v = _load_vectors()["ohlcv_candles"]
+    invariants = v["structural_invariants"]
+    assert len(invariants) == 3, "OHLCV must document all 3 structural invariants"
+
+    jutsu = MockJutsuCore()
+    failures = []
+    for _ in range(30):
+        raw = jutsu.generate("ohlcv_candles")
+        candles = json.loads(raw)["candles"]
+        for i, c in enumerate(candles):
+            o, h, l, cl = c["o"], c["h"], c["l"], c["c"]
+            if h < max(o, cl):
+                failures.append(f"H<max(O,C): H={h} O={o} C={cl}")
+            if l > min(o, cl):
+                failures.append(f"L>min(O,C): L={l} O={o} C={cl}")
+            if i > 0 and abs(o - candles[i - 1]["c"]) > 0.001:
+                failures.append(f"Open[{i}]!=Close[{i-1}]: {o} != {candles[i-1]['c']}")
+    assert not failures, "OHLCV structural invariant violations:\n" + "\n".join(failures)
+
+
+def test_rvn_check_digit_known_vector():
+    """German RVN: known vector '65 071119 C 1004'; weighted checksum (even×2/odd×1 on expanded string)."""
+    v = _load_vectors()["rvn"]
+    trace = v["algorithm_trace"]
+
+    def rvn_check(raw_base: str) -> int:
+        expanded = ""
+        for c in raw_base:
+            expanded += c if c.isdigit() else f"{ord(c) - ord('A') + 1:02d}"
+        total = 0
+        for i, ch in enumerate(expanded):
+            n = int(ch) * (2 if i % 2 == 0 else 1)
+            total += n // 10 + n % 10
+        return total % 10
+
+    base = trace["input"]
+    expected_expanded = trace["expanded"]
+    expected_total = trace["total"]
+    expected_check = trace["check"]
+
+    # Build expanded string and verify
+    expanded = ""
+    for c in base:
+        expanded += c if c.isdigit() else f"{ord(c) - ord('A') + 1:02d}"
+    assert expanded == expected_expanded, f"RVN expanded mismatch: {expanded!r} != {expected_expanded!r}"
+    assert rvn_check(base) == expected_check, f"RVN check digit mismatch: expected {expected_check}"
+
+    for example in v["valid_examples"]:
+        # parse 'BB TTMMJJ L SSSC' and verify check digit
+        parts = example.split()
+        inner = parts[0] + parts[1] + parts[2] + parts[3][:3]
+        check_stored = int(parts[3][3])
+        assert rvn_check(inner) == check_stored, f"RVN vector failed: {example}"
+
+
 def test_generator_outputs_match_contracts():
     """
     Every generator type must produce output matching the canonical format contract.

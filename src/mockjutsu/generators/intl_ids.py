@@ -422,8 +422,8 @@ class IntlIdsGenerator:
 
     @staticmethod
     def gen_kr_brn():
-        """South Korean Business Registration Number — NNN-NN-NNNNN (no stdnum checksum)."""
-        head  = random.randint(100, 999)
+        """South Korean Business Registration Number — NNN-NN-NNNNN; head 101-999 (100 is invalid per stdnum)."""
+        head  = random.randint(101, 999)
         mid   = random.randint(10, 99)
         tail  = random.randint(10000, 99999)
         return f"{head:03d}-{mid:02d}-{tail:05d}"

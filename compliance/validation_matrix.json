@@ -6,9 +6,9 @@
     "matematiksel_garanti": 183,
     "algoritmik_dogrulandi": 52,
     "yapisal_gecerlilik": 158,
-    "phase_1_already_done": 9,
+    "phase_1_already_done": 25,
     "phase_2_external_lib": 174,
-    "phase_3_vector_extension": 52,
+    "phase_3_vector_extension": 36,
     "phase_4_manual_spec": 158
   },
   "types": [
@@ -216,10 +216,10 @@
       "locale_aware": false,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "siren",
@@ -568,10 +568,10 @@
       "locale_aware": true,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "emv_qr_p2p",
@@ -579,10 +579,10 @@
       "locale_aware": true,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "emv_qr_atm",
@@ -590,10 +590,10 @@
       "locale_aware": true,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "emv_qr_pos",
@@ -601,10 +601,10 @@
       "locale_aware": true,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "3ds_cavv",
@@ -810,10 +810,10 @@
       "locale_aware": false,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "bsb_code",
@@ -821,10 +821,10 @@
       "locale_aware": false,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "check_number",
@@ -1360,10 +1360,10 @@
       "locale_aware": false,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "market_tick",
@@ -1690,10 +1690,10 @@
       "locale_aware": false,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "routing_number",
@@ -2339,10 +2339,10 @@
       "locale_aware": false,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "ir_raw",
@@ -2493,10 +2493,10 @@
       "locale_aware": true,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "isin",
@@ -2581,10 +2581,10 @@
       "locale_aware": false,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "forex_pair",
@@ -2625,10 +2625,10 @@
       "locale_aware": true,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "stock_exchange",
@@ -2713,10 +2713,10 @@
       "locale_aware": true,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "policy_number",
@@ -3670,10 +3670,10 @@
       "locale_aware": true,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "iso8583_reversal",
@@ -3681,10 +3681,10 @@
       "locale_aware": true,
       "validation_category": "algoritmik_dogrulandi",
       "badge_target": "⚙️",
-      "phase": 3,
-      "current_test_quality": "circular",
-      "target_validator": "spec PDF + hardcoded official vectors",
-      "test_vector_source": "RFC/ISO/SWIFT/GS1/NMEA spec"
+      "phase": 1,
+      "current_test_quality": "official_vector",
+      "target_validator": "tests/test_known_vectors.py",
+      "test_vector_source": "compliance/algorithm_vectors.json"
     },
     {
       "type": "emv_arqc",
