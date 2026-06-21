@@ -1259,12 +1259,12 @@ def build_detail_page(r: tuple, lang: str) -> str:
         jm_content += code(jm_alt, "jm")
     if is_maskable:
         jm_mask_expr = (
-            f"${{{jm_fn}({fn},TR,,true)}}"
+            f"${{{jm_fn}({fn},TR,mask)}}"
             if has_locale else
-            f"${{{jm_fn}({fn},,,true)}}"
+            f"${{{jm_fn}({fn},mask)}}"
         )
         jm_content += code("", "c")
-        jm_content += code("# Parameter 4 = mask (true/false)", "c")
+        jm_content += code("# Add 'mask' keyword to get a regulation-compliant masked value", "c")
         jm_content += code(jm_mask_expr, "jm")
 
     # REST API terminal

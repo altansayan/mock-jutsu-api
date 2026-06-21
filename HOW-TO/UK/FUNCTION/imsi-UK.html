@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-imsi')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-imsi"><code class="jm">${__mockjutsu_telecom(imsi,TR)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_telecom</code><code class="c"># Parameter 1: imsi</code><code class="c"># Parameter 2: locale (TR/UK/US/DE/FR/RU)</code><code class="jm">${__mockjutsu_telecom(imsi,DE)}</code><code class="c"></code><code class="c"># Parameter 4 = mask (true/false)</code><code class="jm">${__mockjutsu_telecom(imsi,TR,,true)}</code></div>
+  <div class="term-body" id="term-jm-imsi"><code class="jm">${__mockjutsu_telecom(imsi,TR)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_telecom</code><code class="c"># Parameter 1: imsi</code><code class="c"># Parameter 2: locale (TR/UK/US/DE/FR/RU)</code><code class="jm">${__mockjutsu_telecom(imsi,DE)}</code><code class="c"></code><code class="c"># Add 'mask' keyword to get a regulation-compliant masked value</code><code class="jm">${__mockjutsu_telecom(imsi,TR,mask)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">

@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-cardnum')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-cardnum"><code class="jm">${__mockjutsu_financial(cardnum)}</code><code class="jm">${__mockjutsu_financial(cardnum:visa)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_financial</code><code class="c"># Parameter 1: cardnum  OR  cardnum:<qualifier></code><code class="c"># Qualifier values: visa|mc|amex|troy|mir|jcb|discover|unionpay|maestro</code><code class="c"># Parameter 2: (not required for this function)</code><code class="c"></code><code class="c"># Parameter 4 = mask (true/false)</code><code class="jm">${__mockjutsu_financial(cardnum,,,true)}</code></div>
+  <div class="term-body" id="term-jm-cardnum"><code class="jm">${__mockjutsu_financial(cardnum)}</code><code class="jm">${__mockjutsu_financial(cardnum:visa)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_financial</code><code class="c"># Parameter 1: cardnum  OR  cardnum:<qualifier></code><code class="c"># Qualifier values: visa|mc|amex|troy|mir|jcb|discover|unionpay|maestro</code><code class="c"># Parameter 2: (not required for this function)</code><code class="c"></code><code class="c"># Add 'mask' keyword to get a regulation-compliant masked value</code><code class="jm">${__mockjutsu_financial(cardnum,mask)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">
