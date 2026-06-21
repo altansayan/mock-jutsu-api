@@ -201,7 +201,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Utilisation CLI</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-tracking_number')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-tracking_number"><code class="p">mockjutsu generate tracking_number --carrier usps</code><code class="p">mockjutsu bulk tracking_number --count 10</code><code class="o">mockjutsu export tracking_number --count 10 --format json</code><code class="o">mockjutsu export tracking_number --count 10 --format csv</code><code class="o">mockjutsu export tracking_number --count 10 --format sql</code><code class="p">mockjutsu generate tracking_number --carrier fedex</code></div>
+  <div class="term-body" id="term-cli-tracking_number"><code class="p">mockjutsu generate tracking_number --carrier usps</code><code class="p">mockjutsu bulk tracking_number --count 10</code><code class="o">mockjutsu export tracking_number --count 10 --format json</code><code class="o">mockjutsu export tracking_number --count 10 --format csv</code><code class="o">mockjutsu export tracking_number --count 10 --format sql</code><code class="p">mockjutsu generate tracking_number --carrier fedex</code><code class="c"></code><code class="c"># --mask: regulation-compliant output (PCI DSS / GDPR / KVKK)</code><code class="p">mockjutsu generate tracking_number --mask</code><code class="p">mockjutsu bulk tracking_number --count 5 --mask</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -209,7 +209,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">API Python</span>
     <button class="copy-btn" onclick="copyTerm('term-py-tracking_number')">copy</button>
   </div>
-  <div class="term-body" id="term-py-tracking_number"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('tracking_number')</code><code class="py">jutsu.bulk('tracking_number', count=10)</code><code class="c"></code><code class="py">jutsu.template(['tracking_number'], count=5)</code></div>
+  <div class="term-body" id="term-py-tracking_number"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('tracking_number')</code><code class="py">jutsu.bulk('tracking_number', count=10)</code><code class="c"></code><code class="py">jutsu.template(['tracking_number'], count=5)</code><code class="c"></code><code class="c"># mask=True: regulation-compliant output</code><code class="py">jutsu.generate('tracking_number', mask=True)</code><code class="py">jutsu.bulk('tracking_number', count=5, mask=True)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-tracking_number')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-tracking_number"><code class="jm">${__mockjutsu_ecommerce(tracking_number)}</code><code class="jm">${__mockjutsu_ecommerce(tracking_number:fedex)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_ecommerce</code><code class="c"># Parameter 1: tracking_number  OR  tracking_number:<qualifier></code><code class="c"># Qualifier values: fedex|ups|usps|dhl</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+  <div class="term-body" id="term-jm-tracking_number"><code class="jm">${__mockjutsu_ecommerce(tracking_number)}</code><code class="jm">${__mockjutsu_ecommerce(tracking_number:fedex)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_ecommerce</code><code class="c"># Parameter 1: tracking_number  OR  tracking_number:<qualifier></code><code class="c"># Qualifier values: fedex|ups|usps|dhl</code><code class="c"># Parameter 2: (not required for this function)</code><code class="c"></code><code class="c"># Parameter 4 = mask (true/false)</code><code class="jm">${__mockjutsu_ecommerce(tracking_number,,,true)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -225,7 +225,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">REST API</span>
     <button class="copy-btn" onclick="copyTerm('term-api-tracking_number')">copy</button>
   </div>
-  <div class="term-body" id="term-api-tracking_number"><code class="p">GET /generate/tracking_number</code><code class="c"># → {"type":"tracking_number","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/tracking_number?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["tracking_number"],"count":1}</code></div>
+  <div class="term-body" id="term-api-tracking_number"><code class="p">GET /generate/tracking_number</code><code class="c"># → {"type":"tracking_number","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/tracking_number?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["tracking_number"],"count":1}</code><code class="c"></code><code class="c"># mask=true: regulation-compliant output</code><code class="p">GET /generate/tracking_number?mask=true</code><code class="p">GET /bulk/tracking_number?count=5&mask=true</code></div>
 </div>
   </div>
 
@@ -241,6 +241,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
               <td><span class="param-flag">--carrier</span></td>
               <td><span class="param-vals">fedex|ups|usps|dhl</span></td>
               <td>Logistics carrier</td>
+            </tr><tr>
+              <td><span class="param-flag">--mask</span></td>
+              <td><span class="param-vals">true | false</span></td>
+              <td>Return a regulation-compliant masked value (PCI DSS, GDPR, KVKK…)</td>
             </tr></tbody>
   </table>
 </div>

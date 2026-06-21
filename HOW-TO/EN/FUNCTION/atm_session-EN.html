@@ -199,7 +199,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">CLI Usage</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-atm_session')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-atm_session"><code class="p">mockjutsu generate atm_session --locale TR</code><code class="p">mockjutsu generate atm_session --locale DE</code><code class="p">mockjutsu bulk atm_session --count 10 --locale TR</code><code class="o">mockjutsu export atm_session --count 10 --format json --locale TR</code><code class="o">mockjutsu export atm_session --count 10 --format csv --locale TR</code><code class="o">mockjutsu export atm_session --count 10 --format sql --locale TR</code></div>
+  <div class="term-body" id="term-cli-atm_session"><code class="p">mockjutsu generate atm_session --locale TR</code><code class="p">mockjutsu generate atm_session --locale DE</code><code class="p">mockjutsu bulk atm_session --count 10 --locale TR</code><code class="o">mockjutsu export atm_session --count 10 --format json --locale TR</code><code class="o">mockjutsu export atm_session --count 10 --format csv --locale TR</code><code class="o">mockjutsu export atm_session --count 10 --format sql --locale TR</code><code class="c"></code><code class="c"># --mask: regulation-compliant output (PCI DSS / GDPR / KVKK)</code><code class="p">mockjutsu generate atm_session --locale TR --mask</code><code class="p">mockjutsu bulk atm_session --count 5 --locale TR --mask</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -207,7 +207,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Python API</span>
     <button class="copy-btn" onclick="copyTerm('term-py-atm_session')">copy</button>
   </div>
-  <div class="term-body" id="term-py-atm_session"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('atm_session', locale='TR')</code><code class="py">jutsu.bulk('atm_session', count=10, locale='TR')</code><code class="c"></code><code class="py">jutsu.template(['atm_session'], count=5, locale='TR')</code></div>
+  <div class="term-body" id="term-py-atm_session"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('atm_session', locale='TR')</code><code class="py">jutsu.bulk('atm_session', count=10, locale='TR')</code><code class="c"></code><code class="py">jutsu.template(['atm_session'], count=5, locale='TR')</code><code class="c"></code><code class="c"># mask=True: regulation-compliant output</code><code class="py">jutsu.generate('atm_session', locale='TR', mask=True)</code><code class="py">jutsu.bulk('atm_session', count=5, locale='TR', mask=True)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -215,7 +215,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-atm_session')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-atm_session"><code class="jm">${__mockjutsu_cardphysics(atm_session,TR)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_cardphysics</code><code class="c"># Parameter 1: atm_session</code><code class="c"># Parameter 2: locale (TR/UK/US/DE/FR/RU)</code><code class="jm">${__mockjutsu_cardphysics(atm_session,DE)}</code></div>
+  <div class="term-body" id="term-jm-atm_session"><code class="jm">${__mockjutsu_cardphysics(atm_session,TR)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_cardphysics</code><code class="c"># Parameter 1: atm_session</code><code class="c"># Parameter 2: locale (TR/UK/US/DE/FR/RU)</code><code class="jm">${__mockjutsu_cardphysics(atm_session,DE)}</code><code class="c"></code><code class="c"># Parameter 4 = mask (true/false)</code><code class="jm">${__mockjutsu_cardphysics(atm_session,TR,,true)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -223,7 +223,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">REST API</span>
     <button class="copy-btn" onclick="copyTerm('term-api-atm_session')">copy</button>
   </div>
-  <div class="term-body" id="term-api-atm_session"><code class="p">GET /generate/atm_session?locale=TR</code><code class="c"># → {"type":"atm_session","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/atm_session?count=10&locale=TR</code><code class="p">POST /template</code><code class="p">     {"types":["atm_session"],"count":1,"locale":"TR"}</code></div>
+  <div class="term-body" id="term-api-atm_session"><code class="p">GET /generate/atm_session?locale=TR</code><code class="c"># → {"type":"atm_session","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/atm_session?count=10&locale=TR</code><code class="p">POST /template</code><code class="p">     {"types":["atm_session"],"count":1,"locale":"TR"}</code><code class="c"></code><code class="c"># mask=true: regulation-compliant output</code><code class="p">GET /generate/atm_session?locale=TR&mask=true</code><code class="p">GET /bulk/atm_session?count=5&locale=TR&mask=true</code></div>
 </div>
   </div>
 
@@ -243,6 +243,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
               <td><span class="param-flag">--locale</span></td>
               <td><span class="param-vals">TR|UK|US|DE|FR|RU</span></td>
               <td>Region / locale for locale-aware output</td>
+            </tr><tr>
+              <td><span class="param-flag">--mask</span></td>
+              <td><span class="param-vals">true | false</span></td>
+              <td>Return a regulation-compliant masked value (PCI DSS, GDPR, KVKK…)</td>
             </tr></tbody>
   </table>
 </div>

@@ -201,7 +201,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">CLI-Verwendung</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-tckn')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-tckn"><code class="p">mockjutsu generate tckn</code><code class="p">mockjutsu bulk tckn --count 10</code><code class="o">mockjutsu export tckn --count 10 --format json</code><code class="o">mockjutsu export tckn --count 10 --format csv</code><code class="o">mockjutsu export tckn --count 10 --format sql</code><code class="p">mockjutsu generate tckn --prefix string</code></div>
+  <div class="term-body" id="term-cli-tckn"><code class="p">mockjutsu generate tckn</code><code class="p">mockjutsu bulk tckn --count 10</code><code class="o">mockjutsu export tckn --count 10 --format json</code><code class="o">mockjutsu export tckn --count 10 --format csv</code><code class="o">mockjutsu export tckn --count 10 --format sql</code><code class="p">mockjutsu generate tckn --prefix string</code><code class="c"></code><code class="c"># --mask: regulation-compliant output (PCI DSS / GDPR / KVKK)</code><code class="p">mockjutsu generate tckn --mask</code><code class="p">mockjutsu bulk tckn --count 5 --mask</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -209,7 +209,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Python API</span>
     <button class="copy-btn" onclick="copyTerm('term-py-tckn')">copy</button>
   </div>
-  <div class="term-body" id="term-py-tckn"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('tckn')</code><code class="py">jutsu.bulk('tckn', count=10)</code><code class="c"></code><code class="py">jutsu.template(['tckn'], count=5)</code></div>
+  <div class="term-body" id="term-py-tckn"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('tckn')</code><code class="py">jutsu.bulk('tckn', count=10)</code><code class="c"></code><code class="py">jutsu.template(['tckn'], count=5)</code><code class="c"></code><code class="c"># mask=True: regulation-compliant output</code><code class="py">jutsu.generate('tckn', mask=True)</code><code class="py">jutsu.bulk('tckn', count=5, mask=True)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-tckn')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-tckn"><code class="jm">${__mockjutsu_identity(tckn)}</code><code class="jm">${__mockjutsu_identity(tckn:5)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_identity</code><code class="c"># Parameter 1: tckn  OR  tckn:<qualifier></code><code class="c"># Qualifier values: prefix string</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+  <div class="term-body" id="term-jm-tckn"><code class="jm">${__mockjutsu_identity(tckn)}</code><code class="jm">${__mockjutsu_identity(tckn:5)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_identity</code><code class="c"># Parameter 1: tckn  OR  tckn:<qualifier></code><code class="c"># Qualifier values: prefix string</code><code class="c"># Parameter 2: (not required for this function)</code><code class="c"></code><code class="c"># Parameter 4 = mask (true/false)</code><code class="jm">${__mockjutsu_identity(tckn,,,true)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -225,7 +225,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">REST API</span>
     <button class="copy-btn" onclick="copyTerm('term-api-tckn')">copy</button>
   </div>
-  <div class="term-body" id="term-api-tckn"><code class="p">GET /generate/tckn</code><code class="c"># → {"type":"tckn","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/tckn?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["tckn"],"count":1}</code></div>
+  <div class="term-body" id="term-api-tckn"><code class="p">GET /generate/tckn</code><code class="c"># → {"type":"tckn","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/tckn?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["tckn"],"count":1}</code><code class="c"></code><code class="c"># mask=true: regulation-compliant output</code><code class="p">GET /generate/tckn?mask=true</code><code class="p">GET /bulk/tckn?count=5&mask=true</code></div>
 </div>
   </div>
 
@@ -241,6 +241,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
               <td><span class="param-flag">--prefix</span></td>
               <td><span class="param-vals">string</span></td>
               <td>Custom prefix string</td>
+            </tr><tr>
+              <td><span class="param-flag">--mask</span></td>
+              <td><span class="param-vals">true | false</span></td>
+              <td>Return a regulation-compliant masked value (PCI DSS, GDPR, KVKK…)</td>
             </tr></tbody>
   </table>
 </div>

@@ -201,7 +201,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">CLI-Verwendung</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-3ds_cavv')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-3ds_cavv"><code class="p">mockjutsu generate 3ds_cavv</code><code class="p">mockjutsu bulk 3ds_cavv --count 10</code><code class="o">mockjutsu export 3ds_cavv --count 10 --format json</code><code class="o">mockjutsu export 3ds_cavv --count 10 --format csv</code><code class="o">mockjutsu export 3ds_cavv --count 10 --format sql</code></div>
+  <div class="term-body" id="term-cli-3ds_cavv"><code class="p">mockjutsu generate 3ds_cavv</code><code class="p">mockjutsu bulk 3ds_cavv --count 10</code><code class="o">mockjutsu export 3ds_cavv --count 10 --format json</code><code class="o">mockjutsu export 3ds_cavv --count 10 --format csv</code><code class="o">mockjutsu export 3ds_cavv --count 10 --format sql</code><code class="c"></code><code class="c"># --mask: regulation-compliant output (PCI DSS / GDPR / KVKK)</code><code class="p">mockjutsu generate 3ds_cavv --mask</code><code class="p">mockjutsu bulk 3ds_cavv --count 5 --mask</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -209,7 +209,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Python API</span>
     <button class="copy-btn" onclick="copyTerm('term-py-3ds_cavv')">copy</button>
   </div>
-  <div class="term-body" id="term-py-3ds_cavv"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('3ds_cavv')</code><code class="py">jutsu.bulk('3ds_cavv', count=10)</code><code class="c"></code><code class="py">jutsu.template(['3ds_cavv'], count=5)</code></div>
+  <div class="term-body" id="term-py-3ds_cavv"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('3ds_cavv')</code><code class="py">jutsu.bulk('3ds_cavv', count=10)</code><code class="c"></code><code class="py">jutsu.template(['3ds_cavv'], count=5)</code><code class="c"></code><code class="c"># mask=True: regulation-compliant output</code><code class="py">jutsu.generate('3ds_cavv', mask=True)</code><code class="py">jutsu.bulk('3ds_cavv', count=5, mask=True)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-3ds_cavv')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-3ds_cavv"><code class="jm">${__mockjutsu_financial(3ds_cavv)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_financial</code><code class="c"># Parameter 1: 3ds_cavv</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+  <div class="term-body" id="term-jm-3ds_cavv"><code class="jm">${__mockjutsu_financial(3ds_cavv)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_financial</code><code class="c"># Parameter 1: 3ds_cavv</code><code class="c"># Parameter 2: (not required for this function)</code><code class="c"></code><code class="c"># Parameter 4 = mask (true/false)</code><code class="jm">${__mockjutsu_financial(3ds_cavv,,,true)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -225,11 +225,25 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">REST API</span>
     <button class="copy-btn" onclick="copyTerm('term-api-3ds_cavv')">copy</button>
   </div>
-  <div class="term-body" id="term-api-3ds_cavv"><code class="p">GET /generate/3ds_cavv</code><code class="c"># → {"type":"3ds_cavv","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/3ds_cavv?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["3ds_cavv"],"count":1}</code></div>
+  <div class="term-body" id="term-api-3ds_cavv"><code class="p">GET /generate/3ds_cavv</code><code class="c"># → {"type":"3ds_cavv","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/3ds_cavv?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["3ds_cavv"],"count":1}</code><code class="c"></code><code class="c"># mask=true: regulation-compliant output</code><code class="p">GET /generate/3ds_cavv?mask=true</code><code class="p">GET /bulk/3ds_cavv?count=5&mask=true</code></div>
 </div>
   </div>
 
-  
+  <div class="params-section">
+  <h2>Parameter</h2>
+  <table>
+    <thead><tr>
+      <th>Parameter</th>
+      <th>Werte</th>
+      <th>Beschreibung</th>
+    </tr></thead>
+    <tbody><tr>
+              <td><span class="param-flag">--mask</span></td>
+              <td><span class="param-vals">true | false</span></td>
+              <td>Return a regulation-compliant masked value (PCI DSS, GDPR, KVKK…)</td>
+            </tr></tbody>
+  </table>
+</div>
   <div class="related">
   <h2>Verwandte Funktionen</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardnum-DE.html" class="rel-link"><code>cardnum</code></a>

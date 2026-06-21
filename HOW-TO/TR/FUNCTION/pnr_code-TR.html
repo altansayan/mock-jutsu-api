@@ -201,7 +201,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">CLI Kullanımı</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-pnr_code')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-pnr_code"><code class="p">mockjutsu generate pnr_code</code><code class="p">mockjutsu bulk pnr_code --count 10</code><code class="o">mockjutsu export pnr_code --count 10 --format json</code><code class="o">mockjutsu export pnr_code --count 10 --format csv</code><code class="o">mockjutsu export pnr_code --count 10 --format sql</code></div>
+  <div class="term-body" id="term-cli-pnr_code"><code class="p">mockjutsu generate pnr_code</code><code class="p">mockjutsu bulk pnr_code --count 10</code><code class="o">mockjutsu export pnr_code --count 10 --format json</code><code class="o">mockjutsu export pnr_code --count 10 --format csv</code><code class="o">mockjutsu export pnr_code --count 10 --format sql</code><code class="c"></code><code class="c"># --mask: regulation-compliant output (PCI DSS / GDPR / KVKK)</code><code class="p">mockjutsu generate pnr_code --mask</code><code class="p">mockjutsu bulk pnr_code --count 5 --mask</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -209,7 +209,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Python API</span>
     <button class="copy-btn" onclick="copyTerm('term-py-pnr_code')">copy</button>
   </div>
-  <div class="term-body" id="term-py-pnr_code"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('pnr_code')</code><code class="py">jutsu.bulk('pnr_code', count=10)</code><code class="c"></code><code class="py">jutsu.template(['pnr_code'], count=5)</code></div>
+  <div class="term-body" id="term-py-pnr_code"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('pnr_code')</code><code class="py">jutsu.bulk('pnr_code', count=10)</code><code class="c"></code><code class="py">jutsu.template(['pnr_code'], count=5)</code><code class="c"></code><code class="c"># mask=True: regulation-compliant output</code><code class="py">jutsu.generate('pnr_code', mask=True)</code><code class="py">jutsu.bulk('pnr_code', count=5, mask=True)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-pnr_code')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-pnr_code"><code class="jm">${__mockjutsu_aviation(pnr_code)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_aviation</code><code class="c"># Parameter 1: pnr_code</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+  <div class="term-body" id="term-jm-pnr_code"><code class="jm">${__mockjutsu_aviation(pnr_code)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_aviation</code><code class="c"># Parameter 1: pnr_code</code><code class="c"># Parameter 2: (not required for this function)</code><code class="c"></code><code class="c"># Parameter 4 = mask (true/false)</code><code class="jm">${__mockjutsu_aviation(pnr_code,,,true)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -225,11 +225,25 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">REST API</span>
     <button class="copy-btn" onclick="copyTerm('term-api-pnr_code')">copy</button>
   </div>
-  <div class="term-body" id="term-api-pnr_code"><code class="p">GET /generate/pnr_code</code><code class="c"># → {"type":"pnr_code","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/pnr_code?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["pnr_code"],"count":1}</code></div>
+  <div class="term-body" id="term-api-pnr_code"><code class="p">GET /generate/pnr_code</code><code class="c"># → {"type":"pnr_code","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/pnr_code?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["pnr_code"],"count":1}</code><code class="c"></code><code class="c"># mask=true: regulation-compliant output</code><code class="p">GET /generate/pnr_code?mask=true</code><code class="p">GET /bulk/pnr_code?count=5&mask=true</code></div>
 </div>
   </div>
 
-  
+  <div class="params-section">
+  <h2>Parametreler</h2>
+  <table>
+    <thead><tr>
+      <th>Parametre</th>
+      <th>Değerler</th>
+      <th>Açıklama</th>
+    </tr></thead>
+    <tbody><tr>
+              <td><span class="param-flag">--mask</span></td>
+              <td><span class="param-vals">true | false</span></td>
+              <td>Return a regulation-compliant masked value (PCI DSS, GDPR, KVKK…)</td>
+            </tr></tbody>
+  </table>
+</div>
   <div class="related">
   <h2>İlgili Fonksiyonlar</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/FUNCTION/iata_ticket-TR.html" class="rel-link"><code>iata_ticket</code></a>

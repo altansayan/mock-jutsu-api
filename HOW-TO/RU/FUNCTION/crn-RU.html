@@ -201,7 +201,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Использование CLI</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-crn')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-crn"><code class="p">mockjutsu generate crn</code><code class="p">mockjutsu bulk crn --count 10</code><code class="o">mockjutsu export crn --count 10 --format json</code><code class="o">mockjutsu export crn --count 10 --format csv</code><code class="o">mockjutsu export crn --count 10 --format sql</code></div>
+  <div class="term-body" id="term-cli-crn"><code class="p">mockjutsu generate crn</code><code class="p">mockjutsu bulk crn --count 10</code><code class="o">mockjutsu export crn --count 10 --format json</code><code class="o">mockjutsu export crn --count 10 --format csv</code><code class="o">mockjutsu export crn --count 10 --format sql</code><code class="c"></code><code class="c"># --mask: regulation-compliant output (PCI DSS / GDPR / KVKK)</code><code class="p">mockjutsu generate crn --mask</code><code class="p">mockjutsu bulk crn --count 5 --mask</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -209,7 +209,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Python API</span>
     <button class="copy-btn" onclick="copyTerm('term-py-crn')">copy</button>
   </div>
-  <div class="term-body" id="term-py-crn"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('crn')</code><code class="py">jutsu.bulk('crn', count=10)</code><code class="c"></code><code class="py">jutsu.template(['crn'], count=5)</code></div>
+  <div class="term-body" id="term-py-crn"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('crn')</code><code class="py">jutsu.bulk('crn', count=10)</code><code class="c"></code><code class="py">jutsu.template(['crn'], count=5)</code><code class="c"></code><code class="c"># mask=True: regulation-compliant output</code><code class="py">jutsu.generate('crn', mask=True)</code><code class="py">jutsu.bulk('crn', count=5, mask=True)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-crn')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-crn"><code class="jm">${__mockjutsu_identity(crn)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_identity</code><code class="c"># Parameter 1: crn</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+  <div class="term-body" id="term-jm-crn"><code class="jm">${__mockjutsu_identity(crn)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_identity</code><code class="c"># Parameter 1: crn</code><code class="c"># Parameter 2: (not required for this function)</code><code class="c"></code><code class="c"># Parameter 4 = mask (true/false)</code><code class="jm">${__mockjutsu_identity(crn,,,true)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -225,11 +225,25 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">REST API</span>
     <button class="copy-btn" onclick="copyTerm('term-api-crn')">copy</button>
   </div>
-  <div class="term-body" id="term-api-crn"><code class="p">GET /generate/crn</code><code class="c"># → {"type":"crn","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/crn?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["crn"],"count":1}</code></div>
+  <div class="term-body" id="term-api-crn"><code class="p">GET /generate/crn</code><code class="c"># → {"type":"crn","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/crn?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["crn"],"count":1}</code><code class="c"></code><code class="c"># mask=true: regulation-compliant output</code><code class="p">GET /generate/crn?mask=true</code><code class="p">GET /bulk/crn?count=5&mask=true</code></div>
 </div>
   </div>
 
-  
+  <div class="params-section">
+  <h2>Параметры</h2>
+  <table>
+    <thead><tr>
+      <th>Параметр</th>
+      <th>Значения</th>
+      <th>Описание</th>
+    </tr></thead>
+    <tbody><tr>
+              <td><span class="param-flag">--mask</span></td>
+              <td><span class="param-vals">true | false</span></td>
+              <td>Return a regulation-compliant masked value (PCI DSS, GDPR, KVKK…)</td>
+            </tr></tbody>
+  </table>
+</div>
   <div class="related">
   <h2>Похожие функции</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/tckn-RU.html" class="rel-link"><code>tckn</code></a>

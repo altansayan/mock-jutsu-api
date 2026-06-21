@@ -201,7 +201,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Utilisation CLI</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-psd2_consent')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-psd2_consent"><code class="p">mockjutsu generate psd2_consent --locale UK --amount 250.00</code><code class="p">mockjutsu generate psd2_consent --locale DE</code><code class="p">mockjutsu bulk psd2_consent --count 10 --locale TR</code><code class="o">mockjutsu export psd2_consent --count 10 --format json --locale TR</code><code class="o">mockjutsu export psd2_consent --count 10 --format csv --locale TR</code><code class="o">mockjutsu export psd2_consent --count 10 --format sql --locale TR</code><code class="p">mockjutsu generate psd2_consent --amount float</code></div>
+  <div class="term-body" id="term-cli-psd2_consent"><code class="p">mockjutsu generate psd2_consent --locale UK --amount 250.00</code><code class="p">mockjutsu generate psd2_consent --locale DE</code><code class="p">mockjutsu bulk psd2_consent --count 10 --locale TR</code><code class="o">mockjutsu export psd2_consent --count 10 --format json --locale TR</code><code class="o">mockjutsu export psd2_consent --count 10 --format csv --locale TR</code><code class="o">mockjutsu export psd2_consent --count 10 --format sql --locale TR</code><code class="p">mockjutsu generate psd2_consent --amount float</code><code class="c"></code><code class="c"># --mask: regulation-compliant output (PCI DSS / GDPR / KVKK)</code><code class="p">mockjutsu generate psd2_consent --locale TR --mask</code><code class="p">mockjutsu bulk psd2_consent --count 5 --locale TR --mask</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -209,7 +209,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">API Python</span>
     <button class="copy-btn" onclick="copyTerm('term-py-psd2_consent')">copy</button>
   </div>
-  <div class="term-body" id="term-py-psd2_consent"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('psd2_consent', locale='TR')</code><code class="py">jutsu.bulk('psd2_consent', count=10, locale='TR')</code><code class="c"></code><code class="py">jutsu.template(['psd2_consent'], count=5, locale='TR')</code></div>
+  <div class="term-body" id="term-py-psd2_consent"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('psd2_consent', locale='TR')</code><code class="py">jutsu.bulk('psd2_consent', count=10, locale='TR')</code><code class="c"></code><code class="py">jutsu.template(['psd2_consent'], count=5, locale='TR')</code><code class="c"></code><code class="c"># mask=True: regulation-compliant output</code><code class="py">jutsu.generate('psd2_consent', locale='TR', mask=True)</code><code class="py">jutsu.bulk('psd2_consent', count=5, locale='TR', mask=True)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-psd2_consent')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-psd2_consent"><code class="jm">${__mockjutsu_markets(psd2_consent,TR)}</code><code class="jm">${__mockjutsu_markets(psd2_consent:500.00)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_markets</code><code class="c"># Parameter 1: psd2_consent  OR  psd2_consent:<qualifier></code><code class="c"># Qualifier values: amount (float)</code><code class="c"># Parameter 2: locale (TR/UK/US/DE/FR/RU)</code><code class="jm">${__mockjutsu_markets(psd2_consent,DE)}</code></div>
+  <div class="term-body" id="term-jm-psd2_consent"><code class="jm">${__mockjutsu_markets(psd2_consent,TR)}</code><code class="jm">${__mockjutsu_markets(psd2_consent:500.00)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_markets</code><code class="c"># Parameter 1: psd2_consent  OR  psd2_consent:<qualifier></code><code class="c"># Qualifier values: amount (float)</code><code class="c"># Parameter 2: locale (TR/UK/US/DE/FR/RU)</code><code class="jm">${__mockjutsu_markets(psd2_consent,DE)}</code><code class="c"></code><code class="c"># Parameter 4 = mask (true/false)</code><code class="jm">${__mockjutsu_markets(psd2_consent,TR,,true)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -225,7 +225,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">REST API</span>
     <button class="copy-btn" onclick="copyTerm('term-api-psd2_consent')">copy</button>
   </div>
-  <div class="term-body" id="term-api-psd2_consent"><code class="p">GET /generate/psd2_consent?locale=TR</code><code class="c"># → {"type":"psd2_consent","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/psd2_consent?count=10&locale=TR</code><code class="p">POST /template</code><code class="p">     {"types":["psd2_consent"],"count":1,"locale":"TR"}</code></div>
+  <div class="term-body" id="term-api-psd2_consent"><code class="p">GET /generate/psd2_consent?locale=TR</code><code class="c"># → {"type":"psd2_consent","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/psd2_consent?count=10&locale=TR</code><code class="p">POST /template</code><code class="p">     {"types":["psd2_consent"],"count":1,"locale":"TR"}</code><code class="c"></code><code class="c"># mask=true: regulation-compliant output</code><code class="p">GET /generate/psd2_consent?locale=TR&mask=true</code><code class="p">GET /bulk/psd2_consent?count=5&locale=TR&mask=true</code></div>
 </div>
   </div>
 
@@ -245,6 +245,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
               <td><span class="param-flag">--amount</span></td>
               <td><span class="param-vals">float</span></td>
               <td>Payment amount</td>
+            </tr><tr>
+              <td><span class="param-flag">--mask</span></td>
+              <td><span class="param-vals">true | false</span></td>
+              <td>Return a regulation-compliant masked value (PCI DSS, GDPR, KVKK…)</td>
             </tr></tbody>
   </table>
 </div>

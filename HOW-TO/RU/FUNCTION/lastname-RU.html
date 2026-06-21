@@ -203,7 +203,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Использование CLI</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-lastname')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-lastname"><code class="p">mockjutsu generate lastname --locale TR</code><code class="p">mockjutsu generate lastname --locale DE</code><code class="p">mockjutsu bulk lastname --count 10 --locale TR</code><code class="o">mockjutsu export lastname --count 10 --format json --locale TR</code><code class="o">mockjutsu export lastname --count 10 --format csv --locale TR</code><code class="o">mockjutsu export lastname --count 10 --format sql --locale TR</code><code class="p">mockjutsu generate lastname --gender male</code></div>
+  <div class="term-body" id="term-cli-lastname"><code class="p">mockjutsu generate lastname --locale TR</code><code class="p">mockjutsu generate lastname --locale DE</code><code class="p">mockjutsu bulk lastname --count 10 --locale TR</code><code class="o">mockjutsu export lastname --count 10 --format json --locale TR</code><code class="o">mockjutsu export lastname --count 10 --format csv --locale TR</code><code class="o">mockjutsu export lastname --count 10 --format sql --locale TR</code><code class="p">mockjutsu generate lastname --gender male</code><code class="c"></code><code class="c"># --mask: regulation-compliant output (PCI DSS / GDPR / KVKK)</code><code class="p">mockjutsu generate lastname --locale TR --mask</code><code class="p">mockjutsu bulk lastname --count 5 --locale TR --mask</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -211,7 +211,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Python API</span>
     <button class="copy-btn" onclick="copyTerm('term-py-lastname')">copy</button>
   </div>
-  <div class="term-body" id="term-py-lastname"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('lastname', locale='TR')</code><code class="py">jutsu.bulk('lastname', count=10, locale='TR')</code><code class="c"></code><code class="py">jutsu.template(['lastname'], count=5, locale='TR')</code></div>
+  <div class="term-body" id="term-py-lastname"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('lastname', locale='TR')</code><code class="py">jutsu.bulk('lastname', count=10, locale='TR')</code><code class="c"></code><code class="py">jutsu.template(['lastname'], count=5, locale='TR')</code><code class="c"></code><code class="c"># mask=True: regulation-compliant output</code><code class="py">jutsu.generate('lastname', locale='TR', mask=True)</code><code class="py">jutsu.bulk('lastname', count=5, locale='TR', mask=True)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -219,7 +219,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-lastname')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-lastname"><code class="jm">${__mockjutsu_identity(lastname,TR)}</code><code class="jm">${__mockjutsu_identity(lastname:male)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_identity</code><code class="c"># Parameter 1: lastname  OR  lastname:<qualifier></code><code class="c"># Qualifier values: male|female</code><code class="c"># Parameter 2: locale (TR/UK/US/DE/FR/RU)</code><code class="jm">${__mockjutsu_identity(lastname,DE)}</code></div>
+  <div class="term-body" id="term-jm-lastname"><code class="jm">${__mockjutsu_identity(lastname,TR)}</code><code class="jm">${__mockjutsu_identity(lastname:male)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_identity</code><code class="c"># Parameter 1: lastname  OR  lastname:<qualifier></code><code class="c"># Qualifier values: male|female</code><code class="c"># Parameter 2: locale (TR/UK/US/DE/FR/RU)</code><code class="jm">${__mockjutsu_identity(lastname,DE)}</code><code class="c"></code><code class="c"># Parameter 4 = mask (true/false)</code><code class="jm">${__mockjutsu_identity(lastname,TR,,true)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -227,7 +227,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">REST API</span>
     <button class="copy-btn" onclick="copyTerm('term-api-lastname')">copy</button>
   </div>
-  <div class="term-body" id="term-api-lastname"><code class="p">GET /generate/lastname?locale=TR</code><code class="c"># → {"type":"lastname","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/lastname?count=10&locale=TR</code><code class="p">POST /template</code><code class="p">     {"types":["lastname"],"count":1,"locale":"TR"}</code></div>
+  <div class="term-body" id="term-api-lastname"><code class="p">GET /generate/lastname?locale=TR</code><code class="c"># → {"type":"lastname","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/lastname?count=10&locale=TR</code><code class="p">POST /template</code><code class="p">     {"types":["lastname"],"count":1,"locale":"TR"}</code><code class="c"></code><code class="c"># mask=true: regulation-compliant output</code><code class="p">GET /generate/lastname?locale=TR&mask=true</code><code class="p">GET /bulk/lastname?count=5&locale=TR&mask=true</code></div>
 </div>
   </div>
 
@@ -247,6 +247,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
               <td><span class="param-flag">--gender</span></td>
               <td><span class="param-vals">male|female</span></td>
               <td>Filter output by gender</td>
+            </tr><tr>
+              <td><span class="param-flag">--mask</span></td>
+              <td><span class="param-vals">true | false</span></td>
+              <td>Return a regulation-compliant masked value (PCI DSS, GDPR, KVKK…)</td>
             </tr></tbody>
   </table>
 </div>

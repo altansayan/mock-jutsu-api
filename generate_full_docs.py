@@ -24,6 +24,10 @@ import argparse
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(BASE_DIR, "src"))
 from mockjutsu.cli import _REFERENCE
+from mockjutsu.masker import _MASKERS as _maskers_dict
+
+# Types that return a masked value when --mask / mask=True is used
+_MASKED_TYPES: frozenset[str] = frozenset(_maskers_dict.keys())
 
 CONTENT_DIR = os.path.join(BASE_DIR, "HOW-TO", "content")
 
@@ -311,6 +315,7 @@ PARAM_INFO = {
     "--end":       ("YYYY-MM-DD",          "End date for date_between"),
     "--count":     ("int",                 "Number of records to generate (default: 10)"),
     "--table":     ("string",              "SQL table name for INSERT statements (default: records)"),
+    "--mask":      ("true | false",        "Return a regulation-compliant masked value (PCI DSS, GDPR, KVKK…)"),
 }
 
 # ── Listing-page extras ────────────────────────────────────────────────────────
@@ -1180,6 +1185,7 @@ def build_detail_page(r: tuple, lang: str) -> str:
     has_locale  = locale_aware
 
     # Build CLI terminal
+    is_maskable = fn in _MASKED_TYPES
     cli_full = f"mockjutsu {cli_cmd}" if not cli_cmd.startswith("mockjutsu") else cli_cmd
     cli_content  = code(cli_full)
     if cat == "Commands":
@@ -1204,6 +1210,12 @@ def build_detail_page(r: tuple, lang: str) -> str:
             extra_cmd = f"mockjutsu generate {fn} {first_flag} {vals.split('|')[0]}"
             if extra_cmd != cli_full:
                 cli_content += code(extra_cmd)
+        if is_maskable:
+            locale_mask = " --locale TR" if has_locale else ""
+            cli_content += code("", "c")
+            cli_content += code("# --mask: regulation-compliant output (PCI DSS / GDPR / KVKK)", "c")
+            cli_content += code(f"mockjutsu generate {fn}{locale_mask} --mask")
+            cli_content += code(f"mockjutsu bulk {fn} --count 5{locale_mask} --mask")
 
     # Python terminal
     locale_arg = ", locale='TR'" if has_locale else ""
@@ -1213,6 +1225,11 @@ def build_detail_page(r: tuple, lang: str) -> str:
     py_content += code(f"jutsu.bulk('{fn}', count=10{locale_arg})", "py")
     py_content += code("", "c")
     py_content += code(f"jutsu.template(['{fn}'], count=5{locale_arg})", "py")
+    if is_maskable:
+        py_content += code("", "c")
+        py_content += code("# mask=True: regulation-compliant output", "c")
+        py_content += code(f"jutsu.generate('{fn}'{locale_arg}, mask=True)", "py")
+        py_content += code(f"jutsu.bulk('{fn}', count=5{locale_arg}, mask=True)", "py")
 
     # JMeter terminal
     jm_fn      = _jmeter_fn_key(cat)
@@ -1240,9 +1257,19 @@ def build_detail_page(r: tuple, lang: str) -> str:
     jm_content += code(jm_p2, "c")
     if jm_alt:
         jm_content += code(jm_alt, "jm")
+    if is_maskable:
+        jm_mask_expr = (
+            f"${{{jm_fn}({fn},TR,,true)}}"
+            if has_locale else
+            f"${{{jm_fn}({fn},,,true)}}"
+        )
+        jm_content += code("", "c")
+        jm_content += code("# Parameter 4 = mask (true/false)", "c")
+        jm_content += code(jm_mask_expr, "jm")
 
     # REST API terminal
     locale_qs = "?locale=TR" if has_locale else ""
+    qs_sep     = "&" if locale_qs else "?"
     api_content  = code(f"GET /generate/{fn}{locale_qs}")
     api_content  += code(f'# → {{"type":"{fn}","result":"...","status":"ok"}}', "c")
     api_content  += code("")
@@ -1250,6 +1277,11 @@ def build_detail_page(r: tuple, lang: str) -> str:
     locale_part  = ',"locale":"TR"' if has_locale else ""
     api_content  += code(f"POST /template")
     api_content  += code('     {"types":["' + fn + '"],"count":1' + locale_part + '}')
+    if is_maskable:
+        api_content += code("", "c")
+        api_content += code("# mask=true: regulation-compliant output", "c")
+        api_content += code(f"GET /generate/{fn}{locale_qs}{qs_sep}mask=true")
+        api_content += code(f"GET /bulk/{fn}?count=5{('&locale=TR' if has_locale else '')}&mask=true")
 
     # Language switcher
     lang_pills = ""
@@ -1261,7 +1293,8 @@ def build_detail_page(r: tuple, lang: str) -> str:
     # Parameters table
     params_html = ""
     locale_pair  = [("--locale", None)] if has_locale else []
-    all_pairs    = locale_pair + param_pairs
+    mask_pair    = [("--mask", None)] if is_maskable else []
+    all_pairs    = locale_pair + param_pairs + mask_pair
     if all_pairs:
         rows = ""
         for flag, inline_val in all_pairs:

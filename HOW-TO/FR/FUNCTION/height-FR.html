@@ -201,7 +201,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Utilisation CLI</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-height')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-height"><code class="p">mockjutsu generate height --locale TR</code><code class="p">mockjutsu generate height --locale DE</code><code class="p">mockjutsu bulk height --count 10 --locale TR</code><code class="o">mockjutsu export height --count 10 --format json --locale TR</code><code class="o">mockjutsu export height --count 10 --format csv --locale TR</code><code class="o">mockjutsu export height --count 10 --format sql --locale TR</code></div>
+  <div class="term-body" id="term-cli-height"><code class="p">mockjutsu generate height --locale TR</code><code class="p">mockjutsu generate height --locale DE</code><code class="p">mockjutsu bulk height --count 10 --locale TR</code><code class="o">mockjutsu export height --count 10 --format json --locale TR</code><code class="o">mockjutsu export height --count 10 --format csv --locale TR</code><code class="o">mockjutsu export height --count 10 --format sql --locale TR</code><code class="c"></code><code class="c"># --mask: regulation-compliant output (PCI DSS / GDPR / KVKK)</code><code class="p">mockjutsu generate height --locale TR --mask</code><code class="p">mockjutsu bulk height --count 5 --locale TR --mask</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -209,7 +209,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">API Python</span>
     <button class="copy-btn" onclick="copyTerm('term-py-height')">copy</button>
   </div>
-  <div class="term-body" id="term-py-height"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('height', locale='TR')</code><code class="py">jutsu.bulk('height', count=10, locale='TR')</code><code class="c"></code><code class="py">jutsu.template(['height'], count=5, locale='TR')</code></div>
+  <div class="term-body" id="term-py-height"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('height', locale='TR')</code><code class="py">jutsu.bulk('height', count=10, locale='TR')</code><code class="c"></code><code class="py">jutsu.template(['height'], count=5, locale='TR')</code><code class="c"></code><code class="c"># mask=True: regulation-compliant output</code><code class="py">jutsu.generate('height', locale='TR', mask=True)</code><code class="py">jutsu.bulk('height', count=5, locale='TR', mask=True)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-height')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-height"><code class="jm">${__mockjutsu_health(height,TR)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_health</code><code class="c"># Parameter 1: height</code><code class="c"># Parameter 2: locale (TR/UK/US/DE/FR/RU)</code><code class="jm">${__mockjutsu_health(height,DE)}</code></div>
+  <div class="term-body" id="term-jm-height"><code class="jm">${__mockjutsu_health(height,TR)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_health</code><code class="c"># Parameter 1: height</code><code class="c"># Parameter 2: locale (TR/UK/US/DE/FR/RU)</code><code class="jm">${__mockjutsu_health(height,DE)}</code><code class="c"></code><code class="c"># Parameter 4 = mask (true/false)</code><code class="jm">${__mockjutsu_health(height,TR,,true)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -225,7 +225,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">REST API</span>
     <button class="copy-btn" onclick="copyTerm('term-api-height')">copy</button>
   </div>
-  <div class="term-body" id="term-api-height"><code class="p">GET /generate/height?locale=TR</code><code class="c"># → {"type":"height","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/height?count=10&locale=TR</code><code class="p">POST /template</code><code class="p">     {"types":["height"],"count":1,"locale":"TR"}</code></div>
+  <div class="term-body" id="term-api-height"><code class="p">GET /generate/height?locale=TR</code><code class="c"># → {"type":"height","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/height?count=10&locale=TR</code><code class="p">POST /template</code><code class="p">     {"types":["height"],"count":1,"locale":"TR"}</code><code class="c"></code><code class="c"># mask=true: regulation-compliant output</code><code class="p">GET /generate/height?locale=TR&mask=true</code><code class="p">GET /bulk/height?count=5&locale=TR&mask=true</code></div>
 </div>
   </div>
 
@@ -241,6 +241,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
               <td><span class="param-flag">--locale</span></td>
               <td><span class="param-vals">TR|UK|US|DE|FR|RU</span></td>
               <td>Region / locale for locale-aware output</td>
+            </tr><tr>
+              <td><span class="param-flag">--mask</span></td>
+              <td><span class="param-vals">true | false</span></td>
+              <td>Return a regulation-compliant masked value (PCI DSS, GDPR, KVKK…)</td>
             </tr></tbody>
   </table>
 </div>

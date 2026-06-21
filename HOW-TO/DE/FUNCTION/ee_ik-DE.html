@@ -201,7 +201,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">CLI-Verwendung</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-ee_ik')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-ee_ik"><code class="p">mockjutsu generate ee_ik</code><code class="p">mockjutsu bulk ee_ik --count 10</code><code class="o">mockjutsu export ee_ik --count 10 --format json</code><code class="o">mockjutsu export ee_ik --count 10 --format csv</code><code class="o">mockjutsu export ee_ik --count 10 --format sql</code></div>
+  <div class="term-body" id="term-cli-ee_ik"><code class="p">mockjutsu generate ee_ik</code><code class="p">mockjutsu bulk ee_ik --count 10</code><code class="o">mockjutsu export ee_ik --count 10 --format json</code><code class="o">mockjutsu export ee_ik --count 10 --format csv</code><code class="o">mockjutsu export ee_ik --count 10 --format sql</code><code class="c"></code><code class="c"># --mask: regulation-compliant output (PCI DSS / GDPR / KVKK)</code><code class="p">mockjutsu generate ee_ik --mask</code><code class="p">mockjutsu bulk ee_ik --count 5 --mask</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -209,7 +209,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Python API</span>
     <button class="copy-btn" onclick="copyTerm('term-py-ee_ik')">copy</button>
   </div>
-  <div class="term-body" id="term-py-ee_ik"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('ee_ik')</code><code class="py">jutsu.bulk('ee_ik', count=10)</code><code class="c"></code><code class="py">jutsu.template(['ee_ik'], count=5)</code></div>
+  <div class="term-body" id="term-py-ee_ik"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('ee_ik')</code><code class="py">jutsu.bulk('ee_ik', count=10)</code><code class="c"></code><code class="py">jutsu.template(['ee_ik'], count=5)</code><code class="c"></code><code class="c"># mask=True: regulation-compliant output</code><code class="py">jutsu.generate('ee_ik', mask=True)</code><code class="py">jutsu.bulk('ee_ik', count=5, mask=True)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-ee_ik')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-ee_ik"><code class="jm">${__mockjutsu_intl_ids(ee_ik)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_intl_ids</code><code class="c"># Parameter 1: ee_ik</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+  <div class="term-body" id="term-jm-ee_ik"><code class="jm">${__mockjutsu_intl_ids(ee_ik)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_intl_ids</code><code class="c"># Parameter 1: ee_ik</code><code class="c"># Parameter 2: (not required for this function)</code><code class="c"></code><code class="c"># Parameter 4 = mask (true/false)</code><code class="jm">${__mockjutsu_intl_ids(ee_ik,,,true)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -225,11 +225,25 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">REST API</span>
     <button class="copy-btn" onclick="copyTerm('term-api-ee_ik')">copy</button>
   </div>
-  <div class="term-body" id="term-api-ee_ik"><code class="p">GET /generate/ee_ik</code><code class="c"># → {"type":"ee_ik","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/ee_ik?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["ee_ik"],"count":1}</code></div>
+  <div class="term-body" id="term-api-ee_ik"><code class="p">GET /generate/ee_ik</code><code class="c"># → {"type":"ee_ik","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/ee_ik?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["ee_ik"],"count":1}</code><code class="c"></code><code class="c"># mask=true: regulation-compliant output</code><code class="p">GET /generate/ee_ik?mask=true</code><code class="p">GET /bulk/ee_ik?count=5&mask=true</code></div>
 </div>
   </div>
 
-  
+  <div class="params-section">
+  <h2>Parameter</h2>
+  <table>
+    <thead><tr>
+      <th>Parameter</th>
+      <th>Werte</th>
+      <th>Beschreibung</th>
+    </tr></thead>
+    <tbody><tr>
+              <td><span class="param-flag">--mask</span></td>
+              <td><span class="param-vals">true | false</span></td>
+              <td>Return a regulation-compliant masked value (PCI DSS, GDPR, KVKK…)</td>
+            </tr></tbody>
+  </table>
+</div>
   <div class="related">
   <h2>Verwandte Funktionen</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/br_cpf-DE.html" class="rel-link"><code>br_cpf</code></a>

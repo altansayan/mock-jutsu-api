@@ -6,6 +6,7 @@ Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 import random
 import unicodedata
 
+from .masker import apply_mask
 from .generators.identity      import IdentityGenerator
 from .generators.financial     import FinancialGenerator
 from .generators.communication import CommunicationGenerator
@@ -369,6 +370,7 @@ class MockJutsuCore:
         dt     = str(data_type).lower().strip()
         locale = str(kwargs.pop('locale', self.locale)).upper()
         prefix = str(kwargs.pop('prefix', ''))
+        mask   = bool(kwargs.pop('mask', False))
 
         result = ""
         if dt == 'apppassword':
@@ -461,7 +463,11 @@ class MockJutsuCore:
             return f"ERROR: Unknown DataType '{dt}'"
 
         if prefix and not str(result).startswith("ERROR"):
-            return f"{prefix}{result}"
+            result = f"{prefix}{result}"
+
+        if mask and not str(result).startswith("ERROR"):
+            result = apply_mask(dt, str(result))
+
         return result
 
     # ── Bulk ────────────────────────────────────────────────────────────────────

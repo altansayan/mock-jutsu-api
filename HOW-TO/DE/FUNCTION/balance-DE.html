@@ -201,7 +201,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">CLI-Verwendung</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-balance')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-balance"><code class="p">mockjutsu generate balance</code><code class="p">mockjutsu bulk balance --count 10</code><code class="o">mockjutsu export balance --count 10 --format json</code><code class="o">mockjutsu export balance --count 10 --format csv</code><code class="o">mockjutsu export balance --count 10 --format sql</code><code class="p">mockjutsu generate balance --min float</code></div>
+  <div class="term-body" id="term-cli-balance"><code class="p">mockjutsu generate balance</code><code class="p">mockjutsu bulk balance --count 10</code><code class="o">mockjutsu export balance --count 10 --format json</code><code class="o">mockjutsu export balance --count 10 --format csv</code><code class="o">mockjutsu export balance --count 10 --format sql</code><code class="p">mockjutsu generate balance --min float</code><code class="c"></code><code class="c"># --mask: regulation-compliant output (PCI DSS / GDPR / KVKK)</code><code class="p">mockjutsu generate balance --mask</code><code class="p">mockjutsu bulk balance --count 5 --mask</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -209,7 +209,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Python API</span>
     <button class="copy-btn" onclick="copyTerm('term-py-balance')">copy</button>
   </div>
-  <div class="term-body" id="term-py-balance"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('balance')</code><code class="py">jutsu.bulk('balance', count=10)</code><code class="c"></code><code class="py">jutsu.template(['balance'], count=5)</code></div>
+  <div class="term-body" id="term-py-balance"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('balance')</code><code class="py">jutsu.bulk('balance', count=10)</code><code class="c"></code><code class="py">jutsu.template(['balance'], count=5)</code><code class="c"></code><code class="c"># mask=True: regulation-compliant output</code><code class="py">jutsu.generate('balance', mask=True)</code><code class="py">jutsu.bulk('balance', count=5, mask=True)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-balance')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-balance"><code class="jm">${__mockjutsu_financial(balance)}</code><code class="jm">${__mockjutsu_financial(balance:100|5000)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_financial</code><code class="c"># Parameter 1: balance  OR  balance:<qualifier></code><code class="c"># Qualifier values: min|max (float)</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+  <div class="term-body" id="term-jm-balance"><code class="jm">${__mockjutsu_financial(balance)}</code><code class="jm">${__mockjutsu_financial(balance:100|5000)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_financial</code><code class="c"># Parameter 1: balance  OR  balance:<qualifier></code><code class="c"># Qualifier values: min|max (float)</code><code class="c"># Parameter 2: (not required for this function)</code><code class="c"></code><code class="c"># Parameter 4 = mask (true/false)</code><code class="jm">${__mockjutsu_financial(balance,,,true)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -225,7 +225,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">REST API</span>
     <button class="copy-btn" onclick="copyTerm('term-api-balance')">copy</button>
   </div>
-  <div class="term-body" id="term-api-balance"><code class="p">GET /generate/balance</code><code class="c"># → {"type":"balance","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/balance?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["balance"],"count":1}</code></div>
+  <div class="term-body" id="term-api-balance"><code class="p">GET /generate/balance</code><code class="c"># → {"type":"balance","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/balance?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["balance"],"count":1}</code><code class="c"></code><code class="c"># mask=true: regulation-compliant output</code><code class="p">GET /generate/balance?mask=true</code><code class="p">GET /bulk/balance?count=5&mask=true</code></div>
 </div>
   </div>
 
@@ -245,6 +245,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
               <td><span class="param-flag">--max</span></td>
               <td><span class="param-vals">float</span></td>
               <td>Maximum numeric value</td>
+            </tr><tr>
+              <td><span class="param-flag">--mask</span></td>
+              <td><span class="param-vals">true | false</span></td>
+              <td>Return a regulation-compliant masked value (PCI DSS, GDPR, KVKK…)</td>
             </tr></tbody>
   </table>
 </div>
