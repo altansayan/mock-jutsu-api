@@ -13,6 +13,7 @@
 [![Locales](https://img.shields.io/badge/Locales-6-ec4899?style=for-the-badge)](#-6-locales-100-real-algorithms)
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-ff69b4?style=for-the-badge)](#-features-that-will-blow-your-mind)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/mockjutsu?style=for-the-badge&logo=pypi&logoColor=white&color=006DAD)](https://pypi.org/project/mockjutsu/)
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-altansezerayan%2Fmock--jutsu-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/r/altansezerayan/mock-jutsu)
 [![JMeter Plugin](https://img.shields.io/badge/JMeter%20Plugin-v1.0.0-D22128?style=for-the-badge&logo=apachejmeter&logoColor=white)](https://github.com/altansayan/mock-jutsu-jmeter/releases/tag/v1.0.0)
 [![Postman](https://img.shields.io/badge/Postman-390%20Requests-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://github.com/altansayan/mock-jutsu-api/tree/main/.postman/collections)
