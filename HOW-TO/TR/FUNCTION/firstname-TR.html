@@ -217,7 +217,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Python API</span>
     <button class="copy-btn" onclick="copyTerm('term-py-firstname')">copy</button>
   </div>
-  <div class="term-body" id="term-py-firstname"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('firstname', locale='TR')</code><code class="py">jutsu.bulk('firstname', count=10, locale='TR')</code><code class="c"></code><code class="py">jutsu.template(['firstname'], count=5, locale='TR')</code><code class="c"></code><code class="c"># mask=True: regulation-compliant output</code><code class="py">jutsu.generate('firstname', locale='TR', mask=True)</code><code class="py">jutsu.bulk('firstname', count=5, locale='TR', mask=True)</code></div>
+  <div class="term-body" id="term-py-firstname"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('firstname', locale='TR')</code><code class="py">jutsu.bulk('firstname', count=10, locale='TR')</code><code class="c"></code><code class="py">jutsu.template(['firstname'], count=5, locale='TR')</code><code class="c"></code><code class="c"># with --gender parameter</code><code class="py">jutsu.generate('firstname', gender='male', locale='TR')</code><code class="c"></code><code class="c"># mask=True: regulation-compliant output</code><code class="py">jutsu.generate('firstname', locale='TR', mask=True)</code><code class="py">jutsu.bulk('firstname', count=5, locale='TR', mask=True)</code></div>
 </div>
     <div class="term">
   <div class="term-header">

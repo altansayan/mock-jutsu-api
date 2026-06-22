@@ -1244,6 +1244,20 @@ def build_detail_page(r: tuple, lang: str) -> str:
     py_content += code(f"jutsu.bulk('{fn}', count=10{locale_arg})", "py")
     py_content += code("", "c")
     py_content += code(f"jutsu.template(['{fn}'], count=5{locale_arg})", "py")
+    if param_pairs:
+        first_flag, first_inline = param_pairs[0]
+        kwarg_name = first_flag.lstrip('-').replace('-', '_')
+        vals = first_inline or PARAM_INFO.get(first_flag, ("value", ""))[0]
+        example_val = vals.split('|')[0]
+        try:
+            float(example_val)
+            val_repr = example_val
+        except ValueError:
+            val_repr = f"'{example_val}'"
+        py_with_param = f"jutsu.generate('{fn}', {kwarg_name}={val_repr}{locale_arg})"
+        py_content += code("", "c")
+        py_content += code(f"# with {first_flag} parameter", "c")
+        py_content += code(py_with_param, "py")
     if is_maskable:
         py_content += code("", "c")
         py_content += code("# mask=True: regulation-compliant output", "c")
