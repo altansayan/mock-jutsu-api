@@ -1,0 +1,672 @@
+{
+  "info": {
+    "name": "mock-jutsu API",
+    "description": "Algorithmic mock data engine — 390+ types, 6 locales.\n\nSet the `baseUrl` environment variable before running.\n- Local dev: `http://localhost:8000`\n- Docker:     `http://localhost:8000`\n\nQuick start:\n1. Import this collection\n2. Import one of the environment files (`local` or `docker`)\n3. Select the environment → Run",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": { "major": 1, "minor": 0, "patch": 0 }
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8000", "type": "string" }
+  ],
+  "item": [
+
+    {
+      "name": "🔍 Core",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/health", "host": ["{{baseUrl}}"], "path": ["health"] },
+            "description": "Returns `{\"status\": \"ok\"}` when the API is running."
+          }
+        },
+        {
+          "name": "Root — Endpoint List",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/", "host": ["{{baseUrl}}"], "path": [""] },
+            "description": "Lists all available endpoints."
+          }
+        },
+        {
+          "name": "List All Types",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/list", "host": ["{{baseUrl}}"], "path": ["list"] },
+            "description": "Returns all 390+ supported data types with category, locale awareness, and example output."
+          }
+        },
+        {
+          "name": "List by Category — financial",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/list?cat=financial",
+              "host": ["{{baseUrl}}"],
+              "path": ["list"],
+              "query": [{ "key": "cat", "value": "financial" }]
+            },
+            "description": "Filter types by category keyword. Try: financial, identity, banking, health, meta, crypto, telecom, location…"
+          }
+        },
+        {
+          "name": "List by Category — identity",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/list?cat=identity",
+              "host": ["{{baseUrl}}"],
+              "path": ["list"],
+              "query": [{ "key": "cat", "value": "identity" }]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "⚡ Generate — Single Value",
+      "item": [
+        {
+          "name": "TCKN (TR)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/tckn?locale=TR",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "tckn"],
+              "query": [{ "key": "locale", "value": "TR" }]
+            },
+            "description": "11-digit Turkish Citizen ID — full checksum valid (d9/d10 algorithm)."
+          }
+        },
+        {
+          "name": "VKN — Turkish Tax Number",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/vkn?locale=TR",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "vkn"],
+              "query": [{ "key": "locale", "value": "TR" }]
+            }
+          }
+        },
+        {
+          "name": "IBAN — TR",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/iban?locale=TR",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "iban"],
+              "query": [{ "key": "locale", "value": "TR" }]
+            },
+            "description": "MOD-97 valid Turkish IBAN (TR + 24 digits)."
+          }
+        },
+        {
+          "name": "IBAN — DE",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/iban?locale=DE",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "iban"],
+              "query": [{ "key": "locale", "value": "DE" }]
+            }
+          }
+        },
+        {
+          "name": "Card Number — Visa",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/cardnum?network=visa",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "cardnum"],
+              "query": [{ "key": "network", "value": "visa" }]
+            },
+            "description": "Luhn-valid card number. network: visa | mc | amex | troy | mir"
+          }
+        },
+        {
+          "name": "Card Number — Mastercard",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/cardnum?network=mc",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "cardnum"],
+              "query": [{ "key": "network", "value": "mc" }]
+            }
+          }
+        },
+        {
+          "name": "Card Number — Troy",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/cardnum?network=troy&locale=TR",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "cardnum"],
+              "query": [
+                { "key": "network", "value": "troy" },
+                { "key": "locale", "value": "TR" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Full Name — TR",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/fullname?locale=TR",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "fullname"],
+              "query": [{ "key": "locale", "value": "TR" }]
+            }
+          }
+        },
+        {
+          "name": "Full Name — DE",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/fullname?locale=DE",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "fullname"],
+              "query": [{ "key": "locale", "value": "DE" }]
+            }
+          }
+        },
+        {
+          "name": "Phone — TR",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/phone?locale=TR",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "phone"],
+              "query": [{ "key": "locale", "value": "TR" }]
+            }
+          }
+        },
+        {
+          "name": "Email",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/email?locale=TR",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "email"],
+              "query": [{ "key": "locale", "value": "TR" }]
+            }
+          }
+        },
+        {
+          "name": "UUID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/uuid",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "uuid"]
+            }
+          }
+        },
+        {
+          "name": "SWIFT / BIC — TR",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/swift?locale=TR",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "swift"],
+              "query": [{ "key": "locale", "value": "TR" }]
+            }
+          }
+        },
+        {
+          "name": "IMEI",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/imei",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "imei"]
+            },
+            "description": "Luhn-valid 15-digit IMEI."
+          }
+        },
+        {
+          "name": "IPv4",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/ipv4",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "ipv4"]
+            }
+          }
+        },
+        {
+          "name": "JWT Token",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/jwt",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "jwt"]
+            }
+          }
+        },
+        {
+          "name": "Hash — SHA256",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/hash?algorithm=sha256",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "hash"],
+              "query": [{ "key": "algorithm", "value": "sha256" }]
+            },
+            "description": "algorithm: md5 | sha1 | sha256 | sha384 | sha512 | sha3-256 | crc32"
+          }
+        },
+        {
+          "name": "SSN — US",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/ssn?locale=US",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "ssn"],
+              "query": [{ "key": "locale", "value": "US" }]
+            }
+          }
+        },
+        {
+          "name": "NIN — UK",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/nin?locale=UK",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "nin"],
+              "query": [{ "key": "locale", "value": "UK" }]
+            }
+          }
+        },
+        {
+          "name": "MRZ — TD3 Passport (TR)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/mrz_td3?locale=TR",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "mrz_td3"],
+              "query": [{ "key": "locale", "value": "TR" }]
+            },
+            "description": "ICAO Doc 9303 compliant Machine-Readable Zone — 2×44 characters."
+          }
+        },
+        {
+          "name": "BTC Address",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/btc_address",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "btc_address"]
+            },
+            "description": "Base58Check valid Bitcoin address."
+          }
+        },
+        {
+          "name": "ETH Address",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/eth_address",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "eth_address"]
+            },
+            "description": "EIP-55 checksum valid Ethereum address."
+          }
+        },
+        {
+          "name": "ISIN — TR",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/isin?locale=TR",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "isin"],
+              "query": [{ "key": "locale", "value": "TR" }]
+            }
+          }
+        },
+        {
+          "name": "Reverse Regex",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/generate/reverse_regex",
+              "host": ["{{baseUrl}}"],
+              "path": ["generate", "reverse_regex"]
+            },
+            "description": "Pass a regex pattern as the type, e.g. /generate/reverse_regex%3A%5BA-Z%5D%7B3%7D%5Cd%7B4%7D"
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "📦 Bulk — Multiple Values",
+      "item": [
+        {
+          "name": "Bulk TCKN × 20",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/bulk/tckn?count=20&locale=TR",
+              "host": ["{{baseUrl}}"],
+              "path": ["bulk", "tckn"],
+              "query": [
+                { "key": "count", "value": "20" },
+                { "key": "locale", "value": "TR" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Bulk IBAN × 10 (DE)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/bulk/iban?count=10&locale=DE",
+              "host": ["{{baseUrl}}"],
+              "path": ["bulk", "iban"],
+              "query": [
+                { "key": "count", "value": "10" },
+                { "key": "locale", "value": "DE" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Bulk Card Numbers × 50",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/bulk/cardnum?count=50&locale=TR",
+              "host": ["{{baseUrl}}"],
+              "path": ["bulk", "cardnum"],
+              "query": [
+                { "key": "count", "value": "50" },
+                { "key": "locale", "value": "TR" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Bulk Email × 100",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/bulk/email?count=100&locale=TR",
+              "host": ["{{baseUrl}}"],
+              "path": ["bulk", "email"],
+              "query": [
+                { "key": "count", "value": "100" },
+                { "key": "locale", "value": "TR" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Bulk UUID × 1000",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/bulk/uuid?count=1000",
+              "host": ["{{baseUrl}}"],
+              "path": ["bulk", "uuid"],
+              "query": [{ "key": "count", "value": "1000" }]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "🧩 Template — Multi-Type Records",
+      "item": [
+        {
+          "name": "KYC Record (TR)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/template", "host": ["{{baseUrl}}"], "path": ["template"] },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"types\": [\"tckn\", \"fullname\", \"birthdate\", \"phone\", \"email\", \"address_full\"],\n  \"count\": 1,\n  \"locale\": \"TR\"\n}"
+            },
+            "description": "Single KYC record: citizen ID + full identity fields."
+          }
+        },
+        {
+          "name": "Financial Transaction Record",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/template", "host": ["{{baseUrl}}"], "path": ["template"] },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"types\": [\"iban\", \"cardnum\", \"swift\", \"balance\", \"uuid\", \"timestamp\"],\n  \"count\": 5,\n  \"locale\": \"TR\"\n}"
+            },
+            "description": "5 financial transaction records."
+          }
+        },
+        {
+          "name": "E-Commerce Order Record",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/template", "host": ["{{baseUrl}}"], "path": ["template"] },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"types\": [\"order_id\", \"fullname\", \"email\", \"phone\", \"address_full\", \"cardnum\", \"tracking_number\"],\n  \"count\": 3,\n  \"locale\": \"TR\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Health Record (TR)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/template", "host": ["{{baseUrl}}"], "path": ["template"] },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"types\": [\"tckn\", \"fullname\", \"birthdate\", \"blood_type\", \"bmi\", \"height\", \"weight\", \"nhs_number\"],\n  \"count\": 1,\n  \"locale\": \"TR\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Corporate Record (DE)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/template", "host": ["{{baseUrl}}"], "path": ["template"] },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"types\": [\"company_name\", \"vat_number\", \"iban\", \"bic\", \"email\", \"phone\"],\n  \"count\": 5,\n  \"locale\": \"DE\"\n}"
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "👤 Profile & Company",
+      "item": [
+        {
+          "name": "Full Profile — TR",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/profile?locale=TR&count=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["profile"],
+              "query": [
+                { "key": "locale", "value": "TR" },
+                { "key": "count", "value": "1" }
+              ]
+            },
+            "description": "Complete person profile: name, TCKN, email, phone, address, birthdate, card — all in one call."
+          }
+        },
+        {
+          "name": "Full Profile — DE",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/profile?locale=DE&count=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["profile"],
+              "query": [
+                { "key": "locale", "value": "DE" },
+                { "key": "count", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Full Profile — US",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/profile?locale=US&count=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["profile"],
+              "query": [
+                { "key": "locale", "value": "US" },
+                { "key": "count", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Bulk Profiles × 10 (TR)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/profile?locale=TR&count=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["profile"],
+              "query": [
+                { "key": "locale", "value": "TR" },
+                { "key": "count", "value": "10" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Company — TR",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/company?locale=TR&count=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["company"],
+              "query": [
+                { "key": "locale", "value": "TR" },
+                { "key": "count", "value": "1" }
+              ]
+            },
+            "description": "Full company record: name, VKN, address, IBAN, SWIFT, email, phone."
+          }
+        },
+        {
+          "name": "Company — DE",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/company?locale=DE&count=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["company"],
+              "query": [
+                { "key": "locale", "value": "DE" },
+                { "key": "count", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Bulk Companies × 5 (TR)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/company?locale=TR&count=5",
+              "host": ["{{baseUrl}}"],
+              "path": ["company"],
+              "query": [
+                { "key": "locale", "value": "TR" },
+                { "key": "count", "value": "5" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "📤 Export — Bulk Dataset",
+      "item": [
+        {
+          "name": "Export JSON — Customer Table × 10",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/export", "host": ["{{baseUrl}}"], "path": ["export"] },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schema_map\": {\n    \"citizen_id\": \"tckn\",\n    \"full_name\":   \"fullname\",\n    \"email\":       \"email\",\n    \"phone\":       \"phone\",\n    \"iban\":        \"iban\",\n    \"card_number\": \"cardnum\"\n  },\n  \"count\": 10,\n  \"locale\": \"TR\",\n  \"format\": \"json\",\n  \"table\": \"customers\"\n}"
+            },
+            "description": "Export 10 customer records as JSON array."
+          }
+        },
+        {
+          "name": "Export CSV — Transaction Table × 50",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/export", "host": ["{{baseUrl}}"], "path": ["export"] },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schema_map\": {\n    \"transaction_id\": \"uuid\",\n    \"iban\":           \"iban\",\n    \"amount\":         \"balance\",\n    \"swift\":          \"swift\",\n    \"timestamp\":      \"timestamp\"\n  },\n  \"count\": 50,\n  \"locale\": \"TR\",\n  \"format\": \"csv\",\n  \"table\": \"transactions\"\n}"
+            },
+            "description": "Export 50 transaction records as CSV."
+          }
+        },
+        {
+          "name": "Export SQL — User Table × 100",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "{{baseUrl}}/export", "host": ["{{baseUrl}}"], "path": ["export"] },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schema_map\": {\n    \"id\":         \"uuid\",\n    \"username\":   \"username\",\n    \"email\":      \"email\",\n    \"phone\":      \"phone\",\n    \"created_at\": \"timestamp\"\n  },\n  \"count\": 100,\n  \"locale\": \"TR\",\n  \"format\": \"sql\",\n  \"table\": \"users\"\n}"
+            },
+            "description": "Export 100 users as INSERT INTO SQL statements."
+          }
+        }
+      ]
+    }
+
+  ]
+}
