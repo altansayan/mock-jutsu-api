@@ -111,6 +111,18 @@ GET http://localhost:8000/profile?locale=DE&count=3
 # Interactive Swagger UI automatically available at http://localhost:8000/docs
 ```
 
+### 🔧 JMeter Plugin
+
+Use Mock Jutsu types directly inside JMeter test plans as native custom functions — no scripting required.
+
+```
+${__MockJutsu(tckn)}        → 12345678901
+${__MockJutsu(iban,TR)}     → TR123456789012345678901234
+${__MockJutsu(pan)}         → 4532015112830366
+```
+
+→ **[mock-jutsu-jmeter on GitHub](https://github.com/altansayan/mock-jutsu-jmeter)**
+
 ---
 
 ## 💻 Usage
