@@ -309,6 +309,22 @@ Generated data is **entirely synthetic and for development/testing environments 
 
 <br>
 
+---
+
+## 💖 Support Mock Jutsu
+
+Mock Jutsu is **free and open-source**. If it saved you hours of debugging, consider buying me a coffee ☕
+
+> _"Every cup of coffee = one more data type."_ 🥷
+
+| Network | Address |
+|---------|---------|
+| Ξ **Ethereum (ETH)** | `0x8D2fF0a795E3a19D41758Cb9b4451C39D528BbAF` |
+
+_This section will be updated with our sponsors._
+
+---
+
 <div align="center">
   <h3>If mock-jutsu saved you from debugging a "valid-looking but broken" test ID, please leave a ⭐!</h3>
   <p>Released under the <a href="./LICENSE">MIT License</a> • Copyright © 2026 <a href="https://github.com/altansayan">Altan Sezer Ayan — A.S.A</a></p>
