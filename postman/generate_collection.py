@@ -164,9 +164,9 @@ def make_request(name: str, cat: str) -> dict:
     elif clean in ALGORITHM_TYPES:
         params.append({"key": "algorithm", "value": "sha256"})
 
-    # mask variant — add disabled mask param so user can enable easily
+    # mask variant — use collection variable {{mask}} (default false, toggle once for all)
     if clean in MASK_TYPES:
-        params.append({"key": "mask", "value": "true", "disabled": True})
+        params.append({"key": "mask", "value": "{{mask}}"})
 
     return {
         "name": clean,
@@ -359,12 +359,18 @@ collection = {
             "Import one of the environment files (local.json or docker.json), "
             "select it, and run any request.\n\n"
             "Generate folder is organized by category. Each request includes\n"
-            "the correct default parameters for that type. Disabled params\n"
-            "(e.g. mask=true) can be enabled per request."
+            "the correct default parameters for that type.\n\n"
+            "**mask toggle:** Collection variable `mask` defaults to `false`.\n"
+            "Set it to `true` (Edit Collection → Variables) to enable masking\n"
+            "for all supported types at once (PCI DSS · GDPR · KVKK)."
         ),
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     },
-    "variable": [{"key": "baseUrl", "value": "http://localhost:8000", "type": "string"}],
+    "variable": [
+        {"key": "baseUrl", "value": "http://localhost:8000", "type": "string"},
+        {"key": "mask", "value": "false", "type": "string",
+         "description": "Set to true to enable masking for all supported types at once (PCI DSS · GDPR · KVKK)"},
+    ],
     "item": STATIC_FOLDERS,
 }
 
