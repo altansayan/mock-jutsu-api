@@ -1,0 +1,31 @@
+services:
+  mock-jutsu:
+    image: altansezerayan/mock-jutsu:latest
+    # build: .  # local build için uncomment et
+    environment:
+      - WORKERS=4
+      - PORT=8000
+      - FORWARDED_ALLOW_IPS=*   # proxy arkasında gerçek client IP için
+      # - ROOT_PATH=/api        # nginx/caddy sub-path kullanıyorsan uncomment et
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # ── Seçenek A: Direkt kullanım (nginx/caddy YOK) ─────────────────────────
+    ports:
+      - "8000:8000"
+
+    # ── Seçenek B: Proxy arkasında (nginx veya caddy varsa) ──────────────────
+    # ports bloğunu sil, aşağıdaki expose + networks bloğunu aç:
+    #
+    # expose:
+    #   - "8000"
+    # networks:
+    #   - proxy_network
+
+# networks:
+#   proxy_network:
+#     external: true   # nginx/caddy ile paylaşılan harici Docker network
