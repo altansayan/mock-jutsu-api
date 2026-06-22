@@ -3,10 +3,9 @@ services:
     image: altansezerayan/mock-jutsu:latest
     # build: .  # local build için uncomment et
     environment:
-      - WORKERS=4
-      - PORT=8000
-      - FORWARDED_ALLOW_IPS=*   # proxy arkasında gerçek client IP için
-      # - ROOT_PATH=/api        # nginx/caddy sub-path kullanıyorsan uncomment et
+      - GRANIAN_WORKERS=4
+      - GRANIAN_PORT=8000
+      # - GRANIAN_URL_PATH_PREFIX=/api   # nginx/caddy sub-path kullanıyorsan uncomment et
     restart: unless-stopped
     logging:
       driver: "json-file"
