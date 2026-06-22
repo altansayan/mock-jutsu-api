@@ -80,6 +80,9 @@ Requires **Python 3.9+**.
 # Standard Installation
 pip install mockjutsu
 
+# Isolated CLI Installation (recommended for macOS/Linux)
+pipx install mockjutsu
+
 # For Developers (Editable Mode)
 git clone https://github.com/altansayan/mock-jutsu-api.git
 cd mock-jutsu-api
