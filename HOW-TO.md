@@ -1,7 +1,16 @@
 ﻿# mock-jutsu — Kullanım Kılavuzu (How-To)
 
-> **mock-jutsu** — 6 locale (TR/US/UK/DE/FR/RU), 251 parametre tipi, yasal algoritmalarla mock veri üretimi.
+> **mock-jutsu** — 6 locale (TR/US/UK/DE/FR/RU), 390 parametre tipi, yasal algoritmalarla mock veri üretimi.
 > Developer: Altan Sezer Ayan - A.S.A · [github.com/altansayan](https://github.com/altansayan)
+
+## Ekosistem
+
+| Araç | Açıklama | Link |
+|------|----------|------|
+| **Python SDK & API** | PyPI paketi + FastAPI REST API | [github.com/altansayan/mock-jutsu-api](https://github.com/altansayan/mock-jutsu-api) |
+| **Docker Hub** | Tek komutla çalışan REST API (`docker run`) | [hub.docker.com/r/altansezerayan/mock-jutsu](https://hub.docker.com/r/altansezerayan/mock-jutsu) |
+| **JMeter Plugin** | JMeter fonksiyonları — `${__mockjutsu_financial(cardnum:visa\|TR)}` | [github.com/altansayan/mock-jutsu-jmeter](https://github.com/altansayan/mock-jutsu-jmeter) |
+| **Postman Collection** | 390 hazır request, 49 kategori klasörü | [.postman/collections/](https://github.com/altansayan/mock-jutsu-api/tree/main/.postman/collections) |
 
 ---
 
