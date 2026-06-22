@@ -254,7 +254,7 @@ _REFERENCE = [
     ('--PenTest--'    , ''             , False, ''                           , ''                              , '', ''),
     ('jwt_attack'     , 'PenTest'      , False, '{"token":"eyJ...","attack_type":"none_alg","description":"..."}', 'generate jwt_attack', 'Crafted JWT attack payloads: none_alg (CVE bypass), expired, invalid_signature (bit-flip), alg_confusion (RS256/HS256), kid_injection (path/SQL), empty_password.', '-'),
     ('asn1_fuzz'      , 'PenTest'      , False, '{"hex":"3008...","fuzz_type":"truncated","length":10}', 'generate asn1_fuzz', 'ASN.1/DER malformed payloads: truncated, overflow_length (long-form 0x82), wrong_tag, nested_mismatch, zero_length, random_bytes.', '-'),
-    ('reverse_regex'   , 'Meta'         , False, 'A4F-2819'               , 'generate reverse_regex'         , 'Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).', '--pattern (regex)'),
+    ('reverse_regex'   , 'Meta'         , False, 'A4F-2819'               , 'generate reverse_regex'         , 'Reverse regex engine: generates a string matching any regex pattern (use --pattern flag).', '--pattern ([A-Z]{3}\\d{4})'),
     ('phone'          , 'Contact'      , True , '+905325551234'         , 'generate phone --locale TR'    , 'Full E.164 formatted telephone number.', '-'),
     ('phone_country'  , 'Contact'      , True , '+90'                   , 'generate phone_country --locale TR', 'International telephone country dial code.', '-'),
     ('phone_area'     , 'Contact'      , True , '532'                   , 'generate phone_area --locale TR', 'Localized telephone area/operator code.', '-'),

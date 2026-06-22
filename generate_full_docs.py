@@ -315,7 +315,7 @@ PARAM_INFO = {
     "--currency":  ("btc|eth",             "Cryptocurrency symbol"),
     "--carrier":   ("fedex|ups|usps|dhl",  "Logistics carrier"),
     "--words":     ("12|15|18|21|24",      "Word count for mnemonic"),
-    "--pattern":   ("regex",               "Regex pattern to generate"),
+    "--pattern":   ("[A-Z]{3}\\d{4}",       "Regex pattern to generate"),
     "--dims":      ("int",                 "Vector dimensions"),
     "--nnz":       ("int",                 "Non-zero entry count for sparse vector (default: 128)"),
     "--format":    ("hex|rgb|hsl|name",    "Color output format (default: hex)"),
