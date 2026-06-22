@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "mockjutsu"
 version = "1.0.0"
-description = "Algorithmic mock data engine — 95+ types, 6 locales, real checksums. TCKN, Luhn, VIN, NHS, EPC, NEC IR, Pronto Hex and more."
+description = "Algorithmic mock data engine — 390+ types, 6 locales, real checksums. TCKN, IBAN, Luhn, VIN, NHS, SWIFT, crypto, MRZ, JMeter plugin and more."
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
@@ -32,14 +32,16 @@ classifiers = [
 requires-python = ">=3.10"
 dependencies = [
     "click>=8.0",
-    "fastapi>=0.100",
-    "uvicorn>=0.20",
-    "httpx>=0.24",
     "pyfiglet>=0.8",
     "rich>=13.0",
 ]
 
 [project.optional-dependencies]
+server = [
+    "fastapi>=0.100",
+    "granian>=1.0",
+    "httpx>=0.24",
+]
 test = [
     "pytest>=7.0",
     "pytest-cov>=4.0",
