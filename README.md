@@ -62,6 +62,8 @@ QA engineers, Data Scientists, and Fintech developers are tired of test data fai
 
 ## ⚙️ Installation
 
+### Python Package
+
 Requires **Python 3.9+**.
 
 ```bash
@@ -73,6 +75,27 @@ git clone https://github.com/altansayan/mock-jutsu-api.git
 cd mock-jutsu-api
 pip install -e .
 ```
+
+### REST API — Docker (Recommended)
+
+Run the full REST API locally with a single command. No Python required.
+
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-altansezerayan%2Fmock--jutsu-2496ED?style=flat&logo=docker&logoColor=white)](https://hub.docker.com/r/altansezerayan/mock-jutsu)
+
+```bash
+# Pull and run (port 8000)
+docker run -p 8000:8000 altansezerayan/mock-jutsu:latest
+
+# With custom worker count
+docker run -p 8000:8000 -e GRANIAN_WORKERS=8 altansezerayan/mock-jutsu:latest
+
+# Run in background
+docker run -d -p 8000:8000 --name mock-jutsu altansezerayan/mock-jutsu:latest
+```
+
+Once running:
+- **Swagger UI:** http://localhost:8000/docs
+- **API:** http://localhost:8000/generate/{type}
 
 ---
 
