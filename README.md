@@ -97,6 +97,20 @@ Once running:
 - **Swagger UI:** http://localhost:8000/docs
 - **API:** http://localhost:8000/generate/{type}
 
+### 🌐 REST API — Built-in CLI (Local, Optional)
+
+If you have the Python package installed, you can also spin up the API directly via CLI — no Docker needed.
+
+```bash
+$ mockjutsu start-api --port 8000
+```
+```http
+GET http://localhost:8000/generate/cardnum?network=visa
+GET http://localhost:8000/profile?locale=DE&count=3
+
+# Interactive Swagger UI automatically available at http://localhost:8000/docs
+```
+
 ---
 
 ## 💻 Usage
@@ -149,20 +163,6 @@ $ mockjutsu template uuid fullname crypto_address --count 100 --format csv > use
 
 # Generate SQL seed files and save to a text file
 $ mockjutsu template uuid fullname crypto_address --count 500 --format sql --table USERS > data.txt
-```
-
-### 🌐 3. Built-in REST API
-
-Spin up a local endpoint to serve mock data to your frontend, mobile app, or test frameworks.
-
-```bash
-$ mockjutsu start-api --port 8000
-```
-```http
-GET http://localhost:8000/generate/cardnum?network=visa
-GET http://localhost:8000/profile?locale=DE&count=3
-
-# Interactive Swagger UI automatically available at http://localhost:8000/docs
 ```
 
 ### 🧱 4. Template Generation via CLI
