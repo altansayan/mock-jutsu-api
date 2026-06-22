@@ -57,13 +57,7 @@ QA engineers, Data Scientists, and Fintech developers are tired of test data fai
 | **Built-in REST API** | ✅ 1 command (`mockjutsu start-api`) | ❌ Requires custom wrapper |
 | **Reverse Regex Generation** | ✅ Pattern → valid string (stdlib only) | ❌ None |
 | **External Dependencies** | ✅ **Zero** (Pure Python) | ❌ Relies on external files |
-| **Regulation-Tagged Types** | ✅ 12 Regulations (PCI DSS, GDPR, KVKK, HIPAA, GLBA, UK GDPR, LGPD, PDPA, PIPL, PSD2, BSA, FATF) | ❌ None |
-| **Masking (PCI DSS v4.0.1)** | ✅ PAN `****-****-****-3456`, CVV `***`, Track `***` | ❌ None |
-| **Masking (GDPR / UK GDPR)** | ✅ Email `al***@mail.com`, IBAN `TR**...**12`, Name `A*** S***` | ❌ None |
-| **Masking (KVKK — Turkey)** | ✅ TCKN `12*******56`, Phone `+90 5** *** ** 34` | ❌ None |
-| **Masking (HIPAA — US)** | ✅ SSN `***-**-6789`, DOB `****-**-15`, NPI `******1234` | ❌ None |
-| **Masking (GLBA — US)** | ✅ Account `****4321`, Routing `*****678`, Sort Code `**-**-**` | ❌ None |
-| **Masking (FATF Rec. 16)** | ✅ Crypto address `0x1a2b...cd3e` (Travel Rule) | ❌ None |
+| **Regulation-Aware Masking** | ✅ PCI DSS · GDPR · KVKK · HIPAA · GLBA · UK GDPR · LGPD · PDPA · PIPL · PSD2 · BSA · FATF | ❌ None |
 
 ---
 
