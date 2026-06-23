@@ -315,6 +315,12 @@ Generated data is **entirely synthetic and for development/testing environments 
 
 ---
 
+## ⭐ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=altansayan/mock-jutsu-api&type=Date)](https://star-history.com/#altansayan/mock-jutsu-api&Date)
+
+---
+
 ## 💖 Support Mock Jutsu
 
 Mock Jutsu is **free and open-source**. If it saved you hours of debugging, consider buying me a coffee ☕
