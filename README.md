@@ -315,17 +315,28 @@ Generated data is **entirely synthetic and for development/testing environments 
 
 ---
 
+<div align="center">
+
 ## 💖 Support Mock Jutsu
 
 Mock Jutsu is **free and open-source**. If it saved you hours of debugging, consider buying me a coffee ☕
 
-> _"Every cup of coffee = one more data type."_ 🥷
+<br>
 
-| Network | Address |
-|---------|---------|
-| Ξ **Ethereum (ETH)** | `0x8D2fF0a795E3a19D41758Cb9b4451C39D528BbAF` |
+<i>"Every cup of coffee = one more data type." 🥷</i>
 
-_This section will be updated with our sponsors._
+<br>
+
+<table>
+<tr><th>Network</th><th>Address</th></tr>
+<tr><td>Ξ <b>Ethereum (ETH)</b></td><td><code>0x8D2fF0a795E3a19D41758Cb9b4451C39D528BbAF</code></td></tr>
+</table>
+
+<br>
+
+<i>This section will be updated with our sponsors.</i>
+
+</div>
 
 ---
 
