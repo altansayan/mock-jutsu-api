@@ -73,7 +73,7 @@ QA engineers, Data Scientists, and Fintech developers are tired of test data fai
 
 ## 🎬 See It In Action
 
-https://github.com/user-attachments/assets/121f219d-aa0f-409d-813a-91b0f9013f4c
+[![Mock Jutsu Demo](https://img.youtube.com/vi/wIyJ9Gbc34E/maxresdefault.jpg)](https://www.youtube.com/shorts/wIyJ9Gbc34E)
 
 ---
 
