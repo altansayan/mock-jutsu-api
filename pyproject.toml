@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mockjutsu"
-version = "1.0.0"
+version = "1.1.1"
 description = "Algorithmic mock data engine — 390+ types, 6 locales, real checksums. TCKN, IBAN, Luhn, VIN, NHS, SWIFT, crypto, MRZ, JMeter plugin and more."
 readme = "README.md"
 license = {text = "MIT"}
@@ -12,15 +12,26 @@ authors = [
     {name = "Altan Sezer Ayan", email = "altansezerayan@gmail.com"}
 ]
 keywords = [
-    "mock", "fake", "data", "testing", "fintech", "faker",
-    "tckn", "iban", "luhn", "vin", "nhs", "rfid", "nfc", "epc", "ndef", "apdu",
-    "ir", "nec", "pronto", "rc5", "locale"
+    "mock", "fake", "data", "testing", "test-data", "synthetic", "faker",
+    "checksum", "fintech", "banking", "data-generation", "national-id",
+    "tckn", "iban", "luhn", "vin", "nhs", "swift", "mrz",
+    "cpf", "pesel", "bsn", "ssn", "dni",
+    "jmeter", "load-testing", "performance-testing",
+    "rest-api", "cli", "qa", "qa-automation"
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Financial and Insurance Industry",
     "Topic :: Software Development :: Testing",
     "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Security",
+    "Topic :: Security :: Cryptography",
+    "Environment :: Console",
+    "Environment :: Web Environment",
+    "Typing :: Typed",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
@@ -68,9 +79,11 @@ validation = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/altansayan/mock-jutsu-api"
+Homepage = "https://altansayan.github.io/mock-jutsu-api/"
 Repository = "https://github.com/altansayan/mock-jutsu-api"
+Documentation = "https://altansayan.github.io/mock-jutsu-api/"
 "Bug Tracker" = "https://github.com/altansayan/mock-jutsu-api/issues"
+Changelog = "https://github.com/altansayan/mock-jutsu-api/blob/main/CHANGELOG.md"
 
 [project.scripts]
 mockjutsu = "mockjutsu.cli:main"
