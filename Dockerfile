@@ -7,7 +7,8 @@ WORKDIR /app
 COPY pyproject.toml setup.py ./
 COPY src/ ./src/
 
-RUN pip install --no-cache-dir . granian
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir . granian
 
 # ── Stage 2: Runtime ──────────────────────────────────────────────────────────
 FROM python:3.12-slim AS runtime
