@@ -271,7 +271,67 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
-  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val"><?xml...camt.053...</code></div></div>
+  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BkToCstmrStmt>
+    <GrpHdr>
+      <MsgId>MOCK202606287157</MsgId>
+      <CreDtTm>2026-06-28T02:22:03</CreDtTm>
+      <MsgPgntn><PgNb>1</PgNb><LastPgInd>true</LastPgInd></MsgPgntn>
+    </GrpHdr>
+    <Stmt>
+      <Id>STMT49995</Id>
+      <CreDtTm>2026-06-28T02:22:03</CreDtTm>
+      <FrToDt>
+        <FrDtTm>2026-06-22T00:00:00</FrDtTm>
+        <ToDtTm>2026-06-23T23:59:59</ToDtTm>
+      </FrToDt>
+      <Acct>
+        <Id><IBAN>GB48UBUN85801395857525</IBAN></Id>
+        <Ccy>GBP</Ccy>
+      </Acct>
+      <Bal>
+        <Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp>
+        <Amt Ccy="GBP">14087.82</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt><Dt>2026-06-22</Dt></Dt>
+      </Bal>
+      <Ntry>
+        <Amt Ccy="GBP">2193.35</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-22</Dt></BookgDt>
+        <ValDt><Dt>2026-06-22</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>GST5T320</EndToEndId></Refs><RmtInf><Ustrd>UTILITY BILL</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="GBP">1385.65</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-23</Dt></BookgDt>
+        <ValDt><Dt>2026-06-23</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>2XODZXLZ</EndToEndId></Refs><RmtInf><Ustrd>UTILITY BILL</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="GBP">2033.89</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-23</Dt></BookgDt>
+        <ValDt><Dt>2026-06-23</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>4CQLBB34</EndToEndId></Refs><RmtInf><Ustrd>ATM WITHDRAWAL</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Bal>
+        <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>
+        <Amt Ccy="GBP">12861.63</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt><Dt>2026-06-23</Dt></Dt>
+      </Bal>
+    </Stmt>
+  </BkToCstmrStmt>
+</Document></code></div></div>
   <div class="validation-section"><h2>Validation Rules</h2><ul class="validation-list"><li>Generated following real format specifications</li><li>All values are fully synthetic</li><li>For development, testing, and demonstration only</li></ul></div>
   <div class="related">
   <h2>Related Functions</h2>

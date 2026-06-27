@@ -257,7 +257,53 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
-  <div class="examples-section"><h2>Beispielausgaben</h2><div class="examples-grid"><code class="example-val"><?xml...pain.001.001.03...GrpHdr...PmtInf...></code></div></div>
+  <div class="examples-section"><h2>Beispielausgaben</h2><div class="examples-grid"><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.09">
+  <CstmrCdtTrfInitn>
+    <GrpHdr>
+      <MsgId>MOCKJ-PAIN-0A753E6B</MsgId>
+      <CreDtTm>2026-06-27T23:22:04</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <CtrlSum>37568.69</CtrlSum>
+      <InitgPty>
+        <Nm>MOCKJ CORP 32</Nm>
+      </InitgPty>
+    </GrpHdr>
+    <PmtInf>
+      <PmtInfId>MOCKJ-PMT-5544B6A7</PmtInfId>
+      <PmtMtd>TRF</PmtMtd>
+      <PmtTpInf>
+        <SvcLvl><Cd>SEPA</Cd></SvcLvl>
+      </PmtTpInf>
+      <ReqdExctnDt><Dt>2026-06-28</Dt></ReqdExctnDt>
+      <Dbtr>
+        <Nm>MOCKJ DEBTOR 675</Nm>
+      </Dbtr>
+      <DbtrAcct>
+        <Id><IBAN>IT7037762028250797867953300</IBAN></Id>
+      </DbtrAcct>
+      <DbtrAgt>
+        <FinInstnId><BICFI>MOCKGB01</BICFI></FinInstnId>
+      </DbtrAgt>
+      <ChrgBr>SLEV</ChrgBr>
+      <CdtTrfTxInf>
+        <PmtId>
+          <EndToEndId>MOCKJ-E2E-7196BEE1</EndToEndId>
+        </PmtId>
+        <Amt>
+          <InstdAmt Ccy="EUR">37568.69</InstdAmt>
+        </Amt>
+        <CdtrAgt>
+          <FinInstnId><BICFI>MOCKFR01</BICFI></FinInstnId>
+        </CdtrAgt>
+        <Cdtr><Nm>MOCKJ BENE 473</Nm></Cdtr>
+        <CdtrAcct>
+          <Id><IBAN>NL7541997206960225</IBAN></Id>
+        </CdtrAcct>
+      </CdtTrfTxInf>
+    </PmtInf>
+  </CstmrCdtTrfInitn>
+</Document></code></div></div>
   <div class="validation-section"><h2>Validierungsregeln</h2><ul class="validation-list"><li>Von Mock Jutsu gemäß echten Formatspezifikationen generiert</li><li>Alle produzierten Werte sind vollständig synthetisch</li><li>Für Entwicklungs-, Test- und Demoumgebungen</li></ul></div>
   <div class="related">
   <h2>Verwandte Funktionen</h2>

@@ -271,7 +271,67 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
-  <div class="examples-section"><h2>Exemples de sortie</h2><div class="examples-grid"><code class="example-val"><?xml...camt.053...</code></div></div>
+  <div class="examples-section"><h2>Exemples de sortie</h2><div class="examples-grid"><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BkToCstmrStmt>
+    <GrpHdr>
+      <MsgId>MOCK202606287515</MsgId>
+      <CreDtTm>2026-06-28T02:22:04</CreDtTm>
+      <MsgPgntn><PgNb>1</PgNb><LastPgInd>true</LastPgInd></MsgPgntn>
+    </GrpHdr>
+    <Stmt>
+      <Id>STMT79026</Id>
+      <CreDtTm>2026-06-28T02:22:04</CreDtTm>
+      <FrToDt>
+        <FrDtTm>2026-06-25T00:00:00</FrDtTm>
+        <ToDtTm>2026-06-25T23:59:59</ToDtTm>
+      </FrToDt>
+      <Acct>
+        <Id><IBAN>FR2125087422773256357204053</IBAN></Id>
+        <Ccy>EUR</Ccy>
+      </Acct>
+      <Bal>
+        <Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp>
+        <Amt Ccy="EUR">17597.19</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt><Dt>2026-06-25</Dt></Dt>
+      </Bal>
+      <Ntry>
+        <Amt Ccy="EUR">4600.67</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-25</Dt></BookgDt>
+        <ValDt><Dt>2026-06-25</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>JT4N2C8W</EndToEndId></Refs><RmtInf><Ustrd>ATM WITHDRAWAL</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="EUR">3161.53</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-25</Dt></BookgDt>
+        <ValDt><Dt>2026-06-25</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>L65F21H8</EndToEndId></Refs><RmtInf><Ustrd>STANDING ORDER</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="EUR">3406.96</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-25</Dt></BookgDt>
+        <ValDt><Dt>2026-06-25</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>PIVSQBHD</EndToEndId></Refs><RmtInf><Ustrd>LOAN REPAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Bal>
+        <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>
+        <Amt Ccy="EUR">12751.09</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt><Dt>2026-06-25</Dt></Dt>
+      </Bal>
+    </Stmt>
+  </BkToCstmrStmt>
+</Document></code></div></div>
   <div class="validation-section"><h2>Règles de validation</h2><ul class="validation-list"><li>Généré par Mock Jutsu selon les vraies spécifications de format</li><li>Toutes les valeurs produites sont synthétiques</li><li>Pour les environnements de développement, de test et de démonstration</li></ul></div>
   <div class="related">
   <h2>Fonctions associées</h2>

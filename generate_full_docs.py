@@ -33,6 +33,14 @@ if os.path.exists(_DESC_FILE):
     with open(_DESC_FILE, encoding="utf-8") as _f:
         _DESCRIPTIONS = json.load(_f)
 
+# Per-lang example cache — ensures identical output on every generator run
+_EXAMPLES_CACHE_FILE = os.path.join(BASE_DIR, "HOW-TO", "content", "examples_cache.json")
+_EXAMPLES_CACHE: dict = {}
+if os.path.exists(_EXAMPLES_CACHE_FILE):
+    with open(_EXAMPLES_CACHE_FILE, encoding="utf-8") as _f:
+        _EXAMPLES_CACHE = json.load(_f)
+_EXAMPLES_CACHE_DIRTY = False
+
 
 def get_desc(fn: str, lang: str, fallback: str) -> str:
     return _DESCRIPTIONS.get(fn, {}).get(lang, fallback)
@@ -1054,23 +1062,25 @@ _GENERIC_VALIDATION: dict[str, list[str]] = {
 }
 
 
-def _gen_live_examples(fn: str, locale_aware: bool, lang: str, count: int = 5) -> list[str]:
-    """Call jutsu.generate() and return a list of real example output strings."""
+def _gen_live_examples(fn: str, locale_aware: bool, lang: str, count: int = 1) -> list[str]:
+    """Return per-lang example(s). Cache ensures identical output on every run."""
+    global _EXAMPLES_CACHE_DIRTY
+    cache_key = f"{fn}__{lang}"
+    if cache_key in _EXAMPLES_CACHE:
+        return [_EXAMPLES_CACHE[cache_key]]
+    import random
     try:
         from mockjutsu.cli import jutsu as _jt
         locale_map = {"TR": "TR", "EN": "US", "UK": "UK", "DE": "DE", "FR": "FR", "RU": "RU"}
         kwargs: dict = {}
         if locale_aware:
             kwargs["locale"] = locale_map.get(lang, "TR")
-        results = []
-        for _ in range(count):
-            try:
-                val = _jt.generate(fn, **kwargs)
-                results.append(str(val))
-            except Exception:
-                pass
-        return results
-    except ImportError:
+        random.seed(hash(fn + lang) & 0x7FFFFFFF)
+        val = _jt.generate(fn, **kwargs)
+        _EXAMPLES_CACHE[cache_key] = str(val)
+        _EXAMPLES_CACHE_DIRTY = True
+        return [str(val)]
+    except Exception:
         return []
 
 
@@ -1622,14 +1632,16 @@ def build_detail_page(r: tuple, lang: str) -> str:
         cat_badge    = f'<span class="badge-cat">{cat}</span>'
     listing_back = listing_url(lang)
 
-    # Static example from function registry (deterministic — no random calls)
+    # Deterministic per-lang example: same fn+lang always gives same value
     examples_html = ""
     if cat != "Commands" and example:
+        live = _gen_live_examples(fn, locale_aware, lang, count=1)
+        display_example = live[0] if live else example
         examples_html = (
             f'<div class="examples-section">'
             f'<h2>{_SECTION_LABELS["examples"].get(lang, "Example Output")}</h2>'
             f'<div class="examples-grid">'
-            f'<code class="example-val">{example}</code>'
+            f'<code class="example-val">{display_example}</code>'
             f'</div>'
             f'</div>'
         )
@@ -2474,6 +2486,13 @@ def main():
         )
         generate_security_txt(BASE_DIR)
         generate_manifest(BASE_DIR)
+
+    # Persist example cache if new entries were added this run
+    if _EXAMPLES_CACHE_DIRTY:
+        os.makedirs(os.path.dirname(_EXAMPLES_CACHE_FILE), exist_ok=True)
+        with open(_EXAMPLES_CACHE_FILE, "w", encoding="utf-8") as _cf:
+            json.dump(_EXAMPLES_CACHE, _cf, ensure_ascii=False, indent=2)
+        print(f"examples_cache.json: {len(_EXAMPLES_CACHE)} entries saved")
 
 
 if __name__ == "__main__":

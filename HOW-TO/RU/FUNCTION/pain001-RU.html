@@ -257,7 +257,53 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
-  <div class="examples-section"><h2>Примеры вывода</h2><div class="examples-grid"><code class="example-val"><?xml...pain.001.001.03...GrpHdr...PmtInf...></code></div></div>
+  <div class="examples-section"><h2>Примеры вывода</h2><div class="examples-grid"><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.09">
+  <CstmrCdtTrfInitn>
+    <GrpHdr>
+      <MsgId>MOCKJ-PAIN-F3294625</MsgId>
+      <CreDtTm>2026-06-27T23:22:04</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <CtrlSum>52948.74</CtrlSum>
+      <InitgPty>
+        <Nm>MOCKJ CORP 64</Nm>
+      </InitgPty>
+    </GrpHdr>
+    <PmtInf>
+      <PmtInfId>MOCKJ-PMT-59D96EBF</PmtInfId>
+      <PmtMtd>TRF</PmtMtd>
+      <PmtTpInf>
+        <SvcLvl><Cd>SEPA</Cd></SvcLvl>
+      </PmtTpInf>
+      <ReqdExctnDt><Dt>2026-06-28</Dt></ReqdExctnDt>
+      <Dbtr>
+        <Nm>MOCKJ DEBTOR 318</Nm>
+      </Dbtr>
+      <DbtrAcct>
+        <Id><IBAN>GB47367345415544593508</IBAN></Id>
+      </DbtrAcct>
+      <DbtrAgt>
+        <FinInstnId><BICFI>MOCKFR02</BICFI></FinInstnId>
+      </DbtrAgt>
+      <ChrgBr>SLEV</ChrgBr>
+      <CdtTrfTxInf>
+        <PmtId>
+          <EndToEndId>MOCKJ-E2E-2C163707</EndToEndId>
+        </PmtId>
+        <Amt>
+          <InstdAmt Ccy="EUR">52948.74</InstdAmt>
+        </Amt>
+        <CdtrAgt>
+          <FinInstnId><BICFI>MOCKAT01</BICFI></FinInstnId>
+        </CdtrAgt>
+        <Cdtr><Nm>MOCKJ BENE 835</Nm></Cdtr>
+        <CdtrAcct>
+          <Id><IBAN>AT695837048840960410</IBAN></Id>
+        </CdtrAcct>
+      </CdtTrfTxInf>
+    </PmtInf>
+  </CstmrCdtTrfInitn>
+</Document></code></div></div>
   <div class="validation-section"><h2>Правила валидации</h2><ul class="validation-list"><li>Генерируется Mock Jutsu по реальным форматным спецификациям</li><li>Все значения полностью синтетические</li><li>Для разработки, тестирования и демонстрации</li></ul></div>
   <div class="related">
   <h2>Похожие функции</h2>

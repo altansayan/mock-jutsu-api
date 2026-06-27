@@ -257,7 +257,63 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
-  <div class="examples-section"><h2>Örnek Çıktılar</h2><div class="examples-grid"><code class="example-val">MandateRef:...CreditorID:DE98ZZZ...SequenceType:RCUR</code></div></div>
+  <div class="examples-section"><h2>Örnek Çıktılar</h2><div class="examples-grid"><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.008.001.08">
+  <CstmrDrctDbtInitn>
+    <GrpHdr>
+      <MsgId>MOCKJ-SDD-C81FBCBA</MsgId>
+      <CreDtTm>2026-06-27T23:22:03</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <InitgPty>
+        <Nm>MOCKJ CORP 42</Nm>
+      </InitgPty>
+    </GrpHdr>
+    <PmtInf>
+      <PmtInfId>MOCKJ-SDD-PMT-04A9E1AE</PmtInfId>
+      <PmtMtd>DD</PmtMtd>
+      <NbOfTxs>1</NbOfTxs>
+      <PmtTpInf>
+        <SvcLvl><Cd>SEPA</Cd></SvcLvl>
+        <LclInstrm><Cd>CORE</Cd></LclInstrm>
+        <SeqTp>FNAL</SeqTp>
+      </PmtTpInf>
+      <ReqdColltnDt>2026-07-02</ReqdColltnDt>
+      <Cdtr>
+        <Nm>MOCKJ CREDITOR 643</Nm>
+      </Cdtr>
+      <CdtrAcct>
+        <Id><IBAN>NL4292194542568420</IBAN></Id>
+      </CdtrAcct>
+      <CdtrAgt>
+        <FinInstnId><BICFI>MOCKDE01</BICFI></FinInstnId>
+      </CdtrAgt>
+      <CdtrSchmeId>
+        <Id><PrvtId><Othr><Id>NL96VUOJFOLLZO</Id><SchmeNm><Prtry>SEPA</Prtry></SchmeNm></Othr></PrvtId></Id>
+      </CdtrSchmeId>
+      <DrctDbtTxInf>
+        <PmtId>
+          <EndToEndId>MOCKJ-E2E-DAABE40E</EndToEndId>
+        </PmtId>
+        <InstdAmt Ccy="EUR">507.77</InstdAmt>
+        <DrctDbtTx>
+          <MndtRltdInf>
+            <MndtId>UMR-MOCKJ-1E11F1A4</MndtId>
+            <DtOfSgntr>2026-06-27</DtOfSgntr>
+          </MndtRltdInf>
+        </DrctDbtTx>
+        <DbtrAgt>
+          <FinInstnId><BICFI>MOCKDE02</BICFI></FinInstnId>
+        </DbtrAgt>
+        <Dbtr>
+          <Nm>MOCKJ DEBTOR 110</Nm>
+        </Dbtr>
+        <DbtrAcct>
+          <Id><IBAN>NL8659818682494424</IBAN></Id>
+        </DbtrAcct>
+      </DrctDbtTxInf>
+    </PmtInf>
+  </CstmrDrctDbtInitn>
+</Document></code></div></div>
   <div class="validation-section"><h2>Doğrulama Kuralları</h2><ul class="validation-list"><li>Mock Jutsu tarafından gerçek format kurallarına uygun üretilir</li><li>Üretilen değerler tamamen sentetiktir</li><li>Geliştirme, test ve demo ortamları için tasarlanmıştır</li></ul></div>
   <div class="related">
   <h2>İlgili Fonksiyonlar</h2>

@@ -273,7 +273,58 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
-  <div class="examples-section"><h2>Примеры вывода</h2><div class="examples-grid"><code class="example-val"><?xml...camt.053...</code></div></div>
+  <div class="examples-section"><h2>Примеры вывода</h2><div class="examples-grid"><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BkToCstmrStmt>
+    <GrpHdr>
+      <MsgId>MOCK202606281039</MsgId>
+      <CreDtTm>2026-06-28T02:22:04</CreDtTm>
+      <MsgPgntn><PgNb>1</PgNb><LastPgInd>true</LastPgInd></MsgPgntn>
+    </GrpHdr>
+    <Stmt>
+      <Id>STMT14821</Id>
+      <CreDtTm>2026-06-28T02:22:04</CreDtTm>
+      <FrToDt>
+        <FrDtTm>2026-06-25T00:00:00</FrDtTm>
+        <ToDtTm>2026-06-25T23:59:59</ToDtTm>
+      </FrToDt>
+      <Acct>
+        <Id><IBAN>RU03060782606973138527</IBAN></Id>
+        <Ccy>RUB</Ccy>
+      </Acct>
+      <Bal>
+        <Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp>
+        <Amt Ccy="RUB">41492.17</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt><Dt>2026-06-25</Dt></Dt>
+      </Bal>
+      <Ntry>
+        <Amt Ccy="RUB">2902.74</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-25</Dt></BookgDt>
+        <ValDt><Dt>2026-06-25</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>7W7A2Z5T</EndToEndId></Refs><RmtInf><Ustrd>VENDOR PAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="RUB">2357.48</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-25</Dt></BookgDt>
+        <ValDt><Dt>2026-06-25</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>Y41701GG</EndToEndId></Refs><RmtInf><Ustrd>TRANSFER FROM CUSTOMER</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Bal>
+        <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>
+        <Amt Ccy="RUB">46752.39</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt><Dt>2026-06-25</Dt></Dt>
+      </Bal>
+    </Stmt>
+  </BkToCstmrStmt>
+</Document></code></div></div>
   <div class="validation-section"><h2>Правила валидации</h2><ul class="validation-list"><li>Генерируется Mock Jutsu по реальным форматным спецификациям</li><li>Все значения полностью синтетические</li><li>Для разработки, тестирования и демонстрации</li></ul></div>
   <div class="related">
   <h2>Похожие функции</h2>
