@@ -1186,6 +1186,7 @@ def html_head(title: str, desc: str, canonical: str, lang: str, ui: dict,
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
 <meta name="keywords" content="mock data, fake data, test data, mockjutsu, mock-jutsu{', ' + fn if fn else ''}">
 <link rel="icon" type="image/png" href="https://altansayan.github.io/mock-jutsu-api/assets/favicon.png">
+<link rel="apple-touch-icon" href="https://altansayan.github.io/mock-jutsu-api/assets/favicon.png">
 <link rel="manifest" href="https://altansayan.github.io/mock-jutsu-api/manifest.json">
 <link rel="canonical" href="{canonical}">
 {hreflang_tags(fn)}
