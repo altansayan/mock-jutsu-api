@@ -1144,7 +1144,6 @@ def listing_rel_path(lang: str) -> str:
 
 # ── CSS (shared across all pages) ─────────────────────────────────────────────
 BASE_CSS = """
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e293b;line-height:1.6;-webkit-font-smoothing:antialiased}
 
@@ -1381,6 +1380,11 @@ def html_head(title: str, desc: str, canonical: str, lang: str, ui: dict,
 <meta name="description" content="{desc}">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
 <meta name="keywords" content="mock data, fake data, test data, mockjutsu, mock-jutsu{', ' + fn if fn else ''}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 <link rel="icon" type="image/png" href="https://altansayan.github.io/mock-jutsu-api/assets/favicon.png">
 <link rel="apple-touch-icon" href="https://altansayan.github.io/mock-jutsu-api/assets/favicon.png">
 <link rel="manifest" href="https://altansayan.github.io/mock-jutsu-api/manifest.json">
