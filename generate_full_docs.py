@@ -1186,6 +1186,7 @@ def html_head(title: str, desc: str, canonical: str, lang: str, ui: dict,
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
 <meta name="keywords" content="mock data, fake data, test data, mockjutsu, mock-jutsu{', ' + fn if fn else ''}">
 <link rel="icon" type="image/png" href="https://altansayan.github.io/mock-jutsu-api/assets/favicon.png">
+<link rel="manifest" href="https://altansayan.github.io/mock-jutsu-api/manifest.json">
 <link rel="canonical" href="{canonical}">
 {hreflang_tags(fn)}
 <meta property="og:type" content="article">
@@ -2130,6 +2131,40 @@ def update_readme(readme_path: str, total: int, cat_counts: dict) -> None:
     print(f"README:  {total} total types, {passed} passed tests — badge updated")
 
 
+def generate_manifest(base_dir: str) -> None:
+    manifest = {
+        "name": "Mock Jutsu",
+        "short_name": "MockJutsu",
+        "description": "Algorithmic mock data engine — 390+ types, 6 locales, real checksums. Zero dependencies.",
+        "start_url": "/mock-jutsu-api/",
+        "scope": "/mock-jutsu-api/",
+        "display": "standalone",
+        "background_color": "#000000",
+        "theme_color": "#3b82f6",
+        "lang": "en",
+        "icons": [
+            {
+                "src": "/mock-jutsu-api/assets/favicon.png",
+                "sizes": "192x192",
+                "type": "image/png",
+                "purpose": "any maskable",
+            }
+        ],
+        "categories": ["developer tools", "utilities"],
+        "shortcuts": [
+            {
+                "name": "HOW-TO (English)",
+                "url": "/mock-jutsu-api/HOW-TO/EN/HOW-TO-MockJutsu-EN.html",
+                "description": "Open the English guide",
+            }
+        ],
+    }
+    path = os.path.join(base_dir, "manifest.json")
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(manifest, f, ensure_ascii=False, indent=2)
+    print("manifest.json: PWA manifest generated")
+
+
 def generate_security_txt(base_dir: str) -> None:
     from datetime import datetime, timezone, timedelta
     expires = (datetime.now(timezone.utc) + timedelta(days=365)).strftime("%Y-%m-%dT00:00:00z")
@@ -2225,6 +2260,7 @@ def main():
             total=len(data_funcs),
         )
         generate_security_txt(BASE_DIR)
+        generate_manifest(BASE_DIR)
 
 
 if __name__ == "__main__":

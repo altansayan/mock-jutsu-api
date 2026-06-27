@@ -1,0 +1,30 @@
+{
+  "name": "Mock Jutsu",
+  "short_name": "MockJutsu",
+  "description": "Algorithmic mock data engine — 390+ types, 6 locales, real checksums. Zero dependencies.",
+  "start_url": "/mock-jutsu-api/",
+  "scope": "/mock-jutsu-api/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#3b82f6",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/mock-jutsu-api/assets/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "developer tools",
+    "utilities"
+  ],
+  "shortcuts": [
+    {
+      "name": "HOW-TO (English)",
+      "url": "/mock-jutsu-api/HOW-TO/EN/HOW-TO-MockJutsu-EN.html",
+      "description": "Open the English guide"
+    }
+  ]
+}
