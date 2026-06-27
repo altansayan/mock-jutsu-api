@@ -1718,7 +1718,7 @@ def build_detail_page(r: tuple, lang: str) -> str:
 <script>
 function copyTerm(id) {{
   const el = document.getElementById(id);
-  const txt = [...el.querySelectorAll('code')].map(c => c.textContent).join('\n');
+  const txt = [...el.querySelectorAll('code')].map(c => c.textContent).join('\\n');
   navigator.clipboard.writeText(txt).then(() => {{
     const btn = el.previousElementSibling.querySelector('.copy-btn');
     btn.textContent = 'copied!';
@@ -2226,7 +2226,7 @@ function showTab(id, el) {
     copy_js = """<script>
 function copyTerm(id) {
   var el = document.getElementById(id);
-  var txt = Array.from(el.querySelectorAll('code')).map(function(c){ return c.textContent; }).join('\n');
+  var txt = Array.from(el.querySelectorAll('code')).map(function(c){ return c.textContent; }).join('\\n');
   navigator.clipboard.writeText(txt).then(function(){
     var btn = el.previousElementSibling.querySelector('.copy-btn');
     btn.textContent = 'copied!';

@@ -302,8 +302,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 <script>
 function copyTerm(id) {
   const el = document.getElementById(id);
-  const txt = [...el.querySelectorAll('code')].map(c => c.textContent).join('
-');
+  const txt = [...el.querySelectorAll('code')].map(c => c.textContent).join('\n');
   navigator.clipboard.writeText(txt).then(() => {
     const btn = el.previousElementSibling.querySelector('.copy-btn');
     btn.textContent = 'copied!';

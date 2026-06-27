@@ -334,8 +334,7 @@ DE056:01007442680628022204MOCKJ456312</code></div></div>
 <script>
 function copyTerm(id) {
   const el = document.getElementById(id);
-  const txt = [...el.querySelectorAll('code')].map(c => c.textContent).join('
-');
+  const txt = [...el.querySelectorAll('code')].map(c => c.textContent).join('\n');
   navigator.clipboard.writeText(txt).then(() => {
     const btn = el.previousElementSibling.querySelector('.copy-btn');
     btn.textContent = 'copied!';

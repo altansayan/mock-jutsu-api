@@ -309,8 +309,7 @@ bb 0d 76 1e 08 00 45 00 00 33 84 ef 40 00 40 06
 <script>
 function copyTerm(id) {
   const el = document.getElementById(id);
-  const txt = [...el.querySelectorAll('code')].map(c => c.textContent).join('
-');
+  const txt = [...el.querySelectorAll('code')].map(c => c.textContent).join('\n');
   navigator.clipboard.writeText(txt).then(() => {
     const btn = el.previousElementSibling.querySelector('.copy-btn');
     btn.textContent = 'copied!';
