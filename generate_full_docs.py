@@ -1622,15 +1622,15 @@ def build_detail_page(r: tuple, lang: str) -> str:
         cat_badge    = f'<span class="badge-cat">{cat}</span>'
     listing_back = listing_url(lang)
 
-    # Live example output (skip for Commands category)
-    _examples = _gen_live_examples(fn, has_locale, lang) if cat != "Commands" else []
+    # Static example from function registry (deterministic — no random calls)
     examples_html = ""
-    if _examples:
-        _items = "".join(f'<code class="example-val">{v}</code>' for v in _examples)
+    if cat != "Commands" and example:
         examples_html = (
             f'<div class="examples-section">'
             f'<h2>{_SECTION_LABELS["examples"].get(lang, "Example Output")}</h2>'
-            f'<div class="examples-grid">{_items}</div>'
+            f'<div class="examples-grid">'
+            f'<code class="example-val">{example}</code>'
+            f'</div>'
             f'</div>'
         )
 
