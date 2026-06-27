@@ -275,66 +275,246 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 <Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <BkToCstmrStmt>
     <GrpHdr>
-      <MsgId>MOCK202606282753</MsgId>
-      <CreDtTm>2026-06-28T01:10:21</CreDtTm>
+      <MsgId>MOCK202606288571</MsgId>
+      <CreDtTm>2026-06-28T01:11:57</CreDtTm>
       <MsgPgntn><PgNb>1</PgNb><LastPgInd>true</LastPgInd></MsgPgntn>
     </GrpHdr>
     <Stmt>
-      <Id>STMT17209</Id>
-      <CreDtTm>2026-06-28T01:10:21</CreDtTm>
+      <Id>STMT99125</Id>
+      <CreDtTm>2026-06-28T01:11:57</CreDtTm>
+      <FrToDt>
+        <FrDtTm>2026-06-21T00:00:00</FrDtTm>
+        <ToDtTm>2026-06-22T23:59:59</ToDtTm>
+      </FrToDt>
+      <Acct>
+        <Id><IBAN>883485109678</IBAN></Id>
+        <Ccy>USD</Ccy>
+      </Acct>
+      <Bal>
+        <Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp>
+        <Amt Ccy="USD">36601.70</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt><Dt>2026-06-21</Dt></Dt>
+      </Bal>
+      <Ntry>
+        <Amt Ccy="USD">3780.64</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-21</Dt></BookgDt>
+        <ValDt><Dt>2026-06-21</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>A3Z6N9EV</EndToEndId></Refs><RmtInf><Ustrd>LOAN REPAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="USD">4001.16</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-22</Dt></BookgDt>
+        <ValDt><Dt>2026-06-22</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>72794T59</EndToEndId></Refs><RmtInf><Ustrd>VENDOR PAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="USD">3025.25</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-22</Dt></BookgDt>
+        <ValDt><Dt>2026-06-22</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>LWABMU4S</EndToEndId></Refs><RmtInf><Ustrd>SALARY PAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Bal>
+        <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>
+        <Amt Ccy="USD">33355.93</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt><Dt>2026-06-22</Dt></Dt>
+      </Bal>
+    </Stmt>
+  </BkToCstmrStmt>
+</Document></code><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BkToCstmrStmt>
+    <GrpHdr>
+      <MsgId>MOCK202606287944</MsgId>
+      <CreDtTm>2026-06-28T01:11:57</CreDtTm>
+      <MsgPgntn><PgNb>1</PgNb><LastPgInd>true</LastPgInd></MsgPgntn>
+    </GrpHdr>
+    <Stmt>
+      <Id>STMT40962</Id>
+      <CreDtTm>2026-06-28T01:11:57</CreDtTm>
+      <FrToDt>
+        <FrDtTm>2026-06-26T00:00:00</FrDtTm>
+        <ToDtTm>2026-06-27T23:59:59</ToDtTm>
+      </FrToDt>
+      <Acct>
+        <Id><IBAN>019811821296</IBAN></Id>
+        <Ccy>USD</Ccy>
+      </Acct>
+      <Bal>
+        <Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp>
+        <Amt Ccy="USD">30940.60</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt><Dt>2026-06-26</Dt></Dt>
+      </Bal>
+      <Ntry>
+        <Amt Ccy="USD">779.51</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-26</Dt></BookgDt>
+        <ValDt><Dt>2026-06-26</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>4TU9J8JU</EndToEndId></Refs><RmtInf><Ustrd>CARD PAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="USD">4471.17</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-27</Dt></BookgDt>
+        <ValDt><Dt>2026-06-27</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>UMNISLEP</EndToEndId></Refs><RmtInf><Ustrd>LOAN REPAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="USD">4146.27</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-27</Dt></BookgDt>
+        <ValDt><Dt>2026-06-27</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>JGA9QPQQ</EndToEndId></Refs><RmtInf><Ustrd>INCOMING WIRE TRANSFER</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="USD">2043.32</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-27</Dt></BookgDt>
+        <ValDt><Dt>2026-06-27</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>4FTAOUJT</EndToEndId></Refs><RmtInf><Ustrd>SALARY PAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Bal>
+        <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>
+        <Amt Ccy="USD">33438.53</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt><Dt>2026-06-27</Dt></Dt>
+      </Bal>
+    </Stmt>
+  </BkToCstmrStmt>
+</Document></code><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BkToCstmrStmt>
+    <GrpHdr>
+      <MsgId>MOCK202606289642</MsgId>
+      <CreDtTm>2026-06-28T01:11:57</CreDtTm>
+      <MsgPgntn><PgNb>1</PgNb><LastPgInd>true</LastPgInd></MsgPgntn>
+    </GrpHdr>
+    <Stmt>
+      <Id>STMT79193</Id>
+      <CreDtTm>2026-06-28T01:11:57</CreDtTm>
+      <FrToDt>
+        <FrDtTm>2026-06-21T00:00:00</FrDtTm>
+        <ToDtTm>2026-06-22T23:59:59</ToDtTm>
+      </FrToDt>
+      <Acct>
+        <Id><IBAN>689015440909</IBAN></Id>
+        <Ccy>USD</Ccy>
+      </Acct>
+      <Bal>
+        <Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp>
+        <Amt Ccy="USD">46274.41</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt><Dt>2026-06-21</Dt></Dt>
+      </Bal>
+      <Ntry>
+        <Amt Ccy="USD">1533.93</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-21</Dt></BookgDt>
+        <ValDt><Dt>2026-06-21</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>L4UBQGSD</EndToEndId></Refs><RmtInf><Ustrd>INCOMING WIRE TRANSFER</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="USD">471.98</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-22</Dt></BookgDt>
+        <ValDt><Dt>2026-06-22</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>1QAHXL42</EndToEndId></Refs><RmtInf><Ustrd>CARD PAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="USD">3927.27</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-22</Dt></BookgDt>
+        <ValDt><Dt>2026-06-22</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>Q8HG2A2T</EndToEndId></Refs><RmtInf><Ustrd>INVOICE SETTLEMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Bal>
+        <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>
+        <Amt Ccy="USD">52207.59</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt><Dt>2026-06-22</Dt></Dt>
+      </Bal>
+    </Stmt>
+  </BkToCstmrStmt>
+</Document></code><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BkToCstmrStmt>
+    <GrpHdr>
+      <MsgId>MOCK202606289045</MsgId>
+      <CreDtTm>2026-06-28T01:11:57</CreDtTm>
+      <MsgPgntn><PgNb>1</PgNb><LastPgInd>true</LastPgInd></MsgPgntn>
+    </GrpHdr>
+    <Stmt>
+      <Id>STMT59632</Id>
+      <CreDtTm>2026-06-28T01:11:57</CreDtTm>
       <FrToDt>
         <FrDtTm>2026-06-23T00:00:00</FrDtTm>
         <ToDtTm>2026-06-23T23:59:59</ToDtTm>
       </FrToDt>
       <Acct>
-        <Id><IBAN>216152743538</IBAN></Id>
+        <Id><IBAN>277892188428</IBAN></Id>
         <Ccy>USD</Ccy>
       </Acct>
       <Bal>
         <Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp>
-        <Amt Ccy="USD">38667.19</Amt>
+        <Amt Ccy="USD">3153.84</Amt>
         <CdtDbtInd>CRDT</CdtDbtInd>
         <Dt><Dt>2026-06-23</Dt></Dt>
       </Bal>
       <Ntry>
-        <Amt Ccy="USD">2964.15</Amt>
-        <CdtDbtInd>DBIT</CdtDbtInd>
-        <Sts><Cd>BOOK</Cd></Sts>
-        <BookgDt><Dt>2026-06-23</Dt></BookgDt>
-        <ValDt><Dt>2026-06-23</Dt></ValDt>
-        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>9CQW7UBT</EndToEndId></Refs><RmtInf><Ustrd>ATM WITHDRAWAL</Ustrd></RmtInf></TxDtls></NtryDtls>
-      </Ntry>
-      <Ntry>
-        <Amt Ccy="USD">1718.37</Amt>
+        <Amt Ccy="USD">2840.40</Amt>
         <CdtDbtInd>CRDT</CdtDbtInd>
         <Sts><Cd>BOOK</Cd></Sts>
         <BookgDt><Dt>2026-06-23</Dt></BookgDt>
         <ValDt><Dt>2026-06-23</Dt></ValDt>
         <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>GTXK91AR</EndToEndId></Refs><RmtInf><Ustrd>INVOICE SETTLEMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
+        <NtryDtls><TxDtls><Refs><EndToEndId>EXNVBZAO</EndToEndId></Refs><RmtInf><Ustrd>LOAN REPAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
       </Ntry>
       <Ntry>
-        <Amt Ccy="USD">1537.43</Amt>
-        <CdtDbtInd>DBIT</CdtDbtInd>
-        <Sts><Cd>BOOK</Cd></Sts>
-        <BookgDt><Dt>2026-06-23</Dt></BookgDt>
-        <ValDt><Dt>2026-06-23</Dt></ValDt>
-        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>DYN561VQ</EndToEndId></Refs><RmtInf><Ustrd>TRANSFER FROM CUSTOMER</Ustrd></RmtInf></TxDtls></NtryDtls>
-      </Ntry>
-      <Ntry>
-        <Amt Ccy="USD">1360.69</Amt>
+        <Amt Ccy="USD">1575.31</Amt>
         <CdtDbtInd>CRDT</CdtDbtInd>
         <Sts><Cd>BOOK</Cd></Sts>
         <BookgDt><Dt>2026-06-23</Dt></BookgDt>
         <ValDt><Dt>2026-06-23</Dt></ValDt>
         <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>1O3CZ5K5</EndToEndId></Refs><RmtInf><Ustrd>TRANSFER FROM CUSTOMER</Ustrd></RmtInf></TxDtls></NtryDtls>
+        <NtryDtls><TxDtls><Refs><EndToEndId>KCQEYOQV</EndToEndId></Refs><RmtInf><Ustrd>INCOMING WIRE TRANSFER</Ustrd></RmtInf></TxDtls></NtryDtls>
+      </Ntry>
+      <Ntry>
+        <Amt Ccy="USD">4321.15</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts><Cd>BOOK</Cd></Sts>
+        <BookgDt><Dt>2026-06-23</Dt></BookgDt>
+        <ValDt><Dt>2026-06-23</Dt></ValDt>
+        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
+        <NtryDtls><TxDtls><Refs><EndToEndId>DE55Q0Y5</EndToEndId></Refs><RmtInf><Ustrd>TRANSFER FROM CUSTOMER</Ustrd></RmtInf></TxDtls></NtryDtls>
       </Ntry>
       <Bal>
         <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>
-        <Amt Ccy="USD">37244.67</Amt>
+        <Amt Ccy="USD">3248.40</Amt>
         <CdtDbtInd>CRDT</CdtDbtInd>
         <Dt><Dt>2026-06-23</Dt></Dt>
       </Bal>
@@ -344,239 +524,50 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 <Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <BkToCstmrStmt>
     <GrpHdr>
-      <MsgId>MOCK202606288830</MsgId>
-      <CreDtTm>2026-06-28T01:10:21</CreDtTm>
+      <MsgId>MOCK202606289799</MsgId>
+      <CreDtTm>2026-06-28T01:11:57</CreDtTm>
       <MsgPgntn><PgNb>1</PgNb><LastPgInd>true</LastPgInd></MsgPgntn>
     </GrpHdr>
     <Stmt>
-      <Id>STMT17616</Id>
-      <CreDtTm>2026-06-28T01:10:21</CreDtTm>
+      <Id>STMT18440</Id>
+      <CreDtTm>2026-06-28T01:11:57</CreDtTm>
       <FrToDt>
         <FrDtTm>2026-06-26T00:00:00</FrDtTm>
         <ToDtTm>2026-06-26T23:59:59</ToDtTm>
       </FrToDt>
       <Acct>
-        <Id><IBAN>332823847246</IBAN></Id>
+        <Id><IBAN>456091861168</IBAN></Id>
         <Ccy>USD</Ccy>
       </Acct>
       <Bal>
         <Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp>
-        <Amt Ccy="USD">11278.27</Amt>
+        <Amt Ccy="USD">42066.47</Amt>
         <CdtDbtInd>CRDT</CdtDbtInd>
         <Dt><Dt>2026-06-26</Dt></Dt>
       </Bal>
       <Ntry>
-        <Amt Ccy="USD">1891.03</Amt>
+        <Amt Ccy="USD">4817.88</Amt>
         <CdtDbtInd>DBIT</CdtDbtInd>
         <Sts><Cd>BOOK</Cd></Sts>
         <BookgDt><Dt>2026-06-26</Dt></BookgDt>
         <ValDt><Dt>2026-06-26</Dt></ValDt>
         <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>06WOR9FM</EndToEndId></Refs><RmtInf><Ustrd>UTILITY BILL</Ustrd></RmtInf></TxDtls></NtryDtls>
+        <NtryDtls><TxDtls><Refs><EndToEndId>7NGBC0Y6</EndToEndId></Refs><RmtInf><Ustrd>TRANSFER FROM CUSTOMER</Ustrd></RmtInf></TxDtls></NtryDtls>
       </Ntry>
       <Ntry>
-        <Amt Ccy="USD">2574.11</Amt>
+        <Amt Ccy="USD">166.13</Amt>
         <CdtDbtInd>CRDT</CdtDbtInd>
         <Sts><Cd>BOOK</Cd></Sts>
         <BookgDt><Dt>2026-06-26</Dt></BookgDt>
         <ValDt><Dt>2026-06-26</Dt></ValDt>
         <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>7TEMEW3L</EndToEndId></Refs><RmtInf><Ustrd>TRANSFER FROM CUSTOMER</Ustrd></RmtInf></TxDtls></NtryDtls>
-      </Ntry>
-      <Ntry>
-        <Amt Ccy="USD">1740.13</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Sts><Cd>BOOK</Cd></Sts>
-        <BookgDt><Dt>2026-06-26</Dt></BookgDt>
-        <ValDt><Dt>2026-06-26</Dt></ValDt>
-        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>KR26WSXN</EndToEndId></Refs><RmtInf><Ustrd>STANDING ORDER</Ustrd></RmtInf></TxDtls></NtryDtls>
+        <NtryDtls><TxDtls><Refs><EndToEndId>OLKXO96A</EndToEndId></Refs><RmtInf><Ustrd>SALARY PAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
       </Ntry>
       <Bal>
         <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>
-        <Amt Ccy="USD">13701.48</Amt>
+        <Amt Ccy="USD">37414.72</Amt>
         <CdtDbtInd>CRDT</CdtDbtInd>
         <Dt><Dt>2026-06-26</Dt></Dt>
-      </Bal>
-    </Stmt>
-  </BkToCstmrStmt>
-</Document></code><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
-<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <BkToCstmrStmt>
-    <GrpHdr>
-      <MsgId>MOCK202606281977</MsgId>
-      <CreDtTm>2026-06-28T01:10:21</CreDtTm>
-      <MsgPgntn><PgNb>1</PgNb><LastPgInd>true</LastPgInd></MsgPgntn>
-    </GrpHdr>
-    <Stmt>
-      <Id>STMT29570</Id>
-      <CreDtTm>2026-06-28T01:10:21</CreDtTm>
-      <FrToDt>
-        <FrDtTm>2026-06-22T00:00:00</FrDtTm>
-        <ToDtTm>2026-06-22T23:59:59</ToDtTm>
-      </FrToDt>
-      <Acct>
-        <Id><IBAN>595594582954</IBAN></Id>
-        <Ccy>USD</Ccy>
-      </Acct>
-      <Bal>
-        <Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp>
-        <Amt Ccy="USD">32807.22</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Dt><Dt>2026-06-22</Dt></Dt>
-      </Bal>
-      <Ntry>
-        <Amt Ccy="USD">2127.56</Amt>
-        <CdtDbtInd>DBIT</CdtDbtInd>
-        <Sts><Cd>BOOK</Cd></Sts>
-        <BookgDt><Dt>2026-06-22</Dt></BookgDt>
-        <ValDt><Dt>2026-06-22</Dt></ValDt>
-        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>D7PCIDLU</EndToEndId></Refs><RmtInf><Ustrd>INVOICE SETTLEMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
-      </Ntry>
-      <Ntry>
-        <Amt Ccy="USD">954.46</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Sts><Cd>BOOK</Cd></Sts>
-        <BookgDt><Dt>2026-06-22</Dt></BookgDt>
-        <ValDt><Dt>2026-06-22</Dt></ValDt>
-        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>J5894SQ8</EndToEndId></Refs><RmtInf><Ustrd>LOAN REPAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
-      </Ntry>
-      <Ntry>
-        <Amt Ccy="USD">3984.70</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Sts><Cd>BOOK</Cd></Sts>
-        <BookgDt><Dt>2026-06-22</Dt></BookgDt>
-        <ValDt><Dt>2026-06-22</Dt></ValDt>
-        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>D2N5Q1QE</EndToEndId></Refs><RmtInf><Ustrd>STANDING ORDER</Ustrd></RmtInf></TxDtls></NtryDtls>
-      </Ntry>
-      <Bal>
-        <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>
-        <Amt Ccy="USD">35618.82</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Dt><Dt>2026-06-22</Dt></Dt>
-      </Bal>
-    </Stmt>
-  </BkToCstmrStmt>
-</Document></code><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
-<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <BkToCstmrStmt>
-    <GrpHdr>
-      <MsgId>MOCK202606289067</MsgId>
-      <CreDtTm>2026-06-28T01:10:21</CreDtTm>
-      <MsgPgntn><PgNb>1</PgNb><LastPgInd>true</LastPgInd></MsgPgntn>
-    </GrpHdr>
-    <Stmt>
-      <Id>STMT92381</Id>
-      <CreDtTm>2026-06-28T01:10:21</CreDtTm>
-      <FrToDt>
-        <FrDtTm>2026-06-22T00:00:00</FrDtTm>
-        <ToDtTm>2026-06-24T23:59:59</ToDtTm>
-      </FrToDt>
-      <Acct>
-        <Id><IBAN>653456929519</IBAN></Id>
-        <Ccy>USD</Ccy>
-      </Acct>
-      <Bal>
-        <Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp>
-        <Amt Ccy="USD">19104.33</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Dt><Dt>2026-06-22</Dt></Dt>
-      </Bal>
-      <Ntry>
-        <Amt Ccy="USD">792.13</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Sts><Cd>BOOK</Cd></Sts>
-        <BookgDt><Dt>2026-06-22</Dt></BookgDt>
-        <ValDt><Dt>2026-06-22</Dt></ValDt>
-        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>7UX7UQFR</EndToEndId></Refs><RmtInf><Ustrd>DIRECT DEBIT</Ustrd></RmtInf></TxDtls></NtryDtls>
-      </Ntry>
-      <Ntry>
-        <Amt Ccy="USD">1324.27</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Sts><Cd>BOOK</Cd></Sts>
-        <BookgDt><Dt>2026-06-22</Dt></BookgDt>
-        <ValDt><Dt>2026-06-22</Dt></ValDt>
-        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>E2TV4GN7</EndToEndId></Refs><RmtInf><Ustrd>SALARY PAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
-      </Ntry>
-      <Ntry>
-        <Amt Ccy="USD">2735.38</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Sts><Cd>BOOK</Cd></Sts>
-        <BookgDt><Dt>2026-06-23</Dt></BookgDt>
-        <ValDt><Dt>2026-06-23</Dt></ValDt>
-        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>UXK74IB9</EndToEndId></Refs><RmtInf><Ustrd>CARD PAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
-      </Ntry>
-      <Ntry>
-        <Amt Ccy="USD">1188.13</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Sts><Cd>BOOK</Cd></Sts>
-        <BookgDt><Dt>2026-06-24</Dt></BookgDt>
-        <ValDt><Dt>2026-06-24</Dt></ValDt>
-        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>ODKAHRXC</EndToEndId></Refs><RmtInf><Ustrd>SALARY PAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
-      </Ntry>
-      <Bal>
-        <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>
-        <Amt Ccy="USD">25144.24</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Dt><Dt>2026-06-24</Dt></Dt>
-      </Bal>
-    </Stmt>
-  </BkToCstmrStmt>
-</Document></code><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
-<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <BkToCstmrStmt>
-    <GrpHdr>
-      <MsgId>MOCK202606283242</MsgId>
-      <CreDtTm>2026-06-28T01:10:21</CreDtTm>
-      <MsgPgntn><PgNb>1</PgNb><LastPgInd>true</LastPgInd></MsgPgntn>
-    </GrpHdr>
-    <Stmt>
-      <Id>STMT15603</Id>
-      <CreDtTm>2026-06-28T01:10:21</CreDtTm>
-      <FrToDt>
-        <FrDtTm>2026-06-25T00:00:00</FrDtTm>
-        <ToDtTm>2026-06-25T23:59:59</ToDtTm>
-      </FrToDt>
-      <Acct>
-        <Id><IBAN>642391423366</IBAN></Id>
-        <Ccy>USD</Ccy>
-      </Acct>
-      <Bal>
-        <Tp><CdOrPrtry><Cd>OPBD</Cd></CdOrPrtry></Tp>
-        <Amt Ccy="USD">12578.27</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Dt><Dt>2026-06-25</Dt></Dt>
-      </Bal>
-      <Ntry>
-        <Amt Ccy="USD">4692.78</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Sts><Cd>BOOK</Cd></Sts>
-        <BookgDt><Dt>2026-06-25</Dt></BookgDt>
-        <ValDt><Dt>2026-06-25</Dt></ValDt>
-        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>EKOHTJ1M</EndToEndId></Refs><RmtInf><Ustrd>LOAN REPAYMENT</Ustrd></RmtInf></TxDtls></NtryDtls>
-      </Ntry>
-      <Ntry>
-        <Amt Ccy="USD">1180.28</Amt>
-        <CdtDbtInd>DBIT</CdtDbtInd>
-        <Sts><Cd>BOOK</Cd></Sts>
-        <BookgDt><Dt>2026-06-25</Dt></BookgDt>
-        <ValDt><Dt>2026-06-25</Dt></ValDt>
-        <BkTxCd><Domn><Cd>PMNT</Cd><Fmly><Cd>ICDT</Cd><SubFmlyCd>AUTT</SubFmlyCd></Fmly></Domn></BkTxCd>
-        <NtryDtls><TxDtls><Refs><EndToEndId>FZZ6UJK6</EndToEndId></Refs><RmtInf><Ustrd>STANDING ORDER</Ustrd></RmtInf></TxDtls></NtryDtls>
-      </Ntry>
-      <Bal>
-        <Tp><CdOrPrtry><Cd>CLBD</Cd></CdOrPrtry></Tp>
-        <Amt Ccy="USD">16090.77</Amt>
-        <CdtDbtInd>CRDT</CdtDbtInd>
-        <Dt><Dt>2026-06-25</Dt></Dt>
       </Bal>
     </Stmt>
   </BkToCstmrStmt>
