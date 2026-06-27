@@ -1,5 +1,30 @@
 User-agent: *
 Allow: /
 
+# AI search crawlers — explicitly allowed for GEO (Generative Engine Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://altansayan.github.io/mock-jutsu-api/sitemap.xml
 Sitemap: https://altansayan.github.io/mock-jutsu-api/HOW-TO/sitemap-howto.xml
