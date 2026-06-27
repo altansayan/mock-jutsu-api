@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow">
 <title>Mock Jutsu HOW-TO — Руководство RU</title>
 <meta name="description" content="Полное руководство по генерации фиктивных данных с mock-jutsu. ИНН, IBAN, банковские карты и 230+ типов.">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -11,7 +12,7 @@
 <link rel="canonical" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html">
 <link rel="alternate" hreflang="tr" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/HOW-TO-MockJutsu-TR.html">
 <link rel="alternate" hreflang="en" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/HOW-TO-MockJutsu-EN.html">
-<link rel="alternate" hreflang="en-GB" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/HOW-TO-MockJutsu-UK.html">
+<link rel="alternate" hreflang="en-gb" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/HOW-TO-MockJutsu-UK.html">
 <link rel="alternate" hreflang="de" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/HOW-TO-MockJutsu-DE.html">
 <link rel="alternate" hreflang="fr" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/HOW-TO-MockJutsu-FR.html">
 <link rel="alternate" hreflang="ru" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html">
@@ -21,28 +22,71 @@
 <meta property="og:title" content="Mock Jutsu HOW-TO — Руководство RU">
 <meta property="og:description" content="Полное руководство по генерации фиктивных данных с mock-jutsu. ИНН, IBAN, банковские карты и 230+ типов.">
 <meta property="og:image" content="https://altansayan.github.io/mock-jutsu-api/assets/banner.png">
+<meta property="og:site_name" content="Mock Jutsu">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html">
 <meta name="twitter:title" content="Mock Jutsu HOW-TO — Руководство RU">
 <meta name="twitter:description" content="Полное руководство по генерации фиктивных данных с mock-jutsu. ИНН, IBAN, банковские карты и 230+ типов.">
 <meta name="twitter:image" content="https://altansayan.github.io/mock-jutsu-api/assets/banner.png">
+<meta name="twitter:creator" content="@altansezerayan">
 <script type="application/ld+json">{
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "mock-jutsu",
-  "applicationCategory": "DeveloperApplication",
-  "description": "Полное руководство по генерации фиктивных данных с mock-jutsu. ИНН, IBAN, банковские карты и 230+ типов.",
-  "inLanguage": "ru",
-  "author": {
-    "@type": "Person",
-    "name": "Altan Sezer Ayan"
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "url": "https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html"
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Mock Jutsu HOW-TO — Руководство RU",
+      "description": "Полное руководство по генерации фиктивных данных с mock-jutsu. ИНН, IBAN, банковские карты и 230+ типов.",
+      "url": "https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html",
+      "inLanguage": "ru",
+      "author": {
+        "@type": "Person",
+        "name": "Altan Sezer Ayan"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Mock Jutsu"
+      },
+      "datePublished": "2026-06-01",
+      "dateModified": "2026-06-27"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Что такое Mock Jutsu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mock Jutsu — open-source движок для алгоритмической генерации синтетических тестовых данных с реальными контрольными суммами. Поддерживает 390+ типов данных в 6 локалях."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как установить Mock Jutsu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Установка через pip: pip install mockjutsu. Для Docker: docker pull altansayan/mock-jutsu-api. Для JMeter — скачайте JAR-плагин со страницы GitHub Releases."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mock Jutsu бесплатный?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да, Mock Jutsu полностью бесплатен и open-source под лицензией MIT."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Какие типы данных поддерживает Mock Jutsu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mock Jutsu поддерживает 390+ типов: IBAN, номера банковских карт (Луна), VIN, NHS, SWIFT/BIC, MRZ и национальные идентификаторы."
+          }
+        }
+      ]
+    }
+  ]
 }</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQ9PKE4ZGF"></script>

@@ -203,7 +203,7 @@ UI = {
         "listing_subtitle": "All Functions",
     },
     "UK": {
-        "lang_attr":    "en-GB",
+        "lang_attr":    "en-gb",
         "flag":         "🇬🇧",
         "title_prefix": "Mock Jutsu",
         "listing_title":"Mock Jutsu HOW-TO — UK Guide",
@@ -1099,17 +1099,74 @@ def json_ld_detail(fn: str, cat: str, desc: str, lang: str, ui: dict) -> str:
     return json.dumps(schema, ensure_ascii=False, indent=2)
 
 
+_FAQ_LISTING: dict[str, list[dict]] = {
+    "TR": [
+        {"q": "Mock Jutsu nedir?", "a": "Mock Jutsu, gerçek checksum algoritmaları kullanan açık kaynaklı bir sentetik test verisi üreticisidir. 390+ veri tipi, 6 locale ve sıfır dış bağımlılık sunar."},
+        {"q": "Mock Jutsu nasıl kurulur?", "a": "pip install mockjutsu komutuyla Python paketi olarak kurabilirsiniz. Docker: docker pull altansayan/mock-jutsu-api. JMeter için GitHub Releases sayfasından JAR dosyasını indirin."},
+        {"q": "Mock Jutsu ücretsiz mi?", "a": "Evet, Mock Jutsu MIT lisansı altında tamamen ücretsiz ve açık kaynaklıdır."},
+        {"q": "Mock Jutsu hangi veri tiplerini destekliyor?", "a": "TCKN, IBAN, kredi kartı (Luhn), VIN, NHS, SWIFT/BIC, MRZ ve ulusal kimlik numaraları (CPF, PESEL, BSN, SSN, DNI) dahil 390+ veri tipi desteklenmektedir."},
+    ],
+    "EN": [
+        {"q": "What is Mock Jutsu?", "a": "Mock Jutsu is an open-source algorithmic mock data engine that generates format-valid synthetic test data with real checksums. It supports 390+ data types in 6 locales."},
+        {"q": "How do I install Mock Jutsu?", "a": "Install with pip: pip install mockjutsu. For Docker: docker pull altansayan/mock-jutsu-api. For JMeter, download the JAR plugin from GitHub releases."},
+        {"q": "Is Mock Jutsu free?", "a": "Yes, Mock Jutsu is completely free and open-source under the MIT License."},
+        {"q": "What data types does Mock Jutsu support?", "a": "Mock Jutsu supports 390+ data types including IBAN, credit card numbers (Luhn), SSN, VIN, NHS, SWIFT/BIC, MRZ, and national IDs (CPF, PESEL, BSN, DNI)."},
+    ],
+    "UK": [
+        {"q": "What is Mock Jutsu?", "a": "Mock Jutsu is an open-source algorithmic mock data engine that generates format-valid synthetic test data with real checksums. It supports 390+ data types in 6 locales."},
+        {"q": "How do I install Mock Jutsu?", "a": "Install with pip: pip install mockjutsu. For Docker: docker pull altansayan/mock-jutsu-api. For JMeter, download the JAR plugin from the GitHub releases page."},
+        {"q": "Is Mock Jutsu free to use?", "a": "Yes, Mock Jutsu is completely free and open-source under the MIT Licence."},
+        {"q": "What data types does Mock Jutsu support?", "a": "Mock Jutsu supports 390+ types including IBAN, credit card numbers (Luhn), NIN, NHS numbers, VIN, SWIFT/BIC, MRZ, and international national IDs."},
+    ],
+    "DE": [
+        {"q": "Was ist Mock Jutsu?", "a": "Mock Jutsu ist eine Open-Source-Engine zur algorithmischen Erzeugung format-valider Testdaten mit echten Prüfsummen. Es unterstützt 390+ Datentypen in 6 Sprachversionen."},
+        {"q": "Wie installiere ich Mock Jutsu?", "a": "Installation per pip: pip install mockjutsu. Für Docker: docker pull altansayan/mock-jutsu-api. Für JMeter das JAR-Plugin von GitHub Releases herunterladen."},
+        {"q": "Ist Mock Jutsu kostenlos?", "a": "Ja, Mock Jutsu ist vollständig kostenlos und Open Source unter der MIT-Lizenz."},
+        {"q": "Welche Datentypen unterstützt Mock Jutsu?", "a": "Mock Jutsu unterstützt 390+ Datentypen, darunter IBAN, Kreditkartennummern (Luhn), Steuer-ID, VIN, SWIFT/BIC, MRZ und nationale Ausweisnummern."},
+    ],
+    "FR": [
+        {"q": "Qu'est-ce que Mock Jutsu?", "a": "Mock Jutsu est un moteur open-source de génération de données de test synthétiques format-valides avec de vrais checksums. Il supporte 390+ types dans 6 locales."},
+        {"q": "Comment installer Mock Jutsu?", "a": "Installation via pip: pip install mockjutsu. Pour Docker: docker pull altansayan/mock-jutsu-api. Pour JMeter, téléchargez le plugin JAR depuis GitHub releases."},
+        {"q": "Mock Jutsu est-il gratuit?", "a": "Oui, Mock Jutsu est entièrement gratuit et open-source sous licence MIT."},
+        {"q": "Quels types de données Mock Jutsu supporte-t-il?", "a": "Mock Jutsu supporte 390+ types dont IBAN, numéros de carte bancaire (Luhn), VIN, SWIFT/BIC, MRZ et identifiants nationaux."},
+    ],
+    "RU": [
+        {"q": "Что такое Mock Jutsu?", "a": "Mock Jutsu — open-source движок для алгоритмической генерации синтетических тестовых данных с реальными контрольными суммами. Поддерживает 390+ типов данных в 6 локалях."},
+        {"q": "Как установить Mock Jutsu?", "a": "Установка через pip: pip install mockjutsu. Для Docker: docker pull altansayan/mock-jutsu-api. Для JMeter — скачайте JAR-плагин со страницы GitHub Releases."},
+        {"q": "Mock Jutsu бесплатный?", "a": "Да, Mock Jutsu полностью бесплатен и open-source под лицензией MIT."},
+        {"q": "Какие типы данных поддерживает Mock Jutsu?", "a": "Mock Jutsu поддерживает 390+ типов: IBAN, номера банковских карт (Луна), VIN, NHS, SWIFT/BIC, MRZ и национальные идентификаторы."},
+    ],
+}
+
+
 def json_ld_listing(lang: str, ui: dict) -> str:
+    faq_items = _FAQ_LISTING.get(lang, _FAQ_LISTING["EN"])
     schema = {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "mock-jutsu",
-        "applicationCategory": "DeveloperApplication",
-        "description": ui["listing_desc"],
-        "inLanguage": ui["lang_attr"],
-        "author": {"@type": "Person", "name": "Altan Sezer Ayan"},
-        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-        "url": listing_url(lang),
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "headline": ui["listing_title"],
+                "description": ui["listing_desc"],
+                "url": listing_url(lang),
+                "inLanguage": ui["lang_attr"],
+                "author": {"@type": "Person", "name": "Altan Sezer Ayan"},
+                "publisher": {"@type": "Organization", "name": "Mock Jutsu"},
+                "datePublished": "2026-06-01",
+                "dateModified": "2026-06-27",
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": item["q"],
+                        "acceptedAnswer": {"@type": "Answer", "text": item["a"]},
+                    }
+                    for item in faq_items
+                ],
+            },
+        ],
     }
     return json.dumps(schema, ensure_ascii=False, indent=2)
 
@@ -1123,6 +1180,7 @@ def html_head(title: str, desc: str, canonical: str, lang: str, ui: dict,
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow">
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -1135,11 +1193,13 @@ def html_head(title: str, desc: str, canonical: str, lang: str, ui: dict,
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:image" content="{og_img}">
+<meta property="og:site_name" content="Mock Jutsu">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="{canonical}">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
 <meta name="twitter:image" content="{og_img}">
+<meta name="twitter:creator" content="@altansezerayan">
 <script type="application/ld+json">{extra_ld}</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XQ9PKE4ZGF"></script>
