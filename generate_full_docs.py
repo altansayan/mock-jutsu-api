@@ -2130,6 +2130,22 @@ def update_readme(readme_path: str, total: int, cat_counts: dict) -> None:
     print(f"README:  {total} total types, {passed} passed tests — badge updated")
 
 
+def generate_security_txt(base_dir: str) -> None:
+    from datetime import datetime, timezone, timedelta
+    expires = (datetime.now(timezone.utc) + timedelta(days=365)).strftime("%Y-%m-%dT00:00:00z")
+    content = f"""Contact: mailto:altansezerayan@gmail.com
+Expires: {expires}
+Preferred-Languages: tr, en
+Canonical: https://altansayan.github.io/mock-jutsu-api/.well-known/security.txt
+"""
+    well_known = os.path.join(base_dir, ".well-known")
+    os.makedirs(well_known, exist_ok=True)
+    path = os.path.join(well_known, "security.txt")
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+    print(f"security.txt: .well-known/security.txt (expires {expires[:10]})")
+
+
 def update_index(index_path: str, total: int) -> None:
     with open(index_path, "r", encoding="utf-8") as f:
         text = f.read()
@@ -2208,6 +2224,7 @@ def main():
             os.path.join(BASE_DIR, "index.html"),
             total=len(data_funcs),
         )
+        generate_security_txt(BASE_DIR)
 
 
 if __name__ == "__main__":
