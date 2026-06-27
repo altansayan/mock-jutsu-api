@@ -1677,7 +1677,7 @@ def build_detail_page(r: tuple, lang: str) -> str:
     return f"""{head}
 <body>
 {header}
-<div class="container">
+<main class="container">
   <nav class="breadcrumb">
     <a href="{listing_back}">{ui['breadcrumb_home']}</a>
     <span>›</span>
@@ -1704,16 +1704,16 @@ def build_detail_page(r: tuple, lang: str) -> str:
     <h3>{ui['lang_switch']}</h3>
     <div class="lang-pills">{lang_pills}</div>
   </div>
-</div>
+</main>
 
-<div class="footer">
+<footer class="footer">
   mock-jutsu &mdash; Developed by <strong>Altan Sezer Ayan - A.S.A</strong>
   &nbsp;&bull;&nbsp; <a href="https://github.com/altansayan/mock-jutsu-api">GitHub</a>
   &nbsp;&bull;&nbsp; <a href="{listing_back}">{ui['breadcrumb_home']}</a>
   &nbsp;&bull;&nbsp; &copy; 2026 Altan Sezer Ayan &middot; <a href="https://github.com/altansayan/mock-jutsu-api/blob/main/LICENSE">MIT License</a>
   &nbsp;&bull;&nbsp; Generated data is synthetic and for testing only
   &nbsp;&bull;&nbsp; This site uses Google Analytics (cookies)
-</div>
+</footer>
 
 <script>
 function copyTerm(id) {{
@@ -2236,13 +2236,13 @@ function copyTerm(id) {
 </script>"""
 
     footer = (
-        '<div class="footer">\n'
+        '<footer class="footer">\n'
         '  mock-jutsu &mdash; Developed by <strong>Altan Sezer Ayan - A.S.A</strong>\n'
         '  &nbsp;&bull;&nbsp; <a href="https://github.com/altansayan/mock-jutsu-api">GitHub</a>\n'
         '  &nbsp;&bull;&nbsp; &copy; 2026 Altan Sezer Ayan &middot; <a href="https://github.com/altansayan/mock-jutsu-api/blob/main/LICENSE">MIT License</a>\n'
         '  &nbsp;&bull;&nbsp; Generated data is synthetic and for testing only\n'
         '  &nbsp;&bull;&nbsp; This site uses Google Analytics (cookies)\n'
-        '</div>\n'
+        '</footer>\n'
     )
 
     return (
@@ -2252,12 +2252,14 @@ function copyTerm(id) {
         + search_css + '\n'
         '<body>\n'
         + listing_header
+        + '<main>\n'
         + tab_nav
         + ref_section
         + qs_section
         + power_section
         + api_section
         + mask_section
+        + '</main>\n'
         + footer
         + tab_js + '\n'
         + search_js + '\n'
