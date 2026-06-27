@@ -1,0 +1,75 @@
+# Mock Jutsu
+
+> Algorithmic mock data engine that generates format-valid synthetic test data with real checksums. 390+ data types, 6 locales, zero external dependencies. Available as a Python package, CLI tool, REST API, and Apache JMeter plugin.
+
+Mock Jutsu is an open-source project that solves a common developer problem: generating realistic, algorithmically valid test data. Unlike Faker and similar libraries, Mock Jutsu produces data that passes real validation checks — IBAN checksums (ISO 13616), Luhn algorithm for credit cards, Turkish TCKN mod-10 formula, VIN (ISO 3779), NHS number algorithm, SWIFT/BIC (ISO 9362), MRZ (ICAO 9303), and 380+ more types.
+
+## Installation
+
+- Python package: `pip install mockjutsu`
+- Docker: `docker pull altansayan/mock-jutsu-api`
+- JMeter Plugin: download JAR from GitHub releases and place in `lib/ext/`
+
+## Quick Start
+
+```bash
+# CLI
+mockjutsu generate iban --locale TR
+mockjutsu generate cardnum --locale US
+mockjutsu bulk 100 tckn
+
+# Python API
+from mockjutsu import generate
+print(generate("iban", locale="TR"))
+print(generate("cardnum", locale="US"))
+
+# REST API
+mockjutsu start-api
+# GET http://localhost:8000/generate/iban?locale=TR
+```
+
+## Key Features
+
+- 390+ data types across 49 categories
+- 6 locales: TR (Turkey), UK (United Kingdom), US (United States), DE (Germany), FR (France), RU (Russia)
+- Real checksum algorithms: Luhn, Verhoeff, ISO 13616, ISO 3779, Damm, MOD97
+- Regulation-aware masking: PCI DSS, GDPR, KVKK, HIPAA
+- Zero external dependencies (pure Python stdlib)
+- REST API with 390+ endpoints
+- Apache JMeter plugin with custom functions
+- Bulk generation with template support
+
+## Data Categories
+
+- **Financial:** IBAN, credit card numbers (Visa/Mastercard/Amex), SWIFT/BIC, CVV, CVV2, bank account numbers, routing numbers, SEPA references
+- **Identity (National IDs):** TCKN (Turkey), SSN (USA), NIN (UK), CPF (Brazil), PESEL (Poland), BSN (Netherlands), Aadhaar (India), DNI (Spain), SIN (Canada), TFN (Australia)
+- **Healthcare:** NHS numbers, MRZ (machine-readable zone, passports), HL7 messages, FHIR resources, ICD-10 codes
+- **Automotive:** VIN (ISO 3779), license plates (TR/DE/UK/US/FR/RU)
+- **Crypto & Blockchain:** Bitcoin addresses, Ethereum addresses, IBAN-format crypto wallets, BIP39 mnemonics
+- **Network & IT:** IPv4, IPv6, MAC addresses, domain names, URLs, JWT tokens, UUIDs
+- **IoT & Sensors:** GPS coordinates, NMEA sentences, telemetry data, TLE (satellite)
+- **Commerce & EDI:** UBL invoice XML, EDIFACT, barcode (EAN-13, UPC-A, QR), GS1 identifiers
+- **Security & Compliance:** X.509 certificates, FIDO2 credentials, OAuth tokens, PCI DSS masked card numbers
+
+## Documentation
+
+- HOW-TO Guide (English): https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/HOW-TO-MockJutsu-EN.html
+- HOW-TO Guide (Turkish): https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/HOW-TO-MockJutsu-TR.html
+- HOW-TO Guide (German): https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/HOW-TO-MockJutsu-DE.html
+- HOW-TO Guide (French): https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/HOW-TO-MockJutsu-FR.html
+- HOW-TO Guide (Russian): https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html
+- HOW-TO Guide (UK English): https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/HOW-TO-MockJutsu-UK.html
+
+## Links
+
+- Homepage: https://altansayan.github.io/mock-jutsu-api/
+- GitHub: https://github.com/altansayan/mock-jutsu-api
+- PyPI: https://pypi.org/project/mockjutsu/
+- Docker Hub: https://hub.docker.com/r/altansayan/mock-jutsu-api
+- Issues: https://github.com/altansayan/mock-jutsu-api/issues
+- Changelog: https://github.com/altansayan/mock-jutsu-api/blob/main/CHANGELOG.md
+
+## Author
+
+Altan Sezer Ayan — Founder & CEO, ASA Intelligence
+12 years QA Manager experience in fintech and banking.
