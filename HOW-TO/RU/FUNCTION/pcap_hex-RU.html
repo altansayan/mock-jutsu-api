@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,38 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Примеры вывода</h2><div class="examples-grid"><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4f 4a 40 6a 00 00 00 00
+41 00 00 00 41 00 00 00 0b a3 ed d6 0d dd f9 04
+7f 0a d8 e0 08 00 45 00 00 33 c9 ac 40 00 40 06
+00 00 13 80 f7 52 37 70 d8 27 b9 55 20 fb b6 8c
+02 66 1d 25 b3 d4 50 18 ff ff 00 00 00 00 16 03
+01 00 f1 01 00 00 ed 03 03</code><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4f 4a 40 6a 00 00 00 00
+3f 00 00 00 3f 00 00 00 77 90 a5 55 e2 9a 67 9a
+15 f6 cb df 08 00 45 00 00 31 32 47 40 00 40 06
+00 00 21 79 ad 0a 62 f6 be 98 be 67 0c ea fc ab
+9b ae a5 de dc 51 50 18 ff ff 00 00 00 00 00 00
+00 05 01 00 00 00 00</code><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4f 4a 40 6a 00 00 00 00
+41 00 00 00 41 00 00 00 c0 61 eb 9a 19 73 70 2d
+99 ea 1f 2a 08 00 45 00 00 33 3d 1f 40 00 40 06
+00 00 8e ef 80 29 89 14 9a 97 0b 55 01 bb ce 90
+2e 3c e3 a1 26 4c 50 18 ff ff 00 00 00 00 16 03
+01 00 f1 01 00 00 ed 03 03</code><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4f 4a 40 6a 00 00 00 00
+3f 00 00 00 3f 00 00 00 a1 c8 89 61 88 d2 bb 18
+1f 91 92 6a 08 00 45 00 00 31 eb 5f 40 00 40 06
+00 00 b4 b7 4c 7b d0 39 f7 3d e7 af 00 16 57 96
+2a 29 d3 24 a5 51 50 18 ff ff 00 00 00 00 00 00
+00 05 01 00 00 00 00</code><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4f 4a 40 6a 00 00 00 00
+41 00 00 00 41 00 00 00 07 d3 c2 5c 35 73 c6 48
+1d 2a 06 3f 08 00 45 00 00 33 76 19 40 00 40 06
+00 00 08 f2 b1 aa 2f 4c 28 b2 cf 24 0c ea 54 c0
+e3 30 92 45 00 dd 50 18 ff ff 00 00 00 00 16 03
+01 00 f1 01 00 00 ed 03 03</code></div></div>
+  <div class="validation-section"><h2>Правила валидации</h2><ul class="validation-list"><li>Генерируется Mock Jutsu по реальным форматным спецификациям</li><li>Все значения полностью синтетические</li><li>Для разработки, тестирования и демонстрации</li></ul></div>
   <div class="related">
   <h2>Похожие функции</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/cef_log-RU.html" class="rel-link"><code>cef_log</code></a>

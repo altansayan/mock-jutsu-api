@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Beispielausgaben</h2><div class="examples-grid"><code class="example-val">{"op": "u", "ts_ms": 1782568057749, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "orders"}, "before": {"order_id": "8dd8e1d2-3f64-485e-90bf-a931081c8db3", "user_id": "e98ee8c3-ebb8-4a96-a207-bdc222de5ae8", "total": 9447.13, "status": "shipped", "created_at": "2026-06-27T22:10:22Z"}, "after": {"order_id": "8dd8e1d2-3f64-485e-90bf-a931081c8db3", "user_id": "6154d371-79a7-4ed5-b1b5-0bd8353f8b4f", "total": 1174.16, "status": "cancelled", "created_at": "2026-06-27T22:10:22Z"}}</code><code class="example-val">{"op": "c", "ts_ms": 1782586263803, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "users"}, "before": null, "after": {"user_id": "b60553f0-18fc-4f36-be90-c6ff72993d23", "email": "user2456@example.com", "full_name": "Emma Wilson", "created_at": "2026-06-27T22:10:22Z"}}</code><code class="example-val">{"op": "u", "ts_ms": 1782542760069, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "products"}, "before": {"product_id": "fd7ea28e-8c18-40bd-b965-26e8c0aae5f6", "name": "USB-C Hub 7-in-1", "price": 3922.08, "stock": 430}, "after": {"product_id": "fd7ea28e-8c18-40bd-b965-26e8c0aae5f6", "name": "Mechanical Keyboard", "price": 2310.63, "stock": 307}}</code><code class="example-val">{"op": "u", "ts_ms": 1782530744393, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "orders"}, "before": {"order_id": "1e7b3456-7f87-476c-97ff-e66e4cc1bf93", "user_id": "eedfc741-90a7-4a14-bcf8-c4a0408238ef", "total": 5289.04, "status": "shipped", "created_at": "2026-06-27T22:10:22Z"}, "after": {"order_id": "1e7b3456-7f87-476c-97ff-e66e4cc1bf93", "user_id": "eedf52c3-f90e-4923-9a4c-983523f90c2d", "total": 6082.21, "status": "delivered", "created_at": "2026-06-27T22:10:22Z"}}</code><code class="example-val">{"op": "c", "ts_ms": 1782597246365, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "users"}, "before": null, "after": {"user_id": "655f63fb-0a87-4d08-ac4c-47ac674617a6", "email": "user5446@example.com", "full_name": "David Park", "created_at": "2026-06-27T22:10:22Z"}}</code></div></div>
+  <div class="validation-section"><h2>Validierungsregeln</h2><ul class="validation-list"><li>Von Mock Jutsu gemäß echten Formatspezifikationen generiert</li><li>Alle produzierten Werte sind vollständig synthetisch</li><li>Für Entwicklungs-, Test- und Demoumgebungen</li></ul></div>
   <div class="related">
   <h2>Verwandte Funktionen</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/event_stream-DE.html" class="rel-link"><code>event_stream</code></a>

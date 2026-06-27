@@ -912,6 +912,179 @@ def build_related_map():
 CAT_RELATED = build_related_map()
 
 
+# ── Localized section labels ───────────────────────────────────────────────────
+_SECTION_LABELS: dict[str, dict[str, str]] = {
+    "examples": {
+        "TR": "Örnek Çıktılar",
+        "EN": "Example Output",
+        "UK": "Example Output",
+        "DE": "Beispielausgaben",
+        "FR": "Exemples de sortie",
+        "RU": "Примеры вывода",
+    },
+    "validation": {
+        "TR": "Doğrulama Kuralları",
+        "EN": "Validation Rules",
+        "UK": "Validation Rules",
+        "DE": "Validierungsregeln",
+        "FR": "Règles de validation",
+        "RU": "Правила валидации",
+    },
+}
+
+# ── Per-function validation rules ─────────────────────────────────────────────
+_VALIDATION_RULES: dict[str, dict[str, list[str]]] = {
+    "iban": {
+        "TR": ["Standart: ISO 13616", "Kontrol algoritması: MOD-97 (kalan 1 olmalı)", "Türkiye (TR): 26 karakter — TR + 2 kontrol + 5 banka kodu + 1 rezerv + 16 hesap", "İlk 4 karakter sona alınır, harfler sayıya dönüştürülür, 97'ye bölünür"],
+        "EN": ["Standard: ISO 13616", "Checksum: MOD-97 algorithm (remainder must equal 1)", "Turkey (TR): 26 chars — TR + 2 check digits + 5-digit bank code + 1 reserved + 16-digit account", "Validation: move first 4 chars to end, convert letters to digits, divide by 97"],
+        "UK": ["Standard: ISO 13616", "Checksum: MOD-97 algorithm (remainder must equal 1)", "GB: 22 chars — GB + 2 check digits + 4-char sort code + 8-digit account number", "Validation: move first 4 chars to end, convert letters to digits, divide by 97"],
+        "DE": ["Standard: ISO 13616", "Prüfalgorithmus: MOD-97 (Rest muss 1 ergeben)", "Deutschland (DE): 22 Zeichen — DE + 2 Prüfziffern + 8-stellige BLZ + 10-stellige Kontonummer", "Validierung: erste 4 Zeichen ans Ende, Buchstaben in Ziffern umwandeln, durch 97 teilen"],
+        "FR": ["Norme : ISO 13616", "Algorithme de contrôle : MOD-97 (le reste doit être égal à 1)", "France (FR) : 27 caractères — FR + 2 chiffres de contrôle + 10 chiffres banque/guichet + 11 compte + 2 clé RIB", "Validation : déplacer les 4 premiers caractères à la fin, convertir les lettres, diviser par 97"],
+        "RU": ["Стандарт: ISO 13616", "Алгоритм проверки: MOD-97 (остаток должен равняться 1)", "Россия (RU): 33 символа — RU + 2 контрольные цифры + 3-значный БИК + 20-значный счёт", "Проверка: переместить первые 4 символа в конец, заменить буквы цифрами, разделить на 97"],
+    },
+    "bic": {
+        "TR": ["Standart: ISO 9362 (SWIFT BIC)", "Format: BBBB CC LL [SSS] — banka 4 + ülke 2 + lokasyon 2 + şube 3 (isteğe bağlı)", "8 veya 11 karakter; 8 karakterliyse ana merkez şubesi", "Pozisyon 8 = '0' → test BIC (canlı sistemde kullanılmaz)"],
+        "EN": ["Standard: ISO 9362 (SWIFT BIC)", "Format: BBBB CC LL [SSS] — bank 4 + country 2 + location 2 + branch 3 (optional)", "8 or 11 characters; 8-char BIC implies head-office branch", "Position 8 = '0' indicates a test BIC — not for live transactions"],
+        "UK": ["Standard: ISO 9362 (SWIFT BIC)", "Format: BBBB CC LL [SSS] — bank 4 + country 2 + location 2 + branch 3 (optional)", "8 or 11 characters; 8-char BIC implies head-office", "Position 8 = '0' indicates a test BIC"],
+        "DE": ["Standard: ISO 9362 (SWIFT-BIC)", "Format: BBBB CC LL [SSS] — Bank 4 + Land 2 + Ort 2 + Filiale 3 (optional)", "8 oder 11 Zeichen; 8-stelliger BIC = Hauptstelle", "Position 8 = '0' kennzeichnet Test-BIC"],
+        "FR": ["Norme : ISO 9362 (BIC SWIFT)", "Format : BBBB CC LL [SSS] — banque 4 + pays 2 + lieu 2 + agence 3 (optionnel)", "8 ou 11 caractères ; BIC à 8 = siège principal", "Position 8 = '0' indique un BIC de test"],
+        "RU": ["Стандарт: ISO 9362 (SWIFT BIC)", "Формат: BBBB CC LL [SSS] — банк 4 + страна 2 + место 2 + отделение 3 (опционально)", "8 или 11 символов; 8-символьный BIC = головной офис", "Позиция 8 = '0' — тестовый BIC"],
+    },
+    "cardnum": {
+        "TR": ["Standart: ISO/IEC 7812", "Kontrol algoritması: Luhn algoritması (son rakam kontrol hanesi)", "Visa: 4 ile başlar, 16 rakam | Mastercard: 51-55 veya 2221-2720, 16 rakam", "Amex: 34 veya 37 ile başlar, 15 rakam | Troy: 9792 ile başlar, 16 rakam", "Luhn: sağdan her çift konumdaki rakamı 2 ile çarp, 9'u geçerse 9 çıkar, toplam 10'a bölünmeli"],
+        "EN": ["Standard: ISO/IEC 7812", "Checksum: Luhn algorithm (last digit is the check digit)", "Visa: starts with 4, 16 digits | Mastercard: 51-55 or 2221-2720, 16 digits", "Amex: starts with 34 or 37, 15 digits | Troy: starts with 9792, 16 digits", "Luhn: double every 2nd digit from right, subtract 9 if >9, total divisible by 10"],
+        "UK": ["Standard: ISO/IEC 7812", "Checksum: Luhn algorithm (last digit is check digit)", "Visa: starts with 4, 16 digits | Mastercard: 51-55 or 2221-2720, 16 digits", "Maestro: starts with 6304 or 6759, 12-19 digits", "Luhn: double every 2nd digit from right, subtract 9 if >9, total divisible by 10"],
+        "DE": ["Standard: ISO/IEC 7812", "Prüfalgorithmus: Luhn-Algorithmus (letzte Ziffer ist Prüfziffer)", "Visa: beginnt mit 4, 16 Stellen | Mastercard: 51-55 oder 2221-2720, 16 Stellen", "Amex: beginnt mit 34 oder 37, 15 Stellen", "Luhn: jede 2. Stelle von rechts verdoppeln, bei >9 minus 9, Summe durch 10 teilbar"],
+        "FR": ["Norme : ISO/IEC 7812", "Algorithme de contrôle : algorithme de Luhn (dernier chiffre = chiffre de contrôle)", "Visa : commence par 4, 16 chiffres | Mastercard : 51-55 ou 2221-2720, 16 chiffres", "Amex : commence par 34 ou 37, 15 chiffres", "Luhn : doubler chaque 2e chiffre depuis la droite, soustraire 9 si >9, somme divisible par 10"],
+        "RU": ["Стандарт: ISO/IEC 7812", "Алгоритм проверки: алгоритм Луна (последняя цифра — контрольная)", "Visa: начинается с 4, 16 цифр | Mastercard: 51-55 или 2221-2720, 16 цифр", "Amex: начинается с 34 или 37, 15 цифр | Mir: 2200-2204, 16 цифр", "Луна: удвоить каждую 2-ю цифру справа, вычесть 9 если >9, сумма делится на 10"],
+    },
+    "tckn": {
+        "TR": ["Standart: T.C. Kimlik Numarası (Türkiye Cumhuriyeti)", "Uzunluk: 11 rakam; ilk rakam 0 olamaz", "10. rakam: (1-9. rakamlar toplamı × 7 − çift pozisyon rakamları toplamı) mod 10", "11. rakam: (1-10. rakamların toplamı) mod 10"],
+        "EN": ["Standard: Turkish Republic Identity Number (T.C. Kimlik No)", "Length: 11 digits; first digit cannot be 0", "10th digit: (sum of digits 1-9 × 7 − sum of even-position digits) mod 10", "11th digit: (sum of digits 1-10) mod 10"],
+        "UK": ["Standard: Turkish Republic Identity Number", "Length: 11 digits; first digit cannot be 0", "10th digit: (sum of digits 1-9 × 7 − sum of even-position digits) mod 10", "11th digit: (sum of digits 1-10) mod 10"],
+        "DE": ["Standard: Türkische Personalausweisnummer (T.C. Kimlik No)", "Länge: 11 Stellen; erste Stelle darf nicht 0 sein", "10. Stelle: (Summe der Stellen 1-9 × 7 − Summe der geraden Stellen) mod 10", "11. Stelle: (Summe der Stellen 1-10) mod 10"],
+        "FR": ["Norme : numéro d'identité turc (T.C. Kimlik No)", "Longueur : 11 chiffres ; le premier ne peut pas être 0", "10e chiffre : (somme des chiffres 1-9 × 7 − somme des positions paires) mod 10", "11e chiffre : (somme des chiffres 1-10) mod 10"],
+        "RU": ["Стандарт: идентификационный номер Турецкой Республики (T.C. Kimlik No)", "Длина: 11 цифр; первая цифра не может быть 0", "10-я цифра: (сумма цифр 1-9 × 7 − сумма чётных позиций) mod 10", "11-я цифра: (сумма цифр 1-10) mod 10"],
+    },
+    "ssn": {
+        "TR": ["Standart: ABD Sosyal Güvenlik Numarası (SSA)", "Format: AAA-GG-SSSS (Alan 3 + Grup 2 + Seri 4 rakam)", "000, 666 ve 900-999 alan kodları geçerli SSN'lerde kullanılmaz", "900-999 alan kodları ITIN için ayrılmıştır"],
+        "EN": ["Standard: US Social Security Number (SSA)", "Format: AAA-GG-SSSS (Area 3 + Group 2 + Serial 4 digits)", "Area 000, group 00, or serial 0000 are invalid in real SSNs", "Area codes 900-999 are reserved for ITIN, not SSNs"],
+        "UK": ["Standard: US Social Security Number (SSA)", "Format: AAA-GG-SSSS (Area 3 + Group 2 + Serial 4 digits)", "Area 000, group 00, or serial 0000 are invalid", "Area codes 900-999 reserved for ITIN"],
+        "DE": ["Standard: US-Sozialversicherungsnummer (SSA)", "Format: AAA-GG-SSSS (Bereich 3 + Gruppe 2 + Seriennummer 4 Stellen)", "Bereich 000, Gruppe 00 oder Serie 0000 sind ungültig", "Bereiche 900-999 für ITIN reserviert"],
+        "FR": ["Norme : numéro de sécurité sociale américain (SSA)", "Format : AAA-GG-SSSS (zone 3 + groupe 2 + série 4 chiffres)", "Zone 000, groupe 00 ou série 0000 sont invalides", "Codes de zone 900-999 réservés à l'ITIN"],
+        "RU": ["Стандарт: номер социального страхования США (SSA)", "Формат: AAA-GG-SSSS (регион 3 + группа 2 + серия 4 цифры)", "Регион 000, группа 00 или серия 0000 недействительны", "Коды регионов 900-999 зарезервированы для ITIN"],
+    },
+    "nin": {
+        "TR": ["Standart: Birleşik Krallık Ulusal Sigorta Numarası (HMRC)", "Format: AA 99 99 99 A (2 harf + 6 rakam + 1 harf son eki)", "İlk harf D, F, I, Q, U, V ile başlayamaz; ikinci harf D, F, I, O, Q, U, V olamaz", "Son ek harfi yalnızca A, B, C veya D olabilir"],
+        "EN": ["Standard: UK National Insurance Number (HMRC)", "Format: AA 99 99 99 A (2 prefix letters + 6 digits + 1 suffix letter)", "Prefix: cannot start with D, F, I, Q, U, V; second letter cannot be D, F, I, O, Q, U, V", "Suffix: only A, B, C, or D"],
+        "UK": ["Standard: UK National Insurance Number (HMRC)", "Format: AA 99 99 99 A (2 prefix letters + 6 digits + 1 suffix letter)", "Prefix: cannot start with D, F, I, Q, U, V; second cannot be D, F, I, O, Q, U, V", "Suffix: only A, B, C, or D — temporary numbers use TN prefix"],
+        "DE": ["Standard: Britische Nationalversicherungsnummer (HMRC)", "Format: AA 99 99 99 A (2 Buchstaben + 6 Ziffern + 1 Endungsbuchstabe)", "Präfix darf nicht mit D, F, I, Q, U, V beginnen", "Endungsbuchstabe: nur A, B, C oder D"],
+        "FR": ["Norme : numéro d'assurance nationale britannique (HMRC)", "Format : AA 99 99 99 A (2 lettres de préfixe + 6 chiffres + 1 lettre suffixe)", "Préfixe : ne peut pas commencer par D, F, I, Q, U, V", "Suffixe : uniquement A, B, C ou D"],
+        "RU": ["Стандарт: номер национального страхования Великобритании (HMRC)", "Формат: AA 99 99 99 A (2 буквы префикса + 6 цифр + 1 буква суффикса)", "Префикс не может начинаться с D, F, I, Q, U, V", "Суффикс: только A, B, C или D"],
+    },
+    "inn": {
+        "TR": ["Standart: Rusya Federal Vergi Numarası (ИНН)", "Bireysel: 12 rakam, son 2 rakam ağırlıklı toplamla hesaplanan kontrol haneleri", "Tüzel kişi: 10 rakam, son rakam kontrol hanesi", "Ağırlıklar (10 rakam): 2,4,10,3,5,9,4,6,8,0"],
+        "EN": ["Standard: Russian Federal Tax Number (ИНН / INN)", "Individual: 12 digits — last 2 are check digits via weighted sum", "Legal entity: 10 digits — last digit is check digit", "Checksum weights (10-digit): 2,4,10,3,5,9,4,6,8,0"],
+        "UK": ["Standard: Russian Federal Tax Number (INN)", "Individual: 12 digits — last 2 check digits via weighted sum", "Legal entity: 10 digits — last digit is check digit", "Checksum weights (10-digit): 2,4,10,3,5,9,4,6,8,0"],
+        "DE": ["Standard: Russische Steueridentifikationsnummer (ИНН / INN)", "Privatperson: 12 Stellen — letzte 2 Prüfziffern (gewichtete Summe)", "Juristische Person: 10 Stellen — letzte Ziffer Prüfziffer", "Prüfgewichte (10-stellig): 2,4,10,3,5,9,4,6,8,0"],
+        "FR": ["Norme : numéro d'identification fiscale russe (INN)", "Personne physique : 12 chiffres — 2 derniers = chiffres de contrôle (somme pondérée)", "Personne morale : 10 chiffres — dernier = chiffre de contrôle", "Poids (10 chiffres) : 2,4,10,3,5,9,4,6,8,0"],
+        "RU": ["Стандарт: российский ИНН", "Физлицо: 12 цифр — последние 2 контрольные цифры (взвешенная сумма)", "Юрлицо: 10 цифр — последняя контрольная цифра", "Веса (10-значный): 2,4,10,3,5,9,4,6,8,0"],
+    },
+    "snils": {
+        "TR": ["Standart: Rusya Bireysel Kişisel Hesap Numarası (СНИЛС)", "Format: XXX-XXX-XXX CC (9 rakam + 2 kontrol hanesi)", "Kontrol: 9 rakamın ağırlıklı toplamı mod 101; sonuç ≥ 100 ise kontrol haneleri = 00", "001 001 998'den büyük olmalı"],
+        "EN": ["Standard: Russian Individual Personal Account Number (СНИЛС / SNILS)", "Format: XXX-XXX-XXX CC (9 base digits + 2 check digits)", "Checksum: weighted sum of 9 digits mod 101; if result ≥ 100 → check digits = 00", "Number must be greater than 001 001 998"],
+        "UK": ["Standard: Russian Pension Account Number (SNILS)", "Format: XXX-XXX-XXX CC (9 base digits + 2 check digits)", "Checksum: weighted sum mod 101; if result ≥ 100 → check digits = 00", "Must be greater than 001 001 998"],
+        "DE": ["Standard: Russische Rentenversicherungsnummer (СНИЛС / SNILS)", "Format: XXX-XXX-XXX CC (9 Grundstellen + 2 Prüfziffern)", "Prüfsumme: gewichtete Summe mod 101; bei ≥ 100 → Prüfziffern = 00", "Nummer muss größer als 001 001 998 sein"],
+        "FR": ["Norme : numéro de compte individuel russe (СНИЛС / SNILS)", "Format : XXX-XXX-XXX CC (9 chiffres de base + 2 chiffres de contrôle)", "Somme de contrôle : somme pondérée mod 101 ; si ≥ 100 → chiffres de contrôle = 00", "Doit être supérieur à 001 001 998"],
+        "RU": ["Стандарт: СНИЛС", "Формат: XXX-XXX-XXX CC (9 цифр + 2 контрольные цифры)", "Проверка: взвешенная сумма mod 101; если ≥ 100 → контрольные = 00", "Должен быть больше 001 001 998"],
+    },
+    "creditor_ref": {
+        "TR": ["Standart: ISO 11649 (Yapılandırılmış Alacaklı Referansı)", "Format: RF + 2 kontrol hanesi + maksimum 21 alfanümerik karakter", "Kontrol algoritması: MOD-97 (IBAN kontrol hesabıyla aynı yöntem)", "Yalnızca 0-9, A-Z (büyük harf) ve tire (-) karakterleri kullanılabilir"],
+        "EN": ["Standard: ISO 11649 (Structured Creditor Reference)", "Format: RF + 2 check digits + up to 21 alphanumeric characters", "Checksum: MOD-97 algorithm (same method as IBAN check digit)", "Only characters 0-9, A-Z (uppercase) and hyphen (-) are allowed"],
+        "UK": ["Standard: ISO 11649 (Structured Creditor Reference)", "Format: RF + 2 check digits + up to 21 alphanumeric characters", "Checksum: MOD-97 — remainder must equal 1", "Only 0-9, A-Z (uppercase) and hyphen (-) allowed"],
+        "DE": ["Standard: ISO 11649 (Strukturierte Gläubigerreferenz)", "Format: RF + 2 Prüfziffern + bis zu 21 alphanumerische Zeichen", "Prüfalgorithmus: MOD-97 (gleiche Methode wie IBAN)", "Nur 0-9, A-Z (Großbuchstaben) und Bindestrich (-)"],
+        "FR": ["Norme : ISO 11649 (référence créancier structurée)", "Format : RF + 2 chiffres de contrôle + jusqu'à 21 caractères alphanumériques", "Algorithme : MOD-97 (même méthode que la clé IBAN)", "Seuls 0-9, A-Z (majuscules) et tiret (-) autorisés"],
+        "RU": ["Стандарт: ISO 11649 (структурированный референс кредитора)", "Формат: RF + 2 контрольные цифры + до 21 буквенно-цифрового символа", "Алгоритм: MOD-97 (тот же метод, что для IBAN)", "Только 0-9, A-Z (заглавные) и дефис (-)"],
+    },
+    "siren": {
+        "TR": ["Standart: Fransız Şirket Tanımlama Numarası (SIREN)", "Uzunluk: 9 rakam — Luhn algoritması kontrol hanesi", "1968'den beri Fransa'daki tüm tüzel kişiler için zorunlu"],
+        "EN": ["Standard: French company identification number (SIREN)", "Length: 9 digits — Luhn algorithm check digit", "Mandatory for all French legal entities since 1968"],
+        "UK": ["Standard: French company identification number (SIREN)", "Length: 9 digits — Luhn algorithm", "Mandatory for all French legal entities since 1968"],
+        "DE": ["Standard: Französische Unternehmensidentifikationsnummer (SIREN)", "Länge: 9 Stellen — Luhn-Algorithmus als Prüfziffer", "Pflicht für alle juristischen Personen in Frankreich seit 1968"],
+        "FR": ["Norme : SIREN (Système d'Identification du Répertoire des Entreprises)", "Longueur : 9 chiffres — algorithme de Luhn", "Obligatoire pour toutes les personnes morales françaises depuis 1968"],
+        "RU": ["Стандарт: французский идентификационный номер компании (SIREN)", "Длина: 9 цифр — алгоритм Луна", "Обязателен для всех французских юридических лиц с 1968 года"],
+    },
+    "siret": {
+        "TR": ["Standart: Fransız İş Yeri Numarası (SIRET)", "Format: SIREN (9 rakam) + NIC (5 rakam) = toplam 14 rakam", "Kontrol algoritması: tüm 14 rakam üzerinde Luhn algoritması", "Her şube/iş yeri kendine özgü bir SIRET'e sahip olur"],
+        "EN": ["Standard: French establishment identification number (SIRET)", "Format: SIREN (9 digits) + NIC (5 digits) = 14 digits total", "Checksum: Luhn algorithm applied across all 14 digits", "Each business establishment has its own unique SIRET"],
+        "UK": ["Standard: French establishment identification number (SIRET)", "Format: SIREN (9 digits) + NIC (5 digits) = 14 digits total", "Checksum: Luhn algorithm across all 14 digits"],
+        "DE": ["Standard: Französische Betriebsstättennummer (SIRET)", "Format: SIREN (9 Stellen) + NIC (5 Stellen) = 14 Stellen gesamt", "Prüfsumme: Luhn-Algorithmus über alle 14 Stellen"],
+        "FR": ["Norme : SIRET (Système d'Identification du Répertoire des Établissements)", "Format : SIREN (9 chiffres) + NIC (5 chiffres) = 14 chiffres", "Contrôle : algorithme de Luhn sur les 14 chiffres"],
+        "RU": ["Стандарт: французский идентификационный номер предприятия (SIRET)", "Формат: SIREN (9 цифр) + NIC (5 цифр) = 14 цифр", "Проверка: алгоритм Луна по всем 14 цифрам"],
+    },
+}
+
+# ── Category-level fallback validation rules ──────────────────────────────────
+_CAT_VALIDATION: dict[str, dict[str, list[str]]] = {
+    "Cards": {
+        "TR": ["Kart numaraları ISO/IEC 7812 standardına uyar", "Kontrol hanesi Luhn algoritmasıyla hesaplanır", "BIN (ilk 6 rakam) kart ağını ve bankayı tanımlar", "Üretilen değerler gerçek checksum içerir — finansal işlem için kullanılamaz"],
+        "EN": ["Card numbers comply with ISO/IEC 7812 standard", "Check digit calculated via Luhn algorithm", "BIN (first 6 digits) identifies the network and issuing bank", "Generated values contain real checksums — not valid for financial transactions"],
+        "UK": ["Card numbers comply with ISO/IEC 7812 standard", "Check digit: Luhn algorithm", "BIN (first 6 digits) identifies network and issuer", "Generated values contain real checksums — not for financial use"],
+        "DE": ["Kartennummern entsprechen ISO/IEC 7812", "Prüfziffer via Luhn-Algorithmus berechnet", "BIN (erste 6 Stellen) identifiziert Netzwerk und herausgebende Bank", "Generierte Werte enthalten echte Prüfsummen — nicht für Finanztransaktionen"],
+        "FR": ["Numéros de carte conformes à ISO/IEC 7812", "Chiffre de contrôle calculé via algorithme de Luhn", "BIN (6 premiers chiffres) identifie le réseau et la banque émettrice", "Valeurs générées avec vraies sommes de contrôle — non valides pour transactions"],
+        "RU": ["Номера карт соответствуют ISO/IEC 7812", "Контрольная цифра вычислена алгоритмом Луна", "BIN (первые 6 цифр) идентифицирует сеть и банк-эмитент", "Сгенерированные значения содержат реальные контрольные суммы — не для транзакций"],
+    },
+    "Identity": {
+        "TR": ["Kimlik numaraları ülkenin resmi standardına göre üretilir", "Kontrol hanesi ülkeye özgü algoritmalarla hesaplanır", "Tüm veriler tamamen sentetiktir — gerçek kişilerle ilişkisi yoktur", "Yalnızca test ve geliştirme ortamları içindir"],
+        "EN": ["Identity numbers generated per each country's official standard", "Check digits computed using country-specific algorithms", "All data is fully synthetic — not associated with real individuals", "For use in test and development environments only"],
+        "UK": ["Identity numbers follow each country's official standard", "Check digits computed using country-specific algorithms", "Fully synthetic — not associated with real individuals"],
+        "DE": ["Ausweisnummern gemäß offiziellen Länderstandards generiert", "Prüfziffern mit länderspezifischen Algorithmen berechnet", "Alle Daten vollständig synthetisch"],
+        "FR": ["Numéros d'identité selon la norme officielle de chaque pays", "Chiffres de contrôle calculés avec l'algorithme spécifique au pays", "Toutes les données entièrement synthétiques"],
+        "RU": ["Идентификационные номера по официальным стандартам каждой страны", "Контрольные цифры рассчитаны специфическим алгоритмом страны", "Все данные полностью синтетические"],
+    },
+}
+
+_GENERIC_VALIDATION: dict[str, list[str]] = {
+    "TR": ["Mock Jutsu tarafından gerçek format kurallarına uygun üretilir", "Üretilen değerler tamamen sentetiktir", "Geliştirme, test ve demo ortamları için tasarlanmıştır"],
+    "EN": ["Generated by Mock Jutsu following real format specifications", "All produced values are fully synthetic", "Designed for development, testing, and demonstration environments"],
+    "UK": ["Generated following real format specifications", "All values are fully synthetic", "For development, testing, and demonstration only"],
+    "DE": ["Von Mock Jutsu gemäß echten Formatspezifikationen generiert", "Alle produzierten Werte sind vollständig synthetisch", "Für Entwicklungs-, Test- und Demoumgebungen"],
+    "FR": ["Généré par Mock Jutsu selon les vraies spécifications de format", "Toutes les valeurs produites sont synthétiques", "Pour les environnements de développement, de test et de démonstration"],
+    "RU": ["Генерируется Mock Jutsu по реальным форматным спецификациям", "Все значения полностью синтетические", "Для разработки, тестирования и демонстрации"],
+}
+
+
+def _gen_live_examples(fn: str, locale_aware: bool, lang: str, count: int = 5) -> list[str]:
+    """Call jutsu.generate() and return a list of real example output strings."""
+    try:
+        from mockjutsu.cli import jutsu as _jt
+        locale_map = {"TR": "TR", "EN": "US", "UK": "UK", "DE": "DE", "FR": "FR", "RU": "RU"}
+        kwargs: dict = {}
+        if locale_aware:
+            kwargs["locale"] = locale_map.get(lang, "TR")
+        results = []
+        for _ in range(count):
+            try:
+                val = _jt.generate(fn, **kwargs)
+                results.append(str(val))
+            except Exception:
+                pass
+        return results
+    except ImportError:
+        return []
+
+
+def _get_validation_rules(fn: str, cat: str, lang: str) -> list[str]:
+    """Return localized validation rules for fn, falling back to category then generic."""
+    if fn in _VALIDATION_RULES:
+        rules = _VALIDATION_RULES[fn]
+        return rules.get(lang, rules.get("EN", []))
+    if cat in _CAT_VALIDATION:
+        rules = _CAT_VALIDATION[cat]
+        return rules.get(lang, rules.get("EN", []))
+    return _GENERIC_VALIDATION.get(lang, _GENERIC_VALIDATION["EN"])
+
+
 # ── Helpers ───────────────────────────────────────────────────────────────────
 def get_functions():
     return [r for r in _REFERENCE if r[0].strip() and not r[0].strip().startswith("--")]
@@ -1030,6 +1203,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -1175,12 +1360,13 @@ def json_ld_listing(lang: str, ui: dict) -> str:
 def html_head(title: str, desc: str, canonical: str, lang: str, ui: dict,
               fn: str | None, extra_ld: str) -> str:
     og_img = "https://altansayan.github.io/mock-jutsu-api/assets/banner.png"
+    robots_dir = "noindex,follow" if lang == "UK" else "index,follow"
     return f"""<!DOCTYPE html>
 <html lang="{ui['lang_attr']}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="{robots_dir}">
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -1436,6 +1622,30 @@ def build_detail_page(r: tuple, lang: str) -> str:
         cat_badge    = f'<span class="badge-cat">{cat}</span>'
     listing_back = listing_url(lang)
 
+    # Live example output (skip for Commands category)
+    _examples = _gen_live_examples(fn, has_locale, lang) if cat != "Commands" else []
+    examples_html = ""
+    if _examples:
+        _items = "".join(f'<code class="example-val">{v}</code>' for v in _examples)
+        examples_html = (
+            f'<div class="examples-section">'
+            f'<h2>{_SECTION_LABELS["examples"].get(lang, "Example Output")}</h2>'
+            f'<div class="examples-grid">{_items}</div>'
+            f'</div>'
+        )
+
+    # Validation rules
+    _rules = _get_validation_rules(fn, cat, lang) if cat != "Commands" else []
+    validation_html = ""
+    if _rules:
+        _rule_items = "".join(f"<li>{r}</li>" for r in _rules)
+        validation_html = (
+            f'<div class="validation-section">'
+            f'<h2>{_SECTION_LABELS["validation"].get(lang, "Validation Rules")}</h2>'
+            f'<ul class="validation-list">{_rule_items}</ul>'
+            f'</div>'
+        )
+
     head = html_head(
         page_title, meta_desc, canonical, lang, ui, fn,
         json_ld_detail(fn, cat, desc, lang, ui)
@@ -1470,6 +1680,8 @@ def build_detail_page(r: tuple, lang: str) -> str:
   </div>
 
   {params_html}
+  {examples_html}
+  {validation_html}
   {related_html}
 
   <div class="lang-switch">

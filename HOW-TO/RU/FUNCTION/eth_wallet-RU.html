@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -247,6 +259,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Примеры вывода</h2><div class="examples-grid"><code class="example-val">{"private_key":"11c9eaee75219ed3408fd8579824cf1c62df0c62c5c655a2160abaf48ebc2337","public_key":"047262fdf05ecd87f87c5cb62d6f4f0883caa5e3c94a9212b3331ffbef9d352d3f5bc4ac51960fed6592037c6287751f926dcda37c43383bbccb14ff7cb59d64c6","address":"0x1C20dd2C614D6f8161f42320FCE452C539136ac4"}</code><code class="example-val">{"private_key":"ab4f713bd00de535cd5fb6392a76a01cf613eee82ccabb6677c802e162d10a2b","public_key":"047889d8efcfbdc80722c4625c3aa6ed5b813b52e62db03c19b324fb94415fd021c02d1bd465620bae5ac1aae0dca8d7f063e2a509f7798814c9ea426ca819a8fa","address":"0x11e12999BEd55DEdEe802b695d9CD413b57C54CA"}</code><code class="example-val">{"private_key":"c7c6b0434bc30f5a03d78a19e874810a6d6024817c06335751d136e92186ecfe","public_key":"044b2be7e364b74ca0b3250307219f0830f6b15cbf1baa431a8105bf6c32951c78876adb2a98e5618b49f130141ab2eb7f14be2e33da48e80be32416844a05f924","address":"0xc5b9205d3D79b6E0f4f4e3a6aCc06a41e54B7CEa"}</code><code class="example-val">{"private_key":"159dc37e588a3d1b394d55f635119806b45fb52224d0985bff7f4d3f60882fe5","public_key":"04ccd5d48fff6a1685059d4acaab2f5253e233cd74a8e6f1854ee8ecf004d1d85729ec78d511deb367003d99f2f74e1c7d140c6e58e62148732563a57d340506eb","address":"0x25e91DFdA5A4b2a3a85C54ebAa44531Ab83C2AF1"}</code><code class="example-val">{"private_key":"7fe1a86bda0073493c9a77b33fc86c6b5f92942c80f272acea12b5bd6badb9ab","public_key":"049ca0ea5f4cb8447201d61a58c4669163d978a27a09dd7fe54f77f4daaa8b664fcc6a4f44d20df4cb68fd9de6ce775c903838004422451ea84e8f2e9612e531a7","address":"0x66ca047aDb4257eE1acDbd491A13006852ad8C7D"}</code></div></div>
+  <div class="validation-section"><h2>Правила валидации</h2><ul class="validation-list"><li>Генерируется Mock Jutsu по реальным форматным спецификациям</li><li>Все значения полностью синтетические</li><li>Для разработки, тестирования и демонстрации</li></ul></div>
   <div class="related">
   <h2>Похожие функции</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/btc_wallet-RU.html" class="rel-link"><code>btc_wallet</code></a>

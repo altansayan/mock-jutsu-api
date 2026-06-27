@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -259,6 +271,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
+  <div class="examples-section"><h2>Exemples de sortie</h2><div class="examples-grid"><code class="example-val">OC 45 68 73 C</code><code class="example-val">JJ 94 27 31 C</code><code class="example-val">RM 78 07 89 D</code><code class="example-val">JJ 18 68 55 C</code><code class="example-val">MR 08 29 20 A</code></div></div>
+  <div class="validation-section"><h2>Règles de validation</h2><ul class="validation-list"><li>Norme : numéro d'assurance nationale britannique (HMRC)</li><li>Format : AA 99 99 99 A (2 lettres de préfixe + 6 chiffres + 1 lettre suffixe)</li><li>Préfixe : ne peut pas commencer par D, F, I, Q, U, V</li><li>Suffixe : uniquement A, B, C ou D</li></ul></div>
   <div class="related">
   <h2>Fonctions associées</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/tckn-FR.html" class="rel-link"><code>tckn</code></a>

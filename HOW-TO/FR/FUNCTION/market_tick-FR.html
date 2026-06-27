@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Exemples de sortie</h2><div class="examples-grid"><code class="example-val">{"symbol": "MSFT", "timestamp": "2026-06-27T22:10:23.116Z", "price": 600.75, "size": 18670, "bid": 600.73, "ask": 600.76, "side": "buy", "seq": 632052611}</code><code class="example-val">{"symbol": "EREGL", "timestamp": "2026-06-27T22:10:23.116Z", "price": 1677.93, "size": 280, "bid": 1677.9, "ask": 1677.94, "side": "buy", "seq": 228666674}</code><code class="example-val">{"symbol": "SOL-USD", "timestamp": "2026-06-27T22:10:23.116Z", "price": 395.65, "size": 160300, "bid": 395.64, "ask": 395.68, "side": "sell", "seq": 855056340}</code><code class="example-val">{"symbol": "BABA", "timestamp": "2026-06-27T22:10:23.116Z", "price": 1614.8, "size": 8765, "bid": 1614.79, "ask": 1614.83, "side": "sell", "seq": 266144155}</code><code class="example-val">{"symbol": "EREGL", "timestamp": "2026-06-27T22:10:23.116Z", "price": 496.98, "size": 3636, "bid": 496.94, "ask": 497.0, "side": "buy", "seq": 104145838}</code></div></div>
+  <div class="validation-section"><h2>Règles de validation</h2><ul class="validation-list"><li>Généré par Mock Jutsu selon les vraies spécifications de format</li><li>Toutes les valeurs produites sont synthétiques</li><li>Pour les environnements de développement, de test et de démonstration</li></ul></div>
   <div class="related">
   <h2>Fonctions associées</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/ohlcv_candles-FR.html" class="rel-link"><code>ohlcv_candles</code></a>

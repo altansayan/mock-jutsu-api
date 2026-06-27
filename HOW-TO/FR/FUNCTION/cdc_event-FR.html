@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Exemples de sortie</h2><div class="examples-grid"><code class="example-val">{"op": "c", "ts_ms": 1782582807163, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "orders"}, "before": null, "after": {"order_id": "e48ed3cf-6fbf-4d46-9dfe-643944ac3978", "user_id": "187667bd-f1c4-44e1-b32e-1eb268223bbc", "total": 4961.1, "status": "delivered", "created_at": "2026-06-27T22:10:23Z"}}</code><code class="example-val">{"op": "d", "ts_ms": 1782580353498, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "products"}, "before": {"product_id": "6352ba48-a229-449b-9cf4-b93b09787a53", "name": "USB-C Hub 7-in-1", "price": 3582.72, "stock": 724}, "after": null}</code><code class="example-val">{"op": "u", "ts_ms": 1782516338611, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "products"}, "before": {"product_id": "e11e1172-52fc-4241-9deb-e1ecf4994948", "name": "Laptop Pro 15\"", "price": 7550.04, "stock": 823}, "after": {"product_id": "e11e1172-52fc-4241-9deb-e1ecf4994948", "name": "Laptop Pro 15\"", "price": 5302.56, "stock": 761}}</code><code class="example-val">{"op": "u", "ts_ms": 1782520953594, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "orders"}, "before": {"order_id": "266df019-425d-460d-a529-b209e655d650", "user_id": "58ca9278-4e01-44b1-acfe-d8e7434ca186", "total": 7848.42, "status": "cancelled", "created_at": "2026-06-27T22:10:23Z"}, "after": {"order_id": "266df019-425d-460d-a529-b209e655d650", "user_id": "170e4f20-f0e3-47f5-8927-cd139bedc935", "total": 5270.89, "status": "delivered", "created_at": "2026-06-27T22:10:23Z"}}</code><code class="example-val">{"op": "d", "ts_ms": 1782524881543, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "products"}, "before": {"product_id": "624e9fba-a4ee-47fd-b203-e6e4e13c2171", "name": "Mechanical Keyboard", "price": 5192.02, "stock": 77}, "after": null}</code></div></div>
+  <div class="validation-section"><h2>Règles de validation</h2><ul class="validation-list"><li>Généré par Mock Jutsu selon les vraies spécifications de format</li><li>Toutes les valeurs produites sont synthétiques</li><li>Pour les environnements de développement, de test et de démonstration</li></ul></div>
   <div class="related">
   <h2>Fonctions associées</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/event_stream-FR.html" class="rel-link"><code>event_stream</code></a>

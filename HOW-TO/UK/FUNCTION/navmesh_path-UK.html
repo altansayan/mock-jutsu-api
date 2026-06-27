@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,follow">
 <title>Mock Jutsu — navmesh_path | UK</title>
 <meta name="description" content="A*-compatible NavMesh waypoint path: 3-15 waypoints, random heading ±60° turns, 5-25 unit steps, terrain height bounded ±5. start=waypoints[0], end=waypoin">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val">{"start": {"x": 93.186, "y": -0.962, "z": 141.918}, "end": {"x": 110.44, "y": -0.848, "z": 206.714}, "waypoints": [{"x": 93.186, "y": -0.962, "z": 141.918}, {"x": 99.685, "y": -0.714, "z": 138.069}, {"x": 105.471, "y": -0.549, "z": 138.257}, {"x": 114.222, "y": -0.665, "z": 147.038}, {"x": 112.416, "y": -0.781, "z": 162.291}, {"x": 114.213, "y": -0.433, "z": 170.986}, {"x": 115.845, "y": -0.695, "z": 192.469}, {"x": 110.44, "y": -0.848, "z": 206.714}], "total_distance": 86.775, "waypoint_count": 8}</code><code class="example-val">{"start": {"x": -43.328, "y": -1.306, "z": -72.434}, "end": {"x": -0.158, "y": -1.066, "z": -19.975}, "waypoints": [{"x": -43.328, "y": -1.306, "z": -72.434}, {"x": -55.816, "y": -1.008, "z": -57.66}, {"x": -67.173, "y": -1.005, "z": -45.683}, {"x": -66.536, "y": -1.161, "z": -39.082}, {"x": -60.497, "y": -0.665, "z": -30.663}, {"x": -53.097, "y": -0.755, "z": -20.266}, {"x": -39.704, "y": -0.831, "z": -18.882}, {"x": -23.712, "y": -0.721, "z": -28.866}, {"x": -14.339, "y": -0.841, "z": -28.967}, {"x": -9.413, "y": -0.822, "z": -23.98}, {"x": -0.158, "y": -1.066, "z": -19.975}], "total_distance": 124.41, "waypoint_count": 11}</code><code class="example-val">{"start": {"x": -176.407, "y": -1.919, "z": 161.128}, "end": {"x": -56.674, "y": -3.02, "z": 42.413}, "waypoints": [{"x": -176.407, "y": -1.919, "z": 161.128}, {"x": -166.457, "y": -1.905, "z": 164.452}, {"x": -158.195, "y": -2.186, "z": 158.475}, {"x": -152.499, "y": -1.773, "z": 149.956}, {"x": -134.747, "y": -2.188, "z": 134.891}, {"x": -135.033, "y": -2.096, "z": 118.036}, {"x": -128.372, "y": -2.448, "z": 96.309}, {"x": -115.85, "y": -2.644, "z": 85.641}, {"x": -96.373, "y": -3.114, "z": 92.13}, {"x": -80.282, "y": -2.873, "z": 82.059}, {"x": -66.169, "y": -2.55, "z": 76.254}, {"x": -62.296, "y": -2.546, "z": 53.333}, {"x": -56.674, "y": -3.02, "z": 42.413}], "total_distance": 200.591, "waypoint_count": 13}</code><code class="example-val">{"start": {"x": 183.376, "y": -0.826, "z": 115.399}, "end": {"x": 228.833, "y": -0.388, "z": 5.07}, "waypoints": [{"x": 183.376, "y": -0.826, "z": 115.399}, {"x": 189.048, "y": -0.332, "z": 107.088}, {"x": 199.341, "y": -0.634, "z": 98.604}, {"x": 208.407, "y": -0.665, "z": 86.066}, {"x": 217.075, "y": -0.763, "z": 76.984}, {"x": 213.502, "y": -1.129, "z": 55.804}, {"x": 223.024, "y": -1.162, "z": 37.101}, {"x": 223.954, "y": -0.825, "z": 21.362}, {"x": 228.833, "y": -0.388, "z": 5.07}], "total_distance": 126.696, "waypoint_count": 9}</code><code class="example-val">{"start": {"x": -14.112, "y": -0.361, "z": 12.866}, "end": {"x": 78.38, "y": -1.013, "z": 24.817}, "waypoints": [{"x": -14.112, "y": -0.361, "z": 12.866}, {"x": 5.442, "y": -0.678, "z": 6.084}, {"x": 16.022, "y": -0.532, "z": 13.175}, {"x": 37.603, "y": -0.429, "z": 4.069}, {"x": 56.587, "y": -0.702, "z": 15.709}, {"x": 78.38, "y": -1.013, "z": 24.817}], "total_distance": 102.752, "waypoint_count": 6}</code></div></div>
+  <div class="validation-section"><h2>Validation Rules</h2><ul class="validation-list"><li>Generated following real format specifications</li><li>All values are fully synthetic</li><li>For development, testing, and demonstration only</li></ul></div>
   <div class="related">
   <h2>Related Functions</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/quaternion-UK.html" class="rel-link"><code>quaternion</code></a>

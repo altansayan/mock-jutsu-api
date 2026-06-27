@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,follow">
 <title>Mock Jutsu — mt940 | UK</title>
 <meta name="description" content="SWIFT MT940 bank statement: :20: :25: :28C: :60F: :61: :86: :62F: fields. Comma decimal (500,00). 2-5 transactions.">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -259,6 +271,58 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
+  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val">:20:19D6S7T6BJ
+:25:GB97TTEK42998614254475/GBP
+:28C:00095/001
+:60F:C260626GBP17658,36
+:61:2606260626C2015,89NCHK67TA6O2N//67TA6O2N
+:86:VENDOR PAYMENT
+:61:2606260626D2883,46NTRFB8BPNQA8//B8BPNQA8
+:86:SALARY PAYMENT
+:62F:C260626GBP16790,79</code><code class="example-val">:20:OGE6BKYRLT
+:25:GB03WRED67496868620022/GBP
+:28C:00089/001
+:60F:C260626GBP33064,14
+:61:2606260626D3676,24NFEXCE8E0UZO//CE8E0UZO
+:86:INVOICE SETTLEMENT
+:61:2606260626D1237,27NFEX5A7AA6EX//5A7AA6EX
+:86:DIRECT DEBIT
+:62F:C260626GBP28150,63</code><code class="example-val">:20:B4JLE7BJ2O
+:25:GB00MSXA09003825025942/GBP
+:28C:00018/001
+:60F:C260625GBP30532,67
+:61:2606250625C3783,73NDDPXYJAS44G//XYJAS44G
+:86:INCOMING WIRE TRANSFER
+:61:2606250625C410,67NTRNL5ZVC424//L5ZVC424
+:86:RENT PAYMENT
+:61:2606250625D2016,75NTRN033FXQ1S//033FXQ1S
+:86:RENT PAYMENT
+:61:2606250625C3449,75NTRNLRDK3ZWP//LRDK3ZWP
+:86:STANDING ORDER
+:62F:C260625GBP36160,07</code><code class="example-val">:20:UZCSHZN747
+:25:GB99FGFV55719298698666/GBP
+:28C:00001/001
+:60F:C260626GBP27532,20
+:61:2606260626D2885,66NDDP9IQCHDFT//9IQCHDFT
+:86:INCOMING WIRE TRANSFER
+:61:2606260626C2790,28NTRFN4KFVTRY//N4KFVTRY
+:86:INCOMING WIRE TRANSFER
+:61:2606260626D983,93NDDPTFS5W8FI//TFS5W8FI
+:86:INCOMING WIRE TRANSFER
+:62F:C260626GBP26452,89</code><code class="example-val">:20:MER2WEIRKW
+:25:GB67XZKN69596871002453/GBP
+:28C:00083/001
+:60F:C260626GBP7742,18
+:61:2606260626C1778,77NTRNG3FNG1LK//G3FNG1LK
+:86:TRANSFER FROM CUSTOMER
+:61:2606270627C2434,62NTRF3TP953VC//3TP953VC
+:86:SALARY PAYMENT
+:61:2606270627C970,97NTRNPI1U2IBJ//PI1U2IBJ
+:86:STANDING ORDER
+:61:2606270627D3333,04NTRF5JKK7PGH//5JKK7PGH
+:86:SALARY PAYMENT
+:62F:C260627GBP9593,50</code></div></div>
+  <div class="validation-section"><h2>Validation Rules</h2><ul class="validation-list"><li>Generated following real format specifications</li><li>All values are fully synthetic</li><li>For development, testing, and demonstration only</li></ul></div>
   <div class="related">
   <h2>Related Functions</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/camt053-UK.html" class="rel-link"><code>camt053</code></a>

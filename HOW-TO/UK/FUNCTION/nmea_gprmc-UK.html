@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,follow">
 <title>Mock Jutsu — nmea_gprmc | UK</title>
 <meta name="description" content="GPRMC Recommended Minimum GPS Data sentence: status A, lat/lon, speed (knots), course, date (DDMMYY). XOR checksum validated.">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val">{"sentence": "$GPRMC,221022.00,A,3252.5418,S,16837.5170,E,81.8,150.1,270626,,*1A", "type": "GPRMC", "time": "221022.00", "status": "A", "lat": "3252.5418", "lat_dir": "S", "lon": "16837.5170", "lon_dir": "E", "speed_knots": 81.8, "course": 150.1, "date": "270626", "checksum": "1A"}</code><code class="example-val">{"sentence": "$GPRMC,221022.00,A,5720.8890,N,01951.0105,W,51.8,306.5,270626,,*1A", "type": "GPRMC", "time": "221022.00", "status": "A", "lat": "5720.8890", "lat_dir": "N", "lon": "01951.0105", "lon_dir": "W", "speed_knots": 51.8, "course": 306.5, "date": "270626", "checksum": "1A"}</code><code class="example-val">{"sentence": "$GPRMC,221022.00,A,1056.7339,S,16934.0257,E,48.2,239.5,270626,,*1E", "type": "GPRMC", "time": "221022.00", "status": "A", "lat": "1056.7339", "lat_dir": "S", "lon": "16934.0257", "lon_dir": "E", "speed_knots": 48.2, "course": 239.5, "date": "270626", "checksum": "1E"}</code><code class="example-val">{"sentence": "$GPRMC,221022.00,A,5436.2679,S,12228.0781,W,46.7,121.5,270626,,*03", "type": "GPRMC", "time": "221022.00", "status": "A", "lat": "5436.2679", "lat_dir": "S", "lon": "12228.0781", "lon_dir": "W", "speed_knots": 46.7, "course": 121.5, "date": "270626", "checksum": "03"}</code><code class="example-val">{"sentence": "$GPRMC,221022.00,A,3618.2954,S,03312.1278,E,21.0,24.3,270626,,*27", "type": "GPRMC", "time": "221022.00", "status": "A", "lat": "3618.2954", "lat_dir": "S", "lon": "03312.1278", "lon_dir": "E", "speed_knots": 21.0, "course": 24.3, "date": "270626", "checksum": "27"}</code></div></div>
+  <div class="validation-section"><h2>Validation Rules</h2><ul class="validation-list"><li>Generated following real format specifications</li><li>All values are fully synthetic</li><li>For development, testing, and demonstration only</li></ul></div>
   <div class="related">
   <h2>Related Functions</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nmea_gpgga-UK.html" class="rel-link"><code>nmea_gpgga</code></a>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,follow">
 <title>Mock Jutsu — can_frame | UK</title>
 <meta name="description" content="Raw CAN Bus frame (ISO 11898-1): standard (11-bit) or extended (29-bit) ID, DLC 0-8, CRC-15 polynomial 0xC599 verified over SOF+ID+Control+Data. SocketCAN ">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val">{"frame_type": "standard", "can_id": "0x6E2", "can_id_int": 1762, "dlc": 1, "data": [41], "data_hex": "29", "crc15": 6856, "crc15_hex": "1AC8", "socketcan": "6E2#29"}</code><code class="example-val">{"frame_type": "standard", "can_id": "0x015", "can_id_int": 21, "dlc": 1, "data": [50], "data_hex": "32", "crc15": 13010, "crc15_hex": "32D2", "socketcan": "015#32"}</code><code class="example-val">{"frame_type": "standard", "can_id": "0x04E", "can_id_int": 78, "dlc": 4, "data": [74, 57, 162, 152], "data_hex": "4A39A298", "crc15": 28511, "crc15_hex": "6F5F", "socketcan": "04E#4A39A298"}</code><code class="example-val">{"frame_type": "standard", "can_id": "0x67E", "can_id_int": 1662, "dlc": 0, "data": [], "data_hex": "", "crc15": 8499, "crc15_hex": "2133", "socketcan": "67E#"}</code><code class="example-val">{"frame_type": "standard", "can_id": "0x1D8", "can_id_int": 472, "dlc": 2, "data": [62, 253], "data_hex": "3EFD", "crc15": 13429, "crc15_hex": "3475", "socketcan": "1D8#3EFD"}</code></div></div>
+  <div class="validation-section"><h2>Validation Rules</h2><ul class="validation-list"><li>Generated following real format specifications</li><li>All values are fully synthetic</li><li>For development, testing, and demonstration only</li></ul></div>
   <div class="related">
   <h2>Related Functions</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/obd2_response-UK.html" class="rel-link"><code>obd2_response</code></a>

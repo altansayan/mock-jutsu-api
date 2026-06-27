@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,49 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Örnek Çıktılar</h2><div class="examples-grid"><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4d 4a 40 6a 00 00 00 00
+88 00 00 00 88 00 00 00 76 f6 c2 6e 5c 00 4a 19
+10 2b 9f db 08 00 45 00 00 7a 3d 8c 40 00 40 06
+00 00 b8 02 c6 ad 76 f5 f8 6c 71 a1 00 16 04 fd
+aa c7 06 8c b6 10 50 18 ff ff 00 00 00 00 50 4f
+53 54 20 2f 61 70 69 2f 76 31 2f 61 75 74 68 20
+48 54 54 50 2f 31 2e 31 0d 0a 43 6f 6e 74 65 6e
+74 2d 54 79 70 65 3a 20 61 70 70 6c 69 63 61 74
+69 6f 6e 2f 6a 73 6f 6e 0d 0a 43 6f 6e 74 65 6e
+74 2d 4c 65 6e 67 74 68 3a 20 34 32 0d 0a 0d 0a</code><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4d 4a 40 6a 00 00 00 00
+88 00 00 00 88 00 00 00 08 fa a1 20 c4 f1 d0 d6
+e7 f2 c0 38 08 00 45 00 00 7a c7 0f 40 00 40 06
+00 00 11 10 f0 d7 e3 66 b8 a2 c6 e2 00 16 6f 2b
+56 f5 6f 93 47 b1 50 18 ff ff 00 00 00 00 50 4f
+53 54 20 2f 61 70 69 2f 76 31 2f 61 75 74 68 20
+48 54 54 50 2f 31 2e 31 0d 0a 43 6f 6e 74 65 6e
+74 2d 54 79 70 65 3a 20 61 70 70 6c 69 63 61 74
+69 6f 6e 2f 6a 73 6f 6e 0d 0a 43 6f 6e 74 65 6e
+74 2d 4c 65 6e 67 74 68 3a 20 34 32 0d 0a 0d 0a</code><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4d 4a 40 6a 00 00 00 00
+41 00 00 00 41 00 00 00 b6 d2 dc bc da be 3b 23
+51 d2 c6 cc 08 00 45 00 00 33 ba 05 40 00 40 06
+00 00 7a 99 27 c8 eb fb fe 9f b4 57 1f 90 e1 10
+be 15 59 8c 48 e1 50 18 ff ff 00 00 00 00 16 03
+01 00 f1 01 00 00 ed 03 03</code><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4d 4a 40 6a 00 00 00 00
+3f 00 00 00 3f 00 00 00 9d 21 35 ea 0d 30 0d e6
+d5 93 d3 2d 08 00 45 00 00 31 27 89 40 00 40 06
+00 00 3a 10 d8 87 06 b7 c5 fc 15 fb 20 fb c3 03
+78 d1 19 10 67 71 50 18 ff ff 00 00 00 00 00 00
+00 05 01 00 00 00 00</code><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4d 4a 40 6a 00 00 00 00
+78 00 00 00 78 00 00 00 29 7d 4c b2 54 71 86 c0
+90 90 0b c2 08 00 45 00 00 6a 3c 43 40 00 40 06
+00 00 01 30 62 cc 01 ad 5f ab 94 d8 15 38 8e 1f
+e2 d9 dc f3 74 26 50 18 ff ff 00 00 00 00 47 45
+54 20 2f 20 48 54 54 50 2f 31 2e 31 0d 0a 48 6f
+73 74 3a 20 61 70 69 2e 65 78 61 6d 70 6c 65 2e
+63 6f 6d 0d 0a 55 73 65 72 2d 41 67 65 6e 74 3a
+20 4d 6f 7a 69 6c 6c 61 2f 35 2e 30 0d 0a 0d 0a</code></div></div>
+  <div class="validation-section"><h2>Doğrulama Kuralları</h2><ul class="validation-list"><li>Mock Jutsu tarafından gerçek format kurallarına uygun üretilir</li><li>Üretilen değerler tamamen sentetiktir</li><li>Geliştirme, test ve demo ortamları için tasarlanmıştır</li></ul></div>
   <div class="related">
   <h2>İlgili Fonksiyonlar</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/FUNCTION/cef_log-TR.html" class="rel-link"><code>cef_log</code></a>

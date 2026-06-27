@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -247,6 +259,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Примеры вывода</h2><div class="examples-grid"><code class="example-val">sha256=a18498c166c8d1ab9589cbdac199d3ef2eb5b891ae0e085a95687b8720a15959</code><code class="example-val">sha256=da1bc239bcc99eb2292a275308bd8da16ab56d9b607368d1e7a8492af3ce186d</code><code class="example-val">sha256=b59d9bbd974a60aa9defde571e15c9687bd132750610f3bfde82edbaa55e5905</code><code class="example-val">sha256=91278b9ffdfe7b382cc69888fd0210fe15ed6853f74a719b6db7f1857cc749ac</code><code class="example-val">sha256=8c04bad3bad6db631de661341bc5e32badca746b447c0f018a18bd4223913c04</code></div></div>
+  <div class="validation-section"><h2>Правила валидации</h2><ul class="validation-list"><li>Генерируется Mock Jutsu по реальным форматным спецификациям</li><li>Все значения полностью синтетические</li><li>Для разработки, тестирования и демонстрации</li></ul></div>
   <div class="related">
   <h2>Похожие функции</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/cef_log-RU.html" class="rel-link"><code>cef_log</code></a>

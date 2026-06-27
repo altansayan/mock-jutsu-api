@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Beispielausgaben</h2><div class="examples-grid"><code class="example-val">{"version": 3, "serial": "ad0db32f8e7187dd1b7278e0e03560e0", "algorithm": "ecdsa-with-SHA256", "key_size": 4096, "subject": "CN=sso.enterprise.io, O=InfoSec Corp, OU=IT Security, C=TR", "issuer": "CN=Amazon RSA 2048 M02, O=Amazon, C=US", "not_before": "2026-05-07T22:10:22Z", "not_after": "2027-06-08T22:10:22Z", "san": ["sso.enterprise.io", "www.sso.enterprise.io"], "fingerprint": "63:48:A0:B3:9C:3B:54:3F:B1:F3:B6:BB:E4:9B:9E:9B:9E:A7:0C:C3:09:83:4C:C1:A8:30:E9:6F:DB:F3:B9:86"}</code><code class="example-val">{"version": 3, "serial": "a573c2d063436fc5458da99025fb6f27", "algorithm": "ecdsa-with-SHA256", "key_size": 4096, "subject": "CN=gateway.prod.local, O=Acme Corp, OU=IT Security, C=NL", "issuer": "CN=GlobalSign RSA OV SSL CA 2018, O=GlobalSign nv-sa, C=BE", "not_before": "2025-07-22T22:10:22Z", "not_after": "2027-07-22T22:10:22Z", "san": ["gateway.prod.local", "www.gateway.prod.local"], "fingerprint": "A5:53:E6:62:18:ED:C6:B9:EC:DC:3C:3E:4B:75:FF:3F:06:DC:14:30:CD:BB:DF:F5:92:2F:AC:42:AD:3F:99:1E"}</code><code class="example-val">{"version": 3, "serial": "dd9c7868adbb0a5cc811ad0555ae8e04", "algorithm": "sha256WithRSAEncryption", "key_size": 4096, "subject": "CN=secure.corp.net, O=SecureBank Ltd, OU=IT Security, C=TR", "issuer": "CN=Microsoft Azure TLS Issuing CA 01, O=Microsoft Corporation, C=US", "not_before": "2026-04-30T22:10:22Z", "not_after": "2027-04-30T22:10:22Z", "san": ["secure.corp.net", "www.secure.corp.net"], "fingerprint": "EF:90:A4:86:9F:0D:16:AC:C9:48:58:37:29:EE:48:B9:5C:64:A9:62:A5:E8:67:B3:7B:1C:0A:46:38:E9:2A:E2"}</code><code class="example-val">{"version": 3, "serial": "30a2f5a31288f732fefc3b1c5e437f25", "algorithm": "ecdsa-with-SHA256", "key_size": 4096, "subject": "CN=auth.internal.io, O=SecureBank Ltd, OU=IT Security, C=TR", "issuer": "CN=Microsoft Azure TLS Issuing CA 01, O=Microsoft Corporation, C=US", "not_before": "2025-08-16T22:10:22Z", "not_after": "2027-08-16T22:10:22Z", "san": ["auth.internal.io", "www.auth.internal.io"], "fingerprint": "6A:B1:49:3C:28:90:FB:22:9B:8B:BE:17:08:82:6E:EB:7C:64:A7:6E:4F:C8:6D:4E:FE:CF:1E:CB:36:5C:91:F0"}</code><code class="example-val">{"version": 3, "serial": "c04f64038970f5a9342a54989fd66029", "algorithm": "ecdsa-with-SHA256", "key_size": 2048, "subject": "CN=api.example.com, O=Acme Corp, OU=IT Security, C=TR", "issuer": "CN=DigiCert TLS RSA SHA256 2020 CA1, O=DigiCert Inc, C=US", "not_before": "2025-09-25T22:10:22Z", "not_after": "2027-09-25T22:10:22Z", "san": ["api.example.com", "www.api.example.com"], "fingerprint": "DD:91:3F:27:F4:08:C7:B6:C9:B0:3D:24:6E:CA:0D:C0:0F:D1:C7:66:D4:F9:E6:9B:DF:3D:46:21:7F:2D:74:C7"}</code></div></div>
+  <div class="validation-section"><h2>Validierungsregeln</h2><ul class="validation-list"><li>Von Mock Jutsu gemäß echten Formatspezifikationen generiert</li><li>Alle produzierten Werte sind vollständig synthetisch</li><li>Für Entwicklungs-, Test- und Demoumgebungen</li></ul></div>
   <div class="related">
   <h2>Verwandte Funktionen</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cef_log-DE.html" class="rel-link"><code>cef_log</code></a>

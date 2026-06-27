@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -259,6 +271,65 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
+  <div class="examples-section"><h2>Примеры вывода</h2><div class="examples-grid"><code class="example-val">ISA*00*          *00*          *ZZ*DWQXK3I5T5     *ZZ*JI08EBYZ92     *260628*0110*^*00501*329890795*0*P*:~
+GS*PO*DWQXK3I5T5*JI08EBYZ92*20260628*0110*6256*X*004010~
+ST*850*5533~
+BEG*00*SA*PO395880**20260628~
+N1*BY*NEXUS LOGISTICS*92*CNT2XY~
+N1*SE*APEX SOLUTIONS*92*5AN8ZS~
+PO1*1*26*EA*380.78**VP*42G8VLS3~
+CTT*1~
+SE*7*5533~
+GE*1*6256~
+IEA*1*329890795~</code><code class="example-val">ISA*00*          *00*          *ZZ*DJZQ4NEM5K     *ZZ*NU6YLYL3U3     *260628*0110*^*00501*561588736*0*P*:~
+GS*PO*DJZQ4NEM5K*NU6YLYL3U3*20260628*0110*0811*X*004010~
+ST*850*8338~
+BEG*00*SA*PO947261**20260628~
+N1*BY*METRO SUPPLY CO*92*GQX8KI~
+N1*SE*GLOBAL TRADE INC*92*ZBBYL1~
+PO1*1*26*EA*150.29**VP*SGP92CO6~
+PO1*2*25*EA*295.56**VP*H8MZU7KF~
+CTT*2~
+SE*8*8338~
+GE*1*0811~
+IEA*1*561588736~</code><code class="example-val">ISA*00*          *00*          *ZZ*PM8SDF46JM     *ZZ*A2A1DRUSXW     *260628*0110*^*00501*998601314*0*P*:~
+GS*PO*PM8SDF46JM*A2A1DRUSXW*20260628*0110*1363*X*004010~
+ST*850*3208~
+BEG*00*SA*PO949689**20260628~
+N1*BY*APEX SOLUTIONS*92*YUJ66D~
+N1*SE*METRO SUPPLY CO*92*TTB626~
+PO1*1*79*EA*280.52**VP*D44VHGG3~
+PO1*2*91*EA*298.21**VP*82QUCLWI~
+PO1*3*95*EA*119.36**VP*K01ZCHMC~
+CTT*3~
+SE*9*3208~
+GE*1*1363~
+IEA*1*998601314~</code><code class="example-val">ISA*00*          *00*          *ZZ*D8BFQJ110A     *ZZ*5V2SL93OUA     *260628*0110*^*00501*468420566*0*P*:~
+GS*PO*D8BFQJ110A*5V2SL93OUA*20260628*0110*5312*X*004010~
+ST*850*7927~
+BEG*00*SA*PO244577**20260628~
+N1*BY*PINNACLE GOODS*92*NULJF3~
+N1*SE*NEXUS LOGISTICS*92*ATFKR2~
+PO1*1*92*EA*267.08**VP*3DG0BC1P~
+PO1*2*86*EA*271.77**VP*JN0VIIAX~
+PO1*3*74*EA*108.47**VP*OY0NKG0M~
+CTT*3~
+SE*9*7927~
+GE*1*5312~
+IEA*1*468420566~</code><code class="example-val">ISA*00*          *00*          *ZZ*9XO9W3BT77     *ZZ*7URV4FD74A     *260628*0110*^*00501*251494753*0*P*:~
+GS*PO*9XO9W3BT77*7URV4FD74A*20260628*0110*4772*X*004010~
+ST*850*7707~
+BEG*00*SA*PO292186**20260628~
+N1*BY*ACME CORP*92*VQHQE2~
+N1*SE*HORIZON GROUP*92*ZH7INJ~
+PO1*1*76*EA*374.60**VP*NV1LK1OQ~
+PO1*2*90*EA*192.13**VP*7P005EXQ~
+PO1*3*84*EA*434.37**VP*LYW0HFH3~
+CTT*3~
+SE*9*7707~
+GE*1*4772~
+IEA*1*251494753~</code></div></div>
+  <div class="validation-section"><h2>Правила валидации</h2><ul class="validation-list"><li>Генерируется Mock Jutsu по реальным форматным спецификациям</li><li>Все значения полностью синтетические</li><li>Для разработки, тестирования и демонстрации</li></ul></div>
   <div class="related">
   <h2>Похожие функции</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/edifact_orders-RU.html" class="rel-link"><code>edifact_orders</code></a>

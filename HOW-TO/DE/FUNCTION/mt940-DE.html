@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -259,6 +271,62 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
+  <div class="examples-section"><h2>Beispielausgaben</h2><div class="examples-grid"><code class="example-val">:20:VOOBK90P8L
+:25:DE72373915116884711876/EUR
+:28C:00079/001
+:60F:C260621EUR2291,52
+:61:2606210621C784,89NFEXY91ILETY//Y91ILETY
+:86:SALARY PAYMENT
+:61:2606210621C4368,23NDDP0SO2H0XN//0SO2H0XN
+:86:TAX PAYMENT
+:61:2606210621C535,98NCHKD11I7CE5//D11I7CE5
+:86:UTILITY BILL
+:62F:C260621EUR7980,62</code><code class="example-val">:20:JI5ID5P2QH
+:25:DE47352606527080808992/EUR
+:28C:00047/001
+:60F:C260623EUR36087,42
+:61:2606230623D2801,15NCHK7ASVBOLW//7ASVBOLW
+:86:INVOICE SETTLEMENT
+:61:2606230623D1173,92NDDPV5KTVWLS//V5KTVWLS
+:86:INVOICE SETTLEMENT
+:61:2606240624C2031,30NCHK4GTEDRNN//4GTEDRNN
+:86:TAX PAYMENT
+:62F:C260624EUR34143,65</code><code class="example-val">:20:8FVA4M3725
+:25:DE93964643060203309684/EUR
+:28C:00041/001
+:60F:C260621EUR28549,80
+:61:2606210621D2352,30NFEX970AKRPV//970AKRPV
+:86:INCOMING WIRE TRANSFER
+:61:2606220622D135,02NTRND30MT66U//D30MT66U
+:86:INCOMING WIRE TRANSFER
+:61:2606230623C3868,12NTRNB9QC0RCW//B9QC0RCW
+:86:TRANSFER FROM CUSTOMER
+:61:2606230623D2813,11NFEX3PDTT5ZB//3PDTT5ZB
+:86:VENDOR PAYMENT
+:62F:C260623EUR27117,49</code><code class="example-val">:20:GBOBZK85VZ
+:25:DE93562611943752032044/EUR
+:28C:00070/001
+:60F:C260625EUR43208,70
+:61:2606250625D3107,27NFEXM9DZB1P7//M9DZB1P7
+:86:INCOMING WIRE TRANSFER
+:61:2606250625D4501,13NDDP81MBYP8J//81MBYP8J
+:86:DIRECT DEBIT
+:61:2606250625D1102,26NDDPOC6JMM2E//OC6JMM2E
+:86:SALARY PAYMENT
+:61:2606250625C2543,93NCHKP2NDZ9FR//P2NDZ9FR
+:86:TAX PAYMENT
+:61:2606250625C1743,50NTRNL1ZNI49S//L1ZNI49S
+:86:INSURANCE PREMIUM
+:62F:C260625EUR38785,47</code><code class="example-val">:20:LFXI1KNTF9
+:25:DE00293215333889007952/EUR
+:28C:00051/001
+:60F:C260625EUR11105,41
+:61:2606250625C3126,33NDDPU035996Y//U035996Y
+:86:STANDING ORDER
+:61:2606260626D4713,80NFEX6D62ULGX//6D62ULGX
+:86:INVOICE SETTLEMENT
+:62F:C260626EUR9517,94</code></div></div>
+  <div class="validation-section"><h2>Validierungsregeln</h2><ul class="validation-list"><li>Von Mock Jutsu gemäß echten Formatspezifikationen generiert</li><li>Alle produzierten Werte sind vollständig synthetisch</li><li>Für Entwicklungs-, Test- und Demoumgebungen</li></ul></div>
   <div class="related">
   <h2>Verwandte Funktionen</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/camt053-DE.html" class="rel-link"><code>camt053</code></a>

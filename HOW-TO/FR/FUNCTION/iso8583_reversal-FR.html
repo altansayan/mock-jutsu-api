@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -267,6 +279,73 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
+  <div class="examples-section"><h2>Exemples de sortie</h2><div class="examples-grid"><code class="example-val">MTI:0400
+BITMAP:7238000008C08100
+DE002:4477615123765837
+DE003:000000
+DE004:000009672008
+DE007:0628011023
+DE011:282203
+DE012:011023
+DE013:0628
+DE037:MOCKJ4818BF3
+DE041:MOCKJT76
+DE042:MOCKJM768938183
+DE049:978
+DE056:01008248560628011023MOCKJ164594</code><code class="example-val">MTI:0400
+BITMAP:7238000008C08100
+DE002:4099307115060744
+DE003:000000
+DE004:000001497192
+DE007:0628011023
+DE011:583915
+DE012:011023
+DE013:0628
+DE037:MOCKJ3128A50
+DE041:MOCKJT37
+DE042:MOCKJM612852743
+DE049:978
+DE056:01000265510628011023MOCKJ915525</code><code class="example-val">MTI:0400
+BITMAP:7238000008C08100
+DE002:4521368574911304
+DE003:000000
+DE004:000005041766
+DE007:0628011023
+DE011:482957
+DE012:011023
+DE013:0628
+DE037:MOCKJ264522E
+DE041:MOCKJT54
+DE042:MOCKJM999557652
+DE049:978
+DE056:01003551960628011023MOCKJ655451</code><code class="example-val">MTI:0400
+BITMAP:7238000008C08100
+DE002:4070500095369753
+DE003:000000
+DE004:000000869762
+DE007:0628011023
+DE011:182420
+DE012:011023
+DE013:0628
+DE037:MOCKJ3628927
+DE041:MOCKJT75
+DE042:MOCKJM486882587
+DE049:978
+DE056:01007911300628011023MOCKJ589235</code><code class="example-val">MTI:0400
+BITMAP:7238000008C08100
+DE002:4706338439006621
+DE003:000000
+DE004:000001808948
+DE007:0628011023
+DE011:266716
+DE012:011023
+DE013:0628
+DE037:MOCKJE7C5C9D
+DE041:MOCKJT20
+DE042:MOCKJM315313085
+DE049:978
+DE056:01000970150628011023MOCKJ727614</code></div></div>
+  <div class="validation-section"><h2>Règles de validation</h2><ul class="validation-list"><li>Généré par Mock Jutsu selon les vraies spécifications de format</li><li>Toutes les valeurs produites sont synthétiques</li><li>Pour les environnements de développement, de test et de démonstration</li></ul></div>
   <div class="related">
   <h2>Fonctions associées</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/iso8583_auth_request-FR.html" class="rel-link"><code>iso8583_auth_request</code></a>

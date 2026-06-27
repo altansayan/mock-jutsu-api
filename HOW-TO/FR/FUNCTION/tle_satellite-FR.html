@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Exemples de sortie</h2><div class="examples-grid"><code class="example-val">{"name": "TESTBIRD-211", "line1": "1 08465U 97692Z   25137.01021797  .00003131  00000-0  71267-3 0   749", "line2": "2 08465   0.0839 296.5004 0000066 334.2996  67.7518  0.99963303291591", "norad_id": 8465, "classification": "U", "epoch_year": 25, "epoch_day": 137.01021797, "inclination": 0.0839, "raan": 296.5004, "eccentricity": 6.6e-06, "arg_of_perigee": 334.2996, "mean_anomaly": 67.7518, "mean_motion": 0.99963303, "rev_number": 29159, "orbit_type": "GEO"}</code><code class="example-val">{"name": "DEMOSTAR-441", "line1": "1 74012U 92409X   14062.27696629  .00006642  00000-0  64524-3 0  6649", "line2": "2 74012  48.2456 303.4995 0048886 195.1977 103.0352  9.07056182133527", "norad_id": 74012, "classification": "U", "epoch_year": 14, "epoch_day": 62.27696629, "inclination": 48.2456, "raan": 303.4995, "eccentricity": 0.0048886, "arg_of_perigee": 195.1977, "mean_anomaly": 103.0352, "mean_motion": 9.07056182, "rev_number": 13352, "orbit_type": "MEO"}</code><code class="example-val">{"name": "SIMBIRD-884", "line1": "1 02028U 70264L   26231.26029458  .00007782  00000-0  79853-3 0 66814", "line2": "2 02028  29.5149 147.2109 0024306 128.9601 341.3373  5.82579656950720", "norad_id": 2028, "classification": "U", "epoch_year": 26, "epoch_day": 231.26029458, "inclination": 29.5149, "raan": 147.2109, "eccentricity": 0.0024306, "arg_of_perigee": 128.9601, "mean_anomaly": 341.3373, "mean_motion": 5.82579656, "rev_number": 95072, "orbit_type": "MEO"}</code><code class="example-val">{"name": "MOCKBIRD-124", "line1": "1 60629C 75967F   14354.34164990  .00006828  00000-0  76530-3 0 13791", "line2": "2 60629  37.3692 285.0339 0003470 308.6547 244.1397 13.60320818707491", "norad_id": 60629, "classification": "C", "epoch_year": 14, "epoch_day": 354.3416499, "inclination": 37.3692, "raan": 285.0339, "eccentricity": 0.000347, "arg_of_perigee": 308.6547, "mean_anomaly": 244.1397, "mean_motion": 13.60320818, "rev_number": 70749, "orbit_type": "LEO"}</code><code class="example-val">{"name": "DEMOSAT-513", "line1": "1 11349C 87337L   24280.61821872  .00002415  00000-0  30241-3 0 63969", "line2": "2 11349  24.0605  59.0081 0018876 308.8547 231.3569  2.99269858555186", "norad_id": 11349, "classification": "C", "epoch_year": 24, "epoch_day": 280.61821872, "inclination": 24.0605, "raan": 59.0081, "eccentricity": 0.0018876, "arg_of_perigee": 308.8547, "mean_anomaly": 231.3569, "mean_motion": 2.99269858, "rev_number": 55518, "orbit_type": "MEO"}</code></div></div>
+  <div class="validation-section"><h2>Règles de validation</h2><ul class="validation-list"><li>Généré par Mock Jutsu selon les vraies spécifications de format</li><li>Toutes les valeurs produites sont synthétiques</li><li>Pour les environnements de développement, de test et de démonstration</li></ul></div>
   
 
   <div class="lang-switch">

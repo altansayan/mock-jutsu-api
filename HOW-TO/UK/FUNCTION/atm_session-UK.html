@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,follow">
 <title>Mock Jutsu — atm_session | UK</title>
 <meta name="description" content="ATM session JSON record — session_id, terminal, masked PAN, ARQC, ATC, response code.">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -267,6 +279,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
+  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val">{"session_id": "MOCKJ-ATM-D4ABAE71", "terminal_id": "MOCKJT37", "terminal_location": "MOCKJ Bank Branch 84", "card_scheme": "VISA", "masked_pan": "4038 **** **** 4771", "expiry": "10/29", "transaction_type": "MINI_STATEMENT", "amount": "4172.48", "currency": "GBP", "response_code": "00", "response_message": "APPROVED", "auth_code": "MOCKJ7", "atc": "1648", "arqc": "D7C84ABF7ED080F3", "stan": "078525", "timestamp": "2026-06-28T01:10:22"}</code><code class="example-val">{"session_id": "MOCKJ-ATM-F1ADD58E", "terminal_id": "MOCKJT26", "terminal_location": "MOCKJ Bank Branch 14", "card_scheme": "VISA", "masked_pan": "4465 **** **** 6620", "expiry": "09/27", "transaction_type": "CASH_WITHDRAWAL", "amount": "1381.46", "currency": "GBP", "response_code": "00", "response_message": "APPROVED", "auth_code": "MOCKJ8", "atc": "1879", "arqc": "ADA450E93C141C08", "stan": "887790", "timestamp": "2026-06-28T01:10:22"}</code><code class="example-val">{"session_id": "MOCKJ-ATM-E0157E33", "terminal_id": "MOCKJT42", "terminal_location": "MOCKJ Bank Branch 38", "card_scheme": "VISA", "masked_pan": "4934 **** **** 4659", "expiry": "11/29", "transaction_type": "BALANCE_INQUIRY", "amount": "6365.06", "currency": "GBP", "response_code": "00", "response_message": "APPROVED", "auth_code": "MOCKJ3", "atc": "2323", "arqc": "80B00C9DA50DD728", "stan": "961660", "timestamp": "2026-06-28T01:10:22"}</code><code class="example-val">{"session_id": "MOCKJ-ATM-F6FCD3DE", "terminal_id": "MOCKJT24", "terminal_location": "MOCKJ Bank Branch 51", "card_scheme": "VISA", "masked_pan": "4217 **** **** 8312", "expiry": "10/30", "transaction_type": "CASH_WITHDRAWAL", "amount": "3090.18", "currency": "GBP", "response_code": "00", "response_message": "APPROVED", "auth_code": "MOCKJ2", "atc": "02AD", "arqc": "C61394E7D5AD9CFE", "stan": "483850", "timestamp": "2026-06-28T01:10:22"}</code><code class="example-val">{"session_id": "MOCKJ-ATM-C1C11542", "terminal_id": "MOCKJT16", "terminal_location": "MOCKJ Bank Branch 10", "card_scheme": "VISA", "masked_pan": "4245 **** **** 5641", "expiry": "11/30", "transaction_type": "CASH_WITHDRAWAL", "amount": "7805.30", "currency": "GBP", "response_code": "00", "response_message": "APPROVED", "auth_code": "MOCKJ6", "atc": "1CF3", "arqc": "55C0848D744A1640", "stan": "397261", "timestamp": "2026-06-28T01:10:22"}</code></div></div>
+  <div class="validation-section"><h2>Validation Rules</h2><ul class="validation-list"><li>Generated following real format specifications</li><li>All values are fully synthetic</li><li>For development, testing, and demonstration only</li></ul></div>
   <div class="related">
   <h2>Related Functions</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/iso8583_auth_request-UK.html" class="rel-link"><code>iso8583_auth_request</code></a>

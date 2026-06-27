@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Örnek Çıktılar</h2><div class="examples-grid"><code class="example-val">{"private_key":"a98aae2c1d89a24cbfb298a6f9bf1dece58792da4aa864b4f14de1b13512854a","wif":"L2uH4sizQ8KQZTiK9ZtAzzQQk3nNWk3an4q5Cfzjupfxo1kPw8JV","public_key":"037f7624f37ed6c8155fe4f206240d931decb2721f2d588165eeadd4f607c31760","address":"1LR6op7otzojN8C3uDVfmRVhvpHHd2uDaD"}</code><code class="example-val">{"private_key":"5645184feef5f63bb8117f18b15208951198fdcdaf45e8edb7b78207b57b7a71","wif":"Kz7QdmV4ziubiNtnzoKPEBtpNGithkCJFgTpfNdCogGf8HVKNthM","public_key":"02e461d49170f8f22d810cc1420f4d4a55309f8465d95f0c6ddf1a5cb6412c154b","address":"1NuuAMhchfn47t5vG8Uvy5qVy3b7REUTgE"}</code><code class="example-val">{"private_key":"5cdc2de8536fd1f76f290c82bd3d1021889040f63e0ebbfee0cb9ffab66a0dba","wif":"KzLDe5D3iMewBLFKNhyGExoUxpGX7STPh69C9qrQr6NzCr4iqRRW","public_key":"0357173597305cb9d3081b193669c34cc47cda6154b631cd0ad8b2e909deeebee9","address":"19bZ3ok3mqQuLBBqrgpougqkMUJW2srYrB"}</code><code class="example-val">{"private_key":"4ab90a71e9ec4c15f750105ca95ff5c3c3bdfef433357f4467c4a5d8a6debf70","wif":"KyixmLBM5TCYnfxkNvRQc67nwo4AmNoYToKvRqpzo4v4pkFuDTcw","public_key":"023c276ebc4dae76c55793a915c5de070f02c2a794bfac28119bbc9dadb30433a4","address":"1JtR3qYUTAyrQpiNbbf5ygrWaDvK6u5iJh"}</code><code class="example-val">{"private_key":"040a2310b0b358a0df109e3e3441906454f10f8dcfca468e3bd51a9dbbcf68fd","wif":"KwMZdJJZZVBEN4byL1gxErNWqHCTgMpfgLTzBjGmyxdo42q5nKzG","public_key":"022c28b47f5f1d8e7c2bd0f59bbb7b76269a49286ab8186ef23c7c653f206efe33","address":"1MrsyeSgzMgUfjzDqgk3uR9M7SWLReXR1M"}</code></div></div>
+  <div class="validation-section"><h2>Doğrulama Kuralları</h2><ul class="validation-list"><li>Mock Jutsu tarafından gerçek format kurallarına uygun üretilir</li><li>Üretilen değerler tamamen sentetiktir</li><li>Geliştirme, test ve demo ortamları için tasarlanmıştır</li></ul></div>
   <div class="related">
   <h2>İlgili Fonksiyonlar</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/FUNCTION/eth_wallet-TR.html" class="rel-link"><code>eth_wallet</code></a>

@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -247,6 +259,54 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Beispielausgaben</h2><div class="examples-grid"><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4e 4a 40 6a 00 00 00 00
+5f 00 00 00 5f 00 00 00 9d 32 7c 57 c3 43 1a db
+8c 5a 93 04 08 00 45 00 00 51 8d 44 40 00 40 06
+00 00 20 e4 76 13 ef 9e 46 ef 29 2c 00 50 70 e4
+a5 19 a7 1b 1e e9 50 18 ff ff 00 00 00 00 53 53
+48 2d 32 2e 30 2d 4f 70 65 6e 53 53 48 5f 38 2e
+39 70 31 20 55 62 75 6e 74 75 2d 33 75 62 75 6e
+74 75 30 2e 36 0d 0a</code><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4e 4a 40 6a 00 00 00 00
+78 00 00 00 78 00 00 00 6f 9c 09 ce 38 e4 0f 9d
+62 86 9d 21 08 00 45 00 00 6a c1 ef 40 00 40 06
+00 00 39 b6 98 ec 87 01 4f c5 23 83 20 fb fa 16
+a8 7d 76 6f fe 45 50 18 ff ff 00 00 00 00 47 45
+54 20 2f 20 48 54 54 50 2f 31 2e 31 0d 0a 48 6f
+73 74 3a 20 61 70 69 2e 65 78 61 6d 70 6c 65 2e
+63 6f 6d 0d 0a 55 73 65 72 2d 41 67 65 6e 74 3a
+20 4d 6f 7a 69 6c 6c 61 2f 35 2e 30 0d 0a 0d 0a</code><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4e 4a 40 6a 00 00 00 00
+88 00 00 00 88 00 00 00 b4 7f 66 7e a5 8f ed c9
+51 e2 d8 b9 08 00 45 00 00 7a 27 b0 40 00 40 06
+00 00 94 6b 41 2d 2c c9 23 92 22 1a 15 38 d6 71
+a0 0b 61 14 db 7e 50 18 ff ff 00 00 00 00 50 4f
+53 54 20 2f 61 70 69 2f 76 31 2f 61 75 74 68 20
+48 54 54 50 2f 31 2e 31 0d 0a 43 6f 6e 74 65 6e
+74 2d 54 79 70 65 3a 20 61 70 70 6c 69 63 61 74
+69 6f 6e 2f 6a 73 6f 6e 0d 0a 43 6f 6e 74 65 6e
+74 2d 4c 65 6e 67 74 68 3a 20 34 32 0d 0a 0d 0a</code><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4e 4a 40 6a 00 00 00 00
+88 00 00 00 88 00 00 00 f8 cf 63 10 76 0d 34 57
+fc 3e dc c9 08 00 45 00 00 7a 5e 87 40 00 40 06
+00 00 53 98 c6 d0 8e 7a b0 a2 5e 13 0d 3d 81 66
+a8 a0 fb 88 28 ee 50 18 ff ff 00 00 00 00 50 4f
+53 54 20 2f 61 70 69 2f 76 31 2f 61 75 74 68 20
+48 54 54 50 2f 31 2e 31 0d 0a 43 6f 6e 74 65 6e
+74 2d 54 79 70 65 3a 20 61 70 70 6c 69 63 61 74
+69 6f 6e 2f 6a 73 6f 6e 0d 0a 43 6f 6e 74 65 6e
+74 2d 4c 65 6e 67 74 68 3a 20 34 32 0d 0a 0d 0a</code><code class="example-val">d4 c3 b2 a1 02 00 04 00 00 00 00 00 00 00 00 00
+ff ff 00 00 01 00 00 00 4e 4a 40 6a 00 00 00 00
+78 00 00 00 78 00 00 00 a6 d5 48 42 a4 9a e7 4e
+de 99 d0 da 08 00 45 00 00 6a 90 c2 40 00 40 06
+00 00 ab 3f 65 f3 1d c0 46 30 2e 33 0d 3d 56 22
+fa 8f f1 c0 e4 63 50 18 ff ff 00 00 00 00 47 45
+54 20 2f 20 48 54 54 50 2f 31 2e 31 0d 0a 48 6f
+73 74 3a 20 61 70 69 2e 65 78 61 6d 70 6c 65 2e
+63 6f 6d 0d 0a 55 73 65 72 2d 41 67 65 6e 74 3a
+20 4d 6f 7a 69 6c 6c 61 2f 35 2e 30 0d 0a 0d 0a</code></div></div>
+  <div class="validation-section"><h2>Validierungsregeln</h2><ul class="validation-list"><li>Von Mock Jutsu gemäß echten Formatspezifikationen generiert</li><li>Alle produzierten Werte sind vollständig synthetisch</li><li>Für Entwicklungs-, Test- und Demoumgebungen</li></ul></div>
   <div class="related">
   <h2>Verwandte Funktionen</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cef_log-DE.html" class="rel-link"><code>cef_log</code></a>

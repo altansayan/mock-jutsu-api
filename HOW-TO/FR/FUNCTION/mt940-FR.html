@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -259,6 +271,68 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
+  <div class="examples-section"><h2>Exemples de sortie</h2><div class="examples-grid"><code class="example-val">:20:9ROW35K6SX
+:25:FR4937289368688999513370120/EUR
+:28C:00098/001
+:60F:C260623EUR21082,63
+:61:2606230623D27,66NDDP3WA4GJ77//3WA4GJ77
+:86:INCOMING WIRE TRANSFER
+:61:2606230623D2274,40NDDPSDKN3YMR//SDKN3YMR
+:86:TAX PAYMENT
+:61:2606230623D4174,42NFEX61MKV0HQ//61MKV0HQ
+:86:ATM WITHDRAWAL
+:61:2606230623D3841,68NDDPHACZXI1B//HACZXI1B
+:86:UTILITY BILL
+:61:2606240624C1601,96NFEXTNNV8IU8//TNNV8IU8
+:86:ATM WITHDRAWAL
+:62F:C260624EUR12366,43</code><code class="example-val">:20:8KAETX89SP
+:25:FR8442882097865370325007613/EUR
+:28C:00007/001
+:60F:C260621EUR17015,37
+:61:2606210621C2543,29NCHKBSDWYQTX//BSDWYQTX
+:86:INCOMING WIRE TRANSFER
+:61:2606210621C4989,46NTRNEB7MFVCY//EB7MFVCY
+:86:STANDING ORDER
+:62F:C260621EUR24548,12</code><code class="example-val">:20:2ZKAFUL9NR
+:25:FR8094230687432480248081038/EUR
+:28C:00063/001
+:60F:C260624EUR34292,97
+:61:2606240624D2076,94NCHKNDD1XF6V//NDD1XF6V
+:86:INSURANCE PREMIUM
+:61:2606240624C3127,56NFEX073FBICP//073FBICP
+:86:INSURANCE PREMIUM
+:61:2606240624D1175,82NCHK6K287Q9Y//6K287Q9Y
+:86:INCOMING WIRE TRANSFER
+:61:2606240624C4985,78NDDPJYEAIJSG//JYEAIJSG
+:86:SALARY PAYMENT
+:61:2606240624C1554,88NDDPMM7ZMAGN//MM7ZMAGN
+:86:DIRECT DEBIT
+:62F:C260624EUR40708,43</code><code class="example-val">:20:KOXO7OPTCN
+:25:FR4527465269753240671593873/EUR
+:28C:00021/001
+:60F:C260623EUR9229,54
+:61:2606230623D4977,00NTRN80D8OPMI//80D8OPMI
+:86:ATM WITHDRAWAL
+:61:2606240624C941,95NTRN9WH9BDEJ//9WH9BDEJ
+:86:DIRECT DEBIT
+:61:2606240624D94,63NCHK8Z071YJ9//8Z071YJ9
+:86:UTILITY BILL
+:61:2606250625C508,29NTRNFXLHLGI4//FXLHLGI4
+:86:VENDOR PAYMENT
+:61:2606250625D4257,32NFEXF6ZFFG5H//F6ZFFG5H
+:86:LOAN REPAYMENT
+:62F:C260625EUR1350,83</code><code class="example-val">:20:UPDH43DTFO
+:25:FR6493247861592616862339514/EUR
+:28C:00028/001
+:60F:C260625EUR2636,99
+:61:2606250625D1828,34NCHK1CPO0X8T//1CPO0X8T
+:86:STANDING ORDER
+:61:2606250625C1426,55NCHKYJ4CXY70//YJ4CXY70
+:86:INCOMING WIRE TRANSFER
+:61:2606260626C3094,54NTRFIICSA8JV//IICSA8JV
+:86:UTILITY BILL
+:62F:C260626EUR5329,74</code></div></div>
+  <div class="validation-section"><h2>Règles de validation</h2><ul class="validation-list"><li>Généré par Mock Jutsu selon les vraies spécifications de format</li><li>Toutes les valeurs produites sont synthétiques</li><li>Pour les environnements de développement, de test et de démonstration</li></ul></div>
   <div class="related">
   <h2>Fonctions associées</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/camt053-FR.html" class="rel-link"><code>camt053</code></a>

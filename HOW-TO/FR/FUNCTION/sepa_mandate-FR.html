@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,288 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Exemples de sortie</h2><div class="examples-grid"><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.008.001.08">
+  <CstmrDrctDbtInitn>
+    <GrpHdr>
+      <MsgId>MOCKJ-SDD-0A036631</MsgId>
+      <CreDtTm>2026-06-27T22:10:23</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <InitgPty>
+        <Nm>MOCKJ CORP 29</Nm>
+      </InitgPty>
+    </GrpHdr>
+    <PmtInf>
+      <PmtInfId>MOCKJ-SDD-PMT-A95922CC</PmtInfId>
+      <PmtMtd>DD</PmtMtd>
+      <NbOfTxs>1</NbOfTxs>
+      <PmtTpInf>
+        <SvcLvl><Cd>SEPA</Cd></SvcLvl>
+        <LclInstrm><Cd>CORE</Cd></LclInstrm>
+        <SeqTp>FNAL</SeqTp>
+      </PmtTpInf>
+      <ReqdColltnDt>2026-07-02</ReqdColltnDt>
+      <Cdtr>
+        <Nm>MOCKJ CREDITOR 528</Nm>
+      </Cdtr>
+      <CdtrAcct>
+        <Id><IBAN>AT905827957063788033</IBAN></Id>
+      </CdtrAcct>
+      <CdtrAgt>
+        <FinInstnId><BICFI>MOCKGB01</BICFI></FinInstnId>
+      </CdtrAgt>
+      <CdtrSchmeId>
+        <Id><PrvtId><Othr><Id>AT98MUDYIOZIU</Id><SchmeNm><Prtry>SEPA</Prtry></SchmeNm></Othr></PrvtId></Id>
+      </CdtrSchmeId>
+      <DrctDbtTxInf>
+        <PmtId>
+          <EndToEndId>MOCKJ-E2E-9AEB9658</EndToEndId>
+        </PmtId>
+        <InstdAmt Ccy="EUR">485.01</InstdAmt>
+        <DrctDbtTx>
+          <MndtRltdInf>
+            <MndtId>UMR-MOCKJ-60666B46</MndtId>
+            <DtOfSgntr>2026-06-27</DtOfSgntr>
+          </MndtRltdInf>
+        </DrctDbtTx>
+        <DbtrAgt>
+          <FinInstnId><BICFI>MOCKDE03</BICFI></FinInstnId>
+        </DbtrAgt>
+        <Dbtr>
+          <Nm>MOCKJ DEBTOR 939</Nm>
+        </Dbtr>
+        <DbtrAcct>
+          <Id><IBAN>AT323778938168301227</IBAN></Id>
+        </DbtrAcct>
+      </DrctDbtTxInf>
+    </PmtInf>
+  </CstmrDrctDbtInitn>
+</Document></code><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.008.001.08">
+  <CstmrDrctDbtInitn>
+    <GrpHdr>
+      <MsgId>MOCKJ-SDD-1031C0FE</MsgId>
+      <CreDtTm>2026-06-27T22:10:23</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <InitgPty>
+        <Nm>MOCKJ CORP 25</Nm>
+      </InitgPty>
+    </GrpHdr>
+    <PmtInf>
+      <PmtInfId>MOCKJ-SDD-PMT-76976B89</PmtInfId>
+      <PmtMtd>DD</PmtMtd>
+      <NbOfTxs>1</NbOfTxs>
+      <PmtTpInf>
+        <SvcLvl><Cd>SEPA</Cd></SvcLvl>
+        <LclInstrm><Cd>CORE</Cd></LclInstrm>
+        <SeqTp>RCUR</SeqTp>
+      </PmtTpInf>
+      <ReqdColltnDt>2026-07-02</ReqdColltnDt>
+      <Cdtr>
+        <Nm>MOCKJ CREDITOR 632</Nm>
+      </Cdtr>
+      <CdtrAcct>
+        <Id><IBAN>FR1734211051120276944368935</IBAN></Id>
+      </CdtrAcct>
+      <CdtrAgt>
+        <FinInstnId><BICFI>MOCKFR01</BICFI></FinInstnId>
+      </CdtrAgt>
+      <CdtrSchmeId>
+        <Id><PrvtId><Othr><Id>FR98YEXCJATCY3UUJ</Id><SchmeNm><Prtry>SEPA</Prtry></SchmeNm></Othr></PrvtId></Id>
+      </CdtrSchmeId>
+      <DrctDbtTxInf>
+        <PmtId>
+          <EndToEndId>MOCKJ-E2E-43B388C7</EndToEndId>
+        </PmtId>
+        <InstdAmt Ccy="EUR">3804.46</InstdAmt>
+        <DrctDbtTx>
+          <MndtRltdInf>
+            <MndtId>UMR-MOCKJ-6C51F5E4</MndtId>
+            <DtOfSgntr>2026-06-27</DtOfSgntr>
+          </MndtRltdInf>
+        </DrctDbtTx>
+        <DbtrAgt>
+          <FinInstnId><BICFI>MOCKES01</BICFI></FinInstnId>
+        </DbtrAgt>
+        <Dbtr>
+          <Nm>MOCKJ DEBTOR 914</Nm>
+        </Dbtr>
+        <DbtrAcct>
+          <Id><IBAN>FR0200918426288211463137306</IBAN></Id>
+        </DbtrAcct>
+      </DrctDbtTxInf>
+    </PmtInf>
+  </CstmrDrctDbtInitn>
+</Document></code><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.008.001.08">
+  <CstmrDrctDbtInitn>
+    <GrpHdr>
+      <MsgId>MOCKJ-SDD-9BBEECC0</MsgId>
+      <CreDtTm>2026-06-27T22:10:23</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <InitgPty>
+        <Nm>MOCKJ CORP 69</Nm>
+      </InitgPty>
+    </GrpHdr>
+    <PmtInf>
+      <PmtInfId>MOCKJ-SDD-PMT-19CF7205</PmtInfId>
+      <PmtMtd>DD</PmtMtd>
+      <NbOfTxs>1</NbOfTxs>
+      <PmtTpInf>
+        <SvcLvl><Cd>SEPA</Cd></SvcLvl>
+        <LclInstrm><Cd>CORE</Cd></LclInstrm>
+        <SeqTp>OOFF</SeqTp>
+      </PmtTpInf>
+      <ReqdColltnDt>2026-07-02</ReqdColltnDt>
+      <Cdtr>
+        <Nm>MOCKJ CREDITOR 444</Nm>
+      </Cdtr>
+      <CdtrAcct>
+        <Id><IBAN>ES5923946447257678785126</IBAN></Id>
+      </CdtrAcct>
+      <CdtrAgt>
+        <FinInstnId><BICFI>MOCKES01</BICFI></FinInstnId>
+      </CdtrAgt>
+      <CdtrSchmeId>
+        <Id><PrvtId><Othr><Id>ES40OQWUO6HRFBK</Id><SchmeNm><Prtry>SEPA</Prtry></SchmeNm></Othr></PrvtId></Id>
+      </CdtrSchmeId>
+      <DrctDbtTxInf>
+        <PmtId>
+          <EndToEndId>MOCKJ-E2E-C1FCCC7E</EndToEndId>
+        </PmtId>
+        <InstdAmt Ccy="EUR">216.39</InstdAmt>
+        <DrctDbtTx>
+          <MndtRltdInf>
+            <MndtId>UMR-MOCKJ-8F525FDF</MndtId>
+            <DtOfSgntr>2026-06-27</DtOfSgntr>
+          </MndtRltdInf>
+        </DrctDbtTx>
+        <DbtrAgt>
+          <FinInstnId><BICFI>MOCKIT01</BICFI></FinInstnId>
+        </DbtrAgt>
+        <Dbtr>
+          <Nm>MOCKJ DEBTOR 623</Nm>
+        </Dbtr>
+        <DbtrAcct>
+          <Id><IBAN>ES1438420055448864526713</IBAN></Id>
+        </DbtrAcct>
+      </DrctDbtTxInf>
+    </PmtInf>
+  </CstmrDrctDbtInitn>
+</Document></code><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.008.001.08">
+  <CstmrDrctDbtInitn>
+    <GrpHdr>
+      <MsgId>MOCKJ-SDD-C88326C3</MsgId>
+      <CreDtTm>2026-06-27T22:10:23</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <InitgPty>
+        <Nm>MOCKJ CORP 34</Nm>
+      </InitgPty>
+    </GrpHdr>
+    <PmtInf>
+      <PmtInfId>MOCKJ-SDD-PMT-09D80548</PmtInfId>
+      <PmtMtd>DD</PmtMtd>
+      <NbOfTxs>1</NbOfTxs>
+      <PmtTpInf>
+        <SvcLvl><Cd>SEPA</Cd></SvcLvl>
+        <LclInstrm><Cd>CORE</Cd></LclInstrm>
+        <SeqTp>OOFF</SeqTp>
+      </PmtTpInf>
+      <ReqdColltnDt>2026-07-02</ReqdColltnDt>
+      <Cdtr>
+        <Nm>MOCKJ CREDITOR 947</Nm>
+      </Cdtr>
+      <CdtrAcct>
+        <Id><IBAN>BE68589515922431</IBAN></Id>
+      </CdtrAcct>
+      <CdtrAgt>
+        <FinInstnId><BICFI>MOCKIT01</BICFI></FinInstnId>
+      </CdtrAgt>
+      <CdtrSchmeId>
+        <Id><PrvtId><Othr><Id>BE30MVUP1ZST6YCLB5</Id><SchmeNm><Prtry>SEPA</Prtry></SchmeNm></Othr></PrvtId></Id>
+      </CdtrSchmeId>
+      <DrctDbtTxInf>
+        <PmtId>
+          <EndToEndId>MOCKJ-E2E-C1D4C0F5</EndToEndId>
+        </PmtId>
+        <InstdAmt Ccy="EUR">1267.07</InstdAmt>
+        <DrctDbtTx>
+          <MndtRltdInf>
+            <MndtId>UMR-MOCKJ-F3165735</MndtId>
+            <DtOfSgntr>2026-06-27</DtOfSgntr>
+          </MndtRltdInf>
+        </DrctDbtTx>
+        <DbtrAgt>
+          <FinInstnId><BICFI>MOCKGB02</BICFI></FinInstnId>
+        </DbtrAgt>
+        <Dbtr>
+          <Nm>MOCKJ DEBTOR 374</Nm>
+        </Dbtr>
+        <DbtrAcct>
+          <Id><IBAN>BE10920620154726</IBAN></Id>
+        </DbtrAcct>
+      </DrctDbtTxInf>
+    </PmtInf>
+  </CstmrDrctDbtInitn>
+</Document></code><code class="example-val"><?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.008.001.08">
+  <CstmrDrctDbtInitn>
+    <GrpHdr>
+      <MsgId>MOCKJ-SDD-B76E3D46</MsgId>
+      <CreDtTm>2026-06-27T22:10:23</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <InitgPty>
+        <Nm>MOCKJ CORP 34</Nm>
+      </InitgPty>
+    </GrpHdr>
+    <PmtInf>
+      <PmtInfId>MOCKJ-SDD-PMT-FB4C1CD9</PmtInfId>
+      <PmtMtd>DD</PmtMtd>
+      <NbOfTxs>1</NbOfTxs>
+      <PmtTpInf>
+        <SvcLvl><Cd>SEPA</Cd></SvcLvl>
+        <LclInstrm><Cd>CORE</Cd></LclInstrm>
+        <SeqTp>OOFF</SeqTp>
+      </PmtTpInf>
+      <ReqdColltnDt>2026-07-02</ReqdColltnDt>
+      <Cdtr>
+        <Nm>MOCKJ CREDITOR 227</Nm>
+      </Cdtr>
+      <CdtrAcct>
+        <Id><IBAN>DE26317683814527942813</IBAN></Id>
+      </CdtrAcct>
+      <CdtrAgt>
+        <FinInstnId><BICFI>MOCKDE02</BICFI></FinInstnId>
+      </CdtrAgt>
+      <CdtrSchmeId>
+        <Id><PrvtId><Othr><Id>DE74IOW540GBIR</Id><SchmeNm><Prtry>SEPA</Prtry></SchmeNm></Othr></PrvtId></Id>
+      </CdtrSchmeId>
+      <DrctDbtTxInf>
+        <PmtId>
+          <EndToEndId>MOCKJ-E2E-26614424</EndToEndId>
+        </PmtId>
+        <InstdAmt Ccy="EUR">4909.66</InstdAmt>
+        <DrctDbtTx>
+          <MndtRltdInf>
+            <MndtId>UMR-MOCKJ-A95644BD</MndtId>
+            <DtOfSgntr>2026-06-27</DtOfSgntr>
+          </MndtRltdInf>
+        </DrctDbtTx>
+        <DbtrAgt>
+          <FinInstnId><BICFI>MOCKGB01</BICFI></FinInstnId>
+        </DbtrAgt>
+        <Dbtr>
+          <Nm>MOCKJ DEBTOR 169</Nm>
+        </Dbtr>
+        <DbtrAcct>
+          <Id><IBAN>DE03622341498963499568</IBAN></Id>
+        </DbtrAcct>
+      </DrctDbtTxInf>
+    </PmtInf>
+  </CstmrDrctDbtInitn>
+</Document></code></div></div>
+  <div class="validation-section"><h2>Règles de validation</h2><ul class="validation-list"><li>Généré par Mock Jutsu selon les vraies spécifications de format</li><li>Toutes les valeurs produites sont synthétiques</li><li>Pour les environnements de développement, de test et de démonstration</li></ul></div>
   <div class="related">
   <h2>Fonctions associées</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/swift_mt103-FR.html" class="rel-link"><code>swift_mt103</code></a>

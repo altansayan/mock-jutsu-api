@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -259,6 +271,66 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
+  <div class="examples-section"><h2>Примеры вывода</h2><div class="examples-grid"><code class="example-val">:20:7WREL2YN2L
+:25:RU54214206164341469995/RUB
+:28C:00090/001
+:60F:C260623RUB41010,13
+:61:2606230623D4754,66NCHK4BUOI7KG//4BUOI7KG
+:86:UTILITY BILL
+:61:2606230623C3739,51NTRF3WTWXULA//3WTWXULA
+:86:INVOICE SETTLEMENT
+:61:2606230623C4031,39NDDPWMTK508F//WMTK508F
+:86:INSURANCE PREMIUM
+:62F:C260623RUB44026,37</code><code class="example-val">:20:B244WGAMG3
+:25:RU04427078538340381211/RUB
+:28C:00005/001
+:60F:C260626RUB36262,84
+:61:2606260626D3759,27NDDP1CB19EXN//1CB19EXN
+:86:UTILITY BILL
+:61:2606270627D4591,69NTRN7NLKZ28Z//7NLKZ28Z
+:86:STANDING ORDER
+:61:2606270627D381,53NDDPMRP1F8TE//MRP1F8TE
+:86:DIRECT DEBIT
+:61:2606270627C219,65NDDPSTKVVLK5//STKVVLK5
+:86:SALARY PAYMENT
+:61:2606270627D1301,35NCHK21QRLU79//21QRLU79
+:86:TRANSFER FROM CUSTOMER
+:62F:C260627RUB26448,65</code><code class="example-val">:20:NJOV4TM9XX
+:25:RU64820315481102439790/RUB
+:28C:00084/001
+:60F:C260624RUB14323,79
+:61:2606240624D1681,22NTRNILEYZZW8//ILEYZZW8
+:86:CARD PAYMENT
+:61:2606240624C2159,60NDDPE8PL6ULB//E8PL6ULB
+:86:CARD PAYMENT
+:61:2606240624D881,00NTRN4XULLLEU//4XULLLEU
+:86:ATM WITHDRAWAL
+:61:2606240624D699,21NFEXZPVJSGCE//ZPVJSGCE
+:86:VENDOR PAYMENT
+:61:2606250625C97,35NFEXUVUN5A0Y//UVUN5A0Y
+:86:INVOICE SETTLEMENT
+:62F:C260625RUB13319,31</code><code class="example-val">:20:WFIT8JVSZI
+:25:RU85950073820241294862/RUB
+:28C:00018/001
+:60F:C260623RUB10857,21
+:61:2606230623D1367,98NDDPRJS577K0//RJS577K0
+:86:TAX PAYMENT
+:61:2606230623C2081,87NFEXSD8NMTJC//SD8NMTJC
+:86:LOAN REPAYMENT
+:61:2606230623D3999,97NFEXI20LDVH7//I20LDVH7
+:86:INVOICE SETTLEMENT
+:62F:C260623RUB7571,13</code><code class="example-val">:20:00G7I4WJQO
+:25:RU08447099493185529340/RUB
+:28C:00038/001
+:60F:C260626RUB26681,20
+:61:2606260626C863,65NCHKGSKKFIRS//GSKKFIRS
+:86:VENDOR PAYMENT
+:61:2606260626C3088,15NDDPZ3098CIQ//Z3098CIQ
+:86:INSURANCE PREMIUM
+:61:2606260626C4017,25NFEXNGZP9O39//NGZP9O39
+:86:ATM WITHDRAWAL
+:62F:C260626RUB34650,25</code></div></div>
+  <div class="validation-section"><h2>Правила валидации</h2><ul class="validation-list"><li>Генерируется Mock Jutsu по реальным форматным спецификациям</li><li>Все значения полностью синтетические</li><li>Для разработки, тестирования и демонстрации</li></ul></div>
   <div class="related">
   <h2>Похожие функции</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/camt053-RU.html" class="rel-link"><code>camt053</code></a>

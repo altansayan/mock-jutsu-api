@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,follow">
 <title>Mock Jutsu — edifact_orders | UK</title>
 <meta name="description" content="UN/EDIFACT ORDERS D96A: UNB/UNH/BGM/DTM/NAD/LIN/QTY/PRI/UNS/CNT/UNT/UNZ. UNT01==seg count, UNZ02==UNB ctrl ref.">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -259,6 +271,89 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
+  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val">UNB+UNOC:3+6TMAGOTNAA:ZZZ+Z0IS8GPJ6I:ZZZ+20260628:0110+555597840'
+UNH+UJY312DT+ORDERS:D:96A:UN'
+BGM+220+ORD034427+9'
+DTM+137:20260628:102'
+NAD+BY+FXKDPP::92++PINNACLE GOODS'
+NAD+SE+RYP0LK::92++NEXUS LOGISTICS'
+LIN+1++JKR2AWWE:SA'
+QTY+21:78'
+PRI+AAA:250.84'
+UNS+S'
+CNT+2:1'
+UNT+11+UJY312DT'
+UNZ+1+555597840'</code><code class="example-val">UNB+UNOC:3+I2XX9J5WID:ZZZ+66R9U88EGU:ZZZ+20260628:0110+550984298'
+UNH+XNNCI4VF+ORDERS:D:96A:UN'
+BGM+220+ORD001128+9'
+DTM+137:20260628:102'
+NAD+BY+IBJ36F::92++NEXUS LOGISTICS'
+NAD+SE+K63CE7::92++SUMMIT TRADING'
+LIN+1++4G19ACE9:SA'
+QTY+21:70'
+PRI+AAA:11.56'
+LIN+2++4GM43GQF:SA'
+QTY+21:68'
+PRI+AAA:368.13'
+LIN+3++LSMQ62CF:SA'
+QTY+21:43'
+PRI+AAA:279.39'
+UNS+S'
+CNT+2:3'
+UNT+17+XNNCI4VF'
+UNZ+1+550984298'</code><code class="example-val">UNB+UNOC:3+7CB1YL4YSL:ZZZ+VF0JSGHOUI:ZZZ+20260628:0110+068276252'
+UNH+M0OCC0G6+ORDERS:D:96A:UN'
+BGM+220+ORD333795+9'
+DTM+137:20260628:102'
+NAD+BY+QILVKA::92++SUMMIT TRADING'
+NAD+SE+XZ1H49::92++GLOBAL TRADE INC'
+LIN+1++L2P7GAVS:SA'
+QTY+21:62'
+PRI+AAA:33.98'
+LIN+2++BR94J87I:SA'
+QTY+21:96'
+PRI+AAA:104.04'
+LIN+3++R7D6WBXT:SA'
+QTY+21:15'
+PRI+AAA:253.51'
+UNS+S'
+CNT+2:3'
+UNT+17+M0OCC0G6'
+UNZ+1+068276252'</code><code class="example-val">UNB+UNOC:3+5OLGUH2LJN:ZZZ+NXWN89SU3U:ZZZ+20260628:0110+271637281'
+UNH+JWI9UJV5+ORDERS:D:96A:UN'
+BGM+220+ORD515553+9'
+DTM+137:20260628:102'
+NAD+BY+28PA2G::92++HORIZON GROUP'
+NAD+SE+2YX9R4::92++ACME CORP'
+LIN+1++XGM79ZRQ:SA'
+QTY+21:28'
+PRI+AAA:278.88'
+LIN+2++MJMKSIP2:SA'
+QTY+21:16'
+PRI+AAA:309.21'
+UNS+S'
+CNT+2:2'
+UNT+14+JWI9UJV5'
+UNZ+1+271637281'</code><code class="example-val">UNB+UNOC:3+QEVGG4O6QA:ZZZ+AKLBVFIA41:ZZZ+20260628:0110+268578849'
+UNH+KNH1KXA6+ORDERS:D:96A:UN'
+BGM+220+ORD686447+9'
+DTM+137:20260628:102'
+NAD+BY+XWMEEI::92++SUMMIT TRADING'
+NAD+SE+EGBNG0::92++GLOBAL TRADE INC'
+LIN+1++MKF25OEL:SA'
+QTY+21:64'
+PRI+AAA:111.15'
+LIN+2++WAHBEZ5M:SA'
+QTY+21:95'
+PRI+AAA:439.14'
+LIN+3++PIES7L92:SA'
+QTY+21:10'
+PRI+AAA:169.56'
+UNS+S'
+CNT+2:3'
+UNT+17+KNH1KXA6'
+UNZ+1+268578849'</code></div></div>
+  <div class="validation-section"><h2>Validation Rules</h2><ul class="validation-list"><li>Generated following real format specifications</li><li>All values are fully synthetic</li><li>For development, testing, and demonstration only</li></ul></div>
   <div class="related">
   <h2>Related Functions</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/edi_850-UK.html" class="rel-link"><code>edi_850</code></a>

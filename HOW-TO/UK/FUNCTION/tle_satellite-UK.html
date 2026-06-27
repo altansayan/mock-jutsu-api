@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,follow">
 <title>Mock Jutsu — tle_satellite | UK</title>
 <meta name="description" content="Two-Line Element Set (TLE) per NORAD/USSPACECOM standard: LEO/MEO/GEO/SSO/HEO orbit types, physics-consistent parameters. NORAD Modulo-10 checksum verified">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val">{"name": "SIMSTAR-54", "line1": "1 65119S 11562U   25153.98550521  .00006362  00000-0  16264-3 0 10821", "line2": "2 65119  54.7413  25.7840 7281305 169.6139 152.6495  3.31692215166923", "norad_id": 65119, "classification": "S", "epoch_year": 25, "epoch_day": 153.98550521, "inclination": 54.7413, "raan": 25.784, "eccentricity": 0.7281305, "arg_of_perigee": 169.6139, "mean_anomaly": 152.6495, "mean_motion": 3.31692215, "rev_number": 16692, "orbit_type": "HEO"}</code><code class="example-val">{"name": "MOCKBIRD-27", "line1": "1 21281U 26948X   21325.31482392  .00006185  00000-0  38400-4 0 28572", "line2": "2 21281  97.4288 312.2153 0007563 124.2794  57.4152 14.37721504614943", "norad_id": 21281, "classification": "U", "epoch_year": 21, "epoch_day": 325.31482392, "inclination": 97.4288, "raan": 312.2153, "eccentricity": 0.0007563, "arg_of_perigee": 124.2794, "mean_anomaly": 57.4152, "mean_motion": 14.37721504, "rev_number": 61494, "orbit_type": "SSO"}</code><code class="example-val">{"name": "DEMOSTAR-787", "line1": "1 70580U 76890X   19063.73086011  .00009728  00000-0  45992-3 0 99330", "line2": "2 70580  63.8552 114.6731 0010956 218.6901 109.5227 10.93758929695674", "norad_id": 70580, "classification": "U", "epoch_year": 19, "epoch_day": 63.73086011, "inclination": 63.8552, "raan": 114.6731, "eccentricity": 0.0010956, "arg_of_perigee": 218.6901, "mean_anomaly": 109.5227, "mean_motion": 10.93758929, "rev_number": 69567, "orbit_type": "MEO"}</code><code class="example-val">{"name": "MOCKBIRD-81", "line1": "1 81322U 88451I   22050.12804705  .00004352  00000-0  10956-3 0 38246", "line2": "2 81322  24.7927  91.7524 0004518 295.1907 170.1642 11.31005654998821", "norad_id": 81322, "classification": "U", "epoch_year": 22, "epoch_day": 50.12804705, "inclination": 24.7927, "raan": 91.7524, "eccentricity": 0.0004518, "arg_of_perigee": 295.1907, "mean_anomaly": 170.1642, "mean_motion": 11.31005654, "rev_number": 99882, "orbit_type": "LEO"}</code><code class="example-val">{"name": "DEMOSAT-202", "line1": "1 13293U 26736L   21094.23673805  .00006263  00000-0  55707-3 0 98860", "line2": "2 13293  52.6408 278.4692 0007761 255.2138  44.0996 15.91438912809428", "norad_id": 13293, "classification": "U", "epoch_year": 21, "epoch_day": 94.23673805, "inclination": 52.6408, "raan": 278.4692, "eccentricity": 0.0007761, "arg_of_perigee": 255.2138, "mean_anomaly": 44.0996, "mean_motion": 15.91438912, "rev_number": 80942, "orbit_type": "LEO"}</code></div></div>
+  <div class="validation-section"><h2>Validation Rules</h2><ul class="validation-list"><li>Generated following real format specifications</li><li>All values are fully synthetic</li><li>For development, testing, and demonstration only</li></ul></div>
   
 
   <div class="lang-switch">

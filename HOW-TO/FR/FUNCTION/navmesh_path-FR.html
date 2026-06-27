@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Exemples de sortie</h2><div class="examples-grid"><code class="example-val">{"start": {"x": -41.828, "y": 0.415, "z": -79.314}, "end": {"x": -63.664, "y": -0.189, "z": -98.094}, "waypoints": [{"x": -41.828, "y": 0.415, "z": -79.314}, {"x": -44.474, "y": -0.078, "z": -70.169}, {"x": -53.036, "y": 0.175, "z": -60.395}, {"x": -63.362, "y": -0.149, "z": -60.387}, {"x": -79.434, "y": 0.187, "z": -68.264}, {"x": -79.953, "y": 0.391, "z": -73.983}, {"x": -67.298, "y": 0.156, "z": -89.249}, {"x": -63.664, "y": -0.189, "z": -98.094}], "total_distance": 85.907, "waypoint_count": 8}</code><code class="example-val">{"start": {"x": 153.004, "y": 1.855, "z": 8.279}, "end": {"x": 220.108, "y": 1.939, "z": 48.53}, "waypoints": [{"x": 153.004, "y": 1.855, "z": 8.279}, {"x": 176.222, "y": 2.319, "z": 13.427}, {"x": 183.87, "y": 1.833, "z": 20.622}, {"x": 195.688, "y": 2.012, "z": 39.916}, {"x": 207.724, "y": 2.039, "z": 41.818}, {"x": 220.108, "y": 1.939, "z": 48.53}], "total_distance": 83.196, "waypoint_count": 6}</code><code class="example-val">{"start": {"x": -41.954, "y": 1.514, "z": 180.204}, "end": {"x": -65.916, "y": 2.935, "z": 210.022}, "waypoints": [{"x": -41.954, "y": 1.514, "z": 180.204}, {"x": -50.759, "y": 1.52, "z": 176.956}, {"x": -55.896, "y": 1.908, "z": 176.974}, {"x": -69.553, "y": 2.255, "z": 192.76}, {"x": -70.205, "y": 2.713, "z": 201.509}, {"x": -65.916, "y": 2.935, "z": 210.022}], "total_distance": 53.733, "waypoint_count": 6}</code><code class="example-val">{"start": {"x": -143.376, "y": 0.586, "z": 131.098}, "end": {"x": -179.663, "y": -0.543, "z": 150.141}, "waypoints": [{"x": -143.376, "y": 0.586, "z": 131.098}, {"x": -150.452, "y": 0.12, "z": 137.844}, {"x": -159.183, "y": -0.137, "z": 139.595}, {"x": -179.663, "y": -0.543, "z": 150.141}], "total_distance": 41.735, "waypoint_count": 4}</code><code class="example-val">{"start": {"x": 92.628, "y": -1.342, "z": -177.585}, "end": {"x": 80.23, "y": -0.622, "z": -209.773}, "waypoints": [{"x": 92.628, "y": -1.342, "z": -177.585}, {"x": 88.838, "y": -1.028, "z": -193.276}, {"x": 80.23, "y": -0.622, "z": -209.773}], "total_distance": 34.757, "waypoint_count": 3}</code></div></div>
+  <div class="validation-section"><h2>Règles de validation</h2><ul class="validation-list"><li>Généré par Mock Jutsu selon les vraies spécifications de format</li><li>Toutes les valeurs produites sont synthétiques</li><li>Pour les environnements de développement, de test et de démonstration</li></ul></div>
   <div class="related">
   <h2>Fonctions associées</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/quaternion-FR.html" class="rel-link"><code>quaternion</code></a>

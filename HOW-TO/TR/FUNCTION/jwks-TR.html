@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Örnek Çıktılar</h2><div class="examples-grid"><code class="example-val">{"keys":[{"kty":"EC","crv":"P-256","x":"SgALL2SvORdpqyBTkG0IEFu0LSOSWMw9QyE8HDM5FQQ","y":"x5-cFTbnncrQOy3kwF8GMNlCRqG28BoUUGQ0DerOHDc","kid":"6cc86415","use":"sig","alg":"ES256"}]}</code><code class="example-val">{"keys":[{"kty":"EC","crv":"P-256","x":"XvcYR564b2ouPX2zgmbuHIKHNshCPNIlz7IZn5qtdOo","y":"dg3lZyhZfEF2lf1H18wEMCAMB5hGPJE4JWL2H3hU6T4","kid":"de106830","use":"sig","alg":"ES256"}]}</code><code class="example-val">{"keys":[{"kty":"EC","crv":"P-256","x":"sm61rxRAQOFmHGIwDftTcRwA23ZDg5x8oaYTJfXiVBI","y":"tmYNu-nbzLxpD3pflSwBXGilXwCxbYP9_DAHHl7qNqk","kid":"b21e11a6","use":"sig","alg":"ES256"}]}</code><code class="example-val">{"keys":[{"kty":"EC","crv":"P-256","x":"UAe4IZnN8S8q6lFUV39sB6W9UpzjATgSXy8t9finGZA","y":"rDHJfzSVJw3nKO89j3zwuT_iBbAlucvW_SEhyQ90R7E","kid":"464ae7a5","use":"sig","alg":"ES256"}]}</code><code class="example-val">{"keys":[{"kty":"EC","crv":"P-256","x":"QDUI3iikpH--eK5RklyySzNFeObQTZNUXcoZZsK-A9M","y":"ZuOVt_R5S9C31bEK1IlyY3uxAc5CjbAotIrhii5WgV4","kid":"28febe86","use":"sig","alg":"ES256"}]}</code></div></div>
+  <div class="validation-section"><h2>Doğrulama Kuralları</h2><ul class="validation-list"><li>Mock Jutsu tarafından gerçek format kurallarına uygun üretilir</li><li>Üretilen değerler tamamen sentetiktir</li><li>Geliştirme, test ve demo ortamları için tasarlanmıştır</li></ul></div>
   <div class="related">
   <h2>İlgili Fonksiyonlar</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/FUNCTION/oidc_token_set-TR.html" class="rel-link"><code>oidc_token_set</code></a>

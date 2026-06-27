@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -259,6 +271,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
+  <div class="examples-section"><h2>Exemples de sortie</h2><div class="examples-grid"><code class="example-val">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL21vY2staXNzdWVyLmV4YW1wbGUuY29tIiwic3ViIjoidXNlci03OWYxY2RlZC1hMDExLTRjMzItYTk0ZC1hZTQxNWVhNmVjZTQiLCJhdWQiOiJtb2NrLWNsaWVudCIsImV4cCI6MTc4MjYwMTgyMywiaWF0IjoxNzgyNTk4MjIzLCJqdGkiOiI2NjEyMDZkMy0xZmY0LTQ2OTYtYTdjMC00YzY4N2FlODQzNzQiLCJlbWFpbCI6InVzZXIzNzUzQGV4YW1wbGUuY29tIiwibmFtZSI6Ik1vY2sgVXNlciA1MzYifQ.7TYNB2kp8OGeYm5yrDizO_PwHMJYc4I4evbqOKlfpNA</code><code class="example-val">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL21vY2staXNzdWVyLmV4YW1wbGUuY29tIiwic3ViIjoidXNlci0xZTBjNzZmOS00MDkyLTQ0M2MtOThkYS1mNWY2NjQ4NDAwZjgiLCJhdWQiOiJtb2NrLWNsaWVudCIsImV4cCI6MTc4MjYwMTgyMywiaWF0IjoxNzgyNTk4MjIzLCJqdGkiOiJhNTAxMzMwNC0zMmEwLTRlOWYtOGVlMi1iY2MwOTgxMGFmOWIiLCJlbWFpbCI6InVzZXIxMTY2QGV4YW1wbGUuY29tIiwibmFtZSI6Ik1vY2sgVXNlciA5MDkifQ.aA09TVgSYvD3ArxdfZW9Gp3la7V_6uasTprvcalvIK0</code><code class="example-val">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL21vY2staXNzdWVyLmV4YW1wbGUuY29tIiwic3ViIjoidXNlci05ZDQ1M2RjNi05OTVjLTRmNTktOTQ5OS03NWRlOWUxNzY1MWUiLCJhdWQiOiJtb2NrLWNsaWVudCIsImV4cCI6MTc4MjYwMTgyMywiaWF0IjoxNzgyNTk4MjIzLCJqdGkiOiJhMWYyZGZmMC0yOTA5LTQ1YTEtOGYxZi04YTNiZWNkZDg1OWQiLCJlbWFpbCI6InVzZXI0NDI1QGV4YW1wbGUuY29tIiwibmFtZSI6Ik1vY2sgVXNlciA5OCJ9.XJ0dPDZGe78GBwrj5cKrS9RhKFFgIBZCNsAUHNBZJ98</code><code class="example-val">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL21vY2staXNzdWVyLmV4YW1wbGUuY29tIiwic3ViIjoidXNlci00Yzk0MWMxMy1hYTQwLTQ3NzQtOGFlNi01ZDQ3YjhjZTY0NzIiLCJhdWQiOiJtb2NrLWNsaWVudCIsImV4cCI6MTc4MjYwMTgyMywiaWF0IjoxNzgyNTk4MjIzLCJqdGkiOiJhZTA3ODUwMC03YmUxLTQwMGEtOWVkZC1lZmI5OTIyOTNlNWIiLCJlbWFpbCI6InVzZXIxNDg3QGV4YW1wbGUuY29tIiwibmFtZSI6Ik1vY2sgVXNlciA4NDIifQ.h5ETWrpQuU1hXkDvPFoS33c_YKDB1CRuboa4yD9_Lug</code><code class="example-val">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL21vY2staXNzdWVyLmV4YW1wbGUuY29tIiwic3ViIjoidXNlci1iOTZlMGRjZC0xNWNkLTRhZTYtOWRhYy01ZmJmN2MzNjY4NzciLCJhdWQiOiJtb2NrLWNsaWVudCIsImV4cCI6MTc4MjYwMTgyMywiaWF0IjoxNzgyNTk4MjIzLCJqdGkiOiI5MjhlMzcyZC02MjY0LTQzZDktOTZlYy01ZDc2NzNkNzU3YTIiLCJlbWFpbCI6InVzZXIxNzgyQGV4YW1wbGUuY29tIiwibmFtZSI6Ik1vY2sgVXNlciA2MDcifQ.xuNzANMox08U4UtfBHpUKwEO2ez-VREyfx755uzaN_c</code></div></div>
+  <div class="validation-section"><h2>Règles de validation</h2><ul class="validation-list"><li>Généré par Mock Jutsu selon les vraies spécifications de format</li><li>Toutes les valeurs produites sont synthétiques</li><li>Pour les environnements de développement, de test et de démonstration</li></ul></div>
   <div class="related">
   <h2>Fonctions associées</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/oidc_token_set-FR.html" class="rel-link"><code>oidc_token_set</code></a>

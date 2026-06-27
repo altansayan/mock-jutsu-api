@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Примеры вывода</h2><div class="examples-grid"><code class="example-val">{"id":"8hlhg2ZzSPQ3erqOOyoqAO_s55UdE0AwIvJJLqCY07E","rawId":"8hlhg2ZzSPQ3erqOOyoqAO_s55UdE0AwIvJJLqCY07E","type":"public-key","response":{"clientDataJSON":"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiU1o3UUpDVUpYYXljenFWbWotU3ppVnhaZEtrYTJTUk5tUnVPRmYycVlTVSIsIm9yaWdpbiI6Imh0dHBzOi8vbG9naW4uYWNtZS5pbyIsImNyb3NzT3JpZ2luIjpmYWxzZX0","authenticatorData":"sfvLVXiS4jAt2ia6aKeOMOL2OGIi1kS9Ev_2XOs2gRoFAAERHA","signature":"MEQCIE7Xfe2OzSPLlotNyDXWAp-FpB-rl2GBGmC2CXFJOYkFAiAyaB7UIyzQQeV5dEC4tdSQzHdQkToxrt7Te9xfYDSKCQ","userHandle":"2nn-43o2yKI0cqmA0DqJhQ"},"clientExtensionResults":{}}</code><code class="example-val">{"id":"kNlZNhdz1vzTvQjWYfInv80V9heQxLkYDHnOfRpJdHU","rawId":"kNlZNhdz1vzTvQjWYfInv80V9heQxLkYDHnOfRpJdHU","type":"public-key","response":{"clientDataJSON":"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiSEQ4U1U3Z0lmVE04OXpkWV9yb3hnLVBoYXFlU2gxUF9TWGlvdmxNVnBETSIsIm9yaWdpbiI6Imh0dHBzOi8vYWNjb3VudHMudGVzdC5vcmciLCJjcm9zc09yaWdpbiI6ZmFsc2V9","authenticatorData":"nRPuUXNeRiBB_4jq0sjuqg7KR22WfT93ED4XXMonzuQFAADHOA","signature":"MEQCIA-wZkStgFzzKTPYpc4tgaIs2jdO1XnBld3kAHC3uzoxAiAt3-k2K8ixQ48htCc9qJ55IZq8iWF5L-NC_83ryIiV4w","userHandle":"0_cIaHF2P3R9OpjlVHaD6w"},"clientExtensionResults":{}}</code><code class="example-val">{"id":"LS2BXHfIZ-pCtBUGTV23xRkd3PCMJMR7YP7hHfVmrGc","rawId":"LS2BXHfIZ-pCtBUGTV23xRkd3PCMJMR7YP7hHfVmrGc","type":"public-key","response":{"clientDataJSON":"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiQnNtcmR2NE9ESER2MjNra3JGdzFiQThWMjdzRzZjRjlLV05SSU83MTJYSSIsIm9yaWdpbiI6Imh0dHBzOi8vbG9naW4uYWNtZS5pbyIsImNyb3NzT3JpZ2luIjpmYWxzZX0","authenticatorData":"sfvLVXiS4jAt2ia6aKeOMOL2OGIi1kS9Ev_2XOs2gRoFAAENow","signature":"MEQCICpRknmHCSmoOBPQYf8lk6avSSyu1xiPtsZvZCeK2NRQAiB9_0BzflWj0TFnhlb3qr5mJvUyma0T2UqPCyIOWXD_pg","userHandle":"L3IiFXU8MDcZaHsSkU9dZQ"},"clientExtensionResults":{}}</code><code class="example-val">{"id":"HBytGffozAt0_bGDyyoGzm4JGqa9c7Z0eAAALMJNejM","rawId":"HBytGffozAt0_bGDyyoGzm4JGqa9c7Z0eAAALMJNejM","type":"public-key","response":{"clientDataJSON":"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoia0RBc3Vicm5kUE44QTZ2Q0ljakRGUnhMTXZTeHRJSGlmcDM3a2ZRcmxmayIsIm9yaWdpbiI6Imh0dHBzOi8vYXV0aC5tb2NranV0c3UuZGV2IiwiY3Jvc3NPcmlnaW4iOmZhbHNlfQ","authenticatorData":"P-h48Os2Ba3fzBZz7XDfh2eT42REEFnRBjEeugnSvOsFAAAzIQ","signature":"MEQCIHEpt309Y73jfUSIWiqrJFFQTtuzHqypDE7I0sr4nJ0ZAiA8H2QleiXT1bElf7Vxb6E6JAQEsWmNAU7iprXfe8D6Fw","userHandle":"1zjVs3ZbD50UWuVMuJFq8g"},"clientExtensionResults":{}}</code><code class="example-val">{"id":"UKglAYd847zdhQG3TBTJCErJ8m083zmBJkkCAgzQxmc","rawId":"UKglAYd847zdhQG3TBTJCErJ8m083zmBJkkCAgzQxmc","type":"public-key","response":{"clientDataJSON":"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoibUNXUzFrOGJobk9VTEJ6eVVmZGVlMmp3WmEtdW5LY1Q1c3MwdlhfMkJTSSIsIm9yaWdpbiI6Imh0dHBzOi8vZXhhbXBsZS5jb20iLCJjcm9zc09yaWdpbiI6ZmFsc2V9","authenticatorData":"o3mm9u6vuaVeN4wRgDTidR5oL6ufLTCrE9ISVYbOGUcFAACB3Q","signature":"MEQCIFE6ML-Wx7mTOZnMHRew9NpQJcXBHOi62mwQFLA0QJwwAiBPU9DYaGv9PlqKnnbWj5ihkU5d6tulhSk4ODOeSMIrAQ","userHandle":"Bd9HclDXL23ob0PfWM8YVA"},"clientExtensionResults":{}}</code></div></div>
+  <div class="validation-section"><h2>Правила валидации</h2><ul class="validation-list"><li>Генерируется Mock Jutsu по реальным форматным спецификациям</li><li>Все значения полностью синтетические</li><li>Для разработки, тестирования и демонстрации</li></ul></div>
   <div class="related">
   <h2>Похожие функции</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/webauthn_credential-RU.html" class="rel-link"><code>webauthn_credential</code></a>

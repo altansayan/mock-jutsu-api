@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,follow">
 <title>Mock Jutsu — eth_wallet | UK</title>
 <meta name="description" content="Full ETH wallet: secp256k1 scalar mult → Keccak-256 → EIP-55 checksummed address. JSON with private_key, public_key, address.">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val">{"private_key":"f512a300d0456a41ceda1a2f6853ed04528964ebdc016209d53812724dfb93fc","public_key":"0451914a5f37aa0b1504e202b0ebc65fcf4042ce414da69689707d663d5bb8a14b4a3e7b8de916a62dc1ef600a6eb2d6c0b1f3c46f23135ae4261ac5f0123b7775","address":"0x233205fb802Af1aF85A0a4ebB45c9A4eB2994E93"}</code><code class="example-val">{"private_key":"8fbf371e0f3f7ac3dd10ac100216a2442e0d4a1c15f524cac7c800d22aa23da5","public_key":"048a03a346760cb8623ec8da271f371ae111dec55117f0d2d858b95f0d03db4f21f7de4bec878aa60fe723836e7db0d102446c7209c5a611122218284b40e1faf3","address":"0x3b1E21e7739da3F79a714E315481475F1f4a47FC"}</code><code class="example-val">{"private_key":"af3d9dd5361b8ced828c421e81b8bd0b2837101429a04ecd9d2e6a8ad230dd51","public_key":"042e130eb3f9383211e9c73d8116ce5e4aa69d0570838d24de844d18c1f99ee24a993c7975e80b59abbe8314d7d998a4a3c3bdcc196169423cd2f2cb1325fdbab3","address":"0x17954C485c67023e3F4795D7541dCDacf628373d"}</code><code class="example-val">{"private_key":"e424a74a1dbcc405c21b03b13aa7a82c97cf583c10f0d034654d6674cf7ef436","public_key":"0432efa6b46aadf68ee2fd9f4db6cf74cc8e117892abd45b72d0c7d71c022e9bf9d813397ab0b6fce4dbc0c60380c9e9c62eefb7e5b1428dfc769f219b79e9e554","address":"0xd7344067d291bA9B3c1Ec55AcE0b8851414a792d"}</code><code class="example-val">{"private_key":"794ab722e7619af4039ecd648963a1511c3e61186c319f43541d4efa5f951411","public_key":"04321e1e35f6051d471791dcb13279929e2aef477798b79a98bfe72d0ccee8f84de2ce1af82d97afba338ef6206eff05efbe56f1897036546d053c88023172db90","address":"0x657Bb652bD961832A55BF2c665236585701F799E"}</code></div></div>
+  <div class="validation-section"><h2>Validation Rules</h2><ul class="validation-list"><li>Generated following real format specifications</li><li>All values are fully synthetic</li><li>For development, testing, and demonstration only</li></ul></div>
   <div class="related">
   <h2>Related Functions</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/btc_wallet-UK.html" class="rel-link"><code>btc_wallet</code></a>

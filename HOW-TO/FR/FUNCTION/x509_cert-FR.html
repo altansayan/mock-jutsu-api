@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Exemples de sortie</h2><div class="examples-grid"><code class="example-val">{"version": 3, "serial": "779e7fc1ae616d2a1b857318e97fc9e9", "algorithm": "ecdsa-with-SHA256", "key_size": 4096, "subject": "CN=sso.enterprise.io, O=Enterprise Solutions LLC, OU=IT Security, C=SG", "issuer": "CN=Amazon RSA 2048 M02, O=Amazon, C=US", "not_before": "2026-05-16T22:10:22Z", "not_after": "2027-06-17T22:10:22Z", "san": ["sso.enterprise.io", "www.sso.enterprise.io"], "fingerprint": "50:4B:88:9C:F0:AA:CA:D6:24:7B:99:3E:6F:C3:F1:FE:82:0A:10:F8:74:6D:A2:E6:DB:AC:80:11:10:C2:D6:51"}</code><code class="example-val">{"version": 3, "serial": "20bb33b2322fc9bd5ef66f995e1cbc6e", "algorithm": "ecdsa-with-SHA256", "key_size": 2048, "subject": "CN=auth.internal.io, O=GlobalFinance AG, OU=IT Security, C=GB", "issuer": "CN=Microsoft Azure TLS Issuing CA 01, O=Microsoft Corporation, C=US", "not_before": "2026-02-09T22:10:22Z", "not_after": "2027-03-13T22:10:22Z", "san": ["auth.internal.io", "www.auth.internal.io"], "fingerprint": "F1:9C:AF:38:A7:1E:95:45:49:42:FC:B9:51:06:E6:EB:6D:BC:6E:23:BD:71:57:0E:E3:EC:ED:A4:49:CC:FC:7D"}</code><code class="example-val">{"version": 3, "serial": "f5552007ea0fac5dd617f20641133958", "algorithm": "sha256WithRSAEncryption", "key_size": 4096, "subject": "CN=portal.company.com, O=InfoSec Corp, OU=IT Security, C=FR", "issuer": "CN=Sectigo RSA Domain Validation Secure Server CA, O=Sectigo Limited, C=GB", "not_before": "2025-08-23T22:10:22Z", "not_after": "2026-08-23T22:10:22Z", "san": ["portal.company.com", "www.portal.company.com"], "fingerprint": "99:42:87:EE:1D:9A:EA:1F:66:A8:22:8C:82:DA:E5:65:E5:30:07:FD:DC:07:84:B3:E1:4A:BD:76:32:21:1B:6D"}</code><code class="example-val">{"version": 3, "serial": "6f1c3acaafba346017dcbb73a44558d1", "algorithm": "ecdsa-with-SHA256", "key_size": 2048, "subject": "CN=app.enterprise.org, O=Acme Corp, OU=IT Security, C=US", "issuer": "CN=Microsoft Azure TLS Issuing CA 01, O=Microsoft Corporation, C=US", "not_before": "2025-10-28T22:10:22Z", "not_after": "2026-11-29T22:10:22Z", "san": ["app.enterprise.org", "www.app.enterprise.org"], "fingerprint": "AF:0E:BA:C5:A2:5C:DD:06:E4:14:5B:E3:49:6E:57:05:7B:92:39:4C:A6:09:F5:55:1F:1D:DF:82:AE:45:D6:DB"}</code><code class="example-val">{"version": 3, "serial": "0b146e2f00a46c9c02498038d6edf392", "algorithm": "sha256WithRSAEncryption", "key_size": 2048, "subject": "CN=secure.corp.net, O=Enterprise Solutions LLC, OU=IT Security, C=DE", "issuer": "CN=Let's Encrypt Authority X3, O=Let's Encrypt, C=US", "not_before": "2025-08-14T22:10:22Z", "not_after": "2026-08-14T22:10:22Z", "san": ["secure.corp.net", "www.secure.corp.net"], "fingerprint": "4D:48:5C:B2:B4:78:84:E7:FC:DF:52:3A:EE:7D:23:43:7C:15:34:0B:21:00:33:FB:36:AF:83:14:8C:36:3F:81"}</code></div></div>
+  <div class="validation-section"><h2>Règles de validation</h2><ul class="validation-list"><li>Généré par Mock Jutsu selon les vraies spécifications de format</li><li>Toutes les valeurs produites sont synthétiques</li><li>Pour les environnements de développement, de test et de démonstration</li></ul></div>
   <div class="related">
   <h2>Fonctions associées</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/FUNCTION/cef_log-FR.html" class="rel-link"><code>cef_log</code></a>

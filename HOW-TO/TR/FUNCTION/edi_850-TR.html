@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -259,6 +271,65 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
+  <div class="examples-section"><h2>Örnek Çıktılar</h2><div class="examples-grid"><code class="example-val">ISA*00*          *00*          *ZZ*8OF0T60KRB     *ZZ*JC0ZOACK66     *260628*0110*^*00501*896742755*0*P*:~
+GS*PO*8OF0T60KRB*JC0ZOACK66*20260628*0110*4240*X*004010~
+ST*850*2270~
+BEG*00*SA*PO273409**20260628~
+N1*BY*PINNACLE GOODS*92*JLVGGI~
+N1*SE*NEXUS LOGISTICS*92*N4UAPU~
+PO1*1*88*EA*257.39**VP*ASIYA9NF~
+PO1*2*10*EA*92.20**VP*08P79Y94~
+PO1*3*21*EA*32.07**VP*GAGEHM31~
+CTT*3~
+SE*9*2270~
+GE*1*4240~
+IEA*1*896742755~</code><code class="example-val">ISA*00*          *00*          *ZZ*O4I5X49FD8     *ZZ*BDB6AADR6O     *260628*0110*^*00501*356448945*0*P*:~
+GS*PO*O4I5X49FD8*BDB6AADR6O*20260628*0110*3754*X*004010~
+ST*850*9774~
+BEG*00*SA*PO074923**20260628~
+N1*BY*METRO SUPPLY CO*92*V5XHYS~
+N1*SE*APEX SOLUTIONS*92*ZFB0L4~
+PO1*1*50*EA*359.34**VP*4DJM2SJ9~
+CTT*1~
+SE*7*9774~
+GE*1*3754~
+IEA*1*356448945~</code><code class="example-val">ISA*00*          *00*          *ZZ*68QBANAV99     *ZZ*B8RHK75E5E     *260628*0110*^*00501*757174602*0*P*:~
+GS*PO*68QBANAV99*B8RHK75E5E*20260628*0110*1638*X*004010~
+ST*850*0853~
+BEG*00*SA*PO654418**20260628~
+N1*BY*NEXUS LOGISTICS*92*BWRKQF~
+N1*SE*ACME CORP*92*VN1YVV~
+PO1*1*43*EA*235.78**VP*KZJQD79O~
+PO1*2*15*EA*318.32**VP*G6H0LNZO~
+CTT*2~
+SE*8*0853~
+GE*1*1638~
+IEA*1*757174602~</code><code class="example-val">ISA*00*          *00*          *ZZ*1ULG58VYPQ     *ZZ*TOMH1BOLJI     *260628*0110*^*00501*825398803*0*P*:~
+GS*PO*1ULG58VYPQ*TOMH1BOLJI*20260628*0110*8478*X*004010~
+ST*850*9951~
+BEG*00*SA*PO089969**20260628~
+N1*BY*METRO SUPPLY CO*92*8I93HM~
+N1*SE*PINNACLE GOODS*92*KLC2P0~
+PO1*1*7*EA*88.98**VP*C7NISORS~
+PO1*2*81*EA*23.24**VP*U3XH1VWB~
+PO1*3*60*EA*66.47**VP*7PNYFFNA~
+CTT*3~
+SE*9*9951~
+GE*1*8478~
+IEA*1*825398803~</code><code class="example-val">ISA*00*          *00*          *ZZ*V70V28TXWC     *ZZ*8E0VMBQRIS     *260628*0110*^*00501*581110099*0*P*:~
+GS*PO*V70V28TXWC*8E0VMBQRIS*20260628*0110*1538*X*004010~
+ST*850*8304~
+BEG*00*SA*PO733686**20260628~
+N1*BY*SUMMIT TRADING*92*G7PMS2~
+N1*SE*NEXUS LOGISTICS*92*4OA2XL~
+PO1*1*80*EA*458.64**VP*WOLR6XX4~
+PO1*2*41*EA*422.28**VP*M9DBCVCM~
+PO1*3*4*EA*225.53**VP*XSO7OU2R~
+CTT*3~
+SE*9*8304~
+GE*1*1538~
+IEA*1*581110099~</code></div></div>
+  <div class="validation-section"><h2>Doğrulama Kuralları</h2><ul class="validation-list"><li>Mock Jutsu tarafından gerçek format kurallarına uygun üretilir</li><li>Üretilen değerler tamamen sentetiktir</li><li>Geliştirme, test ve demo ortamları için tasarlanmıştır</li></ul></div>
   <div class="related">
   <h2>İlgili Fonksiyonlar</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/FUNCTION/edifact_orders-TR.html" class="rel-link"><code>edifact_orders</code></a>

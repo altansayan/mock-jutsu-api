@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,follow">
 <title>Mock Jutsu — edi_850 | UK</title>
 <meta name="description" content="ANSI X12 EDI 850 Purchase Order: ISA/GS/ST/BEG/N1/PO1/CTT/SE/GE/IEA. ISA13==IEA02, GS06==GE02, SE01==segment count.">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -259,6 +271,62 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
+  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val">ISA*00*          *00*          *ZZ*NOYBB2U806     *ZZ*TRARV3MUL5     *260628*0110*^*00501*153515114*0*P*:~
+GS*PO*NOYBB2U806*TRARV3MUL5*20260628*0110*8074*X*004010~
+ST*850*0783~
+BEG*00*SA*PO343412**20260628~
+N1*BY*GLOBAL TRADE INC*92*VBWYE5~
+N1*SE*SUMMIT TRADING*92*JM7BYX~
+PO1*1*49*EA*152.22**VP*9MI77Y9L~
+PO1*2*37*EA*50.68**VP*J04E4HTQ~
+PO1*3*83*EA*278.10**VP*H36YPM44~
+CTT*3~
+SE*9*0783~
+GE*1*8074~
+IEA*1*153515114~</code><code class="example-val">ISA*00*          *00*          *ZZ*J8HBUGRV0J     *ZZ*XKVPQFC8IL     *260628*0110*^*00501*051051981*0*P*:~
+GS*PO*J8HBUGRV0J*XKVPQFC8IL*20260628*0110*4802*X*004010~
+ST*850*7101~
+BEG*00*SA*PO038436**20260628~
+N1*BY*ACME CORP*92*X36CI0~
+N1*SE*NEXUS LOGISTICS*92*4SEQU8~
+PO1*1*45*EA*263.74**VP*IBMDUU77~
+PO1*2*22*EA*143.59**VP*AOTPW7YY~
+CTT*2~
+SE*8*7101~
+GE*1*4802~
+IEA*1*051051981~</code><code class="example-val">ISA*00*          *00*          *ZZ*S55FG4B0BI     *ZZ*AEKWQ3POZA     *260628*0110*^*00501*172033949*0*P*:~
+GS*PO*S55FG4B0BI*AEKWQ3POZA*20260628*0110*5755*X*004010~
+ST*850*3647~
+BEG*00*SA*PO800680**20260628~
+N1*BY*HORIZON GROUP*92*Y9VFUU~
+N1*SE*HORIZON GROUP*92*16AT73~
+PO1*1*96*EA*84.05**VP*XHXFVDKR~
+PO1*2*97*EA*78.74**VP*8XY7LSMT~
+CTT*2~
+SE*8*3647~
+GE*1*5755~
+IEA*1*172033949~</code><code class="example-val">ISA*00*          *00*          *ZZ*ONCIODPGCT     *ZZ*N50WP0TIRO     *260628*0110*^*00501*264286934*0*P*:~
+GS*PO*ONCIODPGCT*N50WP0TIRO*20260628*0110*5673*X*004010~
+ST*850*6654~
+BEG*00*SA*PO804889**20260628~
+N1*BY*GLOBAL TRADE INC*92*N28CDA~
+N1*SE*METRO SUPPLY CO*92*FQ7NQN~
+PO1*1*50*EA*244.91**VP*C0O9GCHR~
+CTT*1~
+SE*7*6654~
+GE*1*5673~
+IEA*1*264286934~</code><code class="example-val">ISA*00*          *00*          *ZZ*0LMBYJXTJP     *ZZ*6K2PE1M42W     *260628*0110*^*00501*833761485*0*P*:~
+GS*PO*0LMBYJXTJP*6K2PE1M42W*20260628*0110*4117*X*004010~
+ST*850*7144~
+BEG*00*SA*PO654041**20260628~
+N1*BY*METRO SUPPLY CO*92*TNWIZD~
+N1*SE*GLOBAL TRADE INC*92*TRNAHC~
+PO1*1*22*EA*427.54**VP*UEIRGJ2U~
+CTT*1~
+SE*7*7144~
+GE*1*4117~
+IEA*1*833761485~</code></div></div>
+  <div class="validation-section"><h2>Validation Rules</h2><ul class="validation-list"><li>Generated following real format specifications</li><li>All values are fully synthetic</li><li>For development, testing, and demonstration only</li></ul></div>
   <div class="related">
   <h2>Related Functions</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/edifact_orders-UK.html" class="rel-link"><code>edifact_orders</code></a>

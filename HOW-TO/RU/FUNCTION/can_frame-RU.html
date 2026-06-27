@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Примеры вывода</h2><div class="examples-grid"><code class="example-val">{"frame_type": "standard", "can_id": "0x641", "can_id_int": 1601, "dlc": 7, "data": [79, 98, 179, 27, 49, 27, 51], "data_hex": "4F62B31B311B33", "crc15": 8636, "crc15_hex": "21BC", "socketcan": "641#4F62B31B311B33"}</code><code class="example-val">{"frame_type": "standard", "can_id": "0x369", "can_id_int": 873, "dlc": 5, "data": [102, 233, 98, 136, 251], "data_hex": "66E96288FB", "crc15": 21719, "crc15_hex": "54D7", "socketcan": "369#66E96288FB"}</code><code class="example-val">{"frame_type": "extended", "can_id": "0x17195CD9", "can_id_int": 387538137, "dlc": 5, "data": [166, 2, 118, 132, 159], "data_hex": "A60276849F", "crc15": 17348, "crc15_hex": "43C4", "socketcan": "17195CD9#A60276849F"}</code><code class="example-val">{"frame_type": "standard", "can_id": "0x583", "can_id_int": 1411, "dlc": 0, "data": [], "data_hex": "", "crc15": 26507, "crc15_hex": "678B", "socketcan": "583#"}</code><code class="example-val">{"frame_type": "standard", "can_id": "0x1FE", "can_id_int": 510, "dlc": 0, "data": [], "data_hex": "", "crc15": 20633, "crc15_hex": "5099", "socketcan": "1FE#"}</code></div></div>
+  <div class="validation-section"><h2>Правила валидации</h2><ul class="validation-list"><li>Генерируется Mock Jutsu по реальным форматным спецификациям</li><li>Все значения полностью синтетические</li><li>Для разработки, тестирования и демонстрации</li></ul></div>
   <div class="related">
   <h2>Похожие функции</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/obd2_response-RU.html" class="rel-link"><code>obd2_response</code></a>

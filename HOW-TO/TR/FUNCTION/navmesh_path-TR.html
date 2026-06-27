@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Örnek Çıktılar</h2><div class="examples-grid"><code class="example-val">{"start": {"x": 91.781, "y": 1.787, "z": 22.824}, "end": {"x": 71.216, "y": 2.33, "z": 95.51}, "waypoints": [{"x": 91.781, "y": 1.787, "z": 22.824}, {"x": 79.159, "y": 2.031, "z": 42.086}, {"x": 82.114, "y": 1.9, "z": 48.84}, {"x": 77.588, "y": 2.164, "z": 66.712}, {"x": 74.627, "y": 1.858, "z": 81.984}, {"x": 71.216, "y": 2.33, "z": 95.51}], "total_distance": 78.359, "waypoint_count": 6}</code><code class="example-val">{"start": {"x": 184.536, "y": -0.828, "z": -134.85}, "end": {"x": 203.019, "y": -0.575, "z": -79.806}, "waypoints": [{"x": 184.536, "y": -0.828, "z": -134.85}, {"x": 186.247, "y": -1.24, "z": -116.555}, {"x": 184.412, "y": -0.959, "z": -110.373}, {"x": 187.074, "y": -1.07, "z": -90.881}, {"x": 203.019, "y": -0.575, "z": -79.806}], "total_distance": 63.928, "waypoint_count": 5}</code><code class="example-val">{"start": {"x": 16.623, "y": -1.881, "z": 144.076}, "end": {"x": 5.894, "y": -1.746, "z": 110.483}, "waypoints": [{"x": 16.623, "y": -1.881, "z": 144.076}, {"x": 17.612, "y": -1.711, "z": 136.856}, {"x": 16.051, "y": -1.467, "z": 127.604}, {"x": 15.489, "y": -1.699, "z": 122.601}, {"x": 5.894, "y": -1.746, "z": 110.483}], "total_distance": 37.172, "waypoint_count": 5}</code><code class="example-val">{"start": {"x": -75.878, "y": -1.828, "z": -150.661}, "end": {"x": -67.998, "y": 0.209, "z": 3.708}, "waypoints": [{"x": -75.878, "y": -1.828, "z": -150.661}, {"x": -77.142, "y": -1.364, "z": -128.685}, {"x": -80.789, "y": -1.421, "z": -114.752}, {"x": -83.08, "y": -1.217, "z": -104.841}, {"x": -85.454, "y": -0.837, "z": -92.003}, {"x": -85.711, "y": -0.367, "z": -79.455}, {"x": -91.817, "y": -0.194, "z": -69.936}, {"x": -89.248, "y": -0.447, "z": -48.325}, {"x": -93.992, "y": 0.013, "z": -35.454}, {"x": -89.053, "y": 0.112, "z": -23.662}, {"x": -91.907, "y": -0.042, "z": -11.504}, {"x": -80.839, "y": -0.245, "z": 3.698}, {"x": -67.998, "y": 0.209, "z": 3.708}], "total_distance": 175.944, "waypoint_count": 13}</code><code class="example-val">{"start": {"x": 176.838, "y": -1.062, "z": 74.784}, "end": {"x": 140.77, "y": -0.221, "z": 46.533}, "waypoints": [{"x": 176.838, "y": -1.062, "z": 74.784}, {"x": 165.682, "y": -0.973, "z": 61.798}, {"x": 157.212, "y": -0.628, "z": 61.029}, {"x": 140.77, "y": -0.221, "z": 46.533}], "total_distance": 47.555, "waypoint_count": 4}</code></div></div>
+  <div class="validation-section"><h2>Doğrulama Kuralları</h2><ul class="validation-list"><li>Mock Jutsu tarafından gerçek format kurallarına uygun üretilir</li><li>Üretilen değerler tamamen sentetiktir</li><li>Geliştirme, test ve demo ortamları için tasarlanmıştır</li></ul></div>
   <div class="related">
   <h2>İlgili Fonksiyonlar</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/FUNCTION/quaternion-TR.html" class="rel-link"><code>quaternion</code></a>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,follow">
 <title>Mock Jutsu — cdc_event | UK</title>
 <meta name="description" content="Debezium-style CDC event (INSERT/UPDATE/DELETE). op c/u/d, ts_ms, source db+table, before/after payloads.">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val">{"op": "u", "ts_ms": 1782536743367, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "products"}, "before": {"product_id": "3eb67498-d6cd-4338-9987-d7af38eafbb0", "name": "Monitor 27\" 4K", "price": 6776.23, "stock": 942}, "after": {"product_id": "3eb67498-d6cd-4338-9987-d7af38eafbb0", "name": "Wireless Headset", "price": 9481.46, "stock": 615}}</code><code class="example-val">{"op": "d", "ts_ms": 1782519893082, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "products"}, "before": {"product_id": "eb2b547f-6a9b-48cc-90f8-cd4c2d0443fe", "name": "Laptop Pro 15\"", "price": 1352.61, "stock": 978}, "after": null}</code><code class="example-val">{"op": "d", "ts_ms": 1782576444323, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "users"}, "before": {"user_id": "e462ca34-d640-4867-a487-30d52a6ffd2a", "email": "user5360@example.com", "full_name": "David Park", "created_at": "2026-06-27T22:10:22Z"}, "after": null}</code><code class="example-val">{"op": "d", "ts_ms": 1782525495769, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "products"}, "before": {"product_id": "c425710d-a2da-4bc4-9014-335cb9d00dc3", "name": "Mechanical Keyboard", "price": 6291.43, "stock": 266}, "after": null}</code><code class="example-val">{"op": "u", "ts_ms": 1782598193815, "source": {"version": "2.3.0", "connector": "postgresql", "db": "mockdb", "table": "payments"}, "before": {"payment_id": "bb913c2b-805d-4c46-b39d-7c03cdff361b", "order_id": "f5640bfd-8edd-4002-aa61-0ea130c21530", "amount": 5556.24, "method": "debit_card", "status": "captured"}, "after": {"payment_id": "bb913c2b-805d-4c46-b39d-7c03cdff361b", "order_id": "2ebedd36-d924-4b18-995b-66fd1aaad791", "amount": 7892.13, "method": "bank_transfer", "status": "captured"}}</code></div></div>
+  <div class="validation-section"><h2>Validation Rules</h2><ul class="validation-list"><li>Generated following real format specifications</li><li>All values are fully synthetic</li><li>For development, testing, and demonstration only</li></ul></div>
   <div class="related">
   <h2>Related Functions</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/event_stream-UK.html" class="rel-link"><code>event_stream</code></a>

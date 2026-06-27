@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,follow">
 <title>Mock Jutsu — sol_wallet | UK</title>
 <meta name="description" content="Full Solana wallet: Ed25519 scalar mult → base58 address. JSON with private_key, public_key, address, keypair (Phantom format).">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val">{"private_key":"9e75dd481f9c45dd4cac8c796b91546ae58888af983807cf592edabe0e8308d7","public_key":"71696ddcd1dddd7853062cdd05c1f9790b43d5ee8abad522f8b40579c1025990","address":"8diK6Jo59n5633dcasJ3rySctVYqNxWon7tLx3pk1NxP","keypair":"4AkbPqarLPpCRon3NpytPn8TUnJGvYVJcMHbxyAevYwVuE2mTk6eRSr15ZwxdHzxrS5wyt5nNJ9J2WzBf4VbXUpF"}</code><code class="example-val">{"private_key":"a8197eec4e0b6d49460d0861273452222bf9092ce24e18f74d947741d80b28de","public_key":"f04c14829111703c3e10327b2b07be59e9f4e5e5b3f6ae899ff3c1753d37d092","address":"HB28imD7xiva3zdDnqMWLJUgUBjbwzcf28xauoMmMF8d","keypair":"4Mvu2RKsDmdnUeJvphQPH8jKF5wmSYu4WvbQdUyoejN3gkNjQMVbRnXc4BpVrid83jNhqj4zemSQ1KHXgvWFD2ND"}</code><code class="example-val">{"private_key":"87e574844e39f1e5ab6e5945eea2658073ba1db77753cf91c95a44ed3f759a63","public_key":"094421f60e09322b376144853c8981628197cc51cc10d6f19b28425cfefa8c71","address":"dAvia4PJeyuLceoQC1EPrDWs9CeZLqDYNeAinUUqsxc","keypair":"3iaznp3hnVxL4T2RePGkeaZ1xL8wcXsRtBbQetQvhJdcPKnnToafMXoVGHZW6GZJZhQJKFZ7mWkdw7VMzopqChjv"}</code><code class="example-val">{"private_key":"b6e0641765d838d268c3ea9218cc48e8702a92a2a77e0062736477ac1a979c74","public_key":"e7604d197fadbd2f851e315508cea222df05551dfff7f88210f501e456fb35b5","address":"GaCM9jznxSQfozYS7m6YxmGtTiE948ZqvaZe5JXNsAFe","keypair":"4f4kaAPAHLpXVazgQuYq8vcUZG1rST41V5zudVeYr9pSs29N6SyLXbuCxJqjcZLDKyinPNbEPHd97pDpPQJ4dM48"}</code><code class="example-val">{"private_key":"3b2224172e9ca5cf64397e5c6a18696a3c700732f149c7dcc1af790d5765e807","public_key":"0b04183c7aeb61164000968886deb124273e6294839efcd4b1210af14072e8d2","address":"k179fiG9TXdSfy9Wuj7z6ej3uJdMHpy455iMQDf38kh","keypair":"2Ba99uD9Dg3haqaWsPM4pEfS83NmibbMGUgDt9qTxtgWNxAuByjybvm11Lyg7VF2rAEFkkp4ya9PPqVJuJZeTFvy"}</code></div></div>
+  <div class="validation-section"><h2>Validation Rules</h2><ul class="validation-list"><li>Generated following real format specifications</li><li>All values are fully synthetic</li><li>For development, testing, and demonstration only</li></ul></div>
   <div class="related">
   <h2>Related Functions</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/eth_wallet-UK.html" class="rel-link"><code>eth_wallet</code></a>

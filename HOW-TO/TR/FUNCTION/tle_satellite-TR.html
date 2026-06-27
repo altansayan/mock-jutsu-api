@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Örnek Çıktılar</h2><div class="examples-grid"><code class="example-val">{"name": "SIMBIRD-975", "line1": "1 67367C 93710Q   25230.88357618  .00009482  00000-0  39061-3 0 81341", "line2": "2 67367  42.7991 296.5740 0029414  18.1897 353.6491  3.18823338249588", "norad_id": 67367, "classification": "C", "epoch_year": 25, "epoch_day": 230.88357618, "inclination": 42.7991, "raan": 296.574, "eccentricity": 0.0029414, "arg_of_perigee": 18.1897, "mean_anomaly": 353.6491, "mean_motion": 3.18823338, "rev_number": 24958, "orbit_type": "MEO"}</code><code class="example-val">{"name": "JUTSU-373", "line1": "1 57264C 71726E   23025.81819425  .00006827  00000-0  62055-3 0  9991", "line2": "2 57264  46.2348 188.5095 0002763  21.5435 322.4063 13.96975333597760", "norad_id": 57264, "classification": "C", "epoch_year": 23, "epoch_day": 25.81819425, "inclination": 46.2348, "raan": 188.5095, "eccentricity": 0.0002763, "arg_of_perigee": 21.5435, "mean_anomaly": 322.4063, "mean_motion": 13.96975333, "rev_number": 59776, "orbit_type": "LEO"}</code><code class="example-val">{"name": "SIMSTAR-841", "line1": "1 72484U 00305M   26001.63506167  .00000010  00000-0  96504-3 0 96305", "line2": "2 72484  13.4692 239.0968 0005373 121.0324 183.4699 14.30792801714951", "norad_id": 72484, "classification": "U", "epoch_year": 26, "epoch_day": 1.63506167, "inclination": 13.4692, "raan": 239.0968, "eccentricity": 0.0005373, "arg_of_perigee": 121.0324, "mean_anomaly": 183.4699, "mean_motion": 14.30792801, "rev_number": 71495, "orbit_type": "LEO"}</code><code class="example-val">{"name": "MOCKSTAR-88", "line1": "1 35727U 06175T   20251.04876268  .00004353  00000-0  43244-3 0 36247", "line2": "2 35727  97.3721 170.9027 0004031 180.2195 153.3131 14.63890334704251", "norad_id": 35727, "classification": "U", "epoch_year": 20, "epoch_day": 251.04876268, "inclination": 97.3721, "raan": 170.9027, "eccentricity": 0.0004031, "arg_of_perigee": 180.2195, "mean_anomaly": 153.3131, "mean_motion": 14.63890334, "rev_number": 70425, "orbit_type": "SSO"}</code><code class="example-val">{"name": "TESTBED-176", "line1": "1 89262U 20975W   22011.89325577  .00001901  00000-0  45578-3 0 96711", "line2": "2 89262  65.2455 147.2060 0004127 223.4076  90.9956 14.31619757361354", "norad_id": 89262, "classification": "U", "epoch_year": 22, "epoch_day": 11.89325577, "inclination": 65.2455, "raan": 147.206, "eccentricity": 0.0004127, "arg_of_perigee": 223.4076, "mean_anomaly": 90.9956, "mean_motion": 14.31619757, "rev_number": 36135, "orbit_type": "LEO"}</code></div></div>
+  <div class="validation-section"><h2>Doğrulama Kuralları</h2><ul class="validation-list"><li>Mock Jutsu tarafından gerçek format kurallarına uygun üretilir</li><li>Üretilen değerler tamamen sentetiktir</li><li>Geliştirme, test ve demo ortamları için tasarlanmıştır</li></ul></div>
   
 
   <div class="lang-switch">

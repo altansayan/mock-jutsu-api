@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Örnek Çıktılar</h2><div class="examples-grid"><code class="example-val">{'uid': '05:20:23:45:BE:E4:AE', 'atqa': '00:04', 'sak': '28', 'type': 'MIFARE Plus SL1', 'capacity_bytes': 1024, 'ndef_message': 'D101175504617574682E64656D6F2E6E65742F3462613638383330', 'ndef_decoded': 'https://auth.demo.net/4ba68830'}</code><code class="example-val">{'uid': '15:83:B2:31:6F:40:9C', 'atqa': '00:04', 'sak': '28', 'type': 'MIFARE Plus SL1', 'capacity_bytes': 1024, 'ndef_message': 'D1011955086170692E6578616D706C652E6F72672F3733326639633134', 'ndef_decoded': 'ftp://ftp.api.example.org/732f9c14'}</code><code class="example-val">{'uid': '04:10:A9:65:F0:31:3E', 'atqa': '03:44', 'sak': '20', 'type': 'MIFARE DESFire EV1', 'capacity_bytes': 8192, 'ndef_message': 'D101185502646174612E656467652E746563682F6235323363656538', 'ndef_decoded': 'https://www.data.edge.tech/b523cee8'}</code><code class="example-val">{'uid': '04:3F:3A:E9:48:7E:48', 'atqa': '00:44', 'sak': '00', 'type': 'NTAG216', 'capacity_bytes': 888, 'ndef_message': 'D101185501646174612E656467652E746563682F6633306534326533', 'ndef_decoded': 'http://www.data.edge.tech/f30e42e3'}</code><code class="example-val">{'uid': '04:08:62:03:9D:D6:96', 'atqa': '03:04', 'sak': '60', 'type': 'MIFARE DESFire', 'capacity_bytes': 4096, 'ndef_message': 'D1011A55086465766963652E696F742E6C6F63616C2F3464356539346161', 'ndef_decoded': 'ftp://ftp.device.iot.local/4d5e94aa'}</code></div></div>
+  <div class="validation-section"><h2>Doğrulama Kuralları</h2><ul class="validation-list"><li>Mock Jutsu tarafından gerçek format kurallarına uygun üretilir</li><li>Üretilen değerler tamamen sentetiktir</li><li>Geliştirme, test ve demo ortamları için tasarlanmıştır</li></ul></div>
   <div class="related">
   <h2>İlgili Fonksiyonlar</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/FUNCTION/nfc_uid-TR.html" class="rel-link"><code>nfc_uid</code></a>

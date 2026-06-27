@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Örnek Çıktılar</h2><div class="examples-grid"><code class="example-val">{"version": 3, "serial": "84aea5800624fe761dde4439fdaa4e84", "algorithm": "ecdsa-with-SHA256", "key_size": 2048, "subject": "CN=api.example.com, O=InfoSec Corp, OU=IT Security, C=US", "issuer": "CN=Microsoft Azure TLS Issuing CA 01, O=Microsoft Corporation, C=US", "not_before": "2026-01-11T22:10:21Z", "not_after": "2027-01-11T22:10:21Z", "san": ["api.example.com", "www.api.example.com"], "fingerprint": "FD:F8:14:6F:82:83:B5:EA:78:85:2F:3C:75:C0:49:0E:CA:37:4D:E7:3E:00:3F:53:04:9A:44:72:E7:8E:6D:6E"}</code><code class="example-val">{"version": 3, "serial": "61efcb21286073d18fcd8a4d4b0a1e12", "algorithm": "sha256WithRSAEncryption", "key_size": 2048, "subject": "CN=app.enterprise.org, O=DataSystems GmbH, OU=IT Security, C=TR", "issuer": "CN=DigiCert TLS RSA SHA256 2020 CA1, O=DigiCert Inc, C=US", "not_before": "2025-11-09T22:10:21Z", "not_after": "2026-11-09T22:10:21Z", "san": ["app.enterprise.org", "www.app.enterprise.org"], "fingerprint": "45:4A:73:6C:22:2D:FA:19:E1:00:6E:C1:70:20:65:FD:EF:9F:90:0A:0A:F8:DD:E4:CE:A6:90:B2:51:83:EC:E2"}</code><code class="example-val">{"version": 3, "serial": "9b4715f248eab5534dd3f1911adde23f", "algorithm": "ecdsa-with-SHA256", "key_size": 4096, "subject": "CN=gateway.prod.local, O=InfoSec Corp, OU=IT Security, C=TR", "issuer": "CN=DigiCert TLS RSA SHA256 2020 CA1, O=DigiCert Inc, C=US", "not_before": "2025-08-03T22:10:21Z", "not_after": "2027-08-03T22:10:21Z", "san": ["gateway.prod.local", "www.gateway.prod.local"], "fingerprint": "0B:71:EF:86:4D:99:61:F0:CA:7C:4F:83:22:0B:38:6E:E6:03:05:86:B8:91:89:E3:B7:C7:9A:34:84:E4:31:9F"}</code><code class="example-val">{"version": 3, "serial": "6719872b9f96e4885bd420da89d33b85", "algorithm": "sha256WithRSAEncryption", "key_size": 2048, "subject": "CN=api.example.com, O=Acme Corp, OU=IT Security, C=GB", "issuer": "CN=Sectigo RSA Domain Validation Secure Server CA, O=Sectigo Limited, C=GB", "not_before": "2026-02-22T22:10:21Z", "not_after": "2027-02-22T22:10:21Z", "san": ["api.example.com", "www.api.example.com"], "fingerprint": "66:DF:FE:2A:37:B6:43:85:EF:DA:B5:A3:E6:56:8B:F2:67:B2:03:04:4E:BC:C1:A2:89:29:88:BB:03:23:C0:D9"}</code><code class="example-val">{"version": 3, "serial": "65ec72c2320e063c5f5f5103690ac9db", "algorithm": "sha256WithRSAEncryption", "key_size": 2048, "subject": "CN=sso.enterprise.io, O=Acme Corp, OU=IT Security, C=FR", "issuer": "CN=Amazon RSA 2048 M02, O=Amazon, C=US", "not_before": "2025-09-13T22:10:21Z", "not_after": "2026-10-15T22:10:21Z", "san": ["sso.enterprise.io", "www.sso.enterprise.io"], "fingerprint": "7C:A4:8E:25:D0:55:0D:B6:1E:3E:83:5C:EF:61:3D:0D:D3:45:A0:09:78:BE:F5:DA:6A:DA:B8:77:74:CC:67:0D"}</code></div></div>
+  <div class="validation-section"><h2>Doğrulama Kuralları</h2><ul class="validation-list"><li>Mock Jutsu tarafından gerçek format kurallarına uygun üretilir</li><li>Üretilen değerler tamamen sentetiktir</li><li>Geliştirme, test ve demo ortamları için tasarlanmıştır</li></ul></div>
   <div class="related">
   <h2>İlgili Fonksiyonlar</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/FUNCTION/cef_log-TR.html" class="rel-link"><code>cef_log</code></a>

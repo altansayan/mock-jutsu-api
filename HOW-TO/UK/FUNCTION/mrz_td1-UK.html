@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,follow">
 <title>Mock Jutsu — mrz_td1 | UK</title>
 <meta name="description" content="ICAO 9303 ID Card TD1 MRZ: 3 lines × 30 chars. Doc number, DOB, expiry, composite check digit (ICAO 9303 Part 5).">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -259,6 +271,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
+  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val">{"mrz_type": "TD1", "lines": ["A<TURPA28683398<<<<<<<<<<<<<<<", "4505112F3010127TUR<<<<<<<<<<<6", "TANAKA<<JESSICA<<<<<<<<<<<<<<<"], "surname": "TANAKA", "given_names": "JESSICA", "nationality": "TUR", "doc_number": "PA2868339", "dob": "450511", "sex": "F", "expiry": "301012"}</code><code class="example-val">{"mrz_type": "TD1", "lines": ["I<TURNR93610883<<<<<<<<<<<<<<<", "7902251F3212172TUR<<<<<<<<<<<2", "LI<<MICHAEL<<<<<<<<<<<<<<<<<<<"], "surname": "LI", "given_names": "MICHAEL", "nationality": "TUR", "doc_number": "NR9361088", "dob": "790225", "sex": "F", "expiry": "321217"}</code><code class="example-val">{"mrz_type": "TD1", "lines": ["I<TURGK90875672<<<<<<<<<<<<<<<", "0803050M3210190TUR<<<<<<<<<<<2", "LI<<AHMET<<<<<<<<<<<<<<<<<<<<<"], "surname": "LI", "given_names": "AHMET", "nationality": "TUR", "doc_number": "GK9087567", "dob": "080305", "sex": "M", "expiry": "321019"}</code><code class="example-val">{"mrz_type": "TD1", "lines": ["C<TURPV70326639<<<<<<<<<<<<<<<", "0601131<2606244TUR<<<<<<<<<<<6", "SMIRNOV<<ZEYNEP<<<<<<<<<<<<<<<"], "surname": "SMIRNOV", "given_names": "ZEYNEP", "nationality": "TUR", "doc_number": "PV7032663", "dob": "060113", "sex": "<", "expiry": "260624"}</code><code class="example-val">{"mrz_type": "TD1", "lines": ["A<TURNA63998033<<<<<<<<<<<<<<<", "0104230F3308073TUR<<<<<<<<<<<6", "MARTIN<<OLGA<<<<<<<<<<<<<<<<<<"], "surname": "MARTIN", "given_names": "OLGA", "nationality": "TUR", "doc_number": "NA6399803", "dob": "010423", "sex": "F", "expiry": "330807"}</code></div></div>
+  <div class="validation-section"><h2>Validation Rules</h2><ul class="validation-list"><li>Generated following real format specifications</li><li>All values are fully synthetic</li><li>For development, testing, and demonstration only</li></ul></div>
   <div class="related">
   <h2>Related Functions</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/mrz_td3-UK.html" class="rel-link"><code>mrz_td3</code></a>

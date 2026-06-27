@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Beispielausgaben</h2><div class="examples-grid"><code class="example-val">{"private_key":"9935dd95141c363586f8791322c749abb1e244e428ecc66a1063a70e3c590e31","public_key":"04441e3c8d67f4874a5ea5f162ae1c3cfcb8182a96f7a4b9d27f36cd751f877b10a4ad48f7d61b5f6883ecc58ae8f2ae2c021d220f546253f866b489ce0479bd16","address":"0x630234d39FDBcc8CE07A17bD65Cf618e5118ae41"}</code><code class="example-val">{"private_key":"298091ec5d2c6079490e1de945cb94d12627318f319567ecb80085da9e133208","public_key":"04148bbc217a15c2a2ac821ad17b5341c443b82f9d64cad4daf7a2e76becef0e82a7c79fb2a0dd9dde8597ad4a4114a4faefd4304cfa8dd288aa399f8cd1014d63","address":"0x13CEF279022d81B0e390E14a4f15c2C18de40A34"}</code><code class="example-val">{"private_key":"90d5ef49715d12e147c39f7219eafa1902a5413e2a976761d9603586cae6bef2","public_key":"04bd2620b7c81616e413d58951351adaac1d343388b339ce78b29f190565669e9f0480524f28feb6d55e4427f8057c56e2dab19f19bcb02419944553be98b8086c","address":"0x2e8fcF05c084cf1274dc460FaFDA2Eea3604C49E"}</code><code class="example-val">{"private_key":"f6387dfb37e977b1fd754d9e256c87fe1ae46f0d29c6a3b2a1d11e7a962aa1d5","public_key":"04d3e3bc9f2c887b95c0d14a14ab46656e03206a4cfcc7e47ec47174876017e0fe3783c8e55dd873a25ed6fe1030e2fa72a445457db98e0d6dc898f1598e570a40","address":"0xa385B7A456db0A6748c075790C7f92Ccda9824F1"}</code><code class="example-val">{"private_key":"9d227a07ac76133069ceaff1b8524cc9751565f785797b256c82327d1e03c00c","public_key":"042f601e2830268ca85965f49c5480e8b2533ef46d0b79cc0e23f0c20e4e9a3ee7e9f7e059934f8a2fc2fff4c23d01205996aaa8850c4da5edb0790a981529dd6c","address":"0x38e7FB770589B3131C03BCA581D571929ddf5ce5"}</code></div></div>
+  <div class="validation-section"><h2>Validierungsregeln</h2><ul class="validation-list"><li>Von Mock Jutsu gemäß echten Formatspezifikationen generiert</li><li>Alle produzierten Werte sind vollständig synthetisch</li><li>Für Entwicklungs-, Test- und Demoumgebungen</li></ul></div>
   <div class="related">
   <h2>Verwandte Funktionen</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/btc_wallet-DE.html" class="rel-link"><code>btc_wallet</code></a>

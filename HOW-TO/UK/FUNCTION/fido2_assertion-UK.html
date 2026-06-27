@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex,follow">
 <title>Mock Jutsu — fido2_assertion | UK</title>
 <meta name="description" content="FIDO2/WebAuthn authentication response: 37-byte authenticatorData + DER ECDSA signature + userHandle, base64url encoded.">
 <meta name="author" content="Altan Sezer Ayan (A.S.A)">
@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -245,6 +257,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Example Output</h2><div class="examples-grid"><code class="example-val">{"id":"jnX_CgJ96Jultuvmv0hm_5uSV-8F_tOO3NQQtNMMEtM","rawId":"jnX_CgJ96Jultuvmv0hm_5uSV-8F_tOO3NQQtNMMEtM","type":"public-key","response":{"clientDataJSON":"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiTWFsQkVkRDY4NEFfbk1DblFkMmhDTEtNLWk4ZWhpckZqVWhBSFBraG1GQSIsIm9yaWdpbiI6Imh0dHBzOi8vZXhhbXBsZS5jb20iLCJjcm9zc09yaWdpbiI6ZmFsc2V9","authenticatorData":"o3mm9u6vuaVeN4wRgDTidR5oL6ufLTCrE9ISVYbOGUcFAAFbTA","signature":"MEQCIBKWoJqq-HjcMBhqHhc67HLszE5ozv70_gyll-nfycqdAiAhOF6rP3xySLinXwCck_232vlO8EJwsB50bJECaWqiJA","userHandle":"BbHKouKOpGOHV7QvZ5iBbA"},"clientExtensionResults":{}}</code><code class="example-val">{"id":"1eJ0yHMgeNsGEeanWySEBrmZNyAWYLbrP8RdgXA3hsw","rawId":"1eJ0yHMgeNsGEeanWySEBrmZNyAWYLbrP8RdgXA3hsw","type":"public-key","response":{"clientDataJSON":"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiNGNhUkcwejF2bHpqU2ljcjdzY3I2ZWRLZjRfMG52RW9JcXU2TlNxZTdmVSIsIm9yaWdpbiI6Imh0dHBzOi8vbG9naW4uYWNtZS5pbyIsImNyb3NzT3JpZ2luIjpmYWxzZX0","authenticatorData":"sfvLVXiS4jAt2ia6aKeOMOL2OGIi1kS9Ev_2XOs2gRoFAAEgYQ","signature":"MEQCICM_cmnivN_icMz6Uhx71xkekK4D-IIEz5hyT9DxkPdUAiAF6Dx0_qDQgFn2viPyDi3z4fheRV-g2cgHALDB68JnRQ","userHandle":"go9u3-KNYeY4NVtGzSP48Q"},"clientExtensionResults":{}}</code><code class="example-val">{"id":"UwAu2yrNClsPk8AJmJwOUQ50_J3fn67m8Ks-O6_KpsE","rawId":"UwAu2yrNClsPk8AJmJwOUQ50_J3fn67m8Ks-O6_KpsE","type":"public-key","response":{"clientDataJSON":"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoibHQ5eWxhSFdUTF8xeDFVYkRFajhZSE40Z2FZTFgwQVVJU190b1hvcWpBRSIsIm9yaWdpbiI6Imh0dHBzOi8vYXV0aC5tb2NranV0c3UuZGV2IiwiY3Jvc3NPcmlnaW4iOmZhbHNlfQ","authenticatorData":"P-h48Os2Ba3fzBZz7XDfh2eT42REEFnRBjEeugnSvOsFAAAA8A","signature":"MEQCIDefeLqnpTaoUzfR-3lzuomZrJjeNQLaec5bwlZohj98AiATn-9JORPlOrh-o0D8XzirJKWHAtYH6Crj9WeffR6JAA","userHandle":"4KQbT9wbX36xsPa5pzlFNg"},"clientExtensionResults":{}}</code><code class="example-val">{"id":"NzXNWZ1myV8e8gRwZrqvf_8cDcVpWUX8jxaRjthWeZA","rawId":"NzXNWZ1myV8e8gRwZrqvf_8cDcVpWUX8jxaRjthWeZA","type":"public-key","response":{"clientDataJSON":"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiZlZZbkpBanI3MWVRYndlYXR2b3NuWjRwSGV4c1drNE5IYW1pWl9ORm52WSIsIm9yaWdpbiI6Imh0dHBzOi8vYWNjb3VudHMudGVzdC5vcmciLCJjcm9zc09yaWdpbiI6ZmFsc2V9","authenticatorData":"nRPuUXNeRiBB_4jq0sjuqg7KR22WfT93ED4XXMonzuQFAAA8QA","signature":"MEQCIFUf9dkI2nu4-2hys_npwxibEsLaSEdLp5dRpmEpVZbAAiA2fNHFXri-DWkLS6QAimOqf4jRs8BgzTFJvd2f-yR9hA","userHandle":"khmSm7wmQlor7XMFyXoNHw"},"clientExtensionResults":{}}</code><code class="example-val">{"id":"b0K2NZ2gNx113zm1BDGULWPGA-J-lWmxiP6ANVSsVkI","rawId":"b0K2NZ2gNx113zm1BDGULWPGA-J-lWmxiP6ANVSsVkI","type":"public-key","response":{"clientDataJSON":"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiU2JFcjV4ZGJPY1psS0xjZDhvS3BXZzFlRWpvVm9rZ21Qc1paak5BalFadyIsIm9yaWdpbiI6Imh0dHBzOi8vZXhhbXBsZS5jb20iLCJjcm9zc09yaWdpbiI6ZmFsc2V9","authenticatorData":"o3mm9u6vuaVeN4wRgDTidR5oL6ufLTCrE9ISVYbOGUcFAAEuqw","signature":"MEQCIDQsDXGKSzOIhtNqsN46RBYIaQ_oduTS6JDt8vJe9Z3aAiAR3H7IZoth4uIpUFYXxKNXSejnKsDBEjp9HtALP8sxCw","userHandle":"y81ZJKwYpWBmNVpEeqX6kA"},"clientExtensionResults":{}}</code></div></div>
+  <div class="validation-section"><h2>Validation Rules</h2><ul class="validation-list"><li>Generated following real format specifications</li><li>All values are fully synthetic</li><li>For development, testing, and demonstration only</li></ul></div>
   <div class="related">
   <h2>Related Functions</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/webauthn_credential-UK.html" class="rel-link"><code>webauthn_credential</code></a>

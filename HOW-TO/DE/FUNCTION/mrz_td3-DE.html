@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -259,6 +271,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
             </tr></tbody>
   </table>
 </div>
+  <div class="examples-section"><h2>Beispielausgaben</h2><div class="examples-grid"><code class="example-val">{"mrz_type": "TD3", "lines": ["P<TURYILMAZ<<AHMET<<<<<<<<<<<<<<<<<<<<<<<<<<", "VG05401456TUR0503073<2603243UXAS4QXF<<<<<<94"], "surname": "YILMAZ", "given_names": "AHMET", "nationality": "TUR", "doc_number": "VG0540145", "dob": "050307", "sex": "<", "expiry": "260324"}</code><code class="example-val">{"mrz_type": "TD3", "lines": ["P<TURGARCIA<<MICHAEL<<<<<<<<<<<<<<<<<<<<<<<<", "XE45817844TUR7011041M2607089YCMY38Y<<<<<<<96"], "surname": "GARCIA", "given_names": "MICHAEL", "nationality": "TUR", "doc_number": "XE4581784", "dob": "701104", "sex": "M", "expiry": "260708"}</code><code class="example-val">{"mrz_type": "TD3", "lines": ["P<TURROSSI<<YUKI<<<<<<<<<<<<<<<<<<<<<<<<<<<<", "GX84448179TUR6004044M3412190<<<<<<<<<<<<<<02"], "surname": "ROSSI", "given_names": "YUKI", "nationality": "TUR", "doc_number": "GX8444817", "dob": "600404", "sex": "M", "expiry": "341219"}</code><code class="example-val">{"mrz_type": "TD3", "lines": ["P<TURTAYLOR<<SUSAN<<<<<<<<<<<<<<<<<<<<<<<<<<", "LP55790862TUR0701178<2908214<<<<<<<<<<<<<<04"], "surname": "TAYLOR", "given_names": "SUSAN", "nationality": "TUR", "doc_number": "LP5579086", "dob": "070117", "sex": "<", "expiry": "290821"}</code><code class="example-val">{"mrz_type": "TD3", "lines": ["P<TURCELIK<<ROBERT<<<<<<<<<<<<<<<<<<<<<<<<<<", "XS01046259TUR0003023<3302211<<<<<<<<<<<<<<08"], "surname": "CELIK", "given_names": "ROBERT", "nationality": "TUR", "doc_number": "XS0104625", "dob": "000302", "sex": "<", "expiry": "330221"}</code></div></div>
+  <div class="validation-section"><h2>Validierungsregeln</h2><ul class="validation-list"><li>Von Mock Jutsu gemäß echten Formatspezifikationen generiert</li><li>Alle produzierten Werte sind vollständig synthetisch</li><li>Für Entwicklungs-, Test- und Demoumgebungen</li></ul></div>
   <div class="related">
   <h2>Verwandte Funktionen</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mrz_td1-DE.html" class="rel-link"><code>mrz_td1</code></a>

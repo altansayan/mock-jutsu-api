@@ -163,6 +163,18 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
+
+/* ── Example Output ── */
+.examples-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.examples-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.examples-grid{display:flex;flex-direction:column;gap:.4rem}
+.example-val{display:block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:#0369a1;background:#f0f9ff;border:1px solid #bae6fd;border-radius:6px;padding:.3rem .75rem}
+
+/* ── Validation Rules ── */
+.validation-section{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1.25rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.validation-section h2{font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.85rem}
+.validation-list{padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem}
+.validation-list li{font-size:.875rem;color:#334155;line-height:1.6}
 .lang-pill.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
 /* ── Listing page ── */
@@ -247,6 +259,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
   </div>
 
   
+  <div class="examples-section"><h2>Примеры вывода</h2><div class="examples-grid"><code class="example-val">{"start": {"x": 172.991, "y": -0.402, "z": 93.053}, "end": {"x": 108.975, "y": -0.209, "z": 73.155}, "waypoints": [{"x": 172.991, "y": -0.402, "z": 93.053}, {"x": 154.299, "y": -0.454, "z": 76.587}, {"x": 132.602, "y": -0.203, "z": 70.007}, {"x": 120.405, "y": -0.514, "z": 71.163}, {"x": 108.975, "y": -0.209, "z": 73.155}], "total_distance": 71.446, "waypoint_count": 5}</code><code class="example-val">{"start": {"x": -57.17, "y": 1.423, "z": -50.173}, "end": {"x": -35.684, "y": 1.433, "z": -34.91}, "waypoints": [{"x": -57.17, "y": 1.423, "z": -50.173}, {"x": -43.99, "y": 1.885, "z": -39.133}, {"x": -35.684, "y": 1.433, "z": -34.91}], "total_distance": 26.528, "waypoint_count": 3}</code><code class="example-val">{"start": {"x": 70.603, "y": 1.961, "z": -156.841}, "end": {"x": -7.218, "y": 1.886, "z": -188.842}, "waypoints": [{"x": 70.603, "y": 1.961, "z": -156.841}, {"x": 50.297, "y": 2.067, "z": -147.512}, {"x": 27.507, "y": 2.361, "z": -142.2}, {"x": 15.373, "y": 2.2, "z": -150.348}, {"x": 2.012, "y": 1.843, "z": -169.489}, {"x": -7.218, "y": 1.886, "z": -188.842}], "total_distance": 105.153, "waypoint_count": 6}</code><code class="example-val">{"start": {"x": -14.703, "y": 1.539, "z": -182.383}, "end": {"x": -47.877, "y": 1.174, "z": -63.405}, "waypoints": [{"x": -14.703, "y": 1.539, "z": -182.383}, {"x": -19.712, "y": 1.969, "z": -180.082}, {"x": -24.502, "y": 1.633, "z": -158.182}, {"x": -28.421, "y": 1.547, "z": -146.645}, {"x": -20.467, "y": 1.574, "z": -128.2}, {"x": -8.028, "y": 1.465, "z": -123.387}, {"x": -0.008, "y": 1.736, "z": -123.574}, {"x": 14.611, "y": 1.669, "z": -108.562}, {"x": 20.015, "y": 1.673, "z": -99.298}, {"x": 21.606, "y": 1.83, "z": -74.562}, {"x": 12.348, "y": 1.579, "z": -56.431}, {"x": -3.167, "y": 1.682, "z": -52.135}, {"x": -26.991, "y": 1.494, "z": -45.748}, {"x": -34.53, "y": 1.012, "z": -48.581}, {"x": -47.877, "y": 1.174, "z": -63.405}], "total_distance": 227.193, "waypoint_count": 15}</code><code class="example-val">{"start": {"x": 96.113, "y": 0.341, "z": 53.925}, "end": {"x": 117.324, "y": 1.995, "z": 78.426}, "waypoints": [{"x": 96.113, "y": 0.341, "z": 53.925}, {"x": 95.669, "y": 0.807, "z": 65.046}, {"x": 101.489, "y": 1.197, "z": 73.813}, {"x": 107.036, "y": 1.608, "z": 76.794}, {"x": 117.324, "y": 1.995, "z": 78.426}], "total_distance": 38.404, "waypoint_count": 5}</code></div></div>
+  <div class="validation-section"><h2>Правила валидации</h2><ul class="validation-list"><li>Генерируется Mock Jutsu по реальным форматным спецификациям</li><li>Все значения полностью синтетические</li><li>Для разработки, тестирования и демонстрации</li></ul></div>
   <div class="related">
   <h2>Похожие функции</h2>
   <div class="related-grid"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/FUNCTION/quaternion-RU.html" class="rel-link"><code>quaternion</code></a>
