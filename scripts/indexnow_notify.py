@@ -52,11 +52,11 @@ def send_batch(urls: list[str], dry_run: bool) -> None:
     )
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:
-            print(f"  ✓ {len(urls)} URLs sent — HTTP {resp.status}")
+            print(f"  OK {len(urls)} URLs sent - HTTP {resp.status}")
     except urllib.error.HTTPError as e:
-        print(f"  ✗ HTTP {e.code}: {e.reason}")
+        print(f"  ERR HTTP {e.code}: {e.reason}")
     except urllib.error.URLError as e:
-        print(f"  ✗ Network error: {e.reason}")
+        print(f"  ERR Network error: {e.reason}")
 
 
 def main() -> None:
