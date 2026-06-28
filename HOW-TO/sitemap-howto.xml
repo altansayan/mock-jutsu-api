@@ -26,12 +26,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/HOW-TO-MockJutsu-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/HOW-TO-MockJutsu-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -59,12 +53,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/tckn-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/tckn-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -100,12 +88,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ykn-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ykn-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -131,12 +113,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/nationalid-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nationalid-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -172,12 +148,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/vkn-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/vkn-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -203,12 +173,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/taxid-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/taxid-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -244,12 +208,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/employer_id-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/employer_id-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -275,12 +233,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/insurance_id-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/insurance_id-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -316,12 +268,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/sgk-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sgk-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -347,12 +293,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/mersis-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/mersis-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -388,12 +328,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ssn-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ssn-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -419,12 +353,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ein-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ein-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -460,12 +388,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nin-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nin-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -491,12 +413,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/utr-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/utr-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -532,12 +448,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/crn-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/crn-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -563,12 +473,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/paye-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/paye-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -604,12 +508,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ust_id-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ust_id-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -635,12 +533,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ustid-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ustid-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -676,12 +568,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/hrb-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/hrb-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -707,12 +593,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/rvn-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/rvn-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -748,12 +628,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/siren-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/siren-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -779,12 +653,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/siret-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/siret-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -820,12 +688,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/tva-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tva-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -851,12 +713,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/inn-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/inn-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -892,12 +748,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/inn_individual-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/inn_individual-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -923,12 +773,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/snils-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/snils-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -964,12 +808,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/kpp-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/kpp-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -995,12 +833,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ogrn-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ogrn-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1036,12 +868,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/firstname-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/firstname-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1067,12 +893,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/lastname-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/lastname-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1108,12 +928,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/fullname-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/fullname-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1139,12 +953,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/patronymic-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/patronymic-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1180,12 +988,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/passport-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/passport-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1211,12 +1013,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/license-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/license-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1252,12 +1048,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/age-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/age-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1283,12 +1073,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/gender-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/gender-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1324,12 +1108,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/birthdate-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/birthdate-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1355,12 +1133,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/cardnum-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cardnum-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1396,12 +1168,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cardtype-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardtype-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1427,12 +1193,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/cardstatus-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cardstatus-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1468,12 +1228,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cardcategory-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cardcategory-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1499,12 +1253,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/cardowner-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cardowner-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1540,12 +1288,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cvv3-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cvv3-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1571,12 +1313,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/cvv4-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cvv4-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1612,12 +1348,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/pin-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/pin-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1643,12 +1373,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/expiry-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/expiry-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1684,12 +1408,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/expirymonth-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/expirymonth-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1715,12 +1433,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/expiryyear-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/expiryyear-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1756,12 +1468,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/issuer-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/issuer-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1787,12 +1493,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/balance-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/balance-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1828,12 +1528,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/iban-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/iban-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1859,12 +1553,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/sepa_qr-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/sepa_qr-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1900,12 +1588,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/emv_qr_p2p-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/emv_qr_p2p-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -1931,12 +1613,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/emv_qr_atm-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/emv_qr_atm-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1972,12 +1648,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/emv_qr_pos-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/emv_qr_pos-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -2003,12 +1673,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/3ds_cavv-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/3ds_cavv-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2044,12 +1708,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/3ds_eci-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/3ds_eci-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -2075,12 +1733,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/cardnetwork-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cardnetwork-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2116,12 +1768,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/track1_data-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/track1_data-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -2147,12 +1793,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/track2_data-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/track2_data-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2188,12 +1828,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/chip_data-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/chip_data-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -2219,12 +1853,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/pin_block-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/pin_block-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2260,12 +1888,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/pin_block_fmt3-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/pin_block_fmt3-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -2291,12 +1913,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/cef_log-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cef_log-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2332,12 +1948,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/x509_cert-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/x509_cert-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -2363,12 +1973,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/pcap_hex-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/pcap_hex-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2404,12 +2008,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/password-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/password-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -2435,12 +2033,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/password_hash-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/password_hash-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2476,12 +2068,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cve_id-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cve_id-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -2507,12 +2093,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/creditor_ref-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/creditor_ref-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2548,12 +2128,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/account_type-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/account_type-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -2579,12 +2153,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/transaction_type-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/transaction_type-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2620,12 +2188,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/transaction_description-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/transaction_description-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -2651,12 +2213,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ifsc_code-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ifsc_code-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2692,12 +2248,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/bsb_code-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bsb_code-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -2723,12 +2273,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/check_number-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/check_number-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2764,12 +2308,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/micr_line-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/micr_line-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -2795,12 +2333,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/payment_reference-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/payment_reference-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2836,12 +2368,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/wire_routing_number-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/wire_routing_number-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -2867,12 +2393,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/account_number-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/account_number-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2908,12 +2428,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/account_number_masked-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/account_number_masked-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -2939,12 +2453,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/micr_line_masked-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/micr_line_masked-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2980,12 +2488,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/transaction_description_masked-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/transaction_description_masked-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -3011,12 +2513,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/check_number_masked-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/check_number_masked-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -3052,12 +2548,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/payment_reference_masked-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/payment_reference_masked-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -3083,12 +2573,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/credit_score_model-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/credit_score_model-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -3124,12 +2608,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/credit_score_tier-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/credit_score_tier-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -3155,12 +2633,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/credit_limit-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/credit_limit-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -3196,12 +2668,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/credit_utilization-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/credit_utilization-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -3227,12 +2693,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/credit_card_issuer_name-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/credit_card_issuer_name-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -3268,12 +2728,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/apr-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/apr-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -3299,12 +2753,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/loan_type-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/loan_type-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -3340,12 +2788,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/mortgage_rate-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mortgage_rate-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -3371,12 +2813,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/mortgage_term-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/mortgage_term-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -3412,12 +2848,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/premium_amount-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/premium_amount-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -3443,12 +2873,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/deductible-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/deductible-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -3484,12 +2908,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/coverage_limit-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/coverage_limit-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -3515,12 +2933,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/claim_status-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/claim_status-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -3556,12 +2968,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/credit_limit_masked-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/credit_limit_masked-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -3587,12 +2993,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/mortgage_rate_masked-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/mortgage_rate_masked-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -3628,12 +3028,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/premium_amount_masked-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/premium_amount_masked-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -3659,12 +3053,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/vat_number-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/vat_number-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -3700,12 +3088,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/iata_ticket-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/iata_ticket-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -3731,12 +3113,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/imo_number-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/imo_number-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -3772,12 +3148,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/pnr_code-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/pnr_code-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -3803,12 +3173,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/webauthn_credential-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/webauthn_credential-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -3844,12 +3208,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/fido2_assertion-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/fido2_assertion-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -3875,12 +3233,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/eth_wallet-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/eth_wallet-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -3916,12 +3268,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/btc_wallet-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/btc_wallet-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -3947,12 +3293,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/sol_wallet-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/sol_wallet-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -3988,12 +3328,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ai_embedding-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ai_embedding-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -4019,12 +3353,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ai_vector-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ai_vector-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -4060,12 +3388,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ai_sparse_vector-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ai_sparse_vector-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -4091,12 +3413,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/oidc_token_set-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/oidc_token_set-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -4132,12 +3448,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/jwks-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/jwks-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -4163,12 +3473,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/oidc_token-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/oidc_token-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -4204,12 +3508,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/mt940-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mt940-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -4235,12 +3533,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/camt053-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/camt053-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -4276,12 +3568,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/edi_850-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/edi_850-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -4307,12 +3593,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/edifact_orders-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/edifact_orders-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -4348,12 +3628,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/event_stream-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/event_stream-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -4379,12 +3653,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/cdc_event-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cdc_event-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -4420,12 +3688,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/fdr_record-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/fdr_record-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -4451,12 +3713,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/drone_telemetry-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/drone_telemetry-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -4492,12 +3748,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ohlcv_candles-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ohlcv_candles-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -4523,12 +3773,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/market_tick-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/market_tick-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -4564,12 +3808,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/mrz_td3-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mrz_td3-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -4595,12 +3833,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/mrz_td1-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/mrz_td1-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -4636,12 +3868,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/tle_satellite-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tle_satellite-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -4667,12 +3893,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/can_frame-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/can_frame-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -4708,12 +3928,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/obd2_response-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/obd2_response-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -4739,12 +3953,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ubl_invoice-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ubl_invoice-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -4780,12 +3988,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/xmldsig-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/xmldsig-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -4811,12 +4013,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/quaternion-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/quaternion-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -4852,12 +4048,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/navmesh_path-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/navmesh_path-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -4883,12 +4073,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/prometheus_metrics-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/prometheus_metrics-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -4924,12 +4108,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/openmetrics_snapshot-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/openmetrics_snapshot-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -4955,12 +4133,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/nmea_gpgga-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nmea_gpgga-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -4996,12 +4168,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nmea_gprmc-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nmea_gprmc-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -5027,12 +4193,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/jwt_attack-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/jwt_attack-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -5068,12 +4228,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/asn1_fuzz-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/asn1_fuzz-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -5099,12 +4253,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/reverse_regex-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/reverse_regex-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -5140,12 +4288,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/phone-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/phone-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -5171,12 +4313,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/phone_country-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/phone_country-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -5212,12 +4348,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/phone_area-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/phone_area-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -5243,12 +4373,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/phone_local-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/phone_local-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -5284,12 +4408,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/address_city-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/address_city-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -5315,12 +4433,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/address_street-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/address_street-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -5356,12 +4468,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/address_full-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/address_full-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -5387,12 +4493,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/postalcode-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/postalcode-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -5428,12 +4528,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/plate-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/plate-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -5459,12 +4553,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/email-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/email-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -5500,12 +4588,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/swift-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/swift-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -5531,12 +4613,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/bic-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/bic-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -5572,12 +4648,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/sort_code-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sort_code-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -5603,12 +4673,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/routing_number-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/routing_number-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -5644,12 +4708,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/bik_code-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bik_code-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -5675,12 +4733,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/bank_name-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/bank_name-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -5716,12 +4768,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/transaction-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/transaction-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -5747,12 +4793,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/company_name-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/company_name-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -5788,12 +4828,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/job_title-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/job_title-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -5819,12 +4853,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/jobtitle-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/jobtitle-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -5860,12 +4888,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/occupation-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/occupation-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -5891,12 +4913,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/bloodtype-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/bloodtype-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -5932,12 +4948,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/blood_type-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/blood_type-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -5963,12 +4973,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/nhs_number-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nhs_number-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -6004,12 +5008,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nhsnumber-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nhsnumber-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -6035,12 +5033,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/icd10-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/icd10-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -6076,12 +5068,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/bmi-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bmi-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -6107,12 +5093,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/height-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/height-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -6148,12 +5128,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/weight-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/weight-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -6179,12 +5153,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/currency-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/currency-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -6220,12 +5188,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/tax_rate-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tax_rate-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -6251,12 +5213,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/taxrate-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/taxrate-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -6292,12 +5248,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/invoice_number-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/invoice_number-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -6323,12 +5273,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/invoicenumber-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/invoicenumber-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -6364,12 +5308,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/vin-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/vin-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -6395,12 +5333,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/vehicle-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/vehicle-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -6436,12 +5368,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/uuid-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/uuid-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -6467,12 +5393,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/requestid-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/requestid-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -6508,12 +5428,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/correlationid-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/correlationid-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -6539,12 +5453,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/sessionid-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/sessionid-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -6580,12 +5488,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/idempotencykey-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/idempotencykey-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -6611,12 +5513,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/deviceid-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/deviceid-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -6652,12 +5548,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/timestamp-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/timestamp-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -6683,12 +5573,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/timestamp_iso-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/timestamp_iso-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -6724,12 +5608,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ipv4-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ipv4-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -6755,12 +5633,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ipv6-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ipv6-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -6796,12 +5668,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/browser_name-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/browser_name-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -6827,12 +5693,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/browser_version-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/browser_version-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -6868,12 +5728,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/browser_engine-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/browser_engine-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -6899,12 +5753,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/useragent-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/useragent-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -6940,12 +5788,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/jwt-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/jwt-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -6971,12 +5813,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/bearertoken-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/bearertoken-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -7012,12 +5848,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/hash-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/hash-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -7043,12 +5873,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/mac_address-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/mac_address-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -7084,12 +5908,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/url-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/url-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -7115,12 +5933,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/domain-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/domain-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -7156,12 +5968,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/color-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/color-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -7187,12 +5993,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/clientversion-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/clientversion-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -7228,12 +6028,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/signature-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/signature-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -7259,12 +6053,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/apppassword-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/apppassword-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -7300,12 +6088,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/rfid_uid-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/rfid_uid-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -7331,12 +6113,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/epc-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/epc-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -7372,12 +6148,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/rfid_tag-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/rfid_tag-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -7403,12 +6173,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/nfc_uid-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nfc_uid-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -7444,12 +6208,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nfc_atqa-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nfc_atqa-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -7475,12 +6233,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/nfc_sak-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nfc_sak-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -7516,12 +6268,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ndef_uri-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ndef_uri-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -7547,12 +6293,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ndef_text-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ndef_text-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -7588,12 +6328,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/apdu-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/apdu-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -7619,12 +6353,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/nfc_tag-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nfc_tag-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -7660,12 +6388,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ir_nec-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ir_nec-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -7691,12 +6413,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ir_rc5-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ir_rc5-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -7732,12 +6448,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ir_pronto-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ir_pronto-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -7763,12 +6473,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ir_raw-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ir_raw-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -7804,12 +6508,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/mqtt_payload-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mqtt_payload-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -7835,12 +6533,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/lora_packet-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/lora_packet-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -7876,12 +6568,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ean13-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ean13-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -7907,12 +6593,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ean8-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ean8-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -7948,12 +6628,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/upca-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/upca-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -7979,12 +6653,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/isbn13-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/isbn13-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -8020,12 +6688,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/isbn10-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/isbn10-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -8051,12 +6713,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/gs1_128-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/gs1_128-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -8092,12 +6748,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/imei-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/imei-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -8123,12 +6773,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/imei2-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/imei2-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -8164,12 +6808,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/iccid-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/iccid-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -8195,12 +6833,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/imsi-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/imsi-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -8236,12 +6868,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/msisdn-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/msisdn-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -8267,12 +6893,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/isin-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/isin-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -8308,12 +6928,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cusip-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cusip-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -8339,12 +6953,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/sedol-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/sedol-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -8380,12 +6988,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/lei-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/lei-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -8411,12 +7013,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/fix_message-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/fix_message-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -8452,12 +7048,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/psd2_consent-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/psd2_consent-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -8483,12 +7073,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/stock_ticker-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/stock_ticker-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -8524,12 +7108,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/figi-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/figi-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -8555,12 +7133,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/forex_pair-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/forex_pair-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -8596,12 +7168,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/forex_rate-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/forex_rate-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -8627,12 +7193,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ric-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ric-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -8668,12 +7228,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/mic-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mic-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -8699,12 +7253,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/stock_exchange-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/stock_exchange-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -8740,12 +7288,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/option_contract-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/option_contract-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -8771,12 +7313,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/bond_yield-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/bond_yield-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -8812,12 +7348,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/coupon_rate-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/coupon_rate-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -8843,12 +7373,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/settlement_date-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/settlement_date-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -8884,12 +7408,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/portfolio_id-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/portfolio_id-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -8915,12 +7433,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/portfolio_id_masked-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/portfolio_id_masked-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -8956,12 +7468,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nsin-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nsin-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -8987,12 +7493,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/policy_number-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/policy_number-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -9028,12 +7528,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/claim_number-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/claim_number-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -9059,12 +7553,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/pep_status-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/pep_status-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -9100,12 +7588,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/aml_risk_rating-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/aml_risk_rating-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -9131,12 +7613,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/cdd_level-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cdd_level-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -9172,12 +7648,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/sar_number-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sar_number-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -9203,12 +7673,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ubo_ownership_percentage-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ubo_ownership_percentage-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -9244,12 +7708,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/kyc_document_type-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/kyc_document_type-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -9275,12 +7733,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/consent_id-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/consent_id-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -9316,12 +7768,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/tpp_id-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tpp_id-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -9347,12 +7793,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/onboarding_method-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/onboarding_method-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -9388,12 +7828,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/sanctions_hit-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sanctions_hit-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -9419,12 +7853,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/sar_number_masked-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/sar_number_masked-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -9460,12 +7888,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/policy_number_masked-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/policy_number_masked-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -9491,12 +7913,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/claim_number_masked-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/claim_number_masked-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -9532,12 +7948,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ubo_ownership_percentage_masked-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ubo_ownership_percentage_masked-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -9563,12 +7973,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/consent_id_masked-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/consent_id_masked-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -9604,12 +8008,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/btc_address-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/btc_address-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -9635,12 +8033,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/eth_address-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/eth_address-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -9676,12 +8068,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/crypto_address-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/crypto_address-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -9707,12 +8093,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/tx_hash-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/tx_hash-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -9748,12 +8128,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/block_hash-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/block_hash-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -9779,12 +8153,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/mnemonic-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/mnemonic-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -9820,12 +8188,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nft_token_id-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nft_token_id-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -9851,12 +8213,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/gas_price-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/gas_price-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -9892,12 +8248,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/gas_limit-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/gas_limit-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -9923,12 +8273,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/defi_protocol_name-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/defi_protocol_name-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -9964,12 +8308,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/blockchain_network-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/blockchain_network-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -9995,12 +8333,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/wallet_label-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/wallet_label-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -10036,12 +8368,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/defi_position_type-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/defi_position_type-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -10067,12 +8393,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/cryptocurrency_name-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cryptocurrency_name-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -10108,12 +8428,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/liquidity_pool_id-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/liquidity_pool_id-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -10139,12 +8453,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/liquidity_pool_id_masked-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/liquidity_pool_id_masked-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -10180,12 +8488,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/product_name-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/product_name-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -10211,12 +8513,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/sku-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/sku-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -10252,12 +8548,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/order_id-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/order_id-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -10283,12 +8573,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/tracking_number-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/tracking_number-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -10324,12 +8608,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/dhl_tracking-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/dhl_tracking-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -10355,12 +8633,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/category-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/category-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -10396,12 +8668,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/rating-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/rating-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -10427,12 +8693,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/latitude-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/latitude-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -10468,12 +8728,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/longitude-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/longitude-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -10499,12 +8753,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/timezone-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/timezone-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -10540,12 +8788,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/country_code-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/country_code-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -10571,12 +8813,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/coordinates-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/coordinates-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -10612,12 +8848,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/username-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/username-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -10643,12 +8873,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/handle-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/handle-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -10684,12 +8908,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/hashtag-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/hashtag-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -10715,12 +8933,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/bio-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/bio-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -10756,12 +8968,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/follower_count-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/follower_count-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -10787,12 +8993,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/api_key-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/api_key-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -10828,12 +9028,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/totp_code-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/totp_code-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -10859,12 +9053,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/webhook_signature-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/webhook_signature-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -10900,12 +9088,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/transaction_id-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/transaction_id-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -10931,12 +9113,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/public_ip-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/public_ip-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -10972,12 +9148,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/private_ip-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/private_ip-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -11003,12 +9173,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/past_date-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/past_date-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11044,12 +9208,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/future_date-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/future_date-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -11075,12 +9233,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/date_between-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/date_between-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11116,12 +9268,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/date_this_year-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/date_this_year-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -11147,12 +9293,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/date_this_month-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/date_this_month-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11188,12 +9328,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/time_only-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/time_only-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -11219,12 +9353,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/past_datetime-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/past_datetime-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11260,12 +9388,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/future_datetime-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/future_datetime-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -11291,12 +9413,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/slug-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/slug-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11332,12 +9448,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/http_method-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/http_method-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -11363,12 +9473,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/http_status_code-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/http_status_code-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11404,12 +9508,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/port_number-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/port_number-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -11435,12 +9533,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/hostname-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/hostname-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11476,12 +9568,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/tld-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tld-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -11507,12 +9593,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/uri_path-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/uri_path-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11548,12 +9628,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/tckn_masked-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/tckn_masked-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -11579,12 +9653,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ssn_masked-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ssn_masked-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11620,12 +9688,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nationality-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nationality-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -11651,12 +9713,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/sepa_ref-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/sepa_ref-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11692,12 +9748,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/npi-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/npi-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -11723,12 +9773,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/credit_score-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/credit_score-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11764,12 +9808,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/hl7_message-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/hl7_message-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -11795,12 +9833,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/fhir_patient-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/fhir_patient-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11836,12 +9868,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/dicom_uid-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/dicom_uid-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -11867,12 +9893,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/swift_mt103-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/swift_mt103-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11908,12 +9928,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/pain001-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/pain001-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -11939,12 +9953,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/nacha_ach-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nacha_ach-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -11980,12 +9988,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/sepa_mandate-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sepa_mandate-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -12011,12 +10013,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/fedwire-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/fedwire-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -12052,12 +10048,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/iso8583_auth_request-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/iso8583_auth_request-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -12083,12 +10073,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/iso8583_auth_response-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/iso8583_auth_response-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -12124,12 +10108,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/iso8583_reversal-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/iso8583_reversal-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -12155,12 +10133,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/emv_arqc-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/emv_arqc-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -12196,12 +10168,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/emv_atc-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/emv_atc-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -12227,12 +10193,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/emv_iad-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/emv_iad-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -12268,12 +10228,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/atm_session-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/atm_session-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -12299,12 +10253,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/pos_receipt-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/pos_receipt-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -12340,12 +10288,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/br_cpf-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/br_cpf-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -12371,12 +10313,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/br_cnpj-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/br_cnpj-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -12412,12 +10348,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/in_pan-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/in_pan-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -12443,12 +10373,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/in_aadhaar-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/in_aadhaar-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -12484,12 +10408,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/in_gstin-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/in_gstin-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -12515,12 +10433,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/in_epic-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/in_epic-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -12556,12 +10468,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cn_ric-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cn_ric-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -12587,12 +10493,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/mx_curp-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/mx_curp-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -12628,12 +10528,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/mx_rfc-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/mx_rfc-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -12659,12 +10553,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/it_codicefiscale-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/it_codicefiscale-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -12700,12 +10588,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/es_dni-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/es_dni-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -12731,12 +10613,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/es_nie-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/es_nie-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -12772,12 +10648,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/es_ccc-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/es_ccc-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -12803,12 +10673,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/de_idnr-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/de_idnr-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -12844,12 +10708,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/de_stnr-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/de_stnr-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -12875,12 +10733,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/pk_cnic-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/pk_cnic-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -12916,12 +10768,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/jp_cn-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/jp_cn-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -12947,12 +10793,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/jp_in-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/jp_in-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -12988,12 +10828,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/kr_rrn-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/kr_rrn-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -13019,12 +10853,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/kr_brn-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/kr_brn-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13060,12 +10888,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nl_bsn-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/nl_bsn-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -13091,12 +10913,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/pl_pesel-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/pl_pesel-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13132,12 +10948,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/se_personnummer-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/se_personnummer-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -13163,12 +10973,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/dk_cpr-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/dk_cpr-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13204,12 +11008,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/fi_hetu-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/fi_hetu-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -13235,12 +11033,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/no_fodselsnummer-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/no_fodselsnummer-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13276,12 +11068,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/au_abn-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/au_abn-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -13307,12 +11093,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/au_tfn-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/au_tfn-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13348,12 +11128,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/au_acn-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/au_acn-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -13379,12 +11153,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/my_nric-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/my_nric-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13420,12 +11188,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/th_pin-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/th_pin-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -13451,12 +11213,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/th_tin-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/th_tin-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13492,12 +11248,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/sg_uen-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/sg_uen-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -13523,12 +11273,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/za_idnr-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/za_idnr-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13564,12 +11308,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ca_bn-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ca_bn-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -13595,12 +11333,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/nz_ird-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/nz_ird-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13636,12 +11368,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ar_cuit-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ar_cuit-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -13667,12 +11393,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ar_dni-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ar_dni-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13708,12 +11428,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/cl_rut-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/cl_rut-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -13739,12 +11453,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/co_nit-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/co_nit-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13780,12 +11488,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/il_idnr-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/il_idnr-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -13811,12 +11513,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/ro_cnp-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ro_cnp-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13852,12 +11548,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ro_cui-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ro_cui-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -13883,12 +11573,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/hr_oib-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/hr_oib-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13924,12 +11608,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/bg_egn-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/bg_egn-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -13955,12 +11633,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/lt_asmens-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/lt_asmens-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13996,12 +11668,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/ee_ik-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/ee_ik-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -14027,12 +11693,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/pt_cc-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/pt_cc-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -14068,12 +11728,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/eg_tn-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/eg_tn-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -14099,12 +11753,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/bulk-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/bulk-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -14140,12 +11788,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/template-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/template-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -14171,12 +11813,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/export-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/export-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -14212,12 +11848,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/profile-UK.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/FUNCTION/profile-DE.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
@@ -14243,12 +11873,6 @@
   </url>
   <url>
     <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/FUNCTION/company-EN.html</loc>
-    <lastmod>2026-06-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/FUNCTION/company-UK.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

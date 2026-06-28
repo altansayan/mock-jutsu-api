@@ -2296,6 +2296,8 @@ def build_sitemap(funcs: list) -> str:
         "  <!-- Language listing pages -->",
     ]
     for lang in LANGS:
+        if lang == "UK":
+            continue  # noindex pages excluded from sitemap
         lines.append(_sitemap_entry(listing_url(lang), "0.9", "weekly"))
     lines.append("")
     lines.append("  <!-- Function detail pages -->")
@@ -2304,6 +2306,8 @@ def build_sitemap(funcs: list) -> str:
         cat = r[1] if len(r) > 1 else ""
         pri = "0.6" if cat == "Commands" else "0.8"
         for lang in LANGS:
+            if lang == "UK":
+                continue  # noindex pages excluded from sitemap
             lines.append(_sitemap_entry(detail_url(fn, lang), pri, "monthly"))
     lines.append("</urlset>")
     return "\n".join(lines)
