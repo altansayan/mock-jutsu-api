@@ -1,75 +1,131 @@
 # Mock Jutsu
 
-> Algorithmic mock data engine that generates format-valid synthetic test data with real checksums. 390+ data types, 6 locales, zero external dependencies. Available as a Python package, CLI tool, REST API, and Apache JMeter plugin.
+> Open-source synthetic test data generator for developers. 395+ data types across banking, identity, payments, fintech, health, crypto, IoT, and more. Zero external dependencies. Available as CLI tool, Python library, and self-hosted REST API.
 
-Mock Jutsu is an open-source project that solves a common developer problem: generating realistic, algorithmically valid test data. Unlike Faker and similar libraries, Mock Jutsu produces data that passes real validation checks — IBAN checksums (ISO 13616), Luhn algorithm for credit cards, Turkish TCKN mod-10 formula, VIN (ISO 3779), NHS number algorithm, SWIFT/BIC (ISO 9362), MRZ (ICAO 9303), and 380+ more types.
+## What It Does
+
+Mock Jutsu generates realistic, format-valid synthetic data for software testing, QA automation, demos, and development. All generated values are fully synthetic and safe to use in non-production environments.
+
+Key features:
+- 395+ data types across 40+ categories
+- Locale-aware generation (TR, US, UK, DE, FR, RU)
+- Regulation-compliant masked output (PCI DSS, GDPR, KVKK)
+- Bulk generation, template mode, export to JSON/CSV/SQL
+- Checksum-valid output: IBAN (MOD-97), Luhn (cards), TCKN, BIC, CUSIP, ISIN, and more
 
 ## Installation
 
-- Python package: `pip install mockjutsu`
-- Docker: `docker pull altansayan/mock-jutsu-api`
-- JMeter Plugin: download JAR from GitHub releases and place in `lib/ext/`
+pip install mock-jutsu
+docker pull altansayan/mock-jutsu-api
 
-## Quick Start
+## CLI Usage
 
-```bash
-# CLI
-mockjutsu generate iban --locale TR
-mockjutsu generate cardnum --locale US
-mockjutsu bulk 100 tckn
+jutsu generate iban --locale TR
+jutsu generate cardnum --locale US
+jutsu bulk tckn --count 10
+jutsu template --types '["iban","fullname","phone"]' --count 5
+jutsu generate iban --locale TR --mask true
 
-# Python API
-from mockjutsu import generate
-print(generate("iban", locale="TR"))
-print(generate("cardnum", locale="US"))
+## Python Usage
 
-# REST API
-mockjutsu start-api
-# GET http://localhost:8000/generate/iban?locale=TR
-```
+from mockjutsu.cli import jutsu
+jutsu.generate("iban", locale="TR")
+jutsu.generate("tckn")
+jutsu.generate("cardnum", locale="US", mask=True)
 
-## Key Features
+## REST API Usage
 
-- 390+ data types across 49 categories
-- 6 locales: TR (Turkey), UK (United Kingdom), US (United States), DE (Germany), FR (France), RU (Russia)
-- Real checksum algorithms: Luhn, Verhoeff, ISO 13616, ISO 3779, Damm, MOD97
-- Regulation-aware masking: PCI DSS, GDPR, KVKK, HIPAA
-- Zero external dependencies (pure Python stdlib)
-- REST API with 390+ endpoints
-- Apache JMeter plugin with custom functions
-- Bulk generation with template support
+GET /generate/iban?locale=TR
+GET /bulk/cardnum?count=10&locale=US
+POST /template  {"types":["iban","fullname","phone"],"count":5}
+GET /generate/iban?locale=TR&mask=true
 
 ## Data Categories
 
-- **Financial:** IBAN, credit card numbers (Visa/Mastercard/Amex), SWIFT/BIC, CVV, CVV2, bank account numbers, routing numbers, SEPA references
-- **Identity (National IDs):** TCKN (Turkey), SSN (USA), NIN (UK), CPF (Brazil), PESEL (Poland), BSN (Netherlands), Aadhaar (India), DNI (Spain), SIN (Canada), TFN (Australia)
-- **Healthcare:** NHS numbers, MRZ (machine-readable zone, passports), HL7 messages, FHIR resources, ICD-10 codes
-- **Automotive:** VIN (ISO 3779), license plates (TR/DE/UK/US/FR/RU)
-- **Crypto & Blockchain:** Bitcoin addresses, Ethereum addresses, IBAN-format crypto wallets, BIP39 mnemonics
-- **Network & IT:** IPv4, IPv6, MAC addresses, domain names, URLs, JWT tokens, UUIDs
-- **IoT & Sensors:** GPS coordinates, NMEA sentences, telemetry data, TLE (satellite)
-- **Commerce & EDI:** UBL invoice XML, EDIFACT, barcode (EAN-13, UPC-A, QR), GS1 identifiers
-- **Security & Compliance:** X.509 certificates, FIDO2 credentials, OAuth tokens, PCI DSS masked card numbers
+### Banking (24 types)
+iban, bic, swift_code, creditor_ref, account_number, routing_number, sort_code, account_type, transaction_type, ifsc_code, bsb_code, bank_name, aba_routing, clabe, cnaps, fps_code, nsc_code, rtn, bank_id, transit_number, bban, rib
+
+### Financial / Cards (22 types)
+cardnum, cardtype, cardstatus, cardcategory, cardowner, cvv3, cvv4, pin, expiry, expirymonth, expiryyear, issuer, iban_masked, pan_masked, account_masked, card_masked, cvv_masked, track1_masked, track2_masked, chip_masked, pin_masked, full_card_masked
+
+### Identity Turkey (8 types)
+tckn, ykn, nationalid, vkn, taxid, employer_id, duns, mersis
+
+### Identity International (49 types)
+ssn (USA), nin (UK), sin (Canada), inn (Russia), snils (Russia), nhs_number (UK), br_cpf, br_cnpj, in_pan, in_aadhaar, in_gstin, za_id, au_tfn, au_abn, mx_rfc, mx_curp, pl_pesel, pl_nip, no_fnr, se_pnr, fi_hetu, dk_cpr, nl_bsn, be_nn, at_svnr, ch_ahv, es_nif, it_cf, pt_nif, gr_amka, hu_taj, cz_rc, sk_rc, ro_cnp, bg_egn, hr_oib, rs_jmbg, ua_ipn, kz_iin, ge_pn, il_id, sa_id, eg_id, pk_cnic, ph_sss
+
+### Capital Markets and Trading (20 types)
+isin, cusip, sedol, lei, figi, fix_message, psd2_consent, order_id_fix, execution_report, market_order, limit_order, stop_order, trade_confirmation, settlement_instruction, corporate_action, dividend_notice, proxy_vote, rights_issue, bond_prospectus, fund_nav
+
+### Compliance and AML (17 types)
+policy_number, claim_number, pep_status, aml_risk_rating, cdd_level, sar_number, kyc_status, fatf_risk, sanctions_list, ubo_structure, risk_score, compliance_flag, audit_trail, regulatory_report, fincen_bsa, ofac_check
+
+### Payments (5 types)
+swift_mt103, pain001, nacha_ach, sepa_mandate, fedwire
+
+### Crypto and Blockchain (16 types)
+btc_address, eth_address, crypto_address, tx_hash, block_hash, mnemonic, private_key, public_key, contract_address, nft_token_id, defi_pool_id, gas_price, gas_limit, block_number, wallet_balance
+
+### Health (12 types)
+bloodtype, icd10, bmi, height, weight, heart_rate, blood_pressure, glucose_level, cholesterol, medication_name, dosage, lab_result
+
+### Security and PenTest (14 types)
+cef_log, x509_cert, pcap_hex, password, password_hash, cve_id, api_key, jwt_token, oauth_token, session_id, csrf_token, hmac_signature, jwt_attack, asn1_fuzz
+
+### Barcode and Product (6 types)
+ean13, ean8, upca, isbn13, isbn10, gs1_128
+
+### Telecom (5 types)
+imei, iccid, imsi, msisdn, phone
+
+### Contact and Location (15 types)
+phone, address_city, address_street, address_full, postal_code, latitude, longitude, timezone, country_code, coordinates, email, username, firstname, lastname, fullname
+
+### Datetime (8 types)
+past_date, future_date, date_between, date_this_year, date_this_month, time_only, datetime_iso, unix_timestamp
+
+### Meta and UUID (25 types)
+uuid, requestid, correlationid, sessionid, idempotencykey, traceid, spanid, reverse_regex, hash_md5, hash_sha256, hash_sha512, base64, hex_string, semver, color_hex, color_rgb, locale_code, currency_code, country_iso2, country_iso3, language_code, mime_type, file_extension, user_agent, ip_address
+
+### AI and ML (3 types)
+ai_embedding, ai_vector, ai_sparse_vector
+
+### IoT and Hardware (7 types)
+mqtt_payload, lora_packet, nfc_uid, ndef_uri, rfid_uid, epc, can_frame
+
+### Bank Statements (2 types)
+mt940, camt053
+
+### E-Invoice and EDI (4 types)
+ubl_invoice, xmldsig, edi_850, edifact_orders
+
+## Validation Standards
+
+All generated values comply with official specifications:
+- IBAN: ISO 13616, MOD-97 checksum
+- BIC/SWIFT: ISO 9362
+- Credit cards: Luhn algorithm
+- ISIN: ISO 6166 with CUSIP checksum
+- LEI: ISO 17442
+- TCKN: Turkish Republic citizen ID algorithm
+- MRZ: ICAO Doc 9303
+- EAN/UPC: GS1 checksum
+- IMEI: Luhn algorithm
+- SSN: SSA area-group-serial format
+- NIN: UK National Insurance format
 
 ## Documentation
 
-- HOW-TO Guide (English): https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/HOW-TO-MockJutsu-EN.html
-- HOW-TO Guide (Turkish): https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/HOW-TO-MockJutsu-TR.html
-- HOW-TO Guide (German): https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/HOW-TO-MockJutsu-DE.html
-- HOW-TO Guide (French): https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/HOW-TO-MockJutsu-FR.html
-- HOW-TO Guide (Russian): https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html
-- HOW-TO Guide (UK English): https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/HOW-TO-MockJutsu-UK.html
-
-## Links
-
-- Homepage: https://altansayan.github.io/mock-jutsu-api/
-- GitHub: https://github.com/altansayan/mock-jutsu-api
-- PyPI: https://pypi.org/project/mockjutsu/
+- Full HOW-TO Reference (EN): https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/HOW-TO-MockJutsu-EN.html
+- Full HOW-TO Reference (TR): https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/HOW-TO-MockJutsu-TR.html
+- Full HOW-TO Reference (DE): https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/HOW-TO-MockJutsu-DE.html
+- Full HOW-TO Reference (FR): https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/HOW-TO-MockJutsu-FR.html
+- Full HOW-TO Reference (RU): https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html
+- GitHub Repository: https://github.com/altansayan/mock-jutsu-api
+- PyPI Package: https://pypi.org/project/mock-jutsu/
 - Docker Hub: https://hub.docker.com/r/altansayan/mock-jutsu-api
-- Issues: https://github.com/altansayan/mock-jutsu-api/issues
-- Changelog: https://github.com/altansayan/mock-jutsu-api/blob/main/CHANGELOG.md
 
 ## Author
 
-Altan Sezer Ayan — Founder & CEO, ASA Intelligence
-12 years QA Manager experience in fintech and banking.
+Altan Sezer Ayan (A.S.A) - Founder, ASA Intelligence
+Istanbul, Turkey | https://altansayan.github.io
