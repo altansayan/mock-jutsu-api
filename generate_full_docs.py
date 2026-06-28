@@ -1208,7 +1208,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 
 /* ── Language switcher ── */
 .lang-switch{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:1rem 1.5rem;margin-bottom:2rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.lang-switch h3{font-size:.85rem;font-weight:600;color:#64748b;margin-bottom:.65rem}
+.lang-switch h2{font-size:.85rem;font-weight:600;color:#64748b;margin-bottom:.65rem}
 .lang-pills{display:flex;gap:.5rem;flex-wrap:wrap}
 .lang-pill{display:inline-block;padding:.3rem .85rem;border-radius:99px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .15s;border:1px solid #e2e8f0;background:#f8fafc;color:#475569}
 .lang-pill:hover{border-color:#3b82f6;color:#1d4ed8;background:#eff6ff}
@@ -1238,8 +1238,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 
 /* ── Footer ── */
 .footer{text-align:center;padding:2rem;color:#475569;font-size:.82rem;margin-top:1rem}
-.footer a{color:#4338ca;text-decoration:none}
-.footer a:hover{text-decoration:underline}
+.footer a{color:#4338ca;text-decoration:underline}
+.footer a:hover{opacity:.8}
 """
 
 
@@ -1701,7 +1701,7 @@ def build_detail_page(r: tuple, lang: str) -> str:
   {related_html}
 
   <div class="lang-switch">
-    <h3>{ui['lang_switch']}</h3>
+    <h2>{ui['lang_switch']}</h2>
     <div class="lang-pills">{lang_pills}</div>
   </div>
 </main>
@@ -1901,7 +1901,7 @@ def build_listing_page(lang: str) -> str:
         '<div class="tab-section active" id="tab-ref">\n'
         '<div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">\n'
         '<div class="lang-switch" style="margin-bottom:1.5rem">'
-        f'<h3>{ui["lang_switch"]}</h3>'
+        f'<h2 style="font-size:.85rem;font-weight:600;color:#64748b;margin-bottom:.65rem">{ui["lang_switch"]}</h2>'
         f'<div class="lang-pills">{lang_pills}</div></div>\n'
         '<div class="list-controls">\n'
         '  <div class="search-wrap">\n'
