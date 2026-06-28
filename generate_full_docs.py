@@ -890,9 +890,9 @@ LISTING_EXTRA_CSS = """
 .linkedin-link:hover{background:rgba(10,102,194,.25);transform:translateY(-2px);border-color:rgba(10,102,194,.4)}
 /* ── Tabs ── */
 .tabs{display:flex;justify-content:center;background:#fff;border-bottom:1px solid #e2e8f0;padding:0 1rem;gap:1.25rem;position:sticky;top:0;z-index:100;box-shadow:0 4px 6px -1px rgba(0,0,0,.05);flex-wrap:wrap}
-.tab{padding:1rem .9rem;cursor:pointer;font-weight:600;color:#64748b;border-bottom:3px solid transparent;transition:all .2s;font-size:.92rem;white-space:nowrap}
-.tab:hover{color:#3b82f6}
-.tab.active{color:#3b82f6;border-bottom-color:#3b82f6}
+.tab{padding:1rem .9rem;cursor:pointer;font-weight:600;color:#475569;border-bottom:3px solid transparent;transition:all .2s;font-size:.92rem;white-space:nowrap}
+.tab:hover{color:#1d4ed8}
+.tab.active{color:#1d4ed8;border-bottom-color:#1d4ed8}
 .tab-section{display:none}
 .tab-section.active{display:block;animation:fadeIn .35s ease-out}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -1237,8 +1237,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .fn-card .fn-locale{margin-top:.4rem}
 
 /* ── Footer ── */
-.footer{text-align:center;padding:2rem;color:#94a3b8;font-size:.82rem;margin-top:1rem}
-.footer a{color:#6366f1;text-decoration:none}
+.footer{text-align:center;padding:2rem;color:#475569;font-size:.82rem;margin-top:1rem}
+.footer a{color:#4338ca;text-decoration:none}
 .footer a:hover{text-decoration:underline}
 """
 
@@ -2155,8 +2155,8 @@ code.mask-type{background:#e0e7ff;color:#3730a3;padding:.1rem .35rem;border-radi
 #search-count{position:absolute;right:.85rem;top:50%;transform:translateY(-50%);font-size:.78rem;color:#64748b;background:#f1f5f9;padding:.15rem .5rem;border-radius:20px}
 .cat-filters{display:flex;flex-wrap:wrap;gap:.4rem}
 .cat-btn{background:#f1f5f9;border:1px solid #e2e8f0;color:#475569;font-size:.78rem;padding:.3rem .75rem;border-radius:20px;cursor:pointer;transition:all .15s;font-family:inherit}
-.cat-btn:hover{border-color:#3b82f6;color:#3b82f6}
-.cat-btn.active{background:#3b82f6;border-color:#3b82f6;color:#fff}
+.cat-btn:hover{border-color:#1d4ed8;color:#1d4ed8}
+.cat-btn.active{background:#1d4ed8;border-color:#1d4ed8;color:#fff}
 </style>"""
 
     search_js = """<script>
