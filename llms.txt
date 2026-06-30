@@ -123,7 +123,8 @@ All generated values comply with official specifications:
 - Full HOW-TO Reference (RU): https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/HOW-TO-MockJutsu-RU.html
 - GitHub Repository: https://github.com/altansayan/mock-jutsu-api
 - PyPI Package: https://pypi.org/project/mock-jutsu/
-- Docker Hub: https://hub.docker.com/r/altansayan/mock-jutsu-api
+- Docker Hub: https://hub.docker.com/r/altansezerayan/mock-jutsu
+- Postman Docs: https://documenter.getpostman.com/view/336518/2sBXwyJ7qH
 
 ## Author
 

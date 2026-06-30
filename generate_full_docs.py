@@ -1709,6 +1709,7 @@ def build_detail_page(r: tuple, lang: str) -> str:
 <footer class="footer">
   mock-jutsu &mdash; Developed by <strong>Altan Sezer Ayan - A.S.A</strong>
   &nbsp;&bull;&nbsp; <a href="https://github.com/altansayan/mock-jutsu-api">GitHub</a>
+  &nbsp;&bull;&nbsp; <a href="https://documenter.getpostman.com/view/336518/2sBXwyJ7qH">Postman</a>
   &nbsp;&bull;&nbsp; <a href="{listing_back}">{ui['breadcrumb_home']}</a>
   &nbsp;&bull;&nbsp; &copy; 2026 Altan Sezer Ayan &middot; <a href="https://github.com/altansayan/mock-jutsu-api/blob/main/LICENSE">MIT License</a>
   &nbsp;&bull;&nbsp; Generated data is synthetic and for testing only
@@ -2239,6 +2240,7 @@ function copyTerm(id) {
         '<footer class="footer">\n'
         '  mock-jutsu &mdash; Developed by <strong>Altan Sezer Ayan - A.S.A</strong>\n'
         '  &nbsp;&bull;&nbsp; <a href="https://github.com/altansayan/mock-jutsu-api">GitHub</a>\n'
+        '  &nbsp;&bull;&nbsp; <a href="https://documenter.getpostman.com/view/336518/2sBXwyJ7qH">Postman</a>\n'
         '  &nbsp;&bull;&nbsp; &copy; 2026 Altan Sezer Ayan &middot; <a href="https://github.com/altansayan/mock-jutsu-api/blob/main/LICENSE">MIT License</a>\n'
         '  &nbsp;&bull;&nbsp; Generated data is synthetic and for testing only\n'
         '  &nbsp;&bull;&nbsp; This site uses Google Analytics (cookies)\n'

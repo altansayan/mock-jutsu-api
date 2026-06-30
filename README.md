@@ -16,7 +16,7 @@
 [![PyPI](https://img.shields.io/pypi/v/mockjutsu?style=for-the-badge&logo=pypi&logoColor=white&color=006DAD)](https://pypi.org/project/mockjutsu/)
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-altansezerayan%2Fmock--jutsu-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/r/altansezerayan/mock-jutsu)
 [![JMeter Plugin](https://img.shields.io/badge/JMeter%20Plugin-v1.0.0-D22128?style=for-the-badge&logo=apachejmeter&logoColor=white)](https://github.com/altansayan/mock-jutsu-jmeter/releases/tag/v1.0.0)
-[![Postman](https://img.shields.io/badge/Postman-390%20Requests-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://github.com/altansayan/mock-jutsu-api/tree/main/.postman/collections)
+[![Postman](https://img.shields.io/badge/Postman-390%20Requests-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://documenter.getpostman.com/view/336518/2sBXwyJ7qH)
 [![Product Hunt](https://img.shields.io/badge/Product%20Hunt-Featured-DA552F?style=for-the-badge&logo=producthunt&logoColor=white)](https://www.producthunt.com/posts/mock-jutsu)
 
 > **DISCLAIMER — FOR TESTING PURPOSES ONLY**
@@ -151,7 +151,7 @@ ${__mockjutsu_contact(email|US)}                  → john.doe@example.com
 
 390 ready-to-run requests organized by category. Import and hit Send.
 
-[![Postman](https://img.shields.io/badge/Postman-Collection-FF6C37?style=flat&logo=postman&logoColor=white)](https://github.com/altansayan/mock-jutsu-api/tree/main/.postman/collections)
+[![Postman](https://img.shields.io/badge/Postman-Collection-FF6C37?style=flat&logo=postman&logoColor=white)](https://documenter.getpostman.com/view/336518/2sBXwyJ7qH)
 
 ```bash
 # Collection is bundled in this repo — import directly in Postman:
