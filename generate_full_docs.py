@@ -2284,7 +2284,8 @@ def _sitemap_entry(loc: str, priority: str, changefreq: str) -> str:
     )
 
 
-def build_sitemap(funcs: list) -> str:
+def build_sitemap_main() -> str:
+    """Small sitemap for mock-jutsu-api/sitemap.xml — homepage + listing pages only."""
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
@@ -2299,7 +2300,26 @@ def build_sitemap(funcs: list) -> str:
     ]
     for lang in LANGS:
         if lang == "UK":
-            continue  # noindex pages excluded from sitemap
+            continue
+        lines.append(_sitemap_entry(listing_url(lang), "0.9", "weekly"))
+    lines.append("</urlset>")
+    return "\n".join(lines)
+
+
+def build_sitemap(funcs: list) -> str:
+    """Full sitemap for HOW-TO/sitemap-howto.xml — all detail pages."""
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+        '        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"',
+        '        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9',
+        '          http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">',
+        "",
+        "  <!-- Language listing pages -->",
+    ]
+    for lang in LANGS:
+        if lang == "UK":
+            continue
         lines.append(_sitemap_entry(listing_url(lang), "0.9", "weekly"))
     lines.append("")
     lines.append("  <!-- Function detail pages -->")
@@ -2309,7 +2329,7 @@ def build_sitemap(funcs: list) -> str:
         pri = "0.6" if cat == "Commands" else "0.8"
         for lang in LANGS:
             if lang == "UK":
-                continue  # noindex pages excluded from sitemap
+                continue
             lines.append(_sitemap_entry(detail_url(fn, lang), pri, "monthly"))
     lines.append("</urlset>")
     return "\n".join(lines)
@@ -2467,15 +2487,14 @@ def main():
             if done % 50 == 0:
                 print(f"[{done:>4}/{total_pages}] {lang}/FUNCTION/{fn}-{lang}.html")
 
-    # Sitemap — write to both root and HOW-TO/
-    sitemap_xml = build_sitemap(funcs)
-    for sm_path in [
-        os.path.join(BASE_DIR, "sitemap.xml"),
-        os.path.join(OUT_DIR, "sitemap-howto.xml"),
-    ]:
-        with open(sm_path, "w", encoding="utf-8") as f:
-            f.write(sitemap_xml)
-        print(f"Sitemap: {os.path.relpath(sm_path, BASE_DIR)}")
+    # Sitemap — main (homepage + listings) and full (all detail pages)
+    with open(os.path.join(BASE_DIR, "sitemap.xml"), "w", encoding="utf-8") as f:
+        f.write(build_sitemap_main())
+    print(f"Sitemap: sitemap.xml ({6} URLs — homepage + listings)")
+
+    with open(os.path.join(OUT_DIR, "sitemap-howto.xml"), "w", encoding="utf-8") as f:
+        f.write(build_sitemap(funcs))
+    print(f"Sitemap: HOW-TO/sitemap-howto.xml (full detail pages)")
 
     total_urls = 1 + len(langs) + len(funcs) * len(langs)
     print(f"\nDone — {done} pages + {total_urls} sitemap URLs generated.")
