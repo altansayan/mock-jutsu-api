@@ -129,7 +129,7 @@ _REFERENCE = [
     ('age'            , 'Demographic'  , False, '34'                    , 'generate age'                  , 'Random human age (typically 18-90).', '--min (int), --max (int)'),
     ('gender'         , 'Demographic'  , False, 'Male'                  , 'generate gender'               , 'Binary gender values (Male/Female).', '-'),
     ('birthdate'      , 'Demographic'  , False, '1990-05-14'            , 'generate birthdate'            , 'Random date of birth in YYYY-MM-DD format.', '-'),
-    ('cardnum'        , 'Financial'    , False, '4532 0151 9283 1029'   , 'generate cardnum --network visa', 'Credit card number with Luhn algorithm validation.', '--network (visa|mc|amex|troy|mir|jcb|discover|unionpay|maestro) --bin8'),
+    ('cardnum'        , 'Financial'    , False, '4532 0151 9283 1029'   , 'generate cardnum --network visa', 'Credit card number with Luhn algorithm validation.', '--network (visa|mc|amex|troy|mir|jcb|discover|unionpay|maestro), --bin8'),
     ('cardtype'       , 'Financial'    , False, 'Credit'                , 'generate cardtype'             , 'Payment card type (Credit/Debit/Prepaid).', '-'),
     ('cardstatus'     , 'Financial'    , False, 'Active'                , 'generate cardstatus'           , 'Payment card status (Active/Blocked/Expired).', '-'),
     ('cardcategory'   , 'Financial'    , False, 'Gold'                  , 'generate cardcategory'         , 'Card level (Classic/Gold/Platinum/Infinite).', '-'),

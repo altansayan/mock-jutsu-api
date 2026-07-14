@@ -1501,6 +1501,11 @@ def build_detail_page(r: tuple, lang: str) -> str:
             cli_content += code("# --mask: regulation-compliant output (PCI DSS / GDPR / KVKK)", "c")
             cli_content += code(f"mockjutsu generate {fn}{locale_mask} --mask")
             cli_content += code(f"mockjutsu bulk {fn} --count 5{locale_mask} --mask")
+            if '--bin8' in param_flags:
+                cli_content += code("", "c")
+                cli_content += code("# --bin8: 8-digit BIN masking (ISO/IEC 7812:2017)", "c")
+                cli_content += code(f"mockjutsu generate {fn}{locale_mask} --mask --bin8")
+                cli_content += code(f"mockjutsu masker cardnum_bin8:<value>")
 
     # Python terminal
     locale_arg = ", locale='TR'" if has_locale else ""
@@ -1529,6 +1534,10 @@ def build_detail_page(r: tuple, lang: str) -> str:
         py_content += code("# mask=True: regulation-compliant output", "c")
         py_content += code(f"jutsu.generate('{fn}'{locale_arg}, mask=True)", "py")
         py_content += code(f"jutsu.bulk('{fn}', count=5{locale_arg}, mask=True)", "py")
+        if '--bin8' in param_flags:
+            py_content += code("", "c")
+            py_content += code("# 8-digit BIN mask (ISO/IEC 7812:2017)", "c")
+            py_content += code(f"jutsu.masker('cardnum_bin8', '4532015112830366')", "py")
 
     # JMeter terminal
     jm_fn      = _jmeter_fn_key(cat)
