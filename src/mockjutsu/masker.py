@@ -133,6 +133,20 @@ def _mask_cardnum(v: str) -> str:
     return " ".join(groups)
 
 
+def _mask_cardnum_bin8(v: str) -> str:
+    # ISO/IEC 7812:2017 8-digit BIN + PCI DSS 4.0.1 Req 3.4.1: first 8 (BIN) + last 4
+    d = _digits_only(v)
+    n = len(d)
+    if n < 13 or n - 12 < 1:
+        return _mask_cardnum(v)
+    bin8   = d[:8]
+    last4  = d[-4:]
+    middle = "*" * (n - 12)
+    raw    = bin8 + middle + last4
+    groups = [raw[i:i+4] for i in range(0, len(raw), 4)]
+    return " ".join(groups)
+
+
 def _mask_cvv(length: int) -> str:
     return "*" * length
 
@@ -392,9 +406,11 @@ _MASKERS = {
     "3ds_cavv":      _mask_pci_sad,
     "password":      _mask_pci_sad,
     "password_hash": _mask_pci_sad,
+    "emv_arqc":      _mask_pci_sad,        # PCI DSS SAD — tam redact
 
     # ── Payment cards ──────────────────────────────────────────────────────
     "cardnum":       _mask_cardnum,
+    "cardnum_bin8":  _mask_cardnum_bin8,
     "cardowner":     _mask_name,
     "expiry":        lambda v: "**/**",
     "expirymonth":   lambda v: "**",
@@ -410,6 +426,8 @@ _MASKERS = {
     "tckn_masked":   lambda v: v,          # already masked
     "ykn":           _mask_tckn,           # same 11-digit format
     "vkn":           _mask_vkn,
+    "taxid":         _mask_vkn,            # KVKK — VKN alias (ilk3+****+son3)
+    "insurance_id":  _mask_vkn,            # KVKK — SGK grubu, VKN kuralı
     "sgk":           _mask_sgk,
     "mersis":        lambda v: _mask_generic_id(v, 4, 4),
 
@@ -489,7 +507,8 @@ _MASKERS = {
 
     # ── Commerce ──────────────────────────────────────────────────────────
     "vin":           _mask_vin,
-    "vehicle":       lambda v: re.sub(r'"vin":\s*"[^"]{5,}"', '"vin":"***"', v),
+    "vehicle":       lambda v: re.sub(r'[\'"]vin[\'"]\s*:\s*[\'"]([^\'"]{5,})[\'"]',
+                                    lambda m: m.group(0).replace(m.group(1), "***"), v),
 
     # ── Meta / technical ──────────────────────────────────────────────────
     "sessionid":     _mask_session_id,
@@ -516,7 +535,7 @@ _MASKERS = {
     "iso8583_auth_request":  lambda v: re.sub(r"(?<=DE002:)\d+", lambda m: _mask_cardnum(m.group(0)), v),
     "iso8583_auth_response": lambda v: re.sub(r"(?<=DE002:)\d+", lambda m: _mask_cardnum(m.group(0)), v),
     "iso8583_reversal":      lambda v: re.sub(r"(?<=DE002:)\d+", lambda m: _mask_cardnum(m.group(0)), v),
-    "emv_arqc":      lambda v: v[:8] + "****" + v[-4:] if len(v) == 16 else _mask_pci_sad(v),
+    # emv_arqc: PCI DSS SAD grubunda tanımlı (tam redact)
     "emv_atc":       lambda v: "**" + v[-2:] if len(v) >= 4 else "****",
     "emv_iad":       lambda v: v[:4] + "****" + v[-4:] if len(v) >= 12 else _mask_pci_sad(v),
     "atm_session":   lambda v: v,   # already contains masked_pan field
@@ -581,7 +600,26 @@ _MASKERS = {
     # ── Misc with mask defined ─────────────────────────────────────────────
     "psd2_consent":  lambda v: v[:12] + "***" if len(v) > 12 else v,
     "mnemonic":      lambda v: v.split()[0] + " *** *** ... ***",
-    "swift_mt103":   lambda v: re.sub(r"(IBAN|BIC|ACC)[: ]+(\w{2,6})\w+", r"\1: \2****", v),
+    "swift_mt103":   lambda v: re.sub(r"/ACC([A-Z0-9]+)", "/ACC****",
+                        re.sub(r"(IBAN[:\s]+)([A-Z]{2}\d{2})([A-Z0-9]+)", r"\1\2****",
+                        re.sub(r"(BIC[:\s]+)([A-Z]{4}[A-Z]{2}[A-Z0-9]{2})([A-Z0-9]*)", r"\1\2****", v))),
+
+    # ── Ön-maskeli varyantlar — zaten maskeli, değişmeden döner ───────────
+    "account_number_masked":           lambda v: v,
+    "micr_line_masked":                lambda v: v,
+    "transaction_description_masked":  lambda v: v,
+    "check_number_masked":             lambda v: v,
+    "payment_reference_masked":        lambda v: v,
+    "credit_limit_masked":             lambda v: v,
+    "mortgage_rate_masked":            lambda v: v,
+    "premium_amount_masked":           lambda v: v,
+    "portfolio_id_masked":             lambda v: v,
+    "sar_number_masked":               lambda v: v,
+    "policy_number_masked":            lambda v: v,
+    "claim_number_masked":             lambda v: v,
+    "ubo_ownership_percentage_masked": lambda v: v,
+    "consent_id_masked":               lambda v: v,
+    "liquidity_pool_id_masked":        lambda v: v,
 }
 
 

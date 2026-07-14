@@ -477,6 +477,18 @@ class TestGenerateFinancial:
         assert val == val.upper(), f"cardowner not uppercase: {val}"
         assert ' ' in val
 
+    def test_cardnum_mask_bin8_flag(self, runner):
+        result = runner.invoke(main, ['generate', 'cardnum', '--mask', '--bin8'])
+        assert result.exit_code == 0
+        d = result.output.strip().replace(' ', '')
+        assert re.match(r'^\d{8}\*+\d{4}$', d), f"bin8 mask format wrong: {result.output.strip()}"
+
+    def test_cardnum_mask_default_is_bin6(self, runner):
+        result = runner.invoke(main, ['generate', 'cardnum', '--mask'])
+        assert result.exit_code == 0
+        d = result.output.strip().replace(' ', '')
+        assert re.match(r'^\d{6}\*+\d{4}$', d), f"default mask should be bin6: {result.output.strip()}"
+
     def test_cvv3_3digits(self, runner):
         val = _gen(runner, 'cvv3')
         assert re.match(r'^\d{3}$', val)
@@ -2684,6 +2696,7 @@ _FLAG_DEFAULTS: dict[str, str] = {
     '--start':     '2020-01-01',
     '--end':       '2023-12-31',
     '--pair':      'EUR/USD',
+    '--bin8':      None,   # is_flag — no value, append flag only
 }
 
 
@@ -2704,7 +2717,11 @@ def _build_invocation(row) -> tuple[str, list[str]]:
             f"but it has no safe default in _FLAG_DEFAULTS.\n"
             f"Add it to _FLAG_DEFAULTS in tests/test_cli.py."
         )
-        args += [flag, _FLAG_DEFAULTS[flag]]
+        val = _FLAG_DEFAULTS[flag]
+        if val is None:
+            args.append(flag)   # is_flag — no value
+        else:
+            args += [flag, val]
     return type_name, args
 
 

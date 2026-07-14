@@ -587,6 +587,25 @@ class MockJutsuCore:
 
         return json.dumps(records, ensure_ascii=False, indent=2)
 
+    def masker(self, type_name: str, value: str) -> str:
+        """Validate *value* for *type_name* and return its masked form.
+
+        Returns the regulation-compliant masked string if the value is valid,
+        or "No Valid Data" if validation fails.
+        Types without a registered validator are masked directly (no validation).
+
+        Example:
+            jutsu.masker("tckn", "25123456794")  # → "25*******94"
+            jutsu.masker("tckn", "99999")         # → "No Valid Data"
+        """
+        from .validators import validate
+        from .masker import apply_mask
+
+        is_valid, _ = validate(type_name, str(value))
+        if is_valid is False:
+            return "No Valid Data"
+        return apply_mask(type_name, str(value))
+
     # ── Internal ─────────────────────────────────────────────────────────────────
 
     @staticmethod

@@ -129,7 +129,7 @@ _REFERENCE = [
     ('age'            , 'Demographic'  , False, '34'                    , 'generate age'                  , 'Random human age (typically 18-90).', '--min (int), --max (int)'),
     ('gender'         , 'Demographic'  , False, 'Male'                  , 'generate gender'               , 'Binary gender values (Male/Female).', '-'),
     ('birthdate'      , 'Demographic'  , False, '1990-05-14'            , 'generate birthdate'            , 'Random date of birth in YYYY-MM-DD format.', '-'),
-    ('cardnum'        , 'Financial'    , False, '4532 0151 9283 1029'   , 'generate cardnum --network visa', 'Credit card number with Luhn algorithm validation.', '--network (visa|mc|amex|troy|mir|jcb|discover|unionpay|maestro)'),
+    ('cardnum'        , 'Financial'    , False, '4532 0151 9283 1029'   , 'generate cardnum --network visa', 'Credit card number with Luhn algorithm validation.', '--network (visa|mc|amex|troy|mir|jcb|discover|unionpay|maestro) --bin8'),
     ('cardtype'       , 'Financial'    , False, 'Credit'                , 'generate cardtype'             , 'Payment card type (Credit/Debit/Prepaid).', '-'),
     ('cardstatus'     , 'Financial'    , False, 'Active'                , 'generate cardstatus'           , 'Payment card status (Active/Blocked/Expired).', '-'),
     ('cardcategory'   , 'Financial'    , False, 'Gold'                  , 'generate cardcategory'         , 'Card level (Classic/Gold/Platinum/Infinite).', '-'),
@@ -654,10 +654,11 @@ def main(ctx):
 @click.option('--payload',  default=None,     help='Message to sign for signature type (default: mock)')
 @click.option('--format',   'color_format',   default=None, help='Color output format: hex rgb hsl name')
 @click.option('--mask',     is_flag=True,     default=False, help='Mask PII/sensitive fields per applicable regulation (PCI DSS, KVKK, GDPR, etc.)')
+@click.option('--bin8',     is_flag=True,     default=False, help='Use 8-digit BIN masking (ISO/IEC 7812:2017). Use with --mask on cardnum types.')
 @click.option('--start',    default=None,     help='Start date YYYY-MM-DD for date_between type')
 @click.option('--end',      default=None,     help='End date YYYY-MM-DD for date_between type')
 @click.option('--pair',     default=None,     help='Currency pair for forex_rate (e.g. EUR/USD)')
-def generate(data_type, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, merchant, city, words, pattern, dims, nnz, secret, payload, color_format, mask, start, end, pair):
+def generate(data_type, locale, network, currency, carrier, algorithm, prefix, gender, min, max, amount, merchant, city, words, pattern, dims, nnz, secret, payload, color_format, mask, bin8, start, end, pair):
     """Generate mock data.  Example: mockjutsu generate tckn --locale TR"""
     if not data_type:
         click.echo("Error: specify a type. Run 'mockjutsu list' to see all types.")
@@ -689,7 +690,8 @@ def generate(data_type, locale, network, currency, carrier, algorithm, prefix, g
                             currency=currency, carrier=carrier, algorithm=algorithm, **kwargs)
     if mask and "ERROR" not in str(result):
         from mockjutsu.masker import apply_mask
-        result = apply_mask(data_type, result)
+        mask_type = (data_type + "_bin8") if (bin8 and data_type == "cardnum") else data_type
+        result = apply_mask(mask_type, result)
     color  = 'red' if "ERROR" in str(result) else 'green'
     click.echo(click.style(str(result), fg=color, bold=True))
 
@@ -921,6 +923,41 @@ def start_api(port):
     click.echo(click.style(f"\nmock-jutsu API -- port {port}", fg='green', bold=True))
     from mockjutsu.api.main import app
     uvicorn.run(app, host="0.0.0.0", port=port)
+
+
+@main.command(name='masker')
+@click.argument('pairs', nargs=-1, required=True)
+def masker_cmd(pairs):
+    """Validate and mask an existing value.
+
+    Format: TYPE:VALUE  (one or more, space-separated)
+
+    \b
+    Examples:
+      mockjutsu masker tckn:25123456794
+      mockjutsu masker iban:TR330006100519786457841326
+      mockjutsu masker tckn:25123456794 cardnum:4532015112830366
+    """
+    from mockjutsu.validators import validate
+    from mockjutsu.masker import apply_mask
+
+    for pair in pairs:
+        if ":" not in pair:
+            click.echo(click.style(
+                f"Error: expected TYPE:VALUE format, got '{pair}'", fg='red'
+            ), err=True)
+            continue
+
+        type_name, _, value = pair.partition(":")
+        type_name = type_name.strip().lower()
+
+        is_valid, err = validate(type_name, value)
+
+        if is_valid is False:
+            click.echo(click.style("No Valid Data", fg='red', bold=True))
+        else:
+            masked = apply_mask(type_name, value)
+            click.echo(click.style(masked, fg='green', bold=True))
 
 
 if __name__ == "__main__":

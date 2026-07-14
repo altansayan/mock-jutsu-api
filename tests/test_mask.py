@@ -76,7 +76,49 @@ class TestPciPan:
         assert "*" in result
 
 
-# ── 3. Unit: KVKK — Turkish national IDs ────────────────────────────────────
+# ── 3. Unit: PCI DSS PAN — 8-digit BIN (ISO/IEC 7812:2017) ──────────────────
+
+class TestCardnumBin8:
+
+    def test_bin8_format_16digit(self):
+        assert apply_mask("cardnum_bin8", "4532015112830366") == "4532 0151 **** 0366"
+
+    def test_bin8_format_15digit_amex(self):
+        result = apply_mask("cardnum_bin8", "371234567890123")
+        d = result.replace(" ", "")
+        assert d[:8] == "37123456"
+        assert d[-4:] == "0123"
+        assert all(c == "*" for c in d[8:-4])
+
+    def test_bin8_shows_first_8_digits(self):
+        result = apply_mask("cardnum_bin8", "4532015112830366")
+        d = result.replace(" ", "")
+        assert re.match(r"^\d{8}", d), f"First 8 not visible: {result}"
+
+    def test_bin8_shows_last4(self):
+        result = apply_mask("cardnum_bin8", "4532015112830366")
+        assert result.replace(" ", "").endswith("0366")
+
+    def test_bin8_middle_all_stars(self):
+        result = apply_mask("cardnum_bin8", "4532015112830366")
+        d = result.replace(" ", "")
+        assert d[8:-4] == "****"
+
+    def test_bin8_fallback_for_short_card(self):
+        # 12 haneli kart: n-12=0 → bin6 fallback (PCI uyumu)
+        r_bin8 = apply_mask("cardnum_bin8", "411111111111")
+        r_bin6 = apply_mask("cardnum",      "411111111111")
+        assert r_bin8 == r_bin6
+
+    def test_bin8_19digit_unionpay(self):
+        result = apply_mask("cardnum_bin8", "6212345678901234567")
+        d = result.replace(" ", "")
+        assert d[:8] == "62123456"
+        assert d[-4:] == "4567"
+        assert all(c == "*" for c in d[8:-4])
+
+
+# ── 4. Unit: KVKK — Turkish national IDs ────────────────────────────────────
 
 class TestKvkk:
 
