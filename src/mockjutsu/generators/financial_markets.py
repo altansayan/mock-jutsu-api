@@ -22,6 +22,7 @@ import string
 import time
 import uuid
 from datetime import datetime, timezone, timedelta, date
+from mockjutsu.algorithms import luhn_check_digit, isin_luhn_check, cusip_check
 
 # ── Constants ────────────────────────────────────────────────────────────────
 
@@ -124,35 +125,6 @@ _FIX_SYMBOLS = [
     'IWM', 'DIA', 'VXX', 'BRKB', 'V', 'MA', 'UNH', 'WMT',
 ]
 
-
-# ── Checksum helpers ─────────────────────────────────────────────────────────
-
-def _luhn_check(digits) -> int:
-    """Standard Luhn check digit for a payload (rightmost payload digit at position 1)."""
-    total = 0
-    for i, d in enumerate(reversed(digits)):
-        n = d * 2 if i % 2 == 0 else d  # payload's rightmost is at pos 1 in full number
-        if n > 9:
-            n -= 9
-        total += n
-    return (10 - total % 10) % 10
-
-
-def _isin_luhn_check(payload: str) -> int:
-    """Luhn check digit for ISIN: expand letters (A=10…Z=35), then standard Luhn."""
-    numeric = ''.join(str(ord(c) - 55) if c.isalpha() else c for c in payload)
-    return _luhn_check([int(d) for d in numeric])
-
-
-def _cusip_check(payload: str) -> int:
-    """ABA CUSIP check digit — even 1-indexed (odd 0-indexed) positions ×2 with digit-sum."""
-    total = 0
-    for i, c in enumerate(payload):
-        v = int(c) if c.isdigit() else ord(c) - 55
-        if i % 2 == 1:
-            v *= 2
-        total += v // 10 + v % 10
-    return (10 - total % 10) % 10
 
 
 def _sedol_check(payload: str) -> int:
@@ -272,7 +244,7 @@ class FinancialMarketsGenerator:
         nsin = ''.join(nsin_chars)
 
         payload = cc + nsin
-        check = _isin_luhn_check(payload)
+        check = isin_luhn_check(payload)
         return payload + str(check)
 
     # ── CUSIP ─────────────────────────────────────────────────────────────────
@@ -290,7 +262,7 @@ class FinancialMarketsGenerator:
             for _ in range(2)
         )
         payload = issuer + issue
-        check = _cusip_check(payload)
+        check = cusip_check(payload)
         return payload + str(check)
 
     # ── SEDOL ─────────────────────────────────────────────────────────────────

@@ -7,6 +7,7 @@ import random
 from collections import Counter
 import secrets
 from datetime import date
+from mockjutsu.algorithms import luhn_check_digit
 
 from mockjutsu.generators.name_data import NAME_POOLS
 
@@ -141,17 +142,6 @@ class IdentityGenerator:
             control = 0 if total in (100, 101) else (total % 101 % 100)
         s = "".join(map(str, base))
         return f"{s[0:3]}-{s[3:6]}-{s[6:9]} {control:02d}"
-
-    @staticmethod
-    def _luhn_check(partial):
-        """Returns Luhn check digit for a partial digit list (used by FR SIREN/SIRET)."""
-        total = 0
-        for i, d in enumerate(reversed(partial)):
-            n = d * 2 if i % 2 == 0 else d
-            if n > 9:
-                n -= 9
-            total += n
-        return (10 - total % 10) % 10
 
     # ── TR ──────────────────────────────────────────────────────────────────────
 
@@ -374,7 +364,7 @@ class IdentityGenerator:
     def generate_fr_siren():
         """French SIREN — 9 digits, Luhn checksum."""
         base = [random.randrange(9) + 1] + [random.randrange(10) for _ in range(7)]
-        return "".join(map(str, base + [IdentityGenerator._luhn_check(base)]))
+        return "".join(map(str, base + [luhn_check_digit(base)]))
 
     @staticmethod
     def generate_fr_siret():
@@ -382,7 +372,7 @@ class IdentityGenerator:
         siren = [int(c) for c in IdentityGenerator.generate_fr_siren()]
         nic   = [random.randrange(10) for _ in range(4)]
         base  = siren + nic
-        return "".join(map(str, base + [IdentityGenerator._luhn_check(base)]))
+        return "".join(map(str, base + [luhn_check_digit(base)]))
 
     @staticmethod
     def generate_fr_tva():

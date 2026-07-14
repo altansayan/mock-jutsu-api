@@ -16,6 +16,7 @@ Entropy:
 
 import random
 import secrets
+from mockjutsu.algorithms import luhn_check_digit
 
 # ──────────────────────────────────────────────────────────────────────────────
 # RBI (Reporting Body Identifier) codes — 3GPP TS 23.003 v17.5.0 Annex B
@@ -99,20 +100,6 @@ _MSISDN_FORMAT: dict[str, tuple[str, list, int]] = {
 }
 
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Luhn check digit — 3GPP TS 23.003 §6.2.1 (IMEI), ITU-T E.118 (ICCID)
-# Verified test vector: payload 49015420323751 → check digit 8
-# ──────────────────────────────────────────────────────────────────────────────
-def _luhn_check(digits: list[int]) -> int:
-    total = 0
-    for i, d in enumerate(reversed(digits)):
-        if i % 2 == 0:
-            doubled = d * 2
-            total += doubled - 9 if doubled > 9 else doubled
-        else:
-            total += d
-    return (10 - total % 10) % 10
-
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Generator
@@ -132,7 +119,7 @@ class TelecomGenerator:
         model_code = "".join(str(random.randrange(10)) for _ in range(6))
         snr        = "".join(str(random.randrange(10)) for _ in range(6))
         payload    = [int(c) for c in rbi + model_code + snr]
-        return rbi + model_code + snr + str(_luhn_check(payload))
+        return rbi + model_code + snr + str(luhn_check_digit(payload))
 
     @staticmethod
     def generate_imei2() -> str:
@@ -153,7 +140,7 @@ class TelecomGenerator:
         serial_len = 18 - len(prefix)                    # fill to 18 data digits
         serial     = "".join(str(random.randrange(10)) for _ in range(serial_len))
         payload    = [int(c) for c in prefix + serial]
-        return prefix + serial + str(_luhn_check(payload))
+        return prefix + serial + str(luhn_check_digit(payload))
 
     @staticmethod
     def generate_imsi(locale: str = "TR") -> str:

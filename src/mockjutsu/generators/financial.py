@@ -7,6 +7,7 @@ import random
 import secrets
 from datetime import datetime
 from mockjutsu.generators.name_data import NAME_POOLS
+from mockjutsu.algorithms import iban_check_digits
 
 def _crc16_emvco(data: str) -> str:
     crc = 0xFFFF
@@ -60,13 +61,6 @@ BANK_FORMATS = {
 }
 
 
-def _iban_check_digits(prefix: str, body: str) -> str:
-    """Compute ISO 13616 MOD-97 check digits (2-digit string)."""
-    rearranged = body + prefix + "00"
-    numeric = ''.join(str(ord(c) - 55) if c.isalpha() else c for c in rearranged)
-    check = 98 - int(numeric) % 97
-    return f"{check:02d}"
-
 
 class FinancialGenerator:
     """Financial data with global banking format awareness."""
@@ -105,7 +99,7 @@ class FinancialGenerator:
                 else:
                     body_parts.append("".join(random.choice(self._IBAN_ALNUM) for _ in range(length)))
             body  = "".join(body_parts)
-            check = _iban_check_digits(fmt["prefix"], body)
+            check = iban_check_digits(fmt["prefix"], body)
             return f"{fmt['prefix']}{check}{body}"
         if fmt["type"] == "ROUTING":
             r = _generate_aba_routing()

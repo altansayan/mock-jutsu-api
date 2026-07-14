@@ -5,58 +5,8 @@ Developer: Altan Sezer Ayan - A.S.A (https://github.com/altansayan)
 """
 import random
 from collections import Counter
+from mockjutsu.algorithms import luhn_check_digit, iso7064_mod11_10_check, verhoeff_check, ee_lt_check
 
-# ── Verhoeff tables (for Aadhaar) ─────────────────────────────────────────────
-_V_D = [
-    [0,1,2,3,4,5,6,7,8,9],[1,2,3,4,0,6,7,8,9,5],[2,3,4,0,1,7,8,9,5,6],
-    [3,4,0,1,2,8,9,5,6,7],[4,0,1,2,3,9,5,6,7,8],[5,9,8,7,6,0,4,3,2,1],
-    [6,5,9,8,7,1,0,4,3,2],[7,6,5,9,8,2,1,0,4,3],[8,7,6,5,9,3,2,1,0,4],
-    [9,8,7,6,5,4,3,2,1,0],
-]
-_V_P = [
-    [0,1,2,3,4,5,6,7,8,9],[1,5,7,6,2,8,3,0,9,4],[5,8,0,3,7,9,6,1,4,2],
-    [8,9,1,6,0,4,3,5,2,7],[9,4,5,3,1,2,6,8,7,0],[4,2,8,6,5,7,3,9,0,1],
-    [2,7,9,3,8,0,6,4,1,5],[7,0,4,6,9,1,3,2,5,8],
-]
-
-def _verhoeff_gen(base_digits):
-    """Generate Verhoeff check digit appended at end. Uses stdnum-compatible algorithm."""
-    for check in range(10):
-        c = 0
-        for i, d in enumerate(reversed(base_digits + [check])):
-            c = _V_D[c][_V_P[i % 8][d]]
-        if c == 0:
-            return check
-    return 0
-
-# ── ISO 7064 MOD 11,10 (for HR OIB, DE IdNr) ──────────────────────────────────
-def _iso7064_mod11_10_check(digits):
-    product = 10
-    for d in digits:
-        s = (product + d) % 10
-        if s == 0:
-            s = 10
-        product = (s * 2) % 11
-    return (11 - product) % 10
-
-# ── Luhn check digit ───────────────────────────────────────────────────────────
-def _luhn_check(digits):
-    total = 0
-    for i, d in enumerate(reversed(digits)):
-        n = d * 2 if i % 2 == 0 else d
-        if n > 9:
-            n -= 9
-        total += n
-    return (10 - total % 10) % 10
-
-# ── EE/LT shared check digit ─────────────────────────────────────────────────
-def _ee_check(digits_10):
-    weights1 = [(i % 9) + 1 for i in range(10)]
-    s = sum(w * d for w, d in zip(weights1, digits_10)) % 11
-    if s == 10:
-        weights2 = [((i + 2) % 9) + 1 for i in range(10)]
-        s = sum(w * d for w, d in zip(weights2, digits_10)) % 11
-    return s % 10
 
 # ── Spanish MOD-23 table ──────────────────────────────────────────────────────
 _ES_DNI_LETTERS = "TRWAGMYFPDXBNJZSQVHLCKE"
@@ -146,7 +96,7 @@ class IntlIdsGenerator:
         """Indian Aadhaar — 12 digits, Verhoeff check digit. First digit 2-9, not a palindrome."""
         for _ in range(100):
             d = [random.randint(2, 9)] + [random.randint(0, 9) for _ in range(10)]
-            check = _verhoeff_gen(d)
+            check = verhoeff_check(d)
             n = ''.join(map(str, d)) + str(check)
             if n != n[::-1]:
                 return f"{n[:4]} {n[4:8]} {n[8:]}"
@@ -347,7 +297,7 @@ class IntlIdsGenerator:
             counts = [c for c in Counter(base).values() if c > 1]
             if len(counts) != 1 or counts[0] not in (2, 3):
                 continue
-            check = _iso7064_mod11_10_check(base)
+            check = iso7064_mod11_10_check(base)
             if check == 10:
                 continue
             return ''.join(map(str, base)) + str(check)
@@ -621,7 +571,7 @@ class IntlIdsGenerator:
         gender = random.randint(0, 9999)
         citizen = 0
         base_str = f"{yy:02d}{month:02d}{day:02d}{gender:04d}{citizen}8"
-        check = _luhn_check([int(c) for c in base_str])
+        check = luhn_check_digit([int(c) for c in base_str])
         return base_str + str(check)
 
     # ── Canada ───────────────────────────────────────────────────────────────
@@ -630,7 +580,7 @@ class IntlIdsGenerator:
     def gen_ca_bn():
         """Canadian Business Number — 9 digits with Luhn check digit."""
         d = [random.randint(1, 9)] + [random.randint(0, 9) for _ in range(7)]
-        check = _luhn_check(d)
+        check = luhn_check_digit(d)
         return ''.join(map(str, d)) + str(check)
 
     # ── New Zealand ──────────────────────────────────────────────────────────
@@ -702,7 +652,7 @@ class IntlIdsGenerator:
     def gen_il_idnr():
         """Israeli ID — 9 digits, Luhn check."""
         d = [random.randint(0, 9) for _ in range(8)]
-        check = _luhn_check(d)
+        check = luhn_check_digit(d)
         return ''.join(map(str, d)) + str(check)
 
     # ── Romania ──────────────────────────────────────────────────────────────
@@ -738,7 +688,7 @@ class IntlIdsGenerator:
         """Croatian OIB — 11 digits, ISO 7064 MOD 11,10 check."""
         for _ in range(200):
             base = [random.randint(0, 9) for _ in range(10)]
-            check = _iso7064_mod11_10_check(base)
+            check = iso7064_mod11_10_check(base)
             if check != 10:
                 return ''.join(map(str, base)) + str(check)
         return "00000000001"
@@ -770,7 +720,7 @@ class IntlIdsGenerator:
         gender = random.choice([3, 4])  # 3=M 1900s, 4=F 1900s
         seq   = random.randint(0, 999)
         base  = [int(x) for x in f"{gender}{year%100:02d}{month:02d}{day:02d}{seq:03d}"]
-        check = _ee_check(base)
+        check = ee_lt_check(base)
         return ''.join(map(str, base)) + str(check)
 
     # ── Estonia ──────────────────────────────────────────────────────────────
@@ -784,7 +734,7 @@ class IntlIdsGenerator:
         gender = random.choice([3, 4])  # 3=M 1900s, 4=F 1900s
         seq   = random.randint(0, 999)
         base  = [int(x) for x in f"{gender}{year%100:02d}{month:02d}{day:02d}{seq:03d}"]
-        check = _ee_check(base)
+        check = ee_lt_check(base)
         return ''.join(map(str, base)) + str(check)
 
     # ── Portugal ─────────────────────────────────────────────────────────────

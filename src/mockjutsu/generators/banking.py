@@ -7,6 +7,7 @@ import random
 import string
 import secrets
 from datetime import datetime, timezone, timedelta
+from mockjutsu.algorithms import iban_check_digits
 
 # Public BIC/SWIFT codes — published by SWIFT (swift.com) and individual banks
 BIC_CODES = {
@@ -110,13 +111,6 @@ _BSB_BANK_CODES = {
 }
 
 
-def _iban_check_digits(prefix: str, body: str) -> str:
-    """Compute ISO 13616 MOD-97 check digits."""
-    rearranged = body + prefix + "00"
-    numeric = ''.join(str(ord(c) - 55) if c.isalpha() else c for c in rearranged)
-    check = 98 - int(numeric) % 97
-    return f"{check:02d}"
-
 
 def _wc(seq, weights):
     """Weighted secrets-based choice."""
@@ -138,7 +132,7 @@ class BankingGenerator:
         fmt = IBAN_FORMATS.get(locale, IBAN_FORMATS["TR"])
         body_len = fmt["len"] - len(fmt["prefix"]) - 2
         body = "".join(str(random.randrange(10)) for _ in range(body_len))
-        check = _iban_check_digits(fmt["prefix"], body)
+        check = iban_check_digits(fmt["prefix"], body)
         return f"{fmt['prefix']}{check}{body}"
 
     @staticmethod

@@ -13,6 +13,7 @@ Standards / Algorithms:
 import random
 import secrets
 import string
+from mockjutsu.algorithms import luhn_check_digit
 
 # ── Data ─────────────────────────────────────────────────────────────────────
 
@@ -38,18 +39,6 @@ _USPS_PREFIXES = ['92', '94', '70', '93', '95']
 _UPS_SERVICE   = ['01', '02', '03', '12', '13']
 _ALPHA_UPPER   = string.ascii_uppercase + string.digits
 
-
-# ── Checksum helpers ──────────────────────────────────────────────────────────
-
-def _luhn_check_digit(digits: list[int]) -> int:
-    """Standard Luhn check digit for a payload list (rightmost is position 1)."""
-    total = 0
-    for i, d in enumerate(reversed(digits)):
-        n = d * 2 if i % 2 == 0 else d
-        if n > 9:
-            n -= 9
-        total += n
-    return (10 - total % 10) % 10
 
 
 def _ups_check_digit(payload: str) -> int:
@@ -134,7 +123,7 @@ class EcommerceGenerator:
         prefix = random.choice(_USPS_PREFIXES)
         body = [random.randrange(10) for _ in range(19)]
         payload = [int(d) for d in prefix] + body
-        check = _luhn_check_digit(payload)
+        check = luhn_check_digit(payload)
         return prefix + ''.join(map(str, body)) + str(check)
 
     def _tracking_ups(self) -> str:
@@ -163,7 +152,7 @@ class EcommerceGenerator:
         Reference: DHL Express developer guide — JD waybill format.
         """
         body = [random.randrange(10) for _ in range(8)]
-        check = _luhn_check_digit(body)
+        check = luhn_check_digit(body)
         return "JD" + ''.join(map(str, body)) + str(check)
 
     # ── Rating ────────────────────────────────────────────────────────────────
