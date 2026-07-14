@@ -232,7 +232,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">CLI-Verwendung</span>
     <button class="copy-btn" onclick="copyTerm('term-cli-consent_id_masked')">copy</button>
   </div>
-  <div class="term-body" id="term-cli-consent_id_masked"><code class="p">mockjutsu generate consent_id_masked</code><code class="p">mockjutsu bulk consent_id_masked --count 10</code><code class="o">mockjutsu export consent_id_masked --count 10 --format json</code><code class="o">mockjutsu export consent_id_masked --count 10 --format csv</code><code class="o">mockjutsu export consent_id_masked --count 10 --format sql</code></div>
+  <div class="term-body" id="term-cli-consent_id_masked"><code class="p">mockjutsu generate consent_id_masked</code><code class="p">mockjutsu bulk consent_id_masked --count 10</code><code class="o">mockjutsu export consent_id_masked --count 10 --format json</code><code class="o">mockjutsu export consent_id_masked --count 10 --format csv</code><code class="o">mockjutsu export consent_id_masked --count 10 --format sql</code><code class="c"></code><code class="c"># --mask: regulation-compliant output (PCI DSS / GDPR / KVKK)</code><code class="p">mockjutsu generate consent_id_masked --mask</code><code class="p">mockjutsu bulk consent_id_masked --count 5 --mask</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -240,7 +240,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">Python API</span>
     <button class="copy-btn" onclick="copyTerm('term-py-consent_id_masked')">copy</button>
   </div>
-  <div class="term-body" id="term-py-consent_id_masked"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('consent_id_masked')</code><code class="py">jutsu.bulk('consent_id_masked', count=10)</code><code class="c"></code><code class="py">jutsu.template(['consent_id_masked'], count=5)</code></div>
+  <div class="term-body" id="term-py-consent_id_masked"><code class="c">from mockjutsu import jutsu</code><code class="c"></code><code class="py">jutsu.generate('consent_id_masked')</code><code class="py">jutsu.bulk('consent_id_masked', count=10)</code><code class="c"></code><code class="py">jutsu.template(['consent_id_masked'], count=5)</code><code class="c"></code><code class="c"># mask=True: regulation-compliant output</code><code class="py">jutsu.generate('consent_id_masked', mask=True)</code><code class="py">jutsu.bulk('consent_id_masked', count=5, mask=True)</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -248,7 +248,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">JMeter</span>
     <button class="copy-btn" onclick="copyTerm('term-jm-consent_id_masked')">copy</button>
   </div>
-  <div class="term-body" id="term-jm-consent_id_masked"><code class="jm">${__mockjutsu_compliance(consent_id_masked)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_compliance</code><code class="c"># Parameter 1: consent_id_masked</code><code class="c"># Parameter 2: (not required for this function)</code></div>
+  <div class="term-body" id="term-jm-consent_id_masked"><code class="jm">${__mockjutsu_compliance(consent_id_masked)}</code><code class="c"></code><code class="c"># JMeter Function: __mockjutsu_compliance</code><code class="c"># Parameter 1: consent_id_masked</code><code class="c"># Parameter 2: (not required for this function)</code><code class="c"></code><code class="c"># Add 'mask' keyword to get a regulation-compliant masked value</code><code class="jm">${__mockjutsu_compliance(consent_id_masked,mask)}</code></div>
 </div>
     <div class="term">
   <div class="term-header">
@@ -256,11 +256,25 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
     <span class="term-title">REST API</span>
     <button class="copy-btn" onclick="copyTerm('term-api-consent_id_masked')">copy</button>
   </div>
-  <div class="term-body" id="term-api-consent_id_masked"><code class="p">GET /generate/consent_id_masked</code><code class="c"># → {"type":"consent_id_masked","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/consent_id_masked?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["consent_id_masked"],"count":1}</code></div>
+  <div class="term-body" id="term-api-consent_id_masked"><code class="p">GET /generate/consent_id_masked</code><code class="c"># → {"type":"consent_id_masked","result":"...","status":"ok"}</code><code class="p"></code><code class="p">GET /bulk/consent_id_masked?count=10</code><code class="p">POST /template</code><code class="p">     {"types":["consent_id_masked"],"count":1}</code><code class="c"></code><code class="c"># mask=true: regulation-compliant output</code><code class="p">GET /generate/consent_id_masked?mask=true</code><code class="p">GET /bulk/consent_id_masked?count=5&mask=true</code></div>
 </div>
   </div>
 
-  
+  <div class="params-section">
+  <h2>Parameter</h2>
+  <table>
+    <thead><tr>
+      <th>Parameter</th>
+      <th>Werte</th>
+      <th>Beschreibung</th>
+    </tr></thead>
+    <tbody><tr>
+              <td><span class="param-flag">--mask</span></td>
+              <td><span class="param-vals">true | false</span></td>
+              <td>Return a regulation-compliant masked value (PCI DSS, GDPR, KVKK…)</td>
+            </tr></tbody>
+  </table>
+</div>
   <div class="examples-section"><h2>Beispielausgaben</h2><div class="examples-grid"><code class="example-val">****-****-****-****-0c28a943</code></div></div>
   <div class="validation-section"><h2>Validierungsregeln</h2><ul class="validation-list"><li>Von Mock Jutsu gemäß echten Formatspezifikationen generiert</li><li>Alle produzierten Werte sind vollständig synthetisch</li><li>Für Entwicklungs-, Test- und Demoumgebungen</li></ul></div>
   <div class="related">
