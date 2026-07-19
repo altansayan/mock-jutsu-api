@@ -8,7 +8,7 @@ COPY pyproject.toml setup.py ./
 COPY src/ ./src/
 
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir . granian
+    pip install --no-cache-dir ".[server]"
 
 # ── Stage 2: Runtime ──────────────────────────────────────────────────────────
 FROM python:3.12-slim AS runtime

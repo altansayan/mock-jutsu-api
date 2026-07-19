@@ -2,6 +2,11 @@
 
 All notable changes to Mock Jutsu are documented here.
 
+## [1.1.4] - 2026-07-20
+
+### Fixed
+- **Docker image REST API was completely non-functional since Docker support was added (2026-06-22, v1.1.0+).** The builder stage installed the bare package plus `granian` only, never `fastapi`/`httpx` — every worker crashed on startup with `ModuleNotFoundError: No module named 'fastapi'` in an infinite respawn loop, and `/health` never came up. Fixed by installing the `[server]` extra (`pip install ".[server]"`), which pulls in `fastapi`, `granian`, and `httpx` together. Verified locally: built the image, ran it, confirmed `/health` responds and `/generate/tckn` returns valid data with all 4 workers stable.
+
 ## [1.1.3] - 2026-07-20
 
 ### Fixed
