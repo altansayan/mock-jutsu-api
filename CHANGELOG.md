@@ -2,6 +2,11 @@
 
 All notable changes to Mock Jutsu are documented here.
 
+## [1.1.3] - 2026-07-20
+
+### Fixed
+- Pin `click!=8.3.*` — click 8.3.0/8.3.1 have a regression in `CliRunner.invoke()` where the `finally` block's `sys.stdout.flush()` runs on an already-closed stream, raising `ValueError: I/O operation on closed file.` This broke essentially every CLI test (1287 failures) for anyone installing during that version window. Fixed upstream in click 8.4; excluding the whole 8.3.x line here since it's the narrowest safe fix without needing an exact good/bad patch boundary.
+
 ## [1.1.2] - 2026-07-20
 
 ### Added
