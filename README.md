@@ -49,7 +49,11 @@ QA engineers, Data Scientists, and Fintech developers are tired of test data fai
 
 ## 🤔 Why Mock Jutsu?
 
-| Capability | `Mock Jutsu` 🥷 | Traditional Mockers 🤡 |
+**Mock Jutsu — checksum-valid test data for Fintech Developers, QA Testers, and Everyone Else.**
+
+Traditional mockers produce values that merely look correct; Mock Jutsu generates national IDs, IBANs, and card numbers that pass real validation — every checksum computed to spec, and independently verified against third-party libraries rather than our own test suite. Use it for Unit Tests, Integration Tests, or UAT.
+
+| Capability | `Mock Jutsu` 🥷 | Traditional Mockers |
 |:---|:---:|:---:|
 | **Card Numbers (Luhn Valid)** | ✅ 9 Networks Validated | ❌ Random digits |
 | **IBANs (MOD-97 Valid)** | ✅ Country-specific | ❌ Format-only |
