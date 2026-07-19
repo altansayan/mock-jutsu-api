@@ -4,14 +4,21 @@ All notable changes to Mock Jutsu are documented here.
 
 ## [1.1.2] - 2026-07-20
 
+### Added
+- `jutsu.masker(type, value)` API — validates then masks a value per PCI DSS / GDPR / KVKK rules, returning `"No Valid Data"` on invalid input
+- `cardnum_bin8` type and `--bin8` CLI flag (ISO/IEC 7812:2017 8-digit BIN masking)
+
 ### Fixed
 - `ubl_invoice`: customer TCKN and supplier VKN now pass real checksum validation (previously random digits with no checksum — always invalid)
 - `mt940` / `camt053`: account IBAN now uses real ISO 13616 MOD-97 check digits (previously randomized per its own "checksum approximate" note — invalid almost every time)
 
 ### Changed
-- Consolidated duplicated checksum implementations (ABA routing, card Luhn, CUSIP/SEDOL, EPIC/Personnummer) into the shared `algorithms` module — no output change, reduces future drift risk
+- Centralized checksum algorithms (Luhn, IBAN MOD-97, ISIN/CUSIP, ABA routing, etc.) into a shared `algorithms` module and added a `validators` module — consolidates several previously duplicated/drifted implementations
 
 ## [1.1.1] - 2026-06-24
+
+### Added
+- 15 masked variant types (account_number_masked, micr_line_masked, etc.) plus Wave B/C security generators (password, password_hash, cve_id) — 390 total types
 
 ### Security
 - Upgrade pip in Docker builder stage to fix CVE-2025-8869 and CVE-2026-8643
