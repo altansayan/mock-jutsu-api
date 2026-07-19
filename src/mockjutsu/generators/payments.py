@@ -8,6 +8,8 @@ import random
 import secrets
 from datetime import datetime, timezone, timedelta
 
+from mockjutsu.algorithms import iban_check_digits
+
 # ─── Shared: MOCKJ fictional BIC codes ──────────────────────────────────────
 # "MOCK" institution prefix — any real bank firewall/log can filter on this
 # pattern, blocking misuse before it reaches core banking.
@@ -102,10 +104,7 @@ def _random_iban(country="DE"):
     """Structurally valid IBAN with correct MOD-97 check digits (all-digit BBAN)."""
     bban_len = _IBAN_BBAN_LEN.get(country, 18)
     bban = "".join(str(random.randint(0, 9)) for _ in range(bban_len))
-    rearranged = bban + country + "00"
-    numeric = "".join(str(ord(c) - 55) if c.isalpha() else c for c in rearranged)
-    check = 98 - (int(numeric) % 97)
-    return f"{country}{check:02d}{bban}"
+    return f"{country}{iban_check_digits(country, bban)}{bban}"
 
 
 def _pain001(strict=False):
@@ -283,10 +282,8 @@ def _sepa_creditor_id(country="DE"):
     """SEPA Creditor ID with MOD-97 check digits (same algorithm as IBAN)."""
     biz_code = "".join(random.choices("ABCDEFGHIJKLMNOPQRSTUVWXYZ", k=3))
     nat_id = "".join(random.choices("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", k=random.randint(6, 11)))
-    rearranged = biz_code + nat_id + country + "00"
-    numeric = "".join(str(ord(c) - 55) if c.isalpha() else c for c in rearranged)
-    check = 98 - (int(numeric) % 97)
-    return f"{country}{check:02d}{biz_code}{nat_id}"
+    body = biz_code + nat_id
+    return f"{country}{iban_check_digits(country, body)}{body}"
 
 
 def _sepa_mandate(strict=False):

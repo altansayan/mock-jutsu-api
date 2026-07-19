@@ -515,23 +515,10 @@ class FinancialMarketsGenerator:
             # US NSIN = CUSIP (9 chars)
             chars = string.digits + 'ABCDEFGHJKLMNPQRSTUVWXYZ'
             payload = ''.join(random.choice(chars) for _ in range(8))
-            total = 0
-            for i, c in enumerate(payload):
-                v = int(c) if c.isdigit() else ord(c) - 55
-                if i % 2 == 1:
-                    v *= 2
-                total += v // 10 + v % 10
-            check = (10 - total % 10) % 10
-            return payload + str(check)
+            return payload + str(cusip_check(payload))
         if locale == 'UK':
             # UK NSIN is a 7-char SEDOL (no vowels + digits)
             payload = ''.join(random.choice(_SEDOL_CHARS) for _ in range(6))
-            weights = [1, 3, 1, 7, 3, 9]
-            total = sum(
-                (int(c) if c.isdigit() else ord(c) - 55) * w
-                for c, w in zip(payload, weights)
-            )
-            check = (10 - total % 10) % 10
-            return payload + str(check)
+            return payload + str(_sedol_check(payload))
         # Generic: 9-char uppercase alphanumeric for DE/FR/TR/RU
         return ''.join(random.choice(string.digits + string.ascii_uppercase) for _ in range(9))

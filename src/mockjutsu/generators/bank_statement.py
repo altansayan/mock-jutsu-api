@@ -17,6 +17,8 @@ import datetime
 import random
 import uuid
 
+from mockjutsu.algorithms import iban_check_digits
+
 
 # ── Locale data ───────────────────────────────────────────────────────────────
 
@@ -38,22 +40,19 @@ _MT940_TX_CODES = ['NTRN', 'NTRF', 'NCHK', 'NDDP', 'NFEX']
 # ── IBAN helpers ──────────────────────────────────────────────────────────────
 
 def _mock_iban(locale: str) -> str:
-    """Locale-specific mock IBAN (format correct, checksum approximate)."""
+    """Locale-specific mock IBAN with real ISO 13616 MOD-97 check digits."""
     d = lambda n: ''.join(str(random.randint(0, 9)) for _ in range(n))
     a = lambda n: ''.join(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(n))
     loc = locale.upper()
-    if loc == 'TR':
-        return f"TR{d(2)}{d(5)}{d(1)}{d(16)}"
-    if loc == 'DE':
-        return f"DE{d(2)}{d(8)}{d(10)}"
-    if loc == 'FR':
-        return f"FR{d(2)}{d(5)}{d(5)}{d(11)}{d(2)}"
-    if loc == 'UK':
-        return f"GB{d(2)}{a(4)}{d(6)}{d(8)}"
     if loc == 'US':
         return d(12)  # US uses routing+account, not IBAN
-    # RU
-    return f"RU{d(2)}{d(3)}{d(15)}"
+    country, bban = {
+        'TR': ('TR', f"{d(5)}{d(1)}{d(16)}"),
+        'DE': ('DE', f"{d(8)}{d(10)}"),
+        'FR': ('FR', f"{d(5)}{d(5)}{d(11)}{d(2)}"),
+        'UK': ('GB', f"{a(4)}{d(6)}{d(8)}"),
+    }.get(loc, ('RU', f"{d(3)}{d(15)}"))
+    return f"{country}{iban_check_digits(country, bban)}{bban}"
 
 
 def _rand_ref(n: int = 8) -> str:

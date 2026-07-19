@@ -14,6 +14,7 @@ import re
 import xml.etree.ElementTree as ET
 import pytest
 from mockjutsu.core import MockJutsuCore
+from mockjutsu.algorithms import iban_valid
 
 jutsu = MockJutsuCore()
 
@@ -135,6 +136,20 @@ class TestMt940:
                     assert 1 <= mm <= 12, f":61: booking month out of range: {line}"
                     assert 1 <= dd <= 31, f":61: booking day out of range: {line}"
 
+    def test_iban_passes_mod97_checksum(self):
+        """:25: account field IBAN must pass real ISO 13616 MOD-97 checksum.
+
+        Regression test: _mock_iban() used to generate random check digits
+        ("checksum approximate" per its own docstring) instead of computing
+        them via algorithms.iban_check_digits().
+        """
+        for loc in ('TR', 'DE', 'FR', 'UK'):
+            for _ in range(10):
+                stmt = jutsu.generate('mt940', locale=loc)
+                line = next(l for l in stmt.splitlines() if l.startswith(':25:'))
+                iban = line[4:].split('/')[0]
+                assert iban_valid(iban), f"Invalid IBAN ({loc}): {iban}"
+
 
 # ── camt053 ───────────────────────────────────────────────────────────────────
 
@@ -204,3 +219,16 @@ class TestCamt053:
             root = ET.fromstring(r)
             msg_ids.append(root.find(f'.//{{{_NS}}}MsgId').text)
         assert len(set(msg_ids)) == 5
+
+    def test_iban_passes_mod97_checksum(self):
+        """<IBAN> element must pass real ISO 13616 MOD-97 checksum.
+
+        Regression test: _mock_iban() used to generate random check digits
+        ("checksum approximate" per its own docstring) instead of computing
+        them via algorithms.iban_check_digits().
+        """
+        for loc in ('TR', 'DE', 'FR', 'UK'):
+            for _ in range(10):
+                root = ET.fromstring(jutsu.generate('camt053', locale=loc))
+                iban = root.find(f'.//{{{_NS}}}IBAN').text
+                assert iban_valid(iban), f"Invalid IBAN ({loc}): {iban}"

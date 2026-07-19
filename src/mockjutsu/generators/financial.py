@@ -7,7 +7,8 @@ import random
 import secrets
 from datetime import datetime
 from mockjutsu.generators.name_data import NAME_POOLS
-from mockjutsu.algorithms import iban_check_digits
+from mockjutsu.generators.banking import BankingGenerator
+from mockjutsu.algorithms import iban_check_digits, luhn_check_digit
 
 def _crc16_emvco(data: str) -> str:
     crc = 0xFFFF
@@ -69,14 +70,7 @@ class FinancialGenerator:
     def _luhn_complete(prefix_digits, total_length):
         """Build a Luhn-valid card number from a prefix."""
         partial = prefix_digits + [random.randrange(10) for _ in range(total_length - len(prefix_digits) - 1)]
-        total = 0
-        for i, d in enumerate(reversed(partial)):
-            pos = i + 2
-            n = d * 2 if pos % 2 == 0 else d
-            if n > 9:
-                n -= 9
-            total += n
-        partial.append((10 - total % 10) % 10)
+        partial.append(luhn_check_digit(partial))
         return "".join(map(str, partial))
 
     def generate_card_number(self, network="visa"):
@@ -102,7 +96,7 @@ class FinancialGenerator:
             check = iban_check_digits(fmt["prefix"], body)
             return f"{fmt['prefix']}{check}{body}"
         if fmt["type"] == "ROUTING":
-            r = _generate_aba_routing()
+            r = BankingGenerator.generate_routing_number()
             a = "".join(str(random.randrange(10)) for _ in range(12))
             return f"RT:{r} ACC:{a}"
         if fmt["type"] == "BIK":
@@ -396,20 +390,5 @@ class FinancialGenerator:
         
         payload = f"{p00}{p01}{p26}{p52}{p53}{p54}{p58}{p59}{p60}6304"
         crc = _crc16_emvco(payload)
-        
+
         return payload + crc
-
-
-def _generate_aba_routing():
-    """ABA routing number — MOD-10 checksum: 3*(d0+d3+d6) + 7*(d1+d4+d7) + (d2+d5+d8) ≡ 0 (mod 10)."""
-    districts = [
-        "01","02","03","04","05","06","07","08","09","10","11","12",
-        "21","22","23","24","25","26","27","28","29","30","31","32",
-        "61","62","63","64","65","66","67","68","69","70","71","72","80",
-    ]
-    d_str = random.choice(districts)
-    d = [int(d_str[0]), int(d_str[1])] + [random.randrange(10) for _ in range(6)]
-    total = 3 * (d[0] + d[3] + d[6]) + 7 * (d[1] + d[4] + d[7]) + (d[2] + d[5])
-    check = (10 - total % 10) % 10
-    d.append(check)
-    return "".join(map(str, d))

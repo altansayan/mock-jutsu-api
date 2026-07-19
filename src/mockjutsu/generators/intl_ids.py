@@ -131,14 +131,7 @@ class IntlIdsGenerator:
         """Indian Voter ID (EPIC) — 3 uppercase letters + 6 digits + Luhn check digit."""
         prefix = ''.join(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(3))
         digits = [random.randint(0, 9) for _ in range(6)]
-        total = 0
-        for i, d in enumerate(reversed(digits)):
-            if i % 2 == 0:
-                d = d * 2
-                if d > 9:
-                    d -= 9
-            total += d
-        check = (10 - total % 10) % 10
+        check = luhn_check_digit(digits)
         return f"{prefix}{''.join(map(str, digits))}{check}"
 
     # ── China ────────────────────────────────────────────────────────────────
@@ -422,11 +415,7 @@ class IntlIdsGenerator:
         gender_d = random.choice('0123456789')
         seq_str = f"{seq2:02d}{gender_d}"
         base = f"{year%100:02d}{month:02d}{day:02d}{seq_str}"
-        total = 0
-        for i, c in enumerate(base):
-            n = int(c) * (2 if i % 2 == 0 else 1)
-            total += n - 9 if n > 9 else n
-        check = (10 - total % 10) % 10
+        check = luhn_check_digit([int(c) for c in base])
         return f"{year:04d}{month:02d}{day:02d}-{seq_str}{check}"
 
     # ── Denmark ──────────────────────────────────────────────────────────────

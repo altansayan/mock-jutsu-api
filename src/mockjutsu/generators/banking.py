@@ -7,7 +7,7 @@ import random
 import string
 import secrets
 from datetime import datetime, timezone, timedelta
-from mockjutsu.algorithms import iban_check_digits
+from mockjutsu.algorithms import iban_check_digits, aba_routing_check_digit
 
 # Public BIC/SWIFT codes — published by SWIFT (swift.com) and individual banks
 BIC_CODES = {
@@ -153,9 +153,7 @@ class BankingGenerator:
         ]
         d_str = random.choice(districts)
         d = [int(d_str[0]), int(d_str[1])] + [random.randrange(10) for _ in range(6)]
-        total = 3 * (d[0] + d[3] + d[6]) + 7 * (d[1] + d[4] + d[7]) + (d[2] + d[5])
-        check = (10 - total % 10) % 10
-        d.append(check)
+        d.append(aba_routing_check_digit(d))
         return "".join(map(str, d))
 
     @staticmethod

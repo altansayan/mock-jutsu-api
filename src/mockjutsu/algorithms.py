@@ -53,6 +53,16 @@ def iban_check_digits(prefix: str, body: str) -> str:
     return f"{check:02d}"
 
 
+def aba_routing_check_digit(digits: list[int]) -> int:
+    """ABA routing number check digit for the first 8 digits.
+
+    Weighted sum 3,7,1 repeating: 3*(d0+d3+d6) + 7*(d1+d4+d7) + (d2+d5) ≡ 0 (mod 10).
+    Single source — previously duplicated in banking.py and financial.py.
+    """
+    total = 3 * (digits[0] + digits[3] + digits[6]) + 7 * (digits[1] + digits[4] + digits[7]) + (digits[2] + digits[5])
+    return (10 - total % 10) % 10
+
+
 def isin_luhn_check(payload: str) -> int:
     """Luhn check digit for ISIN: expand letters (A=10…Z=35), then standard Luhn."""
     numeric = "".join(str(ord(c) - 55) if c.isalpha() else c for c in payload)

@@ -24,6 +24,8 @@ import json
 import random
 import uuid
 
+from mockjutsu.generators.identity import IdentityGenerator
+
 # ── Constants ─────────────────────────────────────────────────────────────────
 
 _INVOICE_TYPES = ['SATIS', 'IADE', 'TEVKIFAT', 'IHTIYAT', 'ISTISNA']
@@ -71,14 +73,6 @@ def _mock_x509_der() -> bytes:
     return bytes([0x30, 0x82]) + len(cert).to_bytes(2, 'big') + cert
 
 
-def _fake_vkn() -> str:
-    return ''.join(str(random.randint(0, 9)) for _ in range(10))
-
-
-def _fake_tckn() -> str:
-    return str(random.randint(1, 9)) + ''.join(str(random.randint(0, 9)) for _ in range(10))
-
-
 # ── UBL 2.1 Invoice ──────────────────────────────────────────────────────────
 
 def generate_ubl_invoice() -> str:
@@ -119,8 +113,8 @@ def generate_ubl_invoice() -> str:
     tax_amount   = round(net_amount * tax_rate / 100, 2)
     gross_amount = round(net_amount + tax_amount, 2)
 
-    supplier_vkn  = _fake_vkn()
-    customer_tckn = _fake_tckn()
+    supplier_vkn  = IdentityGenerator.generate_tr_vkn()
+    customer_tckn = IdentityGenerator.generate_tr_id()
 
     # Build InvoiceLine XML blocks
     line_blocks = []
