@@ -2,6 +2,15 @@
 
 All notable changes to Mock Jutsu are documented here.
 
+## [1.1.2] - 2026-07-20
+
+### Fixed
+- `ubl_invoice`: customer TCKN and supplier VKN now pass real checksum validation (previously random digits with no checksum — always invalid)
+- `mt940` / `camt053`: account IBAN now uses real ISO 13616 MOD-97 check digits (previously randomized per its own "checksum approximate" note — invalid almost every time)
+
+### Changed
+- Consolidated duplicated checksum implementations (ABA routing, card Luhn, CUSIP/SEDOL, EPIC/Personnummer) into the shared `algorithms` module — no output change, reduces future drift risk
+
 ## [1.1.1] - 2026-06-24
 
 ### Security
