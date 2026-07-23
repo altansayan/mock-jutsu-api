@@ -1,4 +1,4 @@
 Contact: mailto:altansezerayan@gmail.com
-Expires: 2027-07-19T00:00:00z
+Expires: 2027-07-23T00:00:00z
 Preferred-Languages: tr, en
 Canonical: https://altansayan.github.io/mock-jutsu-api/.well-known/security.txt
