@@ -319,7 +319,7 @@ Please read our full **[CONTRIBUTING.md](./CONTRIBUTING.md)** guide before start
 
 ## ⚖️ Legal Disclaimer
 
-Generated data is **entirely synthetic and for development/testing environments only.**
+Generated data is **entirely mock and for development/testing environments only.**
 - Do not submit to real financial, government, or telecom production systems.
 - Generated IBANs, card numbers, and national IDs are mathematically valid but **do not belong to real entities**.
 
