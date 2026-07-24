@@ -69,6 +69,7 @@ validation = [
     "cryptography>=42.0",
     "mt940>=0.8",
     "hl7>=0.4",
+    "annotated-types>=0.7.0",
     "fhir.resources>=8.0",
     "simplefix>=1.0",
     "netaddr>=1.0",
