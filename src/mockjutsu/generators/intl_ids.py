@@ -87,7 +87,7 @@ class IntlIdsGenerator:
         p1 = ''.join(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(3))
         p2 = random.choice('PCFHBLJGTA')
         p3 = random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-        p4 = ''.join(str(random.randint(0, 9)) for _ in range(4))
+        p4 = f"{random.randint(1, 9999):04d}"
         p5 = random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
         return f"{p1}{p2}{p3}{p4}{p5}"
 
