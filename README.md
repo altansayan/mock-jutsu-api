@@ -103,41 +103,6 @@ cd mock-jutsu-api
 pip install -e .
 ```
 
-### REST API — Docker (Recommended)
-
-Run the full REST API locally with a single command. No Python required.
-
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-altansezerayan%2Fmock--jutsu-2496ED?style=flat&logo=docker&logoColor=white)](https://hub.docker.com/r/altansezerayan/mock-jutsu)
-
-```bash
-# Pull and run (port 8000)
-docker run -p 8000:8000 altansezerayan/mock-jutsu:latest
-
-# With custom worker count
-docker run -p 8000:8000 -e GRANIAN_WORKERS=8 altansezerayan/mock-jutsu:latest
-
-# Run in background
-docker run -d -p 8000:8000 --name mock-jutsu altansezerayan/mock-jutsu:latest
-```
-
-Once running:
-- **Swagger UI:** http://localhost:8000/docs
-- **API:** http://localhost:8000/generate/{type}
-
-### 🌐 REST API — Built-in CLI (Local, Optional)
-
-If you have the Python package installed, you can also spin up the API directly via CLI — no Docker needed.
-
-```bash
-$ mockjutsu start-api --port 8000
-```
-```http
-GET http://localhost:8000/generate/cardnum?network=visa
-GET http://localhost:8000/profile?locale=DE&count=3
-
-# Interactive Swagger UI automatically available at http://localhost:8000/docs
-```
-
 ### ☕ Java Library
 
 Mock Jutsu is also available as a **zero-dependency Java library** — the same 390+ types, algorithmic guarantees, and fluent builder API, packaged for Maven and Gradle. No Python runtime required.
@@ -181,6 +146,43 @@ ${__mockjutsu_contact(email|US)}                  → john.doe@example.com
 ```
 
 → **[mock-jutsu-jmeter on GitHub](https://github.com/altansayan/mock-jutsu-jmeter)** · [Official Plugin Page](https://jmeter-plugins.org/?search=mock-jutsu) · [Download JAR v1.0.1](https://github.com/altansayan/mock-jutsu-jmeter/releases/tag/v1.0.1)
+
+---
+
+### REST API — Docker (Recommended)
+
+Run the full REST API locally with a single command. No Python required.
+
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-altansezerayan%2Fmock--jutsu-2496ED?style=flat&logo=docker&logoColor=white)](https://hub.docker.com/r/altansezerayan/mock-jutsu)
+
+```bash
+# Pull and run (port 8000)
+docker run -p 8000:8000 altansezerayan/mock-jutsu:latest
+
+# With custom worker count
+docker run -p 8000:8000 -e GRANIAN_WORKERS=8 altansezerayan/mock-jutsu:latest
+
+# Run in background
+docker run -d -p 8000:8000 --name mock-jutsu altansezerayan/mock-jutsu:latest
+```
+
+Once running:
+- **Swagger UI:** http://localhost:8000/docs
+- **API:** http://localhost:8000/generate/{type}
+
+### 🌐 REST API — Built-in CLI (Local, Optional)
+
+If you have the Python package installed, you can also spin up the API directly via CLI — no Docker needed.
+
+```bash
+$ mockjutsu start-api --port 8000
+```
+```http
+GET http://localhost:8000/generate/cardnum?network=visa
+GET http://localhost:8000/profile?locale=DE&count=3
+
+# Interactive Swagger UI automatically available at http://localhost:8000/docs
+```
 
 ### 📬 Postman Collection
 
