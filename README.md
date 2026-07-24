@@ -157,8 +157,8 @@ Mock Jutsu is also available as a **zero-dependency Java library** — the same 
 implementation 'io.github.altansayan:mockjutsu:1.0.0'
 ```
 ```java
-String tckn = MockJutsu.generate("tckn", "TR");
-String iban  = MockJutsu.generate("iban", "DE");
+String tckn = MockJutsu.generate(DataType.TCKN, MockJutsuLocale.TR);
+String iban  = MockJutsu.generate(DataType.IBAN,  MockJutsuLocale.DE);
 String card  = MockJutsu.cardnum().locale(TR).network(VISA).generate();
 List<String> bulk = MockJutsu.iban().locale(TR).bulk(50);
 ```
