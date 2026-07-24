@@ -759,22 +759,15 @@ class TestFhir:
         if fhir_ver < (8, 0):
             pytest.skip(f"fhir.resources {fhir_mod.__version__} uses Pydantic v1 — model_validate requires v8+")
         results = []
-        first_error: str | None = None
         for v in _gen("fhir_patient"):
             try:
                 obj = json.loads(v)
                 from fhir.resources.patient import Patient
                 Patient.model_validate(obj)
                 results.append(True)
-            except Exception as exc:
-                if first_error is None:
-                    first_error = f"{type(exc).__name__}: {exc}"
+            except Exception:
                 results.append(False)
-        rate = sum(results) / len(results)
-        assert rate == 1.0, (
-            f"fhir_patient: {results.count(False)}/100 samples failed. "
-            f"Root cause: {first_error}"
-        )
+        _assert_all("fhir_patient", results)
 
 
 # ─── cryptography ────────────────────────────────────────────────────────────
