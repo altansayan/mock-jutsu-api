@@ -754,7 +754,10 @@ class TestHl7:
 class TestFhir:
 
     def test_fhir_patient_parse(self):
-        pytest.importorskip("fhir")
+        fhir_mod = pytest.importorskip("fhir.resources")
+        fhir_ver = tuple(int(x) for x in fhir_mod.__version__.split(".")[:2])
+        if fhir_ver < (8, 0):
+            pytest.skip(f"fhir.resources {fhir_mod.__version__} uses Pydantic v1 — model_validate requires v8+")
         results = []
         for v in _gen("fhir_patient"):
             try:
