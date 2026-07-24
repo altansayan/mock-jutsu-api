@@ -15,6 +15,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/mockjutsu?style=for-the-badge&logo=pypi&logoColor=white&color=006DAD)](https://pypi.org/project/mockjutsu/)
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-altansezerayan%2Fmock--jutsu-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/r/altansezerayan/mock-jutsu)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.altansayan/mockjutsu?style=for-the-badge&label=Maven%20Central&color=C71A36)](https://central.sonatype.com/artifact/io.github.altansayan/mockjutsu)
 [![JMeter Plugin](https://img.shields.io/badge/JMeter%20Plugin-v1.0.1-D22128?style=for-the-badge&logo=apachejmeter&logoColor=white)](https://jmeter-plugins.org/?search=mock-jutsu)
 [![Postman](https://img.shields.io/badge/Postman-390%20Requests-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://documenter.getpostman.com/view/336518/2sBXwyJ7qH)
 [![Product Hunt](https://img.shields.io/badge/Product%20Hunt-Featured-DA552F?style=for-the-badge&logo=producthunt&logoColor=white)](https://www.producthunt.com/posts/mock-jutsu)
@@ -136,6 +137,35 @@ GET http://localhost:8000/profile?locale=DE&count=3
 
 # Interactive Swagger UI automatically available at http://localhost:8000/docs
 ```
+
+### ☕ Java Library
+
+Mock Jutsu is also available as a **zero-dependency Java library** — the same 390+ types, algorithmic guarantees, and fluent builder API, packaged for Maven and Gradle. No Python runtime required.
+
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.altansayan/mockjutsu?style=flat&label=Maven%20Central&color=C71A36)](https://central.sonatype.com/artifact/io.github.altansayan/mockjutsu)
+
+```xml
+<!-- Maven -->
+<dependency>
+  <groupId>io.github.altansayan</groupId>
+  <artifactId>mockjutsu</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+```groovy
+// Gradle
+implementation 'io.github.altansayan:mockjutsu:1.0.0'
+```
+```java
+String tckn = MockJutsu.generate("tckn", "TR");
+String iban  = MockJutsu.generate("iban", "DE");
+String card  = MockJutsu.cardnum().locale(TR).network(VISA).generate();
+List<String> bulk = MockJutsu.iban().locale(TR).bulk(50);
+```
+
+→ **[mock-jutsu-java on GitHub](https://github.com/altansayan/mock-jutsu-java)** · [Maven Central](https://central.sonatype.com/artifact/io.github.altansayan/mockjutsu)
+
+---
 
 ### 🔧 JMeter Plugin
 
