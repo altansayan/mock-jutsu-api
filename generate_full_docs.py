@@ -1507,6 +1507,7 @@ def html_header(h1: str, subtitle: str, back_url: str, back_label: str) -> str:
     <a href="https://github.com/altansayan/mock-jutsu-api" target="_blank" class="hlink">{gh_svg} GitHub</a>
     <a href="https://pypi.org/project/mockjutsu/" target="_blank" class="hlink">{pypi_svg} PyPI</a>
     <a href="https://hub.docker.com/r/altansezerayan/mock-jutsu" target="_blank" class="hlink">{docker_svg} Docker Hub</a>
+    <a href="https://central.sonatype.com/artifact/io.github.altansayan/mockjutsu" target="_blank" class="hlink"><svg height="18" viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.09-.34.13-.53.13s-.37-.04-.53-.12l-7.9-4.44A1 1 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.32-.18.74-.18 1.06 0l7.9 4.44c.32.17.53.5.53.88v9M12 4.15L5.09 8 12 11.85 18.91 8 12 4.15M5 15.91l6 3.38v-6.71L5 9.21v6.7M19 15.91v-6.7l-6 3.37v6.71l6-3.38z"/></svg> Maven</a>
     <a href="https://jmeter-plugins.org/?search=mock-jutsu" target="_blank" class="hlink">{jmeter_svg} JMeter Plugin</a>
   </div>
 </div>"""
@@ -1969,6 +1970,8 @@ def build_listing_page(lang: str) -> str:
         f' target="_blank" class="hlink">{pypi_svg_l} PyPI</a>\n'
         '    <a href="https://hub.docker.com/r/altansezerayan/mock-jutsu"'
         f' target="_blank" class="hlink">{docker_svg_l} Docker Hub</a>\n'
+        '    <a href="https://central.sonatype.com/artifact/io.github.altansayan/mockjutsu"'
+        ' target="_blank" class="hlink"><svg height="18" viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.09-.34.13-.53.13s-.37-.04-.53-.12l-7.9-4.44A1 1 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.32-.18.74-.18 1.06 0l7.9 4.44c.32.17.53.5.53.88v9M12 4.15L5.09 8 12 11.85 18.91 8 12 4.15M5 15.91l6 3.38v-6.71L5 9.21v6.7M19 15.91v-6.7l-6 3.37v6.71l6-3.38z"/></svg> Maven</a>\n'
         '    <a href="https://jmeter-plugins.org/?search=mock-jutsu"'
         f' target="_blank" class="hlink">{jmeter_svg_l} JMeter Plugin</a>\n'
         '    <a href="https://www.linkedin.com/in/altansezerayan/"'
