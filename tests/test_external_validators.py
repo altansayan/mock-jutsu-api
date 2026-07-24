@@ -759,14 +759,21 @@ class TestFhir:
         if fhir_ver < (8, 0):
             pytest.skip(f"fhir.resources {fhir_mod.__version__} uses Pydantic v1 — model_validate requires v8+")
         results = []
+        first_error = None
         for v in _gen("fhir_patient"):
             try:
                 obj = json.loads(v)
                 from fhir.resources.patient import Patient
                 Patient.model_validate(obj)
                 results.append(True)
-            except Exception:
+            except Exception as e:
+                if first_error is None:
+                    first_error = f"{type(e).__name__}: {e}"
                 results.append(False)
+        assert results or True  # ensure first_error is available in scope
+        if first_error:
+            # Surface the root cause before the count assertion fires
+            pytest.fail(f"fhir_patient validation error — {first_error}")
         _assert_all("fhir_patient", results)
 
 
