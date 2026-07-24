@@ -86,7 +86,7 @@ Traditional mockers produce values that merely look correct; Mock Jutsu generate
 
 ## ⚙️ Installation
 
-### Python Package
+### 🐍 Python Package
 
 Requires **Python 3.9+**.
 
