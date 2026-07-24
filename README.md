@@ -149,7 +149,7 @@ ${__mockjutsu_contact(email|US)}                  → john.doe@example.com
 
 ---
 
-### REST API — Docker (Recommended)
+### 🐳 REST API — Docker (Recommended)
 
 Run the full REST API locally with a single command. No Python required.
 
