@@ -52,11 +52,7 @@ jobs:
     - name: Install mock-jutsu + validation deps
       run: |
         python -m pip install --upgrade pip
-        pip install -e ".[validation]" pytest
-
-    - name: Debug installed package versions
-      run: |
-        pip show annotated-types fhir.resources fhir-core pydantic | grep -E "^(Name|Version):"
+        pip install -e ".[validation]" pytest --upgrade
 
     - name: Run external validator tests
       run: |
