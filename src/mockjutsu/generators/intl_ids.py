@@ -207,18 +207,24 @@ class IntlIdsGenerator:
     @staticmethod
     def gen_mx_rfc():
         """Mexican RFC — 12 chars (company) or 13 chars (individual)."""
-        year  = random.randint(1950, 2005)
-        month = random.randint(1, 12)
-        day   = random.randint(1, 28)
-        is_individual = random.random() > 0.4
-        if is_individual:
-            letters = ''.join(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(4))
-        else:
-            letters = ''.join(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(3))
-        date_part = f"{year%100:02d}{month:02d}{day:02d}"
-        homoclave = ''.join(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') for _ in range(2))
-        hd = str(random.randint(0, 9))
-        return f"{letters}{date_part}{homoclave}{hd}"
+        for _ in range(50):
+            year  = random.randint(1950, 2005)
+            month = random.randint(1, 12)
+            day   = random.randint(1, 28)
+            is_individual = random.random() > 0.4
+            if is_individual:
+                letters = ''.join(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(4))
+                if letters in IntlIdsGenerator._CURP_BLACKLIST:
+                    continue
+            else:
+                letters = ''.join(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ') for _ in range(3))
+                if any(letters == w[:3] for w in IntlIdsGenerator._CURP_BLACKLIST):
+                    continue
+            date_part = f"{year%100:02d}{month:02d}{day:02d}"
+            homoclave = ''.join(random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') for _ in range(2))
+            hd = str(random.randint(0, 9))
+            return f"{letters}{date_part}{homoclave}{hd}"
+        return "BOXW310820XYZ4"
 
     # ── Italy ────────────────────────────────────────────────────────────────
 
