@@ -5,7 +5,7 @@
 
 # 🥷 Mock Jutsu
 
-**Stop mocking with random strings. Start generating cryptographically valid test data.**
+**Stop mocking with random strings. Start generating valid test data.**
 
 [![CI](https://img.shields.io/github/actions/workflow/status/altansayan/mock-jutsu-api/ci.yml?branch=main&style=for-the-badge&label=CI&logo=githubactions&logoColor=white)](https://github.com/altansayan/mock-jutsu-api/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.9%2B-3b82f6?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
