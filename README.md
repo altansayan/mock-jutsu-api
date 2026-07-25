@@ -362,6 +362,15 @@ Generated data is **entirely mock and for development/testing environments only.
 
 <div align="center">
 
+## 🔗 Related
+
+- **Java Library**: [mock-jutsu-java](https://github.com/altansayan/mock-jutsu-java) — Maven Central: `io.github.altansayan:mockjutsu:1.0.0`
+- **JMeter Plugin**: [mock-jutsu-jmeter](https://github.com/altansayan/mock-jutsu-jmeter) — [Official Plugin Page](https://jmeter-plugins.org/?search=mock-jutsu)
+- **PyPI**: [mockjutsu](https://pypi.org/project/mockjutsu/)
+- **Docker Hub**: [altansezerayan/mock-jutsu](https://hub.docker.com/r/altansezerayan/mock-jutsu)
+
+---
+
 ## 💖 Support Mock Jutsu
 
 Mock Jutsu is **free and open-source**. If it saved you hours of debugging, consider buying me a coffee ☕
