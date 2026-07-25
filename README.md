@@ -7,7 +7,7 @@
 
 **Stop mocking with random strings. Start generating cryptographically valid test data.**
 
-[![Tests](https://img.shields.io/badge/tests-5998%20passed-22c55e?style=for-the-badge&logo=pytest)](./tests)
+[![CI](https://github.com/altansayan/mock-jutsu-api/actions/workflows/ci.yml/badge.svg?style=for-the-badge)](https://github.com/altansayan/mock-jutsu-api/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.9%2B-3b82f6?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Data Types](https://img.shields.io/badge/Data%20Types-390-a855f7?style=for-the-badge)](https://altansayan.github.io/mock-jutsu-api/)
 [![Locales](https://img.shields.io/badge/Locales-6-ec4899?style=for-the-badge)](#-6-locales-100-real-algorithms)

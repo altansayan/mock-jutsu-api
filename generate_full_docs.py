@@ -1283,7 +1283,7 @@ def json_ld_detail(fn: str, cat: str, desc: str, lang: str, ui: dict) -> str:
                 "@type": "HowTo",
                 "name": f"How to use {fn} in mock-jutsu",
                 "step": [
-                    {"@type": "HowToStep", "name": "Install", "text": "pip install mock-jutsu"},
+                    {"@type": "HowToStep", "name": "Install", "text": "pip install mockjutsu"},
                     {"@type": "HowToStep", "name": "Generate",
                      "text": f"mockjutsu generate {fn}"},
                 ],
@@ -2020,7 +2020,7 @@ def build_listing_page(lang: str) -> str:
     # ── Pre-build QS/Power/API content blocks (avoids f-string { } escaping) ──
     install_user_title, install_dev_title = QS_INSTALL_LABELS[lang]
     qs_install_user = (
-        "pip install mock-jutsu\n\n"
+        "pip install mockjutsu\n\n"
         "# verify\n"
         "mockjutsu --version\n"
         "python -c \"import mockjutsu; print('OK')\""
