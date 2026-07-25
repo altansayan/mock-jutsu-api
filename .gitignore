@@ -32,7 +32,12 @@ Thumbs.db
 
 # Reports (generated)
 reports/
+test_results.txt
 tests/test_results.txt
+
+# JMeter logs
+*.log
+jmeter.log
 
 # Environment variables
 .env
