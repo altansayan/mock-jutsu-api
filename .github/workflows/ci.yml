@@ -37,6 +37,47 @@ jobs:
       run: |
         pytest tests/ -v --cov=mockjutsu --cov-fail-under=85 --ignore=tests/test_external_validators.py
 
+  install-smoke-test:
+    name: "PyPI Install Smoke Test (${{ matrix.os }})"
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.11", "3.12"]
+
+    steps:
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install mockjutsu from PyPI
+      run: |
+        python -m pip install --upgrade pip
+        pip install mockjutsu
+
+    - name: Smoke test — CLI commands
+      run: |
+        mockjutsu generate tckn
+        mockjutsu generate iban --locale TR
+        mockjutsu generate cardnum --network visa
+        mockjutsu list
+        mockjutsu --help
+        mockjutsu bulk uuid --count 5
+        mockjutsu template uuid fullname --count 3 --format json
+
+    - name: Smoke test — Python SDK
+      run: |
+        python -c "
+        from mockjutsu.core import jutsu
+        assert jutsu.generate('tckn')
+        assert jutsu.generate('iban', locale='TR')
+        assert jutsu.generate('cardnum', network='visa')
+        assert jutsu.profile(locale='TR')
+        print('SDK OK')
+        "
+
   validate-external:
     runs-on: ubuntu-latest
     name: "External Validator Tests (Python 3.12)"
