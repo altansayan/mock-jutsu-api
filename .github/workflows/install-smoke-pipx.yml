@@ -1,0 +1,45 @@
+name: Install Smoke Test (pipx)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  pipx-smoke-test:
+    name: "pipx Install Smoke Test (${{ matrix.os }})"
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.11", "3.12"]
+
+    steps:
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install pipx
+      run: |
+        python -m pip install --upgrade pip
+        pip install pipx
+        pipx ensurepath
+
+    - name: Install mockjutsu via pipx
+      run: pipx install mockjutsu
+
+    - name: Smoke test — CLI commands
+      run: |
+        mockjutsu generate tckn
+        mockjutsu generate iban --locale TR
+        mockjutsu generate cardnum --network visa
+        mockjutsu list
+        mockjutsu --help
+        mockjutsu bulk uuid --count 5
+        mockjutsu template uuid fullname --count 3 --format json
