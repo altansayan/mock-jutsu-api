@@ -204,7 +204,8 @@ GET http://localhost:8000/profile?locale=DE&count=3
 
 Whether you are writing automated tests, working in the terminal, or spinning up a mock API, `Mock Jutsu` is ready.
 
-> **Important:** For detailed function usage, find the relevant function in the documentation and copy-paste it directly using the widget: [HOW-TO Guide](https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/HOW-TO-MockJutsu-EN.html)
+> [!IMPORTANT]
+> For detailed function usage, find the relevant function in the documentation and copy-paste it directly using the widget: **[HOW-TO Guide](https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/HOW-TO-MockJutsu-EN.html)**
 
 ### 🐍 1. Python SDK
 
