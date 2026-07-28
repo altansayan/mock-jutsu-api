@@ -369,8 +369,6 @@ Generated data is **entirely mock and for development/testing environments only.
 
 ---
 
-<div align="center">
-
 ## 🔗 Related
 
 - **Java Library**: [mock-jutsu-java](https://github.com/altansayan/mock-jutsu-java) — Maven Central: `io.github.altansayan:mockjutsu:1.0.0`
@@ -379,6 +377,8 @@ Generated data is **entirely mock and for development/testing environments only.
 - **Docker Hub**: [altansezerayan/mock-jutsu](https://hub.docker.com/r/altansezerayan/mock-jutsu)
 
 ---
+
+<div align="center">
 
 ## 💖 Support Mock Jutsu
 
