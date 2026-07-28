@@ -239,6 +239,12 @@ sql = jutsu.export(
 Generate valid test data straight from your terminal.
 
 ```bash
+# List all available functions and their sample outputs
+$ mockjutsu list
+
+# Show all commands and options
+$ mockjutsu --help
+
 # Get single values instantly
 $ mockjutsu generate tckn
 $ mockjutsu generate iban --locale FR
