@@ -17,7 +17,7 @@
 [![PyPI](https://img.shields.io/pypi/v/mockjutsu?style=for-the-badge&logo=pypi&logoColor=white&color=006DAD)](https://pypi.org/project/mockjutsu/)
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-altansezerayan%2Fmock--jutsu-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://hub.docker.com/r/altansezerayan/mock-jutsu)
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.altansayan/mockjutsu?style=for-the-badge&label=Maven%20Central&color=C71A36)](https://central.sonatype.com/artifact/io.github.altansayan/mockjutsu)
-[![JMeter Plugin](https://img.shields.io/badge/JMeter%20Plugin-v1.0.1-D22128?style=for-the-badge&logo=apachejmeter&logoColor=white)](https://jmeter-plugins.org/?search=mock-jutsu)
+[![JMeter Plugin](https://img.shields.io/badge/JMeter%20Plugin-v1.1.1-D22128?style=for-the-badge&logo=apachejmeter&logoColor=white)](https://jmeter-plugins.org/?search=mock-jutsu)
 [![Postman](https://img.shields.io/badge/Postman-390%20Requests-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://documenter.getpostman.com/view/336518/2sBXwyJ7qH)
 [![Product Hunt](https://img.shields.io/badge/Product%20Hunt-Featured-DA552F?style=for-the-badge&logo=producthunt&logoColor=white)](https://www.producthunt.com/posts/mock-jutsu)
 [![AlternativeTo](https://img.shields.io/badge/AlternativeTo-Listed-4A90D9?style=for-the-badge)](https://alternativeto.net/software/mock-jutsu/about/)
@@ -137,7 +137,7 @@ List<String> bulk = MockJutsu.iban().locale(TR).bulk(50);
 
 Mock Jutsu isn't just a set of custom functions — it's an **officially listed plugin** on the JMeter Plugins Manager. Install it like any other official plugin, or drop in the jar manually and use the native custom functions directly. No scripting, no CSV, no subprocess required.
 
-[![JMeter Plugin](https://img.shields.io/badge/JMeter%20Plugin-v1.0.1-red?style=flat&logo=apachejmeter&logoColor=white)](https://jmeter-plugins.org/?search=mock-jutsu)
+[![JMeter Plugin](https://img.shields.io/badge/JMeter%20Plugin-v1.1.1-red?style=flat&logo=apachejmeter&logoColor=white)](https://jmeter-plugins.org/?search=mock-jutsu)
 
 ```
 ${__mockjutsu_identity(tckn|TR)}                  → 46396909916
@@ -146,7 +146,7 @@ ${__mockjutsu_financial(cardnum:visa|TR|mask)}    → 4155 56** **** 3399
 ${__mockjutsu_contact(email|US)}                  → john.doe@example.com
 ```
 
-→ **[mock-jutsu-jmeter on GitHub](https://github.com/altansayan/mock-jutsu-jmeter)** · [Official Plugin Page](https://jmeter-plugins.org/?search=mock-jutsu) · [Download JAR v1.0.1](https://github.com/altansayan/mock-jutsu-jmeter/releases/tag/v1.0.1)
+→ **[mock-jutsu-jmeter on GitHub](https://github.com/altansayan/mock-jutsu-jmeter)** · [Official Plugin Page](https://jmeter-plugins.org/?search=mock-jutsu) · [Download JAR v1.1.1](https://github.com/altansayan/mock-jutsu-jmeter/releases/tag/v1.1.1)
 
 ---
 
