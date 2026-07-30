@@ -200,6 +200,27 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .footer{text-align:center;padding:2rem;color:#475569;font-size:.82rem;margin-top:1rem}
 .footer a{color:#4338ca;text-decoration:underline}
 .footer a:hover{opacity:.8}
+
+/* ── What is Mock Data tab ── */
+.whatismock-hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);color:#f8fafc;padding:2.5rem 2rem;border-radius:12px;margin-bottom:2rem}
+.whatismock-hero h2{font-size:1.75rem;font-weight:700;margin-bottom:1rem;color:#fff}
+.whatismock-hero p{font-size:1.05rem;line-height:1.75;color:#cbd5e1;max-width:760px}
+.whatismock-section{margin-bottom:2rem}
+.whatismock-section h3{font-size:1.2rem;font-weight:700;color:#1e40af;margin-bottom:.75rem;border-left:4px solid #3b82f6;padding-left:.75rem}
+.whatismock-section p{color:#374151;line-height:1.75;margin-bottom:.75rem}
+.whatismock-examples{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1.5rem 2rem;margin-bottom:2rem}
+.whatismock-examples h3{font-size:1.1rem;font-weight:700;color:#1e40af;margin-bottom:1rem}
+.whatismock-examples table{width:100%;border-collapse:collapse}
+.whatismock-examples th{text-align:left;font-size:.8rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.05em;padding:.5rem .75rem;border-bottom:2px solid #e2e8f0}
+.whatismock-examples td{padding:.6rem .75rem;border-bottom:1px solid #f1f5f9;font-size:.9rem;color:#374151}
+.whatismock-examples td code{background:#e0f2fe;color:#0369a1;padding:.15rem .4rem;border-radius:4px;font-size:.85rem;font-family:monospace}
+.whatismock-faq{margin-bottom:2rem}
+.whatismock-faq h3{font-size:1.2rem;font-weight:700;color:#1e40af;margin-bottom:1rem;border-left:4px solid #3b82f6;padding-left:.75rem}
+.whatismock-faq details{border:1px solid #e2e8f0;border-radius:8px;padding:.75rem 1rem;margin-bottom:.6rem;background:#fff}
+.whatismock-faq details[open]{border-color:#3b82f6}
+.whatismock-faq summary{font-weight:600;color:#1e293b;cursor:pointer;font-size:.95rem}
+.whatismock-faq details p{margin-top:.6rem;color:#475569;line-height:1.7;font-size:.92rem}
+
 </style>
 </head>
 <style>
@@ -2715,6 +2736,133 @@ GET /health  -> {"status":"ok"}
 <tr><td class="mask-reg">Ön-maskeli tipler (_masked varyantlar)</td><td class="mask-types"><code class="mask-type">tckn_masked</code><code class="mask-type">ssn_masked</code><code class="mask-type">account_number_masked</code><code class="mask-type">micr_line_masked</code><code class="mask-type">transaction_description_masked</code><code class="mask-type">check_number_masked</code><code class="mask-type">payment_reference_masked</code><code class="mask-type">credit_limit_masked</code><code class="mask-type">mortgage_rate_masked</code><code class="mask-type">premium_amount_masked</code><code class="mask-type">portfolio_id_masked</code><code class="mask-type">sar_number_masked</code><code class="mask-type">policy_number_masked</code><code class="mask-type">claim_number_masked</code><code class="mask-type">ubo_ownership_percentage_masked</code><code class="mask-type">consent_id_masked</code><code class="mask-type">liquidity_pool_id_masked</code></td><td class="mask-rule">Generated pre-masked — --mask flag has no additional effect</td></tr>
 </tbody></table></div>
 </div></div>
+<div class="tab-section" id="tab-whatismock">
+<div style="max-width:900px;margin:0 auto;padding:1.75rem 1.5rem">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is mock data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mock data, English (UK) dilinde yazılım testleri için kullanılan sentetik, format-geçerli veridir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is mock data different from anonymised data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mock data algoritmik olarak üretilir ve gerçek kullanıcı bilgisi içermez; format ve checksum kurallarına uyar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do QA engineers use mock data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gerçek veriye erişim olmadan sistemlerin doğrulanmasını sağlar; GDPR ve PCI DSS uyumlu test ortamları kurulur."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Mock Jutsu generate UK-specific mock data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mock Jutsu 390 tip, 49 kategori ve 6 lokasyon desteğiyle CLI, API, PyPI/Maven ve JMeter Plugin üzerinden algoritmik veri üretir."
+      }
+    }
+  ]
+}
+</script>
+<div class="whatismock-hero">
+    <p>Mock data is simulated information used as a placeholder during software development and testing when real datasets are unavailable, sensitive, or incomplete. It mimics the structure and behaviour of production records to ensure format-valid data flows through systems without compromising privacy or relying on live backend dependencies.</p>
+</div>
+
+<div class="whatismock-section">
+    <h2>The Technical Debt of Static Stubbing</h2>
+    <p>Hard-coded stubs are a liability. When engineers rely on static JSON files or manual database entries, they introduce "data rot" into the CI/CD pipeline. These static assets quickly diverge from the evolving production schema, leading to false positives in green builds that fail immediately upon deployment. Relying on manual test data generation is an anti-pattern that slows down velocity and prevents genuine automation.</p>
+    
+    <p>Modern software testing requires dynamic, synthetic data that maintains referential integrity across microservices. The problem isn't just having data; it's having data that makes sense. If your frontend expects a valid UK NHS number but receives a generic string, your validation logic remains untested. If your payment gateway requires a format-valid IBAN and you provide a random alphanumeric sequence, the integration test is moot.</p>
+
+    <p>The solution lies in moving away from "placeholder" strings to high-fidelity synthetic data. This approach allows teams to simulate complex states—such as an overdrawn account, an expired subscription, or a specific geographic locale—without the overhead of managing a massive, sanitised production database dump. By utilising a system that generates format-valid data on the fly, developers can focus on logic rather than maintaining brittle fixtures.</p>
+</div>
+
+<div class="whatismock-section">
+    <h2>Engineering Workflows: Who Owns the Data?</h2>
+    <p>The responsibility for mock data spans the entire lifecycle of a feature, from local development to performance benchmarking. For a senior developer, unit tests must be decoupled from external APIs. Using synthetic data at the unit level ensures that tests are deterministic and execution speed remains high. It allows for the simulation of edge cases—like 404 errors or malformed payloads—that are difficult to trigger against a live staging environment.</p>
+    
+    <p>Integration testing demands a higher level of complexity. Here, mock data must satisfy the constraints of the downstream consumer. If the service under test interacts with a UK-based banking API, the mocks must produce valid SWIFT codes and card numbers that pass Luhn algorithm checks. Without this level of precision, the test suite provides a false sense of security.</p>
+
+    <p>QA engineers and SDETs leverage mock data for performance and acceptance testing. When stress testing a system, you cannot use the same five records repeatedly; database indexing and caching layers will skew the results. To achieve a realistic load profile, you need thousands of unique, format-valid records. This requires a robust test data generation engine capable of producing high-cardinality datasets that mimic the entropy of real-world production environments.</p>
+</div>
+
+<div class="whatismock-examples">
+    <h2>Mock Jutsu: UK-Specific Output Examples</h2>
+    <p>Mock Jutsu provides localised, format-accurate data points that satisfy strict validation rules. Below are examples of localised outputs for the UK market:</p>
+    
+    <h3>Banking and Identification</h3>
+    <code>
+        // UK IBAN and SWIFT Configuration
+        {
+            "iban_uk": "GB94OFZX11069422939382",
+            "swift_code": "NWBKGB2L",
+            "nhs_number": "687 770 0651"
+        }
+    </code>
+
+    <h3>Contact and Payment Details</h3>
+    <code>
+        // User Profile with Validated Formats
+        {
+            "phone_mobile": "+447712678585",
+            "email_address": "user9650@mockpost.org.uk",
+            "credit_card": "4751913702923332"
+        }
+    </code>
+</div>
+
+<div class="whatismock-section">
+    <h2>The Mock Jutsu Architecture: Zero-Dependency Precision</h2>
+    <p>Mock Jutsu is engineered to provide a comprehensive ecosystem for synthetic data, supporting 390 types across 49 distinct categories. Recognising that modern architectures are diverse, the platform offers six locales—including TR, UK, US, DE, FR, and RU—to ensure that data generation remains contextually relevant. This is not just about translating strings; it is about respecting regional formats for phone numbers, national IDs, and financial identifiers.</p>
+
+    <p>Security and compliance are baked into the core. Mock Jutsu addresses PCI DSS, GDPR, and KVKK requirements by providing masking capabilities that allow teams to work with realistic data without ever touching PII (Personally Identifiable Information). By replacing sensitive production data with high-fidelity synthetic alternatives, organisations can satisfy auditors while maintaining developer productivity.</p>
+
+    <p>The platform is delivered through four primary channels to fit any engineering stack:</p>
+    <ul>
+        <li><strong>CLI Tool:</strong> Designed for terminal-heavy workflows and quick data generation tasks during local development.</li>
+        <li><strong>API Server:</strong> A centralised hub for teams needing a shared, consistent source of truth for their mocking requirements.</li>
+        <li><strong>Language Libraries (PyPI/Maven):</strong> Direct integration into Python or Java/JVM test suites, allowing for in-memory data generation with zero external dependencies.</li>
+        <li><strong>JMeter Plugin:</strong> For performance engineers who need to inject dynamic, high-entropy data into large-scale load tests.</li>
+    </ul>
+    
+    <p>Crucially, Mock Jutsu operates with zero external dependencies. This architecture ensures that your CI/CD pipelines are not slowed down by external network calls or fragile third-party services, providing a hermetic environment for your software testing lifecycle.</p>
+</div>
+
+<div class="whatismock-faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+        <h3>How does mock data differ from anonymised production data?</h3>
+        <p>Anonymised data involves scrubbing or masking existing production records, which often carries a risk of re-identification or data leakage. Mock data is generated synthetically from scratch, ensuring there is zero connection to real users while maintaining the required schema and format-valid attributes.</p>
+    </div>
+    <div class="faq-item">
+        <h3>Can Mock Jutsu handle complex UK-specific formats like NHS numbers?</h3>
+        <p>Yes, Mock Jutsu includes specific logic for UK-specific identifiers, including the 10-digit NHS number and GB-prefixed IBANs. Every generated value follows the official checksum algorithms and formatting rules to pass all frontend and backend validation checks.</p>
+    </div>
+    <div class="faq-item">
+        <h3>Does using synthetic data impact test reliability?</h3>
+        <p>Actually, it improves it by removing the instability of live dependencies and the staleness of static stubs. By using a programmatic approach to test data generation, you ensure that your tests are always running against data that matches your current system requirements.</p>
+    </div>
+    <div class="faq-item">
+        <h3>Is Mock Jutsu compliant with global privacy regulations?</h3>
+        <p>Mock Jutsu is designed to facilitate compliance with GDPR, PCI DSS, and KVKK by ensuring that no actual PII is ever processed or stored. Since the data is entirely synthetic, it can be used freely in offshore development or third-party testing environments without legal risk.</p>
+    </div>
+</div>
+</div>
+</div>
 </main>
 <footer class="footer">
   mock-jutsu &mdash; Developed by <strong>Altan Sezer Ayan - A.S.A</strong>
