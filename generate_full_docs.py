@@ -731,39 +731,39 @@ MASK_COL_HEADERS = {
 _WIM_LEAD = {
     "TR": (
         "Mock data (sahte veri), gerçek sistemleri, kullanıcıları veya işlemleri etkilemeden "
-        "yazılım geliştirme ve test süreçlerinde kullanılan sentetik, format-geçerli veridir. "
-        "Mock Jutsu, 182 farklı tipte —TCKN'den IBAN'a, kredi kartından FHIR'e— anında, "
-        "algoritmik olarak doğru test verisi üretir."
+        "yazılım geliştirme ve test süreçlerinde kullanılan, algoritmik olarak üretilmiş, "
+        "format-geçerli veridir. Mock Jutsu, 390'dan fazla tipte —TCKN'den IBAN'a, "
+        "kredi kartından FHIR'e— anında, algoritmik olarak doğru test verisi üretir."
     ),
     "EN": (
-        "Mock data is synthetic, format-valid data used in software development and testing "
-        "without affecting real systems, users, or transactions. Mock Jutsu generates "
-        "algorithmically correct test data across 182 types — from SSN to IBAN, "
+        "Mock data is algorithmically generated, format-valid data used in software development "
+        "and testing without affecting real systems, users, or transactions. Mock Jutsu generates "
+        "algorithmically correct test data across 390+ types — from SSN to IBAN, "
         "credit card numbers to FHIR records — instantly and offline."
     ),
     "UK": (
-        "Mock data is synthetic, format-valid data used in software development and testing "
-        "without affecting real systems, users, or transactions. Mock Jutsu generates "
-        "algorithmically correct test data across 182 types — from SSN to IBAN, "
+        "Mock data is algorithmically generated, format-valid data used in software development "
+        "and testing without affecting real systems, users, or transactions. Mock Jutsu generates "
+        "algorithmically correct test data across 390+ types — from NHS numbers to IBAN, "
         "credit card numbers to FHIR records — instantly and offline."
     ),
     "DE": (
-        "Mock-Daten sind synthetische, formatgültige Daten, die in der Softwareentwicklung "
+        "Mock-Daten sind algorithmisch generierte, formatgültige Daten, die in der Softwareentwicklung "
         "und beim Testen verwendet werden, ohne echte Systeme, Benutzer oder Transaktionen "
-        "zu beeinflussen. Mock Jutsu generiert algorithmisch korrekte Testdaten über 182 Typen "
+        "zu beeinflussen. Mock Jutsu generiert algorithmisch korrekte Testdaten über 390+ Typen "
         "— von IBAN bis Kreditkartennummern — sofort und offline."
     ),
     "FR": (
-        "Les données mock sont des données synthétiques et valides en format, utilisées dans le "
+        "Les données mock sont des données générées algorithmiquement et valides en format, utilisées dans le "
         "développement logiciel et les tests sans affecter les systèmes, utilisateurs ou "
         "transactions réels. Mock Jutsu génère des données de test algorithmiquement correctes "
-        "sur 182 types — de l'IBAN aux numéros de carte de crédit — instantanément et hors ligne."
+        "sur 390+ types — de l'IBAN aux numéros de carte de crédit — instantanément et hors ligne."
     ),
     "RU": (
-        "Мок-данные — это синтетические данные корректного формата, используемые при разработке "
+        "Мок-данные — это алгоритмически генерируемые данные корректного формата, используемые при разработке "
         "и тестировании программного обеспечения без воздействия на реальные системы, "
         "пользователей или транзакции. Mock Jutsu генерирует алгоритмически корректные "
-        "тестовые данные 182 типов — от IBAN до номеров кредитных карт — мгновенно и офлайн."
+        "тестовые данные 390+ типов — от IBAN до номеров кредитных карт — мгновенно и офлайн."
     ),
 }
 
@@ -835,19 +835,19 @@ _WIM_STAGES = {
         ("Birim & Entegrasyon Testleri", "Geliştiricilerin gerçek veri tabanı ya da harici servis olmaksızın kendi modüllerini test etmesi için anında veri üretir."),
         ("Sistem & Uçtan Uca Testler", "QA mühendislerinin gerçek kullanıcı akışlarını temsil eden eksiksiz senaryolar kurmasına olanak tanır."),
         ("Kabul Testleri", "İş paydaşlarına canlı sisteme dokunmadan gerçekçi verilerle özellik gösterimi yapın."),
-        ("Yük & Performans Testleri", "JMeter veya k6 ile saniyede binlerce benzersiz kayıt oluşturarak gerçek üretim yükünü simüle edin."),
+        ("Yük & Performans Testleri", "JMeter ile saniyede binlerce benzersiz kayıt oluşturarak gerçek üretim yükünü simüle edin."),
     ],
     "EN": [
         ("Unit & Integration Tests", "Generates instant data for developers to test their modules without a real database or external service."),
         ("System & End-to-End Tests", "Enables QA engineers to build complete scenarios representing real user flows."),
         ("Acceptance Tests", "Demonstrate features to business stakeholders with realistic data without touching the live system."),
-        ("Load & Performance Tests", "Simulate real production load by generating thousands of unique records per second with JMeter or k6."),
+        ("Load & Performance Tests", "Simulate real production load by generating thousands of unique records per second with JMeter."),
     ],
     "UK": [
         ("Unit & Integration Tests", "Generates instant data for developers to test their modules without a real database or external service."),
         ("System & End-to-End Tests", "Enables QA engineers to build complete scenarios representing real user flows."),
         ("Acceptance Tests", "Demonstrate features to business stakeholders with realistic data without touching the live system."),
-        ("Load & Performance Tests", "Simulate real production load by generating thousands of unique records per second with JMeter or k6."),
+        ("Load & Performance Tests", "Simulate real production load by generating thousands of unique records per second with JMeter."),
     ],
     "DE": [
         ("Unit- & Integrationstests", "Generiert sofortige Daten für Entwickler zum Testen ihrer Module ohne echte Datenbank."),
@@ -1139,12 +1139,12 @@ _WIM_SEO_TITLE = {
 }
 
 _WIM_SEO_DESC = {
-    "TR": "Mock data (sahte veri) nedir, neden kullanılır ve nasıl üretilir? Mock Jutsu ile 182 tipte algoritmik olarak doğru test verisi üretin — CLI, Python, REST API, JMeter ve Maven ile.",
-    "EN": "What is mock data, why use it, and how to generate it? Generate 182 types of algorithmically correct test data with Mock Jutsu — CLI, Python API, REST API, JMeter, and Maven.",
-    "UK": "What is mock data, why use it, and how to generate it? Generate 182 types of algorithmically correct test data with Mock Jutsu — CLI, Python API, REST API, JMeter, and Maven.",
-    "DE": "Was sind Mock-Daten, warum verwendet man sie und wie werden sie generiert? Erzeugen Sie 182 Typen algorithmisch korrekter Testdaten mit Mock Jutsu — CLI, Python, REST API, JMeter und Maven.",
-    "FR": "Que sont les données mock, pourquoi les utiliser et comment les générer ? Générez 182 types de données de test avec Mock Jutsu — CLI, Python, REST API, JMeter et Maven.",
-    "RU": "Что такое мок-данные, зачем их использовать и как генерировать? Создавайте 182 типа алгоритмически корректных тестовых данных с Mock Jutsu — CLI, Python, REST API, JMeter и Maven.",
+    "TR": "Mock data (sahte veri) nedir, neden kullanılır ve nasıl üretilir? Mock Jutsu ile 390+ tipte algoritmik olarak doğru test verisi üretin — CLI, Python, REST API, JMeter ve Maven ile.",
+    "EN": "What is mock data, why use it, and how to generate it? Generate 390+ types of algorithmically correct test data with Mock Jutsu — CLI, Python API, REST API, JMeter, and Maven.",
+    "UK": "What is mock data, why use it, and how to generate it? Generate 390+ types of algorithmically correct test data with Mock Jutsu — CLI, Python API, REST API, JMeter, and Maven.",
+    "DE": "Was sind Mock-Daten, warum verwendet man sie und wie werden sie generiert? Erzeugen Sie 390+ Typen algorithmisch korrekter Testdaten mit Mock Jutsu — CLI, Python, REST API, JMeter und Maven.",
+    "FR": "Que sont les données mock, pourquoi les utiliser et comment les générer ? Générez 390+ types de données de test avec Mock Jutsu — CLI, Python, REST API, JMeter et Maven.",
+    "RU": "Что такое мок-данные, зачем их использовать и как генерировать? Создавайте 390+ типов алгоритмически корректных тестовых данных с Mock Jutsu — CLI, Python, REST API, JMeter и Maven.",
 }
 
 _WIM_BACK_LABEL = {
