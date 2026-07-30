@@ -1405,7 +1405,7 @@ LISTING_EXTRA_CSS = """
 .linkedin-link:hover{background:rgba(10,102,194,.25);transform:translateY(-2px);border-color:rgba(10,102,194,.4)}
 /* ── Tabs ── */
 .tabs{display:flex;justify-content:center;background:#fff;border-bottom:1px solid #e2e8f0;padding:0 1rem;gap:1.25rem;position:sticky;top:0;z-index:100;box-shadow:0 4px 6px -1px rgba(0,0,0,.05);flex-wrap:wrap}
-.tab{padding:1rem .9rem;cursor:pointer;font-weight:600;color:#475569;border-bottom:3px solid transparent;transition:all .2s;font-size:.92rem;white-space:nowrap}
+.tab{padding:1rem .9rem;cursor:pointer;font-weight:600;color:#475569;border-bottom:3px solid transparent;transition:all .2s;font-size:.92rem;white-space:nowrap;text-decoration:none;display:inline-block}
 .tab:hover{color:#1d4ed8}
 .tab.active{color:#1d4ed8;border-bottom-color:#1d4ed8}
 .tab-section{display:none}
@@ -2539,6 +2539,7 @@ def build_listing_page(lang: str) -> str:
     loc   = qs["locale"]
     net   = qs["card_net"]
     t_ref, t_qs, t_power, t_api, t_mask, t_whatismock = TAB_LABELS[lang]
+    wim_standalone_url = wim_url(lang)
 
     # Group by category (preserve _CAT_ORDER if available)
     try:
@@ -2699,7 +2700,7 @@ def build_listing_page(lang: str) -> str:
         f'  <div class="tab" onclick="showTab(\'power\', this)">{t_power}</div>\n'
         f'  <div class="tab" onclick="showTab(\'api\', this)">{t_api}</div>\n'
         f'  <div class="tab" onclick="showTab(\'mask\', this)">{t_mask}</div>\n'
-        f'  <div class="tab" onclick="showTab(\'whatismock\', this)">{t_whatismock}</div>\n'
+        f'  <a href="{wim_standalone_url}" class="tab">{t_whatismock}</a>\n'
         '</div>\n'
     )
 
@@ -2937,32 +2938,7 @@ def build_listing_page(lang: str) -> str:
         '</div></div>\n'
     )
 
-    whatismock_section = _build_whatismock_section(lang)
 
-    wim_css = """<style>
-.wim-lead{font-size:1.05rem;line-height:1.75;color:#1e293b;margin-bottom:1.75rem;background:#f0f9ff;border-left:4px solid #2563eb;padding:1rem 1.25rem;border-radius:0 8px 8px 0}
-.wim-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.wim-section-title{font-size:1.1rem;font-weight:700;color:#1e3a5f;margin:1.5rem 0 .75rem}
-.wim-why-list{margin:0;padding-left:1.4rem;line-height:1.9;color:#334155}
-.wim-stages{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.85rem;margin-bottom:1.5rem}
-.wim-stage{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem 1.1rem}
-.wim-stage-title{font-weight:700;color:#1e3a5f;font-size:.9rem;margin-bottom:.4rem}
-.wim-stage-desc{font-size:.83rem;color:#475569;line-height:1.55}
-.wim-channels{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:.85rem;margin-bottom:1.5rem}
-.wim-channel{background:#1e293b;border-radius:8px;padding:1rem 1.1rem}
-.wim-channel-name{font-weight:700;color:#60a5fa;font-size:.9rem;margin-bottom:.25rem}
-.wim-channel-desc{font-size:.78rem;color:#94a3b8;margin-bottom:.6rem}
-.wim-channel-code{font-family:ui-monospace,monospace;font-size:.78rem;color:#86efac;margin:0;white-space:pre-wrap;word-break:break-all}
-.wim-faq-item{border:1px solid #e2e8f0;border-radius:8px;margin-bottom:.6rem;overflow:hidden}
-.wim-faq-q{padding:.85rem 1.1rem;font-weight:600;color:#1e3a5f;cursor:pointer;list-style:none;font-size:.9rem}
-.wim-faq-q::-webkit-details-marker{display:none}
-.wim-faq-q::before{content:"+ ";color:#2563eb;font-weight:700}
-details[open] .wim-faq-q::before{content:"\\2212 ";color:#2563eb}
-.wim-faq-a{padding:.75rem 1.1rem 1rem;margin:0;font-size:.87rem;color:#475569;line-height:1.6;border-top:1px solid #e2e8f0;background:#f8fafc}
-.wim-standalone-link{font-size:.8rem;color:#2563eb;text-decoration:none;border:1px solid #bfdbfe;border-radius:5px;padding:.2rem .6rem;transition:background .15s}
-.wim-standalone-link:hover{background:#eff6ff}
-@media(max-width:600px){.wim-stages,.wim-channels{grid-template-columns:1fr}}
-</style>"""
 
     mask_css = """<style>
 .mask-intro{background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;font-size:.9rem;line-height:1.6;color:#0c4a6e}
@@ -3084,7 +3060,6 @@ function copyTerm(id) {
         head + '\n'
         '<style>' + LISTING_EXTRA_CSS + '</style>\n'
         + mask_css + '\n'
-        + wim_css + '\n'
         + search_css + '\n'
         '<body>\n'
         + listing_header
@@ -3095,7 +3070,6 @@ function copyTerm(id) {
         + power_section
         + api_section
         + mask_section
-        + whatismock_section
         + '</main>\n'
         + footer
         + tab_js + '\n'

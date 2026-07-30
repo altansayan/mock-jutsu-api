@@ -211,7 +211,7 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .linkedin-link:hover{background:rgba(10,102,194,.25);transform:translateY(-2px);border-color:rgba(10,102,194,.4)}
 /* ── Tabs ── */
 .tabs{display:flex;justify-content:center;background:#fff;border-bottom:1px solid #e2e8f0;padding:0 1rem;gap:1.25rem;position:sticky;top:0;z-index:100;box-shadow:0 4px 6px -1px rgba(0,0,0,.05);flex-wrap:wrap}
-.tab{padding:1rem .9rem;cursor:pointer;font-weight:600;color:#475569;border-bottom:3px solid transparent;transition:all .2s;font-size:.92rem;white-space:nowrap}
+.tab{padding:1rem .9rem;cursor:pointer;font-weight:600;color:#475569;border-bottom:3px solid transparent;transition:all .2s;font-size:.92rem;white-space:nowrap;text-decoration:none;display:inline-block}
 .tab:hover{color:#1d4ed8}
 .tab.active{color:#1d4ed8;border-bottom-color:#1d4ed8}
 .tab-section{display:none}
@@ -240,30 +240,6 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 .mask-types{min-width:220px}
 .mask-rule{color:#374151;min-width:280px}
 code.mask-type{background:#e0e7ff;color:#3730a3;padding:.1rem .35rem;border-radius:4px;font-size:.78rem;margin:.1rem .15rem .1rem 0;display:inline-block}
-</style>
-<style>
-.wim-lead{font-size:1.05rem;line-height:1.75;color:#1e293b;margin-bottom:1.75rem;background:#f0f9ff;border-left:4px solid #2563eb;padding:1rem 1.25rem;border-radius:0 8px 8px 0}
-.wim-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-.wim-section-title{font-size:1.1rem;font-weight:700;color:#1e3a5f;margin:1.5rem 0 .75rem}
-.wim-why-list{margin:0;padding-left:1.4rem;line-height:1.9;color:#334155}
-.wim-stages{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.85rem;margin-bottom:1.5rem}
-.wim-stage{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem 1.1rem}
-.wim-stage-title{font-weight:700;color:#1e3a5f;font-size:.9rem;margin-bottom:.4rem}
-.wim-stage-desc{font-size:.83rem;color:#475569;line-height:1.55}
-.wim-channels{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:.85rem;margin-bottom:1.5rem}
-.wim-channel{background:#1e293b;border-radius:8px;padding:1rem 1.1rem}
-.wim-channel-name{font-weight:700;color:#60a5fa;font-size:.9rem;margin-bottom:.25rem}
-.wim-channel-desc{font-size:.78rem;color:#94a3b8;margin-bottom:.6rem}
-.wim-channel-code{font-family:ui-monospace,monospace;font-size:.78rem;color:#86efac;margin:0;white-space:pre-wrap;word-break:break-all}
-.wim-faq-item{border:1px solid #e2e8f0;border-radius:8px;margin-bottom:.6rem;overflow:hidden}
-.wim-faq-q{padding:.85rem 1.1rem;font-weight:600;color:#1e3a5f;cursor:pointer;list-style:none;font-size:.9rem}
-.wim-faq-q::-webkit-details-marker{display:none}
-.wim-faq-q::before{content:"+ ";color:#2563eb;font-weight:700}
-details[open] .wim-faq-q::before{content:"\2212 ";color:#2563eb}
-.wim-faq-a{padding:.75rem 1.1rem 1rem;margin:0;font-size:.87rem;color:#475569;line-height:1.6;border-top:1px solid #e2e8f0;background:#f8fafc}
-.wim-standalone-link{font-size:.8rem;color:#2563eb;text-decoration:none;border:1px solid #bfdbfe;border-radius:5px;padding:.2rem .6rem;transition:background .15s}
-.wim-standalone-link:hover{background:#eff6ff}
-@media(max-width:600px){.wim-stages,.wim-channels{grid-template-columns:1fr}}
 </style>
 <style>
 .list-controls{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.75rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
@@ -301,7 +277,7 @@ details[open] .wim-faq-q::before{content:"\2212 ";color:#2563eb}
   <div class="tab" onclick="showTab('power', this)">Power Features</div>
   <div class="tab" onclick="showTab('api', this)">REST API</div>
   <div class="tab" onclick="showTab('mask', this)">Data Masking</div>
-  <div class="tab" onclick="showTab('whatismock', this)">What is Mock Data?</div>
+  <a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/what-is-mock-data" class="tab">What is Mock Data?</a>
 </div>
 <div class="tab-section active" id="tab-ref">
 <div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">
@@ -2739,93 +2715,6 @@ GET /health  -> {"status":"ok"}
 <tr><td class="mask-reg">Mısır (TIN)</td><td class="mask-types"><code class="mask-type">eg_tn</code></td><td class="mask-rule">First 3 + **** + last 2</td></tr>
 <tr><td class="mask-reg">Ön-maskeli tipler (_masked varyantlar)</td><td class="mask-types"><code class="mask-type">tckn_masked</code><code class="mask-type">ssn_masked</code><code class="mask-type">account_number_masked</code><code class="mask-type">micr_line_masked</code><code class="mask-type">transaction_description_masked</code><code class="mask-type">check_number_masked</code><code class="mask-type">payment_reference_masked</code><code class="mask-type">credit_limit_masked</code><code class="mask-type">mortgage_rate_masked</code><code class="mask-type">premium_amount_masked</code><code class="mask-type">portfolio_id_masked</code><code class="mask-type">sar_number_masked</code><code class="mask-type">policy_number_masked</code><code class="mask-type">claim_number_masked</code><code class="mask-type">ubo_ownership_percentage_masked</code><code class="mask-type">consent_id_masked</code><code class="mask-type">liquidity_pool_id_masked</code></td><td class="mask-rule">Generated pre-masked — --mask flag has no additional effect</td></tr>
 </tbody></table></div>
-</div></div>
-<div class="tab-section" id="tab-whatismock">
-<div style="max-width:900px;margin:0 auto;padding:1.75rem 1.5rem">
-<div style="text-align:right;margin-bottom:.5rem"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/what-is-mock-data" class="wim-standalone-link" target="_blank">↗ View as full page</a></div>
-<div class="stitle">What is Mock Data?</div>
-<p class="wim-lead">Mock data is synthetic, format-valid data used in software development and testing without affecting real systems, users, or transactions. Mock Jutsu generates algorithmically correct test data across 182 types — from SSN to IBAN, credit card numbers to FHIR records — instantly and offline.</p>
-<div class="wim-card">
-<h3 class="wim-section-title">Why Use Mock Data?</h3>
-<ul class="wim-why-list"><li>Create a safe test environment without using real customer data</li>
-<li>Maintain GDPR, PCI DSS and regulatory compliance during testing</li>
-<li>Generate repeatable, deterministic data on every test run</li>
-<li>Develop against endpoints or services that don't exist yet</li>
-<li>Generate thousands of unique records for load and performance tests</li>
-</ul>
-</div>
-<h3 class="wim-section-title">Use Across All Testing Layers</h3>
-<div class="wim-stages">
-<div class="wim-stage"><div class="wim-stage-title">Unit & Integration Tests</div><div class="wim-stage-desc">Generates instant data for developers to test their modules without a real database or external service.</div></div>
-<div class="wim-stage"><div class="wim-stage-title">System & End-to-End Tests</div><div class="wim-stage-desc">Enables QA engineers to build complete scenarios representing real user flows.</div></div>
-<div class="wim-stage"><div class="wim-stage-title">Acceptance Tests</div><div class="wim-stage-desc">Demonstrate features to business stakeholders with realistic data without touching the live system.</div></div>
-<div class="wim-stage"><div class="wim-stage-title">Load & Performance Tests</div><div class="wim-stage-desc">Simulate real production load by generating thousands of unique records per second with JMeter or k6.</div></div>
-</div>
-<h3 class="wim-section-title">Use in Any Environment</h3>
-<div class="wim-channels">
-<div class="wim-channel"><div class="wim-channel-name">CLI</div><div class="wim-channel-desc">In terminals and CI/CD pipelines</div><pre class="wim-channel-code">mockjutsu generate nhs_number</pre></div>
-<div class="wim-channel"><div class="wim-channel-name">Python API</div><div class="wim-channel-desc">In any Python project via PyPI</div><pre class="wim-channel-code">from mockjutsu import jutsu
-jutsu.generate('nhs_number')</pre></div>
-<div class="wim-channel"><div class="wim-channel-name">REST API</div><div class="wim-channel-desc">Language-agnostic, as a server via Docker</div><pre class="wim-channel-code">GET /generate/nhs_number</pre></div>
-<div class="wim-channel"><div class="wim-channel-name">JMeter Plugin</div><div class="wim-channel-desc">In load and performance tests</div><pre class="wim-channel-code">Mock Jutsu Functions → nhs_number()</pre></div>
-<div class="wim-channel"><div class="wim-channel-name">Maven / Java</div><div class="wim-channel-desc">In JVM-based projects</div><pre class="wim-channel-code">MockJutsu.generate("nhs_number")</pre></div>
-</div>
-<h3 class="wim-section-title">Frequently Asked Questions</h3>
-<div class="wim-faq">
-<details class="wim-faq-item"><summary class="wim-faq-q">What is the difference between mock data and real data?</summary><p class="wim-faq-a">Mock data is synthetic data not belonging to any real user or transaction, generated purely for testing purposes. Real data carries GDPR/PCI DSS compliance risks; mock data does not. Mock Jutsu generates data that is format and checksum-valid but does not correspond to any real person or account.</p></details>
-<details class="wim-faq-item"><summary class="wim-faq-q">How does Mock Jutsu differ from Faker or Mimesis?</summary><p class="wim-faq-a">Faker generates random-looking text; Mock Jutsu uses real algorithms like IBAN (MOD-97), Luhn (card numbers), and TCKN (weighted checksum) to produce format and checksum-valid data. This means test data passes validation in real integration scenarios.</p></details>
-<details class="wim-faq-item"><summary class="wim-faq-q">How do I use it with JMeter?</summary><p class="wim-faq-a">Install the 'Mock Jutsu Functions' plugin via JMeter Plugins Manager. Then add a JSR223 Sampler inside your Thread Group and use functions like tckn(), iban(), or cardnum() directly in your test plan.</p></details>
-<details class="wim-faq-item"><summary class="wim-faq-q">What does zero-dependency mean?</summary><p class="wim-faq-a">Mock Jutsu requires no third-party libraries to run. All algorithms are implemented in pure Python, minimizing security vulnerability risk and ensuring installation works in any environment.</p></details>
-<details class="wim-faq-item"><summary class="wim-faq-q">Can generated data belong to a real person?</summary><p class="wim-faq-a">No. Mock Jutsu generates only algorithmically valid synthetic data. Generated TCKNs, IBANs or card numbers do not correspond to any real person or account, but behave like real data in format validation tests.</p></details>
-</div>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is the difference between mock data and real data?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Mock data is synthetic data not belonging to any real user or transaction, generated purely for testing purposes. Real data carries GDPR/PCI DSS compliance risks; mock data does not. Mock Jutsu generates data that is format and checksum-valid but does not correspond to any real person or account."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How does Mock Jutsu differ from Faker or Mimesis?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Faker generates random-looking text; Mock Jutsu uses real algorithms like IBAN (MOD-97), Luhn (card numbers), and TCKN (weighted checksum) to produce format and checksum-valid data. This means test data passes validation in real integration scenarios."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I use it with JMeter?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Install the 'Mock Jutsu Functions' plugin via JMeter Plugins Manager. Then add a JSR223 Sampler inside your Thread Group and use functions like tckn(), iban(), or cardnum() directly in your test plan."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What does zero-dependency mean?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Mock Jutsu requires no third-party libraries to run. All algorithms are implemented in pure Python, minimizing security vulnerability risk and ensuring installation works in any environment."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can generated data belong to a real person?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Mock Jutsu generates only algorithmically valid synthetic data. Generated TCKNs, IBANs or card numbers do not correspond to any real person or account, but behave like real data in format validation tests."
-      }
-    }
-  ]
-}
-</script>
 </div></div>
 </main>
 <footer class="footer">
