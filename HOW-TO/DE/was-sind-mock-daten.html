@@ -76,10 +76,11 @@ nav.wim-nav a:hover{color:#fff}
 .wim-channel-desc{font-size:.78rem;color:#94a3b8;margin-bottom:.6rem}
 .wim-channel-code{font-family:ui-monospace,monospace;font-size:.78rem;color:#86efac;margin:0;white-space:pre-wrap;word-break:break-all}
 .wim-faq-item{border:1px solid #e2e8f0;border-radius:8px;margin-bottom:.6rem;overflow:hidden}
-.wim-faq-q{padding:.85rem 1.1rem;font-weight:600;color:#1e3a5f;cursor:pointer;list-style:none;font-size:.9rem}
+.wim-faq-q{padding:.85rem 1.1rem;font-weight:600;color:#1e3a5f;cursor:pointer;list-style:none;font-size:.9rem;display:block}
 .wim-faq-q::-webkit-details-marker{display:none}
+.wim-faq-q::marker{display:none}
 .wim-faq-q::before{content:"+ ";color:#2563eb;font-weight:700}
-details[open] .wim-faq-q::before{content:"2 ";color:#2563eb}
+details[open] .wim-faq-q::before{content:"− ";color:#2563eb}
 .wim-faq-a{padding:.75rem 1.1rem 1rem;margin:0;font-size:.87rem;color:#475569;line-height:1.6;border-top:1px solid #e2e8f0;background:#f8fafc}
 footer.wim-footer{text-align:center;padding:2rem 1.5rem;font-size:.82rem;color:#64748b;border-top:1px solid #e2e8f0;margin-top:2rem}
 footer.wim-footer a{color:#2563eb;text-decoration:none}
