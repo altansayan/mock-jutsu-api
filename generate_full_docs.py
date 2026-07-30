@@ -3322,7 +3322,8 @@ def main():
         wim_path = wim_rel_path(lang)
         with open(wim_path, "w", encoding="utf-8") as f:
             f.write(build_whatismock_page(lang))
-        print(f"       {os.path.relpath(wim_path, BASE_DIR)}")
+        slug_safe = _WIM_SLUG[lang].encode("ascii", errors="backslashreplace").decode("ascii")
+        print(f"       HOW-TO/{lang}/{slug_safe}.html")
 
         # Detail pages
         for r in funcs:

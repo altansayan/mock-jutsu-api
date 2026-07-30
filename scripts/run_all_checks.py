@@ -107,7 +107,7 @@ def run_checks():
     docs_script = os.path.join(BASE_DIR, "generate_full_docs.py")
     docs_result = subprocess.run(
         [sys.executable, docs_script], cwd=BASE_DIR, env=env,
-        capture_output=True, text=True,
+        capture_output=True, text=True, encoding="utf-8", errors="replace",
     )
     if docs_result.returncode != 0:
         print("generate_full_docs.py FAILED:")
