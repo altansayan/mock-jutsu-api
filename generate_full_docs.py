@@ -1126,7 +1126,7 @@ _WIM_SLUG = {
     "UK": "what-is-mock-data",
     "DE": "was-sind-mock-daten",
     "FR": "que-sont-les-donnees-mock",
-    "RU": "what-is-mock-data",
+    "RU": "chto-takoe-mok-dannye",
 }
 
 _WIM_SEO_TITLE = {
