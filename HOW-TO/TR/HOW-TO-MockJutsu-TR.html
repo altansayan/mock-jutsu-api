@@ -242,6 +242,28 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 code.mask-type{background:#e0e7ff;color:#3730a3;padding:.1rem .35rem;border-radius:4px;font-size:.78rem;margin:.1rem .15rem .1rem 0;display:inline-block}
 </style>
 <style>
+.wim-lead{font-size:1.05rem;line-height:1.75;color:#1e293b;margin-bottom:1.75rem;background:#f0f9ff;border-left:4px solid #2563eb;padding:1rem 1.25rem;border-radius:0 8px 8px 0}
+.wim-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.wim-section-title{font-size:1.1rem;font-weight:700;color:#1e3a5f;margin:1.5rem 0 .75rem}
+.wim-why-list{margin:0;padding-left:1.4rem;line-height:1.9;color:#334155}
+.wim-stages{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.85rem;margin-bottom:1.5rem}
+.wim-stage{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem 1.1rem}
+.wim-stage-title{font-weight:700;color:#1e3a5f;font-size:.9rem;margin-bottom:.4rem}
+.wim-stage-desc{font-size:.83rem;color:#475569;line-height:1.55}
+.wim-channels{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:.85rem;margin-bottom:1.5rem}
+.wim-channel{background:#1e293b;border-radius:8px;padding:1rem 1.1rem}
+.wim-channel-name{font-weight:700;color:#60a5fa;font-size:.9rem;margin-bottom:.25rem}
+.wim-channel-desc{font-size:.78rem;color:#94a3b8;margin-bottom:.6rem}
+.wim-channel-code{font-family:ui-monospace,monospace;font-size:.78rem;color:#86efac;margin:0;white-space:pre-wrap;word-break:break-all}
+.wim-faq-item{border:1px solid #e2e8f0;border-radius:8px;margin-bottom:.6rem;overflow:hidden}
+.wim-faq-q{padding:.85rem 1.1rem;font-weight:600;color:#1e3a5f;cursor:pointer;list-style:none;font-size:.9rem}
+.wim-faq-q::-webkit-details-marker{display:none}
+.wim-faq-q::before{content:"+ ";color:#2563eb;font-weight:700}
+details[open] .wim-faq-q::before{content:"\2212 ";color:#2563eb}
+.wim-faq-a{padding:.75rem 1.1rem 1rem;margin:0;font-size:.87rem;color:#475569;line-height:1.6;border-top:1px solid #e2e8f0;background:#f8fafc}
+@media(max-width:600px){.wim-stages,.wim-channels{grid-template-columns:1fr}}
+</style>
+<style>
 .list-controls{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.75rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .search-wrap{position:relative;margin-bottom:1rem}
 .search-icon{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#94a3b8;pointer-events:none}
@@ -277,6 +299,7 @@ code.mask-type{background:#e0e7ff;color:#3730a3;padding:.1rem .35rem;border-radi
   <div class="tab" onclick="showTab('power', this)">Güçlü Özellikler</div>
   <div class="tab" onclick="showTab('api', this)">REST API</div>
   <div class="tab" onclick="showTab('mask', this)">Maskeleme</div>
+  <div class="tab" onclick="showTab('whatismock', this)">Mock Data Nedir?</div>
 </div>
 <div class="tab-section active" id="tab-ref">
 <div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">
@@ -2714,6 +2737,92 @@ GET /health  -> {"status":"ok"}
 <tr><td class="mask-reg">Mısır (TIN)</td><td class="mask-types"><code class="mask-type">eg_tn</code></td><td class="mask-rule">İlk 3 + **** + son 2</td></tr>
 <tr><td class="mask-reg">Ön-maskeli tipler (_masked varyantlar)</td><td class="mask-types"><code class="mask-type">tckn_masked</code><code class="mask-type">ssn_masked</code><code class="mask-type">account_number_masked</code><code class="mask-type">micr_line_masked</code><code class="mask-type">transaction_description_masked</code><code class="mask-type">check_number_masked</code><code class="mask-type">payment_reference_masked</code><code class="mask-type">credit_limit_masked</code><code class="mask-type">mortgage_rate_masked</code><code class="mask-type">premium_amount_masked</code><code class="mask-type">portfolio_id_masked</code><code class="mask-type">sar_number_masked</code><code class="mask-type">policy_number_masked</code><code class="mask-type">claim_number_masked</code><code class="mask-type">ubo_ownership_percentage_masked</code><code class="mask-type">consent_id_masked</code><code class="mask-type">liquidity_pool_id_masked</code></td><td class="mask-rule">Zaten maskeli üretilir — --mask bayrağı etkisizdir</td></tr>
 </tbody></table></div>
+</div></div>
+<div class="tab-section" id="tab-whatismock">
+<div style="max-width:900px;margin:0 auto;padding:1.75rem 1.5rem">
+<div class="stitle">Mock Data Nedir?</div>
+<p class="wim-lead">Mock data (sahte veri), gerçek sistemleri, kullanıcıları veya işlemleri etkilemeden yazılım geliştirme ve test süreçlerinde kullanılan sentetik, format-geçerli veridir. Mock Jutsu, 182 farklı tipte —TCKN'den IBAN'a, kredi kartından FHIR'e— anında, algoritmik olarak doğru test verisi üretir.</p>
+<div class="wim-card">
+<h3 class="wim-section-title">Neden Mock Data Kullanılır?</h3>
+<ul class="wim-why-list"><li>Gerçek müşteri verisi kullanmadan güvenli test ortamı oluşturun</li>
+<li>KVKK, GDPR ve PCI DSS uyumluluğunu test aşamasında koruyun</li>
+<li>Her test çalıştırmasında tekrarlanabilir, deterministik veri üretin</li>
+<li>Henüz mevcut olmayan uç noktalara ya da servislere karşı geliştirme yapın</li>
+<li>Yük testlerinde binlerce benzersiz kayıt oluşturun</li>
+</ul>
+</div>
+<h3 class="wim-section-title">Tüm Test Katmanlarında Kullanım</h3>
+<div class="wim-stages">
+<div class="wim-stage"><div class="wim-stage-title">Birim & Entegrasyon Testleri</div><div class="wim-stage-desc">Geliştiricilerin gerçek veri tabanı ya da harici servis olmaksızın kendi modüllerini test etmesi için anında veri üretir.</div></div>
+<div class="wim-stage"><div class="wim-stage-title">Sistem & Uçtan Uca Testler</div><div class="wim-stage-desc">QA mühendislerinin gerçek kullanıcı akışlarını temsil eden eksiksiz senaryolar kurmasına olanak tanır.</div></div>
+<div class="wim-stage"><div class="wim-stage-title">Kabul Testleri</div><div class="wim-stage-desc">İş paydaşlarına canlı sisteme dokunmadan gerçekçi verilerle özellik gösterimi yapın.</div></div>
+<div class="wim-stage"><div class="wim-stage-title">Yük & Performans Testleri</div><div class="wim-stage-desc">JMeter veya k6 ile saniyede binlerce benzersiz kayıt oluşturarak gerçek üretim yükünü simüle edin.</div></div>
+</div>
+<h3 class="wim-section-title">Her Ortamda Kullanın</h3>
+<div class="wim-channels">
+<div class="wim-channel"><div class="wim-channel-name">CLI</div><div class="wim-channel-desc">Terminal ve CI/CD pipeline'larında</div><pre class="wim-channel-code">mockjutsu generate tckn</pre></div>
+<div class="wim-channel"><div class="wim-channel-name">Python API</div><div class="wim-channel-desc">PyPI ile herhangi bir Python projesinde</div><pre class="wim-channel-code">from mockjutsu import jutsu
+jutsu.generate('iban')</pre></div>
+<div class="wim-channel"><div class="wim-channel-name">REST API</div><div class="wim-channel-desc">Dil bağımsız, Docker ile sunucu olarak</div><pre class="wim-channel-code">GET /generate/cardnum</pre></div>
+<div class="wim-channel"><div class="wim-channel-name">JMeter Plugin</div><div class="wim-channel-desc">Yük ve performans testlerinde</div><pre class="wim-channel-code">Mock Jutsu Functions → tckn()</pre></div>
+<div class="wim-channel"><div class="wim-channel-name">Maven / Java</div><div class="wim-channel-desc">JVM tabanlı projelerde</div><pre class="wim-channel-code">MockJutsu.generate("iban")</pre></div>
+</div>
+<h3 class="wim-section-title">Sıkça Sorulan Sorular</h3>
+<div class="wim-faq">
+<details class="wim-faq-item"><summary class="wim-faq-q">Mock data ile gerçek veri arasındaki fark nedir?</summary><p class="wim-faq-a">Mock data, gerçek kullanıcı veya işlemlere ait olmayan, yalnızca test amacıyla üretilen sentetik veridir. Gerçek veride KVKK/GDPR riskleri varken mock veride bu riskler yoktur. Mock Jutsu'nun ürettiği veriler format ve checksum açısından geçerlidir ancak hiçbir gerçek kişiye veya hesaba ait değildir.</p></details>
+<details class="wim-faq-item"><summary class="wim-faq-q">Mock Jutsu, Faker veya Mimesis'ten nasıl farklıdır?</summary><p class="wim-faq-a">Faker rastgele görünen metin üretir; Mock Jutsu ise IBAN (MOD-97), TCKN (ağırlıklı checksum), Luhn algoritması (kart numaraları) gibi gerçek algoritmalar kullanarak format ve checksum açısından geçerli veri üretir. Bu sayede test verisi gerçek sistemlere entegrasyon senaryolarında da geçer.</p></details>
+<details class="wim-faq-item"><summary class="wim-faq-q">JMeter ile nasıl kullanılır?</summary><p class="wim-faq-a">JMeter Plugins Manager üzerinden 'Mock Jutsu Functions' eklentisini kurun. Ardından Thread Group içinde JSR223 Sampler ekleyin ve tckn(), iban(), cardnum() gibi fonksiyonları test planınızda doğrudan kullanın.</p></details>
+<details class="wim-faq-item"><summary class="wim-faq-q">Zero-dependency ne anlama geliyor?</summary><p class="wim-faq-a">Mock Jutsu'nun çalışması için herhangi bir üçüncü taraf kütüphaneye ihtiyaç yoktur. Tüm algoritmalar saf Python ile yazılmıştır. Bu, güvenlik açığı riskini minimize eder ve herhangi bir ortamda kurulum sorunsuz çalışır.</p></details>
+<details class="wim-faq-item"><summary class="wim-faq-q">Üretilen veri gerçek kişilere ait olabilir mi?</summary><p class="wim-faq-a">Hayır. Mock Jutsu yalnızca algoritmik olarak geçerli sahte veri üretir. Üretilen TCKN, IBAN veya kart numaraları gerçek kişi ya da hesaplara ait değildir. Ancak bu veriler format doğrulama testlerinde gerçek veri gibi davranır.</p></details>
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Mock data ile gerçek veri arasındaki fark nedir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mock data, gerçek kullanıcı veya işlemlere ait olmayan, yalnızca test amacıyla üretilen sentetik veridir. Gerçek veride KVKK/GDPR riskleri varken mock veride bu riskler yoktur. Mock Jutsu'nun ürettiği veriler format ve checksum açısından geçerlidir ancak hiçbir gerçek kişiye veya hesaba ait değildir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mock Jutsu, Faker veya Mimesis'ten nasıl farklıdır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Faker rastgele görünen metin üretir; Mock Jutsu ise IBAN (MOD-97), TCKN (ağırlıklı checksum), Luhn algoritması (kart numaraları) gibi gerçek algoritmalar kullanarak format ve checksum açısından geçerli veri üretir. Bu sayede test verisi gerçek sistemlere entegrasyon senaryolarında da geçer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "JMeter ile nasıl kullanılır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JMeter Plugins Manager üzerinden 'Mock Jutsu Functions' eklentisini kurun. Ardından Thread Group içinde JSR223 Sampler ekleyin ve tckn(), iban(), cardnum() gibi fonksiyonları test planınızda doğrudan kullanın."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Zero-dependency ne anlama geliyor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mock Jutsu'nun çalışması için herhangi bir üçüncü taraf kütüphaneye ihtiyaç yoktur. Tüm algoritmalar saf Python ile yazılmıştır. Bu, güvenlik açığı riskini minimize eder ve herhangi bir ortamda kurulum sorunsuz çalışır."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Üretilen veri gerçek kişilere ait olabilir mi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hayır. Mock Jutsu yalnızca algoritmik olarak geçerli sahte veri üretir. Üretilen TCKN, IBAN veya kart numaraları gerçek kişi ya da hesaplara ait değildir. Ancak bu veriler format doğrulama testlerinde gerçek veri gibi davranır."
+      }
+    }
+  ]
+}
+</script>
 </div></div>
 </main>
 <footer class="footer">

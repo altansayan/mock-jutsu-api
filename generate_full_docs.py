@@ -340,12 +340,12 @@ PARAM_INFO = {
 # ── Listing-page extras ────────────────────────────────────────────────────────
 
 TAB_LABELS = {
-    "TR": ("Tam Referans", "Hızlı Başlangıç", "Güçlü Özellikler", "REST API", "Maskeleme"),
-    "EN": ("Full Reference", "Quick Start",    "Power Features",   "REST API", "Data Masking"),
-    "UK": ("Full Reference", "Quick Start",    "Power Features",   "REST API", "Data Masking"),
-    "DE": ("Vollständige Referenz", "Schnellstart", "Leistungsfunktionen", "REST API", "Datenmaskierung"),
-    "FR": ("Référence complète", "Démarrage rapide", "Fonctionnalités", "REST API", "Masquage"),
-    "RU": ("Полный справочник", "Быстрый старт", "Функции", "REST API", "Маскирование"),
+    "TR": ("Tam Referans", "Hızlı Başlangıç", "Güçlü Özellikler", "REST API", "Maskeleme", "Mock Data Nedir?"),
+    "EN": ("Full Reference", "Quick Start",    "Power Features",   "REST API", "Data Masking", "What is Mock Data?"),
+    "UK": ("Full Reference", "Quick Start",    "Power Features",   "REST API", "Data Masking", "What is Mock Data?"),
+    "DE": ("Vollständige Referenz", "Schnellstart", "Leistungsfunktionen", "REST API", "Datenmaskierung", "Was sind Mock-Daten?"),
+    "FR": ("Référence complète", "Démarrage rapide", "Fonctionnalités", "REST API", "Masquage", "Que sont les données mock ?"),
+    "RU": ("Полный справочник", "Быстрый старт", "Функции", "REST API", "Маскирование", "Что такое мок-данные?"),
 }
 
 # ── Masking table data ─────────────────────────────────────────────────────────
@@ -725,6 +725,470 @@ MASK_COL_HEADERS = {
     "FR": ("Réglementation", "Types", "Règle de masquage"),
     "RU": ("Регуляция", "Типы", "Правило маскирования"),
 }
+
+# ── "What is Mock Data?" tab content ─────────────────────────────────────────
+
+_WIM_LEAD = {
+    "TR": (
+        "Mock data (sahte veri), gerçek sistemleri, kullanıcıları veya işlemleri etkilemeden "
+        "yazılım geliştirme ve test süreçlerinde kullanılan sentetik, format-geçerli veridir. "
+        "Mock Jutsu, 182 farklı tipte —TCKN'den IBAN'a, kredi kartından FHIR'e— anında, "
+        "algoritmik olarak doğru test verisi üretir."
+    ),
+    "EN": (
+        "Mock data is synthetic, format-valid data used in software development and testing "
+        "without affecting real systems, users, or transactions. Mock Jutsu generates "
+        "algorithmically correct test data across 182 types — from SSN to IBAN, "
+        "credit card numbers to FHIR records — instantly and offline."
+    ),
+    "UK": (
+        "Mock data is synthetic, format-valid data used in software development and testing "
+        "without affecting real systems, users, or transactions. Mock Jutsu generates "
+        "algorithmically correct test data across 182 types — from SSN to IBAN, "
+        "credit card numbers to FHIR records — instantly and offline."
+    ),
+    "DE": (
+        "Mock-Daten sind synthetische, formatgültige Daten, die in der Softwareentwicklung "
+        "und beim Testen verwendet werden, ohne echte Systeme, Benutzer oder Transaktionen "
+        "zu beeinflussen. Mock Jutsu generiert algorithmisch korrekte Testdaten über 182 Typen "
+        "— von IBAN bis Kreditkartennummern — sofort und offline."
+    ),
+    "FR": (
+        "Les données mock sont des données synthétiques et valides en format, utilisées dans le "
+        "développement logiciel et les tests sans affecter les systèmes, utilisateurs ou "
+        "transactions réels. Mock Jutsu génère des données de test algorithmiquement correctes "
+        "sur 182 types — de l'IBAN aux numéros de carte de crédit — instantanément et hors ligne."
+    ),
+    "RU": (
+        "Мок-данные — это синтетические данные корректного формата, используемые при разработке "
+        "и тестировании программного обеспечения без воздействия на реальные системы, "
+        "пользователей или транзакции. Mock Jutsu генерирует алгоритмически корректные "
+        "тестовые данные 182 типов — от IBAN до номеров кредитных карт — мгновенно и офлайн."
+    ),
+}
+
+_WIM_WHY_TITLE = {
+    "TR": "Neden Mock Data Kullanılır?",
+    "EN": "Why Use Mock Data?",
+    "UK": "Why Use Mock Data?",
+    "DE": "Warum Mock-Daten verwenden?",
+    "FR": "Pourquoi utiliser des données mock ?",
+    "RU": "Зачем использовать мок-данные?",
+}
+
+_WIM_WHY_ITEMS = {
+    "TR": [
+        "Gerçek müşteri verisi kullanmadan güvenli test ortamı oluşturun",
+        "KVKK, GDPR ve PCI DSS uyumluluğunu test aşamasında koruyun",
+        "Her test çalıştırmasında tekrarlanabilir, deterministik veri üretin",
+        "Henüz mevcut olmayan uç noktalara ya da servislere karşı geliştirme yapın",
+        "Yük testlerinde binlerce benzersiz kayıt oluşturun",
+    ],
+    "EN": [
+        "Create a safe test environment without using real customer data",
+        "Maintain GDPR, PCI DSS and regulatory compliance during testing",
+        "Generate repeatable, deterministic data on every test run",
+        "Develop against endpoints or services that don't exist yet",
+        "Generate thousands of unique records for load and performance tests",
+    ],
+    "UK": [
+        "Create a safe test environment without using real customer data",
+        "Maintain GDPR, PCI DSS and regulatory compliance during testing",
+        "Generate repeatable, deterministic data on every test run",
+        "Develop against endpoints or services that don't exist yet",
+        "Generate thousands of unique records for load and performance tests",
+    ],
+    "DE": [
+        "Erstellen Sie eine sichere Testumgebung ohne echte Kundendaten",
+        "Gewährleisten Sie DSGVO-, PCI DSS- und Regulierungskonformität beim Testen",
+        "Generieren Sie wiederholbare, deterministische Daten bei jedem Testlauf",
+        "Entwickeln Sie gegen Endpunkte oder Dienste, die noch nicht existieren",
+        "Generieren Sie Tausende eindeutiger Datensätze für Last- und Leistungstests",
+    ],
+    "FR": [
+        "Créez un environnement de test sécurisé sans utiliser de vraies données clients",
+        "Maintenez la conformité RGPD, PCI DSS et réglementaire lors des tests",
+        "Générez des données répétables et déterministes à chaque exécution de test",
+        "Développez contre des points de terminaison ou services qui n'existent pas encore",
+        "Générez des milliers d'enregistrements uniques pour les tests de charge",
+    ],
+    "RU": [
+        "Создавайте безопасную тестовую среду без использования реальных данных клиентов",
+        "Соблюдайте требования GDPR, PCI DSS и регуляторов при тестировании",
+        "Генерируйте воспроизводимые детерминированные данные при каждом запуске теста",
+        "Разрабатывайте против эндпоинтов или сервисов, которые ещё не существуют",
+        "Генерируйте тысячи уникальных записей для нагрузочного и перформанс-тестирования",
+    ],
+}
+
+_WIM_STAGES_TITLE = {
+    "TR": "Tüm Test Katmanlarında Kullanım",
+    "EN": "Use Across All Testing Layers",
+    "UK": "Use Across All Testing Layers",
+    "DE": "Einsatz auf allen Testebenen",
+    "FR": "Utilisation sur toutes les couches de test",
+    "RU": "Использование на всех уровнях тестирования",
+}
+
+_WIM_STAGES = {
+    "TR": [
+        ("Birim & Entegrasyon Testleri", "Geliştiricilerin gerçek veri tabanı ya da harici servis olmaksızın kendi modüllerini test etmesi için anında veri üretir."),
+        ("Sistem & Uçtan Uca Testler", "QA mühendislerinin gerçek kullanıcı akışlarını temsil eden eksiksiz senaryolar kurmasına olanak tanır."),
+        ("Kabul Testleri", "İş paydaşlarına canlı sisteme dokunmadan gerçekçi verilerle özellik gösterimi yapın."),
+        ("Yük & Performans Testleri", "JMeter veya k6 ile saniyede binlerce benzersiz kayıt oluşturarak gerçek üretim yükünü simüle edin."),
+    ],
+    "EN": [
+        ("Unit & Integration Tests", "Generates instant data for developers to test their modules without a real database or external service."),
+        ("System & End-to-End Tests", "Enables QA engineers to build complete scenarios representing real user flows."),
+        ("Acceptance Tests", "Demonstrate features to business stakeholders with realistic data without touching the live system."),
+        ("Load & Performance Tests", "Simulate real production load by generating thousands of unique records per second with JMeter or k6."),
+    ],
+    "UK": [
+        ("Unit & Integration Tests", "Generates instant data for developers to test their modules without a real database or external service."),
+        ("System & End-to-End Tests", "Enables QA engineers to build complete scenarios representing real user flows."),
+        ("Acceptance Tests", "Demonstrate features to business stakeholders with realistic data without touching the live system."),
+        ("Load & Performance Tests", "Simulate real production load by generating thousands of unique records per second with JMeter or k6."),
+    ],
+    "DE": [
+        ("Unit- & Integrationstests", "Generiert sofortige Daten für Entwickler zum Testen ihrer Module ohne echte Datenbank."),
+        ("System- & End-to-End-Tests", "Ermöglicht QA-Ingenieuren vollständige Szenarien mit echten Benutzerflüssen aufzubauen."),
+        ("Abnahmetests", "Präsentieren Sie Funktionen mit realistischen Daten, ohne das Live-System zu berühren."),
+        ("Last- & Leistungstests", "Simulieren Sie echte Produktionslast durch Generierung Tausender eindeutiger Datensätze pro Sekunde."),
+    ],
+    "FR": [
+        ("Tests unitaires & d'intégration", "Génère des données instantanées pour les développeurs sans base de données réelle."),
+        ("Tests système & de bout en bout", "Permet aux ingénieurs QA de construire des scénarios complets représentant des flux utilisateurs réels."),
+        ("Tests d'acceptation", "Démontrez les fonctionnalités aux parties prenantes avec des données réalistes sans toucher au système en production."),
+        ("Tests de charge & de performance", "Simulez une charge de production réelle en générant des milliers d'enregistrements uniques par seconde."),
+    ],
+    "RU": [
+        ("Модульные и интеграционные тесты", "Генерирует мгновенные данные для разработчиков без реальной базы данных или внешнего сервиса."),
+        ("Системные и сквозные тесты", "Позволяет QA-инженерам строить полные сценарии, отражающие реальные пользовательские потоки."),
+        ("Приёмочные тесты", "Демонстрируйте функции заинтересованным сторонам с реалистичными данными без воздействия на production-систему."),
+        ("Нагрузочные и перформанс-тесты", "Симулируйте реальную производственную нагрузку, генерируя тысячи уникальных записей в секунду с JMeter."),
+    ],
+}
+
+_WIM_CHANNELS_TITLE = {
+    "TR": "Her Ortamda Kullanın",
+    "EN": "Use in Any Environment",
+    "UK": "Use in Any Environment",
+    "DE": "In jeder Umgebung verwenden",
+    "FR": "Utiliser dans n'importe quel environnement",
+    "RU": "Используйте в любой среде",
+}
+
+_WIM_CHANNELS = {
+    "TR": [
+        ("CLI", "Terminal ve CI/CD pipeline'larında", "mockjutsu generate tckn"),
+        ("Python API", "PyPI ile herhangi bir Python projesinde", "from mockjutsu import jutsu\njutsu.generate('iban')"),
+        ("REST API", "Dil bağımsız, Docker ile sunucu olarak", "GET /generate/cardnum"),
+        ("JMeter Plugin", "Yük ve performans testlerinde", "Mock Jutsu Functions → tckn()"),
+        ("Maven / Java", "JVM tabanlı projelerde", 'MockJutsu.generate("iban")'),
+    ],
+    "EN": [
+        ("CLI", "In terminals and CI/CD pipelines", "mockjutsu generate tckn"),
+        ("Python API", "In any Python project via PyPI", "from mockjutsu import jutsu\njutsu.generate('iban')"),
+        ("REST API", "Language-agnostic, as a server via Docker", "GET /generate/cardnum"),
+        ("JMeter Plugin", "In load and performance tests", "Mock Jutsu Functions → tckn()"),
+        ("Maven / Java", "In JVM-based projects", 'MockJutsu.generate("iban")'),
+    ],
+    "UK": [
+        ("CLI", "In terminals and CI/CD pipelines", "mockjutsu generate tckn"),
+        ("Python API", "In any Python project via PyPI", "from mockjutsu import jutsu\njutsu.generate('iban')"),
+        ("REST API", "Language-agnostic, as a server via Docker", "GET /generate/cardnum"),
+        ("JMeter Plugin", "In load and performance tests", "Mock Jutsu Functions → tckn()"),
+        ("Maven / Java", "In JVM-based projects", 'MockJutsu.generate("iban")'),
+    ],
+    "DE": [
+        ("CLI", "In Terminals und CI/CD-Pipelines", "mockjutsu generate tckn"),
+        ("Python API", "In jedem Python-Projekt via PyPI", "from mockjutsu import jutsu\njutsu.generate('iban')"),
+        ("REST API", "Sprachunabhängig als Server via Docker", "GET /generate/cardnum"),
+        ("JMeter Plugin", "In Last- und Leistungstests", "Mock Jutsu Functions → tckn()"),
+        ("Maven / Java", "In JVM-basierten Projekten", 'MockJutsu.generate("iban")'),
+    ],
+    "FR": [
+        ("CLI", "Dans les terminaux et les pipelines CI/CD", "mockjutsu generate tckn"),
+        ("Python API", "Dans tout projet Python via PyPI", "from mockjutsu import jutsu\njutsu.generate('iban')"),
+        ("REST API", "Indépendant du langage, comme serveur via Docker", "GET /generate/cardnum"),
+        ("JMeter Plugin", "Dans les tests de charge et de performance", "Mock Jutsu Functions → tckn()"),
+        ("Maven / Java", "Dans les projets basés sur JVM", 'MockJutsu.generate("iban")'),
+    ],
+    "RU": [
+        ("CLI", "В терминалах и CI/CD пайплайнах", "mockjutsu generate tckn"),
+        ("Python API", "В любом Python-проекте через PyPI", "from mockjutsu import jutsu\njutsu.generate('iban')"),
+        ("REST API", "Не зависит от языка, как сервер через Docker", "GET /generate/cardnum"),
+        ("JMeter Plugin", "В нагрузочных и перформанс-тестах", "Mock Jutsu Functions → tckn()"),
+        ("Maven / Java", "В JVM-проектах", 'MockJutsu.generate("iban")'),
+    ],
+}
+
+_WIM_FAQ_TITLE = {
+    "TR": "Sıkça Sorulan Sorular",
+    "EN": "Frequently Asked Questions",
+    "UK": "Frequently Asked Questions",
+    "DE": "Häufig gestellte Fragen",
+    "FR": "Questions fréquemment posées",
+    "RU": "Часто задаваемые вопросы",
+}
+
+_WIM_FAQ = {
+    "TR": [
+        (
+            "Mock data ile gerçek veri arasındaki fark nedir?",
+            "Mock data, gerçek kullanıcı veya işlemlere ait olmayan, yalnızca test amacıyla üretilen sentetik veridir. "
+            "Gerçek veride KVKK/GDPR riskleri varken mock veride bu riskler yoktur. Mock Jutsu'nun ürettiği veriler "
+            "format ve checksum açısından geçerlidir ancak hiçbir gerçek kişiye veya hesaba ait değildir.",
+        ),
+        (
+            "Mock Jutsu, Faker veya Mimesis'ten nasıl farklıdır?",
+            "Faker rastgele görünen metin üretir; Mock Jutsu ise IBAN (MOD-97), TCKN (ağırlıklı checksum), "
+            "Luhn algoritması (kart numaraları) gibi gerçek algoritmalar kullanarak format ve checksum açısından "
+            "geçerli veri üretir. Bu sayede test verisi gerçek sistemlere entegrasyon senaryolarında da geçer.",
+        ),
+        (
+            "JMeter ile nasıl kullanılır?",
+            "JMeter Plugins Manager üzerinden 'Mock Jutsu Functions' eklentisini kurun. Ardından Thread Group "
+            "içinde JSR223 Sampler ekleyin ve tckn(), iban(), cardnum() gibi fonksiyonları test planınızda "
+            "doğrudan kullanın.",
+        ),
+        (
+            "Zero-dependency ne anlama geliyor?",
+            "Mock Jutsu'nun çalışması için herhangi bir üçüncü taraf kütüphaneye ihtiyaç yoktur. Tüm algoritmalar "
+            "saf Python ile yazılmıştır. Bu, güvenlik açığı riskini minimize eder ve herhangi bir ortamda "
+            "kurulum sorunsuz çalışır.",
+        ),
+        (
+            "Üretilen veri gerçek kişilere ait olabilir mi?",
+            "Hayır. Mock Jutsu yalnızca algoritmik olarak geçerli sahte veri üretir. Üretilen TCKN, IBAN veya "
+            "kart numaraları gerçek kişi ya da hesaplara ait değildir. Ancak bu veriler format doğrulama "
+            "testlerinde gerçek veri gibi davranır.",
+        ),
+    ],
+    "EN": [
+        (
+            "What is the difference between mock data and real data?",
+            "Mock data is synthetic data not belonging to any real user or transaction, generated purely for testing "
+            "purposes. Real data carries GDPR/PCI DSS compliance risks; mock data does not. Mock Jutsu generates "
+            "data that is format and checksum-valid but does not correspond to any real person or account.",
+        ),
+        (
+            "How does Mock Jutsu differ from Faker or Mimesis?",
+            "Faker generates random-looking text; Mock Jutsu uses real algorithms like IBAN (MOD-97), Luhn (card "
+            "numbers), and TCKN (weighted checksum) to produce format and checksum-valid data. This means test "
+            "data passes validation in real integration scenarios.",
+        ),
+        (
+            "How do I use it with JMeter?",
+            "Install the 'Mock Jutsu Functions' plugin via JMeter Plugins Manager. Then add a JSR223 Sampler inside "
+            "your Thread Group and use functions like tckn(), iban(), or cardnum() directly in your test plan.",
+        ),
+        (
+            "What does zero-dependency mean?",
+            "Mock Jutsu requires no third-party libraries to run. All algorithms are implemented in pure Python, "
+            "minimizing security vulnerability risk and ensuring installation works in any environment.",
+        ),
+        (
+            "Can generated data belong to a real person?",
+            "No. Mock Jutsu generates only algorithmically valid synthetic data. Generated TCKNs, IBANs or card "
+            "numbers do not correspond to any real person or account, but behave like real data in format "
+            "validation tests.",
+        ),
+    ],
+    "UK": [
+        (
+            "What is the difference between mock data and real data?",
+            "Mock data is synthetic data not belonging to any real user or transaction, generated purely for testing "
+            "purposes. Real data carries GDPR/PCI DSS compliance risks; mock data does not. Mock Jutsu generates "
+            "data that is format and checksum-valid but does not correspond to any real person or account.",
+        ),
+        (
+            "How does Mock Jutsu differ from Faker or Mimesis?",
+            "Faker generates random-looking text; Mock Jutsu uses real algorithms like IBAN (MOD-97), Luhn (card "
+            "numbers), and TCKN (weighted checksum) to produce format and checksum-valid data. This means test "
+            "data passes validation in real integration scenarios.",
+        ),
+        (
+            "How do I use it with JMeter?",
+            "Install the 'Mock Jutsu Functions' plugin via JMeter Plugins Manager. Then add a JSR223 Sampler inside "
+            "your Thread Group and use functions like tckn(), iban(), or cardnum() directly in your test plan.",
+        ),
+        (
+            "What does zero-dependency mean?",
+            "Mock Jutsu requires no third-party libraries to run. All algorithms are implemented in pure Python, "
+            "minimizing security vulnerability risk and ensuring installation works in any environment.",
+        ),
+        (
+            "Can generated data belong to a real person?",
+            "No. Mock Jutsu generates only algorithmically valid synthetic data. Generated TCKNs, IBANs or card "
+            "numbers do not correspond to any real person or account, but behave like real data in format "
+            "validation tests.",
+        ),
+    ],
+    "DE": [
+        (
+            "Was ist der Unterschied zwischen Mock-Daten und echten Daten?",
+            "Mock-Daten sind synthetische Daten, die zu keinem echten Benutzer oder Transaktion gehören und nur "
+            "zu Testzwecken generiert werden. Echte Daten bergen DSGVO/PCI DSS-Risiken; Mock-Daten nicht. "
+            "Mock Jutsu generiert format- und prüfsummenvalide Daten ohne echte Personen oder Konten.",
+        ),
+        (
+            "Wie unterscheidet sich Mock Jutsu von Faker?",
+            "Faker generiert zufällig aussehenden Text; Mock Jutsu verwendet echte Algorithmen wie IBAN (MOD-97) "
+            "und Luhn (Kartennummern), um format- und prüfsummenvalide Daten zu produzieren. Testdaten bestehen "
+            "so auch in realen Integrationsszenarien.",
+        ),
+        (
+            "Wie verwende ich es mit JMeter?",
+            "Installieren Sie das Plugin 'Mock Jutsu Functions' über den JMeter Plugins Manager. Fügen Sie dann "
+            "einen JSR223-Sampler in Ihrer Thread Group hinzu und verwenden Sie Funktionen wie tckn(), iban() "
+            "oder cardnum().",
+        ),
+        (
+            "Was bedeutet Zero-Dependency?",
+            "Mock Jutsu benötigt keine Drittanbieter-Bibliotheken. Alle Algorithmen sind in reinem Python "
+            "implementiert, was Sicherheitslücken minimiert und eine reibungslose Installation gewährleistet.",
+        ),
+        (
+            "Können generierte Daten einer echten Person gehören?",
+            "Nein. Mock Jutsu generiert nur algorithmisch valide synthetische Daten. Generierte IBANs oder "
+            "Kartennummern gehören keiner echten Person, verhalten sich aber wie echte Daten bei "
+            "Formatvalidierungstests.",
+        ),
+    ],
+    "FR": [
+        (
+            "Quelle est la différence entre les données mock et les données réelles ?",
+            "Les données mock sont des données synthétiques n'appartenant à aucun utilisateur réel, générées "
+            "uniquement à des fins de test. Les données réelles comportent des risques RGPD/PCI DSS; les données "
+            "mock non. Mock Jutsu génère des données valides en format et somme de contrôle sans correspondre "
+            "à des personnes réelles.",
+        ),
+        (
+            "En quoi Mock Jutsu diffère-t-il de Faker ?",
+            "Faker génère du texte d'apparence aléatoire; Mock Jutsu utilise de vrais algorithmes comme IBAN "
+            "(MOD-97) et Luhn (numéros de carte) pour produire des données valides en format et somme de "
+            "contrôle. Les données de test passent ainsi la validation dans des scénarios d'intégration réels.",
+        ),
+        (
+            "Comment l'utiliser avec JMeter ?",
+            "Installez le plugin 'Mock Jutsu Functions' via le JMeter Plugins Manager. Ajoutez ensuite un Sampler "
+            "JSR223 dans votre Thread Group et utilisez des fonctions comme tckn(), iban() ou cardnum().",
+        ),
+        (
+            "Que signifie zéro-dépendance ?",
+            "Mock Jutsu ne nécessite aucune bibliothèque tierce. Tous les algorithmes sont implémentés en Python "
+            "pur, minimisant les risques de vulnérabilités et garantissant une installation sans problème.",
+        ),
+        (
+            "Les données générées peuvent-elles appartenir à une vraie personne ?",
+            "Non. Mock Jutsu génère uniquement des données synthétiques algorithmiquement valides. Les IBAN ou "
+            "numéros de carte générés n'appartiennent à aucune personne réelle, mais se comportent comme de "
+            "vraies données lors des tests de validation de format.",
+        ),
+    ],
+    "RU": [
+        (
+            "В чём разница между мок-данными и реальными данными?",
+            "Мок-данные — это синтетические данные, не принадлежащие ни одному реальному пользователю или "
+            "транзакции, создаваемые исключительно в целях тестирования. Реальные данные несут риски GDPR/PCI "
+            "DSS; мок-данные — нет. Mock Jutsu генерирует данные, корректные по формату и контрольной сумме.",
+        ),
+        (
+            "Чем Mock Jutsu отличается от Faker?",
+            "Faker генерирует случайно выглядящий текст; Mock Jutsu использует реальные алгоритмы, такие как "
+            "IBAN (MOD-97) и Luhn (номера карт), для получения данных, корректных по формату и контрольной "
+            "сумме. Тестовые данные проходят валидацию в реальных интеграционных сценариях.",
+        ),
+        (
+            "Как использовать с JMeter?",
+            "Установите плагин 'Mock Jutsu Functions' через JMeter Plugins Manager. Затем добавьте JSR223 Sampler "
+            "в ваш Thread Group и используйте функции tckn(), iban() или cardnum() напрямую.",
+        ),
+        (
+            "Что означает нулевые зависимости?",
+            "Mock Jutsu не требует сторонних библиотек. Все алгоритмы реализованы на чистом Python, что "
+            "минимизирует риски уязвимостей и обеспечивает бесперебойную установку в любой среде.",
+        ),
+        (
+            "Могут ли сгенерированные данные принадлежать реальному человеку?",
+            "Нет. Mock Jutsu генерирует только алгоритмически корректные синтетические данные. Сгенерированные "
+            "IBAN или номера карт не принадлежат ни одному реальному лицу, но ведут себя как реальные данные "
+            "при тестировании валидации формата.",
+        ),
+    ],
+}
+
+
+def _build_whatismock_section(lang: str) -> str:
+    lead       = _WIM_LEAD[lang]
+    why_title  = _WIM_WHY_TITLE[lang]
+    why_items  = _WIM_WHY_ITEMS[lang]
+    s_title    = _WIM_STAGES_TITLE[lang]
+    stages     = _WIM_STAGES[lang]
+    ch_title   = _WIM_CHANNELS_TITLE[lang]
+    channels   = _WIM_CHANNELS[lang]
+    faq_title  = _WIM_FAQ_TITLE[lang]
+    faqs       = _WIM_FAQ[lang]
+    page_title = TAB_LABELS[lang][5]
+
+    why_html = "".join(f"<li>{item}</li>\n" for item in why_items)
+
+    stages_html = "".join(
+        f'<div class="wim-stage">'
+        f'<div class="wim-stage-title">{t}</div>'
+        f'<div class="wim-stage-desc">{d}</div>'
+        f'</div>\n'
+        for t, d in stages
+    )
+
+    channels_html = ""
+    for ch_name, ch_desc, ch_code in channels:
+        safe_code = ch_code.replace("\n", "\n")
+        channels_html += (
+            f'<div class="wim-channel">'
+            f'<div class="wim-channel-name">{ch_name}</div>'
+            f'<div class="wim-channel-desc">{ch_desc}</div>'
+            f'<pre class="wim-channel-code">{safe_code}</pre>'
+            f'</div>\n'
+        )
+
+    faq_html = "".join(
+        f'<details class="wim-faq-item">'
+        f'<summary class="wim-faq-q">{q}</summary>'
+        f'<p class="wim-faq-a">{a}</p>'
+        f'</details>\n'
+        for q, a in faqs
+    )
+
+    faq_schema_items = [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+        for q, a in faqs
+    ]
+    faq_schema = json.dumps(
+        {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faq_schema_items},
+        ensure_ascii=False, indent=2,
+    )
+
+    return (
+        '<div class="tab-section" id="tab-whatismock">\n'
+        '<div style="max-width:900px;margin:0 auto;padding:1.75rem 1.5rem">\n'
+        f'<div class="stitle">{page_title}</div>\n'
+        f'<p class="wim-lead">{lead}</p>\n'
+        '<div class="wim-card">\n'
+        f'<h3 class="wim-section-title">{why_title}</h3>\n'
+        f'<ul class="wim-why-list">{why_html}</ul>\n'
+        '</div>\n'
+        f'<h3 class="wim-section-title">{s_title}</h3>\n'
+        f'<div class="wim-stages">\n{stages_html}</div>\n'
+        f'<h3 class="wim-section-title">{ch_title}</h3>\n'
+        f'<div class="wim-channels">\n{channels_html}</div>\n'
+        f'<h3 class="wim-section-title">{faq_title}</h3>\n'
+        f'<div class="wim-faq">\n{faq_html}</div>\n'
+        f'<script type="application/ld+json">\n{faq_schema}\n</script>\n'
+        '</div></div>\n'
+    )
+
 
 HEADER_ENGINE = {
     "TR": "Nihai Algoritmik Mock Veri Motoru",
@@ -1828,7 +2292,7 @@ def build_listing_page(lang: str) -> str:
     qs    = QS_LOCALE_INFO[lang]
     loc   = qs["locale"]
     net   = qs["card_net"]
-    t_ref, t_qs, t_power, t_api, t_mask = TAB_LABELS[lang]
+    t_ref, t_qs, t_power, t_api, t_mask, t_whatismock = TAB_LABELS[lang]
 
     # Group by category (preserve _CAT_ORDER if available)
     try:
@@ -1989,6 +2453,7 @@ def build_listing_page(lang: str) -> str:
         f'  <div class="tab" onclick="showTab(\'power\', this)">{t_power}</div>\n'
         f'  <div class="tab" onclick="showTab(\'api\', this)">{t_api}</div>\n'
         f'  <div class="tab" onclick="showTab(\'mask\', this)">{t_mask}</div>\n'
+        f'  <div class="tab" onclick="showTab(\'whatismock\', this)">{t_whatismock}</div>\n'
         '</div>\n'
     )
 
@@ -2226,6 +2691,31 @@ def build_listing_page(lang: str) -> str:
         '</div></div>\n'
     )
 
+    whatismock_section = _build_whatismock_section(lang)
+
+    wim_css = """<style>
+.wim-lead{font-size:1.05rem;line-height:1.75;color:#1e293b;margin-bottom:1.75rem;background:#f0f9ff;border-left:4px solid #2563eb;padding:1rem 1.25rem;border-radius:0 8px 8px 0}
+.wim-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.wim-section-title{font-size:1.1rem;font-weight:700;color:#1e3a5f;margin:1.5rem 0 .75rem}
+.wim-why-list{margin:0;padding-left:1.4rem;line-height:1.9;color:#334155}
+.wim-stages{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.85rem;margin-bottom:1.5rem}
+.wim-stage{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem 1.1rem}
+.wim-stage-title{font-weight:700;color:#1e3a5f;font-size:.9rem;margin-bottom:.4rem}
+.wim-stage-desc{font-size:.83rem;color:#475569;line-height:1.55}
+.wim-channels{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:.85rem;margin-bottom:1.5rem}
+.wim-channel{background:#1e293b;border-radius:8px;padding:1rem 1.1rem}
+.wim-channel-name{font-weight:700;color:#60a5fa;font-size:.9rem;margin-bottom:.25rem}
+.wim-channel-desc{font-size:.78rem;color:#94a3b8;margin-bottom:.6rem}
+.wim-channel-code{font-family:ui-monospace,monospace;font-size:.78rem;color:#86efac;margin:0;white-space:pre-wrap;word-break:break-all}
+.wim-faq-item{border:1px solid #e2e8f0;border-radius:8px;margin-bottom:.6rem;overflow:hidden}
+.wim-faq-q{padding:.85rem 1.1rem;font-weight:600;color:#1e3a5f;cursor:pointer;list-style:none;font-size:.9rem}
+.wim-faq-q::-webkit-details-marker{display:none}
+.wim-faq-q::before{content:"+ ";color:#2563eb;font-weight:700}
+details[open] .wim-faq-q::before{content:"\\2212 ";color:#2563eb}
+.wim-faq-a{padding:.75rem 1.1rem 1rem;margin:0;font-size:.87rem;color:#475569;line-height:1.6;border-top:1px solid #e2e8f0;background:#f8fafc}
+@media(max-width:600px){.wim-stages,.wim-channels{grid-template-columns:1fr}}
+</style>"""
+
     mask_css = """<style>
 .mask-intro{background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;font-size:.9rem;line-height:1.6;color:#0c4a6e}
 .mask-intro code{background:#e0f2fe;padding:.1rem .35rem;border-radius:4px;font-size:.85rem}
@@ -2346,6 +2836,7 @@ function copyTerm(id) {
         head + '\n'
         '<style>' + LISTING_EXTRA_CSS + '</style>\n'
         + mask_css + '\n'
+        + wim_css + '\n'
         + search_css + '\n'
         '<body>\n'
         + listing_header
@@ -2356,6 +2847,7 @@ function copyTerm(id) {
         + power_section
         + api_section
         + mask_section
+        + whatismock_section
         + '</main>\n'
         + footer
         + tab_js + '\n'

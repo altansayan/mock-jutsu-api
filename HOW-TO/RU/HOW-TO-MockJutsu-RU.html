@@ -242,6 +242,28 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#f8fafc;color:#1e29
 code.mask-type{background:#e0e7ff;color:#3730a3;padding:.1rem .35rem;border-radius:4px;font-size:.78rem;margin:.1rem .15rem .1rem 0;display:inline-block}
 </style>
 <style>
+.wim-lead{font-size:1.05rem;line-height:1.75;color:#1e293b;margin-bottom:1.75rem;background:#f0f9ff;border-left:4px solid #2563eb;padding:1rem 1.25rem;border-radius:0 8px 8px 0}
+.wim-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.wim-section-title{font-size:1.1rem;font-weight:700;color:#1e3a5f;margin:1.5rem 0 .75rem}
+.wim-why-list{margin:0;padding-left:1.4rem;line-height:1.9;color:#334155}
+.wim-stages{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.85rem;margin-bottom:1.5rem}
+.wim-stage{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:1rem 1.1rem}
+.wim-stage-title{font-weight:700;color:#1e3a5f;font-size:.9rem;margin-bottom:.4rem}
+.wim-stage-desc{font-size:.83rem;color:#475569;line-height:1.55}
+.wim-channels{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:.85rem;margin-bottom:1.5rem}
+.wim-channel{background:#1e293b;border-radius:8px;padding:1rem 1.1rem}
+.wim-channel-name{font-weight:700;color:#60a5fa;font-size:.9rem;margin-bottom:.25rem}
+.wim-channel-desc{font-size:.78rem;color:#94a3b8;margin-bottom:.6rem}
+.wim-channel-code{font-family:ui-monospace,monospace;font-size:.78rem;color:#86efac;margin:0;white-space:pre-wrap;word-break:break-all}
+.wim-faq-item{border:1px solid #e2e8f0;border-radius:8px;margin-bottom:.6rem;overflow:hidden}
+.wim-faq-q{padding:.85rem 1.1rem;font-weight:600;color:#1e3a5f;cursor:pointer;list-style:none;font-size:.9rem}
+.wim-faq-q::-webkit-details-marker{display:none}
+.wim-faq-q::before{content:"+ ";color:#2563eb;font-weight:700}
+details[open] .wim-faq-q::before{content:"\2212 ";color:#2563eb}
+.wim-faq-a{padding:.75rem 1.1rem 1rem;margin:0;font-size:.87rem;color:#475569;line-height:1.6;border-top:1px solid #e2e8f0;background:#f8fafc}
+@media(max-width:600px){.wim-stages,.wim-channels{grid-template-columns:1fr}}
+</style>
+<style>
 .list-controls{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:1.75rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
 .search-wrap{position:relative;margin-bottom:1rem}
 .search-icon{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#94a3b8;pointer-events:none}
@@ -277,6 +299,7 @@ code.mask-type{background:#e0e7ff;color:#3730a3;padding:.1rem .35rem;border-radi
   <div class="tab" onclick="showTab('power', this)">Функции</div>
   <div class="tab" onclick="showTab('api', this)">REST API</div>
   <div class="tab" onclick="showTab('mask', this)">Маскирование</div>
+  <div class="tab" onclick="showTab('whatismock', this)">Что такое мок-данные?</div>
 </div>
 <div class="tab-section active" id="tab-ref">
 <div style="max-width:1100px;margin:0 auto;padding:1.75rem 1.5rem">
@@ -2714,6 +2737,92 @@ GET /health  -> {"status":"ok"}
 <tr><td class="mask-reg">Mısır (TIN)</td><td class="mask-types"><code class="mask-type">eg_tn</code></td><td class="mask-rule">First 3 + **** + last 2</td></tr>
 <tr><td class="mask-reg">Ön-maskeli tipler (_masked varyantlar)</td><td class="mask-types"><code class="mask-type">tckn_masked</code><code class="mask-type">ssn_masked</code><code class="mask-type">account_number_masked</code><code class="mask-type">micr_line_masked</code><code class="mask-type">transaction_description_masked</code><code class="mask-type">check_number_masked</code><code class="mask-type">payment_reference_masked</code><code class="mask-type">credit_limit_masked</code><code class="mask-type">mortgage_rate_masked</code><code class="mask-type">premium_amount_masked</code><code class="mask-type">portfolio_id_masked</code><code class="mask-type">sar_number_masked</code><code class="mask-type">policy_number_masked</code><code class="mask-type">claim_number_masked</code><code class="mask-type">ubo_ownership_percentage_masked</code><code class="mask-type">consent_id_masked</code><code class="mask-type">liquidity_pool_id_masked</code></td><td class="mask-rule">Generated pre-masked — --mask flag has no additional effect</td></tr>
 </tbody></table></div>
+</div></div>
+<div class="tab-section" id="tab-whatismock">
+<div style="max-width:900px;margin:0 auto;padding:1.75rem 1.5rem">
+<div class="stitle">Что такое мок-данные?</div>
+<p class="wim-lead">Мок-данные — это синтетические данные корректного формата, используемые при разработке и тестировании программного обеспечения без воздействия на реальные системы, пользователей или транзакции. Mock Jutsu генерирует алгоритмически корректные тестовые данные 182 типов — от IBAN до номеров кредитных карт — мгновенно и офлайн.</p>
+<div class="wim-card">
+<h3 class="wim-section-title">Зачем использовать мок-данные?</h3>
+<ul class="wim-why-list"><li>Создавайте безопасную тестовую среду без использования реальных данных клиентов</li>
+<li>Соблюдайте требования GDPR, PCI DSS и регуляторов при тестировании</li>
+<li>Генерируйте воспроизводимые детерминированные данные при каждом запуске теста</li>
+<li>Разрабатывайте против эндпоинтов или сервисов, которые ещё не существуют</li>
+<li>Генерируйте тысячи уникальных записей для нагрузочного и перформанс-тестирования</li>
+</ul>
+</div>
+<h3 class="wim-section-title">Использование на всех уровнях тестирования</h3>
+<div class="wim-stages">
+<div class="wim-stage"><div class="wim-stage-title">Модульные и интеграционные тесты</div><div class="wim-stage-desc">Генерирует мгновенные данные для разработчиков без реальной базы данных или внешнего сервиса.</div></div>
+<div class="wim-stage"><div class="wim-stage-title">Системные и сквозные тесты</div><div class="wim-stage-desc">Позволяет QA-инженерам строить полные сценарии, отражающие реальные пользовательские потоки.</div></div>
+<div class="wim-stage"><div class="wim-stage-title">Приёмочные тесты</div><div class="wim-stage-desc">Демонстрируйте функции заинтересованным сторонам с реалистичными данными без воздействия на production-систему.</div></div>
+<div class="wim-stage"><div class="wim-stage-title">Нагрузочные и перформанс-тесты</div><div class="wim-stage-desc">Симулируйте реальную производственную нагрузку, генерируя тысячи уникальных записей в секунду с JMeter.</div></div>
+</div>
+<h3 class="wim-section-title">Используйте в любой среде</h3>
+<div class="wim-channels">
+<div class="wim-channel"><div class="wim-channel-name">CLI</div><div class="wim-channel-desc">В терминалах и CI/CD пайплайнах</div><pre class="wim-channel-code">mockjutsu generate tckn</pre></div>
+<div class="wim-channel"><div class="wim-channel-name">Python API</div><div class="wim-channel-desc">В любом Python-проекте через PyPI</div><pre class="wim-channel-code">from mockjutsu import jutsu
+jutsu.generate('iban')</pre></div>
+<div class="wim-channel"><div class="wim-channel-name">REST API</div><div class="wim-channel-desc">Не зависит от языка, как сервер через Docker</div><pre class="wim-channel-code">GET /generate/cardnum</pre></div>
+<div class="wim-channel"><div class="wim-channel-name">JMeter Plugin</div><div class="wim-channel-desc">В нагрузочных и перформанс-тестах</div><pre class="wim-channel-code">Mock Jutsu Functions → tckn()</pre></div>
+<div class="wim-channel"><div class="wim-channel-name">Maven / Java</div><div class="wim-channel-desc">В JVM-проектах</div><pre class="wim-channel-code">MockJutsu.generate("iban")</pre></div>
+</div>
+<h3 class="wim-section-title">Часто задаваемые вопросы</h3>
+<div class="wim-faq">
+<details class="wim-faq-item"><summary class="wim-faq-q">В чём разница между мок-данными и реальными данными?</summary><p class="wim-faq-a">Мок-данные — это синтетические данные, не принадлежащие ни одному реальному пользователю или транзакции, создаваемые исключительно в целях тестирования. Реальные данные несут риски GDPR/PCI DSS; мок-данные — нет. Mock Jutsu генерирует данные, корректные по формату и контрольной сумме.</p></details>
+<details class="wim-faq-item"><summary class="wim-faq-q">Чем Mock Jutsu отличается от Faker?</summary><p class="wim-faq-a">Faker генерирует случайно выглядящий текст; Mock Jutsu использует реальные алгоритмы, такие как IBAN (MOD-97) и Luhn (номера карт), для получения данных, корректных по формату и контрольной сумме. Тестовые данные проходят валидацию в реальных интеграционных сценариях.</p></details>
+<details class="wim-faq-item"><summary class="wim-faq-q">Как использовать с JMeter?</summary><p class="wim-faq-a">Установите плагин 'Mock Jutsu Functions' через JMeter Plugins Manager. Затем добавьте JSR223 Sampler в ваш Thread Group и используйте функции tckn(), iban() или cardnum() напрямую.</p></details>
+<details class="wim-faq-item"><summary class="wim-faq-q">Что означает нулевые зависимости?</summary><p class="wim-faq-a">Mock Jutsu не требует сторонних библиотек. Все алгоритмы реализованы на чистом Python, что минимизирует риски уязвимостей и обеспечивает бесперебойную установку в любой среде.</p></details>
+<details class="wim-faq-item"><summary class="wim-faq-q">Могут ли сгенерированные данные принадлежать реальному человеку?</summary><p class="wim-faq-a">Нет. Mock Jutsu генерирует только алгоритмически корректные синтетические данные. Сгенерированные IBAN или номера карт не принадлежат ни одному реальному лицу, но ведут себя как реальные данные при тестировании валидации формата.</p></details>
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "В чём разница между мок-данными и реальными данными?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Мок-данные — это синтетические данные, не принадлежащие ни одному реальному пользователю или транзакции, создаваемые исключительно в целях тестирования. Реальные данные несут риски GDPR/PCI DSS; мок-данные — нет. Mock Jutsu генерирует данные, корректные по формату и контрольной сумме."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чем Mock Jutsu отличается от Faker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Faker генерирует случайно выглядящий текст; Mock Jutsu использует реальные алгоритмы, такие как IBAN (MOD-97) и Luhn (номера карт), для получения данных, корректных по формату и контрольной сумме. Тестовые данные проходят валидацию в реальных интеграционных сценариях."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как использовать с JMeter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Установите плагин 'Mock Jutsu Functions' через JMeter Plugins Manager. Затем добавьте JSR223 Sampler в ваш Thread Group и используйте функции tckn(), iban() или cardnum() напрямую."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что означает нулевые зависимости?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mock Jutsu не требует сторонних библиотек. Все алгоритмы реализованы на чистом Python, что минимизирует риски уязвимостей и обеспечивает бесперебойную установку в любой среде."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Могут ли сгенерированные данные принадлежать реальному человеку?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет. Mock Jutsu генерирует только алгоритмически корректные синтетические данные. Сгенерированные IBAN или номера карт не принадлежат ни одному реальному лицу, но ведут себя как реальные данные при тестировании валидации формата."
+      }
+    }
+  ]
+}
+</script>
 </div></div>
 </main>
 <footer class="footer">
