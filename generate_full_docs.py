@@ -732,38 +732,38 @@ _WIM_LEAD = {
     "TR": (
         "Mock data (sahte veri), gerçek sistemleri, kullanıcıları veya işlemleri etkilemeden "
         "yazılım geliştirme ve test süreçlerinde kullanılan, algoritmik olarak üretilmiş, "
-        "format-geçerli veridir. Mock Jutsu, 390'dan fazla tipte —TCKN'den IBAN'a, "
-        "kredi kartından FHIR'e— anında, algoritmik olarak doğru test verisi üretir."
+        "format-geçerli veridir. Mock Jutsu, 390'dan fazla tipte (TCKN, IBAN, "
+        "kredi kartı, FHIR ve daha fazlası) anında, algoritmik olarak doğru test verisi üretir."
     ),
     "EN": (
         "Mock data is algorithmically generated, format-valid data used in software development "
         "and testing without affecting real systems, users, or transactions. Mock Jutsu generates "
-        "algorithmically correct test data across 390+ types — from SSN to IBAN, "
-        "credit card numbers to FHIR records — instantly and offline."
+        "algorithmically correct test data across 390+ types (SSN, IBAN, "
+        "credit cards, FHIR records, and more) instantly and offline."
     ),
     "UK": (
         "Mock data is algorithmically generated, format-valid data used in software development "
         "and testing without affecting real systems, users, or transactions. Mock Jutsu generates "
-        "algorithmically correct test data across 390+ types — from NHS numbers to IBAN, "
-        "credit card numbers to FHIR records — instantly and offline."
+        "algorithmically correct test data across 390+ types (NHS numbers, IBAN, "
+        "credit cards, FHIR records, and more) instantly and offline."
     ),
     "DE": (
         "Mock-Daten sind algorithmisch generierte, formatgültige Daten, die in der Softwareentwicklung "
         "und beim Testen verwendet werden, ohne echte Systeme, Benutzer oder Transaktionen "
         "zu beeinflussen. Mock Jutsu generiert algorithmisch korrekte Testdaten über 390+ Typen "
-        "— von IBAN bis Kreditkartennummern — sofort und offline."
+        "(IBAN, Kreditkartennummern, Steuer-IDs und mehr) sofort und offline."
     ),
     "FR": (
         "Les données mock sont des données générées algorithmiquement et valides en format, utilisées dans le "
         "développement logiciel et les tests sans affecter les systèmes, utilisateurs ou "
         "transactions réels. Mock Jutsu génère des données de test algorithmiquement correctes "
-        "sur 390+ types — de l'IBAN aux numéros de carte de crédit — instantanément et hors ligne."
+        "sur 390+ types (IBAN, numéros de carte, SIRET et plus) instantanément et hors ligne."
     ),
     "RU": (
         "Мок-данные — это алгоритмически генерируемые данные корректного формата, используемые при разработке "
         "и тестировании программного обеспечения без воздействия на реальные системы, "
         "пользователей или транзакции. Mock Jutsu генерирует алгоритмически корректные "
-        "тестовые данные 390+ типов — от IBAN до номеров кредитных карт — мгновенно и офлайн."
+        "тестовые данные 390+ типов (IBAN, номера карт, ИНН и другие) мгновенно и офлайн."
     ),
 }
 
