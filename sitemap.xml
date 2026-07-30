@@ -43,4 +43,36 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- What is Mock Data? standalone pages -->
+  <url>
+    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/mock-data-nedir</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/what-is-mock-data</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/was-sind-mock-daten</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/que-sont-les-donnees-mock</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/what-is-mock-data</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 </urlset>

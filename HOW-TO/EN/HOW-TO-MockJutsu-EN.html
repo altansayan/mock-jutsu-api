@@ -261,6 +261,8 @@ code.mask-type{background:#e0e7ff;color:#3730a3;padding:.1rem .35rem;border-radi
 .wim-faq-q::before{content:"+ ";color:#2563eb;font-weight:700}
 details[open] .wim-faq-q::before{content:"\2212 ";color:#2563eb}
 .wim-faq-a{padding:.75rem 1.1rem 1rem;margin:0;font-size:.87rem;color:#475569;line-height:1.6;border-top:1px solid #e2e8f0;background:#f8fafc}
+.wim-standalone-link{font-size:.8rem;color:#2563eb;text-decoration:none;border:1px solid #bfdbfe;border-radius:5px;padding:.2rem .6rem;transition:background .15s}
+.wim-standalone-link:hover{background:#eff6ff}
 @media(max-width:600px){.wim-stages,.wim-channels{grid-template-columns:1fr}}
 </style>
 <style>
@@ -2740,6 +2742,7 @@ GET /health  -> {"status":"ok"}
 </div></div>
 <div class="tab-section" id="tab-whatismock">
 <div style="max-width:900px;margin:0 auto;padding:1.75rem 1.5rem">
+<div style="text-align:right;margin-bottom:.5rem"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/what-is-mock-data" class="wim-standalone-link" target="_blank">↗ View as full page</a></div>
 <div class="stitle">What is Mock Data?</div>
 <p class="wim-lead">Mock data is synthetic, format-valid data used in software development and testing without affecting real systems, users, or transactions. Mock Jutsu generates algorithmically correct test data across 182 types — from SSN to IBAN, credit card numbers to FHIR records — instantly and offline.</p>
 <div class="wim-card">

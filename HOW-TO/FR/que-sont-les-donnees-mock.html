@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow">
+<title>Que sont les données mock ? | Mock Jutsu — Générateur de données de test</title>
+<meta name="description" content="Que sont les données mock, pourquoi les utiliser et comment les générer ? Générez 182 types de données de test avec Mock Jutsu — CLI, Python, REST API, JMeter et Maven.">
+<meta name="author" content="Altan Sezer Ayan (A.S.A)">
+<meta name="keywords" content="mock data, synthetic data, test data, mockjutsu, mock-jutsu, fake data generator">
+<link rel="canonical" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/que-sont-les-donnees-mock">
+<link rel="alternate" hreflang="tr" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/TR/mock-data-nedir">
+<link rel="alternate" hreflang="en" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/what-is-mock-data">
+<link rel="alternate" hreflang="en-gb" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/UK/what-is-mock-data">
+<link rel="alternate" hreflang="de" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/DE/was-sind-mock-daten">
+<link rel="alternate" hreflang="fr" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/que-sont-les-donnees-mock">
+<link rel="alternate" hreflang="ru" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/RU/what-is-mock-data">
+<link rel="alternate" hreflang="x-default" href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/EN/what-is-mock-data">
+<meta property="og:title" content="Que sont les données mock ? | Mock Jutsu — Générateur de données de test">
+<meta property="og:description" content="Que sont les données mock, pourquoi les utiliser et comment les générer ? Générez 182 types de données de test avec Mock Jutsu — CLI, Python, REST API, JMeter et Maven.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/que-sont-les-donnees-mock">
+<meta property="og:image" content="https://altansayan.github.io/mock-jutsu-api/assets/banner.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Que sont les données mock ? | Mock Jutsu — Générateur de données de test">
+<meta name="twitter:description" content="Que sont les données mock, pourquoi les utiliser et comment les générer ? Générez 182 types de données de test avec Mock Jutsu — CLI, Python, REST API, JMeter et Maven.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+<link rel="icon" type="image/png" href="https://altansayan.github.io/mock-jutsu-api/assets/favicon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Que sont les données mock ?",
+  "description": "Que sont les données mock, pourquoi les utiliser et comment les générer ? Générez 182 types de données de test avec Mock Jutsu — CLI, Python, REST API, JMeter et Maven.",
+  "url": "https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/que-sont-les-donnees-mock",
+  "inLanguage": "fr",
+  "author": {
+    "@type": "Person",
+    "name": "Altan Sezer Ayan"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "mock-jutsu",
+    "url": "https://altansayan.github.io/mock-jutsu-api/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/que-sont-les-donnees-mock"
+  }
+}
+</script>
+</head>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;background:#f8fafc;color:#0f172a;line-height:1.6}
+nav.wim-nav{background:#1e3a5f;padding:.75rem 1.5rem;position:sticky;top:0;z-index:100}
+nav.wim-nav a{color:#93c5fd;text-decoration:none;font-size:.9rem;font-weight:500}
+nav.wim-nav a:hover{color:#fff}
+.wim-page-main{max-width:900px;margin:0 auto;padding:2rem 1.5rem 3rem}
+.stitle{font-size:1.85rem;font-weight:800;color:#1e3a5f;margin:0 0 1.25rem;line-height:1.2}
+.wim-lead{font-size:1.05rem;line-height:1.75;color:#1e293b;margin-bottom:1.75rem;background:#f0f9ff;border-left:4px solid #2563eb;padding:1rem 1.25rem;border-radius:0 8px 8px 0}
+.wim-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.wim-section-title{font-size:1.1rem;font-weight:700;color:#1e3a5f;margin:1.75rem 0 .75rem}
+.wim-why-list{margin:0;padding-left:1.4rem;line-height:1.9;color:#334155}
+.wim-why-list li{margin-bottom:.25rem}
+.wim-stages{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.85rem;margin-bottom:1.5rem}
+.wim-stage{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem 1.1rem;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.wim-stage-title{font-weight:700;color:#1e3a5f;font-size:.9rem;margin-bottom:.4rem}
+.wim-stage-desc{font-size:.83rem;color:#475569;line-height:1.55}
+.wim-channels{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:.85rem;margin-bottom:1.5rem}
+.wim-channel{background:#1e293b;border-radius:8px;padding:1rem 1.1rem}
+.wim-channel-name{font-weight:700;color:#60a5fa;font-size:.9rem;margin-bottom:.25rem}
+.wim-channel-desc{font-size:.78rem;color:#94a3b8;margin-bottom:.6rem}
+.wim-channel-code{font-family:ui-monospace,monospace;font-size:.78rem;color:#86efac;margin:0;white-space:pre-wrap;word-break:break-all}
+.wim-faq-item{border:1px solid #e2e8f0;border-radius:8px;margin-bottom:.6rem;overflow:hidden}
+.wim-faq-q{padding:.85rem 1.1rem;font-weight:600;color:#1e3a5f;cursor:pointer;list-style:none;font-size:.9rem}
+.wim-faq-q::-webkit-details-marker{display:none}
+.wim-faq-q::before{content:"+ ";color:#2563eb;font-weight:700}
+details[open] .wim-faq-q::before{content:"2 ";color:#2563eb}
+.wim-faq-a{padding:.75rem 1.1rem 1rem;margin:0;font-size:.87rem;color:#475569;line-height:1.6;border-top:1px solid #e2e8f0;background:#f8fafc}
+footer.wim-footer{text-align:center;padding:2rem 1.5rem;font-size:.82rem;color:#64748b;border-top:1px solid #e2e8f0;margin-top:2rem}
+footer.wim-footer a{color:#2563eb;text-decoration:none}
+@media(max-width:600px){.wim-stages,.wim-channels{grid-template-columns:1fr}.stitle{font-size:1.4rem}}
+</style>
+<body>
+<nav class="wim-nav"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/HOW-TO-MockJutsu-FR.html">← Référence Mock Jutsu</a></nav>
+<main class="wim-page-main">
+<h1 class="stitle">Que sont les données mock ?</h1>
+<p class="wim-lead">Les données mock sont des données synthétiques et valides en format, utilisées dans le développement logiciel et les tests sans affecter les systèmes, utilisateurs ou transactions réels. Mock Jutsu génère des données de test algorithmiquement correctes sur 182 types — de l'IBAN aux numéros de carte de crédit — instantanément et hors ligne.</p>
+<div class="wim-card">
+<h2 class="wim-section-title">Pourquoi utiliser des données mock ?</h2>
+<ul class="wim-why-list"><li>Créez un environnement de test sécurisé sans utiliser de vraies données clients</li>
+<li>Maintenez la conformité RGPD, PCI DSS et réglementaire lors des tests</li>
+<li>Générez des données répétables et déterministes à chaque exécution de test</li>
+<li>Développez contre des points de terminaison ou services qui n'existent pas encore</li>
+<li>Générez des milliers d'enregistrements uniques pour les tests de charge</li>
+</ul>
+</div>
+<h2 class="wim-section-title">Utilisation sur toutes les couches de test</h2>
+<div class="wim-stages">
+<div class="wim-stage"><div class="wim-stage-title">Tests unitaires & d'intégration</div><div class="wim-stage-desc">Génère des données instantanées pour les développeurs sans base de données réelle.</div></div>
+<div class="wim-stage"><div class="wim-stage-title">Tests système & de bout en bout</div><div class="wim-stage-desc">Permet aux ingénieurs QA de construire des scénarios complets représentant des flux utilisateurs réels.</div></div>
+<div class="wim-stage"><div class="wim-stage-title">Tests d'acceptation</div><div class="wim-stage-desc">Démontrez les fonctionnalités aux parties prenantes avec des données réalistes sans toucher au système en production.</div></div>
+<div class="wim-stage"><div class="wim-stage-title">Tests de charge & de performance</div><div class="wim-stage-desc">Simulez une charge de production réelle en générant des milliers d'enregistrements uniques par seconde.</div></div>
+</div>
+<h2 class="wim-section-title">Utiliser dans n'importe quel environnement</h2>
+<div class="wim-channels">
+<div class="wim-channel"><div class="wim-channel-name">CLI</div><div class="wim-channel-desc">Dans les terminaux et les pipelines CI/CD</div><pre class="wim-channel-code">mockjutsu generate tckn</pre></div>
+<div class="wim-channel"><div class="wim-channel-name">Python API</div><div class="wim-channel-desc">Dans tout projet Python via PyPI</div><pre class="wim-channel-code">from mockjutsu import jutsu
+jutsu.generate('iban')</pre></div>
+<div class="wim-channel"><div class="wim-channel-name">REST API</div><div class="wim-channel-desc">Indépendant du langage, comme serveur via Docker</div><pre class="wim-channel-code">GET /generate/cardnum</pre></div>
+<div class="wim-channel"><div class="wim-channel-name">JMeter Plugin</div><div class="wim-channel-desc">Dans les tests de charge et de performance</div><pre class="wim-channel-code">Mock Jutsu Functions → tckn()</pre></div>
+<div class="wim-channel"><div class="wim-channel-name">Maven / Java</div><div class="wim-channel-desc">Dans les projets basés sur JVM</div><pre class="wim-channel-code">MockJutsu.generate("iban")</pre></div>
+</div>
+<h2 class="wim-section-title">Questions fréquemment posées</h2>
+<div class="wim-faq">
+<details class="wim-faq-item"><summary class="wim-faq-q">Quelle est la différence entre les données mock et les données réelles ?</summary><p class="wim-faq-a">Les données mock sont des données synthétiques n'appartenant à aucun utilisateur réel, générées uniquement à des fins de test. Les données réelles comportent des risques RGPD/PCI DSS; les données mock non. Mock Jutsu génère des données valides en format et somme de contrôle sans correspondre à des personnes réelles.</p></details>
+<details class="wim-faq-item"><summary class="wim-faq-q">En quoi Mock Jutsu diffère-t-il de Faker ?</summary><p class="wim-faq-a">Faker génère du texte d'apparence aléatoire; Mock Jutsu utilise de vrais algorithmes comme IBAN (MOD-97) et Luhn (numéros de carte) pour produire des données valides en format et somme de contrôle. Les données de test passent ainsi la validation dans des scénarios d'intégration réels.</p></details>
+<details class="wim-faq-item"><summary class="wim-faq-q">Comment l'utiliser avec JMeter ?</summary><p class="wim-faq-a">Installez le plugin 'Mock Jutsu Functions' via le JMeter Plugins Manager. Ajoutez ensuite un Sampler JSR223 dans votre Thread Group et utilisez des fonctions comme tckn(), iban() ou cardnum().</p></details>
+<details class="wim-faq-item"><summary class="wim-faq-q">Que signifie zéro-dépendance ?</summary><p class="wim-faq-a">Mock Jutsu ne nécessite aucune bibliothèque tierce. Tous les algorithmes sont implémentés en Python pur, minimisant les risques de vulnérabilités et garantissant une installation sans problème.</p></details>
+<details class="wim-faq-item"><summary class="wim-faq-q">Les données générées peuvent-elles appartenir à une vraie personne ?</summary><p class="wim-faq-a">Non. Mock Jutsu génère uniquement des données synthétiques algorithmiquement valides. Les IBAN ou numéros de carte générés n'appartiennent à aucune personne réelle, mais se comportent comme de vraies données lors des tests de validation de format.</p></details>
+</div>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quelle est la différence entre les données mock et les données réelles ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les données mock sont des données synthétiques n'appartenant à aucun utilisateur réel, générées uniquement à des fins de test. Les données réelles comportent des risques RGPD/PCI DSS; les données mock non. Mock Jutsu génère des données valides en format et somme de contrôle sans correspondre à des personnes réelles."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "En quoi Mock Jutsu diffère-t-il de Faker ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Faker génère du texte d'apparence aléatoire; Mock Jutsu utilise de vrais algorithmes comme IBAN (MOD-97) et Luhn (numéros de carte) pour produire des données valides en format et somme de contrôle. Les données de test passent ainsi la validation dans des scénarios d'intégration réels."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment l'utiliser avec JMeter ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Installez le plugin 'Mock Jutsu Functions' via le JMeter Plugins Manager. Ajoutez ensuite un Sampler JSR223 dans votre Thread Group et utilisez des fonctions comme tckn(), iban() ou cardnum()."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Que signifie zéro-dépendance ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mock Jutsu ne nécessite aucune bibliothèque tierce. Tous les algorithmes sont implémentés en Python pur, minimisant les risques de vulnérabilités et garantissant une installation sans problème."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Les données générées peuvent-elles appartenir à une vraie personne ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non. Mock Jutsu génère uniquement des données synthétiques algorithmiquement valides. Les IBAN ou numéros de carte générés n'appartiennent à aucune personne réelle, mais se comportent comme de vraies données lors des tests de validation de format."
+      }
+    }
+  ]
+}
+</script>
+</main>
+<footer class="wim-footer">mock-jutsu &mdash; Developed by <strong>Altan Sezer Ayan - A.S.A</strong> &nbsp;&bull;&nbsp; <a href="https://github.com/altansayan/mock-jutsu-api">GitHub</a> &nbsp;&bull;&nbsp; <a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/HOW-TO-MockJutsu-FR.html">← Référence Mock Jutsu</a> &nbsp;&bull;&nbsp; &copy; 2026 Altan Sezer Ayan &middot; MIT License</footer>
+</body>
+</html>

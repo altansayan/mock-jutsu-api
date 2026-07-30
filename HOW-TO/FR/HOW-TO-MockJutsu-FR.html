@@ -261,6 +261,8 @@ code.mask-type{background:#e0e7ff;color:#3730a3;padding:.1rem .35rem;border-radi
 .wim-faq-q::before{content:"+ ";color:#2563eb;font-weight:700}
 details[open] .wim-faq-q::before{content:"\2212 ";color:#2563eb}
 .wim-faq-a{padding:.75rem 1.1rem 1rem;margin:0;font-size:.87rem;color:#475569;line-height:1.6;border-top:1px solid #e2e8f0;background:#f8fafc}
+.wim-standalone-link{font-size:.8rem;color:#2563eb;text-decoration:none;border:1px solid #bfdbfe;border-radius:5px;padding:.2rem .6rem;transition:background .15s}
+.wim-standalone-link:hover{background:#eff6ff}
 @media(max-width:600px){.wim-stages,.wim-channels{grid-template-columns:1fr}}
 </style>
 <style>
@@ -2739,6 +2741,7 @@ GET /health  -> {"status":"ok"}
 </div></div>
 <div class="tab-section" id="tab-whatismock">
 <div style="max-width:900px;margin:0 auto;padding:1.75rem 1.5rem">
+<div style="text-align:right;margin-bottom:.5rem"><a href="https://altansayan.github.io/mock-jutsu-api/HOW-TO/FR/que-sont-les-donnees-mock" class="wim-standalone-link" target="_blank">↗ Voir en page complète</a></div>
 <div class="stitle">Que sont les données mock ?</div>
 <p class="wim-lead">Les données mock sont des données synthétiques et valides en format, utilisées dans le développement logiciel et les tests sans affecter les systèmes, utilisateurs ou transactions réels. Mock Jutsu génère des données de test algorithmiquement correctes sur 182 types — de l'IBAN aux numéros de carte de crédit — instantanément et hors ligne.</p>
 <div class="wim-card">

@@ -1120,6 +1120,52 @@ _WIM_FAQ = {
 }
 
 
+_WIM_SLUG = {
+    "TR": "mock-data-nedir",
+    "EN": "what-is-mock-data",
+    "UK": "what-is-mock-data",
+    "DE": "was-sind-mock-daten",
+    "FR": "que-sont-les-donnees-mock",
+    "RU": "what-is-mock-data",
+}
+
+_WIM_SEO_TITLE = {
+    "TR": "Mock Data Nedir? | Mock Jutsu — Test Verisi Üretici",
+    "EN": "What is Mock Data? | Mock Jutsu — Test Data Generator",
+    "UK": "What is Mock Data? | Mock Jutsu — Test Data Generator",
+    "DE": "Was sind Mock-Daten? | Mock Jutsu — Test-Datengenerator",
+    "FR": "Que sont les données mock ? | Mock Jutsu — Générateur de données de test",
+    "RU": "Что такое мок-данные? | Mock Jutsu — Генератор тестовых данных",
+}
+
+_WIM_SEO_DESC = {
+    "TR": "Mock data (sahte veri) nedir, neden kullanılır ve nasıl üretilir? Mock Jutsu ile 182 tipte algoritmik olarak doğru test verisi üretin — CLI, Python, REST API, JMeter ve Maven ile.",
+    "EN": "What is mock data, why use it, and how to generate it? Generate 182 types of algorithmically correct test data with Mock Jutsu — CLI, Python API, REST API, JMeter, and Maven.",
+    "UK": "What is mock data, why use it, and how to generate it? Generate 182 types of algorithmically correct test data with Mock Jutsu — CLI, Python API, REST API, JMeter, and Maven.",
+    "DE": "Was sind Mock-Daten, warum verwendet man sie und wie werden sie generiert? Erzeugen Sie 182 Typen algorithmisch korrekter Testdaten mit Mock Jutsu — CLI, Python, REST API, JMeter und Maven.",
+    "FR": "Que sont les données mock, pourquoi les utiliser et comment les générer ? Générez 182 types de données de test avec Mock Jutsu — CLI, Python, REST API, JMeter et Maven.",
+    "RU": "Что такое мок-данные, зачем их использовать и как генерировать? Создавайте 182 типа алгоритмически корректных тестовых данных с Mock Jutsu — CLI, Python, REST API, JMeter и Maven.",
+}
+
+_WIM_BACK_LABEL = {
+    "TR": "← Mock Jutsu TR Rehberi",
+    "EN": "← Mock Jutsu Reference",
+    "UK": "← Mock Jutsu Reference",
+    "DE": "← Mock Jutsu Referenz",
+    "FR": "← Référence Mock Jutsu",
+    "RU": "← Справочник Mock Jutsu",
+}
+
+_WIM_VIEW_FULL = {
+    "TR": "↗ Tam sayfa olarak görüntüle",
+    "EN": "↗ View as full page",
+    "UK": "↗ View as full page",
+    "DE": "↗ Als vollständige Seite anzeigen",
+    "FR": "↗ Voir en page complète",
+    "RU": "↗ Открыть как отдельную страницу",
+}
+
+
 def _build_whatismock_section(lang: str) -> str:
     lead       = _WIM_LEAD[lang]
     why_title  = _WIM_WHY_TITLE[lang]
@@ -1131,6 +1177,8 @@ def _build_whatismock_section(lang: str) -> str:
     faq_title  = _WIM_FAQ_TITLE[lang]
     faqs       = _WIM_FAQ[lang]
     page_title = TAB_LABELS[lang][5]
+    standalone_url = f"{GITHUB_BASE}/{lang}/{_WIM_SLUG[lang]}"
+    view_full  = _WIM_VIEW_FULL[lang]
 
     why_html = "".join(f"<li>{item}</li>\n" for item in why_items)
 
@@ -1173,6 +1221,9 @@ def _build_whatismock_section(lang: str) -> str:
     return (
         '<div class="tab-section" id="tab-whatismock">\n'
         '<div style="max-width:900px;margin:0 auto;padding:1.75rem 1.5rem">\n'
+        f'<div style="text-align:right;margin-bottom:.5rem">'
+        f'<a href="{standalone_url}" class="wim-standalone-link" target="_blank">{view_full}</a>'
+        f'</div>\n'
         f'<div class="stitle">{page_title}</div>\n'
         f'<p class="wim-lead">{lead}</p>\n'
         '<div class="wim-card">\n'
@@ -1604,6 +1655,23 @@ def detail_rel_path(fn: str, lang: str) -> str:
 
 def listing_rel_path(lang: str) -> str:
     return os.path.join(OUT_DIR, lang, f"HOW-TO-MockJutsu-{lang}.html")
+
+
+def wim_url(lang: str) -> str:
+    return f"{GITHUB_BASE}/{lang}/{_WIM_SLUG[lang]}"
+
+
+def wim_rel_path(lang: str) -> str:
+    return os.path.join(OUT_DIR, lang, f"{_WIM_SLUG[lang]}.html")
+
+
+def wim_hreflang_tags() -> str:
+    tags = []
+    for lang in LANGS:
+        lc = UI[lang]["lang_attr"]
+        tags.append(f'<link rel="alternate" hreflang="{lc}" href="{wim_url(lang)}">')
+    tags.append(f'<link rel="alternate" hreflang="x-default" href="{wim_url("EN")}">')
+    return "\n".join(tags)
 
 
 # ── CSS (shared across all pages) ─────────────────────────────────────────────
@@ -2285,6 +2353,184 @@ function copyTerm(id) {{
 </html>"""
 
 
+# ── "What is Mock Data?" standalone page builder ─────────────────────────────
+_WIM_STANDALONE_CSS = """<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;background:#f8fafc;color:#0f172a;line-height:1.6}
+nav.wim-nav{background:#1e3a5f;padding:.75rem 1.5rem;position:sticky;top:0;z-index:100}
+nav.wim-nav a{color:#93c5fd;text-decoration:none;font-size:.9rem;font-weight:500}
+nav.wim-nav a:hover{color:#fff}
+.wim-page-main{max-width:900px;margin:0 auto;padding:2rem 1.5rem 3rem}
+.stitle{font-size:1.85rem;font-weight:800;color:#1e3a5f;margin:0 0 1.25rem;line-height:1.2}
+.wim-lead{font-size:1.05rem;line-height:1.75;color:#1e293b;margin-bottom:1.75rem;background:#f0f9ff;border-left:4px solid #2563eb;padding:1rem 1.25rem;border-radius:0 8px 8px 0}
+.wim-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.wim-section-title{font-size:1.1rem;font-weight:700;color:#1e3a5f;margin:1.75rem 0 .75rem}
+.wim-why-list{margin:0;padding-left:1.4rem;line-height:1.9;color:#334155}
+.wim-why-list li{margin-bottom:.25rem}
+.wim-stages{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.85rem;margin-bottom:1.5rem}
+.wim-stage{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:1rem 1.1rem;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.wim-stage-title{font-weight:700;color:#1e3a5f;font-size:.9rem;margin-bottom:.4rem}
+.wim-stage-desc{font-size:.83rem;color:#475569;line-height:1.55}
+.wim-channels{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:.85rem;margin-bottom:1.5rem}
+.wim-channel{background:#1e293b;border-radius:8px;padding:1rem 1.1rem}
+.wim-channel-name{font-weight:700;color:#60a5fa;font-size:.9rem;margin-bottom:.25rem}
+.wim-channel-desc{font-size:.78rem;color:#94a3b8;margin-bottom:.6rem}
+.wim-channel-code{font-family:ui-monospace,monospace;font-size:.78rem;color:#86efac;margin:0;white-space:pre-wrap;word-break:break-all}
+.wim-faq-item{border:1px solid #e2e8f0;border-radius:8px;margin-bottom:.6rem;overflow:hidden}
+.wim-faq-q{padding:.85rem 1.1rem;font-weight:600;color:#1e3a5f;cursor:pointer;list-style:none;font-size:.9rem}
+.wim-faq-q::-webkit-details-marker{display:none}
+.wim-faq-q::before{content:"+ ";color:#2563eb;font-weight:700}
+details[open] .wim-faq-q::before{content:"\2212 ";color:#2563eb}
+.wim-faq-a{padding:.75rem 1.1rem 1rem;margin:0;font-size:.87rem;color:#475569;line-height:1.6;border-top:1px solid #e2e8f0;background:#f8fafc}
+footer.wim-footer{text-align:center;padding:2rem 1.5rem;font-size:.82rem;color:#64748b;border-top:1px solid #e2e8f0;margin-top:2rem}
+footer.wim-footer a{color:#2563eb;text-decoration:none}
+@media(max-width:600px){.wim-stages,.wim-channels{grid-template-columns:1fr}.stitle{font-size:1.4rem}}
+</style>"""
+
+
+def build_whatismock_page(lang: str) -> str:
+    ui          = UI[lang]
+    page_title  = TAB_LABELS[lang][5]
+    seo_title   = _WIM_SEO_TITLE[lang]
+    seo_desc    = _WIM_SEO_DESC[lang]
+    canonical   = wim_url(lang)
+    back_url    = listing_url(lang)
+    back_label  = _WIM_BACK_LABEL[lang]
+
+    lead        = _WIM_LEAD[lang]
+    why_title   = _WIM_WHY_TITLE[lang]
+    why_items   = _WIM_WHY_ITEMS[lang]
+    s_title     = _WIM_STAGES_TITLE[lang]
+    stages      = _WIM_STAGES[lang]
+    ch_title    = _WIM_CHANNELS_TITLE[lang]
+    channels    = _WIM_CHANNELS[lang]
+    faq_title   = _WIM_FAQ_TITLE[lang]
+    faqs        = _WIM_FAQ[lang]
+
+    why_html = "".join(f"<li>{item}</li>\n" for item in why_items)
+
+    stages_html = "".join(
+        f'<div class="wim-stage">'
+        f'<div class="wim-stage-title">{t}</div>'
+        f'<div class="wim-stage-desc">{d}</div>'
+        f'</div>\n'
+        for t, d in stages
+    )
+
+    channels_html = ""
+    for ch_name, ch_desc, ch_code in channels:
+        channels_html += (
+            f'<div class="wim-channel">'
+            f'<div class="wim-channel-name">{ch_name}</div>'
+            f'<div class="wim-channel-desc">{ch_desc}</div>'
+            f'<pre class="wim-channel-code">{ch_code}</pre>'
+            f'</div>\n'
+        )
+
+    faq_html = "".join(
+        f'<details class="wim-faq-item">'
+        f'<summary class="wim-faq-q">{q}</summary>'
+        f'<p class="wim-faq-a">{a}</p>'
+        f'</details>\n'
+        for q, a in faqs
+    )
+
+    faq_schema_items = [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}}
+        for q, a in faqs
+    ]
+    faq_schema = json.dumps(
+        {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faq_schema_items},
+        ensure_ascii=False, indent=2,
+    )
+
+    article_schema = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": page_title,
+        "description": seo_desc,
+        "url": canonical,
+        "inLanguage": ui["lang_attr"],
+        "author": {"@type": "Person", "name": "Altan Sezer Ayan"},
+        "publisher": {"@type": "Organization", "name": "mock-jutsu",
+                      "url": "https://altansayan.github.io/mock-jutsu-api/"},
+        "mainEntityOfPage": {"@type": "WebPage", "@id": canonical},
+    }, ensure_ascii=False, indent=2)
+
+    robots_dir = "noindex,follow" if lang == "UK" else "index,follow"
+    og_img = "https://altansayan.github.io/mock-jutsu-api/assets/banner.png"
+
+    hreflang = wim_hreflang_tags()
+    head = f"""<!DOCTYPE html>
+<html lang="{ui['lang_attr']}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="{robots_dir}">
+<title>{seo_title}</title>
+<meta name="description" content="{seo_desc}">
+<meta name="author" content="Altan Sezer Ayan (A.S.A)">
+<meta name="keywords" content="mock data, synthetic data, test data, mockjutsu, mock-jutsu, fake data generator">
+<link rel="canonical" href="{canonical}">
+{hreflang}
+<meta property="og:title" content="{seo_title}">
+<meta property="og:description" content="{seo_desc}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{canonical}">
+<meta property="og:image" content="{og_img}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{seo_title}">
+<meta name="twitter:description" content="{seo_desc}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+<link rel="icon" type="image/png" href="https://altansayan.github.io/mock-jutsu-api/assets/favicon.png">
+<script type="application/ld+json">
+{article_schema}
+</script>
+</head>"""
+
+    nav = (
+        f'<nav class="wim-nav">'
+        f'<a href="{back_url}">{back_label}</a>'
+        f'</nav>\n'
+    )
+
+    footer = (
+        f'<footer class="wim-footer">'
+        f'mock-jutsu &mdash; Developed by <strong>Altan Sezer Ayan - A.S.A</strong>'
+        f' &nbsp;&bull;&nbsp; <a href="https://github.com/altansayan/mock-jutsu-api">GitHub</a>'
+        f' &nbsp;&bull;&nbsp; <a href="{back_url}">{back_label}</a>'
+        f' &nbsp;&bull;&nbsp; &copy; 2026 Altan Sezer Ayan &middot; MIT License'
+        f'</footer>\n'
+    )
+
+    return (
+        head + '\n'
+        + _WIM_STANDALONE_CSS + '\n'
+        '<body>\n'
+        + nav
+        + '<main class="wim-page-main">\n'
+        f'<h1 class="stitle">{page_title}</h1>\n'
+        f'<p class="wim-lead">{lead}</p>\n'
+        '<div class="wim-card">\n'
+        f'<h2 class="wim-section-title">{why_title}</h2>\n'
+        f'<ul class="wim-why-list">{why_html}</ul>\n'
+        '</div>\n'
+        f'<h2 class="wim-section-title">{s_title}</h2>\n'
+        f'<div class="wim-stages">\n{stages_html}</div>\n'
+        f'<h2 class="wim-section-title">{ch_title}</h2>\n'
+        f'<div class="wim-channels">\n{channels_html}</div>\n'
+        f'<h2 class="wim-section-title">{faq_title}</h2>\n'
+        f'<div class="wim-faq">\n{faq_html}</div>\n'
+        f'<script type="application/ld+json">\n{faq_schema}\n</script>\n'
+        + '</main>\n'
+        + footer
+        + '</body>\n</html>'
+    )
+
+
 # ── Listing page builder ──────────────────────────────────────────────────────
 def build_listing_page(lang: str) -> str:
     ui    = UI[lang]
@@ -2713,6 +2959,8 @@ def build_listing_page(lang: str) -> str:
 .wim-faq-q::before{content:"+ ";color:#2563eb;font-weight:700}
 details[open] .wim-faq-q::before{content:"\\2212 ";color:#2563eb}
 .wim-faq-a{padding:.75rem 1.1rem 1rem;margin:0;font-size:.87rem;color:#475569;line-height:1.6;border-top:1px solid #e2e8f0;background:#f8fafc}
+.wim-standalone-link{font-size:.8rem;color:#2563eb;text-decoration:none;border:1px solid #bfdbfe;border-radius:5px;padding:.2rem .6rem;transition:background .15s}
+.wim-standalone-link:hover{background:#eff6ff}
 @media(max-width:600px){.wim-stages,.wim-channels{grid-template-columns:1fr}}
 </style>"""
 
@@ -2889,6 +3137,12 @@ def build_sitemap_main() -> str:
         if lang == "UK":
             continue
         lines.append(_sitemap_entry(listing_url(lang), "0.9", "weekly"))
+    lines.append("")
+    lines.append("  <!-- What is Mock Data? standalone pages -->")
+    for lang in LANGS:
+        if lang == "UK":
+            continue
+        lines.append(_sitemap_entry(wim_url(lang), "0.85", "monthly"))
     lines.append("</urlset>")
     return "\n".join(lines)
 
@@ -3063,6 +3317,12 @@ def main():
             f.write(build_listing_page(lang))
         done += 1
         print(f"[{done:>4}] {os.path.relpath(path, BASE_DIR)}")
+
+        # "What is Mock Data?" standalone page
+        wim_path = wim_rel_path(lang)
+        with open(wim_path, "w", encoding="utf-8") as f:
+            f.write(build_whatismock_page(lang))
+        print(f"       {os.path.relpath(wim_path, BASE_DIR)}")
 
         # Detail pages
         for r in funcs:
