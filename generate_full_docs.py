@@ -1139,12 +1139,12 @@ _WIM_SEO_TITLE = {
 }
 
 _WIM_SEO_DESC = {
-    "TR": "Mock data (sahte veri) nedir, neden kullanılır ve nasıl üretilir? Mock Jutsu ile 390+ tipte algoritmik olarak doğru test verisi üretin — CLI, Python, REST API, JMeter ve Maven ile.",
-    "EN": "What is mock data, why use it, and how to generate it? Generate 390+ types of algorithmically correct test data with Mock Jutsu — CLI, Python API, REST API, JMeter, and Maven.",
-    "UK": "What is mock data, why use it, and how to generate it? Generate 390+ types of algorithmically correct test data with Mock Jutsu — CLI, Python API, REST API, JMeter, and Maven.",
-    "DE": "Was sind Mock-Daten, warum verwendet man sie und wie werden sie generiert? Erzeugen Sie 390+ Typen algorithmisch korrekter Testdaten mit Mock Jutsu — CLI, Python, REST API, JMeter und Maven.",
-    "FR": "Que sont les données mock, pourquoi les utiliser et comment les générer ? Générez 390+ types de données de test avec Mock Jutsu — CLI, Python, REST API, JMeter et Maven.",
-    "RU": "Что такое мок-данные, зачем их использовать и как генерировать? Создавайте 390+ типов алгоритмически корректных тестовых данных с Mock Jutsu — CLI, Python, REST API, JMeter и Maven.",
+    "TR": "Mock data (sahte veri) nedir, neden kullanılır ve nasıl üretilir? Mock Jutsu ile 390+ tipte algoritmik olarak doğru test verisi üretin.",
+    "EN": "What is mock data, why use it, and how to generate it? Generate 390+ types of algorithmically correct test data with Mock Jutsu.",
+    "UK": "What is mock data, why use it, and how to generate it? Generate 390+ types of algorithmically correct test data with Mock Jutsu.",
+    "DE": "Was sind Mock-Daten, warum verwendet man sie und wie werden sie generiert? Erzeugen Sie 390+ Typen algorithmisch korrekter Testdaten mit Mock Jutsu.",
+    "FR": "Que sont les données mock, pourquoi les utiliser et comment les générer ? Générez 390+ types de données de test avec Mock Jutsu.",
+    "RU": "Что такое мок-данные, зачем их использовать и как генерировать? Создавайте 390+ типов алгоритмически корректных тестовых данных с Mock Jutsu.",
 }
 
 _WIM_BACK_LABEL = {
